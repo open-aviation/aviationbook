@@ -21,6 +21,7 @@ Preface
 
 Access data
 
+- explain types of data, trajectories, airspaces, flight plans, m1/m3, etc.
 - open data sets
 - parse, open, visualise
 
