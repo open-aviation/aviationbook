@@ -2,7 +2,7 @@
 knit: bookdown::render_book
 site: bookdown::bookdown_site
 title: "STILL TO BE DECIDED"
-author: "Johanne Poulsen and Josep Caballero"
+author: "Xavier Olive, Junzi Sun, Enrico Spinielli and Rainer Koelle"
 date: "`r Sys.Date()`"
 bibliography:
   - bibliography.bib
@@ -22,7 +22,7 @@ lot: yes
 lof: yes
 fontsize: 11pt
 link-citations: yes
-github-repo: gh_account/gh_repo
+github-repo: aviationbook/aviationbook
 url: 'https\://ourfancyurl/wherever/youputit/'
 cover-image: images/book-front-cover.pdf
 logo: images/logo.png
