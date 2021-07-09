@@ -2,28 +2,43 @@
 
 <br>
 
-::: {.authorinfo data-latex="{images/11.jpg}"}
-<img src="images/11.jpg" alt="Johanne Poulsen" class="cover" width="150" height="150"/> [Johanne Poulsen](http://example.com/)\
-Roskilde University, Roskilde, Denmark \
-[johanne.poulsen\@example.com](mailto:johanne.poulsen@example.com){.email}
+::: {.authorinfo data-latex="{images/xavier_olive.jpg}"}
+<img src="images/xavier_olive.jpg" alt="Xavier Olive" class="cover" width="150" height="150"/> [Xavier Olive](http://example.com/)\
+Toulouse, France \
+[xo\@example.com](mailto:xo@example.com){.email}
 :::
 
 Ipsum luctus etiam diam sociis ad tincidunt per blandit dignissim massa tristique at. Netus id phasellus dapibus imperdiet a felis. Sagittis duis consequat enim venenatis velit magna hac platea.
 
-Ipsum vitae vulputate ante venenatis aenean interdum nec conubia mi pharetra ullamcorper nisi! Est volutpat ultricies neque penatibus dapibus aptent ullamcorper nisl. Consequat fringilla curabitur turpis potenti nisi dis.
 
+<br>
 
+::: {.authorinfo data-latex="{images/junzi_sun.jpg}"}
+<img src="images/junzi_sun.jpg" alt="Junzi Sun" class="cover" width="150" height="150"/> [Junzi Sun](http://example.com/)\
+Delft, The Netherlands \
+[js\@example.com](mailto:js@example.com){.email}
+:::
+
+Scelerisque metus nisi tristique eleifend diam neque dignissim leo dis purus felis a et sollicitudin nulla lobortis eleifend dapibus montes maecenas metus proin ultricies imperdiet litora ultrices pharetra mauris senectus neque potenti potenti duis?
 
 
 <br>
 
-::: {.authorinfo data-latex="{images/77.jpg}"}
-<img src="images/77.jpg" alt="Josep Caballero" class="cover" width="150" height="150"/> [Josep
-Caballero](http://example.com/)\
-Centro de Estudios Superiores de la Aviación, Granada, Spain \
-[zoe\@example.com](mailto:zoe\@example.com){.email}
+::: {.authorinfo data-latex="{images/enrico_spinielli.jpg}"}
+<img src="images/enrico_spinielli.jpg" alt="Enrico Spinielli" class="cover" width="150" height="150"/> [Enrico Spinielli](http://example.com/)\
+Brussels, Belgium \
+[es\@example.com](mailto:es\@example.com){.email}
 :::
 
-Amet molestie egestas netus tristique malesuada sollicitudin laoreet odio porttitor aliquam leo. Tempor fermentum habitant sem eget bibendum inceptos eleifend urna torquent ac hendrerit. Tincidunt orci hac accumsan vel odio convallis dictum sodales ac maecenas placerat rhoncus rutrum felis ut id placerat praesent ultrices himenaeos urna dictum pretium convallis erat venenatis tortor inceptos ut suscipit senectus malesuada.
+Tincidunt orci hac accumsan vel odio convallis dictum sodales ac maecenas placerat rhoncus rutrum felis ut id placerat praesent ultrices himenaeos urna dictum pretium convallis erat venenatis tortor inceptos ut suscipit senectus malesuada.
 
-Sit nec facilisi torquent ornare malesuada nibh lacus feugiat lacinia facilisis. Pharetra mauris sociis nunc id laoreet ultrices mattis cubilia lectus posuere. Scelerisque metus nisi tristique eleifend diam neque dignissim leo dis purus felis a et sollicitudin nulla lobortis eleifend dapibus montes maecenas metus proin ultricies imperdiet litora ultrices pharetra mauris senectus neque potenti potenti duis?
+
+<br>
+
+::: {.authorinfo data-latex="{images/rainer_koelle.jpg}"}
+<img src="images/rainer_koelle.jpg" alt="Rainer Koelle" class="cover" width="150" height="150"/> [Rainer Koelle](http://example.com/)\
+Brussels, Belgium \
+[rk\@example.com](mailto:rk\@example.com){.email}
+:::
+
+Sit nec facilisi torquent ornare malesuada nibh lacus feugiat lacinia facilisis. Pharetra mauris sociis nunc id laoreet ultrices mattis cubilia lectus posuere.

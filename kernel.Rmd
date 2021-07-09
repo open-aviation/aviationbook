@@ -1,10 +1,5 @@
 
-# First Numbered Chapter
-
-For PDF output the `\mainmatter` at the very beginning of this first numbered
-chapter makes sure that arabic page numbering, i.e. 1, 2, 3..., starts here.
-The pages before you should get roman numbering, i.e. i, ii, ...
-
+# R Markdown/bookdown hints
 
 ## Labels and Cross-referencing {#S:LabelAndCrossref}
 

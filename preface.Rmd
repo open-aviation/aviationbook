@@ -2,7 +2,7 @@
 
 ```{asis, echo=!knitr::is_latex_output()}
 ::: {.infobox .caution}
-**Note**: Please name this file index.Rmd
+**Note**: Work in Progress
 :::
 ```
 
