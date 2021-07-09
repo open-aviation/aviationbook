@@ -49,7 +49,7 @@ focus on open access. With a little bit of programming knowledge and
 aviation background, this book also presents insights of data mining and
 visualisation techniques that convey a colorful story of aviation.
 
-## Who is this book for?
+## Who is this book for? {-}
 
 This book was written for graduate students, academics, scientists and
 analysts addressing data based aviation research. This includes
@@ -62,14 +62,14 @@ formats, data sources, and a decent command in the language of her
 choice to address data parsing, data analysis and data visualisation
 techniques.
 
-## Who is this book not for?
+## Who is this book not for? {-}
 
 Do not expect to find in this book a crash course in Python, R or
 Javascript. If you are passionate about aviation, some chapters may be
 of interest, but you should get proficient in basic programming to enjoy
 the full content.
 
-## How to get a copy of this book?
+## How to get a copy of this book? {-}
 
 The book is designed as an online book, edited with TU Delft OPEN
 Publishing, and is made available online
@@ -83,9 +83,9 @@ This license lets you download the book and share it with others as long
 as you credit the authors. You are not allowed to change the content in
 any way or to use the text for commercial purposes.
 
-## How is this book organised?
+## How is this book organised? {-}
 
-## Acknowledgments {-}
+## Acknowledgments {-} {-}
 
 What a piece of work is a man! How noble in reason, how infinite in faculty! In form and moving how express and admirable! In action how like an angel, in apprehension how like a god! The beauty of the world. The paragon of animals. And yet, to me, what is this quintessence of dust? Man delights not me. No, nor woman neither, though by your smiling you seem to say so.
 
