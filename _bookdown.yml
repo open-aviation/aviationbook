@@ -1,0 +1,23 @@
+rmd_files: [
+  "index.Rmd",
+  "forefront.Rmd",
+  "preface.Rmd",
+  "kernel.Rmd",
+  "appendix.Rmd",
+  "coda.Rmd"]
+
+output_dir: "docs"
+new_session: true
+
+book_filename: "aviationbook"
+repo: gh_account/gh_repo
+delete_merged_file: true
+clean: [packages.bib]
+language:
+  label:
+    fig: "Figure "
+    tab: "Table "
+  ui:
+    chapter_name: "Chapter "
+edit: "https://github.com/aviationbook/aviationbook/edit/master/%s"
+before_chapter_script: "utils.R"

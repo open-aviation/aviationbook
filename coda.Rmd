@@ -1,0 +1,13 @@
+\backmatter
+
+# References {-}
+
+<div id="refs"></div>
+
+```{r include=FALSE}
+# embed fonts
+if (knitr::is_latex_output()) {
+  pdfs = list.files(knitr::opts_chunk$get('fig.path'), '[.]pdf$', full.names = TRUE)
+  invisible(lapply(pdfs, embedFonts))
+}
+```

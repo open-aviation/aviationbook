@@ -1,0 +1,31 @@
+# Preface {-}
+
+```{asis, echo=!knitr::is_latex_output()}
+::: {.infobox .caution}
+**Note**: Please name this file index.Rmd
+:::
+```
+
+
+## Executive Summary {-}
+
+Adipiscing et ultricies vitae. Morbi interdum purus facilisi. Integer conubia tempus tortor. Ligula nisi magna conubia. Viverra cursus et habitant gravida? Taciti est mauris dui inceptos. Na inceptos.
+
+Adipiscing ante sodales facilisis posuere nisi? Nostra senectus cursus accumsan sagittis molestie! Na molestie.
+
+## Acknowledgments {-}
+
+What a piece of work is a man! How noble in reason, how infinite in faculty! In form and moving how express and admirable! In action how like an angel, in apprehension how like a god! The beauty of the world. The paragon of animals. And yet, to me, what is this quintessence of dust? Man delights not me. No, nor woman neither, though by your smiling you seem to say so.
+
+::: {.flushright data-latex=""}
+Johanne Poulsen<br>
+Roskilde, Denmark
+:::
+
+
+I've seen things you people wouldn't believe. Attack ships on fire off the shoulder of Orion. I watched C-beams glitter in the dark near the Tannhäuser Gate. All those moments will be lost in time, like tears in rain.
+
+::: {.flushright data-latex=""}
+Josep Caballero<br>
+Granada, Spain
+:::

@@ -1,0 +1,66 @@
+--- 
+knit: bookdown::render_book
+site: bookdown::bookdown_site
+title: "STILL TO BE DECIDED"
+author: "Johanne Poulsen and Josep Caballero"
+date: "`r Sys.Date()`"
+bibliography:
+  - bibliography.bib
+csl: ieee.csl
+description: Ipsum suscipit feugiat montes mus eu cursus viverra donec integer eu pellentesque? Orci platea pellentesque scelerisque bibendum nulla duis eget blandit?
+natbib: true
+biblio-style: 'dinat'
+monofont: "Source Code Pro"
+always_allow_html: true
+documentclass: book
+classoption: 
+  - 10pt
+  - openany
+colorlinks: yes
+graphics: yes
+lot: yes
+lof: yes
+fontsize: 11pt
+link-citations: yes
+github-repo: gh_account/gh_repo
+url: 'https\://ourfancyurl/wherever/youputit/'
+cover-image: images/book-front-cover.pdf
+logo: images/logo.png
+---
+
+```{r, include = FALSE}
+source("_common.R")
+```
+
+
+::: {.welcome}
+```{asis, echo = knitr::is_html_output()}
+# Welcome to the Aviation BOOK {.unnumbered}
+```
+
+\chapter*{}
+
+\vfill
+
+```{asis, echo = knitr::is_html_output()}
+![pub](images/book-front-cover.png){.cover width="250"}
+This is the website for **AVIATION BOOK**.<br>
+Consectetur nunc nisl aptent taciti cras nullam eros dictumst eros dignissim eros libero. Rhoncus sociosqu conubia posuere libero in eros nec mi sem nostra nam. Vel posuere primis curae cum curae vivamus et eget curabitur curabitur suscipit augue. Vulputate orci mattis senectus erat aptent ante. Cubilia a.
+<br>The publication is also available in PDF.
+<br><br>
+<a href="https://ourfancyurl/" target="_blank"><img src="images/file.png" width="30px">&nbsp;<strong>Download PDF</strong></a>
+<br>
+---
+<br><br>
+```
+
+
+```{asis, echo = knitr::is_latex_output()}
+Copyright \textcopyright\ 2021.
+```
+
+First Edition.
+
+Version date: `r format(Sys.Date(), "%B %d, %Y")`.
+
+:::

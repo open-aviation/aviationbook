@@ -1,3 +1,13 @@
+# ignore the output dir
+docs/
+
+# ignore the project .rds
+aviationbook.rds
+
+# ignore temp files from bookdown
+_bookdown_files/
+aviationbook.log
+
 ######## R project specific (R.gitignore)
 # from https://github.com/github/gitignore/
 # History files
