@@ -1,0 +1,17 @@
+
+# Aviation background
+
+This part brings in the minimal background necessary to comprehend the
+aviation world, including vocabulary and historical aspects which led to
+the current situation.
+
+
+1.  **Aviation 101 by Rainer**
+    > not sure this is an own part, but it might be good to have a
+    > small section speaking about aviation vs air transport, airspace
+    > vs controlled/ATC, airport airside (landside or why we skip this),
+    > active/secondary surveillance, \.... This might be the place to
+    > also speak about trajectory \~ flight and other basics.
+
+2.  **Historical aspects**
+    > (radar, routes, vors, ils, flight plans, etc)

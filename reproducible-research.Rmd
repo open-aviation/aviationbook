@@ -1,0 +1,19 @@
+# Reproducible research
+
+The most overlooked aspect of data analysis probably turns around data
+sharing. Data curation is often a very time consuming process and
+enriching data by labelling specific tags or merging several sources of
+information brings additional value to a dataset. This part deals with
+the data sharing and publication process. (paper reproducibility?)
+
+*Introduction about reproducible research. This would also include
+sharing the code beyond the dataset cleaning to producing related
+summaries, tables/graphics, etc.*
+
+1.  **Good practices for producing a clean dataset**
+    > \#include and use some of the datasets in 'traffic' / Zenodo /
+    > ... these could be used in the examples in the book (and it would
+    > be great to explain how to arrive to a clean dataset)
+
+2.  **Issues around dataset sharing**
+    > open data, licensing, etc.?

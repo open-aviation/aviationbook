@@ -1,4 +1,3 @@
-\mainmatter
 
 # First Numbered Chapter
 
