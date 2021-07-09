@@ -25,6 +25,17 @@ pkgs <- c(
 install.packages(pkgs)
 ```
 
+Installing R with conda, I had to install the following Ubuntu dependencies + two packages pre-compiled:
+
+```
+sudo apt install libharfbuzz-dev libfribidi-dev
+sudo apt install libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev
+mamba install fontfonfig
+mamba install r-systemfonts
+mamba install r-ragg
+mamba install pandoc-citep
+```
+
 ## (La)TeX and Co.
 
 You should have (La)Tex installed.
