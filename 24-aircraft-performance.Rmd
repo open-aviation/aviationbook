@@ -1,0 +1,19 @@
+# Aircraft Performance
+
+::: {.infobox .tip}
+Author: ?
+:::
+
+::: {.infobox .note}
+**Author's note**: This part goes through all the most commonly used data formats in the
+aviation and ATM data analysis community.
+
+* BADA
+* OpenAP
+* ECAC Doc 29
+* ... (Ulrich?)
+:::
+
+Here are some references for BADA [@nuic_etal10], OpenAP [@sun2020openap; @sun2019thesis],
+ECAC Doc 29 [@ecac/ecea16a, @ecac/ecea16b, @ecac/ecea16c] and 
+others [@poll_schumann_2021a; @poll_schumann_2021b]

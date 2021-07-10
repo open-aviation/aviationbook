@@ -1,0 +1,21 @@
+# Aereonautical Information
+
+::: {.infobox .tip}
+Author: ?
+:::
+
+::: {.infobox .note}
+**Author's note**: This part goes through all the most commonly used data formats in the
+aviation and ATM data analysis community.
+
+Airspaces & / or aeronautical information in general (AIRAC):
+
+* airport information:
+    - ARP
+    - runway thresholds
+    - parking positions]
+* Published Points
+* Routes
+* SID / STAR
+* ...
+:::

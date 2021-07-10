@@ -1,0 +1,14 @@
+# Exploring a dataset
+
+::: {.infobox .tip}
+Author: ?
+:::
+
+::: {.infobox .note}
+**Author's note**: This part presents popular frameworks of data analytics and digs into
+the insides of aviation commonly used data formats, accessible data
+sources (open or not), together with basic programming literacy for
+exploring such datasets.
+
+(scrape,) parse, open, visualise
+:::

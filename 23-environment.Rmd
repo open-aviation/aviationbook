@@ -1,5 +1,4 @@
-
-# Trajectories
+# Environment
 
 ::: {.infobox .tip}
 Author: ?
@@ -8,10 +7,10 @@ Author: ?
 ::: {.infobox .note}
 **Author's note**: This part goes through all the most commonly used data formats in the
 aviation and ATM data analysis community.
+
+* METAR
+* SIGMET
+* Weather, atmosphere
+* noise
+
 :::
-
-
-**Trajectories**
--   Trajectories: radar tracks, ADS-B
--   Flight plans
--   DDR formats: exp2 m1 m3 ALL FT+

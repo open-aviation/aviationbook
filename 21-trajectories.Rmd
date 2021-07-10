@@ -1,0 +1,22 @@
+
+# Trajectories
+
+::: {.infobox .tip}
+Author: ?
+:::
+
+::: {.infobox .note}
+**Author's note**: This part goes through all the most commonly used data formats in the
+aviation and ATM data analysis community.
+
+* Trajectories: radar tracks, ADS-B
+* Flight plans
+* DDR formats:
+   - `exp2`
+   - `M1`
+   - `M3`
+   - `SO6`
+   - `ALL FT+`
+
+:::
+

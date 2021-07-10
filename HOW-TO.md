@@ -83,6 +83,16 @@ In the RStudio console pane execute the following:
 bookdown::render_book(input = 'index.Rmd', output_format = 'bookdown::pdf_book')
 ```
 
+# Bibliography
+
+We have a group Zotero: https://www.zotero.org/groups/4370174/aviation-book
+
+The best way to edit the entries is via the Zotero app and automatically export
+to the book's `bibliography.bib` file.
+Otherwise via the web interface.
+
+
+
 # Introduction R Markdown / bookdown
 
 - [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)
