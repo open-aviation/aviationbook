@@ -11,4 +11,5 @@ focus on geographical information.
 
 :::
 
-3.  **Produce meaningful maps**
+Some references [@wilkinson05] and [@wickham10], as well as some implementations in R [@wickham16],
+Python [@vanderplas_etal18] and Javascript [@satyanarayan_etal17].

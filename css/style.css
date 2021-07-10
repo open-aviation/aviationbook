@@ -13,6 +13,10 @@ img.cover {
   border: 1px solid;
 }
 
+.circular--square {
+  border-radius: 50%;
+}
+
 
 .figure {
   text-align: center;

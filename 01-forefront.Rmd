@@ -3,7 +3,7 @@
 <br>
 
 ::: {.authorinfo data-latex="{images/xavier_olive.jpg}"}
-<img src="images/xavier_olive.jpg" alt="Xavier Olive" class="cover" width="150" height="150"/> [Xavier Olive](http://example.com/)\
+<img src="images/xavier_olive.jpg" alt="Xavier Olive" class="cover circular--square" width="150" height="150"/> [Xavier Olive](http://example.com/)\
 Toulouse, France \
 [xo\@example.com](mailto:xo@example.com){.email}
 :::
@@ -14,7 +14,7 @@ Ipsum luctus etiam diam sociis ad tincidunt per blandit dignissim massa tristiqu
 <br>
 
 ::: {.authorinfo data-latex="{images/junzi_sun.jpg}"}
-<img src="images/junzi_sun.jpg" alt="Junzi Sun" class="cover" width="150" height="150"/> [Junzi Sun](http://example.com/)\
+<img src="images/junzi_sun.jpg" alt="Junzi Sun" class="cover circular--square" width="150" height="150"/> [Junzi Sun](http://example.com/)\
 Delft, The Netherlands \
 [js\@example.com](mailto:js@example.com){.email}
 :::
@@ -25,7 +25,7 @@ Scelerisque metus nisi tristique eleifend diam neque dignissim leo dis purus fel
 <br>
 
 ::: {.authorinfo data-latex="{images/enrico_spinielli.jpg}"}
-<img src="images/enrico_spinielli.jpg" alt="Enrico Spinielli" class="cover" width="150" height="150"/> [Enrico Spinielli](http://example.com/)\
+<img src="images/enrico_spinielli.jpg" alt="Enrico Spinielli" class="cover circular--square" width="150" height="150"/> [Enrico Spinielli](http://example.com/)\
 Brussels, Belgium \
 [es\@example.com](mailto:es\@example.com){.email}
 :::
@@ -36,7 +36,7 @@ Tincidunt orci hac accumsan vel odio convallis dictum sodales ac maecenas placer
 <br>
 
 ::: {.authorinfo data-latex="{images/rainer_koelle.jpg}"}
-<img src="images/rainer_koelle.jpg" alt="Rainer Koelle" class="cover" width="150" height="150"/> [Rainer Koelle](http://example.com/)\
+<img src="images/rainer_koelle.jpg" alt="Rainer Koelle" class="cover circular--square" width="150" height="150"/> [Rainer Koelle](http://example.com/)\
 Brussels, Belgium \
 [rk\@example.com](mailto:rk\@example.com){.email}
 :::
