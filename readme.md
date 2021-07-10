@@ -1,3 +1,5 @@
+See [How-TO](HOW-TO) for setup and usage.
+
 # Aviation book
 
 ## Titles (suggestions)
