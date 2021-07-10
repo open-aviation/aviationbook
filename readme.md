@@ -1,4 +1,4 @@
-See [How-TO](HOW-TO) for setup and usage.
+See [How-TO](HOW-TO.md) for setup and usage.
 
 # Aviation book
 
