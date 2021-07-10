@@ -6,7 +6,7 @@ author: "Xavier Olive, Junzi Sun, Enrico Spinielli and Rainer Koelle"
 date: "`r Sys.Date()`"
 bibliography:
   - bibliography.bib
-csl: ieee.csl
+#csl: ieee.csl
 description: Ipsum suscipit feugiat montes mus eu cursus viverra donec integer eu pellentesque? Orci platea pellentesque scelerisque bibendum nulla duis eget blandit?
 natbib: true
 biblio-style: 'dinat'
