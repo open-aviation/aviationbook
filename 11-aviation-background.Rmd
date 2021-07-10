@@ -1,0 +1,22 @@
+
+# Aviation 101
+
+::: {.infobox .tip}
+Author: Rainer (?)
+:::
+
+
+::: {.infobox .note}
+**Author's note**: This part brings in the minimal background necessary to comprehend the
+aviation world, including vocabulary and historical aspects which led to
+the current situation.
+
+not sure this is an own part, but it might be good to have a
+small section speaking about aviation vs air transport, airspace
+vs controlled/ATC, airport airside (landside or why we skip this),
+active/secondary surveillance, \.... This might be the place to
+also speak about trajectory \~ flight and other basics.
+:::
+
+
+
