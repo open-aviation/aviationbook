@@ -1,7 +1,7 @@
 # Historical aspects
 
 ::: {.infobox .tip}
-Author: ?
+Author: Xavier
 :::
 
 ::: {.infobox .note}

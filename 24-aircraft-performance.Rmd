@@ -1,7 +1,7 @@
 # Aircraft Performance
 
 ::: {.infobox .tip}
-Author: ?
+Author: Junzi
 :::
 
 ::: {.infobox .note}

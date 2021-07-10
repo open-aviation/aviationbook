@@ -1,7 +1,7 @@
 # Information extraction
 
 ::: {.infobox .tip}
-Author: ?
+Author: Xavier
 :::
 
 ::: {.infobox .note}

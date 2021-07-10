@@ -3,13 +3,11 @@
 <br>
 
 ::: {.authorinfo data-latex="{images/xavier_olive.jpg}"}
-<img src="images/xavier_olive.jpg" alt="Xavier Olive" class="cover circular--square" width="150" height="150"/> [Xavier Olive](http://example.com/)\
-Toulouse, France \
-[xo\@example.com](mailto:xo@example.com){.email}
+<img src="images/xavier_olive.jpg" alt="Xavier Olive" class="cover circular--square" width="150" height="150"/> [Xavier Olive](https://www.xoolive.org/)\
+Toulouse, France
 :::
 
-Ipsum luctus etiam diam sociis ad tincidunt per blandit dignissim massa tristique at. Netus id phasellus dapibus imperdiet a felis. Sagittis duis consequat enim venenatis velit magna hac platea.
-
+Xavier graduated from Supaero, Université de Toulouse, France and holds a PhD from Kyoto University, Japan. He is currently a research scientist, passionate about aviation, maps and data. His research interests include Data Science, Machine Learning and Decision Science applied to aviation, with a particular focus on optimisation, anomaly and pattern detection applied to air traffic management, operations, predictive maintenance, safety analyses and risk assessment. Xavier also teaches artificial intelligence and advanced programming in Python to graduate students. He is the main author of the open-source [traffic](https://traffic-viz.github.io/) Python library, and of the book (in French) [Programmation Python avancée](https://www.xoolive.org/python/) with Dunod editions.
 
 <br>
 

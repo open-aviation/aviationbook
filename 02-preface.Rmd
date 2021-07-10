@@ -85,17 +85,50 @@ any way or to use the text for commercial purposes.
 
 ## How is this book organised? {-}
 
+*Part 1. Introduction to aviation*
+
+This part brings in the minimal background necessary to comprehend the
+aviation world, including vocabulary and historical aspects which led to
+the current situation.
+
+*Part 2. The ecosystem of aviation data*
+
+This part goes through all the most commonly used data formats in the
+aviation and ATM data analysis community.
+
+*Part 3. Access and Explore Data*
+
+This part presents popular frameworks of data analytics and digs into
+the insides of aviation commonly used data formats, accessible data
+sources (open or not), together with basic programming literacy for
+exploring such datasets.
+
+*Part 4. Process Data*
+
+This part introduces more advanced mathematical and programming skills.
+The tidy paradigm to manipulate data frames is introduced. Challenges
+associated with geometrical shapes, geographical coordinates,
+trajectories, projections are presented, before introducing common AI
+tools for information extraction, prediction and optimisation.
+
+*Part 5. Visualise Data*
+
+This part turns to the data visualisation aspects. It explains how to
+choose the most appropriate tool to convey a message with particular
+focus on geographical information.
+
+*Part 6. Share Data *
+
+The most overlooked aspect of data analysis probably turns around data
+sharing. Data curation is often a very time consuming process and
+enriching data by labelling specific tags or merging several sources of
+information brings additional value to a dataset. This part deals with
+the data sharing and publication process. (paper reproducibility?)
+
+
 ## Acknowledgments {-}
 
 What a piece of work is a man! How noble in reason, how infinite in faculty! In form and moving how express and admirable! In action how like an angel, in apprehension how like a god! The beauty of the world. The paragon of animals. And yet, to me, what is this quintessence of dust? Man delights not me. No, nor woman neither, though by your smiling you seem to say so.
-
-::: {.flushright data-latex=""}
-Johanne Poulsen<br>
-Roskilde, Denmark
-:::
-
-
-I've seen things you people wouldn't believe. Attack ships on fire off the shoulder of Orion. I watched C-beams glitter in the dark near the Tannhäuser Gate. All those moments will be lost in time, like tears in rain.
 
 ::: {.flushright data-latex=""}
 Enrico Spinielli<br>

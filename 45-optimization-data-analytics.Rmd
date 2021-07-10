@@ -1,7 +1,7 @@
 # Optimisation in data analytics
 
 ::: {.infobox .tip}
-Author: ?
+Author: Xavier
 :::
 
 ::: {.infobox .note}
