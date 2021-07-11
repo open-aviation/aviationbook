@@ -13,3 +13,12 @@ tools for information extraction, prediction and optimisation.
 
 Examples in R, Javascript, Python
 :::
+
+See [@wickham14] and possibly [database normalization](https://en.wikipedia.org/wiki/Database_normalization).
+
+* concept
+* examples in various frameworks
+   - R: dplyr, tidyr
+   - Python: pandas (?)
+   - Javascript: [tidy.js](https://pbeshai.github.io/tidy/),
+     https://observablehq.com/@uwdata/tidy-data-in-javascript
