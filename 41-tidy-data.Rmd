@@ -15,6 +15,7 @@ Examples in R, Javascript, Python
 :::
 
 See [@wickham14] and possibly [database normalization](https://en.wikipedia.org/wiki/Database_normalization).
+See also [Chapter 12](https://r4ds.had.co.nz/tidy-data.html) of [@r4ds].
 
 * concept
 * examples in various frameworks
