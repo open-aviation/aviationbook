@@ -1,7 +1,7 @@
 # The tidy data paradigm
 
 ::: {.infobox .tip}
-Author: ?
+Author: Enrico, ?
 :::
 
 ::: {.infobox .note}

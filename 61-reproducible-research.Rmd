@@ -3,7 +3,7 @@
 # Produce meaningful maps
 
 ::: {.infobox .tip}
-Author: ?
+Author: Enrico, ?
 :::
 
 ::: {.infobox .note}
