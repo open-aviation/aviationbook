@@ -1,3 +1,10 @@
 {
-  "folders": [{ "path": "." }]
+  "folders": [{ "path": "." }],
+  "settings": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.quickSuggestions": false,
+    "editor.wordWrap": "wordWrapColumn",
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true
+  }
 }
