@@ -5,6 +5,10 @@ acr <- read_csv(here("data", "acronyms.csv"))
 acr %>% 
    gt() %>%
    tab_header(title = "Acronyms") %>%
+   cols_label(
+    acronym = md("**Acronym**"),
+    description = md("**Description**")
+  ) %>% 
    fmt_markdown(columns = description)
 ```
 
