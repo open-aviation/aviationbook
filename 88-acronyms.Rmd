@@ -1,0 +1,10 @@
+# Acronyms
+
+```{r table-acronyms}
+acr <- read_csv(here("data", "acronyms.csv"))
+acr %>% 
+   gt() %>%
+   tab_header(title = "Acronyms") %>%
+   fmt_markdown(columns = description)
+```
+

@@ -1,5 +1,6 @@
 output_dir: "docs"
 new_session: true
+before_chapter_script: ["_common.R", "utils.R"]
 
 book_filename: "aviationbook"
 repo: gh_account/gh_repo
@@ -12,4 +13,3 @@ language:
   ui:
     chapter_name: "Chapter "
 edit: "https://github.com/aviationbook/aviationbook/edit/master/%s"
-before_chapter_script: "utils.R"

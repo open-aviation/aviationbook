@@ -4,12 +4,15 @@ options(digits = 3)
 
 # packages ---------------------------------------------------------------------
 
+suppressMessages(library(tidyverse))
+suppressMessages(library(here))
+suppressMessages(library(gt))
+
 suppressMessages(library(janitor))
 suppressMessages(library(knitr))
 suppressMessages(library(kableExtra))
 suppressMessages(library(openintro))
 suppressMessages(library(patchwork))
-suppressMessages(library(tidyverse))
 suppressMessages(library(scales))
 suppressMessages(library(skimr))
 suppressMessages(library(ggpubr))

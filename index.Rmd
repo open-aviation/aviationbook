@@ -28,10 +28,6 @@ cover-image: images/book-front-cover.pdf
 logo: images/logo.png
 ---
 
-```{r, include = FALSE}
-source("_common.R")
-```
-
 
 ::: {.welcome}
 ```{asis, echo = knitr::is_html_output()}
