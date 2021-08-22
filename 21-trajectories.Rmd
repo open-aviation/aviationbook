@@ -17,6 +17,80 @@ aviation and ATM data analysis community.
    - `M3`
    - `SO6`
    - `ALL FT+`
-
+   - `ADS-B (OSN/traffic)`
 :::
+
+Let's distinguish between Flight and trajectory.
+
+Data for a flight include such information as
+
+* aerodrome of departure (ADEP)
+* aerodrome of destination (ADES)
+* take-off date and time
+* landing date and time
+* flight ID / flight number / callsign
+* aircraft type
+* aircraft operator
+
+
+Data for a trajectory refer typically to a point profile and can
+include:
+
+* flight ID / flight number / callsign
+* sequence number
+* timestamp
+* position (longitude, latitude, altitude)
+* position ID (i.e. published point ID)
+* airspace ID
+* (ground / vertical) speed
+
+with timestamp and position as a minimum.
+
+
+
+## Flight Lists
+
+
+### DDR2 `exp2`
+
+The traffic demand file (exp2) can obtained from the EUROCONTROL’s Demand Data Repository
+(DDR2) for a selected period of time (typically one day) and geographic area (e.g. FABEC).
+The `exp2` includes, for each flight, basic information about the departure time,
+the origin and destination airports, a unique flight identifier, the callsign,
+the aircraft ICAO code (e.g. A320) and the requested flight level by the airspace user as
+submitted in the flight plan.
+
+### OSN Flight Table
+
+::: {.infobox .tip}
+Why not?
+:::
+
+## Flight trajectories
+
+EUROCONTROL's Network Manager has devised different flight trajectories
+formats in order to store and exchange information with the aviation community.
+
+In the following sections we will cover the most known ones: M1, M3, SO6.
+
+### Model 1 (M1)
+
+The flight trajectory known as *Model 1*, *M1* or *Filed Tactical Flight Model (FTFM)* is a
+mathematical model containing a point and airspace volume profile created in ETFMS for a flight.
+This trajectory is first created when Flight Plan (FP) details, and any subsequent changes,
+are received by the Network Operations of EUROCONTROL's
+Network Manager^[Aircraft Operators willing to fly IFR flights in the Network Manager (NM)
+area of responsibility are mandated to file the relevant Flight Plan to the Network Manager.
+The aim of this centralised management of FP's in Europe is linked to one of the NM mandates,
+the ability to detect imbalance between demand (willingness to fly) and offer (ATC / airport capacity)
+and offer the different impacted ATC/airports to implement measures to resolve the overload (typically
+via departure delays or rerouting.)].
+
+The M1 is a translation of a FP (especially Field 15) to a point profile, i.e. a
+sequence of 4D positions (timestamp + longitude, latitude, altitude) plus relevant penetrated airspace ID's, 
+calculated taking into account the aircraft type performance (via BADA) and the environment restrictions
+as published in the [Route Availability Document (RAD)][rad].
+
+[rad]: https://www.nm.eurocontrol.int/RAD/ "Rote Availability Document (RAD)"
+
 
