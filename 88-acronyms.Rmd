@@ -8,6 +8,6 @@ acr %>%
     acronym = md("**Acronym**"),
     description = md("**Description**")
   ) %>% 
-   fmt_markdown(columns = description)
+   fmt_markdown(columns = c(description))
 ```
 
