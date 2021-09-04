@@ -7,6 +7,7 @@ options(digits = 3)
 suppressMessages(library(tidyverse))
 suppressMessages(library(here))
 suppressMessages(library(gt))
+suppressMessages(library(jsonlite))
 
 suppressMessages(library(janitor))
 suppressMessages(library(knitr))

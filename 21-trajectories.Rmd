@@ -71,20 +71,21 @@ Why not?
 EUROCONTROL's Network Manager has devised different flight trajectories
 formats in order to store and exchange information with the aviation community.
 
-In the following sections we will cover the most known ones: M1, M3, SO6.
+In the following sections we will cover the most known ones: M1 & M3 and SO6.
 
-### Model 1 (M1)
+### Model 1 (M1 or FTFM)
 
 The flight trajectory known as *Model 1*, *M1* or *Filed Tactical Flight Model (FTFM)* is a
 mathematical model containing a point and airspace volume profile created in ETFMS for a flight.
 This trajectory is first created when Flight Plan (FP) details, and any subsequent changes,
 are received by the Network Operations of EUROCONTROL's
-Network Manager^[Aircraft Operators willing to fly IFR flights in the Network Manager (NM)
+Network Manager^[Aircraft Operators (AO) willing to fly IFR flights in the Network Manager (NM)
 area of responsibility are mandated to file the relevant Flight Plan to the Network Manager.
-The aim of this centralised management of FP's in Europe is linked to one of the NM mandates,
-the ability to detect imbalance between demand (willingness to fly) and offer (ATC / airport capacity)
-and offer the different impacted ATC/airports to implement measures to resolve the overload (typically
-via departure delays or rerouting.)].
+The aim of this centralised management of FP's in Europe is linked to one of the NM mandates, i.e.
+the ability to detect imbalance between demand (willingness to fly by AO's) and
+offer (ability to guarantee safety by ATC / airport capacity providing an adequate level of safety).
+The NM provides the ACC's/airports to monitor the situation and implement measures to resolve
+the overload (typically via departure delays or rerouting.)].
 
 The M1 is a translation of a FP (especially Field 15) to a point profile, i.e. a
 sequence of 4D positions (timestamp + longitude, latitude, altitude) plus relevant penetrated airspace ID's, 
@@ -94,3 +95,16 @@ as published in the [Route Availability Document (RAD)][rad].
 [rad]: https://www.nm.eurocontrol.int/RAD/ "Rote Availability Document (RAD)"
 
 
+### Model 3 (M3 or CTFM)
+
+The flight trajectory known as *Model 3*, *M3* or *Current Tactical Flight Model (CTFM)* is an
+updated version of the M1 model where the point/airspace profile is recalculated taking into account
+surveillance data (*Correlated Position Reports* [CPR]^[CPRs are received by NM from ACC's,
+they consist of surveillance data (callsign longitude, latitude, altitude, timestamp) paired
+with flight plan info (aircraft type, ICAO 24-bit address)] or more recently
+ADS-B position reports)
+when these show a significant deviation from M1 (or M2 which is an M1-like
+trajectory calculated in case of delayed flight).
+The deviation considered is of 1 min in time, more than 400 feet in en-route phase,
+more than 1000 feet in climb/descent phase or more than 10 NM laterally
+see 14.3.1 [@niarchakou_simonselva17].
