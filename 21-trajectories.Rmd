@@ -13,8 +13,8 @@ aviation and ATM data analysis community.
 * Flight plans
 * DDR formats:
    - `exp2`
-   - `M1`
-   - `M3`
+   - ~~`M1`~~
+   - ~~`M3`~~
    - `SO6`
    - `ALL FT+`
    - `ADS-B (OSN/traffic)`
@@ -72,6 +72,8 @@ EUROCONTROL's Network Manager has devised different flight trajectories
 formats in order to store and exchange information with the aviation community.
 
 In the following sections we will cover the most known ones: M1 & M3 and SO6.
+
+They are a mix of flight information and trajectory.
 
 ### Model 1 (M1 or FTFM)
 
