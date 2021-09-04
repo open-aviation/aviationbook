@@ -94,6 +94,14 @@ as published in the [Route Availability Document (RAD)][rad].
 
 [rad]: https://www.nm.eurocontrol.int/RAD/ "Rote Availability Document (RAD)"
 
+::: {.infobox .note}
+TODO:
+
+1. add CSV file with sample M1 data in `data/` folder
+1. Add small sample of data frame for M1
+2. Plot M1
+:::
+
 
 ### Model 3 (M3 or CTFM)
 
@@ -108,3 +116,11 @@ trajectory calculated in case of delayed flight).
 The deviation considered is of 1 min in time, more than 400 feet in en-route phase,
 more than 1000 feet in climb/descent phase or more than 10 NM laterally
 see 14.3.1 [@niarchakou_simonselva17].
+
+::: {.infobox .note}
+TODO:
+
+1. add CSV file with sample M3 data in `data/` folder
+1. Add small sample of data frame for M3
+2. Plot M3 and M1/M3 overlapped to show the differences
+:::
