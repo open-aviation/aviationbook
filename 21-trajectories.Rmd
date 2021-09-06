@@ -116,7 +116,7 @@ ADS-B position reports)
 when these show a significant deviation from M1 (or M2 which is an M1-like
 trajectory calculated in case of delayed flight).
 The deviation considered is of 1 min in time, more than 400 feet in en-route phase,
-more than 1000 feet in climb/descent phase or more than 10 NM laterally
+more than 1000 feet in climb/descent phase or more than 10 NM laterally,
 see 14.3.1 [@niarchakou_simonselva17].
 
 ::: {.infobox .note}
