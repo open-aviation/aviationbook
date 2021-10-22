@@ -20,6 +20,8 @@ pkgs <- c(
    "ragg",
    "bslib",
    "downlit",
+   "here",
+   "gt",
    NULL
 )
 install.packages(pkgs)
@@ -28,12 +30,8 @@ install.packages(pkgs)
 Installing R with conda, I had to install the following Ubuntu dependencies + two packages pre-compiled:
 
 ```
-sudo apt install libharfbuzz-dev libfribidi-dev
-sudo apt install libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev
-mamba install fontfonfig
-mamba install r-systemfonts
-mamba install r-ragg
-mamba install pandoc-citep
+sudo apt install libharfbuzz-dev libfribidi-dev libfreetype6-dev libpng-dev libtiff5-dev libjpeg-dev
+mamba install fontfonfig r-systemfonts r-ragg r-here r-gt pandoc-citep
 ```
 
 ## (La)TeX and Co.
