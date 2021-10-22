@@ -1,24 +1,50 @@
 
 # Trajectories
 
-::: {.infobox .tip}
-Author: I (Xavier) can start but I think we all can do it somehow can't we?
+A trajectory is a mathematical abstraction used to describe the evolution of a moving object with a finite list of parameters. The most common features in aviation include latitude, longitude, altitude, all indexed by time, with derived ones such as ground speed, track angle and vertical rate.
+Depending on the application, some models would expect more features. For example, flight dynamics models could include pitch, roll and yaw angles, indicated airspeed, Mach number, etc.
+
+This chapter describes several common formats for trajectories depending on available technology to record them. Associated data sources come with different licensing terms which must be kept in mind when developping or applying computing methods.
+
+## Common formats for aircraft trajectory data
+
+### Quick Access Recorders (QAR)
+
+Aircraft carry an airborne flight recorder to provide quick access to raw flight data. Use cases for such data range from flight operational quality assurance (FOQA), post-ops analysis to improve flight safety or operational efficiency, system analysis for predictive or condition-based maintenance. QAR data typically contains over 2000 flight parameters.
+
+![Example of a subset of QAR data for an A320 aircraft](images/qar_screenshot.png)
+
+::: { .infobox .info }
+Trajectory records usually have a different sampling rate depending on the feature. IEEE354 defines a particular floating point number called `NaN` (not a number) useful for marking missing values. Integers usually do not have such equivalent, so it is common to find *saturated values* (255 for 8-bit integers) to mark missing values.
 :::
 
-::: {.infobox .note}
-**Author's note**: This part goes through all the most commonly used data formats in the
-aviation and ATM data analysis community.
+Airlines, not manufacturers, own the data of the aircraft they operate. These days, manufacturers tend to sell cloud services to store and analyse data of the aircraft they sell.
 
-* Trajectories: radar tracks, ADS-B
-* Flight plans
-* DDR formats:
-   - `exp2`
-   - ~~`M1`~~
-   - ~~`M3`~~
-   - `SO6`
-   - `ALL FT+`
-   - `ADS-B (OSN/traffic)`
+### Radar tracks
+
+Radars (stands for *Radio Detection and Ranging*) use radio waves to determine the distance and angle of objects. They were first introduced as part of the *Britannic Anti-Aircraft Defence System*: the first station was set up in 1937 and went operational in 1938. Radars have been used in civil aviation after the second World War.
+
+![Radar coverage over the British Isles during WW2](images/radar_coverage.png)
+
+Secondary Surveillance Radars (SSR) are able to communicate with aircraft they detect to *identify* them.
+
+Based on the radar plots, computer systems usually produce tracks containing an identifier, a timestamp (in seconds since midnight on the picture below), latitude, longitude (commonly in degrees), altitude (commonly in ft). Groundspeed (in knots), vertical speed (in ft/mn) and track angle are easy to compute. Kalman filters are commonly applied to the raw output of radar tracks in order to produce a smooth trajectory.
+
+![Sample RADAR tracks for a commercial aircraft](images/format_radar.png)
+
+::: { .infobox .info }
+There is a common confusion in aviation between three designations for angles:
+
+- the *track angle* represents the direction the aircraft is flying. It is the angle of the speed vector, ranging from 0 (North) to 360 degrees (90° for East, 270° for West);
+- the *heading angle* represents the direction the nose the aircraft is pointing at;
+- the *bearing angle* usually represents the direction of/to a static object, e.g. the bearing of a runway, or the bearing to a navigational point.
 :::
+
+ANSP (TODO define) own the data for the radar installations they operate.
+
+### ADS-B and Mode S
+
+## Metadata
 
 Let's distinguish between Flight and trajectory.
 
@@ -31,6 +57,7 @@ Data for a flight include such information as
 * flight ID / flight number / callsign
 * aircraft type
 * aircraft operator
+* callsign
 
 
 Data for a trajectory refer typically to a point profile and can
@@ -46,10 +73,18 @@ include:
 
 with timestamp and position as a minimum.
 
+## Flight plans
 
 
-## Flight Lists
 
+## Flight lists
+
+* DDR formats:
+   - `exp2`
+   - ~~`M1`~~
+   - ~~`M3`~~
+   - `SO6`
+   - `ALL FT+`
 
 ### DDR2 `exp2`
 
@@ -75,7 +110,7 @@ In the following sections we will cover the most known ones: M1 & M3 and SO6.
 
 They are a mix of flight information and trajectory.
 
-### Model 1 (M1 or FTFM)
+### Model 1 (M1 or *FTFM*)
 
 The flight trajectory known as *Model 1*, *M1* or *Filed Tactical Flight Model (FTFM)* is a
 mathematical model containing a point and airspace volume profile created in ETFMS for a flight.
@@ -90,7 +125,7 @@ The NM provides the ACC's/airports to monitor the situation and implement measur
 the overload (typically via departure delays or rerouting.)].
 
 The M1 is a translation of a FP (especially Field 15) to a point profile, i.e. a
-sequence of 4D positions (timestamp + longitude, latitude, altitude) plus relevant penetrated airspace ID's, 
+sequence of 4D positions (timestamp + longitude, latitude, altitude) plus relevant penetrated airspace ID's,
 calculated taking into account the aircraft type performance (via BADA) and the environment restrictions
 as published in the [Route Availability Document (RAD)][rad].
 
@@ -105,7 +140,9 @@ TODO:
 :::
 
 
-### Model 3 (M3 or CTFM)
+### Model 2 (M2 or *RTFM*)
+
+### Model 3 (M3 or *CTFM*)
 
 The flight trajectory known as *Model 3*, *M3* or *Current Tactical Flight Model (CTFM)* is an
 updated version of the M1 model where the point/airspace profile is recalculated taking into account
