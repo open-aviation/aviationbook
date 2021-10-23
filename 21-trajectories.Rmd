@@ -1,4 +1,3 @@
-
 # Trajectories
 
 A trajectory is a mathematical abstraction used to describe the evolution of a moving object with a finite list of parameters. The most common features in aviation include latitude, longitude, altitude, all indexed by time, with derived ones such as ground speed, track angle and vertical rate.
@@ -52,49 +51,55 @@ There is a common confusion in aviation between three designations for angles:
 
 ANSP (TODO define) own the data for the radar installations they operate.
 
-### ADS-B and Mode S
+### Mode A/C, ADS-B and Mode S
+
+TODO Would intro by Junzi fit in here? or is too complicated?
 
 ## Metadata
 
-Let's distinguish between Flight and trajectory.
+A number of flight information is usually not directly accessible from settings recording aircraft trajectories. Metadata usually refers to any additional information enriching a trajectory.
+Enriching trajectories with relevant information is usually a costly process, and access to such information can be complicated.
 
-Data for a flight include such information as
+The most common identifier for aircraft in radar based technologies would be the identifier of the transponder: a six-digit hexadecimal identifier which classically identifies an aircraft. Useful metadata would include
 
-* aerodrome of departure (ADEP)
-* aerodrome of destination (ADES)
-* take-off date and time
-* landing date and time
-* flight ID / flight number / callsign
-* aircraft type
-* aircraft operator
-* callsign
+| feature      | description                                   |
+| ------------ | --------------------------------------------- |
+| registration | The tail number of an aircraft, e.g. `F-HNAV` |
+| typecode     | The aircraft type, e.g. `A321`                |
+| age          |                                               |
+| owner        |                                               |
+| manufacturer |                                               |
+| operator     |                                               |
 
 
-Data for a trajectory refer typically to a point profile and can
-include:
+::: {.infobox .todo}
 
-* flight ID / flight number / callsign
-* sequence number
-* timestamp
-* position (longitude, latitude, altitude)
-* position ID (i.e. published point ID)
-* airspace ID
-* (ground / vertical) speed
+- equivalence between N-codes and icao codes
+- icao ranges per country, tail number patterns per country
 
-with timestamp and position as a minimum.
+:::
+
+A call sign is an eight-character identifier used for communication with the ATC. General aviation commonly uses the aircraft registration (tail number) as a call sign; commercial flights use a unique identifier per route, starting with three letters identifying the airline operator, BAW for British Airways, AFR for Air France, etc. Call signs commonly refer to the mission operated by an aircraft, and this can help distinguish the original intention of an aircraft used for specific purposes.
+
+For example, F-HNAV uses the CALIBRA call sign for VOR/ILS calibration operations, the JAMMING call sign during jamming investigation and a regular NAK call sign when commuting between airfields. Similarly, test flights operated by Airbus use an AIB call sign; Boeing uses a BOE call sign; ambulance helicopters often use explicit call signs: SAMU in France (stands for Urgent Medical Aid Service) and LIFEin many European countries. Australian firefighting operations use a specific call sign depending on the role of the aircraft during the operations: BMBR for fire bombing; SPTR for fire spotters; BDOG, bird dog, for fire attack supervisions (often subcontracted); and FSCN, firescan for remote sensing fire operations.
+
+Metadata associated with callsigns (and posssibly dates) include:
+
+| feature  | description                                      |
+| -------- | ------------------------------------------------ |
+| callsign | the ICAO code, e.g. `AFR82BY`                    |
+| number   | the commercial IATA flight number, e.g. `AF6103` |
+| ADEP     | aeroport of departure, e.g. `LFBO`               |
+| ADES     | aeroport of destination, e.g. `LFPO`             |
+| EOBT     | estimated off-block time                         |
+| ETOT     | estimated take-off time                          |
 
 ## Flight plans
 
+Example: N0441F340 FISTO5B FISTO UY156 PERIG UT210 TUDRA/N0426F280 UT158 AMB AMB9W
 
 
 ## Flight lists
-
-* DDR formats:
-   - `exp2`
-   - ~~`M1`~~
-   - ~~`M3`~~
-   - `SO6`
-   - `ALL FT+`
 
 ### DDR2 `exp2`
 
@@ -173,3 +178,22 @@ TODO:
 1. Add small sample of data frame for M3
 2. Plot M3 and M1/M3 overlapped to show the differences
 :::
+
+### SO6
+
+### ALL_FT+
+
+TODO this part could help?
+
+Data for a trajectory refer typically to a point profile and can
+include:
+
+* flight ID / flight number / callsign
+* sequence number
+* timestamp
+* position (longitude, latitude, altitude)
+* position ID (i.e. published point ID)
+* airspace ID
+* (ground / vertical) speed
+
+with timestamp and position as a minimum.
