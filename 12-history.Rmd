@@ -1,9 +1,47 @@
-# Historical aspects
+# Bits of history
 
-::: {.infobox .tip}
-Author: Xavier
-:::
+## The history of longitude
 
-::: {.infobox .note}
-**Author's note**: radar, routes, vors, ils, flight plans, etc
-:::
+Knowledge of both latitudes and longitudes are crucial to both cartography and navigation. Latitudes have been relatively easy to determine with a reasonable precision by observing the stars in the sky and measuring their altitudes (angles of elevation). In 3rd century BC, Erathostenes of Cyrene estimated the radius of Earth after he measured a difference of latitudes of 7.2° (the fiftieth part of 360°) between Alexandria and Syene based on the Sun position.
+
+The precise measurement of longitude took centuries of studies, with serious advances coming with the development of telescopes and accurate clocks.
+
+Gemma Frisius, a Dutch mathematician, first suggested travelling with a clock to determine longitudes in the 16th century. The clock would be set to the local time of a starting point whose longitude was known, and the longitude of any other place could be determined by comparing its local time with the clock time. However, this method required precise mechanical clocks not available at that time.
+
+In the 17th century, Galileo is known for his work on orbital periods of Jupiter's four brightest satellites (Io, Europa, Ganymede and Callisto): he determined that sufficiently accurate knowledge of their orbits could be used as a universal clock, making it possible to determine longitudes. However, the method required a telescope, as the moons are not visible to the naked eye.
+
+TODO illustration? https://it.wikisource.org/wiki/Le_opere_di_Galileo_Galilei_-_Vol._V/Delle_macchie_solari/Istoria_e_dimostrazioni_intorno_alle_macchie_solari#/media/File:Le_opere_di_Galileo_Galilei_V_(page_241_crop).jpg
+
+Today, the precision we get with global position systems (GPS) also depends on the precision we can get with clocks, around the nanosecond.
+
+## Radars
+
+The fundamental theory of radar started in late 19th century. Since the 1860s, when the electromagnetic theory was discovered by James Clerk Maxwell, the foundation for many science and technology fields was laid out. In the late 19th century, Heinrich Hertz, who proved the existence of electromagnetic waves, also confirmed that metals could reflect radio waves. In the first decades of the 20th century, several systems for using radio waves to provide short-range directional information of objects were developed. German inventor Christian Hülsmeyer is often considered as the first person to use radio waves to detect metal objects in 1904.
+
+However, not until the Second World War, was the concept of RAdio Detection And Ranging (RADAR) developed. The technology was simultaneously researched by both major Allies and Axis countries. However, the United Kingdom led the race in developing a functional radar system.
+
+### The primary radar
+
+Aircraft surveillance in the early days relied only on, what is known today as, the primary surveillance radar (PSR). The concept of PSR is fairly simple. It is a rotating radio transponder with an omnidirectional antenna. Commonly, the radar transmits a one-microsecond pulse for every one millisecond and listens to the reflections from the airplanes. The position of the aircraft is measured by the distance and angle to the radar. The distance is known as the slant distance, which is the line-of-sight distance between an aircraft and the radar. It can be calculated by measuring the time difference between the original signal and the reflection received, since the speed of the radio wave (speed of light) is known. The azimuth angle of the aircraft is determined by the rotation angle of the radar. By processing radar signals, technologies like phase filter and Doppler filter can be used to filter out moving targets like aircraft and remove static objects, such as mountains, buildings, and other obstacles.
+
+The slant distance of an aircraft does not always correspond to the horizontal distance to the radar. This is because all points having the same slant distance are located on a sphere that has the radius equal to the distance. Since the civil radar usually does not provide elevation information on the target, it is not possible to accurately convert the slant distance to the horizontal distance. Historically, it is sufficient to use primary radar for separating airplanes without considering these altitude differences. However, other systems have to be in place to provide air traffic controllers more accurate positions of the aircraft.
+
+### The secondary radar
+
+The secondary surveillance radar (SSR), also known as the air traffic control radar beacon system (ATCRBS), was designed to provide air traffic controllers more information than what is provided by the primary radar. The secondary radar can be installed separately or installed on top of the primary radar. It uses a different radio frequency to actively interrogate the aircraft and receive information transmitted by the aircraft.
+
+The SSR transmits interrogations using the 1030 MHz radio frequency and the aircraft transponder transmits replies using the 1090 MHz radio frequency. In the early design of SSR, two civilian communication protocols (Mode A and Mode C) were introduced. Mode A and Mode C respectively allow the SSR to continuously interrogate the identity (squawk code) and the altitude of an aircraft. The squawk code in Mode A is a unique 4-octal digit code given by air traffic controllers to aircraft in their flight information region for identification. The altitude in Mode C refers to the barometric altitude obtained from the aircraft’s air data system.
+
+## VORs
+
+## Routes
+
+## ILS
+
+## GPS
+
+## Recent technologies
+
+- Differential GPS
+- LIDAR
+
