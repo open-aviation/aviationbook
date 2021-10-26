@@ -2,8 +2,8 @@ output_dir: "docs"
 new_session: true
 before_chapter_script: ["_common.R", "utils.R"]
 
-book_filename: "aviationbook"
-repo: gh_account/gh_repo
+book_filename: "index"
+repo: atmdata/aviationbook
 delete_merged_file: true
 clean: [packages.bib]
 language:
@@ -12,4 +12,4 @@ language:
     tab: "Table "
   ui:
     chapter_name: "Chapter "
-edit: "https://github.com/aviationbook/aviationbook/edit/master/%s"
+edit: "https://github.com/atmdata/aviationbook/edit/master/%s"

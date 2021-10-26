@@ -1,22 +1,29 @@
 .infobox {
-  padding: 1em 1em 1em 4em;
-  margin-bottom: 10px;
-  background: lightgray 5px center/3em no-repeat;
-  border: 2px solid orange;
-  border-radius: 10px;
+  padding: 1em;
+  margin-bottom: 1em;
+  background: #eeeeee 5px center/3em no-repeat;
+  border-top: 2px solid;
+}
+.infobox .title {
+  height: 20px;
+  width: 100px;
+  background-color: #eeeeee;
+  text-align: center;
+  margin-top: -1.8em;
+  margin-bottom: 0.8em;
+  font-weight: bold;
 }
 .caution {
-  background-image: url("../images/caution.png");
 }
 .important {
-  background-image: url("../images/important.png");
 }
 .note {
-  background-image: url("../images/note.png");
 }
 .tip {
-  background-image: url("../images/tip.png");
+  border-top-color: #4c78a8;
+  color: #4c78a8;
 }
 .warning {
-  background-image: url("../images/warning.png");
+  border-top-color: #f58518;
+  color: #f58518;
 }

@@ -1,7 +1,7 @@
 --- 
 knit: bookdown::render_book
 site: bookdown::bookdown_site
-title: "STILL TO BE DECIDED"
+title: "A journey through aviation data"
 author: "Xavier Olive, Junzi Sun, Enrico Spinielli and Rainer Koelle"
 date: "`r Sys.Date()`"
 bibliography:
@@ -22,7 +22,7 @@ lot: yes
 lof: yes
 fontsize: 11pt
 link-citations: yes
-github-repo: aviationbook/aviationbook
+github-repo: atmdata/aviationbook
 url: 'https\://ourfancyurl/wherever/youputit/'
 cover-image: images/book-front-cover.pdf
 logo: images/logo.png
@@ -31,7 +31,7 @@ logo: images/logo.png
 
 ::: {.welcome}
 ```{asis, echo = knitr::is_html_output()}
-# Welcome to the Aviation BOOK {.unnumbered}
+# A journey through aviation data {.unnumbered}
 ```
 
 \chapter*{}
@@ -40,7 +40,6 @@ logo: images/logo.png
 
 ```{asis, echo = knitr::is_html_output()}
 ![pub](images/book-front-cover.png){.cover width="250"}
-This is the website for **AVIATION BOOK**.<br>
 Consectetur nunc nisl aptent taciti cras nullam eros dictumst eros dignissim eros libero. Rhoncus sociosqu conubia posuere libero in eros nec mi sem nostra nam. Vel posuere primis curae cum curae vivamus et eget curabitur curabitur suscipit augue. Vulputate orci mattis senectus erat aptent ante. Cubilia a.
 <br>The publication is also available in PDF.
 <br><br>
