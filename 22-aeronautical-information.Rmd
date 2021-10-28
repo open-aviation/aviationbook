@@ -1,4 +1,4 @@
-# Aereonautical Information
+# Aeronautical Information
 
 ::: {.infobox .tip}
 Author: ?

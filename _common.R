@@ -33,7 +33,8 @@ knitr::opts_chunk$set(
    fig.asp   = 0.618,  # 1 / phi
    fig.show  = "hold",
    dpi       = 300,
-   fig.pos   = "h"
+   fig.pos   = "h",
+   fig.width = "80%"
 )
 
 if (knitr::is_html_output()) {
