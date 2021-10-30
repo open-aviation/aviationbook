@@ -7,7 +7,9 @@
 Toulouse, France
 :::
 
-Xavier graduated from Supaero, Université de Toulouse, France and holds a PhD from Kyoto University, Japan. He is currently a research scientist, passionate about aviation, maps and data. His research interests include Data Science, Machine Learning and Decision Science applied to aviation, with a particular focus on optimisation, anomaly and pattern detection applied to air traffic management, operations, predictive maintenance, safety analyses and risk assessment. Xavier also teaches artificial intelligence and advanced programming in Python to graduate students. He is the main author of the open-source [traffic](https://traffic-viz.github.io/) Python library, and of the book (in French) [Programmation Python avancée](https://www.xoolive.org/python/) with Dunod editions.
+Xavier graduated from Supaero, Université de Toulouse, France and holds a PhD from Kyoto University, Japan. He is currently a research scientist, passionate about aviation, maps and data. His research interests include Data Science, Machine Learning and Decision Science applied to aviation, with a particular focus on optimisation, anomaly and pattern detection applied to air traffic management, operations, predictive maintenance, safety analyses and risk assessment. Xavier also teaches artificial intelligence and advanced programming in Python to graduate students.
+
+He is the main author of the open-source [traffic](https://traffic-viz.github.io/) Python library, and of the book [Programmation Python avancée](https://www.xoolive.org/python/) (in French) with Dunod editions.
 
 <br>
 

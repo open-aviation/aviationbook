@@ -19,7 +19,7 @@ The content of this book is licensed as Creative Commons CC-BY-NC-ND. This licen
 - Opening Aviation
 - Data Science for Aviation
 
-## Subtitles:
+## Subtitles
 
 - Access, process, visualise and share aviation data
 - A comprehensive handbook for aviation data
