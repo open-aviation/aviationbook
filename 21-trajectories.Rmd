@@ -11,7 +11,12 @@ This chapter describes several common formats for trajectories depending on avai
 
 Aircraft carry an airborne flight recorder to provide quick access to raw flight data. Use cases for such data range from flight operational quality assurance (FOQA), post-ops analysis to improve flight safety or operational efficiency, system analysis for predictive or condition-based maintenance. QAR data typically contains over 2000 flight parameters.
 
-![Example of a subset of QAR data for an A320 aircraft](images/qar_screenshot.png)
+(ref:qar-a320) Example of a subset of QAR data for an A320 aircraft.
+
+```{r qar-a320,fig.cap='(ref:qar-a320)'}
+knitr::include_graphics("images/qar_screenshot.png")
+```
+
 
 ::: { .infobox .info }
 Trajectory records usually have a different sampling rate depending on the feature. IEEE354 defines a particular floating point number called `NaN` (not a number) useful for marking missing values. Integers usually do not have such equivalent, so it is common to find *saturated values* (255 for 8-bit integers) to mark missing values.
@@ -23,7 +28,12 @@ Airlines, not manufacturers, own the data of the aircraft they operate. These da
 
 Radars (stands for *Radio Detection and Ranging*) use radio waves to determine the distance and angle of objects. They were first introduced as part of the *Britannic Anti-Aircraft Defence System*: the first station was set up in 1937 and went operational in 1938. Radars have been used in civil aviation after the second World War.
 
-![Radar coverage over the British Isles during WW2](images/radar_coverage.png)
+(ref:radar-ww2) Radar coverage over the British Isles during WW2.
+
+```{r radar-ww2,fig.cap='(ref:radar-ww2)'}
+knitr::include_graphics("images/radar_coverage.png")
+```
+
 
 Secondary Surveillance Radars (SSR) are able to communicate with aircraft they detect to *identify* them.
 

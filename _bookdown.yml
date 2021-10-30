@@ -2,7 +2,7 @@ output_dir: "docs"
 new_session: true
 before_chapter_script: ["_common.R", "utils.R"]
 
-book_filename: "index"
+book_filename: "aviationbook"
 repo: atmdata/aviationbook
 delete_merged_file: true
 clean: [packages.bib]
