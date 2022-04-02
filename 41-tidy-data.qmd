@@ -22,4 +22,4 @@ See also [Chapter 12](https://r4ds.had.co.nz/tidy-data.html) of [@r4ds].
    - R: dplyr, tidyr
    - Python: pandas (?)
    - Javascript: [tidy.js](https://pbeshai.github.io/tidy/),
-     https://observablehq.com/@uwdata/tidy-data-in-javascript
+     [tidy data at Observable](https://observablehq.com/@uwdata/tidy-data-in-javascript)

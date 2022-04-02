@@ -1,25 +1,24 @@
 # Installation
 
+The book is now rendered using [quarto](https://quarto.org/).
+
+The book uses some R to generate a the acronym table in the appendix, so you
+need R and a few packages installed as explained below.
+
+For PDF rendering you need to install TinyTeX:
+
+```
+quarto tools install tinytex
+```
+
 ## Required packages
 
 You need to install as a minimum the following packages:
 
 ```
 pkgs <- c(
-   "janitor",
-   "knitr",
-   "kableExtra",
-   "openintro",
-   "patchwork",
-   "tidyverse",
-   "scales",
-   "skimr",
-   "ggpubr",
    "bookdown",
    "tinytex",
-   "ragg",
-   "bslib",
-   "downlit",
    "here",
    "gt",
    NULL
@@ -55,31 +54,11 @@ provide better graphical output.
 
 ## Web book
 
-In order to generate the whole book in the first format as defined in `_output.yml`
-just open `index.Rmd` in RStudio and press the `Knit` button.
-This is equivalent to run
-
-```
-bookdown::render_book(input = 'index.Rmd', output_format = 'bookdown::bs4_book')
-```
-
-which you can run from a terminal as
-
-```
-$ Rscript -e "bookdown::render_book(input = 'index.Rmd', output_format = 'bookdown::pdf_book')"
-```
-
-see also the `_build.sh` script.
-
-For a chapter file, just open it and press `Knit` to compile and preview it.
+Run `quarto preview` to have a local preview from your browser.
 
 ## PDF book
 
-In the RStudio console pane execute the following:
-
-```
-bookdown::render_book(input = 'index.Rmd', output_format = 'bookdown::pdf_book')
-```
+TBD
 
 # Bibliography
 
@@ -89,12 +68,3 @@ The best way to edit the entries is via the Zotero app and automatically export
 to the book's `bibliography.bib` file.
 Otherwise via the web interface.
 
-
-
-# Introduction R Markdown / bookdown
-
-- [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/)
-- [R Markdown Cookbook](https://bookdown.org/yihui/rmarkdown-cookbook/)
-- [bookdown](https://bookdown.org/yihui/bookdown/)
-
-A short hands-on guide: https://ewfrees.github.io/StyleGuideLDA/S-SampleSection.html
