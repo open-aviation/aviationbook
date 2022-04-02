@@ -1,4 +1,7 @@
-# Forefront {.unnumbered .unlisted}
+---
+knit: quarto render
+---
+# Authors' Bio {.unnumbered .unlisted}
 
 <br>
 

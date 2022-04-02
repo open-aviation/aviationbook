@@ -1,0 +1,66 @@
+project:
+  type: book
+
+book:
+  title: "A journey through aviation data"
+  author: "Xavier Olive, Junzi Sun, Enrico Spinielli and Rainer Koelle"
+  date: "2099-03-01"
+  chapters:
+    - index.qmd
+    - 01-forefront.qmd
+    - 02-preface.qmd
+    - part: "Introduction to aviation"
+      chapters:
+        - 11-aviation-background.qmd
+        - 12-history.qmd
+    - part: "The ecosystem of aviation data"
+      chapters:
+        - 21-trajectories.qmd
+        - 22-aeronautical-information.qmd
+        - 23-environment.qmd
+        - 24-aircraft-performance.qmd
+    - part: "Access and Explore Data"
+      chapters:
+        - 31-tools-ecosystem.qmd
+        - 32-common-data-sources.qmd
+        - 33-aviation-data-sources.qmd
+        - 34-exploring-datasets.qmd
+    - part: "Process data"
+      chapters:
+        - 41-tidy-data.qmd
+        - 42-geometrice-geographic.qmd
+        - 43-processing-trajectories.qmd
+        - 44-information-extraction.qmd
+        - 45-optimization-data-analytics.qmd
+        - 46-handling-uncertainty.qmd
+    - part: "Visualise Data"
+      chapters:
+        - 51-storytelling.qmd
+        - 52-grammar-of-graphics.qmd
+        - 53-meaningful-maps.qmd
+    - part: "Share Data"
+      chapters:
+        - 61-reproducible-research.qmd
+  appendices:
+    - 71-appendix.qmd
+    - 88-acronyms.qmd
+
+  cover-image: images/book-front-cover.png
+  site-url: https://atmdata.github.io/aviationbook
+  repo-url: https://github.com/atmdata/aviationbook/
+  repo-branch: master
+
+  crossref:
+    appendix-title: "App."
+    appendix-delim: ":"
+
+bibliography: bibliography.bib
+
+format:
+  html:
+    theme: cosmo
+  pdf:
+    documentclass: scrreprt
+
+
+

@@ -2,11 +2,11 @@
 
 # Produce meaningful maps
 
-::: {.infobox .tip}
+::: {.callout-tip}
 Author: Enrico, ?
 :::
 
-::: {.infobox .note}
+::: {.callout-note}
 **Author's note**: The most overlooked aspect of data analysis probably turns around data
 sharing. Data curation is often a very time consuming process and
 enriching data by labelling specific tags or merging several sources of

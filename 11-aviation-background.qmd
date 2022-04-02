@@ -1,12 +1,11 @@
-
 # Aviation 101
 
-::: {.infobox .tip}
+:::{.callout-tip}
 Author: Rainer (?)
 :::
 
 
-::: {.infobox .note}
+:::{.callout-note}
 **Author's note**: This part brings in the minimal background necessary to comprehend the
 aviation world, including vocabulary and historical aspects which led to
 the current situation.

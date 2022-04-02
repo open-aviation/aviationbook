@@ -1,15 +1,14 @@
-# The Ecosystem of Analytics Tools
+# Exploring a dataset
 
-::: {.infobox .tip}
-Author: Xavier
+::: {.callout-tip}
+Author: ?
 :::
 
-::: {.infobox .note}
+::: {.callout-note}
 **Author's note**: This part presents popular frameworks of data analytics and digs into
 the insides of aviation commonly used data formats, accessible data
 sources (open or not), together with basic programming literacy for
 exploring such datasets.
 
-R, Python, Javascript/Observable, more?
+(scrape,) parse, open, visualise
 :::
-

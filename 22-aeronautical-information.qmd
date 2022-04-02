@@ -1,6 +1,6 @@
 # Aeronautical Information
 
-::: {.infobox .tip}
+::: {.callout-tip}
 Author: ?
 :::
 

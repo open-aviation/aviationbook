@@ -1,3 +1,4 @@
+
 # Trajectories
 
 A trajectory is a mathematical abstraction used to describe the evolution of a moving object with a finite list of parameters. The most common features in aviation include latitude, longitude, altitude, all indexed by time, with derived ones such as ground speed, track angle and vertical rate.
@@ -11,14 +12,11 @@ This chapter describes several common formats for trajectories depending on avai
 
 Aircraft carry an airborne flight recorder to provide quick access to raw flight data. Use cases for such data range from flight operational quality assurance (FOQA), post-ops analysis to improve flight safety or operational efficiency, system analysis for predictive or condition-based maintenance. QAR data typically contains over 2000 flight parameters.
 
-(ref:qar-a320) Example of a subset of QAR data for an A320 aircraft.
 
-```{r qar-a320,fig.cap='(ref:qar-a320)'}
-knitr::include_graphics("images/qar_screenshot.png")
-```
+![Example of a subset of QAR data for an A320 aircraft](images/qar_screenshot.png){#fig-qar-a320}
 
 
-::: { .infobox .info }
+::: {.callout-info}
 Trajectory records usually have a different sampling rate depending on the feature. IEEE354 defines a particular floating point number called `NaN` (not a number) useful for marking missing values. Integers usually do not have such equivalent, so it is common to find *saturated values* (255 for 8-bit integers) to mark missing values.
 :::
 
@@ -28,20 +26,17 @@ Airlines, not manufacturers, own the data of the aircraft they operate. These da
 
 Radars (stands for *Radio Detection and Ranging*) use radio waves to determine the distance and angle of objects. They were first introduced as part of the *Britannic Anti-Aircraft Defence System*: the first station was set up in 1937 and went operational in 1938. Radars have been used in civil aviation after the second World War.
 
-(ref:radar-ww2) Radar coverage over the British Isles during WW2.
 
-```{r radar-ww2,fig.cap='(ref:radar-ww2)'}
-knitr::include_graphics("images/radar_coverage.png")
-```
+![Radar coverage over the British Isles during WW2](images/radar_coverage.png){#fig-radar-ww2}     
 
 
 Secondary Surveillance Radars (SSR) are able to communicate with aircraft they detect to *identify* them.
 
-Based on the radar plots, computer systems usually produce tracks containing an identifier, a timestamp (in seconds since midnight on the picture below), latitude, longitude (commonly in degrees), altitude (commonly in ft). Groundspeed (in knots), vertical speed (in ft/mn) and track angle are easy to compute. Kalman filters are commonly applied to the raw output of radar tracks in order to produce a smooth trajectory.
+Based on the radar plots, computer systems usually produce tracks containing an identifier, a timestamp (in seconds since midnight on the picture below), latitude, longitude (commonly in degrees), altitude (commonly in ft). Ground speed (in knots), vertical speed (in ft/mn) and track angle are easy to compute. Kalman filters are commonly applied to the raw output of radar tracks in order to produce a smooth trajectory.
 
 ![Sample RADAR tracks for a commercial aircraft](images/format_radar.png)
 
-::: { .infobox .info }
+:::{.callout-info}
 There is a common confusion in aviation between three designations for angles:
 
 - the *track angle* represents the direction the aircraft is flying. It is the angle of the speed vector, ranging from 0 (North) to 360 degrees (90° for East, 270° for West);
@@ -53,12 +48,17 @@ ANSP (TODO define) own the data for the radar installations they operate.
 
 ### Mode A/C, ADS-B and Mode S
 
-TODO Would intro by Junzi fit in here? or is too complicated?
+:::{.callout-note}
+**TODO**
+
+Would intro by Junzi fit in here? or is too complicated?
+:::
 
 ## Metadata
 
 A number of flight information is usually not directly accessible from settings recording aircraft trajectories. Metadata usually refers to any additional information enriching a trajectory.
 Enriching trajectories with relevant information is usually a costly process, and access to such information can be complicated.
+
 
 The most common identifier for aircraft in radar based technologies would be the identifier of the transponder: a six-digit hexadecimal identifier which classically identifies an aircraft. Useful metadata would include
 
@@ -71,8 +71,10 @@ The most common identifier for aircraft in radar based technologies would be the
 | manufacturer |                                               |
 | operator     |                                               |
 
+: Aircraft identifier and metadata {#tbl-cucu}
 
-::: {.infobox .todo}
+::: {.callout-warning}
+**TODO**
 
 - equivalence between N-codes and icao codes
 - icao ranges per country, tail number patterns per country
@@ -94,6 +96,7 @@ Metadata associated with callsigns (and posssibly dates) include:
 | EOBT     | estimated off-block time                         |
 | ETOT     | estimated take-off time                          |
 
+
 ## Flight plans
 
 Example: N0441F340 FISTO5B FISTO UY156 PERIG UT210 TUDRA/N0426F280 UT158 AMB AMB9W
@@ -112,7 +115,7 @@ submitted in the flight plan.
 
 ### OSN Flight Table
 
-::: {.infobox .tip}
+::: {.callout-note}
 Why not?
 :::
 
@@ -146,8 +149,8 @@ as published in the [Route Availability Document (RAD)][rad].
 
 [rad]: https://www.nm.eurocontrol.int/RAD/ "Rote Availability Document (RAD)"
 
-::: {.infobox .note}
-TODO:
+:::{.callout-note}
+**TODO**
 
 1. add CSV file with sample M1 data in `data/` folder
 1. Add small sample of data frame for M1
@@ -171,8 +174,8 @@ The deviation considered is of 1 min in time, more than 400 feet in en-route pha
 more than 1000 feet in climb/descent phase or more than 10 NM laterally,
 see 14.3.1 [@niarchakou_simonselva17].
 
-::: {.infobox .note}
-TODO:
+::: {.callout-note}
+**TODO**
 
 1. add CSV file with sample M3 data in `data/` folder
 1. Add small sample of data frame for M3
@@ -183,7 +186,9 @@ TODO:
 
 ### ALL_FT+
 
+:::{.callout-note}
 TODO this part could help?
+:::
 
 Data for a trajectory refer typically to a point profile and can
 include:

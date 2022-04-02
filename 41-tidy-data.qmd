@@ -1,10 +1,10 @@
 # The tidy data paradigm
 
-::: {.infobox .tip}
+::: {.callout-tip}
 Author: Enrico, ?
 :::
 
-::: {.infobox .note}
+::: {.callout-note}
 **Author's note**: This part introduces more advanced mathematical and programming skills.
 The tidy paradigm to manipulate data frames is introduced. Challenges
 associated with geometrical shapes, geographical coordinates,

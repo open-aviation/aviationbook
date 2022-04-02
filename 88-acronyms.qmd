@@ -1,6 +1,14 @@
 # Acronyms
 
-```{r table-acronyms}
+```{r}
+#| label: tbl-acronyms
+#| tbl-cap: acronyms.
+#| warning: false
+#| echo: false
+
+library(readr)
+library(here)
+library(gt)
 acr <- read_csv(here("data", "acronyms.csv"))
 acr %>% 
    gt() %>%

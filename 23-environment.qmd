@@ -1,10 +1,10 @@
 # Environment
 
-::: {.infobox .tip}
+::: {.callout-tip}
 Author: Enrico, ?
 :::
 
-::: {.infobox .note}
+::: {.callout-note}
 **Author's note**: This part goes through all the most commonly used data formats in the
 aviation and ATM data analysis community.
 

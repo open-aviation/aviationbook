@@ -1,10 +1,10 @@
 # Grammar of graphics
 
-::: {.infobox .tip}
+::: {.callout-tip}
 Author: ?
 :::
 
-::: {.infobox .note}
+::: {.callout-note}
 **Author's note**: This part turns to the data visualisation aspects. It explains how to
 choose the most appropriate tool to convey a message with particular
 focus on geographical information.

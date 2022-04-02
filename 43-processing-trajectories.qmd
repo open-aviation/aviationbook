@@ -1,15 +1,14 @@
-# Optimisation in data analytics
+# Processing aircraft trajectories
 
-::: {.infobox .tip}
+::: {.callout-tip}
 Author: Xavier
 :::
 
-::: {.infobox .note}
+::: {.callout-note}
 **Author's note**: This part introduces more advanced mathematical and programming skills.
 The tidy paradigm to manipulate data frames is introduced. Challenges
 associated with geometrical shapes, geographical coordinates,
 trajectories, projections are presented, before introducing common AI
 tools for information extraction, prediction and optimisation.
 
-*Include prediction, or make it a different chapter\...*
 :::

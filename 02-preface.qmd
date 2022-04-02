@@ -1,10 +1,8 @@
 # Preface {-}
 
-```{asis, echo=!knitr::is_latex_output()}
-::: {.infobox .caution}
-**Note**: Work in Progress
+:::{.callout-warning}
+Work in Progress
 :::
-```
 
 
 About a century after the invention of powered flight, aviation has

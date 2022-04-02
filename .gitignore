@@ -1,5 +1,5 @@
 # ignore the output dir
-docs/
+_book/
 
 # ignore the project .rds
 aviationbook.rds
@@ -127,3 +127,5 @@ $RECYCLE.BIN/
 
 
 #######---- other ----########
+
+/.quarto/

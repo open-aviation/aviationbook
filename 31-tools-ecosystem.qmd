@@ -1,17 +1,15 @@
-# Common data sources
+# The Ecosystem of Analytics Tools
 
-::: {.infobox .tip}
-Author: ?
+::: {.callout-tip}
+Author: Xavier
 :::
 
-::: {.infobox .note}
+::: {.callout-note}
 **Author's note**: This part presents popular frameworks of data analytics and digs into
 the insides of aviation commonly used data formats, accessible data
 sources (open or not), together with basic programming literacy for
 exploring such datasets.
 
-\#include
-[[https://atmdata.github.io/]{.underline}](https://atmdata.github.io/)\
-Promote flight table project (RQ)
-
+R, Python, Javascript/Observable, more?
 :::
+

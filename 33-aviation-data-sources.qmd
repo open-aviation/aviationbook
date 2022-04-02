@@ -1,10 +1,10 @@
 # An overview of open datasets for aviation
 
-::: {.infobox .tip}
+::: {.callout-tip}
 Author: ?
 :::
 
-::: {.infobox .note}
+::: {.callout-note}
 **Author's note**: This part presents popular frameworks of data analytics and digs into
 the insides of aviation commonly used data formats, accessible data
 sources (open or not), together with basic programming literacy for
