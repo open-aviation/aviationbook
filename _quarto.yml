@@ -41,6 +41,7 @@ book:
     - part: "Share Data"
       chapters:
         - 61-reproducible-research.qmd
+    - 90-references.qmd
   appendices:
     - 71-appendix.qmd
     - 88-acronyms.qmd
@@ -56,11 +57,18 @@ book:
 
 bibliography: bibliography.bib
 
+# for debug
+# geometry:
+#   - showframe
+
+pdf-engine: xelatex
 format:
   html:
     theme: cosmo
   pdf:
-    documentclass: scrreprt
+    documentclass: scrbook
+    papersize: a4
+
 
 
 
