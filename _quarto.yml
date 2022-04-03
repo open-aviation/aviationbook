@@ -42,6 +42,7 @@ book:
       chapters:
         - 61-reproducible-research.qmd
     - 90-references.qmd
+    - 91-authors.qmd
   appendices:
     - 71-appendix.qmd
     - 88-acronyms.qmd
@@ -50,6 +51,11 @@ book:
   site-url: https://atmdata.github.io/aviationbook
   repo-url: https://github.com/atmdata/aviationbook/
   repo-branch: master
+
+  search: true
+  repo-actions: [edit]
+  downloads: [pdf]
+  sharing: [twitter, linkedin]
 
   crossref:
     appendix-title: "App."
@@ -62,13 +68,22 @@ bibliography: bibliography.bib
 #   - showframe
 
 pdf-engine: xelatex
+
 format:
   html:
     theme: cosmo
+    code-copy: true
   pdf:
     documentclass: scrbook
     papersize: a4
 
-
-
-
+website:
+  search:
+    location: navbar
+    type: overlay
+  navbar:
+    background: primary
+    search: true
+    top:
+      - text: "Home"
+        file: index.qmd
