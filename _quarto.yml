@@ -1,6 +1,11 @@
 project:
   type: book
 
+execute:
+  freeze: auto
+  # echo: false
+  warning: false
+
 book:
   title: "A journey through aviation data"
   author: "Xavier Olive, Junzi Sun, Enrico Spinielli and Rainer Koelle"
@@ -57,9 +62,9 @@ book:
   downloads: [pdf]
   sharing: [twitter, linkedin]
 
-  crossref:
-    appendix-title: "App."
-    appendix-delim: ":"
+  # crossref:
+  #   appendix-title: "App."
+  #   appendix-delim: ":"
 
 bibliography: bibliography.bib
 
