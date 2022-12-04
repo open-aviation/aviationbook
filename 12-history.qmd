@@ -55,6 +55,15 @@ The SSR transmits interrogations using the 1030 MHz radio frequency and the airc
 
 ## VHF Omnidirectional Range (VOR)
 
+<https://www.skybrary.aero/articles/vhf-omnidirectional-radio-range-vor>
+<https://en.wikipedia.org/wiki/VHF_omnidirectional_range>
+
+## Distance Measuring Equipment (DME)
+
+<https://www.skybrary.aero/articles/distance-measuring-equipment-dme>
+<https://en.wikipedia.org/wiki/Distance_measuring_equipment>
+
+
 :::{.callout-warning}
 **TODO**
 
