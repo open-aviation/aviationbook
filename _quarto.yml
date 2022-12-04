@@ -67,6 +67,7 @@ book:
   #   appendix-delim: ":"
 
 bibliography: bibliography.bib
+csl: media/ieee.csl
 
 # for debug
 # geometry:
@@ -78,6 +79,9 @@ format:
   html:
     theme: cosmo
     code-copy: true
+    css:
+      - media/css/style.css
+      - media/css/box.css
   pdf:
     documentclass: scrbook
     papersize: a4
