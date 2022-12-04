@@ -65,6 +65,6 @@ TBD
 We have a group Zotero: https://www.zotero.org/groups/4370174/aviation-book
 
 The best way to edit the entries is via the Zotero app and automatically export
-to the book's `bibliography.bib` file.
+to the book's `bibliography.bib` file using the BetterBibtex extension.
 Otherwise via the web interface.
 
