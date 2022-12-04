@@ -11,5 +11,5 @@ focus on geographical information.
 
 :::
 
-Some references [@wilkinson05] and [@wickham10], as well as some implementations in R [@wickham16],
+Some references [@wilkinson05] and [@wickham10], as well as some implementations in R [@ggplot2],
 Python [@vanderplas_etal18] and Javascript [@satyanarayan_etal17].

@@ -1,5 +1,11 @@
 # Reproducible research
 
+Aviation like many other scientific domains suffers for lack of data openness and lack of 
+reproducibility of published research [@bourgoisOpenDataAir2014].
+Many reasons are made up not to disclose data, the main ones being sensitivity and ownership.
+
+
+
 # Produce meaningful maps
 
 ::: {.callout-tip}
