@@ -1,3 +1,32 @@
 # More information
 
 This will be Appendix A.
+
+## The history of longitude
+
+Knowledge of both latitudes and longitudes are crucial to both cartography and navigation. Latitudes have been relatively easy to determine with a reasonable precision by observing the stars in the sky and measuring their altitudes (angles of elevation). In 3rd century BC, [Erathostenes of Cyrene](https://en.wikipedia.org/wiki/Eratosthenes) estimated the radius of Earth after he measured a difference of latitudes of 7.2° (the fiftieth part of 360°) between Alexandria and Syene based on the Sun position.
+
+On the other hand, the precise measurement of longitude took centuries of studies, with serious advances coming with the development of telescopes and accurate clocks.
+
+[Gemma Frisius](https://en.wikipedia.org/wiki/Gemma_Frisius), a Dutch mathematician, first suggested travelling with a clock to determine longitudes in the 16th century. The clock would be set to the local time of a starting point whose longitude was known, and the longitude of any other place could be determined by comparing its local time with the clock time. However, this method required precise mechanical clocks which were not available at that time.
+
+In the 17th century, [Galileo Galilei](https://en.wikipedia.org/wiki/Galileo_Galilei) is known for his work on orbital periods of Jupiter's four brightest satellites (Io, Europa, Ganymede and Callisto): he determined that sufficiently accurate knowledge of their orbits could be used as a universal clock, making it possible to determine longitudes. However, the method required a telescope, as the moons are not visible to the naked eye.
+
+
+:::{.callout-note}
+
+pick illustration like:
+
+* Sunspots from [wikimedia](https://it.wikisource.org/wiki/Le_opere_di_Galileo_Galilei_-_Vol._V/Delle_macchie_solari/Istoria_e_dimostrazioni_intorno_alle_macchie_solari)![Sunspots](images/macchie_solari_galilei.jpeg)
+* or more like Tufte _Beautiful Evidence_?
+:::
+
+In the 18th century, triangulations were implemented in order to construct more precise maps of the territory, to calculate the radius of Earth and to determine whether the excentricity of our planet made it flattened at the pole (like a tangerine) or at the Equator (like a lemon). Triangulations performed in Laponia and Peru determined in favour of the first option. Precise measures of angles and the law of sines leveraged precise measures of distances between landmarks on the Paris Meridian (see [Cassini](https://en.wikipedia.org/wiki/C%C3%A9sar-Fran%C3%A7ois_Cassini_de_Thury)), leading to precise measurements of geographical coordinates as well.
+
+:::{.callout-warning}
+**TODO**
+
+* improve the shitty writing in previous paragraph.
+:::
+
+Today, the precision we get with global position systems (GPS) also depends on the precision we can get with clocks, around the nanosecond.

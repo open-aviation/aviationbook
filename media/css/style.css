@@ -76,3 +76,7 @@ h1.title {
 .book .book-body .page-wrapper .page-inner section.normal pre a {
   color: inherit;
 }
+
+#title-block-header.quarto-title-block.default .quarto-title-meta {
+  display: block;
+}

@@ -2,12 +2,17 @@
   "folders": [{ "path": "." }],
   "settings": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.quickSuggestions": false,
+    "editor.quickSuggestions": {
+      "comments": "off",
+      "strings": "off",
+      "other": "off"
+    },
     "editor.wordWrap": "wordWrapColumn",
 
     "files.insertFinalNewline": true,
-    "files.trimTrailingWhitespace": true,
-
-    "r.rmarkdown.knit.command": "rmarkdown::render_site"
+    "files.trimTrailingWhitespace": true
+  },
+  "extensions": {
+    "recommendations": ["quarto.quarto"]
   }
 }

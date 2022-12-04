@@ -1,9 +1,5 @@
 # Aviation 101
 
-:::{.callout-tip}
-Author: Rainer (?)
-:::
-
 
 :::{.callout-note}
 **Author's note**: This part brings in the minimal background necessary to comprehend the

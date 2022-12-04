@@ -122,9 +122,3 @@ sharing. Data curation is often a very time consuming process and
 enriching data by labelling specific tags or merging several sources of
 information brings additional value to a dataset. This part deals with
 the data sharing and publication process. (paper reproducibility?)
-
-
-::: {.flushright data-latex=""}
-Enrico Spinielli<br>
-Bruxelles, Belgium
-:::
