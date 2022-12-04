@@ -1,0 +1,4 @@
+- source: project
+  netlify:
+    - id: 883649b8-5d51-438f-b68e-023ec96a7f82
+      url: 'https://aviationbook.netlify.app'
