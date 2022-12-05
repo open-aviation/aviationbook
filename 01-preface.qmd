@@ -1,9 +1,5 @@
 # Preface {-}
 
-:::{.callout-warning}
-Work in Progress
-:::
-
 
 About a century after the invention of powered flight, aviation has
 slowly become a vital element of everyday life. While pioneers and

@@ -18,6 +18,8 @@ body {
 img.cover {
   box-shadow: none;
   border: 1px solid;
+  height: auto;
+  max-width: 100%;
 }
 
 .circular--square {
@@ -79,4 +81,10 @@ h1.title {
 
 #title-block-header.quarto-title-block.default .quarto-title-meta {
   display: block;
+}
+
+.author-icon {
+  float: left;
+  margin: 10px;
+  width: 150px;
 }

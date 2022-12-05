@@ -1,0 +1,16 @@
+# Basics of Planet Earth
+
+:::{.callout-warning}
+Work in Progress
+:::
+
+## Geodesy
+
+sphere, ellipses
+
+## Altimetry
+
+MSL, AGL
+
+## ISA
+

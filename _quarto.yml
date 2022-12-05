@@ -12,12 +12,13 @@ book:
   date: "2023-12-25"
   chapters:
     - index.qmd
-    - 02-preface.qmd
+    - 01-preface.qmd
     - part: "Introduction to aviation"
       chapters:
         - 11-aviation-background.qmd
         - 12-history.qmd
-        - 13-flight-mechanics.qmd
+        - 13-pitot.qmd
+        - 14-flight-mechanics.qmd
     - part: "The ecosystem of aviation data"
       chapters:
         - 21-trajectories.qmd

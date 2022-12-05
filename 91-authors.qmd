@@ -1,10 +1,43 @@
 # Authors' Bio {.unnumbered}
 
-## Xavier Olive
+<div class="authors">
+<div class="author-icon">
 <img src="images/xavier_olive.jpg" alt="Xavier Olive" class="cover circular--square" width="150" height="150"/>
 
-[www.xoolive.org](https://www.xoolive.org/)\
-*Toulouse, France*
+[Xavier Olive](https://www.xoolive.org/)\
+*Toulouse* 🇫🇷\
+[xo\@example.com](mailto:xo@example.com){.email}
+</div>
+
+<div class="author-icon">
+<img src="images/junzi_sun.jpg" alt="Junzi Sun" class="cover circular--square" width="150" height="150"/>
+
+[Junzi Sun](http://example.com/)\
+*Delft* 🇳🇱\
+[js\@example.com](mailto:js@example.com){.email}
+</div>
+
+
+<div class="author-icon">
+<img src="images/enrico_spinielli.jpg" alt="Enrico Spinielli" class="cover circular--square" width="150" height="150"/>
+
+[Enrico Spinielli](http://example.com/)\
+*Brussels* 🇧🇪\
+[es\@example.com](mailto:es\@example.com){.email}
+</div>
+
+<div class="author-icon">
+<img src="images/manuel_waltert.jpg" alt="Manuel Waltert" class="cover circular--square" width="150" height="150"/>
+
+[Manuel Waltert](http://example.com/)\
+*Winterthur* 🇨🇭\
+[mw\@example.com](mailto:mw\@example.com){.email}
+</div>
+</div>
+
+<div style="clear:both;"></div>
+
+## Xavier Olive
 
 Xavier graduated from Supaero, Université de Toulouse, France and holds a PhD from Kyoto University, Japan. He is currently a research scientist, passionate about aviation, maps and data. His research interests include Data Science, Machine Learning and Decision Science applied to aviation, with a particular focus on optimisation, anomaly and pattern detection applied to air traffic management, operations, predictive maintenance, safety analyses and risk assessment. Xavier also teaches artificial intelligence and advanced programming in Python to graduate students.
 
@@ -14,17 +47,15 @@ Python library, and of the book [Programmation Python avancée](https://www.xool
 
 ## Junzi Sun
 
-<img src="images/junzi_sun.jpg" alt="Junzi Sun" class="cover circular--square" width="150" height="150"/> [Junzi Sun](http://example.com/)\
-Delft, The Netherlands \
-[js\@example.com](mailto:js@example.com){.email}
 
 Scelerisque metus nisi tristique eleifend diam neque dignissim leo dis purus felis a et sollicitudin nulla lobortis eleifend dapibus montes maecenas metus proin ultricies imperdiet litora ultrices pharetra mauris senectus neque potenti potenti duis?
 
 
 ## Enrico Spinielli
 
-<img src="images/enrico_spinielli.jpg" alt="Enrico Spinielli" class="cover circular--square" width="150" height="150"/> [Enrico Spinielli](http://example.com/)\
-Brussels, Belgium \
-[es\@example.com](mailto:es\@example.com){.email}
+Tincidunt orci hac accumsan vel odio convallis dictum sodales ac maecenas placerat rhoncus rutrum felis ut id placerat praesent ultrices himenaeos urna dictum pretium convallis erat venenatis tortor inceptos ut suscipit senectus malesuada.
+
+
+## Manuel Waltert
 
 Tincidunt orci hac accumsan vel odio convallis dictum sodales ac maecenas placerat rhoncus rutrum felis ut id placerat praesent ultrices himenaeos urna dictum pretium convallis erat venenatis tortor inceptos ut suscipit senectus malesuada.

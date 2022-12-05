@@ -1,0 +1,7 @@
+# Basic flight mechanics
+
+Various speeds
+
+Various angles, track, heading, bearing, etc.
+
+thrust, drag, lift
