@@ -46,6 +46,7 @@ network improves the efficiency in spotting them.
 - Check nomenclature, i.e. [Significant Point](https://aviation.stackexchange.com/a/80480), ...
 - References:
   * ICAO Doc 4444
+  * Rules of the Air <https://www.pilot18.com/wp-content/uploads/2017/10/Pilot18.com-ICAO-Annex-2-Rules-of-air.pdf>
   * <https://skybrary.aero/articles/waypoint>
   * <https://www.skybrary.aero/articles/ats-route>
   * EUROCONTROL HMI:
@@ -91,6 +92,16 @@ points, waypoints, and segments connecting them, route segments.
 
 ## Airspaces
 
-
+:::{.callout-note collapse=false appearance='default' icon=true}
+## TODO
+   * different types of airspaces
+      - from EUROCONTROL CHMI:
+         a) SECTOR ES Elementary Airspace Sector
+         b) SECTOR CS Collapsed Sector
+         c) AUA ATC Unit Airspace
+         d) CLUSTER Airspace Cluster
+         e) SECTOR CONFIGURATION Sector Configuration
+      - from Skybrary: <https://skybrary.aero/articles/classification-airspace>
+:::
 
 
