@@ -101,6 +101,18 @@ points, waypoints, and segments connecting them, route segments.
          c) AUA ATC Unit Airspace
          d) CLUSTER Airspace Cluster
          e) SECTOR CONFIGURATION Sector Configuration
+         f) AUAGATC Unit Airspace Group
+         g) REGION Region
+         h) IR Information Region
+         i) NAS National Airspace
+         j) AREA Area
+         k) ERSA Elementary Restricted Airspace
+         l) CRSA Composed Restricted Airspace
+         m) AOI Area of Interest
+         n) AOP Area of Protection
+         o) ERAS Elementary Regulated Airspace
+         p) CRAS Composed  Regulated Airspace
+         q) AIRBLOCK Airblock
       - from Skybrary: <https://skybrary.aero/articles/classification-airspace>
 :::
 
