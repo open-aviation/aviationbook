@@ -19,3 +19,78 @@ Airspaces & / or aeronautical information in general (AIRAC):
 * SID / STAR
 * ...
 :::
+
+
+
+
+Fatal events both en-route (mid-air collisions) and on the ground (landing or crashes)
+are at the origin of modern Air Traffic Control.
+In particular, flight plan filing was devised as a means to let
+controllers know where an aircraft was supposed to be and eventually be able
+to deconflict its trajectory with other flights nearby.
+The flight plan together with latest position reports was (and still is) 
+the best information available to eventually launch search and rescue operations.
+
+In principle, a flight plan could simply be a list of 4D coordinates (3D + time),
+but it surely was computationally and practically difficult to use it as such
+by ATC controllers who had to manually follow up airborne flights.
+So the en-route network was designed to have fixed and limited  paths to follow.
+In doing so the probability of conflicts was increased but at the same time such
+network improves the efficiency in spotting them.
+
+
+## Airports, Points and Routes
+
+:::{.callout-note collapse=false appearance='default' icon=true}
+## TODO
+- Check nomenclature, i.e. [Significant Point](https://aviation.stackexchange.com/a/80480), ...
+- References:
+  * ICAO Doc 4444
+  * <https://skybrary.aero/articles/waypoint>
+  * <https://www.skybrary.aero/articles/ats-route>
+  * EUROCONTROL HMI:
+    a) NVA Navigation Aid
+    b) PWP Published Way Point  
+    c) ICP Internal Point
+    d) GEO GEO Point
+    e) RFP Reference Point
+    f) RAD RADAR Point
+    g) TER Terminal Point
+    h) BDY Boundary Point  
+    i) DME Distance Measuring Equipment
+    j) VOR VHF Omni-directional radio Range
+    k) VOR_DMEco-located VHF Omni-directional radio Range and Distance Measuring Equipment
+    l) VOR_DME_NDB co-located VHF Omni-directional radio Range,
+       Distance Measuring Equipment and Non-Directional Beacon
+    m) VORTAC co-located VHF Omni-directional radio Range and TACtical Air Navigator
+    n) DVOR Doppler VHF Omni-directional radio Range
+    o) DVOR_DME co-located Doppler VHF Omni-directional radio Range and Distance Measuring Equipment
+    p) DVOR_DME_NDBco-located Doppler VHF Omni-directional radio Range,
+       Distance Measuring Equipment and Non-Directional Beacon)
+    q) DVORTAC co-located Doppler VHF Omni-directional radio Range and TACtical Air Navigator
+    r) ILS Instrument Landing System
+    s) ILS_DME co-located Instrument Landing System and Distance Measuring Equipment
+    t) ILS_LLZ co-located Instrument Landing System and Localizer
+    u) ILS_LLZ_DME co-located Instrument Landing System, Localizer and Distance Measuring Equipment
+    v) LLZ Localizer
+    w) LLZ_DME co-located Localizer and Distance Measuring Equipment
+    x) L Locator
+    y) LI Inner Locator
+    z) LM Middle Locator
+    a) LO Outer Locator
+    b) L_DME co-located Locator and Distance Measuring Equipment
+    c) MLS Microwave Landing System
+    d) NDB Non-Directional Beacon
+    e) NDB_DME co-located Non-Directional Beacon and Distance Measuring Equipment
+
+:::
+
+
+The aviation route network is characterized by the definition of geographical
+points, waypoints, and segments connecting them, route segments.
+
+## Airspaces
+
+
+
+
