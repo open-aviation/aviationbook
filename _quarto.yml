@@ -8,6 +8,7 @@ execute:
 
 book:
   title: "A journey through aviation data"
+  favicon: "favicon.png"
   author: "Xavier Olive, Junzi Sun, Enrico Spinielli, Manuel Waltert"
   date: "2023-12-25"
   chapters:
@@ -53,15 +54,75 @@ book:
     - 71-appendix.qmd
     - 88-acronyms.qmd
 
-  cover-image: images/book-front-cover.png
+  # cover-image: images/book-front-cover.png
   site-url: https://atmdata.github.io/aviationbook
   repo-url: https://github.com/atmdata/aviationbook/
   repo-branch: master
 
   search: true
-  repo-actions: [edit]
-  downloads: [pdf]
+  repo-actions: [edit, issue, source]
+  downloads: [pdf, epub]
   sharing: [twitter, linkedin]
+
+  page-navigation: true
+
+  # comments:
+  #   hypothesis: true
+
+  sidebar:
+    - title: Introduction
+      id: introduction
+      background: transparent
+      contents:
+        - 11-aviation-background.qmd
+        - 12-history.qmd
+        - 13-pitot.qmd
+        - 14-flight-mechanics.qmd
+    - title: Data sources
+      id: data_sources
+      background: transparent
+      contents:
+        - 21-trajectories.qmd
+        - 22-aeronautical-information.qmd
+        - 23-environment.qmd
+        - 24-aircraft-performance.qmd
+    - title: "Process data"
+      id: data_process
+      background: transparent
+      contents:
+        - 41-tidy-data.qmd
+        - 42-geometrice-geographic.qmd
+        - 43-processing-trajectories.qmd
+        - 44-information-extraction.qmd
+        - 45-optimization-data-analytics.qmd
+        - 46-handling-uncertainty.qmd
+    - title: "Visualize Data"
+      background: transparent
+      id: dataviz
+      contents:
+        - 51-storytelling.qmd
+        - 52-grammar-of-graphics.qmd
+        - 53-meaningful-maps.qmd
+    - title: "Share Data"
+      id: data_share
+      background: transparent
+      contents:
+        - 61-reproducible-research.qmd
+
+  navbar:
+    background: light
+    logo: favicon.png
+    logo-alt: "avbook logo"
+    title: false
+    search: true
+    pinned: true
+    left:
+      - sidebar:introduction
+      - sidebar:data_sources
+      - sidebar:data_process
+      - sidebar:dataviz
+      - sidebar:data_share
+    right: []
 
   # crossref:
   #   appendix-title: "App."
@@ -76,27 +137,22 @@ csl: media/ieee.csl
 
 pdf-engine: xelatex
 
+highlight-style: pygments
+
 format:
   html:
-    theme: cosmo
+    theme:
+      light: [flatly, theme.scss]
+      dark: [darkly, theme.scss]
     toc: true
     code-copy: true
     css:
       - media/css/style.css
       - media/css/box.css
-    header-includes: |
-      <link rel="icon" type="image/png" href="/favicon.png" />
+    grid:
+      sidebar-width: 400px
+      body-width: 900px
+      margin-width: 300px
   pdf:
     documentclass: scrbook
     papersize: a4
-
-website:
-  search:
-    location: navbar
-    type: overlay
-  navbar:
-    background: primary
-    search: true
-    top:
-      - text: "Home"
-        file: index.qmd

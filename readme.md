@@ -2,9 +2,9 @@
 
 This is the repository containing the source code for the open book "title". The book is available freely and openly:
 
-- online at [website](url)
-- as a PDF file [here](url)
-- as an ebook [here](url)
+- online at [website](https://aviationbook.netlify.app/)
+- as a PDF file [here](https://aviationbook.netlify.app/A-journey-through-aviation-data.pdf)
+- as an ebook (one day)
 - in printed version (one day)
 
 The content of this book is licensed as Creative Commons CC-BY-NC-ND. This license lets you download the book and share it with others as long as you credit the authors. You are not allowed to change the content in any way or to use the text for commercial purposes.
