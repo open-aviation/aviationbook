@@ -85,7 +85,7 @@ format:
       - media/css/style.css
       - media/css/box.css
     header-includes: |
-      <link rel="icon" type="image/png" href="/favicon.png">
+      <link rel="icon" type="image/png" href="/favicon.png" />
   pdf:
     documentclass: scrbook
     papersize: a4
