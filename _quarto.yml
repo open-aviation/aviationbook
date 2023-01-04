@@ -16,8 +16,8 @@ book:
     - 01-preface.qmd
     - part: "Introduction to aviation"
       chapters:
-        - 11-aviation-background.qmd
-        - 12-history.qmd
+        - 11-aviation101.qmd
+        - 12-cns.qmd
         - 13-pitot.qmd
         - 14-flight-mechanics.qmd
     - part: "The ecosystem of aviation data"
@@ -78,8 +78,8 @@ book:
       contents:
         - text: Introduction
         - text: ---
-        - 11-aviation-background.qmd
-        - 12-history.qmd
+        - 11-aviation101.qmd
+        - 12-cns.qmd
         - 13-pitot.qmd
         - 14-flight-mechanics.qmd
     - title: Data sources
