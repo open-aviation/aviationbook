@@ -13,5 +13,27 @@ active/secondary surveillance, \.... This might be the place to
 also speak about trajectory \~ flight and other basics.
 :::
 
+## The history of aviation
+
+## Airspace
+* Definition of the term 'airspace'
+* Airspace classes (A, B, C, D, E, F, G), controlled vs. uncontrolled airspace
+* Airspace around airports (TMAs, CTRs)
+
+## Aerodromes
+This section gives a short overview on the most important concepts and terms:
+* Definition of the term 'aerodrome'
+* Types of aerodromes
+* Most important components of an aerodrome, i.e., runway, taxiways, aprons, terminal buildings, etc.
+* Airside vs. Landside
+
+## Air Navigation Services (ANS)
+* Aeronautical Information Management (AIM)
+* Air Traffic Management (ATM)
+* Meteorological Services (MET)
+* Communication, Navigation, Surveillance (CNS)
+* Search and Rescue (SAR)
+
+
 
 
