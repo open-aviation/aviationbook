@@ -1,4 +1,4 @@
-# Basic flight mechanics
+# Flight mechanics
 
 Various speeds
 

@@ -1,4 +1,4 @@
-# Basics of Planet Earth
+# Geodesy, atmosphere
 
 :::{.callout-warning}
 Work in Progress

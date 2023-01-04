@@ -1,8 +1,10 @@
-# Bits of history
+# Navigation systems
 
 ## Radars
 
 The fundamental theory of radar started in late 19th century. Since the 1860s, when the electromagnetic theory was discovered by [James Clerk Maxwell](https://fr.wikipedia.org/wiki/James_Clerk_Maxwell), the foundation for many science and technology fields was laid out. In the late 19th century, [Heinrich Hertz](https://fr.wikipedia.org/wiki/Heinrich_Hertz), who proved the existence of electromagnetic waves, also confirmed that metals could reflect radio waves. In the first decades of the 20th century, several systems for using radio waves to provide short-range directional information of objects were developed. German inventor [Christian Hülsmeyer](https://fr.wikipedia.org/wiki/Christian_H%C3%BClsmeyer) is often considered as the first person to use radio waves to detect metal objects in 1904.
+
+![Radar coverage over the British Isles during WW2](images/radar_coverage.png){#fig-radar-ww2 width=40%}
 
 However, not until the Second World War, was the concept of RAdio Detection And Ranging (RADAR) developed. The technology was simultaneously researched by both major Allies and Axis countries. However, the United Kingdom led the race in developing a functional radar system.
 

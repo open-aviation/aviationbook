@@ -26,6 +26,7 @@ book:
         - 22-aeronautical-information.qmd
         - 23-environment.qmd
         - 24-aircraft-performance.qmd
+        - 25-radio-communications.qmd
     - part: "Access and Explore Data"
       chapters:
         - 31-tools-ecosystem.qmd
@@ -73,7 +74,10 @@ book:
     - title: Introduction
       id: introduction
       background: transparent
+      collapse-level: 1
       contents:
+        - text: Introduction
+        - text: ---
         - 11-aviation-background.qmd
         - 12-history.qmd
         - 13-pitot.qmd
@@ -82,31 +86,40 @@ book:
       id: data_sources
       background: transparent
       contents:
+        - text: Data sources
+        - text: ---
         - 21-trajectories.qmd
         - 22-aeronautical-information.qmd
         - 23-environment.qmd
         - 24-aircraft-performance.qmd
-    - title: "Process data"
+        - 25-radio-communications.qmd
+    - title: Processing data
       id: data_process
       background: transparent
       contents:
+        - text: Processing data
+        - text: ---
         - 41-tidy-data.qmd
         - 42-geometrice-geographic.qmd
         - 43-processing-trajectories.qmd
         - 44-information-extraction.qmd
         - 45-optimization-data-analytics.qmd
         - 46-handling-uncertainty.qmd
-    - title: "Visualize Data"
+    - title: Visualizing data
       background: transparent
       id: dataviz
       contents:
+        - text: Visualizing data
+        - text: ---
         - 51-storytelling.qmd
         - 52-grammar-of-graphics.qmd
         - 53-meaningful-maps.qmd
-    - title: "Share Data"
+    - title: Sharing data
       id: data_share
       background: transparent
       contents:
+        - text: Sharing & reproducibility
+        - text: ---
         - 61-reproducible-research.qmd
 
   navbar:

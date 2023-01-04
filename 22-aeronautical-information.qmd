@@ -1,4 +1,4 @@
-# Aeronautical Information
+# Aeronautical information
 
 ::: {.callout-tip}
 Author: ?
@@ -28,7 +28,7 @@ are at the origin of modern Air Traffic Control.
 In particular, flight plan filing was devised as a means to let
 controllers know where an aircraft was supposed to be and eventually be able
 to deconflict its trajectory with other flights nearby.
-The flight plan together with latest position reports was (and still is) 
+The flight plan together with latest position reports was (and still is)
 the best information available to eventually launch search and rescue operations.
 
 In principle, a flight plan could simply be a list of 4D coordinates (3D + time),
@@ -51,13 +51,13 @@ network improves the efficiency in spotting them.
   * <https://www.skybrary.aero/articles/ats-route>
   * EUROCONTROL HMI:
     1. NVA Navigation Aid
-    1. PWP Published Way Point  
+    1. PWP Published Way Point
     1. ICP Internal Point
     1. GEO GEO Point
     1. RFP Reference Point
     1. RAD RADAR Point
     1. TER Terminal Point
-    1. BDY Boundary Point  
+    1. BDY Boundary Point
     1. DME Distance Measuring Equipment
     1. VOR VHF Omni-directional radio Range
     1. VOR_DMEco-located VHF Omni-directional radio Range and Distance Measuring Equipment

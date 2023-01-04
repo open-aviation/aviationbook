@@ -2,32 +2,22 @@
 # Trajectories
 
 A trajectory is a mathematical abstraction used to describe the evolution of a moving object with a finite list of parameters. The most common features in aviation include latitude, longitude, altitude, all indexed by time, with derived ones such as ground speed, track angle and vertical rate.
-Depending on the application, some models would expect more features. For example, flight dynamics models could include pitch, roll and yaw angles, indicated airspeed, Mach number, etc.
+
+Depending on the application, some models would expect more features. For example, [flight dynamics models](24-aircraft-performance.qmd) could include pitch, roll and yaw angles, true air speed, indicated air speed, Mach number, etc.
 
 This chapter describes several common formats for trajectories depending on available technology to record them. Associated data sources come with different licensing terms which must be kept in mind when developping or applying computing methods.
 
-## Common formats for aircraft trajectory data
+## Aircraft trajectories
 
-### Quick Access Recorders (QAR)
+### ADS-B tracks
 
-Aircraft carry an airborne flight recorder to provide quick access to raw flight data. Use cases for such data range from flight operational quality assurance (FOQA), post-ops analysis to improve flight safety or operational efficiency, system analysis for predictive or condition-based maintenance. QAR data typically contains over 2000 flight parameters.
-
-
-![Example of a subset of QAR data for an A320 aircraft](images/qar_screenshot.png){#fig-qar-a320}
-
-
-::: {.callout-info}
-Trajectory records usually have a different sampling rate depending on the feature. IEEE354 defines a particular floating point number called `NaN` (not a number) useful for marking missing values. Integers usually do not have such equivalent, so it is common to find *saturated values* (255 for 8-bit integers) to mark missing values.
-:::
-
-Airlines, not manufacturers, own the data of the aircraft they operate. These days, manufacturers tend to sell cloud services to store and analyse data of the aircraft they sell.
+Mode A/C, Mode S
 
 ### Radar tracks
 
 Radars (stands for *Radio Detection and Ranging*) use radio waves to determine the distance and angle of objects. They were first introduced as part of the *Britannic Anti-Aircraft Defence System*: the first station was set up in 1937 and went operational in 1938. Radars have been used in civil aviation after the second World War.
 
 
-![Radar coverage over the British Isles during WW2](images/radar_coverage.png){#fig-radar-ww2}     
 
 
 Secondary Surveillance Radars (SSR) are able to communicate with aircraft they detect to *identify* them.
@@ -46,15 +36,14 @@ There is a common confusion in aviation between three designations for angles:
 
 ANSP (TODO define) own the data for the radar installations they operate.
 
-### Mode A/C, ADS-B and Mode S
-
 :::{.callout-note}
 **TODO**
 
 Would intro by Junzi fit in here? or is too complicated?
 :::
 
-## Metadata
+
+## Aircraft information
 
 A number of flight information is usually not directly accessible from settings recording aircraft trajectories. Metadata usually refers to any additional information enriching a trajectory.
 Enriching trajectories with relevant information is usually a costly process, and access to such information can be complicated.
@@ -96,6 +85,21 @@ Metadata associated with callsigns (and posssibly dates) include:
 | EOBT     | estimated off-block time                         |
 | ETOT     | estimated take-off time                          |
 
+## Flight parameters
+
+### Quick Access Recorders (QAR)
+
+Aircraft carry an airborne flight recorder to provide quick access to raw flight data. Use cases for such data range from flight operational quality assurance (FOQA), post-ops analysis to improve flight safety or operational efficiency, system analysis for predictive or condition-based maintenance. QAR data typically contains over 2000 flight parameters.
+
+
+![Example of a subset of QAR data for an A320 aircraft](images/qar_screenshot.png){#fig-qar-a320}
+
+
+::: {.callout-info}
+Trajectory records usually have a different sampling rate depending on the feature. IEEE354 defines a particular floating point number called `NaN` (not a number) useful for marking missing values. Integers usually do not have such equivalent, so it is common to find *saturated values* (255 for 8-bit integers) to mark missing values.
+:::
+
+Airlines, not manufacturers, own the data of the aircraft they operate. These days, manufacturers tend to sell cloud services to store and analyse data of the aircraft they sell.
 
 ## Flight plans
 

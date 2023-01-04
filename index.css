@@ -1,0 +1,10 @@
+.download-buttons {
+  text-align: center;
+  margin: 30px;
+}
+
+@media screen and (min-width: 900px) {
+  #quarto-content {
+    background: url(images/aircraft_vintage.webp) no-repeat center right fixed;
+  }
+}
