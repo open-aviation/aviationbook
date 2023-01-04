@@ -3,17 +3,86 @@
 
 A trajectory is a mathematical abstraction used to describe the evolution of a moving object with a finite list of parameters. The most common features in aviation include latitude, longitude, altitude, all indexed by time, with derived ones such as ground speed, track angle and vertical rate.
 
-Depending on the application, some models would expect more features. For example, [flight dynamics models](24-aircraft-performance.qmd) could include pitch, roll and yaw angles, true air speed, indicated air speed, Mach number, etc.
+Depending on the application, some models would expect more features. For example, [aircraft performance models](24-aircraft-performance.qmd) could require the pitch, roll and yaw angles, the true air speed, the indicated air speed, the Mach number, etc.
 
 This chapter describes several common formats for trajectories depending on available technology to record them. Associated data sources come with different licensing terms which must be kept in mind when developping or applying computing methods.
 
 ## Aircraft trajectories
 
-### ADS-B tracks
+### ADS-B tracks {-}
 
-Mode A/C, Mode S
+ADS-B stands for *Automatic Dependent Surveillance--Broadcast*. It is probably one of the most well-known source of aircraft trajectories, popularized by famous websites such as [FlightRadar24](https://www.flightradar24.com) or [The OpenSky Network](https://www.opensky-network.org). ADS-B messages are broadcast by equipped aircraft at a sample rate of about two messages per second.
 
-### Radar tracks
+:::{.callout-important}
+Messages do not contain any timestamp information. Timestamps are is usually appended by receiver of the messages, based on the reception time (and not the time of emission by the aircraft).
+:::
+
+Information broadcast in ADS-B messages contains:
+
+- *identification information*: the callsign (an 8-character *non-unique* identifier of the mission or the route of the aircraft) and the wake vortex category;
+- *positional information*: latitude and longitude in degrees (encoded in CPR format), barometric altitude (converted to ISA equivalent), and GPS altitude in feet;
+- *velocity information*: track angle in degrees, ground speed in knots, vertical rate in feet per minute;
+- *uncertainty information* around the position and the velocity of the aircraft.
+
+Positional and velocity information is computed by the aircraft based on GNSS and inertial navigation systems of the aircraft.
+
+
+:::{.callout-warning}
+There is a common confusion in aviation between three designations for angles:
+
+- the **track angle** represents the direction the aircraft is flying. It is the angle of the speed vector, ranging from 0 (North) to 360 degrees (90° for East, 270° for West);
+- the **heading angle** represents the direction the nose the aircraft is pointing at;
+- the **bearing angle** usually represents the direction of/to a static object, e.g. the bearing of a runway, or the bearing to a navigational point.
+:::
+
+Even though all information is not available at each timestamp, tabular data (csv) is a common format to represent trajectory data.
+
+```{ojs}
+import { Flight } from "@xoolive/traffic-js"
+```
+
+```{ojs}
+url = "https://raw.githubusercontent.com/xoolive/traffic/master/traffic/data/samples/featured/qantas747.json.gz"
+flight = Flight.fromURL(url)
+flight.table()
+```
+
+This tabular information can easily be represented on a map, or as a regular plot for non-geographical features.
+
+```{ojs}
+{
+  const container = html`<div style="height:400px;">`;
+  yield container;
+  flight.map(container);
+}
+```
+
+```{ojs}
+Plot.plot({
+  marks: [
+    Plot.line(flight.data, {
+      x: "timestamp",
+      y: "altitude",
+      stroke: "steelblue",
+    })
+  ],
+  x: {
+    tickFormat: d3.utcFormat("%H:%M")
+  },
+  marginLeft: 100,
+  width,
+  height: 300,
+  grid: true
+})
+```
+
+:::{.callout-tip}
+A lot of details about the contents of ADS-B messages and their decoding is detailed in a different book, *The 1090 Megahertz Riddle* @sun1090.
+:::
+
+### Mode S data {-}
+
+### Radar tracks {-}
 
 Radars (stands for *Radio Detection and Ranging*) use radio waves to determine the distance and angle of objects. They were first introduced as part of the *Britannic Anti-Aircraft Defence System*: the first station was set up in 1937 and went operational in 1938. Radars have been used in civil aviation after the second World War.
 
@@ -26,21 +95,13 @@ Based on the radar plots, computer systems usually produce tracks containing an 
 
 ![Sample RADAR tracks for a commercial aircraft](images/format_radar.png)
 
-:::{.callout-info}
-There is a common confusion in aviation between three designations for angles:
-
-- the *track angle* represents the direction the aircraft is flying. It is the angle of the speed vector, ranging from 0 (North) to 360 degrees (90° for East, 270° for West);
-- the *heading angle* represents the direction the nose the aircraft is pointing at;
-- the *bearing angle* usually represents the direction of/to a static object, e.g. the bearing of a runway, or the bearing to a navigational point.
-:::
 
 ANSP (TODO define) own the data for the radar installations they operate.
 
-:::{.callout-note}
-**TODO**
+### FLARM data {-}
 
-Would intro by Junzi fit in here? or is too complicated?
-:::
+### UAT data {-}
+
 
 
 ## Aircraft information
