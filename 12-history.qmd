@@ -1,37 +1,20 @@
-# Navigation systems
+# Communication, Navigation, and Surveillance
 
-## Radars
+To ensure safe and efficient air transportation, Air Traffic Management (ATM) relies on infrastructure, services and functions in the areas of Communication, Navigation, and Surveillance (CNS). As such, communication enables the exchange of information, be it in spoken or written form, between crews of aircraft and/or air traffic control. Navigation encompasses all services and infrastructures by means of which aircraft crews find their way through space in order to get from one place to another quickly, efficiently, and safely. Finally, surveillance comprises all technical possibilities by means of which air traffic control can determine the position of aircraft. In the following, the most important services, technologies, and processes in the field of CNS are presented.
 
-The fundamental theory of radar started in late 19th century. Since the 1860s, when the electromagnetic theory was discovered by [James Clerk Maxwell](https://fr.wikipedia.org/wiki/James_Clerk_Maxwell), the foundation for many science and technology fields was laid out. In the late 19th century, [Heinrich Hertz](https://fr.wikipedia.org/wiki/Heinrich_Hertz), who proved the existence of electromagnetic waves, also confirmed that metals could reflect radio waves. In the first decades of the 20th century, several systems for using radio waves to provide short-range directional information of objects were developed. German inventor [Christian Hülsmeyer](https://fr.wikipedia.org/wiki/Christian_H%C3%BClsmeyer) is often considered as the first person to use radio waves to detect metal objects in 1904.
+## Communication
+tbd
 
-![Radar coverage over the British Isles during WW2](images/radar_coverage.png){#fig-radar-ww2 width=40%}
+## Navigation
 
-However, not until the Second World War, was the concept of RAdio Detection And Ranging (RADAR) developed. The technology was simultaneously researched by both major Allies and Axis countries. However, the United Kingdom led the race in developing a functional radar system.
+### Non-Directional Beacon (NDB)
 
-### The primary radar
-
-Aircraft surveillance in the early days relied only on, what is known today as, the primary surveillance radar (PSR). The concept of PSR is fairly simple. It is a rotating radio transponder with an omnidirectional antenna. Commonly, the radar transmits a one-microsecond pulse for every one millisecond and listens to the reflections from the airplanes. The position of the aircraft is measured by the distance and angle to the radar. The distance is known as the slant distance, which is the line-of-sight distance between an aircraft and the radar. It can be calculated by measuring the time difference between the original signal and the reflection received, since the speed of the radio wave (speed of light) is known. The azimuth angle of the aircraft is determined by the rotation angle of the radar. By processing radar signals, technologies like phase filter and Doppler filter can be used to filter out moving targets like aircraft and remove static objects, such as mountains, buildings, and other obstacles.
-
-The slant distance of an aircraft does not always correspond to the horizontal distance to the radar. This is because all points having the same slant distance are located on a sphere that has the radius equal to the distance. Since the civil radar usually does not provide elevation information on the target, it is not possible to accurately convert the slant distance to the horizontal distance. Historically, it is sufficient to use primary radar for separating airplanes without considering these altitude differences. However, other systems have to be in place to provide air traffic controllers more accurate positions of the aircraft.
-
-### The secondary radar
-
-:::{.callout-warning}
-**TODO**
-
-- add sexy picture of SSR
-:::
-
-The secondary surveillance radar (SSR), also known as the air traffic control radar beacon system (ATCRBS), was designed to provide air traffic controllers more information than what is provided by the primary radar. The secondary radar can be installed separately or installed on top of the primary radar. It uses a different radio frequency to actively interrogate the aircraft and receive information transmitted by the aircraft.
-
-The SSR transmits interrogations using the 1030 MHz radio frequency and the aircraft transponder transmits replies using the 1090 MHz radio frequency. In the early design of SSR, two civilian communication protocols (Mode A and Mode C) were introduced. Mode A and Mode C respectively allow the SSR to continuously interrogate the identity (squawk code) and the altitude of an aircraft. The squawk code in Mode A is a unique 4-octal digit code given by air traffic controllers to aircraft in their flight information region for identification. The altitude in Mode C refers to the barometric altitude obtained from the aircraft’s air data system.
-
-## VHF Omnidirectional Range (VOR)
+### VHF Omnidirectional Range (VOR)
 
 <https://www.skybrary.aero/articles/vhf-omnidirectional-radio-range-vor>
 <https://en.wikipedia.org/wiki/VHF_omnidirectional_range>
 
-## Distance Measuring Equipment (DME)
+### Distance Measuring Equipment (DME)
 
 <https://www.skybrary.aero/articles/distance-measuring-equipment-dme>
 <https://en.wikipedia.org/wiki/Distance_measuring_equipment>
@@ -52,6 +35,57 @@ VOR stations are often collocated with DME (Distance Measuring Equipments) which
 
 Today, VOR stations are being gradually decommissioned as navigation aids move to performance-based navigation.
 
+### ILS
+
+
+::: {.infobox}
+a word about calibration flights?
+:::
+
+
+### Global Navigation Satellite System (GNSS)
+
+GPS, Galileo, Baidu, ...
+
+https://en.wikipedia.org/wiki/Korean_Air_Lines_Flight_007
+
+
+### Recent technologies
+
+- Differential GPS
+- LIDAR
+
+
+## Surveillance
+
+### Radars
+
+The fundamental theory of radar started in late 19th century. Since the 1860s, when the electromagnetic theory was discovered by [James Clerk Maxwell](https://fr.wikipedia.org/wiki/James_Clerk_Maxwell), the foundation for many science and technology fields was laid out. In the late 19th century, [Heinrich Hertz](https://fr.wikipedia.org/wiki/Heinrich_Hertz), who proved the existence of electromagnetic waves, also confirmed that metals could reflect radio waves. In the first decades of the 20th century, several systems for using radio waves to provide short-range directional information of objects were developed. German inventor [Christian Hülsmeyer](https://fr.wikipedia.org/wiki/Christian_H%C3%BClsmeyer) is often considered as the first person to use radio waves to detect metal objects in 1904.
+
+![Radar coverage over the British Isles during WW2](images/radar_coverage.png){#fig-radar-ww2 width=40%}
+
+However, not until the Second World War, was the concept of RAdio Detection And Ranging (RADAR) developed. The technology was simultaneously researched by both major Allies and Axis countries. However, the United Kingdom led the race in developing a functional radar system.
+
+#### The primary radar
+
+Aircraft surveillance in the early days relied only on, what is known today as, the primary surveillance radar (PSR). The concept of PSR is fairly simple. It is a rotating radio transponder with an omnidirectional antenna. Commonly, the radar transmits a one-microsecond pulse for every one millisecond and listens to the reflections from the airplanes. The position of the aircraft is measured by the distance and angle to the radar. The distance is known as the slant distance, which is the line-of-sight distance between an aircraft and the radar. It can be calculated by measuring the time difference between the original signal and the reflection received, since the speed of the radio wave (speed of light) is known. The azimuth angle of the aircraft is determined by the rotation angle of the radar. By processing radar signals, technologies like phase filter and Doppler filter can be used to filter out moving targets like aircraft and remove static objects, such as mountains, buildings, and other obstacles.
+
+The slant distance of an aircraft does not always correspond to the horizontal distance to the radar. This is because all points having the same slant distance are located on a sphere that has the radius equal to the distance. Since the civil radar usually does not provide elevation information on the target, it is not possible to accurately convert the slant distance to the horizontal distance. Historically, it is sufficient to use primary radar for separating airplanes without considering these altitude differences. However, other systems have to be in place to provide air traffic controllers more accurate positions of the aircraft.
+
+#### The secondary radar
+
+:::{.callout-warning}
+**TODO**
+
+- add sexy picture of SSR
+:::
+
+The secondary surveillance radar (SSR), also known as the air traffic control radar beacon system (ATCRBS), was designed to provide air traffic controllers more information than what is provided by the primary radar. The secondary radar can be installed separately or installed on top of the primary radar. It uses a different radio frequency to actively interrogate the aircraft and receive information transmitted by the aircraft.
+
+The SSR transmits interrogations using the 1030 MHz radio frequency and the aircraft transponder transmits replies using the 1090 MHz radio frequency. In the early design of SSR, two civilian communication protocols (Mode A and Mode C) were introduced. Mode A and Mode C respectively allow the SSR to continuously interrogate the identity (squawk code) and the altitude of an aircraft. The squawk code in Mode A is a unique 4-octal digit code given by air traffic controllers to aircraft in their flight information region for identification. The altitude in Mode C refers to the barometric altitude obtained from the aircraft’s air data system.
+
+
+
 ## Airways structure
 
 :::{.callout-warning}
@@ -70,21 +104,5 @@ another. Typical navigational points can be defined as:
 Today, more navigational points are defined as simple GPS coordinates.
 
 
-## ILS
 
-
-::: {.infobox}
-a word about calibration flights?
-:::
-
-
-## GPS
-
-https://en.wikipedia.org/wiki/Korean_Air_Lines_Flight_007
-
-
-## Recent technologies
-
-- Differential GPS
-- LIDAR
 
