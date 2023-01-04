@@ -1,4 +1,4 @@
-# Communication, Navigation, and Surveillance
+# Communication, Navigation, and Surveillance (CNS)
 
 To ensure safe and efficient air transportation, Air Traffic Management (ATM) relies on infrastructure, services and functions in the areas of Communication, Navigation, and Surveillance (CNS). As such, communication enables the exchange of information, be it in spoken or written form, between crews of aircraft and/or air traffic control. Navigation encompasses all services and infrastructures by means of which aircraft crews find their way through space in order to get from one place to another quickly, efficiently, and safely. Finally, surveillance comprises all technical possibilities by means of which air traffic control can determine the position of aircraft. In the following, the most important services, technologies, and processes in the field of CNS are presented.
 
@@ -6,6 +6,11 @@ To ensure safe and efficient air transportation, Air Traffic Management (ATM) re
 tbd
 
 ## Navigation
+Navigation deals with the question of how aircraft, ships, cars, etc. can move from one place to another in a safe and efficient manner. In this context, the main question navigation is concerned with is how an aircraft, a ship or a car can determine its own position relative to a reference system.
+
+In the past, rather simple and rudimentary methods were used for navigation. Using so-called dead-reckonin, the current position is determined based on a known prior position as well as the current direction and speed of movement. Furthermore, so-called celestial navigation was used, in which the current position is determined based on celestial measurements, i.e. by determining the position of celestial bodies in relation to an observer.
+
+In aviation, the above-mentioned rudimentary methods of navigation can be employed as well. However, over the last century, a number of different, more advanced ways of determining the position of an aircraft have been developed, implemented, and applied. These navigation methods are usually based on infrastructures that are stationed either on land or in space. The most important navigation methods in aviation are described in detail below.
 
 ### Non-Directional Beacon (NDB)
 
