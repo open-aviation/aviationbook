@@ -22,6 +22,7 @@ also speak about trajectory \~ flight and other basics.
 
 ## Aerodromes
 This section gives a short overview on the most important concepts and terms:
+
 * Definition of the term 'aerodrome'
 * Types of aerodromes
 * Most important components of an aerodrome, i.e., runway, taxiways, aprons, terminal buildings, etc.
