@@ -170,7 +170,7 @@ The Mode S uplink signal contains parameters that indicate which information is
 -  **Comm-B, with altitude and identity replies (DF 20/21)**
 
 
-![An overview of all Mode S services, excerpt from [www.mode-s.org](https://mode-s.org/decode/content/introduction.html#summary) @sun1090](https://mode-s.org/decode/figures/intro/mode_s_services.png)
+![An overview of all Mode S services, excerpt from [www.mode-s.org](https://mode-s.org/decode/content/introduction.html#summary) @sun1090](images/mode_s_services.png)
 
 ### FLARM {-}
 
