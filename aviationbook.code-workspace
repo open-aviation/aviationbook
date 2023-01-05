@@ -10,7 +10,18 @@
     "editor.wordWrap": "wordWrapColumn",
 
     "files.insertFinalNewline": true,
-    "files.trimTrailingWhitespace": true
+    "files.trimTrailingWhitespace": true,
+    "ltex.disabledRules": {
+      "en-GB": [
+        "MULTIPLICATION_SIGN",
+        "DASH_RULE",
+        "EN_QUOTES",
+        "COMMA_PARENTHESIS_WHITESPACE",
+        "WHITESPACE_RULE",
+        "UNLIKELY_OPENING_PUNCTUATION",
+        "METRIC_UNITS_EN_IMPERIAL"
+      ]
+    }
   },
   "extensions": {
     "recommendations": ["quarto.quarto"]
