@@ -155,8 +155,8 @@ highlight-style: pygments
 format:
   html:
     theme:
-      light: [flatly, theme.scss]
-      dark: [darkly, theme.scss]
+      light: [flatly, media/css/light.scss]
+      dark: [darkly, media/css/dark.scss]
     toc: true
     code-copy: true
     css:
