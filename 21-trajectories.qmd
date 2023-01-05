@@ -3,7 +3,7 @@ title: Trajectories
 output-file: trajectories
 ---
 
-A trajectory is a mathematical abstraction used to describe the evolution of a moving object with a finite list of parameters. The most common features in aviation include latitude, longitude, altitude, all indexed by time, with derived ones such as ground speed, track angle and vertical rate.
+A trajectory is a mathematical abstraction used to describe the evolution of a moving object with a finite list of parameters. The most common features in aviation include latitude, longitude, altitude, all indexed by time, with first derivatives such as ground speed, track angle and vertical rate.
 
 Depending on the application, some models would expect more features. For example, [aircraft performance models](24-aircraft-performance.qmd) could require the pitch, roll and yaw angles, the true air speed, the indicated air speed, the Mach number, etc.
 
@@ -11,14 +11,19 @@ This chapter describes several common formats for trajectories depending on avai
 
 ## Aircraft trajectories
 
+### Radar tracks {-}
+
+The concept of **primary surveillance radars (PSR)** is fairly simple: it is a rotating radio transponder with an omnidirectional antenna. Commonly, the radar transmits a one-microsecond pulse for every one millisecond and listens to the reflections from the aircraft. The **position of the aircraft** is measured by the distance and angle to the radar. The distance is known as the *slant distance*, which is the line-of-sight distance between an aircraft and the radar. It can be calculated by measuring the time difference between the original signal and the reflection received, since the speed of the radio wave (speed of light) is known. The *azimuth angle* of the aircraft is determined by the rotation angle of the radar.
+
+The slant distance of an aircraft does not always correspond to the horizontal distance to the radar. Since the civil radar usually does not provide elevation information on the target, it is not possible to accurately convert the slant distance to the horizontal distance. Historically, it is sufficient to use primary radar for separating aircraft without considering these altitude differences. However, [other systems](#mode-s) have been put in place to provide air traffic controllers more accurate altitudes of the aircraft.
+
 :::{.callout-important}
-## TODO
-A word about radar tracks, say we come back to it later
+**Air navigation service providers (ANSP)** own the data produced by the surveillance radar installations they operate.
 :::
 
-Based on the radar plots, computer systems usually produce tracks containing an identifier, a timestamp (in seconds since midnight on the picture below), latitude, longitude (commonly in degrees), altitude (commonly in ft). Ground speed (in knots), vertical speed (in ft/mn) and track angle are easy to compute. Kalman filters are commonly applied to the raw output of radar tracks in order to produce a smooth trajectory.
+Radar tracks have a prestigious aura for obvious coverage reasons. However, it is rather unlikely that you gain access to radar trajectories on a systematic basis. Moreover, on international flights, getting a full trajectory would require agreements with ANSPs of all countries aircraft have flown.
 
-ANSP (TODO define) own the data for the radar installations they operate.
+In general, trajectories based on radar plots produced by computer systems contain an identifier, timestamps, latitudes, longitudes, altitudes, ground speed, vertical speed and track angle. **Kalman filters** help to smoothen trajectories and compute the derivatives.
 
 
 ### ADS-B {-}
@@ -32,7 +37,7 @@ The word *automatic* refers to the fact that no inputs from controllers or pilot
 Messages do not contain any timestamp information. Timestamps are usually appended by receiver of the messages, based on the reception time (and not the time of emission by the aircraft).
 :::
 
-Information broadcast in ADS-B messages contains, in addition to a unique [24-bit transponder code](#aircraft-information):
+Information broadcast in ADS-B messages contains, in addition to a unique [24-bit transponder code](#aircraft-information), named `icao24` in examples below:
 
 - *identification information*: the *callsign* (an 8-character *non-unique* identifier of the mission or the route of the aircraft) and the wake vortex category;
 - *positional information*: latitude and longitude in degrees (encoded in CPR format), barometric altitude (converted to ISA equivalent), and GPS altitude in feet;
@@ -66,7 +71,7 @@ Similarly, test flights operated by Airbus use an `AIB` callsign; Boeing uses a 
 Australian firefighting operations use a specific callsign depending on the role of the aircraft during the operations: `BMBR` for firebombing; `SPTR` for fire spotters; `BDOG`, *bird dog*, for fire attack supervisions (often subcontracted); and `FSCN`, fire scan for remote sensing fire operations.
 :::
 
-Even though all information is not available at each timestamp, tabular data (csv) is a common format to represent trajectory data.
+Even though all information is not available at each timestamp, tabular data (csv) is a common format to represent trajectory data. In this example, the `icao24` code `7c4779` matches a Qantas Boeing B747 registered as `VH-OEJ`.
 
 ```{ojs}
 //| echo: false
@@ -133,32 +138,47 @@ A lot of details about the contents of ADS-B messages, Mode S data and their dec
 
 ### Mode S {-}
 
-The secondary surveillance radar (SSR), also known as the air traffic control radar beacon system (ATCRBS), was designed to provide air traffic controllers more information than what is provided by the primary radar. The secondary radar can be installed separately or installed on top of the primary radar. It uses a different radio frequency to actively interrogate the aircraft and receive information transmitted by the aircraft.
+The **secondary surveillance radar (SSR)**, also known as the air traffic control radar beacon system (ATCRBS), was designed to provide air traffic controllers more information than what is provided by the primary radar. The secondary radar can be installed separately or installed on top of the primary radar. It uses a different radio frequency to actively interrogate the aircraft and receive information transmitted by the aircraft.
 
-The SSR transmits interrogations using the 1030 MHz radio frequency and the aircraft transponder transmits replies using the 1090 MHz radio frequency. In the early design of SSR, two civilian communication protocols (Mode A and Mode C) were introduced. Mode A and Mode C respectively allow the SSR to continuously interrogate the identity (squawk code) and the altitude of an aircraft. The squawk code in Mode A is a unique 4-octal digit code given by air traffic controllers to aircraft in their flight information region for identification. The altitude in Mode C refers to the barometric altitude obtained from the aircraft’s air data system.
+The SSR transmits interrogations using the 1030 MHz radio frequency and the aircraft transponder transmits replies using the 1090 MHz radio frequency. In the early design of SSR, two civilian communication protocols (Mode A and Mode C) were introduced. Mode A and Mode C respectively allow the SSR to continuously interrogate the **identity (squawk code)** and the **altitude** of an aircraft. The **squawk code** in Mode A is a unique 4-octal digit code given by air traffic controllers to aircraft in their flight information region (FIR) for identification. The altitude in Mode C refers to the barometric altitude obtained from the aircraft’s air data system.
+
+:::{.callout-tip}
+Some squawk codes are reserved for particular emergency situations:
+
+- 7500 for hijacking situations;
+- 7600 for radio failures;
+- 7700 for general emergencies @opensky20.
+:::
 
 **Mode S (Mode Select Beacon System)** was designed by Lincoln Laboratory at Massachusetts Institute of Technology in the 1970s. Based on different iterations of hardware and software design in the 1980s, the implementation of Mode S in air traffic control began in the 1990s. Since then, Mode S has become one of the main sources for aircraft surveillance.
 
 The main characteristic of Mode S is its **selective interrogation**, which allows the SSR to interrogate different information from different aircraft separately.  Unlike the limited number (4096) of unique identification codes in Mode A communication, the Mode S transponder is identified by a [24-bit transponder code](#aircraft-information), which can support up to $2^{24} =$ 6,777,216 unique addresses.
 
 :::{.callout-important}
-As Mode S consists in selective interrogation, it is strongly dependent on ground infrastructure around. Mode S messages are only sent in reply to an interrogation, therefore **no such data can be expected from an aircraft out of range of a SSR**, over the ocean, poles or deserted areas.
+As Mode S consists in selective interrogation, it is strongly dependent on ground infrastructure around. Mode S messages are only sent in reply to an interrogation, therefore **no such data can be expected from an aircraft out of range of an SSR**, over the ocean, poles or deserted areas.
 :::
 
-The Mode S uplink signal contains parameters that indicate which information is desired by the air traffic controller. Many downlink formats (DF) are described in the Mode S protocol in order to reply to such information
+The Mode S uplink signal contains parameters that indicate which information is desired by the air traffic controller. Many downlink formats (DF) are described in the Mode S protocol in order to reply to such information:
 
--  Altitude and identity replies (DF 4/5)
--  All-call reply (DF 11)
--  ACAS short and long replies (DF 0/16)
--  Comm-B, with altitude and identity replies (DF 20/21)
+-  **Altitude and identity replies (DF 4/5)** are rough equivalents to Mode A/C protocols;
 
+-  **All-call reply (DF 11)** is the reply sent by Mode S compliant transponders to queries addressed to Mode A/C capable transponders. It contains the [24-bit transponder code](#aircraft-information), the transponder capabilities @sun20capab, and the interrogator identifier;
+
+-  **ACAS short and long replies (DF 0/16)**: **Airborne Collision Avoidance System (ACAS)** is a system designed to reduce the risk of mid-air collisions and near mid-air collisions between aircraft. In particular **Resolution Advisories (RA)** generate particular messages (DF16) which can be used to find about past RA alerts @opensky19.\
+   Details of the protocol are described [here](https://mode-s.org/decode/content/mode-s/4-acas.html).
+
+-  **Comm-B, with altitude and identity replies (DF 20/21)**
+
+
+![An overview of all Mode S services, excerpt from [www.mode-s.org](https://mode-s.org/decode/content/introduction.html#summary) @sun1090](https://mode-s.org/decode/figures/intro/mode_s_services.png)
 
 ### FLARM {-}
 
+868 MHz
+
 ### UAT {-}
 
-Universal Access Transceiver 978 MHz
-
+**Universal Access Transceiver (UAT)** on 978 MHz
 
 ## Aircraft information
 
