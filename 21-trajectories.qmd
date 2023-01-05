@@ -7,19 +7,32 @@ A trajectory is a mathematical abstraction used to describe the evolution of a m
 
 Depending on the application, some models would expect more features. For example, [aircraft performance models](24-aircraft-performance.qmd) could require the pitch, roll and yaw angles, the true air speed, the indicated air speed, the Mach number, etc.
 
-This chapter describes several common formats for trajectories depending on available technology to record them. Associated data sources come with different licensing terms which must be kept in mind when developping or applying computing methods.
+This chapter describes several common formats for trajectories depending on available technology to record them. Associated data sources come with different licensing terms which must be kept in mind when developing or applying computing methods.
 
 ## Aircraft trajectories
 
-### ADS-B tracks {-}
-
-ADS-B stands for *Automatic Dependent Surveillance--Broadcast*. It is probably one of the most well-known source of aircraft trajectories, popularized by famous websites such as [Flightradar24](https://www.flightradar24.com) or [The OpenSky Network](https://www.opensky-network.org). ADS-B messages are broadcast by equipped aircraft at a sample rate of about two messages per second.
-
 :::{.callout-important}
-Messages do not contain any timestamp information. Timestamps are is usually appended by receiver of the messages, based on the reception time (and not the time of emission by the aircraft).
+## TODO
+A word about radar tracks, say we come back to it later
 :::
 
-Information broadcast in ADS-B messages contains, in addition to a unique [24-bit transponder identifier](#aircraft-information):
+Based on the radar plots, computer systems usually produce tracks containing an identifier, a timestamp (in seconds since midnight on the picture below), latitude, longitude (commonly in degrees), altitude (commonly in ft). Ground speed (in knots), vertical speed (in ft/mn) and track angle are easy to compute. Kalman filters are commonly applied to the raw output of radar tracks in order to produce a smooth trajectory.
+
+ANSP (TODO define) own the data for the radar installations they operate.
+
+
+### ADS-B {-}
+
+ADS-B stands for *Automatic Dependent Surveillance--Broadcast*. It is probably one of the most well-known source of aircraft trajectories, popularized by famous websites such as [Flightradar24](https://www.flightradar24.com) or [The OpenSky Network](https://www.opensky-network.org). It is a surveillance technology designed to allow aircraft to broadcast their flight state periodically without the need for interrogation.
+
+The word *automatic* refers to the fact that no inputs from controllers or pilots are required. The word *dependent* indicates this technology depends on information from other onboard systems, such as air data systems and navigation systems.
+
+
+:::{.callout-important}
+Messages do not contain any timestamp information. Timestamps are usually appended by receiver of the messages, based on the reception time (and not the time of emission by the aircraft).
+:::
+
+Information broadcast in ADS-B messages contains, in addition to a unique [24-bit transponder code](#aircraft-information):
 
 - *identification information*: the *callsign* (an 8-character *non-unique* identifier of the mission or the route of the aircraft) and the wake vortex category;
 - *positional information*: latitude and longitude in degrees (encoded in CPR format), barometric altitude (converted to ISA equivalent), and GPS altitude in feet;
@@ -34,7 +47,7 @@ There is a common confusion in aviation between three designations for angles:
 
 - the **track angle** represents the direction the aircraft is flying. It is the angle of the speed vector, ranging from 0 (North) to 360 degrees (90° for East, 270° for West);
 - the **heading angle** represents the direction the nose the aircraft is pointing at;
-- the **bearing angle** usually represents the direction of/to a static object, e.g. the bearing of a runway, or the bearing to a navigational point.
+- the **bearing angle** usually represents the direction of/to a static object, e.g., the bearing of a runway, or the bearing to a navigational point.
 :::
 
 :::{.callout-note}
@@ -50,79 +63,101 @@ For example, aircraft `F-HNAV` uses the `CALIBRA` callsign for flight inspection
 
 Similarly, test flights operated by Airbus use an `AIB` callsign; Boeing uses a `BOE` callsign; ambulance helicopters often use explicit callsigns: `SAMU` in France (stands for *Urgent Medical Aid Service*) and `LIFE` in many European countries.
 
-Australian firefighting operations use a specific callsign depending on the role of the aircraft during the operations: `BMBR` for fire bombing; `SPTR` for fire spotters; `BDOG`, *bird dog*, for fire attack supervisions (often subcontracted); and `FSCN`, firescan for remote sensing fire operations.
+Australian firefighting operations use a specific callsign depending on the role of the aircraft during the operations: `BMBR` for firebombing; `SPTR` for fire spotters; `BDOG`, *bird dog*, for fire attack supervisions (often subcontracted); and `FSCN`, fire scan for remote sensing fire operations.
 :::
 
 Even though all information is not available at each timestamp, tabular data (csv) is a common format to represent trajectory data.
 
-The following Observable code illustrates remarkable example ADS-B trajectory:
-
 ```{ojs}
+//| echo: false
 import { Flight } from "@xoolive/traffic-js"
 ```
 
 ```{ojs}
+//| echo: false
 url = "https://raw.githubusercontent.com/xoolive/traffic/master/traffic/data/samples/featured/qantas747.json.gz"
-flight = Flight.fromURL(url)
-flight.table()
+qantas747 = Flight.fromURL(url)
+qantas747.table()
 ```
 
 This tabular information can easily be represented on a map, or as a regular plot for non-geographical features.
 
 ```{ojs}
+//| echo: false
 {
-  const container = html`<div style="height:400px;">`;
+  const container = html`<div style="height: 400px;">`;
   yield container;
-  flight.map(container);
+  qantas747.map(container, { zoom: 7, latitude: -33.5, longitude: 152.5 });
 }
 ```
 
+---
+
 ```{ojs}
+//| echo: false
 Plot.plot({
   marks: [
-    Plot.line(flight.data, {
+    Plot.line(qantas747.data, {
       x: "timestamp",
       y: "altitude",
       stroke: "steelblue",
     })
   ],
   x: {
-    tickFormat: d3.utcFormat("%H:%M")
+    tickFormat: d3.utcFormat("%H:%M"),
+    label: "timestamp (UTC)"
   },
-  marginLeft: 100,
+  y: {
+    label: "altitude (in feet)"
+  },
+  marginLeft: 50,
   width,
-  height: 300,
+  height: 200,
   grid: true
 })
 ```
+
+
+:::{.callout-note}
+## What broadcasting means
+
+The letter "B" in ADS-B means *broadcast*: aircraft broadcast messages at the same rate regardless of ground equipments and infrastructure, even if no aircraft or receiver is within range. Aircraft broadcast ADS-B data even over oceans, poles, or deserted areas.
+
+Recently, "Space-based ADS-B" has been implemented so that a constellation of low-altitude satellites attempts to receive and decode ADS-B messages from aircraft in the troposphere and forward positional information to ground-based stations. There have been high expectations around this technology which is expected to revolutionarize traditional air traffic management over areas such as the North-Atlantic Ocean, controlled by Shannon (Ireland) and Gander (Canada) ACCs.
+:::
 
 
 :::{.callout-tip}
 A lot of details about the contents of ADS-B messages, Mode S data and their decoding is detailed in a different book, *The 1090 Megahertz Riddle* @sun1090.
 :::
 
-### Mode S data {-}
+### Mode S {-}
 
-### Radar tracks {-}
+The secondary surveillance radar (SSR), also known as the air traffic control radar beacon system (ATCRBS), was designed to provide air traffic controllers more information than what is provided by the primary radar. The secondary radar can be installed separately or installed on top of the primary radar. It uses a different radio frequency to actively interrogate the aircraft and receive information transmitted by the aircraft.
 
-Radars (stands for *Radio Detection and Ranging*) use radio waves to determine the distance and angle of objects. They were first introduced as part of the *Britannic Anti-Aircraft Defence System*: the first station was set up in 1937 and went operational in 1938. Radars have been used in civil aviation after the second World War.
+The SSR transmits interrogations using the 1030 MHz radio frequency and the aircraft transponder transmits replies using the 1090 MHz radio frequency. In the early design of SSR, two civilian communication protocols (Mode A and Mode C) were introduced. Mode A and Mode C respectively allow the SSR to continuously interrogate the identity (squawk code) and the altitude of an aircraft. The squawk code in Mode A is a unique 4-octal digit code given by air traffic controllers to aircraft in their flight information region for identification. The altitude in Mode C refers to the barometric altitude obtained from the aircraft’s air data system.
+
+**Mode S (Mode Select Beacon System)** was designed by Lincoln Laboratory at Massachusetts Institute of Technology in the 1970s. Based on different iterations of hardware and software design in the 1980s, the implementation of Mode S in air traffic control began in the 1990s. Since then, Mode S has become one of the main sources for aircraft surveillance.
+
+The main characteristic of Mode S is its **selective interrogation**, which allows the SSR to interrogate different information from different aircraft separately.  Unlike the limited number (4096) of unique identification codes in Mode A communication, the Mode S transponder is identified by a [24-bit transponder code](#aircraft-information), which can support up to $2^{24} =$ 6,777,216 unique addresses.
+
+:::{.callout-important}
+As Mode S consists in selective interrogation, it is strongly dependent on ground infrastructure around. Mode S messages are only sent in reply to an interrogation, therefore **no such data can be expected from an aircraft out of range of a SSR**, over the ocean, poles or deserted areas.
+:::
+
+The Mode S uplink signal contains parameters that indicate which information is desired by the air traffic controller. Many downlink formats (DF) are described in the Mode S protocol in order to reply to such information
+
+-  Altitude and identity replies (DF 4/5)
+-  All-call reply (DF 11)
+-  ACAS short and long replies (DF 0/16)
+-  Comm-B, with altitude and identity replies (DF 20/21)
 
 
+### FLARM {-}
 
+### UAT {-}
 
-Secondary Surveillance Radars (SSR) are able to communicate with aircraft they detect to *identify* them.
-
-Based on the radar plots, computer systems usually produce tracks containing an identifier, a timestamp (in seconds since midnight on the picture below), latitude, longitude (commonly in degrees), altitude (commonly in ft). Ground speed (in knots), vertical speed (in ft/mn) and track angle are easy to compute. Kalman filters are commonly applied to the raw output of radar tracks in order to produce a smooth trajectory.
-
-![Sample RADAR tracks for a commercial aircraft](images/format_radar.png)
-
-
-ANSP (TODO define) own the data for the radar installations they operate.
-
-### FLARM data {-}
-
-### UAT data {-}
-
+Universal Access Transceiver 978 MHz
 
 
 ## Aircraft information
