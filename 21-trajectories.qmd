@@ -181,6 +181,15 @@ ADS-B messages also belong to the Mode S protocol, in the **Extended Squitter (E
 
 ![An overview of all Mode S services, excerpt from [www.mode-s.org](https://mode-s.org/decode/content/introduction.html#summary) @sun1090](images/mode_s_services.png)
 
+### UAT {-}
+
+**Universal Access Transceiver (UAT)** is a technology similar to ADS-B which operates on 978 MHz instead of 1090 MHz for ADS-B Extended Squitter (ES).
+
+The FAA has been encouraging General Aviation aircraft to equip with UAT compliant transponders for slightly cheaper than ES transponders in order to decongestionate the 1090 MHz frequency in the US. The 2020 Mandate allows aircraft to be equipped with UAT transponders if they remain **within the US borders** and **below 18,000 feet**.
+
+As a consequence, UAT messages can only be received by receivers located in the United States or near their borders.
+
+
 ### FLARM {-}
 
 **FLARM** (a portmanteau of "flight" and "alarm") is, with TCAS, one of the most widespread technologies for **traffic awareness and collision avoidance**. It is a system used to prevent potential aviation collision and to raise awareness of the pilot, initially tailored for **light aircraft, such as gliders, light aircraft, rotorcraft, and drones**. FLARM obtains its position and altitude readings from an internal GPS (or potentially other GNSS) and a barometric sensor, then broadcasts these together with forecast data about the future 3D flight track, calculated considering its speed, acceleration, track, turn radius, wind and other parameters. This is imperative for smaller lighter (even wind-powered) aircraft.
@@ -209,10 +218,6 @@ As FLARM is a proprietary product, there is little public information about the 
 
 According to the manual of PowerFLARM Fusion @flarm_manual, there are three levels of warnings with different types of annunciations: The first warning is issued around 18 seconds before impact, the second warning is issued around 12 seconds before impact and the third warning is issued around 8 seconds before impact. The warning is active as long as the collision risk remains and will change accordingly.
 
-
-### UAT {-}
-
-**Universal Access Transceiver (UAT)** on 978 MHz
 
 ## Aircraft information
 
