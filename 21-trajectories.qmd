@@ -28,7 +28,7 @@ In general, trajectories based on radar plots produced by computer systems conta
 
 ### ADS-B {-}
 
-ADS-B stands for *Automatic Dependent Surveillance--Broadcast*. It is probably one of the most well-known source of aircraft trajectories, popularized by famous websites such as [Flightradar24](https://www.flightradar24.com) or [The OpenSky Network](https://www.opensky-network.org). It is a surveillance technology designed to allow aircraft to broadcast their flight state periodically without the need for interrogation.
+ADS-B stands for **Automatic Dependent Surveillance--Broadcast**. It is probably one of the most well-known source of aircraft trajectories, popularized by famous websites such as [Flightradar24](https://www.flightradar24.com) or [The OpenSky Network](https://www.opensky-network.org). It is a surveillance technology designed to allow aircraft to broadcast their flight state periodically without the need for interrogation.
 
 The word *automatic* refers to the fact that no inputs from controllers or pilots are required. The word *dependent* indicates this technology depends on information from other onboard systems, such as air data systems and navigation systems.
 
@@ -167,14 +167,48 @@ The Mode S uplink signal contains parameters that indicate which information is
 -  **ACAS short and long replies (DF 0/16)**: **Airborne Collision Avoidance System (ACAS)** is a system designed to reduce the risk of mid-air collisions and near mid-air collisions between aircraft. In particular **Resolution Advisories (RA)** generate particular messages (DF16) which can be used to find about past RA alerts @opensky19.\
    Details of the protocol are described [here](https://mode-s.org/decode/content/mode-s/4-acas.html).
 
--  **Comm-B, with altitude and identity replies (DF 20/21)**
+-  **Comm-B, with altitude and identity replies (DF 20/21)**: this protocol supports a large number of different types of messages, defined by **BDS (Comm-B Data Selector)** codes. **Mode S Enhances Surveillance (EHS)** accounts for a handful of BDS codes of particular interests:
+   - **BDS 4,0 -- Selected vertical intention**, with information about *selected altitude* in the autopilot, barometric pressure setting, and *navigation modes*;
+   - **BDS 5,0 -- Track and turn report**, with information about the *roll angle*, *true track angle rate* and *true airspeed (TAS)* in addition to ground speed and true track angle information also defined in ADS-B;
+   - **BDS 6,0 -- Heading and speed report**, with information about *magnetic heading* of the aircraft, *indicated airspeed (IAS)*, *barometric altitude rate* and *inertial vertical velocity* (in feet per minute)
 
+Coupling BDS 5,0 (for the TAS, the true track angle and the groundspeed -- the two last entries are also present in ADS-B) with BDS 6,0 (for magnetic heading) and can be used to recompute the apparent wind seen by the aircraft.\
+[Magnetic declination](earth.html#magnetic-declination) must be taken into account.
+
+:::{.callout-tip}
+ADS-B messages also belong to the Mode S protocol, in the **Extended Squitter (ES)** category (BDS 0,5 through to 0,9). Only Extended Squitter messages (ADS-B) are broadcast, i.e., they are not the result of SSR interrogations.
+:::
 
 ![An overview of all Mode S services, excerpt from [www.mode-s.org](https://mode-s.org/decode/content/introduction.html#summary) @sun1090](images/mode_s_services.png)
 
 ### FLARM {-}
 
-868 MHz
+**FLARM** (a portmanteau of "flight" and "alarm") is, with TCAS, one of the most widespread technologies for **traffic awareness and collision avoidance**. It is a system used to prevent potential aviation collision and to raise awareness of the pilot, initially tailored for **light aircraft, such as gliders, light aircraft, rotorcraft, and drones**. FLARM obtains its position and altitude readings from an internal GPS (or potentially other GNSS) and a barometric sensor, then broadcasts these together with forecast data about the future 3D flight track, calculated considering its speed, acceleration, track, turn radius, wind and other parameters. This is imperative for smaller lighter (even wind-powered) aircraft.
+
+At the same time, the receiver listens for other FLARM devices within range and processes the information received. Upon receiving such messages, the FLARM system may issue alarms to alert the pilot or show the relative position if other aircraft are within detection range.
+
+The wireless nature of FLARM allows for the reception of signals in a crowdsourced fashion. Although the FLARM radio protocol features message encryption in order to ensure integrity and confidentiality, implementation and encryption keys are available:
+
+- The [Open Glider Network (OGN)](https://live.glidernet.org/) maintains a tracking platform with the help of many receivers, mostly collocated with flying clubs operating light aircraft at local airfields.
+- The [OpenSky Network](https://www.opensky-network.org) also collects FLARM raw messages, with data accessible to institutional researchers.
+
+
+FLARM devices are based on the nRF905 chip. Depending on the geographical area they operate in, they transmit in the SRD860 band or in the ISM-band that can be used freely.
+
+- In Europe, Africa and Asia, the two frequencies **868.2 MHz and 868.4 MHz** are used, sending one to two messages per second per frequency. On 868.2MHZ, it transmits from 0.4s to 0.8s; On 868.4MHZ, it transmits from 0.4s to 1.2s.
+- In the Americas, Oceania and Israel **another undisclosed frequency hopping scheme** is in place, in order to comply with local regulations.
+
+Information contained in FLARM messages contains:
+
+- the **device address**, a unique identifier, similar to the [24-bit transponder code](#aircraft-information). *In general,* if the aircraft is also equipped with a transponder, the same identifier is used;
+- the **aircraft type**: glider, tow-plane, helicopter, parachute, parachute drop-plane, hangglider, paraglider, UAV, balloon, etc.;
+- **positional information**: *latitude* and *longitude* in degrees, *GPS altitude* **in meters**;
+- **velocity information**: *horizontal* and *vertical speeds*.
+
+As FLARM is a proprietary product, there is little public information about the exact inner workings of the trajectory prediction algorithm that powers the collision alert function. One version has been developed by ONERA in France and been licensed to FLARM Technology Ltd @flarm_patent.  At a high level, the documentation @flarm_manual describes it as follows: The device calculates its own predicted flight path for about the next 20 seconds. This prognosis is based on immediate past and current vectors, including but not limited to aircraft type, speed, vertical speed, turning radius etc. In addition, it uses a movement model that has been optimized for the respective user.
+
+According to the manual of PowerFLARM Fusion @flarm_manual, there are three levels of warnings with different types of annunciations: The first warning is issued around 18 seconds before impact, the second warning is issued around 12 seconds before impact and the third warning is issued around 8 seconds before impact. The warning is active as long as the collision risk remains and will change accordingly.
+
 
 ### UAT {-}
 

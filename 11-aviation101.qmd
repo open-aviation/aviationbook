@@ -9,6 +9,7 @@ the current situation.
 
 
 - ACAS/TCAS
+- GNSS
 
 ## The history of aviation
 

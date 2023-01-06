@@ -18,7 +18,7 @@ book:
       chapters:
         - 11-aviation101.qmd
         - 12-cns.qmd
-        - 13-pitot.qmd
+        - 13-earth.qmd
         - 14-flight-mechanics.qmd
     - part: "The ecosystem of aviation data"
       chapters:
@@ -80,7 +80,7 @@ book:
         - text: ---
         - 11-aviation101.qmd
         - 12-cns.qmd
-        - 13-pitot.qmd
+        - 13-earth.qmd
         - 14-flight-mechanics.qmd
     - title: Data sources
       id: data_sources

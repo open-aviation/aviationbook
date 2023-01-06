@@ -1,0 +1,16 @@
+---
+title: Terrestrial and atmospherical models
+output-file: earth
+---
+
+Mention pitot library ?
+
+
+## International Standard Atmosphere
+
+## Geodesy and altimetry
+
+sphere, ellipses
+MSL, AGL
+
+## Magnetic declination
