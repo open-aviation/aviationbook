@@ -1,0 +1,21 @@
+---
+title: Anatomy of an aircraft
+output-file: aircraft
+---
+
+## Anatomy of an aircraft
+
+APU, bleed, winglet etc.
+
+Recognise an Airbus from a Boeing
+
+## Flight mechanics
+
+Various speeds
+
+Various angles, track, heading, bearing, etc.
+
+thrust, drag, lift
+
+
+- ACAS/TCAS

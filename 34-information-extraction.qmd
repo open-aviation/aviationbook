@@ -1,0 +1,13 @@
+# Information extraction
+
+::: {.callout-tip}
+Author: Xavier
+:::
+
+go around detection
+
+landing and takeoff detection
+
+flight phases
+
+holding pattern, etc.

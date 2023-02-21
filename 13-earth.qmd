@@ -1,5 +1,5 @@
 ---
-title: Terrestrial and atmospherical models
+title: Planet Earth
 output-file: earth
 ---
 
@@ -14,3 +14,6 @@ sphere, ellipses
 MSL, AGL
 
 ## Magnetic declination
+
+## Projection
+

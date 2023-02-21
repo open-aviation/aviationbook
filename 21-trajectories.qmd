@@ -1,5 +1,5 @@
 ---
-title: Trajectories
+title: Aircraft trajectories
 output-file: trajectories
 ---
 
@@ -9,7 +9,7 @@ Depending on the application, some models would expect more features. For exampl
 
 This chapter describes several common formats for trajectories depending on available technology to record them. Associated data sources come with different licensing terms which must be kept in mind when developing or applying computing methods.
 
-## Aircraft trajectories
+## Aircraft tracking technologies
 
 ### Radar tracks {-}
 

@@ -3,6 +3,18 @@ title: Communication, navigation and surveillance
 output-file: cns
 ---
 
+Air navigation service provider
+
+* Aeronautical Information Management (AIM)
+* Air Traffic Management (ATM)
+* Meteorological Services (MET)
+* Communication, Navigation, Surveillance (CNS)
+* Search and Rescue (SAR)
+
+
+
+
+
 To ensure safe and efficient air transportation, Air Traffic Management (ATM) relies on infrastructure, services and functions in the areas of Communication, Navigation, and Surveillance (CNS). As such, communication enables the exchange of information, be it in spoken or written form, between crews of aircraft and/or air traffic control. Navigation encompasses all services and infrastructures by means of which aircraft crews find their way through space in order to get from one place to another quickly, efficiently, and safely. Finally, surveillance comprises all technical possibilities by means of which air traffic control can determine the position of aircraft. In the following, the most important services, technologies, and processes in the field of CNS are presented.
 
 ## Communication
@@ -95,3 +107,10 @@ The fundamental theory of radar started in late 19th century. Since the 1860s, w
 ![Radar coverage over the British Isles during WW2](images/radar_coverage.png){#fig-radar-ww2 width=40%}
 
 However, not until the Second World War, was the concept of RAdio Detection And Ranging (RADAR) developed. The technology was simultaneously researched by both major Allies and Axis countries. However, the United Kingdom led the race in developing a functional radar system.
+
+
+## ATC communications
+
+## ACARS
+
+## Data Link

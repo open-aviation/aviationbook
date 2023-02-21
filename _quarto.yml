@@ -14,41 +14,36 @@ book:
   chapters:
     - index.qmd
     - 01-preface.qmd
-    - part: "Introduction to aviation"
+    - 02-toc.qmd
+    - part: "Background knowledge about aviation"
       chapters:
-        - 11-aviation101.qmd
-        - 12-cns.qmd
+        - 11-history.qmd
+        - 12-aircraft.qmd
         - 13-earth.qmd
-        - 14-flight-mechanics.qmd
+        - 14-airspace.qmd
+        - 15-aerodrome.qmd
+        - 16-cns.qmd
     - part: "The ecosystem of aviation data"
       chapters:
         - 21-trajectories.qmd
         - 22-aeronautical-information.qmd
         - 23-environment.qmd
         - 24-aircraft-performance.qmd
-        - 25-radio-communications.qmd
-    - part: "Access and Explore Data"
-      chapters:
-        - 31-tools-ecosystem.qmd
-        - 32-common-data-sources.qmd
-        - 33-aviation-data-sources.qmd
-        - 34-exploring-datasets.qmd
+        - 25-aviation-data-sources.qmd
     - part: "Process data"
       chapters:
-        - 41-tidy-data.qmd
-        - 42-geometrice-geographic.qmd
-        - 43-processing-trajectories.qmd
-        - 44-information-extraction.qmd
-        - 45-optimization-data-analytics.qmd
-        - 46-handling-uncertainty.qmd
+        - 31-tidy-data.qmd
+        - 32-geometrice-geographic.qmd
+        - 33-processing-trajectories.qmd
+        - 34-information-extraction.qmd
     - part: "Visualise Data"
       chapters:
-        - 51-storytelling.qmd
-        - 52-grammar-of-graphics.qmd
-        - 53-meaningful-maps.qmd
+        - 41-storytelling.qmd
+        - 42-grammar-of-graphics.qmd
+        - 43-meaningful-maps.qmd
     - part: "Share Data"
       chapters:
-        - 61-reproducible-research.qmd
+        - 51-reproducible-research.qmd
     - 90-references.qmd
     - 91-authors.qmd
   appendices:
@@ -56,7 +51,7 @@ book:
     - 88-acronyms.qmd
 
   # cover-image: images/book-front-cover.png
-  site-url: https://atmdata.github.io/aviationbook
+  site-url: https://aviationbook.netlify.app/
   repo-url: https://github.com/atmdata/aviationbook/
   repo-branch: master
 
@@ -71,56 +66,56 @@ book:
   #   hypothesis: true
 
   sidebar:
-    - title: Introduction
+    - title: Background
       id: introduction
       background: transparent
       collapse-level: 1
       contents:
-        - text: Introduction
+        - text: Background knowledge about aviation
         - text: ---
-        - 11-aviation101.qmd
-        - 12-cns.qmd
+        - 11-history.qmd
+        - 12-aircraft.qmd
         - 13-earth.qmd
-        - 14-flight-mechanics.qmd
+        - 14-airspace.qmd
+        - 15-aerodrome.qmd
+        - 16-cns.qmd
     - title: Data sources
       id: data_sources
       background: transparent
       contents:
-        - text: Data sources
+        - text: The ecosystem of aviation data
         - text: ---
         - 21-trajectories.qmd
         - 22-aeronautical-information.qmd
         - 23-environment.qmd
         - 24-aircraft-performance.qmd
-        - 25-radio-communications.qmd
+        - 25-aviation-data-sources.qmd
     - title: Processing data
       id: data_process
       background: transparent
       contents:
         - text: Processing data
         - text: ---
-        - 41-tidy-data.qmd
-        - 42-geometrice-geographic.qmd
-        - 43-processing-trajectories.qmd
-        - 44-information-extraction.qmd
-        - 45-optimization-data-analytics.qmd
-        - 46-handling-uncertainty.qmd
+        - 31-tidy-data.qmd
+        - 32-geometrice-geographic.qmd
+        - 33-processing-trajectories.qmd
+        - 34-information-extraction.qmd
     - title: Visualizing data
       background: transparent
       id: dataviz
       contents:
         - text: Visualizing data
         - text: ---
-        - 51-storytelling.qmd
-        - 52-grammar-of-graphics.qmd
-        - 53-meaningful-maps.qmd
+        - 41-storytelling.qmd
+        - 42-grammar-of-graphics.qmd
+        - 43-meaningful-maps.qmd
     - title: Sharing data
       id: data_share
       background: transparent
       contents:
         - text: Sharing & reproducibility
         - text: ---
-        - 61-reproducible-research.qmd
+        - 51-reproducible-research.qmd
 
   navbar:
     background: light
@@ -157,6 +152,7 @@ format:
     theme:
       light: [flatly, media/css/light.scss]
       dark: [darkly, media/css/dark.scss]
+    smooth-scroll: true
     toc: true
     code-copy: true
     css:
