@@ -46,7 +46,34 @@ Air Traffic Services (ATS) is concerned with the control, regulation, and assist
 * The conduction and maintainance of an orderly flow of air traffic.
 * The notification and assistance of concerned organisations in case of search and rescue operations.
 
-To achieve these main objectives, ATS provides the following main services: (i) air traffic control (ATC), (ii) air traffic advisory services, (iii) flight information services, and (iv) alerting services.
+To achieve these main objectives, ATS provides the following main services: (i) air traffic control (ATC), (ii) air traffic advisory services, (iii) flight information services, and (iv) alerting services. 
+
+**Air Traffic Control (ATC)**: According to [ICAO Annex 11](https://www.bazl.admin.ch/dam/bazl/en/dokumente/Fachleute/Regulationen_und_Grundlagen/icao-annex/icao_annex_11_airtrafficservices.pdf.download.pdf/an11_cons.pdf), ATC is a service, which aims at the prevention of collisions between aircraft being airborne as well as between obstructions and aircraft being on the maneouvring area of an aerodrome. Besides that, ATC ensures the expedition and maintenance of an orderly flow of air traffic.
+
+To prevent collisions, ATC uses so-called *separations*, i.e. the vertical and lateral spatial spacing of aircraft. As a target for separations, ATC uses specified minimum separations, which define exactly which vertical and lateral minimum distances must be maintained at all times. In practice, not all aircraft are separated, as separations are only (i) provided in certain airspace classes and (ii) not offered for all flights. With regard to flights, a distinction is made between aircraft operating under Instrument Flight Rules (IFR) and aircraft operating under Visual Flight Rules (VFR). The following table summarises for all airspace classes and types of flight, whether or not separation is provided by ATC. Note, the table must be read as follows: the first column indicates in which airspace class a particular flight is located. The second column indicates whether this flight is operating under IFR or VFR. The third column then indicates which separation services are offered to this flight.
+
+| Airspace Class | Flight Rules             | Separation provided to this flight         |
+|----------------|--------------------------|--------------------------------------------|
+| A              | Only IFR flights allowed | Between all IFR flights                    |
+| B              | IFR, VFR                 | Between all flights                        |
+| C              | IFR                      | Between all flights                        |
+| C              | VFR                      | Between IFR flights                        |
+| D              | IFR                      | Between IFR flights                        |
+| D              | VFR                      | No separations                             |
+| E              | IFR                      | Between IFR flights                        |
+| E              | VFR                      | No separations                             |
+| F              | IFR                      | Between IFR flights, as far as practicable |
+| F              | VFR                      | No separations                             |
+| G              | IFR, VFR                 | No separations                             |
+
+Separation minima --> En-route vs. terminal airspace
+
+
+**Advisory services**
+
+**Flight Information Services**
+
+**Alerting services**
 
 
 ### Airspace Management
