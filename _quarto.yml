@@ -132,7 +132,12 @@ book:
       - sidebar:data_share
     right: []
 
-  # crossref:
+crossref:
+  fig-title: Figure
+  tbl-title: Table
+  fig-prefix: Figure
+  tbl-prefix: Table
+  ref-hyperlink: true
   #   appendix-title: "App."
   #   appendix-delim: ":"
 
