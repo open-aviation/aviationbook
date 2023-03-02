@@ -96,3 +96,7 @@ h1.title {
 .navbar-logo {
   max-height: 40px;
 }
+
+.quarto-title-meta-contents {
+  color: var(--lt-color-gray-500);
+}
