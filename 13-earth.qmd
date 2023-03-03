@@ -1,6 +1,7 @@
 ---
 title: Planet Earth
 output-file: earth
+author: David Gianazza
 ---
 
 Mention pitot library ?
@@ -12,6 +13,10 @@ Mention pitot library ?
 
 sphere, ellipses
 MSL, AGL
+
+Some **bold** text
+
+$\sin(x) = \dfrac{\pi}{2}$
 
 ## Magnetic declination
 
