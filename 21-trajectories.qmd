@@ -81,8 +81,7 @@ import { Flight } from "@xoolive/traffic-js"
 
 ```{ojs}
 //| echo: false
-url = "https://raw.githubusercontent.com/xoolive/traffic/master/traffic/data/samples/featured/qantas747.json.gz"
-qantas747 = Flight.fromURL(url)
+qantas747 = Flight.fromSample("qantas747")
 qantas747.table()
 ```
 
