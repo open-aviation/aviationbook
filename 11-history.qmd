@@ -3,3 +3,13 @@ title: A short history of aviation
 output-file: history
 ---
 
+## Before 1903: Flying machines {.unnumbered}
+
+## 1904--1914: The pioneers {.unnumbered}
+
+## 1914--1918: World War I {.unnumbered}
+
+## 1919--1939: The first air lines {.unnumbered}
+
+## 1939--1945: World War II {.unnumbered}
+
