@@ -9,7 +9,11 @@ execute:
 book:
   title: "A journey through aviation data"
   favicon: "favicon.png"
-  author: "Xavier Olive, Junzi Sun, Enrico Spinielli, Manuel Waltert"
+  author:
+    - Xavier Olive
+    - Junzi Sun
+    - Enrico Spinielli
+    - Manuel Waltert
   date: "2023-12-25"
   chapters:
     - index.qmd
