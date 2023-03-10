@@ -1,15 +1,64 @@
 ---
 title: A short history of aviation
 output-file: history
+authors:
+    - Xavier Olive
 ---
 
-## Before 1903: Flying machines {.unnumbered}
+Aviation refers to operations of aircraft in general. The word was coined in the middle of the 19th century, derived from the Latin word *avis* for "bird". Historical records mention many legends of human attempting to fly in Greek, Persian, Nordic or Inca mythologies. Around the globe, deities with wings, feathers or other bird attributes appear, and men start to notice that even birds can stay afloat without flapping.
 
-## 1904--1914: The pioneers {.unnumbered}
+In the 16th century, Leonardo da Vinci imagines flying machines in a secret manuscript of thousands of words and hundreds of sketches of an "ornithopter", at the same period  kites are imported from China and become popular in Europe.
 
-## 1914--1918: World War I {.unnumbered}
+This chapter attempts to draw a quick panorama over the history of aviation, focusing on heavier-than-air aircraft, until the digital age when data started to be produced and stored for further analysis. We split this chapter in several sections, matching important milestones in the history of aviations.
 
-## 1919--1939: The first air lines {.unnumbered}
+1. *Flying machines* spans from the Montgolfier brothers to the Wright brothers.
+2. *The pioneer era* goes through a sequence of first times, before the Army takes over in
+3. *World War I*, which saw aircraft on war fields for the first time.
+4. The 1920s and 1930s mark the *Golden Age of aviation*, with the creation first airlines, and strong images in the collective imagery.
+5. *World War II* marked the place of aviation in armed conflicts: Pearl Harbor, massive bombing from all sides, and the final role of Enola Gay
+6. The post-war period etc. radars, ATM, new motors, etc.
+7. Digitalisation, GPS, etc.
+8. Big Data era? (21st century)
 
-## 1939--1945: World War II {.unnumbered}
+## Flying machines
 
+### Balloons
+
+### Dirigibles
+
+Zeppelin
+
+### Gliders
+
+### Engines
+
+Otto Lilienthal, Clément Ader, etc.
+
+### The Wright Brothers
+
+## The pioneer era {.unnumbered}
+1904--1914
+
+Santos-Dumont, Blériot
+
+##  World War I {.unnumbered}
+1914--1918
+
+Combat, military uses
+
+Roland Garros,
+von Richthofen
+
+## The Golden Age {.unnumbered}
+1919--1939
+
+##  World War II {.unnumbered}
+1939--1945
+
+## The post-war era {.unnumbered}
+1945--1979
+
+## The digital age {.unnumbered}
+The 1980s
+
+## The 21st century {.unnumbered}
