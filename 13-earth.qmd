@@ -1,6 +1,5 @@
 ---
 title: Geodesy (Earth Models)
-output-file: earth
 author: David Gianazza
 ---
 
@@ -69,19 +68,14 @@ In the following, we shall denote
 $(\overrightarrow{\imath}_e, \overrightarrow{\jmath}_e, \overrightarrow{k}_e)$
 the orthonormal vectors of the ECEF reference frame $Ox_ey_ez_e$.
 
-  ------------------------------------------------------------------------------------------------------------------------------------------------
-  ![[\[fig:SPHERIC\_EARTH\]]{#fig:SPHERIC_EARTH label="fig:SPHERIC_EARTH"} Spherical Earth model.](images/earth_model/Terre_spherique.jpg){width="8cm"}
-  ------------------------------------------------------------------------------------------------------------------------------------------------
+![Spherical Earth model](images/earth_model/Terre_spherique.jpg){#fig-spheric_earth width="8cm"}
 
-In this coordinate system, the position of a point $P$ is given by its
-latitude, longitude, and distance from the center of Earth, or more
-simply its altitude $h$ above the surface of the globe, as illustrated
-in
-Figure [\[fig:SPHERIC\_EARTH\]](#fig:SPHERIC_EARTH){reference-type="ref"
-reference="fig:SPHERIC_EARTH"}. The latitude, denoted $\mu$ in the
-following, is the angle between the equatorial plane $x_eOy_e$ and
-$\overrightarrow{OP}$. The longitude, denoted $\lambda$, is the angle
-between the Greenwich meridian plane $x_eOz_e$ and the meridian plane
+In this coordinate system, the position of a point $P$ is given by its latitude,
+longitude, and distance from the center of Earth, or more simply its altitude
+$h$ above the surface of the globe, as illustrated in @fig-spheric_earth. The
+latitude, denoted $\mu$ in the following, is the angle between the equatorial
+plane $x_eOy_e$ and $\overrightarrow{OP}$. The longitude, denoted $\lambda$, is
+the angle between the Greenwich meridian plane $x_eOz_e$ and the meridian plane
 containing $\overrightarrow{OP}$.
 
 ### The North-East-Down (NED) reference frame
@@ -108,17 +102,15 @@ is associated to this system.
 ### Coordinates of a Point on the Sphere
 
 The Cartesian coordinates -- in the ECEF (Earth-Centered, Earth-Fixed)
-system -- of a point $P$ at altitude $h$ are given by
-equation  [\[eq:COOR\_SPHERE\]](#eq:COOR_SPHERE){reference-type="eqref"
-reference="eq:COOR_SPHERE"}:
+system -- of a point $P$ at altitude $h$ are given by @eq-coor_sphere:
 
-$$\label{eq:COOR_SPHERE}
-\begin{array}{l}\{\overrightarrow{OP}\}_{\text{\it ECEF}}\\ \\ \\\end{array} \Bigg|
+$$
+\begin{array}{l}\{\overrightarrow{OP}\}_{\mathit{ECEF}}\\ \\ \\\end{array} \Bigg|
 \begin{array}{l}
 x_e= (R_T+h) \cos \mu \cos \lambda\\
 y_e= (R_T+h) \cos \mu \sin \lambda\\
 z_e= (R_T+h) \sin \mu
-\end{array}$$
+\end{array}$$ {#eq-coor_sphere}
 
 In the NED (North, East, Down) system where the unit vector
 $\overrightarrow{k}_h$ points downward from $P$, the position vector can
@@ -132,7 +124,7 @@ $$\label{eq:POSITION_NED_SPHERE}
 \overrightarrow{OP} = -(R_T +h) \overrightarrow{k}_h$$
 
 $$\label{eq:COOR_NED_SPHERE}
-\begin{array}{l}\{\overrightarrow{OP}\}_{\text{\it NED}}\\ \\ \\\end{array} \Bigg|
+\begin{array}{l}\{\overrightarrow{OP}\}_{\mathit{NED}}\\ \\ \\\end{array} \Bigg|
 \begin{array}{l}
 x_h= 0\\
 y_h= 0\\
@@ -154,12 +146,12 @@ The velocity with respect to the ECEF reference frame, considered as
 fixed, is given
 in [\[eq:SPEED\_SPHERE\]](#eq:SPEED_SPHERE){reference-type="eqref"
 reference="eq:SPEED_SPHERE"}, taking into account the angular speed
-$\overrightarrow{\Omega}_{Ox_my_mz_e/\text{\it ECEF}} = \dot{\lambda} \overrightarrow{k}_e$
+$\overrightarrow{\Omega}_{Ox_my_mz_e/\mathit{ECEF}} = \dot{\lambda} \overrightarrow{k}_e$
 of the $Ox_my_mz_e$ system around the axis $Oz_e$:
 
 $$\label{eq:SPEED_SPHERE}
 \begin{aligned}
-\frac{d\overrightarrow{OP}}{dt}_{/\text{\it ECEF}} = \frac{d\overrightarrow{OP}}{dt}_{/Ox_my_mz_e} + \overrightarrow{\Omega}_{Ox_my_mz_e/\text{\it ECEF}} \wedge\overrightarrow{OP}\\
+\frac{d\overrightarrow{OP}}{dt}_{/\mathit{ECEF}} = \frac{d\overrightarrow{OP}}{dt}_{/Ox_my_mz_e} + \overrightarrow{\Omega}_{Ox_my_mz_e/\mathit{ECEF}} \wedge\overrightarrow{OP}\\
 \end{aligned}$$
 
 The derivative $\frac{d\overrightarrow{OP}}{dt}_{/Ox_my_mz_e}$ is
@@ -186,20 +178,20 @@ associated with the local horizontal frame NED.
 
 $$\label{eq:DERIV_VECT_OP}
  \begin{aligned}
-\frac{d\overrightarrow{OP}}{dt}_{/\text{\it ECEF}} & =  \dot{\mu}(R_T+h) \overrightarrow{\imath}_h - \dot{h} \overrightarrow{k}_h + \left(\dot{\lambda} \overrightarrow{k}_e\right) \wedge\left(-(R_T +h) \overrightarrow{k}_h\right)\\
+\frac{d\overrightarrow{OP}}{dt}_{/\mathit{ECEF}} & =  \dot{\mu}(R_T+h) \overrightarrow{\imath}_h - \dot{h} \overrightarrow{k}_h + \left(\dot{\lambda} \overrightarrow{k}_e\right) \wedge\left(-(R_T +h) \overrightarrow{k}_h\right)\\
 & = \dot{\mu}(R_T+h) \overrightarrow{\imath}_h + \dot{\lambda}(R_T+h)\cos\mu \overrightarrow{\jmath}_h - \dot{h} \overrightarrow{k}_h
 \end{aligned}$$
 
 Adopting the slightly unwieldy but explicit notation convention where
-"$/\text{\it ECEF}$" means *"with respect to the Earth's reference
-frame"* and $\{.\}_{\text{\it NED}}$ means *"in the NED (North, East,
+"$/\mathit{ECEF}$" means *"with respect to the Earth's reference
+frame"* and $\{.\}_{\mathit{NED}}$ means *"in the NED (North, East,
 Down) coordinate system"*, the coordinates of the velocity with respect
 to the Earth are given by
 Equation [\[eq:DERIV\_VECT\_OP\]](#eq:DERIV_VECT_OP){reference-type="eqref"
 reference="eq:DERIV_VECT_OP"}.
 
 $$\label{eq:COOR_DERIV_VECT_OP}
-\left\{\frac{d\overrightarrow{OP}}{dt}_{/\text{\it ECEF}}\right\}_{\text{\it NED}}  =
+\left\{\frac{d\overrightarrow{OP}}{dt}_{/\mathit{ECEF}}\right\}_{\mathit{NED}}  =
 \begin{pmatrix}
 \dot{\mu}(R_T+h)\\
 \dot{\lambda}(R_T+h)\cos\mu\\
@@ -354,7 +346,7 @@ $$\label{eq:COOR_POINT_ON_ELLIPSE}
 \begin{array}{l}\{\overrightarrow{ON}\}_{Oxz}\\ \\ \\\end{array} \Bigg|
 \begin{array}{l}
 x= a \cos u \\
-z= b \sin u 
+z= b \sin u
 \end{array}$$
 
 Furthermore, considering the geodetic latitude $\mu$ and the great
@@ -451,7 +443,7 @@ z_e= \mathcal{N} (1-e^2)\sin \mu\\
 \end{array}$$
 
 $$\label{eq:COOR_ELLIPSOID_ECEF_N}
-\begin{array}{l}\{\overrightarrow{ON}\}_{\text{\it ECEF}}\\ \\ \\\end{array} \Bigg|
+\begin{array}{l}\{\overrightarrow{ON}\}_{\mathit{ECEF}}\\ \\ \\\end{array} \Bigg|
 \begin{array}{l}
 x_e= \mathcal{N} \cos \mu \cos \lambda\\
 y_e= \mathcal{N} \cos \mu \sin \lambda\\
@@ -474,7 +466,7 @@ z_e= \left[\mathcal{N} (1-e^2)+h\right]\sin \mu\\
 \end{array}$$
 
 $$\label{eq:COOR_ELLIPSOID_ECEF_P}
-\begin{array}{l}\{\overrightarrow{OP}\}_{\text{\it ECEF}}\\ \\ \\\end{array} \Bigg|
+\begin{array}{l}\{\overrightarrow{OP}\}_{\mathit{ECEF}}\\ \\ \\\end{array} \Bigg|
 \begin{array}{l}
 x_e= (\mathcal{N}+h) \cos \mu \cos \lambda\\
 y_e= (\mathcal{N}+h) \cos \mu \sin \lambda\\
@@ -535,11 +527,11 @@ $$\label{eq:DERIV_OP}
 \frac{d\overrightarrow{OP}}{dt}_{/Ox_my_mz_e} = \dot{\mu}(R_M+h) \overrightarrow{\imath}_h - \dot{h} \overrightarrow{k}_h$$
 
 Taking into account the rotation
-$\overrightarrow{\Omega}_{Ox_my_mz_e/\text{\it ECEF}} = \dot{\lambda} \overrightarrow{k}_e$
+$\overrightarrow{\Omega}_{Ox_my_mz_e/\mathit{ECEF}} = \dot{\lambda} \overrightarrow{k}_e$
 of the reference frame $Ox_my_mz_e$ around the axis $Oz_e$, we obtain:
 $$\label{eq:SPEED_ELLIPSOID}
 \begin{aligned}
-\frac{d\overrightarrow{OP}}{dt}_{/\text{\it ECEF}} & = \frac{d\overrightarrow{OP}}{dt}_{/Ox_my_mz_e} + \overrightarrow{\Omega}_{Ox_my_mz_e/\text{\it ECEF}} \wedge\overrightarrow{OP}\\
+\frac{d\overrightarrow{OP}}{dt}_{/\mathit{ECEF}} & = \frac{d\overrightarrow{OP}}{dt}_{/Ox_my_mz_e} + \overrightarrow{\Omega}_{Ox_my_mz_e/\mathit{ECEF}} \wedge\overrightarrow{OP}\\
 &= \dot{\mu}(R_M+h) \overrightarrow{\imath}_h - \dot{h} \overrightarrow{k}_h + \dot{\lambda}\overrightarrow{k}_e \wedge(\overrightarrow{ON}+\overrightarrow{NP})\\
 &= \dot{\mu}(R_M+h) \overrightarrow{\imath}_h  + \dot{\lambda}(\mathcal{N}+h)\cos \mu \overrightarrow{\jmath}_h - \dot{h} \overrightarrow{k}_h
 \end{aligned}$$
@@ -552,7 +544,7 @@ expression [\[eq:DERIV\_VECT\_OP\_ELLIPSOID\]](#eq:DERIV_VECT_OP_ELLIPSOID){ref
 reference="eq:DERIV_VECT_OP_ELLIPSOID"} :
 
 $$\label{eq:DERIV_VECT_OP_ELLIPSOID}
-\boxed{\left\{\frac{d\overrightarrow{OP}}{dt}_{/\text{\it ECEF}}\right\}_{\text{\it NED}}  =
+\boxed{\left\{\frac{d\overrightarrow{OP}}{dt}_{/\mathit{ECEF}}\right\}_{\mathit{NED}}  =
 \begin{pmatrix}
 \dot{\mu}(R_M+h)\\
 \dot{\lambda}(\mathcal{N}+h)\cos\mu)\\
