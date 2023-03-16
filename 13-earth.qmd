@@ -94,7 +94,7 @@ An orthonormal basis of vectors
 $(\overrightarrow{\imath}_h, \overrightarrow{\jmath}_h, \overrightarrow{k}_h$)
 is associated to this system.
 
-<!---  
+<!---
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 ![[\[fig:NED\]]{#fig:NED label="fig:NED"} Le repère horizontal local NED (*North, East, Down*) pour une terre sphérique.](images/earth_model/horizontal_frame.jpg){width="8cm"}
   --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -115,22 +115,25 @@ $$
 x_e= (R_T+h) \cos \mu \cos \lambda\\
 y_e= (R_T+h) \cos \mu \sin \lambda\\
 z_e= (R_T+h) \sin \mu
-\end{array}$$ {#eq-coor_sphere}
+\end{array}
+$$ {#eq-coor_sphere}
 
 In the NED (North, East, Down) system where the unit vector
 $\overrightarrow{k}_h$ points downward from $P$, the position vector can
 be expressed very simply by @eq-position_NED_sphere, and the coordinates by @eq-coor_NED_sphere.
 
-$$ %%\label{eq:POSITION_NED_SPHERE}
-\overrightarrow{OP} = -(R_T +h) \overrightarrow{k}_h$${#eq-position_NED_sphere}
+$$
+\overrightarrow{OP} = -(R_T +h) \overrightarrow{k}_h
+$$ {#eq-position_NED_sphere}
 
-$$ %%\label{eq:COOR_NED_SPHERE}
+$$
 \begin{array}{l}\{\overrightarrow{OP}\}_{\mathit{NED}}\\ \\ \\\end{array} \Bigg|
 \begin{array}{l}
 x_h= 0\\
 y_h= 0\\
 z_h= - (R_T+h)
-\end{array}$${#eq-coor_NED_sphere}
+\end{array}
+$$ {#eq-coor_NED_sphere}
 
 ### Velocity of a Point with Respect to the ECEF Frame
 
@@ -149,10 +152,11 @@ in @eq-speed_sphere, taking into account the angular speed
 $\overrightarrow{\Omega}_{Ox_my_mz_e/\mathit{ECEF}} = \dot{\lambda} \overrightarrow{k}_e$
 of the $Ox_my_mz_e$ system around the axis $Oz_e$:
 
-$$ %%\label{eq:SPEED_SPHERE}
+$$
 \begin{aligned}
 \frac{d\overrightarrow{OP}}{dt}_{/\mathit{ECEF}} = \frac{d\overrightarrow{OP}}{dt}_{/Ox_my_mz_e} + \overrightarrow{\Omega}_{Ox_my_mz_e/\mathit{ECEF}} \wedge\overrightarrow{OP}\\
-\end{aligned}$$ {#eq-speed_sphere}
+\end{aligned}
+$$ {#eq-speed_sphere}
 
 The derivative $\frac{d\overrightarrow{OP}}{dt}_{/Ox_my_mz_e}$ is
 obtained simply by
@@ -161,16 +165,18 @@ this assumption, we place ourselves in the meridian plane and only take
 into account the rotational motion of $\overrightarrow{k}_h$ in this
 plane when expressing its derivative :
 
-$$ %%\label{eq:DERIV_POSITION_NED_SPHERE}
-\frac{d\overrightarrow{OP}}{dt}_{/Ox_my_mz_e} = -(R_T+h)\frac{d\mu}{dt}\frac{d\overrightarrow{k}_h}{d\mu} - \dot{h} \overrightarrow{k}_h = \dot{\mu}(R_T+h) \overrightarrow{\imath}_h - \dot{h} \overrightarrow{k}_h$$ {#eq-deriv_position_NED_sphere}
+$$
+\frac{d\overrightarrow{OP}}{dt}_{/Ox_my_mz_e} = -(R_T+h)\frac{d\mu}{dt}\frac{d\overrightarrow{k}_h}{d\mu} - \dot{h} \overrightarrow{k}_h = \dot{\mu}(R_T+h) \overrightarrow{\imath}_h - \dot{h} \overrightarrow{k}_h
+$$ {#eq-deriv_position_NED_sphere}
 
 By combining @eq-deriv_position_NED_sphere and @eq-speed_sphere, the velocity with respect to the ECEF reference frame is then expressed (see @eq-deriv_vect_op) in a simple form in the basis of vectors $(\overrightarrow{\imath}_h, \overrightarrow{\jmath}_h, \overrightarrow{k}_h)$ associated with the local horizontal frame NED.
 
-$$ %%\label{eq:DERIV_VECT_OP}
- \begin{aligned}
+$$
+\begin{aligned}
 \frac{d\overrightarrow{OP}}{dt}_{/\mathit{ECEF}} & =  \dot{\mu}(R_T+h) \overrightarrow{\imath}_h - \dot{h} \overrightarrow{k}_h + \left(\dot{\lambda} \overrightarrow{k}_e\right) \wedge\left(-(R_T +h) \overrightarrow{k}_h\right)\\
 & = \dot{\mu}(R_T+h) \overrightarrow{\imath}_h + \dot{\lambda}(R_T+h)\cos\mu \overrightarrow{\jmath}_h - \dot{h} \overrightarrow{k}_h
-\end{aligned}$$ {#eq-deriv_vect_op}
+\end{aligned}
+$$ {#eq-deriv_vect_op}
 
 Adopting the slightly unwieldy but explicit notation convention where
 "$/\mathit{ECEF}$" means *"with respect to the Earth's reference
@@ -178,13 +184,14 @@ frame"* and $\{.\}_{\mathit{NED}}$ means *"in the NED (North, East,
 Down) coordinate system"*, the coordinates of the velocity with respect
 to the Earth are given by @eq-coor_deriv_vect_op.
 
-$$ %%\label{eq:COOR_DERIV_VECT_OP}
+$$
 \left\{\frac{d\overrightarrow{OP}}{dt}_{/\mathit{ECEF}}\right\}_{\mathit{NED}}  =
 \begin{pmatrix}
 \dot{\mu}(R_T+h)\\
 \dot{\lambda}(R_T+h)\cos\mu\\
 - \dot{h}
-\end{pmatrix}$$ {#eq-coor_deriv_vect_op}
+\end{pmatrix}
+$$ {#eq-coor_deriv_vect_op}
 
 The Ellipsoid of Revolution
 ---------------------------
@@ -201,15 +208,17 @@ In the following, we will denote $e$ the eccentricity of the ellipse,
 which verifies the following
 equation @eq-eccentricity:
 
-$$ %%\label{eq:ECCENTRICITY}
-e^2=1-\frac{b^2}{a^2}$$ {#eq-eccentricity}
+$$
+e^2=1-\frac{b^2}{a^2}
+$$ {#eq-eccentricity}
 
 The equation of the ellipse is recalled
 in @eq-ellipse, where $z$ is the minor axis (the polar axis),
 and $x$ is the major axis of the ellipse:
 
-$$ %%\label{eq:ELLIPSE}
-\frac{x^2}{a^2} + \frac{z^2}{b^2} = 1$$ {#eq-ellipse}
+$$
+\frac{x^2}{a^2} + \frac{z^2}{b^2} = 1
+$$ {#eq-ellipse}
 
 ### Several Definitions of Latitude
 
@@ -273,35 +282,41 @@ $\frac{HN}{OH} = \frac{b}{a} \frac{HN'}{OH}$. We immediately deduce the
 relation @eq-chi_u between the geocentric latitude $\chi$ and the
 parameterized latitude $u$.
 
-$$ %%\label{eq:CHI_U}
-\tan \chi = \frac{b}{a}\tan u$$ {#eq-chi_u}
+$$
+\tan \chi = \frac{b}{a}\tan u
+$$ {#eq-chi_u}
 
 Moreover, by
 differentiating @eq-ellipse, we obtain the slope of the tangent to the
 ellipse at point $N$, expressed in @eq-tangent_to_ellipse:
 
-$$ %%\label{eq:SLOPE_TANGENT_TO_ELLIPSE}
-\frac{dz}{dx} = - \frac{b^2}{a^2}\frac{x}{z}$$ {#eq-tangent_to_ellipse}
+$$
+\frac{dz}{dx} = - \frac{b^2}{a^2}\frac{x}{z}
+$$ {#eq-tangent_to_ellipse}
 
 The direction of the normal is then given by @eq-normal_direction:
 
-$$ %%\label{eq:NORMAL_DIRECTION}
-\tan \mu = \frac{a^2}{b^2}\frac{z}{x}$$ {#eq-normal_direction}
+$$
+\tan \mu = \frac{a^2}{b^2}\frac{z}{x}
+$$ {#eq-normal_direction}
 
 From the definition of geocentric latitude, we can also see that:
 
-$$ %%\label{eq:CHI_GEOCENTRIC}
-\tan \chi = \frac{z}{x}$$ {#eq-chi_geocentric}
+$$
+\tan \chi = \frac{z}{x}
+$$ {#eq-chi_geocentric}
 
 From @eq-normal_direction and @eq-chi_geocentric we deduce the relation between the geocentric latitude $\chi$ and the geodetic latitude $\mu$ :
 
-$$ %%\label{eq:CHI_MU}
-\boxed{\tan \chi = \frac{b^2}{a^2} \tan \mu}$$ {#eq-chi_mu}
+$$
+\boxed{\tan \chi = \frac{b^2}{a^2} \tan \mu}
+$$ {#eq-chi_mu}
 
 By combining @eq-chi_u and @eq-chi_mu, we can easily deduce the relation @eq-mu_u between the parametric latitude $u$ and the geodetic latitude $\mu$:
 
-$$ %%\label{eq:MU_U}
-\tan u = \frac{b}{a} \tan \mu$$ {#eq-mu_u}
+$$
+\tan u = \frac{b}{a} \tan \mu
+$$ {#eq-mu_u}
 
 #### Coordinates of a point on the ellipse
 
@@ -309,39 +324,45 @@ The point $N'$ of @fig-ellipse_latitudes is on a circle of radius $a$. Its
 coordinates are simply expressed as a function of the parameterized
 latitude, as follows:
 
-$$\begin{array}{l}\{\overrightarrow{ON'}\}_{Oxz}\\ \\ \\\end{array} \Bigg|
+$$
+\begin{array}{l}\{\overrightarrow{ON'}\}_{Oxz}\\ \\ \\\end{array} \Bigg|
 \begin{array}{l}
 x= a \cos u\\
 z= a \sin u\\
-\end{array}$$
+\end{array}
+$$
 
 The point $N$ on the ellipse is obtained by an affine transformation of
 the point $N'$, of ratio $\frac{b}{a}$. The $z$-coordinate of $N$ is
 therefore simply $\frac{b}{a}(a \sin u$). The coordinates of $N$ are
 given by @eq-coor_point_on_ellipse:
 
-$$ %%\label{eq:COOR_POINT_ON_ELLIPSE}
+$$
 \begin{array}{l}\{\overrightarrow{ON}\}_{Oxz}\\ \\ \\\end{array} \Bigg|
 \begin{array}{l}
 x= a \cos u \\
 z= b \sin u
-\end{array}$$ {#eq-coor_point_on_ellipse}
+\end{array}
+$$ {#eq-coor_point_on_ellipse}
 
 Furthermore, considering the geodetic latitude $\mu$ and the great normal $\mathcal{N} = IN$, we observe that $x= \mathcal{N} \cos\mu$.
 Taking into account this expression and @eq-mu_u, the coordinate $z$ is rewritten as a function of the geodetic latitude as follows:
 
-$$\begin{aligned}
+$$
+\begin{aligned}
 z= b \sin u = \frac{b}{a} \tan u (a\cos u) = \frac{b^2}{a^2} \tan \mu (\mathcal{N}\cos \mu) = \mathcal{N}\frac{b^2}{a^2} \sin \mu
-\end{aligned}$$
+\end{aligned}
+$$
 
 By introducing the eccentricity @eq-eccentricity, we finally obtain the coordinates of $N$ as a function of the geodetic latitude $\mu$, expressed in the following equation @eq-coor_in_plane_mu:
 
-$$ %%\label{eq:COOR_IN_PLANE_MU}
+$$
 \begin{array}{l}\{\overrightarrow{ON}\}_{Oxz}\\ \\ \\\end{array} \Bigg|
 \begin{array}{l}
 x= \mathcal{N} \cos \mu\\
 z= \mathcal{N} (1- e^2)\sin \mu
-\end{array}$$ {#eq-coor_in_plane_mu}
+\end{array}
+$$ {#eq-coor_in_plane_mu}
 
 #### Expression of the great normal $\mathcal{N}$
 
@@ -349,18 +370,21 @@ The expression of the great normal $\mathcal{N}$ is simply found
 from @eq-coor_in_plane_mu and the equation of the
 ellipse @eq-ellipse:
 
-$$\begin{aligned}
+$$
+\begin{aligned}
 & \frac{x^2}{a^2} + \frac{z^2}{b^2} = 1\\
 \Leftrightarrow \quad & \frac{\mathcal{N}^2 \cos^2\mu}{a^2} + \frac{\mathcal{N}^2(1- e^2)^2\sin^2 \mu}{b^2} = 1\\
 \Leftrightarrow \quad &   \mathcal{N}^2 \left[ 1- \sin^2\mu + \frac{a^2}{b^2}(1- e^2)^2\sin^2\mu \right] = a^2\\
 \Leftrightarrow \quad & \mathcal{N}^2 \left[ 1- \sin^2\mu + (1- e^2)\sin^2\mu \right] = a^2\\
 \Leftrightarrow \quad & \mathcal{N}^2 \left( 1- e^2\sin^2\mu \right) = a^2
-\end{aligned}$$
+\end{aligned}
+$$
 
 The great normal can be expressed as follows:
-$$ %%\label{eq:ELLIPSOID_NORMAL_DISTANCE}
+$$
 \boxed{\mathcal{N} = \frac{a}{\sqrt{1-e^2 \sin ^2 \mu}}}
-%)^{\frac{1}{2}}}$$ {#eq-ellipsoid_normal_distance}
+%)^{\frac{1}{2}}}
+$$ {#eq-ellipsoid_normal_distance}
 
 ### The ECEF and Other Reference Frames for the Ellipsoid of Revolution
 
@@ -406,46 +430,50 @@ $$\overrightarrow{OP} = \overrightarrow{ON} + \overrightarrow{NP}$$
 
 #### Coordinate of the Nadir Point $N$
 
-$$ %%\label{eq:COOR_ELLIPSOID_MERIDIAN_N}
+$$
 \begin{array}{l}\{\overrightarrow{ON}\}_{Ox_my_mz_e}\\ \\ \\\end{array} \Bigg|
 \begin{array}{l}
 x_m= \mathcal{N} \cos \mu\\
 y_m= 0\\
 z_e= \mathcal{N} (1-e^2)\sin \mu\\
-\end{array}$$ {#eq-coor_ellipsoid_meridian_N}
+\end{array}
+$$ {#eq-coor_ellipsoid_meridian_N}
 
-$$ %%\label{eq:COOR_ELLIPSOID_ECEF_N}
+$$
 \begin{array}{l}\{\overrightarrow{ON}\}_{\mathit{ECEF}}\\ \\ \\\end{array} \Bigg|
 \begin{array}{l}
 x_e= \mathcal{N} \cos \mu \cos \lambda\\
 y_e= \mathcal{N} \cos \mu \sin \lambda\\
 z_e= \mathcal{N} (1-e^2)\sin \mu
-\end{array}$$ {#eq-coor_ellipsoid_ECEF_N}
+\end{array}
+$$ {#eq-coor_ellipsoid_ECEF_N}
 
 In these equations, $\mathcal{N}$ is the "great normal" at point $N$,
 given by @eq-ellipsoid_normal_distance.
 
 #### Coordinates of point $P$ at altitude $h$
 
-$$ %%\label{eq:COOR_ELLIPSOID_MERIDIAN_P}
+$$
 \begin{array}{l}\{\overrightarrow{OP}\}_{Ox_my_mz_e}\\ \\ \\\end{array} \Bigg|
 \begin{array}{l}
 x_m= (\mathcal{N}+h) \cos \mu\\
 y_m= 0\\
 z_e= \left[\mathcal{N} (1-e^2)+h\right]\sin \mu\\
-\end{array}$$ {#eq-coor_ellipsoid_meridian_P}
+\end{array}
+$$ {#eq-coor_ellipsoid_meridian_P}
 
-$$ %%\label{eq:COOR_ELLIPSOID_ECEF_P}
+$$
 \begin{array}{l}\{\overrightarrow{OP}\}_{\mathit{ECEF}}\\ \\ \\\end{array} \Bigg|
 \begin{array}{l}
 x_e= (\mathcal{N}+h) \cos \mu \cos \lambda\\
 y_e= (\mathcal{N}+h) \cos \mu \sin \lambda\\
 z_e= \left[\mathcal{N} (1-e^2)+h\right]\sin \mu
-\end{array}$$ {#eq-coor_ellipsoid_ECEF_P}
+\end{array}
+$$ {#eq-coor_ellipsoid_ECEF_P}
 
 ### Velocity of a Point with Respect to the ECEF Frame
 
-$$%\label{eq:DERIV_NADIR}
+$$
 \frac{d\overrightarrow{ON}}{dt}_{/Ox_my_mz_e}
 = \dot{\mu}  \left(\frac{d\mathcal{N}}{d\mu} \cos \mu - \mathcal{N}\sin \mu\right) \overrightarrow{\imath}_m
 + (1-e^2)\dot{\mu}\left(\frac{d\mathcal{N}}{d\mu}\sin\mu + \mathcal{N}\cos\mu\right)  \overrightarrow{k}_e
@@ -454,13 +482,14 @@ $$%\label{eq:DERIV_NADIR}
 %% 0\\
 %% (1-e^2)\dot{\mu}\left(\frac{d\mathcal{N}}{d\mu}\sin\mu + \mathcal{N}\cos\mu\right)
 %% \end{pmatrix}
-%% \right.$$
+%% \right.
+$$
 
-$$%\displaystyle{
+$$
 \text{with}\quad\frac{d\mathcal{N}}{d\mu} = a e^2\sin\mu\cos\mu\left(1-e^2\sin ^2 \mu\right)^{-\frac{3}{2}}
-%}$$
+$$
 
-$$%\label{eq:DERIV_NADIR}
+$$
 \begin{aligned}
 \frac{d\overrightarrow{ON}}{dt}_{/Ox_my_mz_e} = & \dot{\mu}\left[ae^2\sin\mu\cos^2\mu\left(1-e^2\sin ^2 \mu\right)^{-\frac{3}{2}} - a\left(1-e^2\sin ^2 \mu\right)^{-\frac{1}{2}}\sin\mu\right]\overrightarrow{\imath}_m\\
 & + \dot{\mu}(1-e^2)\left[ae^2\sin^2\mu\cos\mu\left(1-e^2\sin ^2 \mu\right)^{-\frac{3}{2}} + a\left(1-e^2\sin ^2 \mu\right)^{-\frac{1}{2}}\cos\mu\right]\overrightarrow{k}_e\\
@@ -468,15 +497,18 @@ $$%\label{eq:DERIV_NADIR}
 & + \dot{\mu}\frac{a(1-e^2)}{\left(1-e^2\sin ^2 \mu\right)^{\frac{3}{2}}}\cos\mu\left[e^2\sin^2\mu +1 - e^2\sin^2\mu\right] \overrightarrow{k}_e\\
 = & \dot{\mu}\frac{a(1-e^2)}{\left(1-e^2\sin ^2 \mu\right)^{\frac{3}{2}}}\left[-\sin\mu \overrightarrow{\imath}_m + \cos\mu \overrightarrow{k}_e \right]\\
 = &  \dot{\mu}\frac{a(1-e^2)}{\left(1-e^2\sin ^2 \mu\right)^{\frac{3}{2}}} \overrightarrow{\imath}_h
-\end{aligned}$$
+\end{aligned}
+$$
 
-$$ %%\label{eq:DERIV_NADIR}
-\frac{d\overrightarrow{ON}}{dt}_{/Ox_my_mz_e} = \dot{\mu}R_M \overrightarrow{\imath}_h$$ {#eq-deriv_nadir}
+$$
+\frac{d\overrightarrow{ON}}{dt}_{/Ox_my_mz_e} = \dot{\mu}R_M \overrightarrow{\imath}_h
+$$ {#eq-deriv_nadir}
 
 where $R_M$ is the meridian radius of curvature (see @fig-curvature_radii):
 
-$$ %%\label{eq:MERIDIAN_CURVATURE_RADIUS}
-\boxed{R_M= \frac{a(1-e^2)}{\left(1-e^2\sin ^2 \mu\right)^{\frac{3}{2}}}}$$ {#eq-meridian_curvature_radius}
+$$
+\boxed{R_M= \frac{a(1-e^2)}{\left(1-e^2\sin ^2 \mu\right)^{\frac{3}{2}}}}
+$$ {#eq-meridian_curvature_radius}
 
 
 <!---
@@ -490,32 +522,35 @@ $$ %%\label{eq:MERIDIAN_CURVATURE_RADIUS}
 
 In addition, we have:
 
-$$ %%\label{eq:DERIV_VECT_NP}
+$$
 \begin{aligned}
 \frac{d\overrightarrow{NP}}{dt}_{/Ox_my_mz_e} &= - \dot{h} \overrightarrow{k}_h - h \frac{d \overrightarrow{k}_h}{dt} = - \dot{h} \overrightarrow{k}_h - h\dot{\mu}\frac{d \overrightarrow{k}_h}{d\mu}\\
 &= h\dot{\mu}\overrightarrow{\imath}_h - \dot{h} \overrightarrow{k}_h
-\end{aligned}$$
+\end{aligned}
+$$
 
 We deduce that:
 
-$$ %%\label{eq:DERIV_OP}
-\frac{d\overrightarrow{OP}}{dt}_{/Ox_my_mz_e} = \dot{\mu}(R_M+h) \overrightarrow{\imath}_h - \dot{h} \overrightarrow{k}_h$$
+$$
+\frac{d\overrightarrow{OP}}{dt}_{/Ox_my_mz_e} = \dot{\mu}(R_M+h) \overrightarrow{\imath}_h - \dot{h} \overrightarrow{k}_h
+$$
 
 Taking into account the rotation
 $\overrightarrow{\Omega}_{Ox_my_mz_e/\mathit{ECEF}} = \dot{\lambda} \overrightarrow{k}_e$
 of the reference frame $Ox_my_mz_e$ around the axis $Oz_e$, we obtain:
-$$ %%\label{eq:SPEED_ELLIPSOID}
+$$
 \begin{aligned}
 \frac{d\overrightarrow{OP}}{dt}_{/\mathit{ECEF}} & = \frac{d\overrightarrow{OP}}{dt}_{/Ox_my_mz_e} + \overrightarrow{\Omega}_{Ox_my_mz_e/\mathit{ECEF}} \wedge\overrightarrow{OP}\\
 &= \dot{\mu}(R_M+h) \overrightarrow{\imath}_h - \dot{h} \overrightarrow{k}_h + \dot{\lambda}\overrightarrow{k}_e \wedge(\overrightarrow{ON}+\overrightarrow{NP})\\
 &= \dot{\mu}(R_M+h) \overrightarrow{\imath}_h  + \dot{\lambda}(\mathcal{N}+h)\cos \mu \overrightarrow{\jmath}_h - \dot{h} \overrightarrow{k}_h
-\end{aligned}$$
+\end{aligned}
+$$
 
 By introducing $R_P= \mathcal{N}\cos\mu$, the radius of the parallel
 passing through the point $N$ (see @fig-curvature_radii), we finally obtain the
 expression @eq-deriv_vect_OP_ellipsoid
 
-$$ %%\label{eq:DERIV_VECT_OP_ELLIPSOID}
+$$
 \boxed{\left\{\frac{d\overrightarrow{OP}}{dt}_{/\mathit{ECEF}}\right\}_{\mathit{NED}}  =
 \begin{pmatrix}
 \dot{\mu}(R_M+h)\\
@@ -528,16 +563,18 @@ $$ %%\label{eq:DERIV_VECT_OP_ELLIPSOID}
 \dot{\lambda}(R_P+h\cos\mu)\\
 - \dot{h}
 \end{pmatrix}
-}$$ {#eq-deriv_vect_OP_ellipsoid}
+}
+$$ {#eq-deriv_vect_OP_ellipsoid}
 
 In this equation, the meridian radius of curvature $R_M$ is given
 by @eq-meridian_curvature_radius, and the radius $R_P$ of the
 parallel circle is given by the following
 equation @eq-parallel_radius:
 
-$$ %%\label{eq:PARALLEL_RADIUS}
+$$
 \boxed{R_P = \mathcal{N}\cos\mu = \frac{a\cos\mu}{\sqrt{1-e^2 \sin ^2 \mu}}}
-%)^{\frac{1}{2}}}$$ {#eq-parallel_radius}
+%)^{\frac{1}{2}}}
+$$ {#eq-parallel_radius}
 
 
 
