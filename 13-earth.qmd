@@ -88,16 +88,21 @@ passes through $P$, pointing to the North. The $y_h$ axis is also in the
 horizotal plane and passes through $P$, but it points to the East.
 Finally, the vertical axis $z_h$ passes through $P$ and points downward,
 toward the center of the Earth. The axes system $Ox_hy_hz_h$ is
-represented on Figure [\[fig:NED\]](#fig:NED){reference-type="ref"
-reference="fig:NED"}.
+represented on @fig-NED.
 
 An orthonormal basis of vectors
 $(\overrightarrow{\imath}_h, \overrightarrow{\jmath}_h, \overrightarrow{k}_h$)
 is associated to this system.
 
+<!---  
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+![[\[fig:NED\]]{#fig:NED label="fig:NED"} Le repère horizontal local NED (*North, East, Down*) pour une terre sphérique.](images/earth_model/horizontal_frame.jpg){width="8cm"}
   --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-  ![[\[fig:NED\]]{#fig:NED label="fig:NED"} Le repère horizontal local NED (*North, East, Down*) pour une terre sphérique.](images/earth_model/horizontal_frame.jpg){width="8cm"}
-  --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-->
+
+![North, East, Down (NED) reference frame, on a spherical earth](images/earth_model/horizontal_frame.jpg){#fig-NED width="8cm"}
+
+
 
 ### Coordinates of a Point on the Sphere
 
@@ -114,14 +119,10 @@ z_e= (R_T+h) \sin \mu
 
 In the NED (North, East, Down) system where the unit vector
 $\overrightarrow{k}_h$ points downward from $P$, the position vector can
-be expressed very simply by
-equation [\[eq:POSITION\_NED\_SPHERE\]](#eq:POSITION_NED_SPHERE){reference-type="eqref"
-reference="eq:POSITION_NED_SPHERE"}, and the coordinates by
-equation [\[eq:COOR\_NED\_SPHERE\]](#eq:COOR_NED_SPHERE){reference-type="eqref"
-reference="eq:COOR_NED_SPHERE"}:
+be expressed very simply by @eq-position_NED_sphere, and the coordinates by @eq-coor_NED_sphere.
 
 $$\label{eq:POSITION_NED_SPHERE}
-\overrightarrow{OP} = -(R_T +h) \overrightarrow{k}_h$$
+\overrightarrow{OP} = -(R_T +h) \overrightarrow{k}_h$${#eq-position_NED_sphere}
 
 $$\label{eq:COOR_NED_SPHERE}
 \begin{array}{l}\{\overrightarrow{OP}\}_{\mathit{NED}}\\ \\ \\\end{array} \Bigg|
@@ -129,7 +130,7 @@ $$\label{eq:COOR_NED_SPHERE}
 x_h= 0\\
 y_h= 0\\
 z_h= - (R_T+h)
-\end{array}$$
+\end{array}$${#eq-coor_NED_sphere}
 
 ### Velocity of a Point with Respect to the ECEF Frame
 
@@ -144,51 +145,38 @@ the meridian plane passing through $P$.
 
 The velocity with respect to the ECEF reference frame, considered as
 fixed, is given
-in [\[eq:SPEED\_SPHERE\]](#eq:SPEED_SPHERE){reference-type="eqref"
-reference="eq:SPEED_SPHERE"}, taking into account the angular speed
+in @eq-speed_sphere, taking into account the angular speed
 $\overrightarrow{\Omega}_{Ox_my_mz_e/\mathit{ECEF}} = \dot{\lambda} \overrightarrow{k}_e$
 of the $Ox_my_mz_e$ system around the axis $Oz_e$:
 
 $$\label{eq:SPEED_SPHERE}
 \begin{aligned}
 \frac{d\overrightarrow{OP}}{dt}_{/\mathit{ECEF}} = \frac{d\overrightarrow{OP}}{dt}_{/Ox_my_mz_e} + \overrightarrow{\Omega}_{Ox_my_mz_e/\mathit{ECEF}} \wedge\overrightarrow{OP}\\
-\end{aligned}$$
+\end{aligned}$$ {#eq-speed_sphere}
 
 The derivative $\frac{d\overrightarrow{OP}}{dt}_{/Ox_my_mz_e}$ is
 obtained simply by
-deriving [\[eq:POSITION\_NED\_SPHERE\]](#eq:POSITION_NED_SPHERE){reference-type="eqref"
-reference="eq:POSITION_NED_SPHERE"} assuming $Ox_my_mz_e$ is fixed. With
+deriving @eq-position_NED_sphere assuming $Ox_my_mz_e$ is fixed. With
 this assumption, we place ourselves in the meridian plane and only take
 into account the rotational motion of $\overrightarrow{k}_h$ in this
 plane when expressing its derivative :
 
 $$\label{eq:DERIV_POSITION_NED_SPHERE}
-\frac{d\overrightarrow{OP}}{dt}_{/Ox_my_mz_e} = -(R_T+h)\frac{d\mu}{dt}\frac{d\overrightarrow{k}_h}{d\mu} - \dot{h} \overrightarrow{k}_h = \dot{\mu}(R_T+h) \overrightarrow{\imath}_h - \dot{h} \overrightarrow{k}_h$$
+\frac{d\overrightarrow{OP}}{dt}_{/Ox_my_mz_e} = -(R_T+h)\frac{d\mu}{dt}\frac{d\overrightarrow{k}_h}{d\mu} - \dot{h} \overrightarrow{k}_h = \dot{\mu}(R_T+h) \overrightarrow{\imath}_h - \dot{h} \overrightarrow{k}_h$$ {#eq-deriv_position_NED_sphere}
 
-By
-combining [\[eq:DERIV\_POSITION\_NED\_SPHERE\]](#eq:DERIV_POSITION_NED_SPHERE){reference-type="eqref"
-reference="eq:DERIV_POSITION_NED_SPHERE"}
-and [\[eq:SPEED\_SPHERE\]](#eq:SPEED_SPHERE){reference-type="eqref"
-reference="eq:SPEED_SPHERE"}, the velocity with respect to the ECEF
-reference frame is then expressed (see
-Eq. [\[eq:DERIV\_VECT\_OP\]](#eq:DERIV_VECT_OP){reference-type="eqref"
-reference="eq:DERIV_VECT_OP"}) in a simple form in the basis of vectors
-$(\overrightarrow{\imath}_h, \overrightarrow{\jmath}_h, \overrightarrow{k}_h)$
-associated with the local horizontal frame NED.
+By combining @eq-deriv_position_NED_sphere and @eq-speed_sphere, the velocity with respect to the ECEF reference frame is then expressed (see @eq-deriv_vect_op) in a simple form in the basis of vectors $(\overrightarrow{\imath}_h, \overrightarrow{\jmath}_h, \overrightarrow{k}_h)$ associated with the local horizontal frame NED.
 
 $$\label{eq:DERIV_VECT_OP}
  \begin{aligned}
 \frac{d\overrightarrow{OP}}{dt}_{/\mathit{ECEF}} & =  \dot{\mu}(R_T+h) \overrightarrow{\imath}_h - \dot{h} \overrightarrow{k}_h + \left(\dot{\lambda} \overrightarrow{k}_e\right) \wedge\left(-(R_T +h) \overrightarrow{k}_h\right)\\
 & = \dot{\mu}(R_T+h) \overrightarrow{\imath}_h + \dot{\lambda}(R_T+h)\cos\mu \overrightarrow{\jmath}_h - \dot{h} \overrightarrow{k}_h
-\end{aligned}$$
+\end{aligned}$$ {#eq-deriv_vect_op}
 
 Adopting the slightly unwieldy but explicit notation convention where
 "$/\mathit{ECEF}$" means *"with respect to the Earth's reference
 frame"* and $\{.\}_{\mathit{NED}}$ means *"in the NED (North, East,
 Down) coordinate system"*, the coordinates of the velocity with respect
-to the Earth are given by
-Equation [\[eq:DERIV\_VECT\_OP\]](#eq:DERIV_VECT_OP){reference-type="eqref"
-reference="eq:DERIV_VECT_OP"}.
+to the Earth are given by @eq-coor_deriv_vect_op.
 
 $$\label{eq:COOR_DERIV_VECT_OP}
 \left\{\frac{d\overrightarrow{OP}}{dt}_{/\mathit{ECEF}}\right\}_{\mathit{NED}}  =
@@ -196,7 +184,7 @@ $$\label{eq:COOR_DERIV_VECT_OP}
 \dot{\mu}(R_T+h)\\
 \dot{\lambda}(R_T+h)\cos\mu\\
 - \dot{h}
-\end{pmatrix}$$
+\end{pmatrix}$$ {#eq-coor_deriv_vect_op}
 
 The Ellipsoid of Revolution
 ---------------------------
@@ -211,21 +199,28 @@ coincident with the polar axis.
 
 In the following, we will denote $e$ the eccentricity of the ellipse,
 which verifies the following
-equation [\[eq:ECCENTRICITY\]](#eq:ECCENTRICITY){reference-type="eqref"
-reference="eq:ECCENTRICITY"} : $$\label{eq:ECCENTRICITY}
-e^2=1-\frac{b^2}{a^2}$$
+equation @eq-eccentricity:
+
+$$\label{eq:ECCENTRICITY}
+e^2=1-\frac{b^2}{a^2}$$ {#eq-eccentricity}
 
 The equation of the ellipse is recalled
-in [\[eq:ELLIPSE\]](#eq:ELLIPSE){reference-type="eqref"
-reference="eq:ELLIPSE"}, where $z$ is the minor axis (the polar axis),
-and $x$ is the major axis of the ellipse : $$\label{eq:ELLIPSE}
-\frac{x^2}{a^2} + \frac{z^2}{b^2} = 1$$
+in @eq-ellipse, where $z$ is the minor axis (the polar axis),
+and $x$ is the major axis of the ellipse:
+
+$$\label{eq:ELLIPSE}
+\frac{x^2}{a^2} + \frac{z^2}{b^2} = 1$$ {#eq-ellipse}
 
 ### Several Definitions of Latitude
 
+<!---
   ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ![[\[fig:ELLIPSOID\_EARTH\]]{#fig:ELLIPSOID_EARTH label="fig:ELLIPSOID_EARTH"} Latitude ($\mu$) et altitude ($h$) géodésiques sur un ellipsoïde de révolution.](images/earth_model/Terre_ellipsoide.jpg){width="8cm"}
   ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-->
+
+![Geodetic latitude ($\mu$) and geodetic altitude ($h$) on an ellipsoid of revolution](images/earth_model/Terre_ellipsoide.jpg){#fig-ellipsoid_earth width="8cm"}
+
 
 Historically, latitude was calculated by measuring angles between the
 local horizontal plane and the direction of reference stars (the North
@@ -237,9 +232,8 @@ local geoid. This latitude measured "on the ground" is called the
 
 The *geodetic latitude* is defined as the angle between the equatorial
 plane and the line perpendicular, at the considered point $N$, to the
-surface of the ellipsoid of revolution (see
-Figure [\[fig:ELLIPSOID\_EARTH\]](#fig:ELLIPSOID_EARTH){reference-type="ref"
-reference="fig:ELLIPSOID_EARTH"}). Note that this perpendicular line
+surface of the ellipsoid of revolution (see @fig-ellipsoid_earth).
+Note that this perpendicular line
 does not pass through the center $O$, but intersects the polar axis at a
 point $I$. The distance $IN$ is sometimes called the "great normal" and
 is denoted $\mathcal{N}$.
@@ -248,21 +242,21 @@ The *geocentric latitude* is the angle between the equatorial plane and
 the axis going from the center of the Earth $O$ to the point $N$
 considered. Finally, the *parametric latitude* or *reduced latitude* is
 used for calculation purposes and corresponds to the geocentric latitude
-of a point $N'$ (see
-Fig. [\[fig:ELLIPSE\_LATITUDES\]](#fig:ELLIPSE_LATITUDES){reference-type="ref"
-reference="fig:ELLIPSE_LATITUDES"}) on a circle with center $O$ and
+of a point $N'$ (see @fig-ellipse_latitudes) on a circle with center $O$ and
 radius $a$. This point $N'$ is obtained by following the parallel to the
 axis $Oz$ passing through the point $N$. The geocentric and parametric
-latitudes are illustrated in
-Fig. [\[fig:ELLIPSE\_LATITUDES\]](#fig:ELLIPSE_LATITUDES){reference-type="ref"
-reference="fig:ELLIPSE_LATITUDES"}.
+latitudes are illustrated in @fig-ellipse_latitudes.
 
 In the rest of this chapter, $\mu$ will denote the geodetic latitude,
 $\chi$ the geocentric latitude, and $u$ the parametric latitude.
 
+<!---
   ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ![[\[fig:ELLIPSE\_LATITUDES\]]{#fig:ELLIPSE_LATITUDES label="fig:ELLIPSE_LATITUDES"}Latitude géocentrique ($\chi$), géodésique ($\mu$), et paramétrée ($u$) .](images/earth_model/Ellipse_latitudes.jpg){width="8cm"}
   ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-->
+
+![Geocentric ($\chi$), geodetic ($\mu$), and parametric ($u$) latitudes](images/earth_model/Ellipse_latitudes.jpg){#fig-ellipse_latitudes width="8cm"}
 
 ### Some Useful Characteristics of the Ellipse
 
@@ -274,58 +268,44 @@ $O$ and radius $a$. In other words, the points of the ellipse are
 obtained from the circle of center $O$ and radius $a$ by applying a
 multiplicative factor $\frac{b}{a}$ to the coordinate $z$.
 
-Therefore, in
-figure [\[fig:ELLIPSE\_LATITUDES\]](#fig:ELLIPSE_LATITUDES){reference-type="ref"
-reference="fig:ELLIPSE_LATITUDES"}, we observe that
+Therefore, in @fig-ellipse_latitudes, we observe that
 $\frac{HN}{OH} = \frac{b}{a} \frac{HN'}{OH}$. We immediately deduce the
-relation [\[eq:CHI\_U\]](#eq:CHI_U){reference-type="eqref"
-reference="eq:CHI_U"} between the geocentric latitude $\chi$ and the
+relation @eq-chi_u between the geocentric latitude $\chi$ and the
 parameterized latitude $u$.
 
 $$\label{eq:CHI_U}
-\tan \chi = \frac{b}{a}\tan u$$
+\tan \chi = \frac{b}{a}\tan u$$ {#eq-chi_u}
 
 Moreover, by
-differentiating [\[eq:ELLIPSE\]](#eq:ELLIPSE){reference-type="eqref"
-reference="eq:ELLIPSE"}, we obtain the slope of the tangent to the
-ellipse at point $N$, expressed
-in [\[eq:SLOPE\_TANGENT\_TO\_ELLIPSE\]](#eq:SLOPE_TANGENT_TO_ELLIPSE){reference-type="eqref"
-reference="eq:SLOPE_TANGENT_TO_ELLIPSE"}:
-$$\label{eq:SLOPE_TANGENT_TO_ELLIPSE}
-\frac{dz}{dx} = - \frac{b^2}{a^2}\frac{x}{z}$$
+differentiating @eq-ellipse, we obtain the slope of the tangent to the
+ellipse at point $N$, expressed in @eq-tangent_to_ellipse:
 
-The direction of the normal is then given
-by [\[eq:NORMAL\_DIRECTION\]](#eq:NORMAL_DIRECTION){reference-type="eqref"
-reference="eq:NORMAL_DIRECTION"}: $$\label{eq:NORMAL_DIRECTION}
-\tan \mu = \frac{a^2}{b^2}\frac{z}{x}$$
+$$\label{eq:SLOPE_TANGENT_TO_ELLIPSE}
+\frac{dz}{dx} = - \frac{b^2}{a^2}\frac{x}{z}$$ {#eq-tangent_to_ellipse}
+
+The direction of the normal is then given by @eq-normal_direction:
+
+$$\label{eq:NORMAL_DIRECTION}
+\tan \mu = \frac{a^2}{b^2}\frac{z}{x}$$ {#eq-normal_direction}
 
 From the definition of geocentric latitude, we can also see that:
+
 $$\label{eq:CHI_GEOCENTRIC}
-\tan \chi = \frac{z}{x}$$
+\tan \chi = \frac{z}{x}$$ {#eq-chi_geocentric}
 
-From
-Equations [\[eq:NORMAL\_DIRECTION\]](#eq:NORMAL_DIRECTION){reference-type="eqref"
-reference="eq:NORMAL_DIRECTION"}
-and [\[eq:CHI\_GEOCENTRIC\]](#eq:CHI_GEOCENTRIC){reference-type="eqref"
-reference="eq:CHI_GEOCENTRIC"} we deduce the relation between the
-geocentric latitude $\chi$ and the geodetic latitude $\mu$ :
+From @eq-normal_direction and @eq-chi_geocentric we deduce the relation between the geocentric latitude $\chi$ and the geodetic latitude $\mu$ :
+
 $$\label{eq:CHI_MU}
-\boxed{\tan \chi = \frac{b^2}{a^2} \tan \mu}$$
+\boxed{\tan \chi = \frac{b^2}{a^2} \tan \mu}$$ {#eq-chi_mu}
 
-By combining [\[eq:CHI\_U\]](#eq:CHI_U){reference-type="eqref"
-reference="eq:CHI_U"}
-and [\[eq:CHI\_MU\]](#eq:CHI_MU){reference-type="eqref"
-reference="eq:CHI_MU"}, we can easily deduce the
-relation [\[eq:MU\_U\]](#eq:MU_U){reference-type="eqref"
-reference="eq:MU_U"} between the parametric latitude $u$ and the
-geodetic latitude $\mu$: $$\label{eq:MU_U}
-\tan u = \frac{b}{a} \tan \mu$$
+By combining @eq-chi_u and @eq-chi_mu, we can easily deduce the relation @eq-mu_u between the parametric latitude $u$ and the geodetic latitude $\mu$:
+
+$$\label{eq:MU_U}
+\tan u = \frac{b}{a} \tan \mu$$ {#eq-mu_u}
 
 #### Coordinates of a point on the ellipse
 
-The point $N'$ of
-Fig. [\[fig:ELLIPSE\_LATITUDES\]](#fig:ELLIPSE_LATITUDES){reference-type="ref"
-reference="fig:ELLIPSE_LATITUDES"} is on a circle of radius $a$. Its
+The point $N'$ of @fig-ellipse_latitudes is on a circle of radius $a$. Its
 coordinates are simply expressed as a function of the parameterized
 latitude, as follows:
 
@@ -338,47 +318,38 @@ z= a \sin u\\
 The point $N$ on the ellipse is obtained by an affine transformation of
 the point $N'$, of ratio $\frac{b}{a}$. The $z$-coordinate of $N$ is
 therefore simply $\frac{b}{a}(a \sin u$). The coordinates of $N$ are
-given by
-Equation [\[eq:COOR\_POINT\_ON\_ELLIPSE\]](#eq:COOR_POINT_ON_ELLIPSE){reference-type="eqref"
-reference="eq:COOR_POINT_ON_ELLIPSE"}:
+given by @eq-coor_point_on_ellipse:
 
 $$\label{eq:COOR_POINT_ON_ELLIPSE}
 \begin{array}{l}\{\overrightarrow{ON}\}_{Oxz}\\ \\ \\\end{array} \Bigg|
 \begin{array}{l}
 x= a \cos u \\
 z= b \sin u
-\end{array}$$
+\end{array}$$ {#eq-coor_point_on_ellipse}
 
-Furthermore, considering the geodetic latitude $\mu$ and the great
-normal $\mathcal{N} = IN$, we observe that $x= \mathcal{N} \cos\mu$.
-Taking into account this expression
-and [\[eq:MU\_U\]](#eq:MU_U){reference-type="eqref"
-reference="eq:MU_U"}, the coordinate $z$ is rewritten as a function of
-the geodetic latitude as follows:
+Furthermore, considering the geodetic latitude $\mu$ and the great normal $\mathcal{N} = IN$, we observe that $x= \mathcal{N} \cos\mu$.
+Taking into account this expression and @eq-mu_u, the coordinate $z$ is rewritten as a function of the geodetic latitude as follows:
 
 $$\begin{aligned}
 z= b \sin u = \frac{b}{a} \tan u (a\cos u) = \frac{b^2}{a^2} \tan \mu (\mathcal{N}\cos \mu) = \mathcal{N}\frac{b^2}{a^2} \sin \mu
 \end{aligned}$$
 
-By introducing the
-eccentricity [\[eq:ECCENTRICITY\]](#eq:ECCENTRICITY){reference-type="eqref"
-reference="eq:ECCENTRICITY"}, we finally obtain the coordinates of $N$
-as a function of the geodetic latitude $\mu$, expressed in the following
-equation [\[eq:COOR\_IN\_PLANE\_MU\]](#eq:COOR_IN_PLANE_MU){reference-type="eqref"
-reference="eq:COOR_IN_PLANE_MU"}: $$\label{eq:COOR_IN_PLANE_MU}
+By introducing the eccentricity @eq-eccentricity, we finally obtain the coordinates of $N$ as a function of the geodetic latitude $\mu$, expressed in the following equation @eq-coor_in_plane_mu:
+
+$$\label{eq:COOR_IN_PLANE_MU}
 \begin{array}{l}\{\overrightarrow{ON}\}_{Oxz}\\ \\ \\\end{array} \Bigg|
 \begin{array}{l}
 x= \mathcal{N} \cos \mu\\
 z= \mathcal{N} (1- e^2)\sin \mu
-\end{array}$$
+\end{array}$$ {#eq-coor_in_plane_mu}
 
-#### Expression of the great normal
+#### Expression of the great normal $\mathcal{N}$
 
 The expression of the great normal $\mathcal{N}$ is simply found
-from [\[eq:COOR\_IN\_PLANE\_MU\]](#eq:COOR_IN_PLANE_MU){reference-type="eqref"
-reference="eq:COOR_IN_PLANE_MU"} and the equation of the
-ellipse [\[eq:ELLIPSE\]](#eq:ELLIPSE){reference-type="eqref"
-reference="eq:ELLIPSE"}: $$\begin{aligned}
+from @eq-coor_in_plane_mu and the equation of the
+ellipse @eq-ellipse:
+
+$$\begin{aligned}
 & \frac{x^2}{a^2} + \frac{z^2}{b^2} = 1\\
 \Leftrightarrow \quad & \frac{\mathcal{N}^2 \cos^2\mu}{a^2} + \frac{\mathcal{N}^2(1- e^2)^2\sin^2 \mu}{b^2} = 1\\
 \Leftrightarrow \quad &   \mathcal{N}^2 \left[ 1- \sin^2\mu + \frac{a^2}{b^2}(1- e^2)^2\sin^2\mu \right] = a^2\\
@@ -389,13 +360,17 @@ reference="eq:ELLIPSE"}: $$\begin{aligned}
 The great normal can be expressed as follows:
 $$\label{eq:ELLIPSOID_NORMAL_DISTANCE}
 \boxed{\mathcal{N} = \frac{a}{\sqrt{1-e^2 \sin ^2 \mu}}}
-%)^{\frac{1}{2}}}$$
+%)^{\frac{1}{2}}}$$ {#eq-ellipsoid_normal_distance}
 
 ### The ECEF and Other Reference Frames for the Ellipsoid of Revolution
 
+<!---
   ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ![[\[fig:ELLIPSOID\_AXIS\_SYSTEMS\]]{#fig:ELLIPSOID_AXIS_SYSTEMS label="fig:ELLIPSOID_AXIS_SYSTEMS"} Référentiel terrestre et repères mobiles pour l'ellipsoïde de révolution.](images/earth_model/Reperes_ellipsoide.jpg){width="8cm"}
   ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-->
+
+![Earth-Centered, Earth-Fixed (ECEF) and mobile reference frames, on the ellipsoid of revolution](images/earth_model/Reperes_ellipsoide.jpg){#fig-ellipsoid_ref_frames width="8cm"}
 
 In the case of the ellipsoid of revolution, we use an ECEF
 (Earth-Centered, Earth-Fixed) reference frame similar to the spherical
@@ -406,7 +381,7 @@ For calculation purposes, we will also use an orthonormal reference
 frame
 $(\overrightarrow{\imath}_m, \overrightarrow{\jmath}_m, \overrightarrow{k}_e)$
 obtained by a rotation of angle $\lambda$ around the polar axis $z_e$.
-The vectors $\overrightarrow{imath}_m$ and $\overrightarrow{k}_e$ are
+The vectors $\overrightarrow{\imath}_m$ and $\overrightarrow{k}_e$ are
 thus in the meridian plane passing through $N$ (and $P$). We will denote
 $Ox_my_mz_e$ the associated axis system.
 
@@ -418,16 +393,13 @@ direction determined by vector $\overrightarrow{k}_h$ does not pass
 through the center of the Earth but is defined as the normal to the
 surface of the ellipsoid. The vector $\overrightarrow{\imath}_h$ points
 to the North, and $\overrightarrow{\jmath}_h$ to the East. These
-different reference points and axis systems are described in
-Figure [\[fig:ELLIPSOID\_AXIS\_SYSTEMS\]](#fig:ELLIPSOID_AXIS_SYSTEMS){reference-type="ref"
-reference="fig:ELLIPSOID_AXIS_SYSTEMS"}.
+different reference points and axis systems are described in @fig-ellipsoid_ref_frames.
 
 ### Coordinates of a Point on the Ellipsoid
 
 The position of a point $P$ located at an altitude $h$ above the surface
 of the ellipsoid of revolution can be broken down as follows (see
-Figure [\[fig:ELLIPSOID\_AXIS\_SYSTEMS\]](#fig:ELLIPSOID_AXIS_SYSTEMS){reference-type="ref"
-reference="fig:ELLIPSOID_AXIS_SYSTEMS"}), where the point $N$ (nadir) is
+@fig-ellipsoid_ref_frames), where the point $N$ (nadir) is
 the point on the surface of the ellipsoid located at the vertical of the
 point $P$:
 $$\overrightarrow{OP} = \overrightarrow{ON} + \overrightarrow{NP}$$
@@ -440,7 +412,7 @@ $$\label{eq:COOR_ELLIPSOID_MERIDIAN_N}
 x_m= \mathcal{N} \cos \mu\\
 y_m= 0\\
 z_e= \mathcal{N} (1-e^2)\sin \mu\\
-\end{array}$$
+\end{array}$$ {#eq-coor_ellipsoid_meridian_N}
 
 $$\label{eq:COOR_ELLIPSOID_ECEF_N}
 \begin{array}{l}\{\overrightarrow{ON}\}_{\mathit{ECEF}}\\ \\ \\\end{array} \Bigg|
@@ -448,12 +420,10 @@ $$\label{eq:COOR_ELLIPSOID_ECEF_N}
 x_e= \mathcal{N} \cos \mu \cos \lambda\\
 y_e= \mathcal{N} \cos \mu \sin \lambda\\
 z_e= \mathcal{N} (1-e^2)\sin \mu
-\end{array}$$
+\end{array}$$ {#eq-coor_ellipsoid_ECEF_N}
 
 In these equations, $\mathcal{N}$ is the "great normal" at point $N$,
-given by
-equation [\[eq:ELLIPSOID\_NORMAL\_DISTANCE\]](#eq:ELLIPSOID_NORMAL_DISTANCE){reference-type="eqref"
-reference="eq:ELLIPSOID_NORMAL_DISTANCE"}.
+given by @eq-ellipsoid_normal_distance.
 
 #### Coordinates of point $P$ at altitude $h$
 
@@ -463,7 +433,7 @@ $$\label{eq:COOR_ELLIPSOID_MERIDIAN_P}
 x_m= (\mathcal{N}+h) \cos \mu\\
 y_m= 0\\
 z_e= \left[\mathcal{N} (1-e^2)+h\right]\sin \mu\\
-\end{array}$$
+\end{array}$$ {#eq-coor_ellipsoid_meridian_P}
 
 $$\label{eq:COOR_ELLIPSOID_ECEF_P}
 \begin{array}{l}\{\overrightarrow{OP}\}_{\mathit{ECEF}}\\ \\ \\\end{array} \Bigg|
@@ -471,7 +441,7 @@ $$\label{eq:COOR_ELLIPSOID_ECEF_P}
 x_e= (\mathcal{N}+h) \cos \mu \cos \lambda\\
 y_e= (\mathcal{N}+h) \cos \mu \sin \lambda\\
 z_e= \left[\mathcal{N} (1-e^2)+h\right]\sin \mu
-\end{array}$$
+\end{array}$$ {#eq-coor_ellipsoid_ECEF_P}
 
 ### Velocity of a Point with Respect to the ECEF Frame
 
@@ -501,17 +471,22 @@ $$%\label{eq:DERIV_NADIR}
 \end{aligned}$$
 
 $$\label{eq:DERIV_NADIR}
-\frac{d\overrightarrow{ON}}{dt}_{/Ox_my_mz_e} = \dot{\mu}R_M \overrightarrow{\imath}_h$$
+\frac{d\overrightarrow{ON}}{dt}_{/Ox_my_mz_e} = \dot{\mu}R_M \overrightarrow{\imath}_h$$ {#eq-deriv_nadir}
 
-where $R_M$ is the meridian radius of curvature (see
-Figure [\[fig:CURVATURE\_RADII\]](#fig:CURVATURE_RADII){reference-type="ref"
-reference="fig:CURVATURE_RADII"}):
+where $R_M$ is the meridian radius of curvature (see @fig-curvature_radii):
+
 $$\label{eq:MERIDIAN_CURVATURE_RADIUS}
-\boxed{R_M= \frac{a(1-e^2)}{\left(1-e^2\sin ^2 \mu\right)^{\frac{3}{2}}}}$$
+\boxed{R_M= \frac{a(1-e^2)}{\left(1-e^2\sin ^2 \mu\right)^{\frac{3}{2}}}}$$ {#eq-meridian_curvature_radius}
 
+
+<!---
   ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
   ![[\[fig:CURVATURE\_RADII\]]{#fig:CURVATURE_RADII label="fig:CURVATURE_RADII"} Rayons du cercle parallèle ($R_P$) et rayon de courbure méridien ($R_M$) sur l'ellipsoïde de révolution.](images/earth_model/Rayons_ellipsoide.jpg){width="8cm"}
   ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+-->
+
+![Meridian radius of curvature $R_M$, in blue, and radius of curvature $R_P$ in the local plane of latitude $\mu$, in red](images/earth_model/Rayons_ellipsoide.jpg){#fig-curvature_radii width="8cm"}
+
 
 In addition, we have:
 
@@ -537,11 +512,8 @@ $$\label{eq:SPEED_ELLIPSOID}
 \end{aligned}$$
 
 By introducing $R_P= \mathcal{N}\cos\mu$, the radius of the parallel
-passing through the point $N$ (see
-Figure [\[fig:CURVATURE\_RADII\]](#fig:CURVATURE_RADII){reference-type="ref"
-reference="fig:CURVATURE_RADII"}), we finally obtain the
-expression [\[eq:DERIV\_VECT\_OP\_ELLIPSOID\]](#eq:DERIV_VECT_OP_ELLIPSOID){reference-type="eqref"
-reference="eq:DERIV_VECT_OP_ELLIPSOID"} :
+passing through the point $N$ (see @fig-curvature_radii), we finally obtain the
+expression @eq-deriv_vect_OP_ellipsoid
 
 $$\label{eq:DERIV_VECT_OP_ELLIPSOID}
 \boxed{\left\{\frac{d\overrightarrow{OP}}{dt}_{/\mathit{ECEF}}\right\}_{\mathit{NED}}  =
@@ -556,16 +528,17 @@ $$\label{eq:DERIV_VECT_OP_ELLIPSOID}
 \dot{\lambda}(R_P+h\cos\mu)\\
 - \dot{h}
 \end{pmatrix}
-}$$
+}$$ {#eq-deriv_vect_OP_ellipsoid}
 
 In this equation, the meridian radius of curvature $R_M$ is given
-by [\[eq:MERIDIAN\_CURVATURE\_RADIUS\]](#eq:MERIDIAN_CURVATURE_RADIUS){reference-type="eqref"
-reference="eq:MERIDIAN_CURVATURE_RADIUS"}, and the radius $R_P$ of the
+by @eq-meridian_curvature_radius, and the radius $R_P$ of the
 parallel circle is given by the following
-equation [\[eq:PARALLEL\_RADIUS\]](#eq:PARALLEL_RADIUS){reference-type="eqref"
-reference="eq:PARALLEL_RADIUS"}: $$\label{eq:PARALLEL_RADIUS}
+equation @eq-parallel_radius:
+
+$$\label{eq:PARALLEL_RADIUS}
 \boxed{R_P = \mathcal{N}\cos\mu = \frac{a\cos\mu}{\sqrt{1-e^2 \sin ^2 \mu}}}
-%)^{\frac{1}{2}}}$$
+%)^{\frac{1}{2}}}$$ {#eq-parallel_radius}
+
 
 
 
