@@ -17,7 +17,7 @@ In the 17th century, [Galileo Galilei](https://en.wikipedia.org/wiki/Galileo_Gal
 
 pick illustration like:
 
-* Sunspots from [wikimedia](https://it.wikisource.org/wiki/Le_opere_di_Galileo_Galilei_-_Vol._V/Delle_macchie_solari/Istoria_e_dimostrazioni_intorno_alle_macchie_solari)![Sunspots](images/macchie_solari_galilei.jpeg)
+* Sunspots from [wikimedia](https://it.wikisource.org/wiki/Le_opere_di_Galileo_Galilei_-_Vol._V/Delle_macchie_solari/Istoria_e_dimostrazioni_intorno_alle_macchie_solari)![Sunspots](../../images/macchie_solari_galilei.jpeg)
 * or more like Tufte _Beautiful Evidence_?
 :::
 
