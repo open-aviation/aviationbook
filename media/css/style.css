@@ -99,4 +99,15 @@ h1.title {
 
 .quarto-title-meta-contents {
   color: var(--lt-color-gray-500);
+  margin-bottom: -1em;
+}
+
+.quarto-title-meta-contents p {
+  float: left;
+  margin-right: 1em;
+}
+
+.quarto-title-meta div::after {
+  content: "\A";
+  white-space: pre;
 }

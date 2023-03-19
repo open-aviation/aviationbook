@@ -7,8 +7,7 @@
   margin: 0.2rem;
 }
 
-@media screen and (min-width: 900px) {
-  #quarto-content {
-    background: url(images/aircraft_vintage.webp) no-repeat center right fixed;
-  }
+.navbar {
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
 }

@@ -1,5 +1,5 @@
 ---
-title: Geodesy (Earth Models)
+title: Earth models
 author: David Gianazza
 ---
 
@@ -68,7 +68,7 @@ In the following, we shall denote
 $(\overrightarrow{\imath}_e, \overrightarrow{\jmath}_e, \overrightarrow{k}_e)$
 the orthonormal vectors of the ECEF reference frame $Ox_ey_ez_e$.
 
-![Spherical Earth model](images/earth_model/Terre_spherique.jpg){#fig-spheric_earth width="8cm"}
+![Spherical Earth model](../../images/earth_model/Terre_spherique.jpg){#fig-spheric_earth width="8cm"}
 
 In this coordinate system, the position of a point $P$ is given by its latitude,
 longitude, and distance from the center of Earth, or more simply its altitude
@@ -100,7 +100,7 @@ is associated to this system.
   --------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -->
 
-![North, East, Down (NED) reference frame, on a spherical earth](images/earth_model/horizontal_frame.jpg){#fig-NED width="8cm"}
+![North, East, Down (NED) reference frame, on a spherical earth](../../images/earth_model/horizontal_frame.jpg){#fig-NED width="8cm"}
 
 
 
@@ -228,7 +228,7 @@ $$ {#eq-ellipse}
   ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -->
 
-![Geodetic latitude ($\mu$) and geodetic altitude ($h$) on an ellipsoid of revolution](images/earth_model/Terre_ellipsoide.jpg){#fig-ellipsoid_earth width="8cm"}
+![Geodetic latitude ($\mu$) and geodetic altitude ($h$) on an ellipsoid of revolution](../../images/earth_model/Terre_ellipsoide.jpg){#fig-ellipsoid_earth width="8cm"}
 
 
 Historically, latitude was calculated by measuring angles between the
@@ -265,7 +265,7 @@ $\chi$ the geocentric latitude, and $u$ the parametric latitude.
   ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -->
 
-![Geocentric ($\chi$), geodetic ($\mu$), and parametric ($u$) latitudes](images/earth_model/Ellipse_latitudes.jpg){#fig-ellipse_latitudes width="8cm"}
+![Geocentric ($\chi$), geodetic ($\mu$), and parametric ($u$) latitudes](../../images/earth_model/Ellipse_latitudes.jpg){#fig-ellipse_latitudes width="8cm"}
 
 ### Some Useful Characteristics of the Ellipse
 
@@ -394,7 +394,7 @@ $$ {#eq-ellipsoid_normal_distance}
   ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -->
 
-![Earth-Centered, Earth-Fixed (ECEF) and mobile reference frames, on the ellipsoid of revolution](images/earth_model/Reperes_ellipsoide.jpg){#fig-ellipsoid_ref_frames width="8cm"}
+![Earth-Centered, Earth-Fixed (ECEF) and mobile reference frames, on the ellipsoid of revolution](../../images/earth_model/Reperes_ellipsoide.jpg){#fig-ellipsoid_ref_frames width="8cm"}
 
 In the case of the ellipsoid of revolution, we use an ECEF
 (Earth-Centered, Earth-Fixed) reference frame similar to the spherical
@@ -517,7 +517,7 @@ $$ {#eq-meridian_curvature_radius}
   ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 -->
 
-![Meridian radius of curvature $R_M$, in blue, and radius of curvature $R_P$ in the local plane of latitude $\mu$, in red](images/earth_model/Rayons_ellipsoide.jpg){#fig-curvature_radii width="8cm"}
+![Meridian radius of curvature $R_M$, in blue, and radius of curvature $R_P$ in the local plane of latitude $\mu$, in red](../../images/earth_model/Rayons_ellipsoide.jpg){#fig-curvature_radii width="8cm"}
 
 
 In addition, we have:

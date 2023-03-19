@@ -1,4 +1,8 @@
-# The tidy data paradigm
+---
+title: The tidy data paradigm
+aliases:
+  - .
+---
 
 ::: {.callout-tip}
 Author: Enrico, ?

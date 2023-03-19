@@ -5,21 +5,6 @@ css: index.css
 
 This is the website for the book "{{< meta title >}}", a project started by a team of [**four aviation enthusiasts**](91-authors.qmd), working in the field of aviation and sharing a common objective to share open knowledge about all what is available to analyse aviation data.
 
-Read more about the motivation of the project in the
-[<i class="bi bi-arrow-right-circle"></i> **preface**](01-preface.qmd).
-
-::: {.download-buttons}
-[<i class="bi bi-arrow-right-circle"></i> Start reading](02-toc.qmd){#btn-action-primary .btn-action .btn .btn-success .btn-lg role="button"}
-[<i class="bi bi-filetype-pdf"></i> Download PDF](){.btn-pdf .btn-action .btn .btn-info .btn-lg role="button"}
-[<i class="bi bi-file-earmark-text"></i> Download ePub](){#btn-guide .btn-action .btn .btn-info .btn-lg role="button"}
-:::
-
-::: {.callout-warning}
-This is still very preliminary work in progress. Any contribution is welcome!
-:::
-
-## Objective {-}
-
 The book aims at:
 
 - presenting the most common **data sources**, API and formats;
@@ -27,8 +12,13 @@ The book aims at:
 - showcase **common data visualization frameworks** on usual applications;
 - recommend **good practices to share new data, code and results**.
 
-## Contributing {-}
+Read more about the motivation of the project in the
+[<!--i class="bi bi-arrow-right-circle"></i--> **preface**](preface.qmd).
 
-The book is **free of access and editable by the community**.
+::: {.download-buttons}
+[<i class="bi bi-arrow-right-circle"></i> Start reading](chapters/background/history.qmd){#btn-action-primary .btn-action .btn .btn-success .btn-lg role="button"}
+[<i class="bi bi-filetype-pdf"></i> Download PDF](){.btn-pdf .btn-action .btn .btn-info .btn-lg role="button"}
+[<i class="bi bi-file-earmark-text"></i> Download ePub](){#btn-guide .btn-action .btn .btn-info .btn-lg role="button"}
+:::
 
-Simply click on the "Edit this page" link to file a pull request on Github: the website will be automatically updated as soon as the modification is accepted.
+The book is **free of access and editable by the community**. Read [more about how to contribute](chapters/appendix/contribute.qmd).

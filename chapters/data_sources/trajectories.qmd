@@ -1,12 +1,13 @@
 ---
 title: Aircraft trajectories
-output-file: trajectories
+aliases:
+  - .
 authors:
   - Xavier Olive
   - Enrico Spinielli
 ---
 
-A trajectory is a mathematical abstraction used to describe the evolution of a moving object with a finite list of parameters. The most common features in aviation include latitude, longitude, altitude, all indexed by time, with first derivatives such as ground speed, track angle and vertical rate. Depending on the application, some models would expect more features. For example, [aircraft performance models](24-aircraft-performance.qmd) could require the pitch, roll and yaw angles, the true air speed, the indicated air speed, the Mach number, etc.
+A trajectory is a mathematical abstraction used to describe the evolution of a moving object with a finite list of parameters. The most common features in aviation include latitude, longitude, altitude, all indexed by time, with first derivatives such as ground speed, track angle and vertical rate. Depending on the application, some models would expect more features. For example, [aircraft performance models](aircraft-performance.qmd) could require the pitch, roll and yaw angles, the true air speed, the indicated air speed, the Mach number, etc.
 
 This chapter describes several common formats for trajectories depending on available technology to record them. Associated data sources come with different licensing terms which must be kept in mind when developing or applying computing methods.
 
@@ -197,7 +198,7 @@ Coupling BDS 5,0 (for the TAS, the true track angle and the groundspeed -- the 
 ADS-B messages also belong to the Mode S protocol, in the **Extended Squitter (ES)** category (BDS 0,5 through to 0,9). Only Extended Squitter messages (ADS-B) are broadcast, i.e., they are not the result of SSR interrogations.
 :::
 
-![An overview of all Mode S services, excerpt from [www.mode-s.org](https://mode-s.org/decode/content/introduction.html#summary) @sun1090](images/mode_s_services.png)
+![An overview of all Mode S services, excerpt from [www.mode-s.org](https://mode-s.org/decode/content/introduction.html#summary) @sun1090](../../images/mode_s_services.png)
 
 ### UAT {-}
 
@@ -241,7 +242,7 @@ According to the manual of PowerFLARM Fusion @flarm_manual, there are three leve
 
 A number of flight information is usually not directly accessible from settings recording aircraft trajectories. Metadata usually refers to any additional information enriching a trajectory.  Enriching trajectories with relevant information is usually a costly process, and access to such information can be complicated.
 
-### ICAO identifiers
+### ICAO identifiers {-}
 
 The most common identifier for aircraft in radar based technologies would be the identifier of the transponder: a **six-digit hexadecimal identifier**, i.e. an integer written in its hexadecimal form, which classically identifies an aircraft, in a unique manner. In the remaining of the book, it is commonly referred as the *ICAO identifier*, or `icao24` in data records (24 standing for the number of bits encoding the integer).
 
@@ -263,7 +264,7 @@ To sum up, it is safer to keep in mind that:
 :::
 
 
-### Tail numbers
+### Tail numbers {-}
 
 The tail number is the number usually written on the back side of the aircraft, like the license plate number of cars, but for aircraft. Tail numbers also follow a pattern per country: `F-` for France, `D-` for Germany, `G-` for the UK, with some recognised patterns for specific categories of aircraft. Every country is free to decide how to assign registrations to aircraft within their range, and to give them a tail number accordingly. In some countries, like the US, Japan or Korea, there is a direct correspondence between tail numbers and ICAO identifiers, but that's not the case in every country.
 
@@ -297,7 +298,7 @@ To address privacy concerns, FAA has initiated the Privacy ICAO aircraft address
 
 : Some countries reserve registration patterns to specific categories of aircraft. {#tbl-icao}
 
-### Aircraft type designators
+### Aircraft type designators {-}
 
 [*DOC 8643 - Aircraft Type Designators*](https://www.icao.int/publications/DOC8643/Pages/default.aspx) by ICAO contains designators for aircraft types which are most commonly provided with air traffic service (ATS).
 
@@ -305,7 +306,7 @@ Each designator consists of a 4-letter code associated with a manufacturer and a
 
 This designator is often referred as `typecode` in aircraft databases and helps associating an aircraft type to an ICAO identifier.
 
-### Data sources
+### Data sources {-}
 
 Maintaining a data base of transponder identifiers, aircraft tail numbers, type designators, owners and/or operators is a very cumbersome process. New aircraft are manufactured every month, which generates new transponder identifiers @opensky21. Some countries keep a database of their registered aircraft public (e.g. [FAA (US)](https://www.faa.gov/licenses_certificates/aircraft_certification/aircraft_registry/), [France](https://immat.aviation-civile.gouv.fr/immat/servlet/aeronef_liste.html), [Switzerland](https://app02.bazl.admin.ch/web/bazl/en/#/lfr/search) or [The Netherlands](https://www.ilent.nl/onderwerpen/luchtvaartuigregister#/)), but this is not a systematic practice in every country, and those do not always contain the transponder identifier.
 
@@ -314,6 +315,7 @@ There have also been some crowdsourcing effort to constitute and maintain aircra
 Some public aircraft databases:
 
 - [The OpenSky Network aircraft database](https://opensky-network.org/aircraft-database) contains several hundreds of thousands of airframes;
+- [Flightradar24](https://www.flightradar24.com/data) give access to an interface to search for individual aircraft;
 - The website [www.airframes.org](http://www.airframes.org/), but they are very strict about their [terms of use](http://www.airframes.org/about);
 - Some Regional Monitoring Agencies (RMA) provide an open access to data matching aircraft registered in their area, specifically in [Europe](https://www.eurocontrol.int/rmalive/regulatorListInit.do) or in the [Middle-East](https://midrma.com/en).
 

@@ -1,6 +1,5 @@
 ---
 title: Air navigation services
-output-file: cns
 author: Manuel Waltert
 ---
 

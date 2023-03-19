@@ -17,46 +17,47 @@ book:
   date: "2023-12-25"
   chapters:
     - index.qmd
-    - 01-preface.qmd
-    - 02-toc.qmd
+    - preface.qmd
+    - chapters/index.qmd
     - part: "Background knowledge about aviation"
       chapters:
-        - 11-history.qmd
-        - 12-aircraft.qmd
-        - 13-earth.qmd
-        - 14-airspace.qmd
-        - 15-aerodrome.qmd
-        - 16-cns.qmd
+        - chapters/background/history.qmd
+        - chapters/background/earth.qmd
+        - chapters/background/aircraft.qmd
+        - chapters/background/airspace.qmd
+        - chapters/background/aerodrome.qmd
+        - chapters/background/cns.qmd
     - part: "The ecosystem of aviation data"
       chapters:
-        - 21-trajectories.qmd
-        - 22-aeronautical-information.qmd
-        - 23-environment.qmd
-        - 24-aircraft-performance.qmd
-        - 25-aviation-data-sources.qmd
+        - chapters/data_sources/trajectories.qmd
+        - chapters/data_sources/aeronautical-information.qmd
+        - chapters/data_sources/environment.qmd
+        - chapters/data_sources/aircraft-performance.qmd
+        - chapters/data_sources/aviation-data-sources.qmd
     - part: "Process data"
       chapters:
-        - 31-tidy-data.qmd
-        - 32-geometrice-geographic.qmd
-        - 33-processing-trajectories.qmd
-        - 34-information-extraction.qmd
+        - chapters/processing/tidy-data.qmd
+        - chapters/processing/geometrice-geographic.qmd
+        - chapters/processing/processing-trajectories.qmd
+        - chapters/processing/information-extraction.qmd
     - part: "Visualise Data"
       chapters:
-        - 41-storytelling.qmd
-        - 42-grammar-of-graphics.qmd
-        - 43-meaningful-maps.qmd
+        - chapters/visualise/storytelling.qmd
+        - chapters/visualise/grammar-of-graphics.qmd
+        - chapters/visualise/meaningful-maps.qmd
     - part: "Share Data"
       chapters:
-        - 51-reproducible-research.qmd
-    - 90-references.qmd
-    - 91-authors.qmd
+        - chapters/sharing/reproducible-research.qmd
+    - references.qmd
+    - authors.qmd
   appendices:
-    - 71-appendix.qmd
-    - 88-acronyms.qmd
+    - chapters/appendix/index.qmd
+    - chapters/appendix/glossary.qmd
+    - chapters/appendix/contribute.qmd
 
   # cover-image: images/book-front-cover.png
   site-url: https://aviationbook.netlify.app/
-  repo-url: https://github.com/atmdata/aviationbook/
+  repo-url: https://github.com/openaviation/aviationbook/
   repo-branch: master
 
   search: true
@@ -70,56 +71,49 @@ book:
   #   hypothesis: true
 
   sidebar:
-    - title: Background knowledge
-      id: introduction
+    - title: Contents
+      id: contents
       background: transparent
       collapse-level: 1
       contents:
-        - text: Background knowledge about aviation
-        - text: ---
-        - 11-history.qmd
-        - 12-aircraft.qmd
-        - 13-earth.qmd
-        - 14-airspace.qmd
-        - 15-aerodrome.qmd
-        - 16-cns.qmd
-    - title: Data sources
-      id: data_sources
+        - section: Background knowledge
+          contents:
+            - chapters/background/history.qmd
+            - chapters/background/earth.qmd
+            - chapters/background/aircraft.qmd
+            - chapters/background/airspace.qmd
+            - chapters/background/aerodrome.qmd
+            - chapters/background/cns.qmd
+        - section: Data sources
+          contents:
+            - chapters/data_sources/trajectories.qmd
+            - chapters/data_sources/aeronautical-information.qmd
+            - chapters/data_sources/environment.qmd
+            - chapters/data_sources/aircraft-performance.qmd
+            - chapters/data_sources/aviation-data-sources.qmd
+        - section: Data processing
+          contents:
+            - chapters/processing/tidy-data.qmd
+            - chapters/processing/geometrice-geographic.qmd
+            - chapters/processing/processing-trajectories.qmd
+            - chapters/processing/information-extraction.qmd
+        - section: Data visualization
+          contents:
+            - chapters/visualise/storytelling.qmd
+            - chapters/visualise/grammar-of-graphics.qmd
+            - chapters/visualise/meaningful-maps.qmd
+        - section: Data sharing
+          contents:
+            - chapters/sharing/reproducible-research.qmd
+
+    - title: Appendix
       background: transparent
+      id: appendix
       contents:
-        - text: The ecosystem of aviation data
-        - text: ---
-        - 21-trajectories.qmd
-        - 22-aeronautical-information.qmd
-        - 23-environment.qmd
-        - 24-aircraft-performance.qmd
-        - 25-aviation-data-sources.qmd
-    - title: Processing data
-      id: data_process
-      background: transparent
-      contents:
-        - text: Processing data
-        - text: ---
-        - 31-tidy-data.qmd
-        - 32-geometrice-geographic.qmd
-        - 33-processing-trajectories.qmd
-        - 34-information-extraction.qmd
-    - title: Visualizing data
-      background: transparent
-      id: dataviz
-      contents:
-        - text: Visualizing data
-        - text: ---
-        - 41-storytelling.qmd
-        - 42-grammar-of-graphics.qmd
-        - 43-meaningful-maps.qmd
-    - title: Sharing data
-      id: data_share
-      background: transparent
-      contents:
-        - text: Sharing & reproducibility
-        - text: ---
-        - 51-reproducible-research.qmd
+        - chapters/appendix/index.qmd
+        - chapters/appendix/glossary.qmd
+        - chapters/appendix/contribute.qmd
+        - authors.qmd
 
   navbar:
     background: light
@@ -129,11 +123,15 @@ book:
     search: true
     pinned: true
     left:
-      - sidebar:introduction
-      - sidebar:data_sources
-      - sidebar:data_process
-      - sidebar:dataviz
-      - sidebar:data_share
+      - text: Overview
+        href: /
+      - text: Start reading
+        href: /chapters/background/
+      - chapters/index.qmd
+      # - authors.qmd
+      - chapters/appendix/glossary.qmd
+      - chapters/appendix/contribute.qmd
+
     right: []
 
 crossref:

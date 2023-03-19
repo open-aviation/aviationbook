@@ -1,4 +1,4 @@
-# Acronyms
+# Glossary {-}
 
 
 | acronym |  description |

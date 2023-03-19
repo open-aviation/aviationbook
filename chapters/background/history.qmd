@@ -1,6 +1,7 @@
 ---
 title: A short history of aviation
-output-file: history
+aliases:
+  - .
 authors:
     - Xavier Olive
 ---
