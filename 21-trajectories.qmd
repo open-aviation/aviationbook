@@ -6,11 +6,17 @@ authors:
   - Enrico Spinielli
 ---
 
-A trajectory is a mathematical abstraction used to describe the evolution of a moving object with a finite list of parameters. The most common features in aviation include latitude, longitude, altitude, all indexed by time, with first derivatives such as ground speed, track angle and vertical rate.
-
-Depending on the application, some models would expect more features. For example, [aircraft performance models](24-aircraft-performance.qmd) could require the pitch, roll and yaw angles, the true air speed, the indicated air speed, the Mach number, etc.
+A trajectory is a mathematical abstraction used to describe the evolution of a moving object with a finite list of parameters. The most common features in aviation include latitude, longitude, altitude, all indexed by time, with first derivatives such as ground speed, track angle and vertical rate. Depending on the application, some models would expect more features. For example, [aircraft performance models](24-aircraft-performance.qmd) could require the pitch, roll and yaw angles, the true air speed, the indicated air speed, the Mach number, etc.
 
 This chapter describes several common formats for trajectories depending on available technology to record them. Associated data sources come with different licensing terms which must be kept in mind when developing or applying computing methods.
+
+::: {.callout-tip}
+# Flight data recorders
+
+Obviously, the most comprehensive data source is produced by the aircraft itself, specifically by the *flight data recorder* (FDR) or *quick access recorder* (QAR). Use cases for such data range from flight operational quality assurance (FOQA), post-ops analysis to improve flight safety or operational efficiency, system analysis for predictive or condition-based maintenance. Such data typically contains over 2000 flight parameters and is considered very sensitive by aircraft operators as it may expose some commercial strategies.
+
+*It is usually difficult for researchers to get a full access to such data, even under non-disclosure agreement*. Also, as aircraft operators own the data, this solution cannot be used for global analyses of all aircraft flying in a designated area.
+:::
 
 ## Aircraft tracking technologies
 
@@ -92,9 +98,19 @@ This tabular information can easily be represented on a map, or as a regular plo
 ```{ojs}
 //| echo: false
 {
-  const container = html`<div style="height: 400px;">`;
-  yield container;
-  qantas747.map(container, { zoom: 7, latitude: -33.5, longitude: 152.5 });
+  const container = yield htl.html`<div style="height: 400px;">`;
+  const map = L.map(container);
+  const layer = L.geoJSON(
+    qantas747.resample(d3.timeSecond.every(5)).feature()
+  ).addTo(map);
+  map.fitBounds(layer.getBounds(), { maxZoom: 7 });
+  L.tileLayer(
+    "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}.png",
+    {
+      attribution:
+        "© <a href=https://www.openstreetmap.org/copyright>OpenStreetMap</a> contributors"
+    }
+  ).addTo(map);
 }
 ```
 
@@ -211,7 +227,7 @@ FLARM devices are based on the nRF905 chip. Depending on the geographical area t
 
 Information contained in FLARM messages contains:
 
-- the **device address**, a unique identifier, similar to the [24-bit transponder code](#aircraft-information). *In general,* if the aircraft is also equipped with a transponder, the same identifier is used;
+- the **device address**, a unique identifier, similar to the [24-bit transponder code](#icao-identifiers). *In general,* if the aircraft is also equipped with a transponder, the same identifier is used;
 - the **aircraft type**: glider, tow-plane, helicopter, parachute, parachute drop-plane, hangglider, paraglider, UAV, balloon, etc.;
 - **positional information**: *latitude* and *longitude* in degrees, *GPS altitude* **in meters**;
 - **velocity information**: *horizontal* and *vertical speeds*.
@@ -223,83 +239,84 @@ According to the manual of PowerFLARM Fusion @flarm_manual, there are three leve
 
 ## Aircraft information
 
-A number of flight information is usually not directly accessible from settings recording aircraft trajectories. Metadata usually refers to any additional information enriching a trajectory.
-Enriching trajectories with relevant information is usually a costly process, and access to such information can be complicated.
+A number of flight information is usually not directly accessible from settings recording aircraft trajectories. Metadata usually refers to any additional information enriching a trajectory.  Enriching trajectories with relevant information is usually a costly process, and access to such information can be complicated.
 
+### ICAO identifiers
 
-The most common identifier for aircraft in radar based technologies would be the identifier of the transponder: a six-digit hexadecimal identifier which classically identifies an aircraft. Useful metadata would include
+The most common identifier for aircraft in radar based technologies would be the identifier of the transponder: a **six-digit hexadecimal identifier**, i.e. an integer written in its hexadecimal form, which classically identifies an aircraft, in a unique manner. In the remaining of the book, it is commonly referred as the *ICAO identifier*, or `icao24` in data records (24 standing for the number of bits encoding the integer).
 
-| feature      | description                                   |
-| ------------ | --------------------------------------------- |
-| registration | The tail number of an aircraft, e.g. `F-HNAV` |
-| typecode     | The aircraft type, e.g. `A321`                |
-| age          |                                               |
-| owner        |                                               |
-| manufacturer |                                               |
-| operator     |                                               |
+Ranges of addresses are reserved per countries, who are free to assign addresses to aircraft registererd by their authorities. All US registered aircraft get an address in the `0xa00000` to `0xafffff` range; in Europe, France gets `0x380000` to `0x3bffff`, Germany gets next interval from `0x3c0000` to `0x3fffff`, then the UK gets `0x400000` to `0x43ffff`, etc.
 
-: Aircraft identifier and metadata {#tbl-cucu}
+:::{.callout-warning}
+# Are ICAO addresses unique?
 
-::: {.callout-warning}
-**TODO**
+Yes and no. In practice, **for most short-term analyses**, we can consider the answer is yes.
 
-- equivalence between N-codes and icao codes
-- icao ranges per country, tail number patterns per country
+However, an aircraft may get a different transponder identifier when she gets a different registration. This may happen when the aircraft is sold to new owners who want to register their aircraft in a different country. Then, after the aircraft gets a new registration, her old identifier can be reassigned to new aircraft.
 
+Also, most aircraft manufacturers keep a small set of transponders that they reuse across many newborn aircraft for test flights. Those usually correspond to temporary registration numbers.
+
+To sum up, it is safer to keep in mind that:
+
+- the same aircraft can have different ICAO identifiers throughout her life;
+- the same identifier can refer to different aircraft depending on the day we get data from her.
 :::
 
 
+### Tail numbers
 
-Metadata associated with callsigns (and posssibly dates) include:
+The tail number is the number usually written on the back side of the aircraft, like the license plate number of cars, but for aircraft. Tail numbers also follow a pattern per country: `F-` for France, `D-` for Germany, `G-` for the UK, with some recognised patterns for specific categories of aircraft. Every country is free to decide how to assign registrations to aircraft within their range, and to give them a tail number accordingly. In some countries, like the US, Japan or Korea, there is a direct correspondence between tail numbers and ICAO identifiers, but that's not the case in every country.
 
-| feature  | description                                      |
-| -------- | ------------------------------------------------ |
-| callsign | the ICAO code, e.g. `AFR82BY`                    |
-| number   | the commercial IATA flight number, e.g. `AF6103` |
-| ADEP     | aeroport of departure, e.g. `LFBO`               |
-| ADES     | aeroport of destination, e.g. `LFPO`             |
-| EOBT     | estimated off-block time                         |
-| ETOT     | estimated take-off time                          |
+In the US, tail registrations start with the N letter (they are also called N-numbers) and are followed by up to 5 numbers, or up to 4 numbers and 1 letter, or 3 numbers and 2 letters. Letters I and O are excluded. Then there is a *"direct"* correspondence with transponder addresses: `0xa00001` for `N1`, `0xa00002` for `N1A`, `0xa00003` for `N1AA` then `0xa00004` for `N1AB` until `0xadf7c7` fort `N99999`.
 
-## Flight parameters
+:::{.callout-tip}
+# What is the PIA program?
 
-### Quick Access Recorders (QAR)
-
-Aircraft carry an airborne flight recorder to provide quick access to raw flight data. Use cases for such data range from flight operational quality assurance (FOQA), post-ops analysis to improve flight safety or operational efficiency, system analysis for predictive or condition-based maintenance. QAR data typically contains over 2000 flight parameters.
-
-
-![Example of a subset of QAR data for an A320 aircraft](images/qar_screenshot.png){#fig-qar-a320}
-
-
-::: {.callout-warning}
-Trajectory records usually have a different sampling rate depending on the feature. IEEE354 defines a particular floating point number called `NaN` (not a number) useful for marking missing values. Integers usually do not have such equivalent, so it is common to find *saturated values* (255 for 8-bit integers) to mark missing values.
+To address privacy concerns, FAA has initiated the Privacy ICAO aircraft address (PIA) program to improve the privacy of the eligible US-registered aircraft, ADS-B equipped and flying in the domestic US airspace. Recent research @michel_pia_2021 have shown this attempt is vain as it is very easy to break the anonymisation and find which PIA address (between N41000 `0xa4d691` and N42 `0xa4f946`) is associated to which aircraft.
 :::
 
-::: {.callout-important}
-Airlines, not manufacturers, own the data of the aircraft they operate. These days, manufacturers tend to sell cloud services to store and analyse data of the aircraft they sell.
-:::
+@tbl-icao illustrates some examples of patterns in registrations numbers assigned by countries. In the Netherlands, KLM matches the two first letters after the country code to aircraft types.
 
-## Flight plans
+| country | range |    | pattern | category |
+| ------- | ----- | -- | ------  | -------- |
+| **France** | `380000` | `3bffff` | F- | |
+|     | | | F-A | Historic aircraft |
+|     | | | F-C | Gliders |
+|     | | | F-J | Ultralights |
+|     | | | F-W | Test and Delivery |
+|     | | | F-Z | State owned |
+| **Switzerland** | `4b0000` | `4b7fff` | HB- | |
+|     | | | HB-B | Balloons |
+|     | | | HB-F | Produced in Switzerland |
+|     | | | HB-X or Z | Helicopters |
+| **The Netherlands** | `480000` | `487ffff` | PH- | |
+|     | | | PH-AO | KLM Airbus A330 |
+|     | | | PH-BH | KLM Boeing 787-9 |
+|     | | | PH-BK | KLM Boeing 787-10 |
+|     | | | PH-BQ | KLM Boeing 777-200 |
 
-Example: N0441F340 FISTO5B FISTO UY156 PERIG UT210 TUDRA/N0426F280 UT158 AMB AMB9W
+: Some countries reserve registration patterns to specific categories of aircraft. {#tbl-icao}
 
+### Aircraft type designators
 
-## Flight lists
+[*DOC 8643 - Aircraft Type Designators*](https://www.icao.int/publications/DOC8643/Pages/default.aspx) by ICAO contains designators for aircraft types which are most commonly provided with air traffic service (ATS).
 
-### DDR2 `exp2`
+Each designator consists of a 4-letter code associated with a manufacturer and an aircraft type, e.g. `A320` for Airbus A320, `B78X` for Boeing 787-10 or `E190` for Embraer 190. More specific designators can be used for balloons `BALL` or gliders `GLID`.
 
-The traffic demand file (exp2) can obtained from the EUROCONTROL’s Demand Data Repository
-(DDR2) for a selected period of time (typically one day) and geographic area (e.g. FABEC).
-The `exp2` includes, for each flight, basic information about the departure time,
-the origin and destination airports, a unique flight identifier, the callsign,
-the aircraft ICAO code (e.g. A320) and the requested flight level by the airspace user as
-submitted in the flight plan.
+This designator is often referred as `typecode` in aircraft databases and helps associating an aircraft type to an ICAO identifier.
 
-### OSN Flight Table
+### Data sources
 
-::: {.callout-note}
-Why not?
-:::
+Maintaining a data base of transponder identifiers, aircraft tail numbers, type designators, owners and/or operators is a very cumbersome process. New aircraft are manufactured every month, which generates new transponder identifiers @opensky21. Some countries keep a database of their registered aircraft public (e.g. [FAA (US)](https://www.faa.gov/licenses_certificates/aircraft_certification/aircraft_registry/), [France](https://immat.aviation-civile.gouv.fr/immat/servlet/aeronef_liste.html), [Switzerland](https://app02.bazl.admin.ch/web/bazl/en/#/lfr/search) or [The Netherlands](https://www.ilent.nl/onderwerpen/luchtvaartuigregister#/)), but this is not a systematic practice in every country, and those do not always contain the transponder identifier.
+
+There have also been some crowdsourcing effort to constitute and maintain aircraft databases based on various open records and entries on social networks. Such databases raise some privacy concerns among some aircraft owners, who may be tempted to vandalise those databases @astroturfing22.
+
+Some public aircraft databases:
+
+- [The OpenSky Network aircraft database](https://opensky-network.org/aircraft-database) contains several hundreds of thousands of airframes;
+- The website [www.airframes.org](http://www.airframes.org/), but they are very strict about their [terms of use](http://www.airframes.org/about);
+- Some Regional Monitoring Agencies (RMA) provide an open access to data matching aircraft registered in their area, specifically in [Europe](https://www.eurocontrol.int/rmalive/regulatorListInit.do) or in the [Middle-East](https://midrma.com/en).
+
 
 ## Flight trajectories
 
@@ -384,3 +401,16 @@ include:
 * (ground / vertical) speed
 
 with timestamp and position as a minimum.
+
+### Flight route
+
+Example: N0441F340 FISTO5B FISTO UY156 PERIG UT210 TUDRA/N0426F280 UT158 AMB AMB9W
+
+### DDR2 `exp2`
+
+The traffic demand file (exp2) can obtained from the EUROCONTROL’s Demand Data Repository
+(DDR2) for a selected period of time (typically one day) and geographic area (e.g. FABEC).
+The `exp2` includes, for each flight, basic information about the departure time,
+the origin and destination airports, a unique flight identifier, the callsign,
+the aircraft ICAO code (e.g. A320) and the requested flight level by the airspace user as
+submitted in the flight plan.
