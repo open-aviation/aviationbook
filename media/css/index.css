@@ -1,0 +1,17 @@
+.download-buttons {
+  text-align: center;
+  margin: 30px;
+}
+
+.download-buttons .btn {
+  margin: 0.2rem;
+}
+
+html[data-theme="quarto-light"] {
+  /* TODO fix this test */
+  @media screen and (min-width: 900px) {
+    #quarto-content {
+      background: url(images/aircraft_vintage.webp) no-repeat center right fixed;
+    }
+  }
+}

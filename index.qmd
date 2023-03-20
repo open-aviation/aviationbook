@@ -1,9 +1,9 @@
 ---
 resources: images/aircraft_vintage.webp
-css: index.css
+css: media/css/index.css
 ---
 
-This is the website for the book "{{< meta title >}}", a project started by a team of [**four aviation enthusiasts**](91-authors.qmd), working in the field of aviation and sharing a common objective to share open knowledge about all what is available to analyse aviation data.
+This is the website for the book "{{< meta title >}}", a project started by a team of [**four aviation enthusiasts**](authors.qmd), working in the field of aviation and sharing a common objective to share open knowledge about all what is available to analyse aviation data.
 
 The book aims at:
 
