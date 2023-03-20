@@ -14,7 +14,8 @@ book:
     - Junzi Sun
     - Enrico Spinielli
     - Manuel Waltert
-  date: "2023-12-25"
+  # date: "2023-12-25"
+  isbn: "12345678"
   chapters:
     - index.qmd
     - preface.qmd
@@ -106,10 +107,12 @@ book:
           contents:
             - chapters/sharing/reproducible-research.qmd
 
-    - title: Appendix
+    - title: Appendices
       background: transparent
-      id: appendix
+      id: appendices
       contents:
+        - text: Appendices
+        - text: ---
         - chapters/appendix/index.qmd
         - chapters/appendix/glossary.qmd
         - chapters/appendix/contribute.qmd
@@ -166,7 +169,7 @@ format:
       - media/css/style.css
       - media/css/box.css
     grid:
-      sidebar-width: 400px
+      sidebar-width: 250px
       body-width: 900px
       margin-width: 300px
   pdf:

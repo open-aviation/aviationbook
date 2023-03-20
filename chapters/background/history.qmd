@@ -1,5 +1,6 @@
 ---
 title: A short history of aviation
+number-depth: 2
 aliases:
   - .
 authors:
@@ -37,12 +38,12 @@ Otto Lilienthal, Clément Ader, etc.
 
 ### The Wright Brothers
 
-## The pioneer era {.unnumbered}
+## The pioneer era
 1904--1914
 
 Santos-Dumont, Blériot
 
-##  World War I {.unnumbered}
+##  World War I
 1914--1918
 
 Combat, military uses
@@ -50,16 +51,16 @@ Combat, military uses
 Roland Garros,
 von Richthofen
 
-## The Golden Age {.unnumbered}
+## The Golden Age
 1919--1939
 
-##  World War II {.unnumbered}
+##  World War II
 1939--1945
 
-## The post-war era {.unnumbered}
+## The post-war era
 1945--1979
 
-## The digital age {.unnumbered}
+## The digital age
 The 1980s
 
-## The 21st century {.unnumbered}
+## The 21st century

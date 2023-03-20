@@ -1,5 +1,6 @@
 ---
 title: Earth models
+number-depth: 2
 author: David Gianazza
 ---
 

@@ -1,14 +1,15 @@
 ---
-resources: images/aircraft_vintage.webp
+resources: /images/aircraft_vintage.webp
 css: media/css/index.css
 ---
 
 This is the website for the book "{{< meta title >}}", a project started by a team of [**four aviation enthusiasts**](authors.qmd), working in the field of aviation and sharing a common objective to share open knowledge about all what is available to analyse aviation data.
 
-The book aims at:
+The purpose of this book is to
 
-- presenting the most common **data sources**, API and formats;
-- introducing computational frameworks that make it possible to **easily handle aviation related data**, with a focus on the Python, R and Observable languages;
+- recall **background knowledge** required to work with aviation data;
+- present the most common **data sources**, API and formats;
+- introduce computational frameworks that make it possible to **easily handle aviation related data**, with a focus on the Python, R and Observable languages;
 - showcase **common data visualization frameworks** on usual applications;
 - recommend **good practices to share new data, code and results**.
 

@@ -1,4 +1,8 @@
-# Authors' Bio {.unnumbered}
+---
+toc: false
+---
+
+# Authors {.unnumbered}
 
 <div class="authors">
 <div class="author-icon">

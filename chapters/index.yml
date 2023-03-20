@@ -1,0 +1,46 @@
+- title: Background knowledge
+  subtitle: The minimal background necessary to comprehend the aviation world
+  other: A comprehensive overview of what to know in aviation and air traffic management
+  links:
+    - text: A short history of aviation
+      href: background/history.html
+    - text: Earth and atmosphere models
+      href: background/earth.html
+    - text: Anatomy of an aircraft
+      href: background/aircraft.html
+    - text: Air navigation services
+      href: background/cns.html
+- title: The ecosystem of aviation data
+  subtitle: The most commonly used data formats in the aviation and ATM data analysis community
+  links:
+    - text: Aircraft trajectories
+      href: data_sources/trajectories.html
+    - text: Aeronautical information
+      href: data_sources/aeronautical-information.html
+    - text: Weather, climate and environment
+      href: data_sources/environment.html
+    - text: Aircraft performance
+      href: data_sources/aircraft-performance.html
+    - text: Data sources in aviation
+      href: data_sources/aviation-data-sources.html
+- title: Processing aviation data
+  subtitle: (Hatching)
+  links:
+    - text: The tidy paradigm
+      href: processing/tidy-data.html
+- title: Visualizing aviation data
+  subtitle: (Hatching)
+  links:
+    - text: Grammar of graphics
+      href: visualise/grammar-of-graphics.html
+- title: Sharing data
+  subtitle: The hitchhiker's guide to reproducible research
+  links:
+    - text: Best practices for reproducible research
+      href: sharing/reproducible-research.html
+- title: Appendices
+  links:
+    - text: Glossary
+      href: appendix/glossary.html
+    - text: Contribute to this project
+      href: appendix/contribute.html

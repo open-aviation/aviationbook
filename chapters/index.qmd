@@ -1,10 +1,15 @@
 ---
-# listing:
-#   id: reference-links
-#   template: ./ejs/toc.ejs
-#   contents:
-#     -
+css: ../media/css/cards.css
+subtitle: If you just found about this project, you may want to read the [preface](../preface.qmd) first.
+anchor-sections: false
+search: false
+listing:
+  id: reference-links
+  template: ../ejs/link.ejs
+  contents: index.yml
 ---
 
 # Table of contents {-}
 
+::: {#guide-links .column-screen-inset-right style="max-width: 850px;"}
+:::

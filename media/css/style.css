@@ -2,7 +2,9 @@
 
 body {
   font-family: "IBM Plex Sans";
+  font-size: 0.9em;
   color: "#18181c";
+  opacity: 0.95;
 }
 
 .welcome h1 {
@@ -28,6 +30,9 @@ img.cover {
 
 .figure {
   text-align: center;
+}
+.figure-caption {
+  font-size: 0.9rem;
 }
 p.caption {
   color: #777;
@@ -71,6 +76,16 @@ h6 {
 }
 h1.title {
   font-weight: 700;
+  font-size: 1.5rem;
+}
+h2 {
+  font-size: 1.3rem;
+}
+h3 {
+  font-size: 1.1rem;
+}
+h4 {
+  font-size: 1rem;
 }
 .book .book-body .page-wrapper .page-inner section.normal strong {
   font-weight: 500;
@@ -102,12 +117,8 @@ h1.title {
   max-height: 40px;
 }
 
-.menu-text {
-  font-size: smaller;
-}
-
 .quarto-title-meta-contents {
-  color: var(--lt-color-gray-500);
+  color: var(--lt-color-gray-600);
   margin-bottom: -1em;
 }
 
