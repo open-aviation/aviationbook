@@ -15,7 +15,7 @@ book:
     - Enrico Spinielli
     - Manuel Waltert
   # date: "2023-12-25"
-  isbn: "12345678"
+  # isbn: "12345678"
   chapters:
     - index.qmd
     - preface.qmd
@@ -58,7 +58,7 @@ book:
 
   # cover-image: images/book-front-cover.png
   site-url: https://aviationbook.netlify.app/
-  repo-url: https://github.com/openaviation/aviationbook/
+  repo-url: https://github.com/open-aviation/aviationbook/
   repo-branch: master
 
   search: true
