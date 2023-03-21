@@ -13,7 +13,7 @@ We use the [Quarto](https://quarto.org/) publishing system to build the website 
 - [install Quarto](https://quarto.org/docs/get-started/) for your platform;
 - start writing using your favourite text editor. Configuration files for VS Code (`aviationbook.code-workspace`) and RStudio (`aviationbook.Rproj`) are provide and we recommend you to open them.
 - keep a terminal open and run the `quarto preview` command. This will open a browser tab with the website running. Every time you save a file, the web page will be reloaded to display changes.
-- check the PDF generation does not fail with `quarto render`. You may need to install TinyTeX with `quarto tools install tinytex`;
+- check the PDF generation does not fail with `quarto render`. You may need to install TinyTeX with `quarto install tinytex`;
 - commit and push changes. Use pull requests if you do not have the proper rights on the repository.
 
 

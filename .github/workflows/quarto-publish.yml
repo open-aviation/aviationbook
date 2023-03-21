@@ -20,6 +20,11 @@ jobs:
           # uncomment below and fill to pin a version
           # version: 0.9.600
 
+      - name: Update TinyTeX
+        run: |
+          quarto update tinytex
+          quarto list tools
+
       # add software dependencies here
 
       # To publish to Netlify, RStudio Connect, or GitHub Pages, uncomment
