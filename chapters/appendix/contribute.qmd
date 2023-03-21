@@ -1,3 +1,31 @@
+
 # Contribute to the project {-}
 
-Simply click on the "Edit this page" link to file a pull request on Github: the website will be automatically updated as soon as the modification is accepted.
+## Minor contributions
+
+Simply click on the "Edit this page" link (to the right of the page) to file a pull request on Github: the website will be automatically updated as soon as the modification is accepted.
+
+## Major contributions
+
+We use the [Quarto](https://quarto.org/) publishing system to build the website and generate the PDF associated to the project. If you want to contribute significantly to the project, by writing a chapter, improving the design or suggesting more changes:
+
+- clone the GitHub project [{{< meta book.repo-url >}}]({{< meta book.repo-url >}});
+- [install Quarto](https://quarto.org/docs/get-started/) for your platform;
+- start writing using your favourite text editor. Configuration files for VS Code (`aviationbook.code-workspace`) and RStudio (`aviationbook.Rproj`) are provide and we recommend you to open them.
+- keep a terminal open and run the `quarto preview` command. This will open a browser tab with the website running. Every time you save a file, the web page will be reloaded to display changes.
+- check the PDF generation does not fail with `quarto render`. You may need to install TinyTeX with `quarto tools install tinytex`;
+- commit and push changes. Use pull requests if you do not have the proper rights on the repository.
+
+
+::: {.callout-tip}
+# Bibliography
+
+We synchronize the bibliography items with a Zotero group: [https://www.zotero.org/groups/4370174/aviation-book](https://www.zotero.org/groups/4370174/aviation-book). Please ask to be part of the group if you want to add new items. The best way to edit the entries is via the Zotero app and automatically export the `bibliography.bib` file using the [Better Bibtex extension](https://retorque.re/zotero-better-bibtex/).
+
+Please install the Better Bibtex extension and manually specify a `Citation Key` for each entry in the `Extra:` field to avoid conflicts between group members.
+
+In the settings:
+
+- When an item has both a DOI and a URL, export: **both**
+- Fields to omit from export (comma-separated): `file,keywords,copyright,urldate,issn,abstract,langid`
+:::
