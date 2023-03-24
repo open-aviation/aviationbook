@@ -16,7 +16,7 @@ This chapter describes several common formats for trajectories depending on avai
 
 Obviously, the most comprehensive data source is produced by the aircraft itself, specifically by the *flight data recorder* (FDR) or *quick access recorder* (QAR). Use cases for such data range from flight operational quality assurance (FOQA), post-ops analysis to improve flight safety or operational efficiency, system analysis for predictive or condition-based maintenance. Such data typically contains over 2000 flight parameters and is considered very sensitive by aircraft operators as it may expose some commercial strategies.
 
-*It is usually difficult for researchers to get a full access to such data, even under non-disclosure agreement*. Also, as aircraft operators own the data, this solution cannot be used for global analyses of all aircraft flying in a designated area.
+*It is usually difficult for researchers to get full access to such data, even under non-disclosure agreement*. Also, as aircraft operators own the data, this solution cannot be used for global analyses of all aircraft flying in a designated area.
 :::
 
 ## Aircraft tracking technologies
@@ -147,7 +147,7 @@ Plot.plot({
 
 The letter "B" in ADS-B means *broadcast*: aircraft broadcast messages at the same rate regardless of ground equipments and infrastructure, even if no aircraft or receiver is within range. Aircraft broadcast ADS-B data even over oceans, poles, or deserted areas.
 
-Recently, "Space-based ADS-B" has been implemented so that a constellation of low-altitude satellites attempts to receive and decode ADS-B messages from aircraft in the troposphere and forward positional information to ground-based stations. There have been high expectations around this technology which is expected to revolutionarize traditional air traffic management over areas such as the North-Atlantic Ocean, controlled by Shannon (Ireland) and Gander (Canada) ACCs.
+Recently, "Space-based ADS-B" has been implemented so that a constellation of low-altitude satellites attempts to receive and decode ADS-B messages from aircraft in the troposphere and forward positional information to ground-based stations. There have been high expectations around this technology which is expected to revolutionize traditional air traffic management over areas such as the North-Atlantic Ocean, controlled by Shannon (Ireland) and Gander (Canada) ACCs.
 :::
 
 
@@ -191,7 +191,7 @@ The Mode S uplink signal contains parameters that indicate which information is
    - **BDS 5,0 -- Track and turn report**, with information about the *roll angle*, *true track angle rate* and *true airspeed (TAS)* in addition to ground speed and true track angle information also defined in ADS-B;
    - **BDS 6,0 -- Heading and speed report**, with information about *magnetic heading* of the aircraft, *indicated airspeed (IAS)*, *barometric altitude rate* and *inertial vertical velocity* (in feet per minute)
 
-Coupling BDS 5,0 (for the TAS, the true track angle and the groundspeed -- the two last entries are also present in ADS-B) with BDS 6,0 (for magnetic heading) and can be used to recompute the apparent wind seen by the aircraft.\
+Coupling BDS 5,0 (for the TAS, the true track angle and the ground speed -- the two last entries are also present in ADS-B) with BDS 6,0 (for magnetic heading) and can be used to recompute the apparent wind seen by the aircraft.\
 [Magnetic declination](earth.html#magnetic-declination) must be taken into account.
 
 :::{.callout-tip}
@@ -244,9 +244,9 @@ A number of flight information is usually not directly accessible from settings 
 
 ### ICAO identifiers {-}
 
-The most common identifier for aircraft in radar based technologies would be the identifier of the transponder: a **six-digit hexadecimal identifier**, i.e. an integer written in its hexadecimal form, which classically identifies an aircraft, in a unique manner. In the remaining of the book, it is commonly referred as the *ICAO identifier*, or `icao24` in data records (24 standing for the number of bits encoding the integer).
+The most common identifier for aircraft in radar based technologies would be the identifier of the transponder: a **six-digit hexadecimal identifier**, i.e. an integer written in its hexadecimal form, which classically identifies an aircraft uniquely. In the remaining of the book, it is commonly referred as the *ICAO identifier*, or `icao24` in data records (24 standing for the number of bits encoding the integer).
 
-Ranges of addresses are reserved per countries, who are free to assign addresses to aircraft registererd by their authorities. All US registered aircraft get an address in the `0xa00000` to `0xafffff` range; in Europe, France gets `0x380000` to `0x3bffff`, Germany gets next interval from `0x3c0000` to `0x3fffff`, then the UK gets `0x400000` to `0x43ffff`, etc.
+Ranges of addresses are reserved per countries, who are free to assign addresses to aircraft registered by their authorities. All US registered aircraft get an address in the `0xa00000` to `0xafffff` range; in Europe, France gets `0x380000` to `0x3bffff`, Germany gets next interval from `0x3c0000` to `0x3fffff`, then the UK gets `0x400000` to `0x43ffff`, etc.
 
 :::{.callout-warning}
 # Are ICAO addresses unique?
@@ -273,7 +273,7 @@ In the US, tail registrations start with the N letter (they are also called N-nu
 :::{.callout-tip}
 # What is the PIA program?
 
-To address privacy concerns, FAA has initiated the Privacy ICAO aircraft address (PIA) program to improve the privacy of the eligible US-registered aircraft, ADS-B equipped and flying in the domestic US airspace. Recent research @michel_pia_2021 have shown this attempt is vain as it is very easy to break the anonymisation and find which PIA address (between N41000 `0xa4d691` and N42 `0xa4f946`) is associated to which aircraft.
+To address privacy concerns, FAA has initiated the Privacy ICAO aircraft address (PIA) program to improve the privacy of the eligible US-registered aircraft, ADS-B equipped and flying in the domestic US airspace. Recent research @michel_pia_2021 have shown this attempt is vain as it is very easy to break the anonymization and find which PIA address (between N41000 `0xa4d691` and N42 `0xa4f946`) is associated to which aircraft.
 :::
 
 @tbl-icao illustrates some examples of patterns in registrations numbers assigned by countries. In the Netherlands, KLM matches the two first letters after the country code to aircraft types.
@@ -302,7 +302,7 @@ To address privacy concerns, FAA has initiated the Privacy ICAO aircraft address
 
 [*DOC 8643 - Aircraft Type Designators*](https://www.icao.int/publications/DOC8643/Pages/default.aspx) by ICAO contains designators for aircraft types which are most commonly provided with air traffic service (ATS).
 
-Each designator consists of a 4-letter code associated with a manufacturer and an aircraft type, e.g. `A320` for Airbus A320, `B78X` for Boeing 787-10 or `E190` for Embraer 190. More specific designators can be used for balloons `BALL` or gliders `GLID`.
+Each designator consists of a 4-letter code associated with a manufacturer and an aircraft type, e.g., `A320` for Airbus A320, `B78X` for Boeing 787-10 or `E190` for Embraer 190. More specific designators can be used for balloons `BALL` or gliders `GLID`.
 
 This designator is often referred as `typecode` in aircraft databases and helps associating an aircraft type to an ICAO identifier.
 
@@ -317,7 +317,7 @@ Some public aircraft databases:
 - [The OpenSky Network aircraft database](https://opensky-network.org/aircraft-database) contains several hundreds of thousands of airframes;
 - [Flightradar24](https://www.flightradar24.com/data) give access to an interface to search for individual aircraft;
 - The website [www.airframes.org](http://www.airframes.org/), but they are very strict about their [terms of use](http://www.airframes.org/about);
-- Some Regional Monitoring Agencies (RMA) provide an open access to data matching aircraft registered in their area, specifically in [Europe](https://www.eurocontrol.int/rmalive/regulatorListInit.do) or in the [Middle-East](https://midrma.com/en).
+- Some Regional Monitoring Agencies (RMA) provide open access to data matching aircraft registered in their area, specifically in [Europe](https://www.eurocontrol.int/rmalive/regulatorListInit.do) or in the [Middle-East](https://midrma.com/en).
 
 
 ## Flight trajectories
