@@ -44,7 +44,7 @@ The word *automatic* refers to the fact that no inputs from controllers or pilot
 
 
 :::{.callout-important}
-Messages do not contain any timestamp information. Timestamps are usually appended by receiver of the messages, based on the reception time (and not the time of emission by the aircraft).
+Messages do not contain any timestamp information. Timestamps are usually appended by the receiver of the messages, based on the reception time (and not the time of emission by the aircraft).
 :::
 
 Information broadcast in ADS-B messages contains, in addition to a unique [24-bit transponder code](#aircraft-information), named `icao24` in examples below:
@@ -63,6 +63,10 @@ There is a common confusion in aviation between three designations for angles:
 - the **track angle** represents the direction the aircraft is flying. It is the angle of the speed vector, ranging from 0 (North) to 360 degrees (90° for East, 270° for West);
 - the **heading angle** represents the direction the nose the aircraft is pointing at;
 - the **bearing angle** usually represents the direction of/to a static object, e.g., the bearing of a runway, or the bearing to a navigational point.
+
+
+![source: https://aviation.stackexchange.com/a/96035](https://i.stack.imgur.com/ZUw30.png)
+
 :::
 
 :::{.callout-note}
@@ -325,7 +329,7 @@ Some public aircraft databases:
 EUROCONTROL's Network Manager has devised different flight trajectories
 formats in order to store and exchange information with the aviation community.
 
-In the following sections we will cover the most known ones: M1 & M3 and SO6.
+In the following sections we will cover the most known ones: M1 (& M2) & M3 and SO6.
 
 They are a mix of flight information and trajectory.
 
@@ -333,17 +337,17 @@ They are a mix of flight information and trajectory.
 
 The flight trajectory known as *Model 1*, *M1* or *Filed Tactical Flight Model (FTFM)* is a
 mathematical model containing a point and airspace volume profile created in ETFMS for a flight.
-This trajectory is first created when Flight Plan (FP) details, and any subsequent changes,
+This trajectory is first created when Flight Plan (FPL) details, and any subsequent changes,
 are received by the Network Operations of EUROCONTROL's
 Network Manager^[Aircraft Operators (AO) willing to fly IFR flights in the Network Manager (NM)
 area of responsibility are mandated to file the relevant Flight Plan to the Network Manager.
-The aim of this centralised management of FP's in Europe is linked to one of the NM mandates, i.e.
+The aim of this centralised management of FPL's in Europe is linked to one of the NM mandates, i.e.
 the ability to detect imbalance between demand (willingness to fly by AO's) and
 offer (ability to guarantee safety by ATC / airport capacity providing an adequate level of safety).
 The NM provides the ACC's/airports to monitor the situation and implement measures to resolve
 the overload (typically via departure delays or rerouting.)].
 
-The M1 is a translation of a FP (especially Field 15) to a point profile, i.e. a
+The M1 is a translation of a FPL (especially Field 15) to a point profile, i.e. a
 sequence of 4D positions (timestamp + longitude, latitude, altitude) plus relevant penetrated airspace ID's,
 calculated taking into account the aircraft type performance (via BADA) and the environment restrictions
 as published in the [Route Availability Document (RAD)][rad].
@@ -361,16 +365,19 @@ as published in the [Route Availability Document (RAD)][rad].
 
 ### Model 2 (M2 or *RTFM*)
 
+An updated version of the M1 when the flight is regulated (i.e. delayed.)
+This trajectory could be more than a shift in time because of the impact of
+possibly closed areas or route segments in the new time window of the flight.
+
 ### Model 3 (M3 or *CTFM*)
 
 The flight trajectory known as *Model 3*, *M3* or *Current Tactical Flight Model (CTFM)* is an
-updated version of the M1 model where the point/airspace profile is recalculated taking into account
+updated version of the M1 model (or eventually M2) where the point/airspace profile is recalculated taking into account
 surveillance data (*Correlated Position Reports* [CPR]^[CPRs are received by NM from ACC's,
 they consist of surveillance data (callsign longitude, latitude, altitude, timestamp) paired
 with flight plan info (aircraft type, ICAO 24-bit address)] or more recently
 ADS-B position reports)
-when these show a significant deviation from M1 (or M2 which is an M1-like
-trajectory calculated in case of delayed flight).
+when these show a significant deviation from M1 (or M2.)
 The deviation considered is of 1 min in time, more than 400 feet in en-route phase,
 more than 1000 feet in climb/descent phase or more than 10 NM laterally,
 see 14.3.1 [@niarchakou_simonselva17].
