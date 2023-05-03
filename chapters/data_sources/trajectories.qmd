@@ -394,6 +394,37 @@ see 14.3.1 [@niarchakou_simonselva17].
 
 ### SO6
 
+The SO6 format delivers a  flight segment sequence from origin to destination.
+
+
+
+| #  | Field                 | Type | Size | Comment |
+|---:|-----------------------|------|------|---------|
+|  1 | segment identifier    | char |   | first point name "_" last point name |
+|  2 | origin of flight      | char | 4 | ICAO code |
+|  3 | destination of flight | char | 4 | ICAO code |
+|  4 | aircraft type         | char | 4 |  |
+|  5 | time begin segment    | num | 6  | HHMMSS  |
+|  6 | time end segment      | num | 6  | HHMMSS  |
+|  7 | FL begin segment      | num | 1 to 3 |  |
+|  8 | FL end segment        | num | 1 to 3 |  |
+|  9 | status                | char  | 1 | 0=climb, 1=descent, 2=cruise |
+| 10 | call sign             | char  |   |  |
+| 11 | date begin segment    | num   | 6 | YYMMDD |
+| 12 | date end segment      | num   | 6 | YYMMDD |
+| 13 | lat begin segment     | float |   | decimal minute |
+| 14 | lon begin segment     | float |   | decimal minute |
+| 15 | lat end segment       | float |   | decimal minute |
+| 16 | lon end segment       | float |   | decimal minute |
+| 17 | flight identifier     | num   |   | must be unique |
+| 18 | sequence              | num   |   | start at 1 for every new flight |
+| 19 | segment length        | float |   | nautical miles |
+| 20 | segment parity        | num   |   |  0=NO, 1=ODD, 2=EVEN, 3=ODD_LOW, 4=EVEN_LOW), 5=ODD_HIGH, 6=EVEN_HIGH, 7=General Purpose Red , 8=General Purpose Orange , 9=General Purpose Yellow |
+ 
+The parity decides flight level allocation: Odd levels are FL290,310,330... and Even levels are FL280,300,320 ...
+
+
+
 ### ALL_FT+
 
 ALL_FT+ files are available via DDR2 and typically follow a naming convention like
