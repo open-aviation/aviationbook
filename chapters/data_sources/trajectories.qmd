@@ -328,10 +328,12 @@ Some public aircraft databases:
 
 EUROCONTROL's Network Manager has devised different flight trajectories
 formats in order to store and exchange information with the aviation community.
+Trajectories are recorded as either a sequence of 4D positions (3D plus timestamp)
+or like a sequence of 4D segments.
 
-In the following sections we will cover the most known ones: M1 (& M2) & M3 and SO6.
+In the following sections we will cover the most known formats: M1 (& M2) & M3, ALL_FT+ and SO6.
 
-They are a mix of flight information and trajectory.
+They are a mix of flight information (ADEP, ADES, callsign, ...) and trajectory (4D position, ground speed, ...).
 
 ### Model 1 (M1 or *FTFM*)
 
@@ -393,6 +395,17 @@ see 14.3.1 [@niarchakou_simonselva17].
 ### SO6
 
 ### ALL_FT+
+
+ALL_FT+ files are available via DDR2 and typically follow a naming convention like
+`yyyyMMdd.ALL_FT+`, i.e. `20231124.ALL_FT+.7z` for data covering November 24th 2022.
+
+The content of an ALL_FT+ file is quite *massive*, at the time of this writing for version 7
+contains 207 columns!
+ALL_FT+ is clearly an internal NM systems archiving format that has been plainly
+exchanged.
+
+Documentation and metadata is sparse even from the DDR2 manual or NEST help pages.
+
 
 :::{.callout-note}
 TODO this part could help?
