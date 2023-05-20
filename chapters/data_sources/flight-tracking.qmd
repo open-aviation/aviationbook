@@ -1,10 +1,9 @@
 ---
-title: Aircraft trajectories
+title: Flight tracking technologies
 aliases:
   - .
 authors:
   - Xavier Olive
-  - Enrico Spinielli
 ---
 
 A trajectory is a mathematical abstraction used to describe the evolution of a moving object with a finite list of parameters. The most common features in aviation include latitude, longitude, altitude, all indexed by time, with first derivatives such as ground speed, track angle and vertical rate. Depending on the application, some models would expect more features. For example, [aircraft performance models](aircraft-performance.qmd) could require the pitch, roll and yaw angles, the true air speed, the indicated air speed, the Mach number, etc.
@@ -19,9 +18,8 @@ Obviously, the most comprehensive data source is produced by the aircraft itself
 *It is usually difficult for researchers to get full access to such data, even under non-disclosure agreement*. Also, as aircraft operators own the data, this solution cannot be used for global analyses of all aircraft flying in a designated area.
 :::
 
-## Aircraft tracking technologies
 
-### Radar tracks {-}
+## Radar tracks
 
 The concept of **primary surveillance radars (PSR)** is fairly simple: it is a rotating radio transponder with an omnidirectional antenna. Commonly, the radar transmits a one-microsecond pulse for every one millisecond and listens to the reflections from the aircraft. The **position of the aircraft** is measured by the distance and angle to the radar. The distance is known as the *slant distance*, which is the line-of-sight distance between an aircraft and the radar. It can be calculated by measuring the time difference between the original signal and the reflection received, since the speed of the radio wave (speed of light) is known. The *azimuth angle* of the aircraft is determined by the rotation angle of the radar.
 
@@ -36,7 +34,7 @@ Radar tracks have a prestigious aura for obvious coverage reasons. However, it i
 In general, trajectories based on radar plots produced by computer systems contain an identifier, timestamps, latitudes, longitudes, altitudes, ground speed, vertical speed and track angle. **Kalman filters** help to smoothen trajectories and compute the derivatives.
 
 
-### ADS-B {-}
+## ADS-B
 
 ADS-B stands for **Automatic Dependent Surveillance--Broadcast**. It is probably one of the most well-known source of aircraft trajectories, popularized by famous websites such as [Flightradar24](https://www.flightradar24.com) or [The OpenSky Network](https://www.opensky-network.org). It is a surveillance technology designed to allow aircraft to broadcast their flight state periodically without the need for interrogation.
 
@@ -104,7 +102,7 @@ This tabular information can easily be represented on a map, or as a regular plo
 //| echo: false
 {
   const container = yield htl.html`<div style="height: 400px;">`;
-  const map = L.map(container);
+  const map = L.map(container, { scrollWheelZoom: false });
   const layer = L.geoJSON(
     qantas747.resample(d3.timeSecond.every(5)).feature()
   ).addTo(map);
@@ -159,7 +157,7 @@ Recently, "Space-based ADS-B" has been implemented so that a constellation of lo
 A lot of details about the contents of ADS-B messages, Mode S data and their decoding is detailed in a different book, *The 1090 Megahertz Riddle* @sun1090.
 :::
 
-### Mode S {-}
+## Mode S
 
 The **secondary surveillance radar (SSR)**, also known as the air traffic control radar beacon system (ATCRBS), was designed to provide air traffic controllers more information than what is provided by the primary radar. The secondary radar can be installed separately or installed on top of the primary radar. It uses a different radio frequency to actively interrogate the aircraft and receive information transmitted by the aircraft.
 
@@ -204,7 +202,7 @@ ADS-B messages also belong to the Mode S protocol, in the **Extended Squitter (E
 
 ![An overview of all Mode S services, excerpt from [www.mode-s.org](https://mode-s.org/decode/content/introduction.html#summary) @sun1090](../../images/mode_s_services.png)
 
-### UAT {-}
+## UAT
 
 **Universal Access Transceiver (UAT)** is a technology similar to ADS-B which operates on 978 MHz instead of 1090 MHz for ADS-B Extended Squitter (ES).
 
@@ -213,7 +211,7 @@ The FAA has been encouraging General Aviation aircraft to equip with UAT complia
 As a consequence, UAT messages can only be received by receivers located in the United States or near their borders.
 
 
-### FLARM {-}
+## FLARM
 
 **FLARM** (a portmanteau of "flight" and "alarm") is, with TCAS, one of the most widespread technologies for **traffic awareness and collision avoidance**. It is a system used to prevent potential aviation collision and to raise awareness of the pilot, initially tailored for **light aircraft, such as gliders, light aircraft, rotorcraft, and drones**. FLARM obtains its position and altitude readings from an internal GPS (or potentially other GNSS) and a barometric sensor, then broadcasts these together with forecast data about the future 3D flight track, calculated considering its speed, acceleration, track, turn radius, wind and other parameters. This is imperative for smaller lighter (even wind-powered) aircraft.
 
@@ -241,229 +239,3 @@ As FLARM is a proprietary product, there is little public information about the 
 
 According to the manual of PowerFLARM Fusion @flarm_manual, there are three levels of warnings with different types of annunciations: The first warning is issued around 18 seconds before impact, the second warning is issued around 12 seconds before impact and the third warning is issued around 8 seconds before impact. The warning is active as long as the collision risk remains and will change accordingly.
 
-
-## Aircraft information
-
-A number of flight information is usually not directly accessible from settings recording aircraft trajectories. Metadata usually refers to any additional information enriching a trajectory.  Enriching trajectories with relevant information is usually a costly process, and access to such information can be complicated.
-
-### ICAO identifiers {-}
-
-The most common identifier for aircraft in radar based technologies would be the identifier of the transponder: a **six-digit hexadecimal identifier**, i.e. an integer written in its hexadecimal form, which classically identifies an aircraft uniquely. In the remaining of the book, it is commonly referred as the *ICAO identifier*, or `icao24` in data records (24 standing for the number of bits encoding the integer).
-
-Ranges of addresses are reserved per countries, who are free to assign addresses to aircraft registered by their authorities. All US registered aircraft get an address in the `0xa00000` to `0xafffff` range; in Europe, France gets `0x380000` to `0x3bffff`, Germany gets next interval from `0x3c0000` to `0x3fffff`, then the UK gets `0x400000` to `0x43ffff`, etc.
-
-:::{.callout-warning}
-# Are ICAO addresses unique?
-
-Yes and no. In practice, **for most short-term analyses**, we can consider the answer is yes.
-
-However, an aircraft may get a different transponder identifier when she gets a different registration. This may happen when the aircraft is sold to new owners who want to register their aircraft in a different country. Then, after the aircraft gets a new registration, her old identifier can be reassigned to new aircraft.
-
-Also, most aircraft manufacturers keep a small set of transponders that they reuse across many newborn aircraft for test flights. Those usually correspond to temporary registration numbers.
-
-To sum up, it is safer to keep in mind that:
-
-- the same aircraft can have different ICAO identifiers throughout her life;
-- the same identifier can refer to different aircraft depending on the day we get data from her.
-:::
-
-
-### Tail numbers {-}
-
-The tail number is the number usually written on the back side of the aircraft, like the license plate number of cars, but for aircraft. Tail numbers also follow a pattern per country: `F-` for France, `D-` for Germany, `G-` for the UK, with some recognised patterns for specific categories of aircraft. Every country is free to decide how to assign registrations to aircraft within their range, and to give them a tail number accordingly. In some countries, like the US, Japan or Korea, there is a direct correspondence between tail numbers and ICAO identifiers, but that's not the case in every country.
-
-In the US, tail registrations start with the N letter (they are also called N-numbers) and are followed by up to 5 numbers, or up to 4 numbers and 1 letter, or 3 numbers and 2 letters. Letters I and O are excluded. Then there is a *"direct"* correspondence with transponder addresses: `0xa00001` for `N1`, `0xa00002` for `N1A`, `0xa00003` for `N1AA` then `0xa00004` for `N1AB` until `0xadf7c7` fort `N99999`.
-
-:::{.callout-tip}
-# What is the PIA program?
-
-To address privacy concerns, FAA has initiated the Privacy ICAO aircraft address (PIA) program to improve the privacy of the eligible US-registered aircraft, ADS-B equipped and flying in the domestic US airspace. Recent research @michel_pia_2021 have shown this attempt is vain as it is very easy to break the anonymization and find which PIA address (between N41000 `0xa4d691` and N42 `0xa4f946`) is associated to which aircraft.
-:::
-
-@tbl-icao illustrates some examples of patterns in registrations numbers assigned by countries. In the Netherlands, KLM matches the two first letters after the country code to aircraft types.
-
-| country | range |    | pattern | category |
-| ------- | ----- | -- | ------  | -------- |
-| **France** | `380000` | `3bffff` | F- | |
-|     | | | F-A | Historic aircraft |
-|     | | | F-C | Gliders |
-|     | | | F-J | Ultralights |
-|     | | | F-W | Test and Delivery |
-|     | | | F-Z | State owned |
-| **Switzerland** | `4b0000` | `4b7fff` | HB- | |
-|     | | | HB-B | Balloons |
-|     | | | HB-F | Produced in Switzerland |
-|     | | | HB-X or Z | Helicopters |
-| **The Netherlands** | `480000` | `487ffff` | PH- | |
-|     | | | PH-AO | KLM Airbus A330 |
-|     | | | PH-BH | KLM Boeing 787-9 |
-|     | | | PH-BK | KLM Boeing 787-10 |
-|     | | | PH-BQ | KLM Boeing 777-200 |
-
-: Some countries reserve registration patterns to specific categories of aircraft. {#tbl-icao}
-
-### Aircraft type designators {-}
-
-[*DOC 8643 - Aircraft Type Designators*](https://www.icao.int/publications/DOC8643/Pages/default.aspx) by ICAO contains designators for aircraft types which are most commonly provided with air traffic service (ATS).
-
-Each designator consists of a 4-letter code associated with a manufacturer and an aircraft type, e.g., `A320` for Airbus A320, `B78X` for Boeing 787-10 or `E190` for Embraer 190. More specific designators can be used for balloons `BALL` or gliders `GLID`.
-
-This designator is often referred as `typecode` in aircraft databases and helps associating an aircraft type to an ICAO identifier.
-
-### Data sources {-}
-
-Maintaining a data base of transponder identifiers, aircraft tail numbers, type designators, owners and/or operators is a very cumbersome process. New aircraft are manufactured every month, which generates new transponder identifiers @opensky21. Some countries keep a database of their registered aircraft public (e.g. [FAA (US)](https://www.faa.gov/licenses_certificates/aircraft_certification/aircraft_registry/), [France](https://immat.aviation-civile.gouv.fr/immat/servlet/aeronef_liste.html), [Switzerland](https://app02.bazl.admin.ch/web/bazl/en/#/lfr/search) or [The Netherlands](https://www.ilent.nl/onderwerpen/luchtvaartuigregister#/)), but this is not a systematic practice in every country, and those do not always contain the transponder identifier.
-
-There have also been some crowdsourcing effort to constitute and maintain aircraft databases based on various open records and entries on social networks. Such databases raise some privacy concerns among some aircraft owners, who may be tempted to vandalise those databases @astroturfing22.
-
-Some public aircraft databases:
-
-- [The OpenSky Network aircraft database](https://opensky-network.org/aircraft-database) contains several hundreds of thousands of airframes;
-- [Flightradar24](https://www.flightradar24.com/data) give access to an interface to search for individual aircraft;
-- The website [www.airframes.org](http://www.airframes.org/), but they are very strict about their [terms of use](http://www.airframes.org/about);
-- Some Regional Monitoring Agencies (RMA) provide open access to data matching aircraft registered in their area, specifically in [Europe](https://www.eurocontrol.int/rmalive/regulatorListInit.do) or in the [Middle-East](https://midrma.com/en).
-
-
-## Flight trajectories
-
-EUROCONTROL's Network Manager has devised different flight trajectories
-formats in order to store and exchange information with the aviation community.
-Trajectories are recorded as either a sequence of 4D positions (3D plus timestamp)
-or like a sequence of 4D segments.
-
-In the following sections we will cover the most known formats: M1 (& M2) & M3, ALL_FT+ and SO6.
-
-They are a mix of flight information (ADEP, ADES, callsign, ...) and trajectory (4D position, ground speed, ...).
-
-### Model 1 (M1 or *FTFM*)
-
-The flight trajectory known as *Model 1*, *M1* or *Filed Tactical Flight Model (FTFM)* is a
-mathematical model containing a point and airspace volume profile created in ETFMS for a flight.
-This trajectory is first created when Flight Plan (FPL) details, and any subsequent changes,
-are received by the Network Operations of EUROCONTROL's
-Network Manager^[Aircraft Operators (AO) willing to fly IFR flights in the Network Manager (NM)
-area of responsibility are mandated to file the relevant Flight Plan to the Network Manager.
-The aim of this centralised management of FPL's in Europe is linked to one of the NM mandates, i.e.
-the ability to detect imbalance between demand (willingness to fly by AO's) and
-offer (ability to guarantee safety by ATC / airport capacity providing an adequate level of safety).
-The NM provides the ACC's/airports to monitor the situation and implement measures to resolve
-the overload (typically via departure delays or rerouting.)].
-
-The M1 is a translation of a FPL (especially Field 15) to a point profile, i.e. a
-sequence of 4D positions (timestamp + longitude, latitude, altitude) plus relevant penetrated airspace ID's,
-calculated taking into account the aircraft type performance (via BADA) and the environment restrictions
-as published in the [Route Availability Document (RAD)][rad].
-
-[rad]: https://www.nm.eurocontrol.int/RAD/ "Rote Availability Document (RAD)"
-
-:::{.callout-note}
-**TODO**
-
-1. add CSV file with sample M1 data in `data/` folder
-1. Add small sample of data frame for M1
-2. Plot M1
-:::
-
-
-### Model 2 (M2 or *RTFM*)
-
-An updated version of the M1 when the flight is regulated (i.e. delayed.)
-This trajectory could be more than a shift in time because of the impact of
-possibly closed areas or route segments in the new time window of the flight.
-
-### Model 3 (M3 or *CTFM*)
-
-The flight trajectory known as *Model 3*, *M3* or *Current Tactical Flight Model (CTFM)* is an
-updated version of the M1 model (or eventually M2) where the point/airspace profile is recalculated taking into account
-surveillance data (*Correlated Position Reports* [CPR]^[CPRs are received by NM from ACC's,
-they consist of surveillance data (callsign longitude, latitude, altitude, timestamp) paired
-with flight plan info (aircraft type, ICAO 24-bit address)] or more recently
-ADS-B position reports)
-when these show a significant deviation from M1 (or M2.)
-The deviation considered is of 1 min in time, more than 400 feet in en-route phase,
-more than 1000 feet in climb/descent phase or more than 10 NM laterally,
-see 14.3.1 [@niarchakou_simonselva17].
-
-::: {.callout-note}
-**TODO**
-
-1. add CSV file with sample M3 data in `data/` folder
-1. Add small sample of data frame for M3
-2. Plot M3 and M1/M3 overlapped to show the differences
-:::
-
-### SO6
-
-The SO6 format delivers a  flight segment sequence from origin to destination.
-
-
-
-| #  | Field                 | Type | Size | Comment |
-|---:|-----------------------|------|------|---------|
-|  1 | segment identifier    | char |   | first point name "_" last point name |
-|  2 | origin of flight      | char | 4 | ICAO code |
-|  3 | destination of flight | char | 4 | ICAO code |
-|  4 | aircraft type         | char | 4 |  |
-|  5 | time begin segment    | num | 6  | HHMMSS  |
-|  6 | time end segment      | num | 6  | HHMMSS  |
-|  7 | FL begin segment      | num | 1 to 3 |  |
-|  8 | FL end segment        | num | 1 to 3 |  |
-|  9 | status                | char  | 1 | 0=climb, 1=descent, 2=cruise |
-| 10 | call sign             | char  |   |  |
-| 11 | date begin segment    | num   | 6 | YYMMDD |
-| 12 | date end segment      | num   | 6 | YYMMDD |
-| 13 | lat begin segment     | float |   | decimal minute |
-| 14 | lon begin segment     | float |   | decimal minute |
-| 15 | lat end segment       | float |   | decimal minute |
-| 16 | lon end segment       | float |   | decimal minute |
-| 17 | flight identifier     | num   |   | must be unique |
-| 18 | sequence              | num   |   | start at 1 for every new flight |
-| 19 | segment length        | float |   | nautical miles |
-| 20 | segment parity        | num   |   |  0=NO, 1=ODD, 2=EVEN, 3=ODD_LOW, 4=EVEN_LOW), 5=ODD_HIGH, 6=EVEN_HIGH, 7=General Purpose Red , 8=General Purpose Orange , 9=General Purpose Yellow |
- 
-The parity decides flight level allocation: Odd levels are FL290,310,330... and Even levels are FL280,300,320 ...
-
-
-
-### ALL_FT+
-
-ALL_FT+ files are available via DDR2 and typically follow a naming convention like
-`yyyyMMdd.ALL_FT+`, i.e. `20231124.ALL_FT+.7z` for data covering November 24th 2022.
-
-The content of an ALL_FT+ file is quite *massive*, at the time of this writing for version 7
-contains 207 columns!
-ALL_FT+ is clearly an internal NM systems archiving format that has been plainly
-exchanged.
-
-Documentation and metadata is sparse even from the DDR2 manual or NEST help pages.
-
-
-:::{.callout-note}
-TODO this part could help?
-:::
-
-Data for a trajectory refer typically to a point profile and can
-include:
-
-* flight ID / flight number / callsign
-* sequence number
-* timestamp
-* position (longitude, latitude, altitude)
-* position ID (i.e. published point ID)
-* airspace ID
-* (ground / vertical) speed
-
-with timestamp and position as a minimum.
-
-### Flight route
-
-Example: N0441F340 FISTO5B FISTO UY156 PERIG UT210 TUDRA/N0426F280 UT158 AMB AMB9W
-
-### DDR2 `exp2`
-
-The traffic demand file (exp2) can obtained from the EUROCONTROL’s Demand Data Repository
-(DDR2) for a selected period of time (typically one day) and geographic area (e.g. FABEC).
-The `exp2` includes, for each flight, basic information about the departure time,
-the origin and destination airports, a unique flight identifier, the callsign,
-the aircraft ICAO code (e.g. A320) and the requested flight level by the airspace user as
-submitted in the flight plan.

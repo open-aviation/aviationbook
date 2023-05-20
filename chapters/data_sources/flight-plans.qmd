@@ -1,0 +1,149 @@
+---
+title: Flight plans and trajectories
+aliases:
+  - .
+authors:
+  - Enrico Spinielli
+---
+
+EUROCONTROL's Network Manager has devised different flight trajectories
+formats in order to store and exchange information with the aviation community.
+Trajectories are recorded as either a sequence of 4D positions (3D plus timestamp)
+or like a sequence of 4D segments.
+
+In the following sections we will cover the most known formats: M1 (& M2) & M3, ALL_FT+ and SO6.
+
+They are a mix of flight information (ADEP, ADES, callsign, ...) and trajectory (4D position, ground speed, ...).
+
+## Model 1 (M1 or *FTFM*)
+
+The flight trajectory known as *Model 1*, *M1* or *Filed Tactical Flight Model (FTFM)* is a
+mathematical model containing a point and airspace volume profile created in ETFMS for a flight.
+This trajectory is first created when Flight Plan (FPL) details, and any subsequent changes,
+are received by the Network Operations of EUROCONTROL's
+Network Manager^[Aircraft Operators (AO) willing to fly IFR flights in the Network Manager (NM)
+area of responsibility are mandated to file the relevant Flight Plan to the Network Manager.
+The aim of this centralised management of FPL's in Europe is linked to one of the NM mandates, i.e.
+the ability to detect imbalance between demand (willingness to fly by AO's) and
+offer (ability to guarantee safety by ATC / airport capacity providing an adequate level of safety).
+The NM provides the ACC's/airports to monitor the situation and implement measures to resolve
+the overload (typically via departure delays or rerouting.)].
+
+The M1 is a translation of a FPL (especially Field 15) to a point profile, i.e. a
+sequence of 4D positions (timestamp + longitude, latitude, altitude) plus relevant penetrated airspace ID's,
+calculated taking into account the aircraft type performance (via BADA) and the environment restrictions
+as published in the [Route Availability Document (RAD)][rad].
+
+[rad]: https://www.nm.eurocontrol.int/RAD/ "Rote Availability Document (RAD)"
+
+:::{.callout-note}
+**TODO**
+
+1. add CSV file with sample M1 data in `data/` folder
+1. Add small sample of data frame for M1
+2. Plot M1
+:::
+
+
+## Model 2 (M2 or *RTFM*)
+
+An updated version of the M1 when the flight is regulated (i.e. delayed.)
+This trajectory could be more than a shift in time because of the impact of
+possibly closed areas or route segments in the new time window of the flight.
+
+## Model 3 (M3 or *CTFM*)
+
+The flight trajectory known as *Model 3*, *M3* or *Current Tactical Flight Model (CTFM)* is an
+updated version of the M1 model (or eventually M2) where the point/airspace profile is recalculated taking into account
+surveillance data (*Correlated Position Reports* [CPR]^[CPRs are received by NM from ACC's,
+they consist of surveillance data (callsign longitude, latitude, altitude, timestamp) paired
+with flight plan info (aircraft type, ICAO 24-bit address)] or more recently
+ADS-B position reports)
+when these show a significant deviation from M1 (or M2.)
+The deviation considered is of 1 min in time, more than 400 feet in en-route phase,
+more than 1000 feet in climb/descent phase or more than 10 NM laterally,
+see 14.3.1 [@niarchakou_simonselva17].
+
+::: {.callout-note}
+**TODO**
+
+1. add CSV file with sample M3 data in `data/` folder
+1. Add small sample of data frame for M3
+2. Plot M3 and M1/M3 overlapped to show the differences
+:::
+
+## SO6
+
+The SO6 format delivers a  flight segment sequence from origin to destination.
+
+
+
+| #  | Field                 | Type | Size | Comment |
+|---:|-----------------------|------|------|---------|
+|  1 | segment identifier    | char |   | first point name "_" last point name |
+|  2 | origin of flight      | char | 4 | ICAO code |
+|  3 | destination of flight | char | 4 | ICAO code |
+|  4 | aircraft type         | char | 4 |  |
+|  5 | time begin segment    | num | 6  | HHMMSS  |
+|  6 | time end segment      | num | 6  | HHMMSS  |
+|  7 | FL begin segment      | num | 1 to 3 |  |
+|  8 | FL end segment        | num | 1 to 3 |  |
+|  9 | status                | char  | 1 | 0=climb, 1=descent, 2=cruise |
+| 10 | call sign             | char  |   |  |
+| 11 | date begin segment    | num   | 6 | YYMMDD |
+| 12 | date end segment      | num   | 6 | YYMMDD |
+| 13 | lat begin segment     | float |   | decimal minute |
+| 14 | lon begin segment     | float |   | decimal minute |
+| 15 | lat end segment       | float |   | decimal minute |
+| 16 | lon end segment       | float |   | decimal minute |
+| 17 | flight identifier     | num   |   | must be unique |
+| 18 | sequence              | num   |   | start at 1 for every new flight |
+| 19 | segment length        | float |   | nautical miles |
+| 20 | segment parity        | num   |   |  0=NO, 1=ODD, 2=EVEN, 3=ODD_LOW, 4=EVEN_LOW), 5=ODD_HIGH, 6=EVEN_HIGH, 7=General Purpose Red , 8=General Purpose Orange , 9=General Purpose Yellow |
+
+The parity decides flight level allocation: Odd levels are FL290,310,330... and Even levels are FL280,300,320 ...
+
+
+
+## ALL_FT+
+
+ALL_FT+ files are available via DDR2 and typically follow a naming convention like
+`yyyyMMdd.ALL_FT+`, i.e. `20231124.ALL_FT+.7z` for data covering November 24th 2022.
+
+The content of an ALL_FT+ file is quite *massive*, at the time of this writing for version 7
+contains 207 columns!
+ALL_FT+ is clearly an internal NM systems archiving format that has been plainly
+exchanged.
+
+Documentation and metadata is sparse even from the DDR2 manual or NEST help pages.
+
+
+:::{.callout-note}
+TODO this part could help?
+:::
+
+Data for a trajectory refer typically to a point profile and can
+include:
+
+* flight ID / flight number / callsign
+* sequence number
+* timestamp
+* position (longitude, latitude, altitude)
+* position ID (i.e. published point ID)
+* airspace ID
+* (ground / vertical) speed
+
+with timestamp and position as a minimum.
+
+## Flight route
+
+Example: N0441F340 FISTO5B FISTO UY156 PERIG UT210 TUDRA/N0426F280 UT158 AMB AMB9W
+
+## DDR2 `exp2`
+
+The traffic demand file (exp2) can obtained from the EUROCONTROL’s Demand Data Repository
+(DDR2) for a selected period of time (typically one day) and geographic area (e.g. FABEC).
+The `exp2` includes, for each flight, basic information about the departure time,
+the origin and destination airports, a unique flight identifier, the callsign,
+the aircraft ICAO code (e.g. A320) and the requested flight level by the airspace user as
+submitted in the flight plan.

@@ -8,13 +8,21 @@
       href: background/earth.html
     - text: Anatomy of an aircraft
       href: background/aircraft.html
+    - text: A taxonomy of airspaces
+      href: background/airspace.html
+    - text: Aerodromes and airports
+      href: background/aerodrome.html
     - text: Air navigation services
       href: background/cns.html
 - title: The ecosystem of aviation data
   subtitle: The most commonly used data formats in the aviation and ATM data analysis community
   links:
-    - text: Aircraft trajectories
-      href: data_sources/trajectories.html
+    - text: Flight tracking technologies
+      href: data_sources/flight-tracking.html
+    - text: Aircraft information
+      href: data_sources/aircraft-information.html
+    - text: Flight plans
+      href: data_sources/flight-plans.html
     - text: Aeronautical information
       href: data_sources/aeronautical-information.html
     - text: Weather, climate and environment
