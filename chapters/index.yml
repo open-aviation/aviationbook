@@ -4,8 +4,10 @@
   links:
     - text: A short history of aviation
       href: background/history.html
-    - text: Earth and atmosphere models
+    - text: Earth models
       href: background/earth.html
+    - text: Atmosphere models for aircraft altimetry
+      href: background/atmosphere.html
     - text: Anatomy of an aircraft
       href: background/aircraft.html
     - text: A taxonomy of airspaces

@@ -25,6 +25,7 @@ book:
       chapters:
         - chapters/background/history.qmd
         - chapters/background/earth.qmd
+        - chapters/background/atmosphere.qmd
         - chapters/background/aircraft.qmd
         - chapters/background/airspace.qmd
         - chapters/background/aerodrome.qmd
@@ -84,6 +85,7 @@ book:
           contents:
             - chapters/background/history.qmd
             - chapters/background/earth.qmd
+            - chapters/background/atmosphere.qmd
             - chapters/background/aircraft.qmd
             - chapters/background/airspace.qmd
             - chapters/background/aerodrome.qmd
