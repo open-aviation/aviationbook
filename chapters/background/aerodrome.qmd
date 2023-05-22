@@ -9,18 +9,55 @@ In ICAO Annex 14, the term **aerodrome** is defined as *"a defined area on land 
 Since aerodromes have such a diverse range of applications, a distinction is made between different types of aerodromes. This typification often varies from country to country or region to region and (unfortunately) is not internationally standardised. For instance, an aerodrome designed for use of rotary-wing aircraft, i.e., helicopters, is called a **heliport**. A facility specifically designed for seaplanes and/or amphibian vehicles, which are aircraft able to land both on land and on water, is referred to as a **water aerodrome**. An aerodrome designed for the usage of small, often propeller-driven, general aviation aircraft, is called an **airstrip**, an **airfield**, or **small aerodrome**. Quite frequently, these type of aerodromes are equipped with a grass runway. An aerodrome used exclusively for military air operations is called a **military air base**. Finally, **civil airports** refer to facilities which are mainly available to commercial air transport. This refers to flight movements in which passengers (or cargo) are transported by an airline for a fee. For the remainder of this section, the focus is primarily on land-based **civil airports** designed for use by fixed-wing aircraft.
 
 According to European Regulation (EU) 2018/1139, all aerodromes in the European Union which
-* (i) are open to public use;  
-* (ii) serve commercial air transport; and  
-* (iii) have a paved instrument runway of 800 metres or more, or exclusively serve helicopters using instrument approach or departure procedures; 
+
+i. are open to public use;  
+ii. serve commercial air transport; and  
+iii. have a paved instrument runway of 800 metres or more, or exclusively serve helicopters using instrument approach or departure procedures; 
+
 fall under the scope of the *Basic Regulation* (BR) of the **European Union Aviation Safety Agency** and its *Implementing Rules* (IR). These aerodromes are therefore subject to legally binding requirements that define how they must be designed, maintained, and operated. Aerodromes which handle no more than 10'000 commercial air transport passengers per year and no more than 850 movements related to cargo operations per year can be excempted from an applicablility of Regulation (EU) 2018/1139. For this reason, EASA publishes on its website [a list of aerodromes](https://www.easa.europa.eu/en/datasets/aerodromes-falling-scope-regulation-eu-20181139) specifying for which Regulation (EU) 2018/1139 is applicable and which aerodromes are exempted.
 
 Aerodromes falling under the scope of the *basic regulation* must be certified. In simple terms, in this certification procedure an aerodrome must show how and in what way the *certification specifications* of EASA are complied with or, if they cannot be complied with, what measures are/were taken to ensure an equivalent level of safety. The demonstration of an equivalent level of safety is particularly important for aerodromes that have grown over many decades and can only make certain changes to the facilities to ensure specifications under great financial constraints or not at all, e.g., due to topographical reasons.
 
-Certification specifications for aerodromes are stipulated by the EASA in the **CS-ADR** document for aerodromes and the **CS-HPT** document for heliports. The certification specifications define to a great detail, how large parts of an aerodrome and a heliport have to be designed and built. For example, CS-ADR defines how runways, taxiways, or aprons must be designed, sized, , marked, and lit.
+Certification specifications are stipulated by the EASA in the [**CS-ADR** document](https://www.easa.europa.eu/en/certification-specifications/cs-adr-dsn-aerodromes-design) for aerodromes and the [**CS-HPT** document](https://www.easa.europa.eu/en/document-library/certification-specifications/group/cs-hpt-dsn-heliports-design) for heliports. These certification specifications define to a great detail, how large parts of an aerodrome and a heliport have to be designed and built. For example, CS-ADR defines how runways, taxiways, or aprons of an aerdrome must be designed, sized, marked, and lit.
 
-## Airside components of an aerodrome
+## Anatomy of an aerodrome
+An aerodrome can be divided into two distinct parts: the airside part and the landside part. Although there are different definitions for these two terms in the literature and also in the industry, we use the following definitions in this document:
+
+* The **airside** of an aerodrome covers all areas which can be used by aircraft. This includes both the maneouvring area as well as the apron(s) of an aerodrome.
+* The **landside** of an aerodrome covers all areas which are not accessible for aircraft. This includes the terminals, docks, the baggage handling system (BHS), ground access infrastructure, etc.
+
+In the following, aerodrome infrastructure and components associated to the airside and the landside part are introducted and described in more detail.
+
+### Airside components of an aerodrome
 <!--runway, taxiways, aprons-->
+The airside of an aerodrome consists of the maneouvring area and the apron(s). In CS ADR-DSN.A.002, the **manevouvring area** is defined as the *"part of an aerodrome to be used for the take-off, landing and taxiing of aircraft, excluding aprons"*. Consequently, the maneouvring area consists of (i) runway(s) and (ii) taxiway(s). As such, CS ADR-DSN.A.002 defines a **runway** as a *"rectangular area on a land aerodrome prepared for the landing and take-off of aircraft"*, while a **taxiway** is a *"defined path on a land aerodrome established for the taxiing of aircraft and intended to provide a link between one part of the aerodrome and another"*. Finally, the **apron(s)** of an aerodrome are according to CS ADR-DSN.A.002 defined as an *"area intended to accommodate aircraft for purposes of loading or unloading passengers, mail or cargo, fuelling, parking, or maintenance"*.
+
+#### Runways
+
+* Runway dimensioning (width, length, slopes)
+* Runway orientation and designation
+* Number (basic runway system layouts)
+* Adjacent areas to runways
+* Runway markings
+* Runway lights
+* Obstacles
+
+#### Taxiways
+
+* Taxiway dimensioning
+* Taxiway marking, lighting, signage
 
 
-## Landside components of an aerodrome
+Types of taxiways:
+* "Normal" taxiways
+* Apron stand taxilane
+* Apron taxiway
+* Rapid exit taxiway
+
+#### Aprons
+
+* Aprons
+* Stands
+
+### Landside components of an aerodrome
 <!--terminals & docks-->
