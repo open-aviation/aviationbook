@@ -7,60 +7,94 @@ authors:
     - Xavier Olive
 ---
 
-Aviation refers to operations of aircraft in general. The word was coined in the middle of the 19th century, derived from the Latin word *avis* for "bird". Historical records mention many legends of human attempting to fly in Greek, Persian, Nordic or Inca mythologies. Around the globe, deities with wings, feathers or other bird attributes appear, and men start to notice that even birds can stay afloat without flapping.
-
-In the 16th century, Leonardo da Vinci imagines flying machines in a secret manuscript of thousands of words and hundreds of sketches of an "ornithopter", at the same period  kites are imported from China and become popular in Europe.
+Aviation refers to operations of aircraft in general. The word was coined in the middle of the 19th century, derived from the Latin word *avis* for "bird". Historical records mention many legends of human attempting to fly in Greek, Persian, Nordic or Inca mythologies. Around the globe, deities with wings, feathers or other bird attributes appear, and men start to notice that even birds can stay afloat without flapping. In the 16th century, Leonardo da Vinci imagines flying machines in a secret manuscript of thousands of words and hundreds of sketches of an "ornithopter", at the same period  kites are imported from China and become popular in Europe.
 
 This chapter attempts to draw a quick panorama over the history of aviation, focusing on heavier-than-air aircraft, until the digital age when data started to be produced and stored for further analysis. We split this chapter in several sections, matching important milestones in the history of aviations.
 
-1. *Flying machines* spans from the Montgolfier brothers to the Wright brothers.
-2. *The pioneer era* goes through a sequence of first times, before the Army takes over in
-3. *World War I*, which saw aircraft on war fields for the first time.
-4. The 1920s and 1930s mark the *Golden Age of aviation*, with the creation first airlines, and strong images in the collective imagery.
-5. *World War II* marked the place of aviation in armed conflicts: Pearl Harbor, massive bombing from all sides, and the final role of Enola Gay
-6. The post-war period etc. radars, ATM, new motors, etc.
-7. Digitalisation, GPS, etc.
-8. Big Data era? (21st century)
-
 ## Flying machines
+1783--1904
 
-### Balloons
+It all began in the late 18th century with the pioneering efforts of the Montgolfier brothers, Joseph-Michel and Jacques-Étienne, who successfully demonstrated the possibility of manned flight using balloons. On June 4, 1783, in Annonay, France, they launched a 9-meter-tall balloon with a fire underneath that heated the air, causing it to rise and lift the balloon off the ground.
 
-### Dirigibles
+Building upon the success of balloons, the concept of dirigibles or airships emerged in the late 19th century. Ferdinand von Zeppelin, a German inventor, took the lead in developing rigid airships. His creations, known as Zeppelins, featured a metal framework covered with fabric and contained multiple gas cells for buoyancy. The first fully controllable Zeppelin took flight on July 2, 1900, near Lake Constance in Friedrichshafen, Germany. This marked a significant milestone in aviation, showcasing the potential for long-distance travel and commercial applications.
 
-Zeppelin
+Meanwhile, advancements in glider technology were also taking place. Otto Lilienthal, a German aviation pioneer, conducted extensive research and made over 2,000 flights between 1891 and 1896. Lilienthal's experiments with various wing designs and control mechanisms greatly contributed to the understanding of aerodynamics and the principles of flight. His work laid the foundation for future aviators, inspiring them to push the boundaries of flight further.
 
-### Gliders
+In France, Clément Ader, an engineer and inventor, made notable contributions to aviation history. On October 9, 1890, he flew the Éole, a steam-powered monoplane, which is considered one of the first attempts at powered flight. While the distance covered was limited, Ader's achievement demonstrated the feasibility of powered aviation and encouraged others to pursue similar endeavors.
 
-### Engines
-
-Otto Lilienthal, Clément Ader, etc.
-
-### The Wright Brothers
+The turning point in the history of aviation came with the Wright brothers, Orville and Wilbur. Inspired by Lilienthal's work, the brothers began experimenting with gliders in the late 19th century. Between 1900 and 1902, they built and tested a series of glider prototypes, refining their understanding of lift, drag, and control. They constructed wind tunnels to collect data and developed their innovative three-axis control system, which allowed for precise maneuverability. The lessons learned from these glider experiments provided the Wright brothers with invaluable insights into the principles of flight and set the stage for their next monumental step: in 1903, the Wright brothers achieved their groundbreaking accomplishment. They successfully flew the Wright Flyer, a powered aircraft, for approximately 12 seconds in Kitty Hawk, North Carolina. This historic flight is considered the first controlled and sustained powered flight in history.
 
 ## The pioneer era
 1904--1914
 
-Santos-Dumont, Blériot
+The period between the Wright Brothers' groundbreaking flight in 1903 and the following decade witnessed remarkable advancements in the history of aviation. While the Wright Brothers continued to refine their aircraft designs, other notable figures emerged.
+
+One such figure was Alberto Santos-Dumont, a Brazilian aviation pioneer who captured the world's attention with his groundbreaking flights in Europe. In 1901, Santos-Dumont designed, built, and flew the first powered airships, winning the Deutsch Prize when he flew around the Eiffel Tower in his airship No. 6. He further solidified his reputation by piloting the 14-bis, a canard biplane, in Paris, France, in 1906. This flight, witnessed by a large crowd, demonstrated the practicality of powered flight and earned him widespread recognition as a pioneer aviator. Santos-Dumont continued to innovate, incorporating ailerons between the wings to improve lateral stability. His final design, the Demoiselle monoplanes (Nos. 19 to 22), first flown in 1907, became the world's first series production aircraft, with the Demoiselle No. 19 being constructed in only 15 days.
+
+Around the same time, Louis Blériot, a French aviator and inventor, left his mark on aviation history. In 1909, Blériot accomplished a monumental feat by becoming the first person to cross the English Channel in an airplane. His successful flight in the Blériot XI monoplane demonstrated the increasing capabilities of aircraft for long-distance travel. Blériot's achievement inspired a wave of enthusiasm for aviation, fueling a spirit of competition among aviators. Aviation races and competitions gained popularity, driving inventors and pilots to push the boundaries of speed, endurance, and innovation.
+
+On September 23, 1913, Roland Garros embarked on an ambitious and historic flight from St Raphael in Southern France to Bizerta, Tunisia, in 1913. This pioneering long-distance journey garnered significant attention at the time. Garros piloted a Morane-Saulnier monoplane, covering a distance of approximately 1,500 kilometers (930 miles) in over 10 hours of flight time. Initially, Garros had intended to make a stop at Cagliari, the capital of Sardinia, to refuel. However, he was progressing so well that he soared past this point at a great height. This journey marked one of the earliest long-distance flights across the Mediterranean.
+
+The military potential of airplanes was quickly recognized, leading to their use in warfare. Italy became the first country to employ aircraft for military purposes during the Italian-Turkish war in 1911--1912, using them for reconnaissance, bombing, and artillery correction flights in Libya. Bulgaria followed suit, using airplanes to attack and reconnoiter Ottoman positions in the First Balkan War of 1912--1913. However, it was during World War I that airplanes saw significant utilization in offensive, defensive, and reconnaissance capacities by both the Allies and the Central Powers. The war became the first conflict to witness widespread and intensive use of airplanes and airships, showcasing their strategic importance and paving the way for further military aviation development.
 
 ##  World War I
 1914--1918
 
-Combat, military uses
+World War I witnessed the emergence of aerial combat, giving birth to the era of fighter pilots. The skies transformed into battlegrounds as airplanes took on crucial roles for reconnaissance, bombing, and engaging enemy aircraft. France, Britain, Germany, and Italy emerged as leading manufacturers of fighter planes that saw action during the war, with notable contributions from German aviation technologist Hugo Junkers, who pioneered the use of all-metal aircraft starting in late 1915.
 
-Roland Garros,
-von Richthofen
+Among the notable figures of the era, Roland Garros, a French aviator, made significant advancements by pioneering the concept of shooting through a propeller. Garros equipped his aircraft with deflector plates, allowing him to fire a machine gun through the propeller's arc. His innovations provided a substantial advantage in aerial combat. Garros met his untimely demise on October 5, 1918, when he was shot down and killed during aerial combat over France. Another prominent figure was Manfred von Richthofen, known as the Red Baron, who became one of the most renowned and successful pilots of the war, tallying 80 confirmed kills before his death in 1918. Georges Guynemer, a French fighter pilot, also made a significant impact before his untimely death in 1917, embodying heroism and bolstering French morale.
+
+The advancements in aircraft technology during the war led to the development of specialized fighter planes. Aerial photography became a vital component of intelligence gathering, with reconnaissance aircraft capturing images of enemy positions and fortifications, providing crucial information for military planning and strategy. The war underscored the importance of air superiority, leading to the deployment of anti-aircraft guns and fighter planes by both sides to counter enemy aircraft. This, in turn, spurred advancements in anti-aircraft technology and tactics.
+
+World War I acted as a catalyst for the rapid advancement of aviation, leaving a lasting impact on both military and civilian aviation. The experiences and lessons learned during the conflict laid a solid foundation for future developments, driving the industry towards new heights of innovation and progress. It highlighted the immense potential of aircraft as strategic tools and propelled aviation into a new era. Amidst this transformative period, there were notable figures, such as Santos-Dumont, who voiced their opposition to the warlike use of airplanes.
 
 ## The Golden Age
 1919--1939
 
+One notable development after World War 1 was the establishment of Aeropostale, also known as Compagnie Générale Aéropostale, a French airmail company that played a crucial role in the expansion of aviation networks and the development of international air travel. Founded in 1918, Aeropostale, under the leadership of Pierre-Georges Latécoère, expanded its operations and established a network of airmail routes. These routes extended from Toulouse Montaudran airfield in France to destinations such as Casablanca in Morocco, Dakar in Senegal, Buenos Aires in Argentina, and Rio de Janeiro in Brazil. Aeropostale's flights covered vast distances over challenging terrains, including the Sahara Desert and the Andes Mountains.
+
+Aeropostale's pilots and aircraft faced numerous challenges, including harsh weather conditions, navigational difficulties, and technical limitations. Despite these obstacles, Aeropostale successfully maintained regular airmail services. Aeropostale's impact extended beyond its operational lifespan. It captured the imagination of the public and inspired a sense of adventure and exploration. The pilots of Aeropostale, such as Antoine de Saint-Exupéry, who later became famous for writing _The Little Prince_, Jean Mermoz, famous for his 1930 South Atlantic crossing, and Henri Guillaumet, known for his remarkable survival after a crash landing in the Andes Mountains, became symbols of courage and the romanticism associated with early aviation.
+
+During the interwar period, commercial airlines offering scheduled passenger services began to emerge. One noteworthy example was Aeromarine Airways, which operated in the United States from 1920 to 1923. Using seaplanes, Aeromarine Airways provided flights between cities such as New York, Boston, and Atlantic City. In Europe, KLM Royal Dutch Airlines was established in 1919 and holds the distinction of being the oldest operating airline in the world. KLM pioneered international scheduled services by initially connecting Amsterdam with London. Its success served as inspiration for the creation of other European airlines, including British Airways in 1919 and Air France in 1933. Air France was formed through a merger involving Aeropostale, along with two other airlines founded in 1919 and 1920, dedicated to domestic and international routes.
+
+In the United States, the Air Mail Act of 1925 and the Air Commerce Act of 1926 contributied to the establishment of major U.S. airlines, including United Airlines, American Airlines, and Delta Air Lines. Pan American World Airways, commonly known as Pan Am, holds a prominent and influential position in the history of aviation. Founded in 1927, Pan Am launched its first international passenger route in 1928, connecting Key West, Florida, and Havana, Cuba. Pan Am became an iconic symbol of the golden age of aviation, capturing the imagination of the public.
+
+The first successful non-stop flight over the Atlantic Ocean took place in May 1927. American aviator Charles Lindbergh accomplished this feat by flying solo in a custom-built, single-engine monoplane named the _Spirit of St. Louis_. Lindbergh departed from Roosevelt Field in New York and landed in Le Bourget Field near Paris, France. In June 1928, Amelia Earhart made history by becoming the first woman to fly across the Atlantic, albeit as a passenger rather than as the pilot. The flight took place from Newfoundland, Canada, to Wales, and Earhart gained significant recognition for her participation in this groundbreaking journey. In May 1932, she became the first woman to fly solo non-stop across the Atlantic Ocean. Amelia Earhart disappeared in 1937, during an attempt to circumnavigate the globe. She and her navigator were en route over the Pacific Ocean when communication with them was lost. Despite extensive search efforts, they were never found, and their fate remains a mystery.
+
+Technological advancements in aviation were profound during this time. The development of jet engines by Hans von Ohain and Sir Frank Whittle revolutionized aviation, leading to faster and more efficient aircraft. In the 1920s, Jimmy Doolittle became interested in instrument flying, which involved using cockpit instruments to navigate and control an aircraft instead of relying solely on visual cues. One of his notable accomplishments was the invention of the artificial horizon and directional gyroscope, which provided pilots with crucial information about the aircraft's attitude and heading. Doolittle advocated for the integration of instrument flying into pilot training and aviation practices. His efforts led to the establishment of instrument flight rules (IFR) and the implementation of instrument training programs in aviation.
+
+As the world moved closer to World War II, rapid advancements in aircraft design, such as the introduction of monoplane fighters and strategic bombers, transformed aerial warfare. Notable aircraft of the era included the Supermarine Spitfire and the Messerschmitt Bf 109, which would become iconic symbols of aerial combat during the war.
+
 ##  World War II
 1939--1945
+
+As nations engaged in fierce battles, the development of aircraft and radar systems played a crucial role in gaining strategic advantages. Sir Robert Watson-Watt was a Scottish physicist who played a pivotal role in the development of radar. His research and efforts led to the creation of the Chain Home radar system in the United Kingdom. This early warning radar system provided crucial information about incoming enemy aircraft, enabling the British Royal Air Force (RAF) to effectively intercept and defend against German air attacks.
+
+The use of radar technology during World War II was a game-changer in aerial combat. Radar allowed for early detection of enemy aircraft, facilitating effective defense and counterattacks. Alongside Watson-Watt's Chain Home system, the introduction of airborne radar, such as the H2S radar in British bombers, provided unprecedented navigational capabilities and target identification for aircraft flying in low visibility conditions.
+
+In addition to radar, the development of jet engines revolutionized aviation during World War II. German engineer Hans von Ohain and British inventor Frank Whittle independently worked on jet propulsion technology, leading to the creation of the world's first operational jet engines. The German Messerschmitt Me 262 and the British Gloster Meteor became the first jet-powered combat aircraft, showcasing the incredible speed and maneuverability that jet technology offered.
 
 ## The post-war era
 1945--1979
 
-## The digital age
-The 1980s
+After World War II, civil aviation experienced significant growth and development. The post-war era witnessed a surge in air travel, leading to the expansion of commercial airlines and the establishment of new routes around the world. The introduction of jet engines revolutionized civil aviation, providing faster and more efficient means of transportation. The de Havilland Comet, the world's first commercial jet airliner, made its maiden flight in 1949, ushering in a new era of high-speed air travel.
 
-## The 21st century
+The development of jet engines continued to evolve in the post-war period. Rolls-Royce, General Electric, and Pratt & Whitney were among the key players in advancing jet engine technology. Their efforts led to the creation of more powerful and fuel-efficient engines, enabling aircraft to fly faster and cover longer distances. The Boeing 707, introduced in the late 1950s, became a symbol of the jet age, marking a significant milestone in commercial aviation and paving the way for larger and more capable jetliners.
+
+As air traffic increased, the need for efficient air traffic management became apparent. To ensure safe and organized movement of aircraft, air traffic control systems were established. The implementation of radar-based air traffic control systems played a crucial role in enhancing airspace management. Secondary surveillance radar (SSR) technology allowed for the identification and tracking of aircraft by transmitting unique codes known as transponder signals.
+
+The post-war era also witnessed the emergence of supersonic flight. The iconic Concorde, a joint project between British Aircraft Corporation and Aérospatiale, made its first flight in 1969.  This revolutionary aircraft had the capability to fly at supersonic speeds, transforming long-haul travel by drastically reducing flight times between continents. The Concorde became an icon of technological achievement and luxurious air travel. However, despite its initial success, factors such as high operational costs, a fatal accident at Paris airport in 2000, and growing environmental concerns led to the eventual phasing out of supersonic commercial flights.
+
+
+## The digital age
+1980 and later
+
+The last quarter of the 20th century saw a change of emphasis, with no significant revolutionary progress being made in flight speeds, distances, and materials technology.
+
+One notable development during this period was the widespread adoption of digital flight management systems (FMS) in commercial aircraft. The Boeing 767 was the first to introduce these computer-based systems, which replaced traditional analog instruments. FMS allowed for more precise navigation, automated flight planning, and improved aircraft performance. The integration of FMS into cockpits paved the way for increased safety, efficiency, and reliability in aviation operations.
+
+The use of GPS (*Global Positioning System*) also played a crucial role in transforming aviation. Following the incident of Korean Air Flight 007 in 1983, where the aircraft from New York to Seoul via Anchorage was shot down after deviating from its intended route, there was a renewed emphasis on enhancing navigation and surveillance capabilities. GPS technology provided a highly accurate and reliable means of determining an aircraft's position, velocity, and time. Its widespread adoption in the 1980s and 1990s greatly improved aircraft navigation, enabling precise route planning, automated guidance systems, and enhanced situational awareness for pilots.
+
+Additionally, this period saw the emergence of more advanced air traffic management systems. New technologies were implemented, allowing for better monitoring and management of air traffic based on radar and data processing capabilities. These systems facilitated more efficient routing, reduced congestion, and enhanced safety in busy airspace. The digitalization of air traffic management systems played a key role in accommodating the increasing volume of air traffic and ensuring smooth operations in the rapidly evolving aviation landscape.
+
+This book delves into the details of these technologies and explains how to make the most of collected data in aviation and air traffic management.

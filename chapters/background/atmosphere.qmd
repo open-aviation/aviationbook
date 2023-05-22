@@ -1,0 +1,370 @@
+---
+title: Atmosphere models for aircraft altimetry
+author: David Gianazza
+---
+
+
+The elements presented in this section are mainly taken from the ICAO
+(International Civil Aviation Organization) Standard Atmosphere Manual,
+and the revised atmosphere model [@ATMORev] used in the Eurocontrol BADA
+(Base of Aircraft Data) performance model.
+
+## The International Standard Atmosphere (ISA) {#sect:ISA}
+
+
+### The Hydrostatic Equation
+
+$$ -dp= \rho g dh
+$$ {#eq-FLUIDOSTATIC}
+
+where $\rho$ is the air density.
+
+### The Ideal Gaz Law
+
+$$ p= \rho R  T
+$$ {#eq-PERFECT_GAS}
+
+In this equation, $R$ is the specific constant for dry air
+($R= 287.05287\quad m^2/K.s^2$), and $T$ is the air temperature.
+
+### The Geopotential Altitude
+
+In @eq-FLUIDOSTATIC, the acceleration $g=g(h)$ due to the
+combined effects of Earth gravitation and rotation varies with the
+altitude $h$. Depending on the chosen Earth model, the expression of
+$g(h)$ can be more or less complex.
+
+To simplify the expression of the atmospheric model equations, we
+introduce a new quantity, the geopotential altitude $H$, defined by
+@eq-GEOPOTENTIAL_ALTITUDE, where $g_0 = 9.80665\quad m/s^2$
+is the reference value for the gravity of Earth, taken at the mean sea
+level at a reference latitude.
+
+$$ gdh = g_0dH
+$$ {#eq-GEOPOTENTIAL_ALTITUDE}
+
+### Characteristics of the Standard Atmosphere at Mean Sea Level
+
+The main characteristics of the ISA atmosphere at mean sea level are
+shown in @tbl-ISA_AT_MSL.
+
+  Earth gravity          $g_0= 9,80665$    \[m/s$^2$\]
+  ---------------------- ----------------- --------------
+  Atmospheric pressure   $p_0= 101325$     \[Pa\]
+  Temperature            $T_0= 288,15$     \[K\]
+  Air density            $\rho_0= 1,225$   \[kg/m$^3$\]
+  Speed of sound         $a_0=340,294$     \[m/s\]
+
+  : Reference parameter values for the standard atmosphere, at mean sea
+  level {#tbl-ISA_AT_MSL}
+
+
+### Temperature as a Function of Geopotential Altitude
+
+The temperature is a piecewise linear function of the geopotential
+altitude.
+
+$$ T= T_b + \beta_b(H-H_b)
+$$ {#eq-TEMPERATURE_ISA}
+
+The different atmospheric layers, with the values of the temperature
+gradient up to the altitude of 80 km, are described in @tbl-ISA_LAYERS.
+Note that @eq-TEMPERATURE_ISA can be used for negative altitudes, with the parameters of the layer $0$.
+
+  ------------------ ------------------------- -------------- --------------------- --------------
+   N$^\circ$ couche   Altitude géopotentielle   Limite inf.         Gradient             Nom
+         $b$               $H_p$, \[km\]        $T_b$, \[K\]   $\beta_b$, \[K/km\]
+          0                      0                 288.15             -6.5           troposphère
+          1                     11                 216.65               0            stratosphère
+          2                     20                 216.65             +1.0           stratosphère
+          3                     32                 228.65             +2.8           stratosphère
+          4                     47                 270.65               0            stratosphère
+          5                     51                 270.65             -2.8            mésosphère
+          6                     71                 214.65             -2.0            mésosphère
+  ------------------ ------------------------- -------------- --------------------- --------------
+
+  : Profil de température, jusqu'à la mésopause
+  (80 km). {#tbl-ISA_LAYERS}
+
+Commercial aviation is concerned by the first two layers, in the
+troposphere and the beginning of the stratosphere. The troposphere and
+the stratosphere are separated by an isobaric surface, the tropopause,
+at $11$ km altitude.
+
+### Atmospheric pressure {#sect:PRESSION_ISA}
+
+@eq-PERFECT_GAS gives us an expression for the air density
+$\rho= \frac{p}{RT}$ which can be replaced in @eq-FLUIDOSTATIC, by introducing the geopotential
+altitude (see @eq-GEOPOTENTIAL_ALTITUDE).
+
+$$dp= -\rho g dh= -\rho g_0dH= - \frac{g_0}{RT}pdH
+$$
+
+Taking into account the expression of @eq-TEMPERATURE_ISA in the altitude layer (numbered $b$)
+where we are located, we obtain:
+
+$$%\begin{aligned}
+\frac{dp}{p} =  - \frac{g_0}{RT}dH = - \left(\frac{g_0}{R}\right)\frac{dH}{T_b + \beta_b(H-H_b)}
+% =  - \frac{g_0}{R \beta_b} \left(\frac{\beta_b dH}{T_b + \beta_b(H-H_b)}\right)
+%\end{aligned}
+$$
+
+This leads to two possible expressions of the pressure as a function of
+the geopotential altitude, depending on the value of the temperature
+gradient:
+
+$$\begin{aligned}
+\beta_b \neq 0 & \quad\quad \ln\frac{p}{p_b} = - \frac{g_0}{R \beta_b} \ln\left(\frac{T_b + \beta_b(H-H_b)}{T_b}\right)\\
+\beta_b=0 & \quad\quad \ln\frac{p}{p_b} = - \frac{g_0}{R T_b}(H-H_b)\end{aligned}
+$$ {#eq-LOG_PRESSURE}
+
+$$\begin{aligned}
+\beta_b \neq 0 & \quad\quad p =  p_b\left[\frac{T_b + \beta_b(H-H_b)}{T_b}\right]^{- \frac{g_0}{R \beta_b}}\\
+\beta_b=0 & \quad\quad p =p_b \exp\left[- \frac{g_0}{R T_b}(H-H_b)\right]\end{aligned}
+$$ {#eq-PRESSURE_ISA}
+
+### Geopotential Altitude as a Function of Atmospheric Pressure
+
+Conversely, starting from @eq-LOG_PRESSURE, we can easily express the geopotential altitude $H$ as a function of the atmospheric pressure.
+
+$$\begin{aligned}
+\beta_b \neq 0 & \quad\quad H=  H_b + \frac{T_b}{\beta_b}\left[\left(\frac{p}{p_b}\right)^{- \frac{R \beta_b}{g_0}} -1\right]\\
+\beta_b=0 & \quad\quad H =H_b - \frac{R T_b}{g_0}\ln\left(\frac{p}{p_b}\right)\end{aligned}
+$$ {#eq-GEOPOTENTIAL_ALTITUDE_ISA}
+
+### Air Density as a Function of Geopotential Altitude
+
+The density of air is simply expressed from @eq-PERFECT_GAS.
+
+$$ \rho= \frac{p}{RT}
+$$ {#eq-RHO_ISA}
+
+It is expressed as a function of geopotential altitude by replacing
+pressure and temperature by their
+expressions from @eq-PRESSURE_ISA and @eq-TEMPERATURE_ISA. We then find @{eq-DENSITY_ISA}, where $\rho_b= \frac{p_b}{RT_b}$ is the air
+density at the base of the considered altitude layer.
+
+$$\begin{aligned}
+\beta_b \neq 0 & \quad\quad \rho =  \rho_b\left[\frac{T_b + \beta_b(H-H_b)}{T_b}\right]^{- \frac{g_0}{R \beta_b}-1}\\
+\beta_b=0 & \quad\quad \rho =\rho_b \exp\left[- \frac{g_0}{R T_b}(H-H_b)\right]\end{aligned}
+$$ {#eq-DENSITY_ISA}
+
+### Speed of Sound
+
+The speed of sound in air is given by the following equation, where
+$\kappa = 1.4$ for air :
+
+$$ a= \sqrt{\kappa RT}
+$$ {#eq-SOUND_ISA}
+
+
+
+## Non-ISA atmospheres for Altimetry
+
+In general, the real atmosphere does not satisfy the assumptions of the
+International Standard Atmosphere (ISA). An atmosphere can be non-ISA in
+many different ways. First of all, it is not always composed of dry air
+only. Also, the temperature and pressure conditions at sea level and/or
+the temperature gradient may be different from those defined by the
+standard atmosphere.
+
+For the measurement of aircraft altitude, however, relatively simple
+assumptions about the atmosphere are made, using the notion of pressure
+altitude, which we will detail in the rest of this section.
+
+### Concept of Pressure Altitude
+
+Let $p$ be the pressure at geopotential altitude $H$, in the non-ISA
+atmosphere modeled in this section. The *geopotential pressure altitude*
+(or simply *pressure altitude*) is defined as the geopotential altitude
+at which the pressure $p$ would be measured if the atmosphere were
+standard.
+
+The pressure altitude is denoted $H_P$. Note that, by definition, the
+isobar $p=p_0= 1013.25$ it hPa corresponds to a zero pressure altitude
+($H_p=0$).
+
+### Hydrostatic Equilibrium, Law of Perfect Gases, Humidity
+
+For altimetry purposes, the non-ISA atmosphere modeled in this section
+is assumed to be at hydrostatic equilibrium, and to follow the law of
+perfect gases. The humidity of the air is not taken into account, as in
+the ISA model. @eq-FLUIDOSTATIC and @eq-PERFECT_GAS which were made for the ISA model remain valid, with the same specific constant $R$ for air.
+
+### Assumptions on Temperature Gradient
+
+The following assumptions are made about the temperature profile, with
+respect to the altimetry requirements:
+
+-   the layers of atmosphere are defined in pressure altitude $H_p$, and
+    not in geopotential altitude $H$[^1]. For aviation purposes, we only
+    consider the two lowest layers : the troposphere, and the
+    stratosphere, separated by the tropopause located at the pressure
+    altitude given
+    by @eq-Hp_TROPOPAUSE:
+    $$ H_{p,\text{trop}}=11000\quad m$$ {#eq-Hp_TROPOPAUSE}
+
+-   the temperature depends linearly on *pressure altitude* (i.e. the
+    altitude that would be observed if the atmosphere were ISA), with
+    the following gradient:
+    $$ \begin{aligned}
+    &\frac{dT}{dH_p} = & -6.5\quad\text{K/km}\quad\quad\text{for}\quad H_p<H_{p,\text{trop}} \\
+    & & 0 \quad\text{K/km} \quad\quad\text{for}\quad H_p \geq H_{p,\text{trop}}\\
+    \end{aligned}$$ {#eq-TEMPERATURE_GRADIENT}
+
+In the following, we will denote $\beta$ the numerical constant of the
+temperature gradient in the troposphere:
+
+$$ \beta=-6.5\quad\text{K/m}
+$$ {#eq-beta}
+
+### Temperature and "ISA Temperature" {#sect:TEMPERATURE_IN_NON_ISA}
+
+Let $T$ be the temperature at a given point in the atmosphere located at
+a pressure altitude $H_p$. We will denote $T_{\mathit{\tiny ISA}}$ the
+temperature that we would have observed at the same pressure altitude
+(and thus at the same pressure) if the atmosphere had been standard.
+
+According to the assumptions made in this section, in each layer of the
+atmosphere, the temperature is a linear function of the pressure
+altitude, with an identical temperature gradient for $T$ and
+$T_{\mathit{\tiny ISA}}$. Consequently, the difference between $T$ and
+$T_{\mathit{\tiny ISA}}$ remains constant whatever the pressure
+altitude $H_p$, at the vertical of a given geographical point. We will
+denote $\Delta T$ this difference.
+
+$$ T= T_{\mathit{\tiny ISA}} + \Delta T
+$$ {#eq-DEF_DELTA_T}
+
+Taking the isobar $p=p_0$ as the troposphere base, the temperature
+profiles for $T$ and $T_{\text{\tiny ISA}}$ are expressed as follows in
+@eq-TEMP_HP, where the pressure altitude of the tropopause
+is given by @eq-Hp_TROPOPAUSE.
+
+$$\begin{aligned}
+&T= T_0 + \Delta T + \beta H_p & \quad\quad\text{for}\quad H_p<H_{p,\mathit{trop}} \\
+&T_{\mathit{trop}} = T_0 + \Delta T + \beta H_{p,{\mathit{trop}}} & \quad\quad\text{à la tropopause}\\
+&T= T_{\mathit{trop}} &  \quad\quad\text{for}\quad H_p \geq H_{p,\mathit{trop}}\end{aligned}
+$$ {#eq-TEMP_HP}
+
+$$\begin{aligned}
+&T_{\mathit{\tiny ISA}}= T_0 + \beta H_p & \quad\quad\text{for}\quad H_p<H_{p,\mathit{trop}} \\
+&T_{\mathit{\tiny ISA},\mathit{trop}} = T_0 + \beta H_{p,{\mathit{trop}}} =216,65\quad K & \quad\quad\text{à la tropopause}\\
+&T_{\mathit{\tiny ISA}}= T_{\mathit{\tiny ISA},\mathit{ trop}} &  \quad\quad\text{for}\quad H_p \geq H_{p,\mathit{ trop}}\end{aligned}
+$$ {#eq-TEMP_ISA_HP}
+
+### Reference Altitudes and Levels in Altimetry
+
+#### The isobar $p=p_0=1013.25$ it hPa (StdRef)
+
+By definition of pressure altitude, the isobar *StdRef* is at pressure
+altitude $H_p=0$. Its temperature (at a given geographical point) can
+differ from the ISA conditions by a $\Delta T$ difference.
+
+$$\begin{aligned}
+&p_{\mathit \tiny StdRef}= p_0\\
+&T_{\mathit \tiny StdRef}= T_0 + \Delta T\\
+&T_{\mathit \tiny ISA, StdRef}= T_0\\
+&H_{p,{\mathit \tiny StdRef}} = 0\\
+\end{aligned}
+$$
+
+#### Mean Sea Level (MSL).
+
+By definition, mean sea level is at geopotential altitude $H=0$, and at
+geodetic altitude $h=0$. The pressure differs from the pressure $p_0$
+under ISA conditions at sea level by a difference $\Delta p$. The
+pressure altitude at mean sea level $H_{p,{\mathit{ \tiny MSL}}}$ is
+obtained simply by replacing the geopotential altitude $H$ by the
+pressure altitude $H_p$ in the first expression of @eq-GEOPOTENTIAL_ALTITUDE_ISA valid for the ISA atmosphere, and applying it to the troposphere by taking as a base the isobaric $p=p_0$.
+
+$$\begin{aligned}
+&p_{\mathit{ \tiny MSL}}= p_0 + \Delta p\\
+&T_{\mathit{ \tiny MSL}}= T_0 + \Delta T + \beta H_{p,{\mathit{ \tiny MSL}}} =  T_{\mathit{ \tiny ISA, MSL}} + \Delta T\\
+&T_{\mathit{ \tiny ISA, MSL}}= T_0 + \beta H_{p,{\mathit{ \tiny MSL}}}\\
+&H_{p,{\mathit{ \tiny MSL}}} = \frac{T_0}{\beta}\left[\left(\frac{p_{\mathit{ \tiny MSL}}}{p_0}\right)^{\frac{g_0}{\beta R}} -1 \right]\\
+&H_{\mathit{ \tiny MSL}} = 0\end{aligned}$$
+
+### Relation between Geopotential and Pressure Altitudes
+
+Combining @eq-FLUIDOSTATIC and @eq-PERFECT_GAS, we see that a variation in pressure $dp$ in
+the non-ISA atmosphere corresponds to a variation in geopotential
+altitude $dH$, according to the following @eq-DP_NON_ISA.
+
+$$ dp= - \frac{p}{RT} g_0 dH
+$$ {#eq-DP_NON_ISA}
+
+The same variation of pressure in an ISA atmosphere would correspond to
+a variation of pressure altitude $dH_p$, satisfying @eq-DP_ISA.
+
+$$ dp= - \frac{p}{RT_{\mathit{ \tiny ISA}}} g_0 dH_P
+$${#eq-DP_ISA}
+
+Dividing the expression @eq-DP_NON_ISA by @eq-DP_ISA, we obtain the relation between geopotential altitude variation and pressure altitude variation, given by the following @eq-dH_dHp.
+
+$$ \frac{dH}{dH_p}=\frac{T}{T_{\mathit{ \tiny ISA}}}
+$$ {#eq-dH_dHp}
+
+The relation @eq-H_Hp between $H$ and $H_p$ is obtained by integrating
+@eq-dH_dHp taking into
+account @eq-TEMP_HP and @eq-TEMP_ISA_HP for the expression of the temperatures $T$ and $T_{\mathit{ \tiny ISA}}$.
+
+$$\begin{aligned}
+&H= H_p - H_{p,\mathit{ \tiny MSL}} + \frac{\Delta T}{\beta} \ln \left(\frac{T_0+\beta H_p}{T_{\mathit{ \tiny ISA,MSL}}}\right)& \quad\quad\text{for}\quad H_p<H_{p,\mathit{ trop}}\\
+&H_{\text{trop}} = H_{p,\mathit{ trop}} - H_{p,\mathit{ \tiny MSL}} + \frac{\Delta T}{\beta} \ln \left(\frac{T_{\mathit{ \tiny ISA},trop}}{T_{\mathit{ \tiny ISA,MSL}}}\right)&\\
+&H = H_{\text{trop}} + \frac{T_{\mathit{ \tiny ISA},trop}}{T_{\mathit{ \tiny ISA,MSL}}}(H_p - H_{p,\mathit{ trop}}) &  \quad\quad\text{for}\quad H_p \geq H_{p,\mathit{ trop}}\end{aligned}
+$$ {#eq-H_Hp}
+
+where
+
+$$\begin{aligned}
+&H_{p,\mathit{ \tiny MSL}} = \frac{T_0}{\beta}\left[\left(\frac{p_{\mathit{ \tiny MSL}}}{p_0}\right)^{\frac{g_0}{\beta R}}-1\right]\\
+&H_{p,\mathit{ trop}} = 11000\quad\text{m}\\
+&T_{\mathit{ \tiny ISA,MSL}} = T_0+ \beta H_{p,\mathit{ \tiny MSL}}\\
+&T_{\mathit{ \tiny ISA},trop} = T_0+\beta H_{p,\mathit{ trop}}\\\end{aligned}
+$$
+
+### Pressure $p$ as a Function of Pressure Altitude $H_p$
+
+
+@eq-PRESSURE_ISA can be transposed directly to the non-ISA
+case, replacing $H$ by $H_p$ and $T$ by $T_{\mathit{ \tiny ISA}}$. For
+the troposphere and stratosphere, we then obtain the expressions given
+in @eq-PRESSURE:
+
+$$\begin{aligned}
+&p =  p_0\left[\frac{T_0 + \beta H_p}{T_0}\right]^{- \frac{g_0}{R \beta}} & \quad\quad\text{for}\quad H_p<H_{p,\text{trop}}\\
+&p_{\text{trop}}= p_{\mathit{ \tiny ISA},trop}= p_0\left[\frac{T_0 + \beta H_{p,\text{trop}}}{T_0}\right]^{- \frac{g_0}{R \beta}}&\\
+&p =p_{\mathit{ \tiny ISA},trop} \exp\left[- \frac{g_0}{R T_{\mathit{ \tiny ISA},trop}}(H_p-H_{p,\text{trop}})\right]& \quad\quad\text{for}\quad H_p \geq H_{p,\text{trop}}\end{aligned}
+$$ {#eq-PRESSURE}
+
+### Pressure Altitude $H_p$ as a Function of Pressure $p$
+
+$$\begin{aligned}
+&H_p=  \frac{T_0}{\beta}\left[\left(\frac{p}{p_0}\right)^{- \frac{R \beta}{g_0}} -1\right] & \quad\quad\text{for}\quad p \geq p_{\mathit{ \tiny ISA},trop}\\
+% \quad\quad\text{pour}\quad H_p<H_{p,\text{trop}}\\
+& H_p = H_{p,\text{trop}} - \frac{R T_{\mathit{ \tiny ISA},trop}}{g_0}\ln\left(\frac{p}{p_{\mathit{ \tiny ISA},trop}}\right)& \quad\quad\text{for}\quad p < p_{\mathit{ \tiny ISA},trop}\end{aligned}
+$$ {#eq-Hp_PRESSURE}
+
+
+with
+$$p_{\mathit{ \tiny ISA},trop}= p_0\left[\frac{T_{\mathit{ \tiny ISA},trop}}{T_0}\right]^{- \frac{g_0}{R \beta}}
+ =p_0\left[\frac{T_0 + \beta H_{p,\text{trop}}}{T_0}\right]^{- \frac{g_0}{R \beta}}
+ $$
+
+### Air Density $\rho$ as a Function of Pressure Altitude $H_p$
+
+$$\begin{aligned}
+&\rho =  \frac{p_0}{T_0+\Delta T + \beta H_p}\left[\frac{T_0 + \beta H}{T_0}\right]^{- \frac{g_0}{R \beta}} & \quad\text{for}\quad H_p<H_{p,\text{trop}}\\
+& \rho_{\text{trop}}= \frac{p_{\mathit{ \tiny ISA},trop}}{R(T_{\mathit{ \tiny ISA},trop}+\Delta T)}&\\
+& \rho = \frac{p_{\mathit{ \tiny ISA},trop}}{R(T_{\mathit{ \tiny ISA},trop}+\Delta T)} \exp\left[- \frac{g_0}{R T_{\mathit{ \tiny ISA},trop}}(H_p-H_{p,\text{trop}})\right]& \quad\text{for}\quad H_p \geq H_{p,\text{trop}}\end{aligned}
+$$ {#eq-DENSITY}
+
+### Speed of Sound
+
+The speed of sound in the non-ISA atmosphere is given by
+$a= \sqrt{\kappa RT}$ (@eq-SOUND_ISA), the temperature $T$ being given
+by @eq-TEMP_HP.
+
+[^1]: Note that the pressure altitude and geopotential altitude are the
+    same, when the atmosphere is standard

@@ -14,6 +14,7 @@ book:
     - Junzi Sun
     - Enrico Spinielli
     - Manuel Waltert
+    - David Gianazza
   # date: "2023-12-25"
   # isbn: "12345678"
   chapters:
@@ -24,13 +25,16 @@ book:
       chapters:
         - chapters/background/history.qmd
         - chapters/background/earth.qmd
+        - chapters/background/atmosphere.qmd
         - chapters/background/aircraft.qmd
         - chapters/background/airspace.qmd
         - chapters/background/aerodrome.qmd
         - chapters/background/cns.qmd
     - part: "The ecosystem of aviation data"
       chapters:
-        - chapters/data_sources/trajectories.qmd
+        - chapters/data_sources/flight-tracking.qmd
+        - chapters/data_sources/aircraft-information.qmd
+        - chapters/data_sources/flight-plans.qmd
         - chapters/data_sources/aeronautical-information.qmd
         - chapters/data_sources/environment.qmd
         - chapters/data_sources/aircraft-performance.qmd
@@ -81,13 +85,16 @@ book:
           contents:
             - chapters/background/history.qmd
             - chapters/background/earth.qmd
+            - chapters/background/atmosphere.qmd
             - chapters/background/aircraft.qmd
             - chapters/background/airspace.qmd
             - chapters/background/aerodrome.qmd
             - chapters/background/cns.qmd
         - section: Data sources
           contents:
-            - chapters/data_sources/trajectories.qmd
+            - chapters/data_sources/flight-tracking.qmd
+            - chapters/data_sources/aircraft-information.qmd
+            - chapters/data_sources/flight-plans.qmd
             - chapters/data_sources/aeronautical-information.qmd
             - chapters/data_sources/environment.qmd
             - chapters/data_sources/aircraft-performance.qmd
