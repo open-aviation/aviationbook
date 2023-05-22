@@ -1,6 +1,7 @@
 ---
 title: Aerodromes and airports
 output-file: aerodrome
+author: Manuel Waltert
 ---
 <!--Definition of term "aerodrome"-->
 In ICAO Annex 14, the term **aerodrome** is defined as *"a defined area on land or water (including any buildings, installations and equipment) intended to be used either wholly or in part for the arrival, departure and surface movement of aircraft."* The reference to a *defined area* suggests that aerodromes are systems, designed and operated for the purpose of both facilitating the efficient handling of departing and arrving aircraft as well as providing all the processes required by aircraft between take-off and landing. As such, aerodromes do not only have to be land-based. Rather, water-based as well as floating structures, such as oil rigs or ships, can be considered as aerodromes. Consequently, aerodromes are not solely designed for fixed-wing aircraft, but also for rotary-wing vehicles. 
