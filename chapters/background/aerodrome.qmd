@@ -19,21 +19,76 @@ fall under the scope of the *Basic Regulation* (BR) of the **European Union Avia
 
 Aerodromes falling under the scope of the *basic regulation* must be certified. In simple terms, in this certification procedure an aerodrome must show how and in what way the *certification specifications* of EASA are complied with or, if they cannot be complied with, what measures are/were taken to ensure an equivalent level of safety. The demonstration of an equivalent level of safety is particularly important for aerodromes that have grown over many decades and can only make certain changes to the facilities to ensure specifications under great financial constraints or not at all, e.g., due to topographical reasons.
 
-Certification specifications are stipulated by the EASA in the [**CS-ADR** document](https://www.easa.europa.eu/en/certification-specifications/cs-adr-dsn-aerodromes-design) for aerodromes and the [**CS-HPT** document](https://www.easa.europa.eu/en/document-library/certification-specifications/group/cs-hpt-dsn-heliports-design) for heliports. These certification specifications define to a great detail, how large parts of an aerodrome and a heliport have to be designed and built. For example, CS-ADR defines how runways, taxiways, or aprons of an aerdrome must be designed, sized, marked, and lit.
+Certification specifications are stipulated by the EASA in the [**CS-ADR** document](https://www.easa.europa.eu/en/certification-specifications/cs-adr-dsn-aerodromes-design) for aerodromes and the [**CS-HPT** document](https://www.easa.europa.eu/en/document-library/certification-specifications/group/cs-hpt-dsn-heliports-design) for heliports. These certification specifications define to a great detail, how large parts of an aerodrome and a heliport have to be designed and built. For example, CS-ADR defines how runways, taxiways, or aprons of an aerdrome must be designed, sized, or marked.
 
 ## Anatomy of an aerodrome
-An aerodrome can be divided into two distinct parts: the airside part and the landside part. Although there are different definitions for these two terms in the literature and also in the industry, we use the following definitions in this document:
+An aerodrome can be divided into two distinct parts: the **airside** and the **landside**. Although there are different definitions for these two terms both in the literature and in the industry, we use the following definitions in this document:
 
 * The **airside** of an aerodrome covers all areas which can be used by aircraft. This includes both the maneouvring area as well as the apron(s) of an aerodrome.
 * The **landside** of an aerodrome covers all areas which are not accessible for aircraft. This includes the terminals, docks, the baggage handling system (BHS), ground access infrastructure, etc.
 
-In the following, aerodrome infrastructure and components associated to the airside and the landside part are introducted and described in more detail.
+In the following, aerodrome infrastructure and components associated to the airside and the landside are introducted and described in more detail.
 
 ### Airside components of an aerodrome
 <!--runway, taxiways, aprons-->
-The airside of an aerodrome consists of the maneouvring area and the apron(s). In CS ADR-DSN.A.002, the **manevouvring area** is defined as the *"part of an aerodrome to be used for the take-off, landing and taxiing of aircraft, excluding aprons"*. Consequently, the maneouvring area consists of (i) runway(s) and (ii) taxiway(s). As such, CS ADR-DSN.A.002 defines a **runway** as a *"rectangular area on a land aerodrome prepared for the landing and take-off of aircraft"*, while a **taxiway** is a *"defined path on a land aerodrome established for the taxiing of aircraft and intended to provide a link between one part of the aerodrome and another"*. Finally, the **apron(s)** of an aerodrome are according to CS ADR-DSN.A.002 defined as an *"area intended to accommodate aircraft for purposes of loading or unloading passengers, mail or cargo, fuelling, parking, or maintenance"*.
+The airside of an aerodrome consists of the maneouvring area and the apron(s). In CS ADR-DSN.A.002, the **manevouvring area** is defined as the *"part of an aerodrome to be used for the take-off, landing and taxiing of aircraft, excluding aprons"*. Consequently, the maneouvring area consists of both runway(s) and taxiway(s). As such, CS ADR-DSN.A.002 defines a **runway** as a *"rectangular area on a land aerodrome prepared for the landing and take-off of aircraft"*, while a **taxiway** is a *"defined path on a land aerodrome established for the taxiing of aircraft and intended to provide a link between one part of the aerodrome and another"*. Finally, the **apron(s)** of an aerodrome are according to CS ADR-DSN.A.002 defined as an *"area intended to accommodate aircraft for purposes of loading or unloading passengers, mail or cargo, fuelling, parking, or maintenance"*.
+
+<!--Aerodrome Reference Code-->
+::: {.callout-note}
+Facilities on the airside of an aerodrome are designed and sized for a **critical aircraft**, which is either a real-world of fictitious aircraft. Consequently, aircraft that put higher requirements to the facilities than the critical aircraft, e.g., greater weight, longer wingspan, etc., cannot use the airport or parts of the airport. To prevent each aerodrome from having to describe individually which critical aircraft was used, an **aerodrome reference code** (ARC) which describes certain characteristics of the critical aircraft applied is used instead. As such, the ARC consists of two components: an aerodrome code number and a code letter. The **aerodrome code number** describes the reference field length of the critical aircraft in four categories:
+
+| Aerodrome code number | Reference field length       |
+|:---------------------:|------------------------------|
+| 1                     | $<$ 800 m                    |
+| 2                     | $\geq$ 800 m and $<$ 1200 m  |
+| 3                     | $\geq$ 1200 m and $<$ 1800 m |
+| 4                     | $\geq$ 1800 m                |
+: Aerodrome code number (CS ADR-DSN.A.005) {#tbl-arc-number}
+
+
+The **aerodrome code letter** describes in six categories the maximum wingspan of the critical aircraft:
+
+| Aerodrome code letter | Maximum wingspan       |
+|:---------------------:|------------------------|
+| A                     | $<$ 15 m                 |
+| B                     | $>$ 15 m and $\leq$ 24 m |
+| C                     | $>$ 24 m and $\leq$ 36 m |
+| D                     | $>$ 36 m and $\leq$ 52 m |
+| E                     | $>$ 52 m and $\leq$ 65 m |
+| F                     | $>$ 65 m and $\leq$ 80 m |
+: Aerodrome code letter (CS ADR-DSN.A.005) {#tbl-arc-letter}
+
+
+For example, an aerodrome with an ARC of "4F" can be used by aircraft with a reference field length of more than 1800m and a wingspan of up to 80m, whereas on an aerodrome with an ARC of "4E" the wingspan is limited to 65m.
+:::
 
 #### Runways
+Runways facilitate the landing and taking-off of aircraft. In terms of their geometric properties, a runway can be described in terms of its width, slope(s), length, and orientation. 
+
+The **width** of a runway is defined in CS ADR-DSN.B.045 and is usually measured from at outside edges of the runway. As such, the width of the runway depends both on the Aerodrome Code Letter (see Table @tbl-arc-number) and the Outer Main Gear Wheel Span (OMGWS) of the critical aircraft as indicated in Table @tbl-rwy-width. Thereby, the OMWGS describes the distance between the outside edges of the main gear wheels of the critical aircraft.
+
+| Aerodrome Code number | 4.5m $\leq$ OMGWS | 4.5m $\leq$ OMGWS $<$ 6m | 6m $\leq$ OMGWS $<$ 9m | 9m $\leq$ OMGWS $<$ 15m |
+|:---------------------:|------------------:|-------------------------:|-----------------------:|------------------------:|
+| 1                     | 18m               | 18m                      | 23m                    | -                       |
+| 2                     | 23m               | 23m                      | 30m                    | -                       |
+| 3                     | 30m               | 30m                      | 30m                    | 45m                     |
+| 4                     | -                 | -                        | 45m                    | 45m                     |
+: Runway width (CS ADR-DSN.B.045) {#tbl-rwy-width}
+
+The **slope** of a runway is specified both longitudinally and transversely. The **longitudinal slope** refers to the slope of the runway along its longitudinal axis. The average longitudinal slope of a runway is determined "by dividing the difference between the maximum and minimum elevation along the runway centre line by the runway length" (CS ADR-DSN.B.060). Additionally, CS ADR-DSN.B.060 specifies the maximum longitudinal slope which must not been exceeded in any portion of the runway. Finally, airport designers must ensure that the change in slope between two consecutive portions of the runway is below a certain value. The applicable values for the average longitudinal slope, maximum longitudinal slope, and the maximum longitudinal slope change, which all depend on the aerodrome code number (see Table @tbl-arc-number), are summarized in Table @tbl-rwy-lgnt-slope
+
+| Aerodrome Code number | Average longitudinal slope | Maximum longitudinal slope | Maximum longitudinal slope change | 
+|:---------------------:|---------------------------:|---------------------------:|----------------------------------:|
+| 1                     | 2%                         | 2%                         | 2%                                |
+| 2                     | 2%                         | 2%                         | 2%                                |
+| 3                     | 1%                         | 1.5%                       | 1.5%                              |
+| 4                     | 1%                         | 1.25%                      | 1.5%                              |
+: Longitudinal slope of runways (CS ADR-DSN.B.060 & ADR-DSN.B.060) {#tbl-rwylgntslope}
+
+ The **transverse slope** describes the slope along its width.
+
+
+
 
 * Runway dimensioning (width, length, slopes)
 * Runway orientation and designation
