@@ -85,13 +85,21 @@ The **slope** of a runway is specified both longitudinally and transversely. The
 | 4                     | 1%                         | 1.25%                      | 1.5%                              |
 : Longitudinal slope of runways (CS ADR-DSN.B.060 & ADR-DSN.B.060) {#tbl-rwylgntslope}
 
- The **transverse slope** describes the slope along its width.
+ The **transverse slope** describes how a runway is sloped along its width to allow efficient drainage of rainwater. In practice, two different profile types of transverse slopes are used. *Chambered* profiles have their highest point at the centre of the runway, allowing water to drain to both sides of the runway, while the *single crossfall* profiles have thei highest elevation at one edge of the runway, allowing water to drain in the direction of the other edge. On runways of airports with an aerodrome code letter of A and B, see Table @tbl-arc-letter, the transverse slope must be between 1% and 2% according to CS ADR-DSN.B.080, on airports with an aerodrome code letter of C to F the transverse slope must be between 1% and 1.5%.
 
+According to CS ADR-DSN.B.035, the **length** of a runway is to be sized in such a way that the operational requirements of the critical aeroplane for which the runway is designed can be met. In this context, the operational requirements are described by means of the following *declared distances*:
 
+ * **Take-off run available** (TORA):
+ * **Take-off distance available** (TODA):
+ * **Accelerate-stop distance available** (ASDA):
+ * **Landing distance available** (LDA):
 
+The **orientation** of a runway describes its magnetic direction along its length. For example, a runway running in a north-south direction has an orientation of 360° or 180°, while a runway running in a west-east direction has an orientation of 090° or 270°. To enable pilots and air traffic controllers to identify runways unambiguously, each runway is given a **designator**. To this end, two-digit numbers are used as designators, e.g. 27, 07, 15, etc., which designate the nearest one-tenth of magnetic direction of a runway when viewed from the direction of approach. Example: If a pilot taxis onto runway 15 and aligns the aircraft so that its nose points in the direction of the other end of the runway, the aircraft's magnetic compass will indicate a value of 150° +/-5°. At airports with two parallel runways, the designator is supplemented with the letter "L" for "left" and "R" for "right". At airports with three parallel runways, the designator of the runway in the middle is supplemented with the letter "C" for "centre".
 
-* Runway dimensioning (width, length, slopes)
-* Runway orientation and designation
+<!--Add Illustration for Runway Designation-->
+
+The orientation of runways depends on a number of factors such as prevailing wind conditions, topographical conditions, etc. Flight crews are encouraged to take off and land into the wind whenever possible. For each aircraft type, there are clear guidelines that specify how strong the so-called crosswind component may be during a landing. For this reason, airport planners take into account long-term weather records on the strength and direction of the wind at an airport in order to orient the runway(s) in such a way that the crosswind componente (i.e. the amount of wind perpendicular to the runway) can be minimised. For this task, the so-called *usability factor* is used, which measures the percentage of time during which the use of a runway is not restricted due to crosswind. According to GM1 ADR-DSN.B.015, a runway is considered optimally oriented if a usability factor of greater than or equal to 95% can be achieved. In addition to considering the wind direction, airport planners must also ensure that the runway can be operated safely. In this respect, topographical conditions (mountains, valleys, etc.) are of great importance. Furthermore, runways are often aligned in such a way that sensitive areas such as residential areas,  hospitals, etc. are not strongly affected by the emissions of air traffic. In places where several airports are located in a relatively small area (e.g. London, New York, Los Angeles, etc.), care is also taken when choosing the runway orientation that these airports do not influence each other's operations.
+
 * Number (basic runway system layouts)
 * Adjacent areas to runways
 * Runway markings
