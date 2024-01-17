@@ -202,6 +202,27 @@ ADS-B messages also belong to the Mode S protocol, in the **Extended Squitter (E
 
 ![An overview of all Mode S services, excerpt from [www.mode-s.org](https://mode-s.org/decode/content/introduction.html#summary) @sun1090](../../images/mode_s_services.png)
 
+
+## ADS-C
+
+Born from the challenges of managing growth in aviation, the International Civil Aviation Organization in 1983 initiated a committee to align emerging technologies with growing air transport needs. By 1987, the committee found issues with the prevailing navigation systems, including communication limitations and the lack of digital links. The answer was satellite technology integration.
+
+This led to the idea of creating a Future Air Navigation System (FANS), comprising several new technologies including the Automatic Dependent Surveillance - Contract (ADS-C) system. ADS-C addresses the constraints of High Frequency and Very High Frequency communication through satellite data links, enabling surveillance in remote locations. It also minimizes voice communication by sending automatic position updates digitally. By 1991, manufacturers started adopting FANS technology. Boeing introduced FANS-1, while Airbus presented FANS-A. Both of these were later merged into the widely-used FANS-1/A.
+
+The term **Contract** means that aircraft and ATSUs negotiate agreements to share data. While aircraft can establish concurrent contracts with multiple ATSUs, messages are exclusively exchanged between the aircraft and the ATSU with which a particular contract was established. This differs from ADS-B, where aircraft indiscriminately broadcast messages to everyone.
+
+All surveillance data from the aircraft is sent via contracts. To negotiate such a contract, the ATSU sends a contract request, containing information regarding the surveillance data the ATSU wants to receive, to an aircraft. The aircraft then responds to a contract with a positive acknowledgement and the appropriate report. In case of an error, the aircraft responds with a negative acknowledgement (if the message cannot be parsed), or a non-compliance notification (if the request contains data that is not available to the aircraft).
+
+The type of contract then defines what information the aircraft will return to the ATSU:
+
+- **Periodic contract**: With this contract type, an ATSU can request ADS-C reports at a specified reporting interval with following data: flight ID, predicted route, earth reference, meteorological data, airframe ID, air reference, and aircraft intent. 
+- **Event contract*: Whenever an event contract is established, the aircraft sends reports in the case a given event occurs. It can be requested in case of the following events: vertical range change, altitude range change, waypoint change, and lateral deviation.
+- **Demand contract*: In the case of a demand contract, an aircraft only sends a single report. This can be useful, when a periodic report is not received in time. 
+
+
+Every ADS-C report comprises, at a minimum, a basic report detailing the aircraft's position, accompanied by a timestamp and a figure of merit. The figure of merit denotes the precision of the positional information within the report and the operational status of TCAS. Advanced reports encompass extra data as stipulated in the ADS-C contract.
+
+
 ## UAT
 
 **Universal Access Transceiver (UAT)** is a technology similar to ADS-B which operates on 978 MHz instead of 1090 MHz for ADS-B Extended Squitter (ES).
