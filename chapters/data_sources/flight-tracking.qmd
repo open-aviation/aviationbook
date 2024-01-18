@@ -4,6 +4,7 @@ aliases:
   - .
 authors:
   - Xavier Olive
+  - Martin Strohmeier
 ---
 
 A trajectory is a mathematical abstraction used to describe the evolution of a moving object with a finite list of parameters. The most common features in aviation include latitude, longitude, altitude, all indexed by time, with first derivatives such as ground speed, track angle and vertical rate. Depending on the application, some models would expect more features. For example, [aircraft performance models](aircraft-performance.qmd) could require the pitch, roll and yaw angles, the true air speed, the indicated air speed, the Mach number, etc.
