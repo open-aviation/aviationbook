@@ -113,7 +113,7 @@ The **layout** of an aerodrome runway system depends on how many runways are ava
 * **Parallel runways** and **multiple parallel runways** are characterised by runways which are parallel to each other. If an airport has two parallel runways, it is called a parallel runway system. However, if more than two runways are parallel, it is called a multiple parallel runway system. For the operation of parallel runways, two geometric properties illustrated in figure @fig-distances-parallel-runway are important, namely (i) the separation distance between two parallel runways and (ii) the stagger between parallel runways. The separation distance describes how far apart the centrelines are between two parallel runways, while the stagger distance describes how far apart the thresholds of the parallel runways are in the direction of the longitudinal runway axis.
 ![Separation distance between parallel runways and stagger distance.](../../images/illustrations/distances_parallel_rwy.png){#fig-distances-parallel-runway}
 
-First, let us look at how the separation distance affects the operation of parallel instrument runways, which are runways that allow for operations under instrument flight conditions. According to CS ADR-DSN.B.055, the minimum separation distances between parallel runways defined in table @tbl-parallel-rwy-distance must be maintained so that the modes of operation illustrated in figure @fig-mode-operation-parallel-runway can be performed.
+First, let us look at how the separation distance affects the operation of parallel instrument runways, which are runways that allow for operations under instrument flight conditions. According to CS ADR-DSN.B.055, the minimum separation distances between parallel runways defined in table @tbl-parallel-rwy-distance must be maintained so that the modes of operation illustrated in Figure @fig-mode-operation-parallel-runway can be performed.
 
 | Mode of operation               | Minimum required separation distance |
 |---------------------------------|-------------------------------------:|
@@ -129,7 +129,7 @@ Mode of operation *independent parallel approaches* refers to an operational con
 
 Parallel runways --> Mode of operation, required distances between runways, and stagger
 
-![Staggered parallel runways using the example of Athens Eleftherios Venizelos International Airport (LGAV): (a) Reduced taxi times due to staggered parallel runways, (b) additional  vertical separation between two approaching aircraft due to staggered parallel runways, (c) longitudinal view of parallel approaches on staggered runways.](../../images/illustrations/stagger_parallel_rwy.png){#fig-staggered-parallel-runway}
+![Staggered parallel runways using the example of Athens Eleftherios Venizelos International Airport (LGAV): (a) Reduced taxi times due to staggered parallel runways, (b) additional vertical separation between two approaching aircraft due to staggered parallel runways, (c) longitudinal view of parallel approaches on staggered runways.](../../images/illustrations/stagger_parallel_rwy.png){#fig-staggered-parallel-runway}
 
 * Number (basic runway system layouts)
 * Adjacent areas to runways
