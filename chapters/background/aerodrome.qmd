@@ -131,11 +131,25 @@ At some aerodromes with independent parallel runways, the thresholds are displac
 
 ![Staggered parallel runways using the example of Athens Eleftherios Venizelos International Airport (LGAV): (a) Reduced taxi times due to staggered parallel runways, (b) additional vertical separation between two approaching aircraft due to staggered parallel runways, (c) longitudinal view of parallel approaches on staggered runways.](../../images/illustrations/stagger_parallel_rwy.png){#fig-staggered-parallel-runway}
 
+#### Adjacent areas
+To increase the level of safety of flight operations, airports have to install a number of so-called *adjacent areas* around runways. In particular, a distinction is made between the following adjacent areas for runways: (i) runway shoulder, (ii) runway strip, and (iii) runway end safety area (RESA):
 
-* Adjacent areas to runways
-* Runway markings
-* Runway lights
-* Obstacles
+* runway shoulder,
+* runway strip,
+* runway end safety area (RESA)
+
+
+Some adjacent areas can be provided 
+
+* clearway
+* stopway
+
+
+#### Runway markings
+
+#### Runway lights
+
+#### Obstacle limitation surfaces (OLS) and obstacle free zones (OFZ)
 
 #### Taxiways
 
