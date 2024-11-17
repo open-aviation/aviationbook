@@ -64,7 +64,7 @@ There is a common confusion in aviation between three designations for angles:
 - the **bearing angle** usually represents the direction of/to a static object, e.g., the bearing of a runway, or the bearing to a navigational point.
 
 
-![source: https://aviation.stackexchange.com/a/96035](https://i.stack.imgur.com/ZUw30.png)
+![source: https://aviation.stackexchange.com/a/96035](https://i.sstatic.net/ZUw30.png)
 
 :::
 
