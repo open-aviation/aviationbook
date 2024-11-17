@@ -31,7 +31,7 @@ toc: false
 </div>
 
 <div class="author-icon">
-<img src="images/manuel_waltert.jpg" alt="Manuel Waltert" class="cover circular--square" width="150" height="150"/>
+<img src="images/manuel_waltert_square.png" alt="Manuel Waltert" class="cover circular--square" width="150" height="150"/>
 
 [Manuel Waltert](http://example.com/)\
 *Winterthur* 🇨🇭\
