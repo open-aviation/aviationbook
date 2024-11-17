@@ -21,7 +21,27 @@
         "UNLIKELY_OPENING_PUNCTUATION",
         "METRIC_UNITS_EN_IMPERIAL"
       ]
-    }
+    },
+    "workbench.colorCustomizations": {
+      "activityBar.activeBackground": "#2f3b55",
+      "activityBar.background": "#2f3b55",
+      "activityBar.foreground": "#e7e7e7",
+      "activityBar.inactiveForeground": "#e7e7e799",
+      "activityBarBadge.background": "#a45b72",
+      "activityBarBadge.foreground": "#e7e7e7",
+      "commandCenter.border": "#e7e7e799",
+      "sash.hoverBorder": "#2f3b55",
+      "statusBar.background": "#1d2434",
+      "statusBar.foreground": "#e7e7e7",
+      "statusBarItem.hoverBackground": "#2f3b55",
+      "statusBarItem.remoteBackground": "#1d2434",
+      "statusBarItem.remoteForeground": "#e7e7e7",
+      "titleBar.activeBackground": "#1d2434",
+      "titleBar.activeForeground": "#e7e7e7",
+      "titleBar.inactiveBackground": "#1d243499",
+      "titleBar.inactiveForeground": "#e7e7e799"
+    },
+    "peacock.color": "#1d2434"
   },
   "extensions": {
     "recommendations": ["quarto.quarto"]
