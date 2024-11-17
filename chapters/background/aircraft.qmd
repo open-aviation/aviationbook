@@ -11,11 +11,20 @@ Recognise an Airbus from a Boeing
 
 ## Flight mechanics
 
-Various speeds
+Various speeds:
+* [ground speed](https://skybrary.aero/articles/ground-speed)
+* [true airspeed](https://skybrary.aero/articles/true-airspeed)
+* [indicated airspeed](https://skybrary.aero/articles/indicated-airspeed-ias)
+* [calibrated airspeed](https://skybrary.aero/articles/calibrated-airspeed-cas)
 
-Various angles, track, heading, bearing, etc.
+Various angles, track, heading, bearing, etc.:
+* heading
+* track
+* bearing
+see <https://skybrary.aero/articles/heading-track-and-radial>
 
-thrust, drag, lift
+thrust, drag, lift  
+A starting point <https://skybrary.aero/articles/lift>
 
 
 - ACAS/TCAS
