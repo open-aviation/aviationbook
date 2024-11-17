@@ -1,12 +1,11 @@
-# Aeronautical information
-
-::: {.callout-tip}
-Author: ?
-:::
+---
+title: Aeronautical information
+author: Enrico Spinielli
+---
 
 ::: {.infobox .note}
-**Author's note**: This part goes through all the most commonly used data formats in the
-aviation and ATM data analysis community.
+**Author's note**: This part goes through all the most commonly used data formats
+in the aviation and ATM data analysis community.
 
 Airspaces & / or aeronautical information in general (AIRAC):
 
@@ -39,7 +38,49 @@ In doing so the probability of conflicts was increased but at the same time such
 network improves the efficiency in spotting them.
 
 
+## AIP
+The data necessary for flight plan submission, air navigation and movements
+on the apron are managed via Aeronautical Information Publication (AIP) at
+country level by or on behalf of the respective civil aviation administration.
+The AIP structure and content is standardized. The AIP is normally composed
+of three parts
+
+- GEN (general)
+- ENR (en route)
+- AD (aerodromes).
+
+AIPs are kept up-to-date following a 28-day cycle known as the AIRAC
+(Aeronautical Information Regulation And Control) cycle, @fig-airac.
+Revisions are produced every 56 days (double AIRAC cycle) or 
+every 28 days (single AIRAC cycle).
+These changes are received well in advance so that users of the aeronautical data
+can update their systems, i.e. flight management systems (FMS) or ATC databases.
+AIPS are publicly available for example as listed at [@eAIPs].
+
+![AIRAC cycle, found at [ICAO](https://www.icao.int/airnavigation/information-management/Pages/AIRAC.aspx)](../../images/AIRAC-cycle.jpg){#fig-airac}
+
+The schedule of internationally agreed AIRAC effective dates can be calculated
+as follows:
+
+
+
+
+
 ## Airports, Points and Routes
+
+On a macroscopic level an airport is represented by its location and code.
+
+The location is called Airport Reference Point (ARP) and
+the rules governing its definition are established by section 2.2 of Annex 14
+in @icao-convention:
+it _shall be located near the initial or planned geometric centre of
+the aerodrome and shall normally remain where first established_.
+
+Depending on its size and importance, an airport can have an ICAO and/or IATA
+code assigned, for example Amsterdam's Schiphol has ICAO code `EHAM` and
+IATA code `AMS`.
+
+
 
 :::{.callout-note collapse=false appearance='default' icon=true}
 ## TODO
