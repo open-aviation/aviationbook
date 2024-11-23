@@ -3,7 +3,37 @@ title: Anatomy of an aircraft
 output-file: aircraft
 ---
 
+## Aircraft categorisation
+
+There exists a wide variety of air vehicles that can be grouped in broad categories.
+ICAO refers to aircraft category as "a classification of aircraft according to specified characteristics".
+The aircraft categorisation has relevance for the flight training and associated licensing, but also for the operation of the aircraft in terms of equipment, operating capabilities and limits, and access to airspace.
+Thus, aircraft categorisation comprises also the intended use and operating environment.
+
+aircraft / air vehicle
+* lighter than air
+  * airships and ballons
+* heavier than air
+  * aeroplane or airplane: engine-driven, fixed-wing, heavier-than-air aircraft that achieves flight through the reaction between the air and its wings
+  * rotorcraft: engine-driven, rotating wing/rotors achieving lift
+  * glider: non-powered fixed-wing designed to use air currents and thermal lift through reaction between wing and air
+  * powered parachute
+  * rocket: aircraft propelled by expanding gases
+
+Aircraft categorisation has therefore relevance for
+* aircraft certification, i.e. the set of requirements to be met by design and demonstrated through flight test to obtain a "airworthiness certificate".
+* pilot licensing, i.e. the set of requirements in terms of training (both ground school and flight training) to operate a specific category of aircraft in its intended use.
+
+When speaking about aircraft categories often the terms (aircraft) class and (aircraft) type crop up. 
+An aircraft class is a sub-division within a category with a focus on design and performance. For example, single-engine and multi-engine piston engine aircraft.
+Aircraft type refers to the specific model of an aircraft.
+
+In this chapter we focus on the classical airplanes = powered heavier-than-air aircraft.
+
 ## Anatomy of an aircraft
+
+Conceptually, an aircraft (airplane) 
+
 
 APU, bleed, winglet etc.
 
