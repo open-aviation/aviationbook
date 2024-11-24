@@ -5,8 +5,16 @@ author: Manuel Waltert
 
 Merriam-Webster defines the term **airspace** as "the space lying above the earth or above a certain area of land or water".
 According to the [Chicago Convention on International Civil Aviation](https://www.icao.int/publications/Documents/7300_cons.pdf) of 1944, every state "has complete and exclusive sovereignty over the airspace above its territory". Horizontally, a state's airspace extends over its entire territoriy, which also include territorial waters. According to the [United Nations Convention on the Law of the Sea](https://www.un.org/Depts/los/convention_agreements/texts/unclos/unclos_e.pdf), territorial waters extend up to 12 nautical miles (22.2 km) from a state's coastline. Vertically, a state's airspace begins at the earth's surface and ends at an altitude of 100 km above mean sea level, which is also known as the [Kármán-Line](https://en.wikipedia.org/wiki/K%C3%A1rm%C3%A1n_line).
+The Kármán-Line - as a legal differentiation - separates the Earth's atmosphere from space.
 
-In order to manage an airspace, a state usually commissions a so-called **air navigation service provider** (ANSP), which is a public or private entity that offers so-called **air navigation services**. These air navigation services comprise of the following five components:
+According to the Chicago Convention and its subsidary framework, next to the soverignty clause, States have the responsibility to establish air navigation services (ANS) under Article 28(a) of the convention.
+For this purpose, States will introduce an airspace organisation <!-- c.f. chapter airspace - provide cross-reference -->, associated rules of the air, and assign the provision of these services to appropriate entities. 
+
+<!-- note: I would put the 'service provider' towards the end as it might be necessary to clarify that an ANSP must not be an ATSP, etc -- which is often confused --> 
+In order to manage an airspace, a state usually commissions a so-called **air navigation service provider** (ANSP), which is a public or private entity that offers so-called **air navigation services**. 
+
+**Air navigation services** facilitate the 'safe, efficient, and orderly flow of air traffic' and comprise of the following five groups of services:    
+<!-- dependent on source it is normally ATM/CNS or CNS/ATM, AIM, MET, SAR -->
 
 * Aeronautical Information Management (AIM)
 * Air Traffic Management (ATM)
@@ -50,13 +58,26 @@ To achieve these main objectives, ATS provides the following main services: (i) 
 
 **Air Traffic Control (ATC)**: According to [ICAO Annex 11][Annex_11], ATC is a service, which aims at the prevention of collisions between aircraft being airborne as well as between obstructions and aircraft being on the maneouvring area of an aerodrome. Besides that, ATC ensures the expedition and maintenance of an orderly flow of air traffic.
 
-<!--Flight Rules: IFR vs. VFR-->
-To ensure that the airspace is managed efficiently and effectively by ATC, flights are categorized and segmented according to the **flight rules** they are following. Basically, flights are thereby either following so-called *visual flight rules* (VFR) or *instrument flight rules* (IFR). As the name implies, VFR flights follow the principle of "see and avoid". That is, by looking out of the window, flight crew of VFR flights are responsible for ensuring that they are always sufficiently spatially separated from other flights and obstacles. Therefore, VFR flights can only be conducted when meteorological conditions permit. For instance, VFR flights can only operate in an airspace when the visibility is better than a certain minimum value. Moreover, pilots of VFR flights are prohibited from flying closer than a certain distance to clouds, which implies requirements regarding clouds. In contrast, flight crew operating under IFR are not obliged to look out of their cockpit windows in order to "see and avoid" other flights and obstalce. Rather, IFR flights are separated from other aircraft and obstacles by the ATC. Therefore, meteorological requirements to be met in IFR airspace is less stringent.
+<!--Flight Rules: IFR vs. VFR-->    
+<!-- RQ: the following is a bit intermingled: States define airspace --> operational limits --> rules of the air to operate in such airspaces --> ultimately requiring pilot/aircrews to operate a respectively equipped aircraft in accordance with these flight rules and associated meteorological condistions, i.e. IMC or VMC -->
+To ensure that the airspace is managed efficiently and effectively by ATC, flights are categorized and segmented according to the **flight rules** they are following. 
+Basically, flights are thereby either following so-called *visual flight rules* (VFR) or *instrument flight rules* (IFR). As the name implies, VFR flights follow the principle of "see and avoid". That is, by looking out of the window, flight crew of VFR flights are responsible for ensuring that they are always sufficiently spatially separated from other flights and obstacles. Therefore, VFR flights can only be conducted when meteorological conditions permit. For instance, VFR flights can only operate in an airspace when the visibility is better than a certain minimum value. Moreover, pilots of VFR flights are prohibited from flying closer than a certain distance to clouds, which implies requirements regarding clouds.
+These condistions are referred to as **Visual Meteorological Conditions (VMC)**.
+In contrast, flight crew operating under IFR are not obliged to look out of their cockpit windows in order to "see and avoid" other flights and obstalce. Rather, IFR flights are separated from other aircraft and obstacles by the ATC or procedurally (e.g. departure procedure ensuring freedom of obstacles when departing from an aerodrome). 
+<!-- reworded -->
+Therefore, the aforementioned meteorological requirements in terms of visibility and distance to clouds do not exist. <!-- replaced: to be met in IFR airspace is less stringent. -->    
+The associated consditions are referred to as **Instrument Meteorological Conditions (IMC)***.
+With the exemption of so-called *special VFR (SVFR)* operations, it follows that when the VMC are not met, flights operate in IMC.
 
 <!--Airspace Classes-->
-Besides differentiating between VFR and IFR flights, the airspace managed by ATC is segmented into a number of smaller sub-segments, so-called airspace blocks as annother means to ensure safe and expeditious flow of air traffic. These airspace blocks are further assigned a specific **airspace class**, which defines (i) which types of flight may use the airspace, (ii) under which circumstances these flights may enter this airspace block, and (iii) which services are offered to aircraft and/or aircraft crews being present in this airspace block. In [ICAO Annex 11][Annex_11, a total of seven distinct airspace classes, called Class A to Class G, are defined. In a first distinction, a distinction can be made between controlled and uncontrolled airspace, which, as indicated in Table XX, refers to Class A to E, and Class F to G, respectively. In this regard, the term *controlled* airspace indicates that ATC offers and provides services to aircraft being present in this airspace block, while no services are provided *uncontrolled* airspace blocks. Besides that, airspace classes differ in they type of flight allowed to enter and operate therein. While IFR flights are allowed to operate in all airspace classes, VFR flights are prohibited from using airspace Class A. Moreover, flights require an **ATC clearance** to enter certain airspace classes. If a clearance is required, pilots must contact ATC and request clearance before entering the airspace. As such, IFR and (if applicable) VFR flights require an ATC clearance for airspace Classes, A, B, C, and D. In airspace Class E, only IFR aircraft require a clearance, while VFR flights are exempt from this obligation. Please note: Aircraft operating as a *special VFR* flight[^1], which refers to specially equipped aircraft conducting VFR flights under lower weather minima than those of conventional VFR flights.
+<!-- RQ: we need to check how to handle this and what goes into the airspace.qmd -- conceptually we have airspace [above territory] to be chunked into volumes and associated uncontrolled/controlled portions -->
+Besides differentiating between VFR and IFR flights, the airspace managed by ATC is segmented into a number of smaller sub-segments or airspace volumes <!-- RQ 'airspace block' is linked to GANP - should be avoided here: ..., so-called airspace blocks as annother means --> to ensure safe and expeditious flow of air traffic. 
+These airspace <!-- blocks --> volumes are further assigned a specific **airspace class**, which defines (i) which types of flight may use the airspace, (ii) under which circumstances these flights may enter this airspace, and (iii) which services are offered to aircraft and/or aircraft crews being present in this airspace block.    
+In [ICAO Annex 11][Annex_11, a total of seven distinct airspace classes, called Class A to Class G, are defined. In a first distinction, a distinction can be made between controlled and uncontrolled airspace, which, as indicated in Table XX, refers to Class A to E, and Class F to G, respectively. In this regard, the term *controlled* airspace indicates that ATC offers and provides services to aircraft being present in this airspace block, while no services are provided *uncontrolled* airspace blocks.    
+Besides that, airspace classes differ in they type of flight allowed to enter and operate therein. While IFR flights are allowed to operate in all airspace classes, VFR flights are prohibited from using airspace Class A. Moreover, flights require an **ATC clearance** to enter certain airspace classes. If a clearance is required, pilots must contact ATC and request clearance before entering the airspace. As such, IFR and (if applicable) VFR flights require an ATC clearance for airspace Classes, A, B, C, and D. In airspace Class E, only IFR aircraft require a clearance, while VFR flights are exempt from this obligation. 
+Please note: Aircraft operating as a *special VFR* flight[^1], which refers to <!-- specially equipped --> aircraft conducting VFR flights under lower weather minima than those of conventional VFR flights.
 
-[^1]: Special VFR (SVFR) flights are only allowed in controlled airspace, in which (i) the minimum visibility must be at least 1500m, (ii) ground must be visible at all times, and (iii) aircraft must be clear of clouds. Aircraft operating SVFR flights must be equipped as if they conducted an IFR flight.
+[^1]: Special VFR (SVFR) flights are only allowed in controlled airspace, in which (i) the minimum visibility must be at least 1500m, (ii) ground must be visible at all times, and (iii) aircraft must be clear of clouds. <!-- the equipage statement is not correct --> Aircraft operating SVFR flights must be equipped as if they conducted an IFR flight.
 
 
 | Airspace Class | IFR-Flights | VFR-Flights | ATC-Clearance for IFR-Flights | ATC-Clearnace for VFR-Flights  |
@@ -75,7 +96,9 @@ The above mentioned airspace classes are valid in all states that have ratified 
 
 
 <!--Separations-->
-To prevent collisions between aircraft, ATC uses so-called **separations**. As such, the term separation refers to the vertical and lateral spatial spacing between aircraft. As a target for separations, ATC uses specified minimum separations, which define exactly which vertical and lateral minimum distances must be maintained at all times. In practice, not all aircraft are separated from each other, as separations are only (i) provided in certain airspace classes and (ii) not offered to all flights. With regard to flights, a distinction is made between aircraft operating under Instrument Flight Rules (IFR) and aircraft operating under Visual Flight Rules (VFR). The following table summarises for all airspace classes and types of flight, whether or not separation is provided by ATC. Note, the table must be read as follows: the first column indicates in which airspace class a particular flight is located. The second column indicates whether this flight is operating under IFR or VFR. The third column then indicates which separation services are offered to this flight.
+To prevent collisions between aircraft, ATC uses so-called **separation minima**. As such, the term separation refers to the vertical and lateral spatial spacing between aircraft. As a target for separations, ATC uses specified minimum separations, which define exactly which vertical and lateral minimum distances must be maintained at all times. In practice, not all aircraft are separated from each other, as separations are only (i) provided in certain airspace classes and (ii) not offered to all flights. 
+With regard to flights, a distinction is made between aircraft operating under Instrument Flight Rules (IFR) and aircraft operating under Visual Flight Rules (VFR). 
+The following table summarises for all airspace classes and types of flight, whether or not separation is provided by ATC. Note, the table must be read as follows: the first column indicates in which airspace class a particular flight is located. The second column indicates whether this flight is operating under IFR or VFR. The third column then indicates which separation services are offered to this flight.
 
 | Airspace Class | Flight Rules             | Separation provided to this flight               |
 |----------------|--------------------------|--------------------------------------------------|
@@ -92,10 +115,14 @@ To prevent collisions between aircraft, ATC uses so-called **separations**. As s
 | G              | IFR, VFR                 | No separations                                   |
 
 <!-- Add:Separation minima  En-route vs. terminal airspace-->
+A key aspect for the application of separation minima is the supporting infrastructure in terms of navigation and surveillance.
+For surveillance purposes, ATS use radar - both primary and secondary <!-- cross-reference to respective chapter/section -->.
+The primary driver for the associated minimum is linked to the type of radar and its technological characteristics.
 
-
-
-
+In certain airspaces only long-range radars are used. Here typical separation minima range from 10 to 20 Nautical Miles (NM)
+Within the European core-area, with a sufficient highly coverage of a mix of primary and secondary radars, the separation minima is 5 NM unless wake-turbulence categorisation requires a wider lateral spacing.    
+Closer to aerodromes radars with a higher revolution are dployed. This increases the accuracy of measurement within the arrival and departure airspace. This allows for a reduction of the separation minima. Within Europe and the United States, the required minimum is 3NM unless wake-turbublence categorisation requires a wider separation distance.   
+Within the close proximity of airports and given the deployment of so-called precision radars, the separation minima can be further reduced to 2 1/2 or 2 NM.
 
 <!--![This is a test image](../../images/radar_coverage.png){#fig-test width=40%}
 
@@ -108,6 +135,9 @@ See @fig-test for an illustration.-->
 
 **Alerting services**
 
+According to ICAO Annex 11 - Air Traffic Services - alerting services refers the notification of the appropriate organisations about aircraft in need of search and rescue or assist such organisations as required.     
+Alerting services are part of air traffic services (ATS) and typically provided by the ATS units involved.
+Accordingly, this service applies to all aircraft under the control of an ATS unit, or processing the associated flight plan and therefor know to the unit or in support of adjacent units, or information about aircraft - known or believed to be - subject to unlawful interference. 
 
 ### Airspace Management
 tbd
