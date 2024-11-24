@@ -11,6 +11,7 @@ The aircraft categorisation has relevance for the flight training and associated
 Thus, aircraft categorisation comprises also the intended use and operating environment.
 
 aircraft / air vehicle
+
 * lighter than air
   * airships and ballons
 * heavier than air
@@ -21,6 +22,7 @@ aircraft / air vehicle
   * rocket: aircraft propelled by expanding gases
 
 Aircraft categorisation has therefore relevance for
+
 * aircraft certification, i.e. the set of requirements to be met by design and demonstrated through flight test to obtain a "airworthiness certificate".
 * pilot licensing, i.e. the set of requirements in terms of training (both ground school and flight training) to operate a specific category of aircraft in its intended use.
 
