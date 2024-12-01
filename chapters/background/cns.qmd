@@ -4,7 +4,12 @@ author: Manuel Waltert
 ---
 
 Merriam-Webster defines the term **airspace** as "the space lying above the earth or above a certain area of land or water".
-According to the [Chicago Convention on International Civil Aviation](https://www.icao.int/publications/Documents/7300_cons.pdf) of 1944, every state "has complete and exclusive sovereignty over the airspace above its territory". Horizontally, a state's airspace extends over its entire territoriy, which also include territorial waters. According to the [United Nations Convention on the Law of the Sea](https://www.un.org/Depts/los/convention_agreements/texts/unclos/unclos_e.pdf), territorial waters extend up to 12 nautical miles (22.2 km) from a state's coastline. Vertically, a state's airspace begins at the earth's surface and ends at an altitude of 100 km above mean sea level, which is also known as the [Kármán-Line](https://en.wikipedia.org/wiki/K%C3%A1rm%C3%A1n_line).
+According to the [Chicago Convention on International Civil Aviation](https://www.icao.int/publications/Documents/7300_cons.pdf) of 1944, every state "has complete and exclusive sovereignty over the airspace above its territory". Horizontally, a state's airspace extends over its entire territoriy, which also include territorial waters. According to the [United Nations Convention on the Law of the Sea](https://www.un.org/Depts/los/convention_agreements/texts/unclos/unclos_e.pdf), territorial waters extend up to 12 nmi (22.2 km) from a State's coastline, @fig-coastline  from [@LawSeaPolicy2017], Chapter 2. 
+
+<!-- can we use the figure in https://observablehq.com/@openaviation/flying-to-kaliningrad  from [5]? -->
+![Legal Boundaries of the Oceans and Airspace, Chapter 2 [@LawSeaPolicy2017].](/images/MaritimeZoneSchematic-1.png){#fig-coastline}
+
+Vertically, a state's airspace begins at the earth's surface and ends at an altitude of 100 km above mean sea level, which is also known as the [Kármán-Line](https://en.wikipedia.org/wiki/K%C3%A1rm%C3%A1n_line).
 The Kármán-Line - as a legal differentiation - separates the Earth's atmosphere from space.
 
 According to the Chicago Convention and its subsidary framework, next to the soverignty clause, each State has the responsibility to establish an \acr{ANS} under Article 28(a) of the convention.
@@ -25,7 +30,7 @@ In order to manage an airspace, a state usually commissions a so-called \acr{ANS
 For the remainder of this section, the components of air navigation services are described in more detail.
 
 
-## Aeronautical Information Management
+## \acr{AIM}
 Aeronautical Information Management (AIM) is considered with the collection, assembly, publication, exchange, and dissemination of quality-assured, timely and digital aeronautical data in collaboration with all relevant stakeholders. Aeronautical data includes aeronautical information publications (AIP), notice to airmen (NOTAM), preflight information bulletins (PIB), and aeronautical information circulars (AIC).
 
 **Aeronautical Information Publications (AIP)**, which contain "aeronautical information of a lasting character essential to air navigation", see [ICAO Annex 15][Annex_15], are issued by a state or by an authority of the state, such as an ANSP. Since their structure is standardized by ICAO Annex 15, AIP usually consist of three distinctive parts:
@@ -132,10 +137,10 @@ A key aspect for the application of separation minima is the supporting infrastr
 For surveillance purposes, ATS use radar - both primary and secondary <!-- cross-reference to respective chapter/section -->.
 The primary driver for the associated minimum is linked to the type of radar and its technological characteristics.
 
-In certain airspaces only long-range radars are used. Here typical separation minima range from 10 to 20 Nautical Miles (NM)
-Within the European core-area, with a sufficient highly coverage of a mix of primary and secondary radars, the separation minima is 5 NM unless wake-turbulence categorisation requires a wider lateral spacing.    
+In certain airspaces only long-range radars are used. Here typical separation minima range from 10 to 20 nmi.
+Within the European core-area, with a sufficient highly coverage of a mix of primary and secondary radars, the separation minima is 5 nmi unless wake-turbulence categorisation requires a wider lateral spacing.    
 Closer to aerodromes radars with a higher revolution are dployed. This increases the accuracy of measurement within the arrival and departure airspace. This allows for a reduction of the separation minima. Within Europe and the United States, the required minimum is 3NM unless wake-turbublence categorisation requires a wider separation distance.   
-Within the close proximity of airports and given the deployment of so-called precision radars, the separation minima can be further reduced to 2 1/2 or 2 NM.
+Within the close proximity of airports and given the deployment of so-called precision radars, the separation minima can be further reduced to 2 1/2 or 2 nmi.
 
 <!--![This is a test image](../../images/radar_coverage.png){#fig-test width=40%}
 
@@ -155,7 +160,7 @@ Accordingly, this service applies to all aircraft under the control of an ATS un
 ### Airspace Management
 tbd
 
-### Air Traffic Flow Management
+### \acr{ATFM}
 tbd
 
 
@@ -165,8 +170,10 @@ tbd
 ## \acr{MET}
 tbd
 
-## Communication, Navigation, Surveillance (CNS)
-To ensure safe and efficient air transportation, Air Traffic Management (ATM) relies on infrastructure, services, and functions in the areas of Communication, Navigation, and Surveillance (CNS). As such, communication enables the exchange of information, be it in spoken or written form, between crews of aircraft and/or air traffic control. Navigation encompasses all services and infrastructures by means of which aircraft crews find their way through space in order to get from one place to another quickly, efficiently, and safely. Finally, surveillance comprises all technical possibilities by means of which air traffic control can determine the position of aircraft. In the following, the most important services, technologies, and processes in the field of CNS are presented.
+
+
+## \acr{CNS}
+To ensure safe and efficient air transportation, \acr{ATM} relies on infrastructure, services, and functions in the areas of \acr{CNS}. As such, communication enables the exchange of information, be it in spoken or written form, between crews of aircraft and/or air traffic control. Navigation encompasses all services and infrastructures by means of which aircraft crews find their way through space in order to get from one place to another quickly, efficiently, and safely. Finally, surveillance comprises all technical possibilities by means of which air traffic control can determine the position of aircraft. In the following, the most important services, technologies, and processes in the field of CNS are presented.
 
 ### Communication
 #### Voice communications
@@ -282,5 +289,7 @@ However, not until the Second World War, was the concept of RAdio Detection And 
 [Annex_15]: https://www.bazl.admin.ch/dam/bazl/en/dokumente/Fachleute/Regulationen_und_Grundlagen/icao-annex/icao_annex_15_aeronauticalinformationservices.pdf.download.pdf/an15_cons.pdf
 
 
-
 ## List of Acronyms {.unnumbered}
+
+\printacronyms
+

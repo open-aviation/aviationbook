@@ -31,6 +31,8 @@ acronyms:
       longname: ARriVal Time
     - shortname: ATC
       longname: Air Traffic Control
+    - shortname: ATFM
+      longname: Air Traffic Flow Management
     - shortname: ATM
       longname: Air Traffic Management
     - shortname: ATOW
@@ -45,6 +47,8 @@ acronyms:
       longname: Base of Aircraft Data
     - shortname: BR
       longname: Basic Regulation
+    - shortname: CNS
+      longname: Communication, Navigation, Surveillance
     - shortname: CPR
       longname: Correlated Position Report
     - shortname: CTFM

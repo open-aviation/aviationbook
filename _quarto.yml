@@ -182,6 +182,7 @@ format:
   pdf:
     documentclass: scrbook
     papersize: a4
+    cite-method: citeproc
 
 filters:
   - acronyms
