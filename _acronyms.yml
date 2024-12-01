@@ -11,6 +11,8 @@ acronyms:
       longname: Aerodrome of DEStination
     - shortname: ADS-B
       longname: Automatic Dependent Surveillance–Broadcast
+    - shortname: ADS-C
+      longname: Automatic Dependent Surveillance-Contract
     - shortname: AIP
       longname: Aeronautical Information Publication
     - shortname: AO
@@ -27,6 +29,10 @@ acronyms:
       longname: Air Traffic Control
     - shortname: ATOW
       longname: Actual TakeOff Weight
+    - shortname: ATCRBS
+      longname: Air Traffic Control Radar Beacon System
+    - shortname: ATSU
+      longname: Air Traffic Service Unit
     - shortname: BADA
       longname: Base of Aircraft Data
     - shortname: BR
@@ -39,6 +45,8 @@ acronyms:
       longname: Control Zone
     - shortname: DDR2
       longname: Demand Data Repository version 2
+    - shortname: DF
+      longname: Downlink Format
     - shortname: EASA
       longname: European Union Aviation Safety Agency
     - shortname: ECEF
@@ -51,22 +59,34 @@ acronyms:
       longname: European Centre for Medium-Range Weather Forecasts
     - shortname: ERA5
       longname: ECMWF's fifth generation of Atmospheric Reanalysis
+    - shortname: ES
+      longname: Extended Squitter
     - shortname: ETOW
       longname: Estimated TakeOff Weight
     - shortname: EU
       longname: European Union
+    - shortname: FDR
+      longname: Flight Data Recorder
     - shortname: FIR
       longname: Flight Information Region
+    - shortname: FOQA
+      longname: Flight Operational Quality Assurance
     - shortname: FP
       longname: Flight Plan
     - shortname: FTFM
       longname: Filed Tactical Flight Model
+    - shortname: GNSS
+      longname: Global Navigation Satellite System
     - shortname: GPS
       longname: Global Positioning System
+    - shortname: IAS
+      longname: Indicated AirSpeed
     - shortname: ICAO
       longname: International Civil Aviation Organization
     - shortname: IFR
       longname: Instrument Flight Rules
+    - shortname: ILS
+      longname: Instrument Landing System
     - shortname: IR
       longname: Implementing Rule
     - shortname: ISO
@@ -85,14 +105,22 @@ acronyms:
       longname: OpenSky Network
     - shortname: PRC
       longname: Performance Review Commission
+    - shortname: PSR
+      longname: Primary Surveillance Radar
+    - shortname: QAR
+      longname: Quick Access Recorder
     - shortname: RA
       longname: Resolution Advisory
     - shortname: RAD
       longname: Route Availability Document
     - shortname: RMSE
       longname: Root Mean Square Error
+    - shortname: SSR
+      longname: Secondary Surveillance Radar
     - shortname: TA
       longname: Traffic Advisory
+    - shortname: TAS
+      longname: True AirSpeed
     - shortname: TACAN
       longname: TactiCal Air Navigation system
     - shortname: TCAS
@@ -101,6 +129,10 @@ acronyms:
       longname: Terminal Manoeuvring Area
     - shortname: TOW
       longname: TakeOff Weight
+    - shortname: UAT
+      longname: Universal Access Transceiver
+    - shortname: UAV
+      longname: Unmanned Aerial Vehicle
     - shortname: VOR
       longname: Very High Frequency Omnidirectional Range Station
     - shortname: WTC
