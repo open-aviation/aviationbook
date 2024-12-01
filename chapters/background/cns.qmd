@@ -31,43 +31,56 @@ Aeronautical Information Management (AIM) is considered with the collection, ass
 **Aeronautical Information Publications (AIP)**, which contain "aeronautical information of a lasting character essential to air navigation", see [ICAO Annex 15][Annex_15], are issued by a state or by an authority of the state, such as an ANSP. Since their structure is standardized by ICAO Annex 15, AIP usually consist of three distinctive parts:
 
 * *GEN - General information*: As the name implies, GEN contains general information, such as the authority responsible for the AIP, locally applied units of measure, abbreviations used in the AIP, locally applicable time zones and daylight saving time regulations, airspace charges regulations, etc.
-* *ENR - Information referring to en-route*: ENR contains information that is of importance during the flight, i.e., while aircraft are *en-route*. ENR is divided into the following 6 parts: (i) information on general rules and procedures for visual flight (VFR) and instrument flight (IFR) or the airspace classes applied, (ii) description of the vertical and horizontal spread of airspaces, (iii) description of airways, (iv) description of radio navigation systems and infrastructures, (v) navigation warnings such as military airspaces, known aviation obstacles, danger areas, etc., and (vi) en-route chart material.
+* *ENR - Information referring to en-route*: ENR contains information that is of importance during the flight, i.e., while aircraft are *en-route*. ENR is divided into the following 6 parts: (i) information on general rules and procedures for \{VFR} and \acr{IFR} or the airspace classes applied, (ii) description of the vertical and horizontal spread of airspaces, (iii) description of airways, (iv) description of radio navigation systems and infrastructures, (v) navigation warnings such as military airspaces, known aviation obstacles, danger areas, etc., and (vi) en-route chart material.
 * *AD - Information referring to aerodromes*: AD includes information on both aerodromes and heliports and is divided into 3 parts. The first part contains an index of all aerodromes and helipads of a state as well as a description of the classification system of aerodromes applied in the state. Parts 2 and 3 of AD include detailed information on individual aerodromes or heliports, such as opening times, aerodrome operators, available service facilities, dimensions and alignment of runways, runway and approach lights, relevant aeronautical obstructions, etc. detailed maps are also provided, which contain information on ground-based infrastructure, i.e., aprons, taxiway, runways, etc., as well as flight procedures, i.e., standard instrument departures, standard terminal arrival routes, approach procedures.
 
-To keep AIPs up to date, they are revised in an internationally standardized cylce, which is known as the **AIRAC cycle**. This AIRAC cycle follows a fixed 28-day rhythm, which is internationally standardised. The publication dates are known years in advance and are published, for example, by [Eurocontrol](https://www.nm.eurocontrol.int/RAD/common/airac_dates.html).
+To keep \acr{AIP}s up to date, they are revised in an internationally standardized cylce, which is known as the **\acr{AIRAC} cycle**. This \acr{AIRAC} cycle follows a fixed 28-day rhythm, which is internationally standardised. The publication dates are known years in advance and are published, for example, by [Eurocontrol](https://www.nm.eurocontrol.int/RAD/common/airac_dates.html).
 
-**Notice to airmen (NOTAM)** A NOTAM contains information that is of importance to personnel involved in flight operations. While AIPs tend to contain static information that is valid over long periods of time and is known well in advance, NOTAMs include information that is dynamic in nature as it is not known far enough in advance to be published in any other way. Indeed, according to [ICAO Annex 15][Annex_15], NOTAMs contain "information concerning the establishment, condition or change in any aeronautical facility, service, procedure or hazard...".
+**\acr{NOTAM}** A \acr{NOTAM} contains information that is of importance to personnel involved in flight operations. While \acr{AIP}s tend to contain static information that is valid over long periods of time and is known well in advance, \acr{NOTAM}s include information that is dynamic in nature as it is not known far enough in advance to be published in any other way. Indeed, according to [ICAO Annex 15][Annex_15], \acr{NOTAM}s contain "information concerning the establishment, condition or change in any aeronautical facility, service, procedure or hazard...".
 
-**Prefilght information bulletins (PIB)** A PIB consists of a compilation of a number of NOTAMs which are important for the execution of a flight. Consequently, a PIB contains NOTAMs for the origin, destination and alternate airports, as well as NOTAMs for the airspace that the flight is likely to use.
+**\acr{PIB}** A \acr{PIB} consists of a compilation of a number of \acr{NOTAM}s which are important for the execution of a flight. Consequently, a \acr{PIB} contains \acr{NOTAM}s for the origin, destination and alternate airports, as well as \acr{NOTAM}s for the airspace that the flight is likely to use.
 
-**Aeronautical information circulars (AIC)** [ICAO Annex 15][Annex_15] defines an AIC as "a notice containing information that does not qualify for the origination of a NOTAM of for inclusion in the AIP, but which relates to flight safety , air navigation, technical, administrative or legislative matters." For example, AICs are issued to communicate a strategy in which a state explains how it aims to modernise its ground-based navigational aids, or how a certain new procedure will be implemented in the future.
+**\acr{AIC}** [ICAO Annex 15][Annex_15] defines an \arc{AIC} as "a notice containing information that does not qualify for the origination of a NOTAM of for inclusion in the AIP, but which relates to flight safety , air navigation, technical, administrative or legislative matters." For example, \acr{AIC}s are issued to communicate a strategy in which a state explains how it aims to modernise its ground-based navigational aids, or how a certain new procedure will be implemented in the future.
 
 
-## Air Traffic Management
-The term *air traffic management* (ATM) is defined in ICAO Document 4444 as "the aggregation of the airborne functions and ground-based functions [...] required to ensure the safe and efficient movement of aircraft during all phases of operations", which, in practice, is enabled in practice by the following services: (i) air traffic services, (ii) airspace management, and (iii) air traffic flow management.
+## \acr{ATM}
+The term \acr{ATM} is defined in ICAO Document 4444 as 
 
-### Air Traffic Services
-Air Traffic Services (ATS) is concerned with the control, regulation, and assistance of aircraft and flight crews in real time. To this end, ATS has the following four main objectives:
+> the aggregation of the airborne functions and ground-based functions [...] required to ensure the safe and efficient movement of aircraft during all phases of operations
 
-* The avoidance of collisions between aircraft.
-* The provision of advice for the safe and efficient conduction of flights.
-* The conduction and maintainance of an orderly flow of air traffic.
-* The notification and assistance of concerned organisations in case of search and rescue operations.
+which, in practice, is enabled by the following services
 
-To achieve these main objectives, ATS provides the following main services: (i) air traffic control (ATC), (ii) air traffic advisory services, (iii) flight information services, and (iv) alerting services.
+i. air traffic services, 
+i. airspace management, and 
+i. air traffic flow management.
 
-**Air Traffic Control (ATC)**: According to [ICAO Annex 11][Annex_11], ATC is a service, which aims at the prevention of collisions between aircraft being airborne as well as between obstructions and aircraft being on the maneouvring area of an aerodrome. Besides that, ATC ensures the expedition and maintenance of an orderly flow of air traffic.
+### \acr{ATS}
+\acr{ATS} is concerned with the control, regulation, and assistance of aircraft and flight crews in real time. To this end, \acr{ATS} has the following four main objectives:
+
+1. The avoidance of collisions between aircraft.
+1. The provision of advice for the safe and efficient conduction of flights.
+1. The conduction and maintainance of an orderly flow of air traffic.
+1. The notification and assistance of concerned organisations in case of search and rescue operations.
+
+To achieve these main objectives, \acr{ATS} provides the following main services: 
+
+i. air traffic control (ATC)
+i. air traffic advisory services
+i. flight information services, and
+i. alerting services.
+
+**\acr{ATC}**: According to [ICAO Annex 11][Annex_11], ATC is a service, which aims at the prevention of collisions between aircraft being airborne as well as between obstructions and aircraft being on the maneouvring area of an aerodrome. Besides that, ATC ensures the expedition and maintenance of an orderly flow of air traffic.
 
 <!--Flight Rules: IFR vs. VFR-->    
-<!-- RQ: the following is a bit intermingled: States define airspace --> operational limits --> rules of the air to operate in such airspaces --> ultimately requiring pilot/aircrews to operate a respectively equipped aircraft in accordance with these flight rules and associated meteorological condistions, i.e. IMC or VMC -->
+<!-- RQ: the following is a bit intermingled: States define airspace --> operational limits --> rules of the air to operate in such airspaces --> ultimately requiring pilot/aircrews to operate a respectively equipped aircraft in accordance with these flight rules and associated meteorological condistions, i.e. \acr{IMC} or \acr{VMC} -->
 To ensure that the airspace is managed efficiently and effectively by ATC, flights are categorized and segmented according to the **flight rules** they are following. 
-Basically, flights are thereby either following so-called *visual flight rules* (VFR) or *instrument flight rules* (IFR). As the name implies, VFR flights follow the principle of "see and avoid". That is, by looking out of the window, flight crew of VFR flights are responsible for ensuring that they are always sufficiently spatially separated from other flights and obstacles. Therefore, VFR flights can only be conducted when meteorological conditions permit. For instance, VFR flights can only operate in an airspace when the visibility is better than a certain minimum value. Moreover, pilots of VFR flights are prohibited from flying closer than a certain distance to clouds, which implies requirements regarding clouds.
-These condistions are referred to as **Visual Meteorological Conditions (VMC)**.
+Basically, flights are thereby either following so-called *\acr{VFR}* or *\acr{IFR}*. As the name implies, \acr{VFR} flights follow the principle of "see and avoid". That is, by looking out of the window, flight crew of \acr{VFR} flights are responsible for ensuring that they are always sufficiently spatially separated from other flights and obstacles. Therefore, \acr{VFR} flights can only be conducted when meteorological conditions permit. For instance, \acr{VFR} flights can only operate in an airspace when the visibility is better than a certain minimum value. Moreover, pilots of \acr{VFR} flights are prohibited from flying closer than a certain distance to clouds, which implies requirements regarding clouds.
+These condistions are referred to as **\acr{VMC}**.
 In contrast, flight crew operating under IFR are not obliged to look out of their cockpit windows in order to "see and avoid" other flights and obstalce. Rather, IFR flights are separated from other aircraft and obstacles by the ATC or procedurally (e.g. departure procedure ensuring freedom of obstacles when departing from an aerodrome). 
 <!-- reworded -->
 Therefore, the aforementioned meteorological requirements in terms of visibility and distance to clouds do not exist. <!-- replaced: to be met in IFR airspace is less stringent. -->    
-The associated consditions are referred to as **Instrument Meteorological Conditions (IMC)***.
-With the exemption of so-called *special VFR (SVFR)* operations, it follows that when the VMC are not met, flights operate in IMC.
+The associated consditions are referred to as **\acr{IMC}***.
+With the exemption of so-called *special VFR (SVFR)* operations, it follows that when the \acr{VMC} are not met, flights operate in \acr{IMC}.
 
 <!--Airspace Classes-->
 <!-- RQ: we need to check how to handle this and what goes into the airspace.qmd -- conceptually we have airspace [above territory] to be chunked into volumes and associated uncontrolled/controlled portions -->
@@ -149,7 +162,7 @@ tbd
 
 
 
-## Meteorological Services (MET)
+## \acr{MET}
 tbd
 
 ## Communication, Navigation, Surveillance (CNS)

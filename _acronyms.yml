@@ -13,8 +13,12 @@ acronyms:
       longname: Automatic Dependent Surveillance–Broadcast
     - shortname: ADS-C
       longname: Automatic Dependent Surveillance-Contract
+    - shortname: AIC
+      longname: Aeronautical Information Circular
     - shortname: AIP
       longname: Aeronautical Information Publication
+    - shortname: AIRAC
+      longname: Aeronautical Information Regulation And Control
     - shortname: AO
       longname: Aircraft Operator
     - shortname: AOBT
@@ -27,10 +31,14 @@ acronyms:
       longname: ARriVal Time
     - shortname: ATC
       longname: Air Traffic Control
+    - shortname: ATM
+      longname: Air Traffic Management
     - shortname: ATOW
       longname: Actual TakeOff Weight
     - shortname: ATCRBS
       longname: Air Traffic Control Radar Beacon System
+    - shortname: ATS
+      longname: Air Traffic Services
     - shortname: ATSU
       longname: Air Traffic Service Unit
     - shortname: BADA
@@ -87,10 +95,14 @@ acronyms:
       longname: Instrument Flight Rules
     - shortname: ILS
       longname: Instrument Landing System
+    - shortname: IMC
+      longname: Instrument Meteorological Conditions
     - shortname: IR
       longname: Implementing Rule
     - shortname: ISO
       longname: International Organization for Standardization
+    - shortname: MET
+      longname: Meteorological Services
     - shortname: ML
       longname: Machine Learning
     - shortname: MTOW
@@ -101,8 +113,12 @@ acronyms:
       longname: North-East-Down
     - shortname: NM
       longname: Network Manager
+    - shortname: NOTAM
+      longname: NOtice To AirMen
     - shortname: OSN
       longname: OpenSky Network
+    - shortname: PIB
+      longname: Prefilght Information Bulletin
     - shortname: PRC
       longname: Performance Review Commission
     - shortname: PSR
@@ -133,6 +149,10 @@ acronyms:
       longname: Universal Access Transceiver
     - shortname: UAV
       longname: Unmanned Aerial Vehicle
+    - shortname: VFR
+      longname: Visual Flight Rules
+    - shortname: VMC
+      longname: Visual Meteorological Conditions
     - shortname: VOR
       longname: Very High Frequency Omnidirectional Range Station
     - shortname: WTC
