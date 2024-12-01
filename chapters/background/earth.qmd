@@ -28,7 +28,7 @@ simplicity's sake.
 
 ## The Spherical Earth Model
 
-### The Earth-Centered, Earth-Fixed (ECEF) Coordinate System
+### The \acr{ECEF} Coordinate System
 
 The Earth is modeled here as a sphere of radius $R_T$. Let us define a
 reference frame fixed to the Earth and for which the axis $z_e$ passes
@@ -41,7 +41,7 @@ center.
 
 In the following, we shall denote
 $(\overrightarrow{\imath}_e, \overrightarrow{\jmath}_e, \overrightarrow{k}_e)$
-the orthonormal vectors of the ECEF reference frame $Ox_ey_ez_e$.
+the orthonormal vectors of the \acr{ECEF} reference frame $Ox_ey_ez_e$.
 
 ![Spherical Earth model](../../images/earth_model/Terre_spherique.jpg){#fig-spheric_earth width="8cm"}
 
@@ -53,12 +53,12 @@ plane $x_eOy_e$ and $\overrightarrow{OP}$. The longitude, denoted $\lambda$, is
 the angle between the Greenwich meridian plane $x_eOz_e$ and the meridian plane
 containing $\overrightarrow{OP}$.
 
-### The North-East-Down (NED) reference frame
+### The \acr{NED} reference frame
 
 For given point $P$, located on or at proximity of the Earth's surface,
-let us define another system of axes, called the NED (North, East, Down)
+let us define another system of axes, called the \acr{NED}
 system, or the local horizontal reference frame centered on point $P$.
-In this NED frame, the $x_h$ axis is in the local horizontal plane and
+In this \acr{NED} frame, the $x_h$ axis is in the local horizontal plane and
 passes through $P$, pointing to the North. The $y_h$ axis is also in the
 horizotal plane and passes through $P$, but it points to the East.
 Finally, the vertical axis $z_h$ passes through $P$ and points downward,
@@ -69,13 +69,13 @@ An orthonormal basis of vectors
 $(\overrightarrow{\imath}_h, \overrightarrow{\jmath}_h, \overrightarrow{k}_h$)
 is associated to this system.
 
-![North, East, Down (NED) reference frame, on a spherical earth](../../images/earth_model/horizontal_frame.jpg){#fig-NED width="8cm"}
+![\acr{NED} reference frame, on a spherical earth](../../images/earth_model/horizontal_frame.jpg){#fig-NED width="8cm"}
 
 
 
 ### Coordinates of a Point on the Sphere
 
-The Cartesian coordinates -- in the ECEF (Earth-Centered, Earth-Fixed)
+The Cartesian coordinates -- in the \acr{ECEF}
 system -- of a point $P$ at altitude $h$ are given by @eq-coor_sphere:
 
 $$
@@ -87,7 +87,7 @@ z_e= (R_T+h) \sin \mu
 \end{array}
 $$ {#eq-coor_sphere}
 
-In the NED (North, East, Down) system where the unit vector
+In the \acr{NED} system where the unit vector
 $\overrightarrow{k}_h$ points downward from $P$, the position vector can
 be expressed very simply by @eq-position_NED_sphere, and the coordinates by @eq-coor_NED_sphere.
 
@@ -104,18 +104,18 @@ z_h= - (R_T+h)
 \end{array}
 $$ {#eq-coor_NED_sphere}
 
-### Velocity of a Point with Respect to the ECEF Frame
+### Velocity of a Point with Respect to the \acr{ECEF} Frame
 
 Let $Ox_my_mz_e$ be the orthonormed direct system such that $x_mOz_e$ is
 the meridian plane containing $P$, the position of the mobile agent.
-This referential is obtained simply by rotating the ECEF axes
+This referential is obtained simply by rotating the \acr{ECEF} axes
 $Ox_ey_ez_e$ of an angle $\lambda$ around the axis of the poles $z_e$.
 Let
 $(\overrightarrow{\imath}_m, \overrightarrow{\jmath}_m, \overrightarrow{k}_e)$
 be the orthonormal basis associated with the reference frame fixed too
 the meridian plane passing through $P$.
 
-The velocity with respect to the ECEF reference frame, considered as
+The velocity with respect to the \acr{ECEF} reference frame, considered as
 fixed, is given
 in @eq-speed_sphere, taking into account the angular speed
 $\overrightarrow{\Omega}_{Ox_my_mz_e/\mathit{ECEF}} = \dot{\lambda} \overrightarrow{k}_e$
@@ -138,7 +138,7 @@ $$
 \frac{d\overrightarrow{OP}}{dt}_{/Ox_my_mz_e} = -(R_T+h)\frac{d\mu}{dt}\frac{d\overrightarrow{k}_h}{d\mu} - \dot{h} \overrightarrow{k}_h = \dot{\mu}(R_T+h) \overrightarrow{\imath}_h - \dot{h} \overrightarrow{k}_h
 $$ {#eq-deriv_position_NED_sphere}
 
-By combining @eq-deriv_position_NED_sphere and @eq-speed_sphere, the velocity with respect to the ECEF reference frame is then expressed (see @eq-deriv_vect_op) in a simple form in the basis of vectors $(\overrightarrow{\imath}_h, \overrightarrow{\jmath}_h, \overrightarrow{k}_h)$ associated with the local horizontal frame NED.
+By combining @eq-deriv_position_NED_sphere and @eq-speed_sphere, the velocity with respect to the \acr{ECEF} reference frame is then expressed (see @eq-deriv_vect_op) in a simple form in the basis of vectors $(\overrightarrow{\imath}_h, \overrightarrow{\jmath}_h, \overrightarrow{k}_h)$ associated with the local horizontal frame \acr{NED}.
 
 $$
 \begin{aligned}
@@ -149,8 +149,7 @@ $$ {#eq-deriv_vect_op}
 
 Adopting the slightly unwieldy but explicit notation convention where
 "$/\mathit{ECEF}$" means *"with respect to the Earth's reference
-frame"* and $\{.\}_{\mathit{NED}}$ means *"in the NED (North, East,
-Down) coordinate system"*, the coordinates of the velocity with respect
+frame"* and $\{.\}_{\mathit{NED}}$ means *"in the \acr{NED} coordinate system"*, the coordinates of the velocity with respect
 to the Earth are given by @eq-coor_deriv_vect_op.
 
 $$
@@ -342,12 +341,12 @@ $$
 %)^{\frac{1}{2}}}
 $$ {#eq-ellipsoid_normal_distance}
 
-### The ECEF and Other Reference Frames for the Ellipsoid of Revolution
+### The \acr{ECEF} and Other Reference Frames for the Ellipsoid of Revolution
 
-![Earth-Centered, Earth-Fixed (ECEF) and mobile reference frames, on the ellipsoid of revolution](../../images/earth_model/Reperes_ellipsoide.jpg){#fig-ellipsoid_ref_frames width="8cm"}
+![\acr{ECEF} and mobile reference frames, on the ellipsoid of revolution](../../images/earth_model/Reperes_ellipsoide.jpg){#fig-ellipsoid_ref_frames width="8cm"}
 
-In the case of the ellipsoid of revolution, we use an ECEF
-(Earth-Centered, Earth-Fixed) reference frame similar to the spherical
+In the case of the ellipsoid of revolution, we use an \acr{ECEF}
+ reference frame similar to the spherical
 model. Its system of axes is noted here $Ox_ey_ez_e$, with a base of
 orthonormal vectors
 $(\overrightarrow{\imath}_e, \overrightarrow{\jmath}_e, \overrightarrow{k}_e)$.
@@ -359,7 +358,7 @@ The vectors $\overrightarrow{\imath}_m$ and $\overrightarrow{k}_e$ are
 thus in the meridian plane passing through $N$ (and $P$). We will denote
 $Ox_my_mz_e$ the associated axis system.
 
-The local horizontal reference frame NED (North, East, Down), with
+The local horizontal reference frame \acr{NED}, with
 orthonormal base
 $(\overrightarrow{\imath}_h, \overrightarrow{\jmath}_h, \overrightarrow{k}_h)$,
 is similar to the one of the spherical model, except that the vertical
@@ -421,7 +420,7 @@ z_e= \left[\mathcal{N} (1-e^2)+h\right]\sin \mu
 \end{array}
 $$ {#eq-coor_ellipsoid_ECEF_P}
 
-### Velocity of a Point with Respect to the ECEF Frame
+### Velocity of a Point with Respect to the \acr{ECEF} Frame
 
 $$
 \frac{d\overrightarrow{ON}}{dt}_{/Ox_my_mz_e}
@@ -518,3 +517,6 @@ $$
 \boxed{R_P = \mathcal{N}\cos\mu = \frac{a\cos\mu}{\sqrt{1-e^2 \sin ^2 \mu}}}
 %)^{\frac{1}{2}}}
 $$ {#eq-parallel_radius}
+
+
+## List of Acronyms {.unnumbered}

@@ -182,3 +182,13 @@ format:
   pdf:
     documentclass: scrbook
     papersize: a4
+
+filters:
+  - acronyms
+
+acronyms:
+  include_unused: false
+  insert_links: false
+  fromfile: _acronyms.yml
+  insert_loa: "end"
+  loa_title: ""

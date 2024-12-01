@@ -1,0 +1,108 @@
+---
+acronyms:
+  keys:
+    - shortname: ACAS
+      longname: Airborne Collision Avoidance System
+    - shortname: ACC
+      longname: Area Control Centre
+    - shortname: ADEP
+      longname: Aerodrome of DEParture
+    - shortname: ADES
+      longname: Aerodrome of DEStination
+    - shortname: ADS-B
+      longname: Automatic Dependent Surveillance–Broadcast
+    - shortname: AIP
+      longname: Aeronautical Information Publication
+    - shortname: AO
+      longname: Aircraft Operator
+    - shortname: AOBT
+      longname: Actual Off-Block Time
+    - shortname: ANS
+      longname: Air Navigation Service
+    - shortname: ANSP
+      longname: Air Navigation Service Provider
+    - shortname: ARVT
+      longname: ARriVal Time
+    - shortname: ATC
+      longname: Air Traffic Control
+    - shortname: ATOW
+      longname: Actual TakeOff Weight
+    - shortname: BADA
+      longname: Base of Aircraft Data
+    - shortname: BR
+      longname: Basic Regulation
+    - shortname: CPR
+      longname: Correlated Position Report
+    - shortname: CTFM
+      longname: Current Tactical Flight Model
+    - shortname: CTR
+      longname: Control Zone
+    - shortname: DDR2
+      longname: Demand Data Repository version 2
+    - shortname: EASA
+      longname: European Union Aviation Safety Agency
+    - shortname: ECEF
+      longname: Earth-Centered, Earth-Fixed
+    - shortname: ECTL
+      longname: EUROCONTROL
+    - shortname: EC
+      longname: European Commission
+    - shortname: ECMWF
+      longname: European Centre for Medium-Range Weather Forecasts
+    - shortname: ERA5
+      longname: ECMWF's fifth generation of Atmospheric Reanalysis
+    - shortname: ETOW
+      longname: Estimated TakeOff Weight
+    - shortname: EU
+      longname: European Union
+    - shortname: FIR
+      longname: Flight Information Region
+    - shortname: FP
+      longname: Flight Plan
+    - shortname: FTFM
+      longname: Filed Tactical Flight Model
+    - shortname: GPS
+      longname: Global Positioning System
+    - shortname: ICAO
+      longname: International Civil Aviation Organization
+    - shortname: IFR
+      longname: Instrument Flight Rules
+    - shortname: IR
+      longname: Implementing Rule
+    - shortname: ISO
+      longname: International Organization for Standardization
+    - shortname: ML
+      longname: Machine Learning
+    - shortname: MTOW
+      longname: Maximum TakeOff Weight
+    - shortname: NAVAID
+      longname: NAVigational AID
+    - shortname: NED
+      longname: North-East-Down
+    - shortname: NM
+      longname: Network Manager
+    - shortname: OSN
+      longname: OpenSky Network
+    - shortname: PRC
+      longname: Performance Review Commission
+    - shortname: RA
+      longname: Resolution Advisory
+    - shortname: RAD
+      longname: Route Availability Document
+    - shortname: RMSE
+      longname: Root Mean Square Error
+    - shortname: TA
+      longname: Traffic Advisory
+    - shortname: TACAN
+      longname: TactiCal Air Navigation system
+    - shortname: TCAS
+      longname: Traffic alert and Collision Avoidance System
+    - shortname: TMA
+      longname: Terminal Manoeuvring Area
+    - shortname: TOW
+      longname: TakeOff Weight
+    - shortname: VOR
+      longname: Very High Frequency Omnidirectional Range Station
+    - shortname: WTC
+      longname: Wake Turbulence Category
+---

@@ -1,4 +1,6 @@
 ---
+acronyms:
+  insert_loa: false
 resources: /images/aircraft_vintage.webp
 css: media/css/index.css
 ---

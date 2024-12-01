@@ -4,10 +4,10 @@ author: David Gianazza
 ---
 
 
-The elements presented in this section are mainly taken from the ICAO
-(International Civil Aviation Organization) Standard Atmosphere Manual,
-and the revised atmosphere model [@ATMORev] used in the Eurocontrol BADA
-(Base of Aircraft Data) performance model.
+The elements presented in this section are mainly taken from the \acr{ICAO}
+ Standard Atmosphere Manual,
+and the revised atmosphere model [@ATMORev] used in the Eurocontrol \acr{BADA}
+ performance model.
 
 ## The International Standard Atmosphere (ISA) {#sect:ISA}
 
@@ -368,3 +368,7 @@ by @eq-TEMP_HP.
 
 [^1]: Note that the pressure altitude and geopotential altitude are the
     same, when the atmosphere is standard
+
+
+## List of Acronyms {.unnumbered}
+

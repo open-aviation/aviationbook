@@ -7,11 +7,11 @@ Merriam-Webster defines the term **airspace** as "the space lying above the eart
 According to the [Chicago Convention on International Civil Aviation](https://www.icao.int/publications/Documents/7300_cons.pdf) of 1944, every state "has complete and exclusive sovereignty over the airspace above its territory". Horizontally, a state's airspace extends over its entire territoriy, which also include territorial waters. According to the [United Nations Convention on the Law of the Sea](https://www.un.org/Depts/los/convention_agreements/texts/unclos/unclos_e.pdf), territorial waters extend up to 12 nautical miles (22.2 km) from a state's coastline. Vertically, a state's airspace begins at the earth's surface and ends at an altitude of 100 km above mean sea level, which is also known as the [Kármán-Line](https://en.wikipedia.org/wiki/K%C3%A1rm%C3%A1n_line).
 The Kármán-Line - as a legal differentiation - separates the Earth's atmosphere from space.
 
-According to the Chicago Convention and its subsidary framework, next to the soverignty clause, States have the responsibility to establish air navigation services (ANS) under Article 28(a) of the convention.
+According to the Chicago Convention and its subsidary framework, next to the soverignty clause, each State has the responsibility to establish an \acr{ANS} under Article 28(a) of the convention.
 For this purpose, States will introduce an airspace organisation <!-- c.f. chapter airspace - provide cross-reference -->, associated rules of the air, and assign the provision of these services to appropriate entities. 
 
 <!-- note: I would put the 'service provider' towards the end as it might be necessary to clarify that an ANSP must not be an ATSP, etc -- which is often confused --> 
-In order to manage an airspace, a state usually commissions a so-called **air navigation service provider** (ANSP), which is a public or private entity that offers so-called **air navigation services**. 
+In order to manage an airspace, a state usually commissions a so-called \acr{ANSP}, which is a public or private entity that offers so-called **air navigation services**. 
 
 **Air navigation services** facilitate the 'safe, efficient, and orderly flow of air traffic' and comprise of the following five groups of services:    
 <!-- dependent on source it is normally ATM/CNS or CNS/ATM, AIM, MET, SAR -->
@@ -268,3 +268,6 @@ However, not until the Second World War, was the concept of RAdio Detection And 
 
 [Annex_15]: https://www.bazl.admin.ch/dam/bazl/en/dokumente/Fachleute/Regulationen_und_Grundlagen/icao-annex/icao_annex_15_aeronauticalinformationservices.pdf.download.pdf/an15_cons.pdf
 
+
+
+## List of Acronyms {.unnumbered}

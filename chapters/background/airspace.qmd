@@ -5,5 +5,9 @@ output-file: airspace
 
 * Definition of the term 'airspace'
 * Airspace classes (A, B, C, D, E, F, G), controlled vs. uncontrolled airspace
-* Airspace around airports (TMAs, CTRs)
+* Airspace around airports (\acr{TMA}, \acr{CTR})
 
+
+
+
+## List of Acronyms {.unnumbered}

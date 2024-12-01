@@ -4,7 +4,11 @@ output-file: aerodrome
 author: Manuel Waltert
 ---
 <!--Definition of term "aerodrome"-->
-In ICAO Annex 14, the term **aerodrome** is defined as *"a defined area on land or water (including any buildings, installations and equipment) intended to be used either wholly or in part for the arrival, departure and surface movement of aircraft."* The reference to a *defined area* suggests that aerodromes are systems, designed and operated for the purpose of both facilitating the efficient handling of departing and arrving aircraft as well as providing all the processes required by aircraft between take-off and landing. As such, aerodromes do not only have to be land-based. Rather, water-based as well as floating structures, such as oil rigs or ships, can be considered as aerodromes. Consequently, aerodromes are not solely designed for fixed-wing aircraft, but also for rotary-wing vehicles. 
+In \acr{ICAO} Annex 14, the term **aerodrome** is described as
+
+> a defined area on land or water (including any buildings, installations and equipment) intended to be used either wholly or in part for the arrival, departure and surface movement of aircraft.
+
+The reference to a *defined area* suggests that aerodromes are systems, designed and operated for the purpose of both facilitating the efficient handling of departing and arrving aircraft as well as providing all the processes required by aircraft between take-off and landing. As such, aerodromes do not only have to be land-based. Rather, water-based as well as floating structures, such as oil rigs or ships, can be considered as aerodromes. Consequently, aerodromes are not solely designed for fixed-wing aircraft, but also for rotary-wing vehicles. 
 
 <!--Types of Aerodromes-->
 Since aerodromes have such a diverse range of applications, a distinction is made between different types of aerodromes. This typification often varies from country to country or region to region and (unfortunately) is not internationally standardised. For instance, an aerodrome designed for use of rotary-wing aircraft, i.e., helicopters, is called a **heliport**. A facility specifically designed for seaplanes and/or amphibian vehicles, which are aircraft able to land both on land and on water, is referred to as a **water aerodrome**. An aerodrome designed for the usage of small, often propeller-driven, general aviation aircraft, is called an **airstrip**, an **airfield**, or **small aerodrome**. Quite frequently, these type of aerodromes are equipped with a grass runway. An aerodrome used exclusively for military air operations is called a **military air base**. Finally, **civil airports** refer to facilities which are mainly available to commercial air transport. This refers to flight movements in which passengers (or cargo) are transported by an airline for a fee. For the remainder of this section, the focus is primarily on land-based **civil airports** designed for use by fixed-wing aircraft.
@@ -15,7 +19,7 @@ i. are open to public use;
 ii. serve commercial air transport; and  
 iii. have a paved instrument runway of 800 metres or more, or exclusively serve helicopters using instrument approach or departure procedures; 
 
-fall under the scope of the *Basic Regulation* (BR) of the **European Union Aviation Safety Agency** and its *Implementing Rules* (IR). These aerodromes are therefore subject to legally binding requirements that define how they must be designed, maintained, and operated. Aerodromes which handle no more than 10'000 commercial air transport passengers per year and no more than 850 movements related to cargo operations per year can be excempted from an applicablility of Regulation (EU) 2018/1139. For this reason, EASA publishes on its website [a list of aerodromes](https://www.easa.europa.eu/en/datasets/aerodromes-falling-scope-regulation-eu-20181139) specifying for which Regulation (EU) 2018/1139 is applicable and which aerodromes are exempted.
+fall under the scope of the \acr{BR} of the \acr{EASA} and its \acr{IR}. These aerodromes are therefore subject to legally binding requirements that define how they must be designed, maintained, and operated. Aerodromes which handle no more than 10'000 commercial air transport passengers per year and no more than 850 movements related to cargo operations per year can be excempted from an applicablility of Regulation (EU) 2018/1139. For this reason, EASA publishes on its website [a list of aerodromes](https://www.easa.europa.eu/en/datasets/aerodromes-falling-scope-regulation-eu-20181139) specifying for which Regulation (EU) 2018/1139 is applicable and which aerodromes are exempted.
 
 Aerodromes falling under the scope of the *basic regulation* must be certified. In simple terms, in this certification procedure an aerodrome must show how and in what way the *certification specifications* of EASA are complied with or, if they cannot be complied with, what measures are/were taken to ensure an equivalent level of safety. The demonstration of an equivalent level of safety is particularly important for aerodromes that have grown over many decades and can only make certain changes to the facilities to ensure specifications under great financial constraints or not at all, e.g., due to topographical reasons.
 
@@ -170,3 +174,7 @@ Types of taxiways:
 
 ### Landside components of an aerodrome
 <!--terminals & docks-->
+
+
+
+## List of Acronyms {.unnumbered}

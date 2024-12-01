@@ -6,7 +6,7 @@ output-file: aircraft
 ## Aircraft categorisation
 
 There exists a wide variety of air vehicles that can be grouped in broad categories.
-ICAO refers to aircraft category as "a classification of aircraft according to specified characteristics".
+\acr{ICAO} refers to aircraft category as "a classification of aircraft according to specified characteristics".
 The aircraft categorisation has relevance for the flight training and associated licensing, but also for the operation of the aircraft in terms of equipment, operating capabilities and limits, and access to airspace.
 Thus, aircraft categorisation comprises also the intended use and operating environment.
 
@@ -94,7 +94,7 @@ Unfortunately, for the uninitiated, these terms are often used interchangeably, 
 * track is the projected path of the aircraft on the surface of earth/map.
 * bearing is simply the direction between two points. A bearing can thus be expressed as to-a-point or from-a-point. For navigation purposes bearings can be expressed in relation to North. Sometimes bearings are expressed in relation to the heading, i.e., relative bearing.
 
-It is important to note that heading, track, and bearing are referenced to North. Thus, based on the underlying reference, this could be magnetic, true, or based on the chart grid. In various parts of the world there is a substantial offset between the magnetic and true North dircetion and will need to be considered/corrected for the respective navigational task at hand.
+It is important to note that heading, track, and bearing are referenced to North. Thus, based on the underlying reference, this could be magnetic, true, or based on the chart grid. In various parts of the world there is a substantial offset between the magnetic and true North direction that will need to be considered/corrected for the respective navigational task at hand.
 Since a magnetic compass is still an ultimate fallback instrument in aircraft, aircraft heading is predominantly used as magnetic heading.
 And accordingly, charts showing true North grids show also isogonic lines with the difference between true and magnetic North (i.e., variation) to account for the variation when determining positions or planning a flight.
 
@@ -108,9 +108,9 @@ To support the flying task, navigational aids help pilots/aircrew to determine t
 For this purpose two additional terms are used to express the 'direction' of flight.
 
 * course is the desired dirction of flight. For a flight segment the course presents the bearing to the next way point. 
-* radial refers to the magnetic bearing from a navigation aid (e.g. VOR, TACAN), i.e., it reflects the magnetic bearing from the NAVAID to the aircraft.
+* radial refers to the magnetic bearing from a navigation aid (e.g. \acr{VOR}, \acr{TACAN}), i.e., it reflects the magnetic bearing from the \acr{NAVAID} to the aircraft.
 
-The latter can be confusing as a the direction of flight and its position in relation from (or to) a NAVAID may not coincide.
+The latter can be confusing as a the direction of flight and its position in relation from (or to) a \acr{NAVAID} may not coincide.
 Even if an aircraft tracks on the radial of a NAVAID it may be flying to (inbound) or from (outbound) the station (on this radial).
 Absent of any wind influence, the (magnetic) heading would be the reverse course of a radial. 
 <!-- maybe put a figure here --> If an aircraft flies towards a VOR on its (magnetic) radial 140, the (magnetic) compass heading reads 320.
@@ -132,11 +132,15 @@ This section comprises an overview of a series of aircraft systems.
 
 ### Collision Avoidance ACAS/TCAS
 
-In order to ensure the safe travel of aircraft a series of safety systems were developed. **ACAS** (airborne collision avoidance system) is a generic term to describe systems that track the surrounding air traffic on the basis of their tansponders. Dependent on the determined distance and relative range rate and approach speed, a potential risk of collision can be detected.
+In order to ensure the safe travel of aircraft a series of safety systems were developed. \acr{ACAS} is a generic term to describe systems that track the surrounding air traffic on the basis of their tansponders. Dependent on the determined distance and relative range rate and approach speed, a potential risk of collision can be detected.
 
-TCAS (traffic alert and collision avoidance system) is an implementation of the ICAO ACAS standard. To our knowledge, there are no other implementation of ACAS. TCAS II is mandated in Europe since the year 2000 and addresses changes to the logic of the detection and resolution logic. We consider therefore both terms as interchangable. 
+\acr{TCAS} is an implementation of the \acr{ICAO} \acr{ACAS} standard. To our knowledge, there are no other implementation of \acr{ACAS}. \acr{TCAS} II is mandated in Europe since the year 2000 and addresses changes to the logic of the detection and resolution logic. We consider therefore both terms as interchangable. 
 
-ACAS/TCAS issue two types of alerts:
-* traffic advisory (TA) to support the pilot/aircrew to visually identify a potential conflicting flight
-* resolution advisory (RA) is an avoidance maneuver. If both aircraft are equipped with an ACAS, the avoidance maneuvers are coordinated between the ACAS units via datalink.
+\acr{ACAS}/\acr{TCAS} issue two types of alerts:
+
+* \acr{TA} to support the pilot/aircrew to visually identify a potential conflicting flight
+* \acr{RA} is an avoidance maneuver. If both aircraft are equipped with an \acr{ACAS}, the avoidance maneuvers are coordinated between the \acr{ACAS} units via datalink.
+
+
+## List of Acronyms {.unnumbered}
 

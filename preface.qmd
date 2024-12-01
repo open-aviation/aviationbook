@@ -1,15 +1,22 @@
 ---
 output-file: preface
+acronyms:
+  include_unused: false
+  insert_links: false
+  insert_loa: "end"
+  loa_title: ""
+  fromfile: 
+    - _acronyms.yml
 ---
 
-# Preface {-}
+# Preface {.unnumbered}
 
 About a century after the invention of powered flight, aviation has
 slowly become a vital element of everyday life. While pioneers and
 flying aces build the collective imaginary around the early days of
 aviation, technical advances around surveillance systems, the use of
-radar in civil aviation in the 1950s, the generalisation of GPS for
-civil applications in the 1980s and the ADS-B mandate emerging in the
+radar in civil aviation in the 1950s, the generalisation of \acr{GPS} for
+civil applications in the 1980s and the \acr{ADS-B} mandate emerging in the
 2000s make the use of data in aviation an interesting field of research
 for many disciplines. In particular, such effort has been justified by
 the historic growth of traffic from the early 2000s, and new challenges
@@ -120,3 +127,6 @@ sharing. Data curation is often a very time consuming process and
 enriching data by labelling specific tags or merging several sources of
 information brings additional value to a dataset. This part deals with
 the data sharing and publication process. (paper reproducibility?)
+
+
+## List of Acronyms {.unnumbered}
