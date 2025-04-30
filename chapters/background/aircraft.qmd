@@ -1,60 +1,142 @@
 ---
 title: Anatomy of an aircraft
 output-file: aircraft
+authors:
+- Xavier Olive
+- Rainer Kölle
 ---
 
-## Aircraft categorisation
+![A typical tractor biplane (public domain)](../../images/illustrations/biplane.jpg)
 
-There exists a wide variety of air vehicles that can be grouped in broad categories.
-\acr{ICAO} refers to aircraft category as "a classification of aircraft according to specified characteristics".
-The aircraft categorisation has relevance for the flight training and associated licensing, but also for the operation of the aircraft in terms of equipment, operating capabilities and limits, and access to airspace.
-Thus, aircraft categorisation comprises also the intended use and operating environment.
+There exists a wide variety of air vehicles that can be grouped in broad categories. \acr{ICAO} refers to aircraft category as "a classification of aircraft according to specified characteristics". The aircraft categorisation has relevance for the flight training and associated licensing, but also for the certification and operation of the aircraft in terms of equipment, operating capabilities and limits, and access to airspace. Aircraft can be broadly categorized into lighter-than-air and heavier-than-air vehicles.
 
-aircraft / air vehicle
+**Lighter-than-air aircraft** include balloons and airships that achieve flight primarily through buoyancy, using gases like helium or hot air that are less dense than the surrounding atmosphere. These aircraft displace a volume of air greater than their own weight, creating lift without requiring forward motion or wing surfaces. While offering advantages such as low energy consumption, extended flight endurance, and near-silent operation, they typically have limited speed capabilities and are more susceptible to weather conditions compared to their heavier-than-air counterparts. Modern applications range from recreational hot air ballooning to advanced airships designed for surveillance, tourism, and cargo transport in remote areas.
 
-* lighter than air
-  * airships and ballons
-* heavier than air
-  * aeroplane or airplane: engine-driven, fixed-wing, heavier-than-air aircraft that achieves flight through the reaction between the air and its wings
-  * rotorcraft: engine-driven, rotating wing/rotors achieving lift
-  * glider: non-powered fixed-wing designed to use air currents and thermal lift through reaction between wing and air
-  * powered parachute
-  * rocket: aircraft propelled by expanding gases
+![Balloon and airship](../../images/illustrations/balloon-airship.png){#fig-balloon-airship}
 
-Aircraft categorisation has therefore relevance for
+**Heavier-than-air aircraft** consist mostly of aeroplanes, i.e. engine-driven, fixed-wing aircraft that achieve flight by the reaction of the air flowing around the wing and creating lift. These aircraft use either aerodynamic forces (for fixed-wing aircraft and rotorcraft) or direct engine thrust (for rockets) to counteract gravity. Unlike lighter-than-air vehicles, heavier-than-air aircraft require forward motion or powered lift to generate sufficient upward force. They encompass a wide range of vehicle types including commercial airliners, military jets, helicopters, gliders, and modern unmanned aerial vehicles (UAVs). The category can be further subdivided based on wing configuration, propulsion system, and intended use, with each design optimized for specific performance characteristics such as speed, range, payload capacity, or maneuverability.
 
-* aircraft certification, i.e. the set of requirements to be met by design and demonstrated through flight test to obtain a "airworthiness certificate".
-* pilot licensing, i.e. the set of requirements in terms of training (both ground school and flight training) to operate a specific category of aircraft in its intended use.
+![Heavier than air aircraft](../../images/illustrations/heavier_than_air.png){#fig-heavier-than-air}
 
-When speaking about aircraft categories often the terms (aircraft) class and (aircraft) type crop up. 
-An aircraft class is a sub-division within a category with a focus on design and performance. For example, single-engine and multi-engine piston engine aircraft.
-Aircraft type refers to the specific model of an aircraft.
+When speaking about aircraft categories, often the terms (aircraft) class and (aircraft) type crop up. An aircraft class is a sub-division within a category with a focus on design and performance. For example, single-engine and multi-engine piston engine aircraft. Aircraft type refers to the specific model of an aircraft, such as Boeing 737 or Airbus A320.
 
-In this chapter we focus on the conventional airplanes = powered heavier-than-air aircraft.
+In this chapter we focus on the conventional airplanes, i.e. powered heavier-than-air aircraft.
 
-## Anatomy of an aircraft
+## Structure and propulsion
 
-Conceptually, a conventional aircraft (airplane) comprises the following parts
+Aircraft consist of several key components that work together to enable flight. These can be broadly categorized into *structural components* and *propulsion systems*.
 
-<!-- Note: might be good to have a principal graphic here -->
+The primary structural components include:
 
-* fuselage - i.e., the planes body
-* wings - an airfoil that produces the lift for flying
-* tail (empennage) - serves to primarily stabilise the aircraft typically comprising a horizontal and vertical stabiliser (fin)
-* engine/power plant - the power plant provides the energy neccessary to propel the aircraft
-* landing gear (undercarriage) - the undercarriage that supports the aircraft when on the ground during taxiing, takeooff or landing.
+- The fuselage, which houses the cockpit, passengers, and cargo;
+- Wings that generate lift;
+- Empennage (i.e. the tail section) for stability and control;
+- Landing gear for ground operations
 
-The fuselage also hosts the cockpit
+The propulsion system provides the necessary thrust for flight through various types of engines.
 
-For the directional control of aircraft, movable parts allow the pilot/aircrew to steer the aircraft and change its direction of flight and attitude using aerodynamical forces.
+![Various parts of an aircraft (TODO annotate)](../../images/illustrations/aircraft_up_side.png){#fig-aircraft-up-side}
 
-* up-down movement control - "pitch": elevators. Elevators are (typically) attached to the horizontal stabiliser
-* left-right turn control - "yaw": rudder. Surface attached to the vertical stabiliser
-* longitudal "roll":  ailerons typically attached to the trailing edge of wings
+Civil and military aircraft share these basic components but differ significantly in their design priorities. Civil aircraft are optimized for passenger comfort, fuel efficiency, and commercial viability, typically using turbofan engines for economical operation and carrying passengers or cargo as payload.
 
-APU, bleed, winglet etc.
+Military aircraft, conversely, are designed for specific mission requirements such as combat, surveillance, or transport, often featuring more powerful engines like turbojets or afterburning turbofans for greater speed and maneuverability. Their payload usually consists of weapons systems, specialized equipment, or troops rather than commercial passengers.
+Aircraft consist of several key components that work together to enable flight.
 
-Recognise an Airbus from a Boeing
+![Payload and propulsion for civil and military aircraft](../../images/illustrations/civil_military.png){#fig-civil-military}
+
+- The **fuselage** is the main body structure of an aircraft that houses the cockpit, passenger cabin, and cargo compartments. It serves as the central framework to which other major components like wings, empennage, and landing gear are attached. Fuselages are designed to withstand various aerodynamic forces while maintaining structural integrity during flight operations. The cross-sectional shape is typically circular or oval to efficiently handle pressurization loads at altitude, though military aircraft may feature more complex shapes optimized for specific mission requirements. Modern commercial aircraft fuselages are primarily constructed from aluminum alloys or increasingly from composite materials like carbon fiber reinforced polymers (CFRP), which offer improved strength-to-weight ratios and corrosion resistance. The fuselage design must balance multiple factors including aerodynamic efficiency, structural strength, weight considerations, and internal space utilization.
+
+- The **wings** are the primary surfaces that generate lift during flight. They are airfoil-shaped appendages extending from the sides of the fuselage, designed to create pressure differentials as air flows around them. Wings vary in design based on aircraft type and purpose, from the straight wings common on small aircraft to swept wings on commercial jets and delta wings on supersonic aircraft.
+
+  Wing components include **ailerons** for roll control, **flaps** and **slats** to modify lift characteristics during takeoff and landing, and **spoilers** (or airbrakes) to reduce lift and increase drag when needed. Modern wings also often feature *winglets* at their tips to reduce drag-inducing vortices and improve fuel efficiency. Wing construction typically uses aluminum alloys, though composite materials are increasingly common in newer aircraft designs for their superior strength-to-weight ratio and resistance to fatigue.
+
+![Parts of a wing ](../../images/illustrations/wings.jpg){#fig-wings}
+
+- **Winglets** are a familiar feature on the wingtips of modern commercial aircraft, playing a critical role in improving aerodynamic efficiency. These upward-swept extensions help reduce drag by weakening the wingtip vortices—spiraling air currents caused by pressure differences above and below the wing. By acting as barriers to this turbulent airflow, winglets cut fuel consumption, increase cruising range, and ultimately reduce operational costs.
+
+  Since their debut on the Boeing 747-400 in 1988, winglets have become standard on most new-generation airliners. Several types are now in common use, including:
+
+  (a) whitcomb winglets;
+  (b) tip fence;
+  (c) canted winglets (Boeing 747-400, Airbus A330 and A340);
+  (d) raked wingtips (Boeing 787 Dreamliner);
+  (e) blended winglets (Boeing 737 and 757);
+  (f) blended split winglets;
+  (g) sharklets (Airbus A320neo and A350);
+  (h) active winglets.
+
+![Different types of winglets](../../images/illustrations/winglets.png){#fig-winglets}
+
+  As technology advances, winglet designs continue to evolve, enabling airlines to retrofit older fleets and push fuel efficiency even further.
+
+- The **tail section** (empennage) consists of the horizontal and vertical stabilizers that provide stability and control during flight. The horizontal stabilizer controls pitch through movable elevators, allowing the aircraft to climb or descend. The vertical stabilizer (fin) includes the rudder, which enables yaw control for turning left or right. Together, these components ensure the aircraft maintains directional stability while allowing controlled maneuvers. Modern empennage designs use aluminum alloys or composite materials and may feature various configurations including T-tails, V-tails, or conventional arrangements depending on the aircraft's purpose and performance requirements.
+
+![Tail section components](../../images/illustrations/tail_section.jpg){#fig-tail-section}
+
+- **Engines** are the power plants that provide thrust for aircraft movement. Modern aircraft use various engine types including piston engines (common in small aircraft), turboprops (combining a gas turbine with a propeller for regional aircraft), turbofans (used in most commercial airliners for their efficiency at high speeds), and turbojets (primarily in military applications). Engine selection depends on the aircraft's intended purpose, with considerations for thrust requirements, fuel efficiency, operating altitude, and speed range. Most commercial aircraft use twin-engine configurations mounted either under the wings or at the rear of the fuselage, while some military aircraft feature embedded engines to reduce radar signature.
+
+  The introduction of turbojets and later turbofans revolutionized commercial aviation. The development of jet engines in the mid-20th century enabled aircraft to fly higher, faster, and more efficiently than propeller-driven predecessors. The first commercial jet airliner, the de Havilland Comet, entered service in 1952, followed by more successful designs like the Boeing 707 and Douglas DC-8. Turbofans, which emerged in the 1960s, provided better fuel efficiency and reduced noise compared to pure turbojets, enabling the growth of mass commercial air travel.
+
+  **Airframe and engine life cycles** are largely decoupled in modern aviation. While airframes are typically designed to last 25-30 years, engines have much shorter service intervals. Aircraft engines generally require major overhauls every 10,000-15,000 flight hours, with complete replacement often necessary after 3-5 major maintenance cycles. This decoupling allows airlines to replace or upgrade engines multiple times during an aircraft's operational lifetime.
+
+  **Wide-body aircraft engines** vary significantly in size, with the largest examples being truly massive. For perspective, the GE90-115B engine used on the Boeing 777-300ER has a fan diameter of 3.25 meters and can produce up to 115,000 pounds of thrust. The Rolls-Royce Trent XWB engines powering the Airbus A350 have a fan diameter of about 3 meters (118 inches). For comparison, the entire fuselage diameter of a Boeing 737 narrow-body aircraft could fit inside the intake of these larger engines.
+
+  :::{.callout-note}
+  ## Spinner spirals
+
+  Many aircraft engines feature distinctive spiral patterns painted on their spinners (the conical cover over the hub of the propeller). These spirals serve as a visual safety feature: when the propeller is spinning, the spiral creates a visual pattern that reminds ground personnel to keep clear.
+
+  Some patterns are distinctive marks of a manufacturer, such as the "G-swirl" for General Electric, the long spiral for Rolls-Royce, or the Pratt & Whitney's apostrophe.
+
+  ![The G-swirl for General Electric](../../images/photos/general_electric.jpg){width=5cm}
+  ![The long spiral for Rolls Royce](../../images/photos/rolls_royce.jpg){width=5cm}
+  ![The apostrophe for Pratt & Whitney](../../images/photos/pratt_whitney.jpg){width=5cm}
+
+  :::
+
+
+  :::{.callout-note}
+  Most commercial aircraft use a **bleed air system**, which extracts compressed air from the engines to power various aircraft systems including cabin pressurization, air conditioning, and anti-icing. This high-temperature, high-pressure air is "bled" from the compressor stages of the engine before fuel is added. The Boeing 787 Dreamliner, however, introduced a significant innovation by implementing a "bleed-less" electrical architecture. Unlike conventional aircraft, the Dreamliner uses electrical compressors and pumps powered by generators on the engines instead of the traditional bleed air system.
+
+  This approach allows smaller, more efficient engines. A significant visual mark for the Dreamliner is a distinctive air intake on the fuselage that supplies air to the electrical compressors, replacing the traditional bleed air ports on the engines found on conventional aircraft.
+
+  ![https://www.jetphotos.com/photo/11688506](https://cdn.jetphotos.com/full/6/978011_1743883056.jpg){width=10cm}
+  :::
+
+- **Aircraft fuel** is primarily stored in the wings, utilizing the space between the front and rear wing spars to form integral fuel tanks. This location offers several advantages: it keeps the heavy fuel mass close to the aircraft's center of gravity, utilizes otherwise empty space, and as fuel is consumed, the reduced wing loading helps decrease structural stress. Modern commercial aircraft like the Boeing 747 and Airbus A380 may also incorporate additional fuel tanks in the horizontal stabilizer or dedicated sections of the fuselage for extended range operations. Most aircraft feature multiple, isolated fuel tanks with cross-feed systems to maintain balance and provide redundancy in case of pump failure or fuel system damage.
+
+- The **Auxiliary power unit (APU)** is a small turbine engine typically located in the tail section of an aircraft that provides power independently of the main engines. It powers systems on the ground when main engines are off, provides bleed air for starting the main engines, and serves as a backup power source during flight. APUs allow aircraft to operate at airports without requiring external power or pneumatic sources, enabling air conditioning, lighting, and instrument operation even when the aircraft is parked with main engines shut down.
+
+  :::{.callout-note}
+  Many airports restrict APU usage due to environmental concerns, particularly noise and air pollution. These restrictions may limit APU operating times, especially during night hours or at gate positions where fixed ground power and pre-conditioned air are available. Major European airports like Zurich, Frankfurt, and London Heathrow have implemented strict APU operating limitations to reduce emissions and noise in their sustainability efforts.
+  :::
+
+- The **landing gear** (undercarriage) is the structural component that supports the aircraft when on the ground during taxiing, takeoff, and landing. It typically consists of wheels, shock absorbers, and retraction mechanisms (in most modern aircraft). The three main configurations are: tricycle (with a nose wheel and two main wheels), conventional/"taildragger" (with a tail wheel and two main wheels), and tandem (with wheels arranged along the centerline). Modern commercial aircraft use complex multi-wheel bogie systems to distribute weight across multiple tires. Landing gear must absorb landing impact forces, provide stability during ground operations, and in retractable systems, stow compactly during flight to reduce aerodynamic drag. The system also incorporates brakes for deceleration after landing and during taxi operations, as well as a steering mechanism (typically on the nose wheel) for directional control on the ground.
+
+  :::{.callout-note}
+  **Pushback operations** are a standard procedure at airports where aircraft are pushed backward from their gates by specialized tow vehicles before taxiing to the runway. This is necessary because most commercial aircraft cannot reverse under their own power. The pushback tug connects to the aircraft's nose landing gear via a towbar or towbarless system, and is controlled by ground crew in communication with the cockpit.
+
+  **Single engine taxiing** is a fuel conservation practice where aircraft taxi using only one engine instead of all engines, reducing fuel consumption by 20-40% during ground operations. While widely adopted, this practice requires consideration of factors like aircraft weight and weather conditions. More recently, electric taxiing systems have been developed, allowing aircraft to move on the ground using electric motors installed in the landing gear or using external tugs, further reducing emissions and noise at airports.
+  :::
+
+:::{.callout-tip}
+## How many differences can you see between the Airbus A320 and the Boeing 737?
+
+![](../../images/illustrations/a320_b737.png)
+
+The A320 and 737 have several distinctive differences despite being similar-sized narrow-body aircraft:
+
+- **Nose design**: The A320 has a more rounded nose cone compared to the 737's pointed profile
+- **Landing gear height**: The 737 sits notably lower to the ground than the A320
+- **Engine mounting**: On the A320, engines are attached with pylons that provide more clearance below them, while the 737's engines are mounted closer to the wing underside
+- **Tail section**: The A320 features a more vertical stabilizer compared to the 737's slightly swept design
+- **Winglet design**
+
+The 737's low ground clearance is particularly noteworthy: its engine nacelles have a distinctive flattened bottom section to maintain minimum required ground clearance, as shown below on @fig-engine_b737.
+
+![The 737's engine nacelle has a distinctive flattened bottom due to ground clearance limitations](../../engine_b737.jpg){#fig-engine_b737 width=10cm}
+
+:::
 
 ## Flight mechanics
 
@@ -68,7 +150,7 @@ These forces oppose each other. Conceptually, the flight movement is the result 
 * thrust
 * drag
 
-Lift is generated as the result of the airspeed and the interaction of (predominantly) the wings with the passing air. 
+Lift is generated as the result of the airspeed and the interaction of (predominantly) the wings with the passing air.
 Thus, thrust and angle of attack (aircraft attitude) are the main drivers of lift.
 
 Weight is the force created by the mass of all components and the payload on board of an aircraft, e.g. including the passengers, cargo, fuel.
@@ -83,14 +165,20 @@ Accordingly, all four forces are in balance acting in opposite directions. The l
 
 <!--  <https://skybrary.aero/articles/lift> -->
 
+For the directional control of aircraft, movable parts allow the pilot/aircrew to steer the aircraft and change its direction of flight and attitude using aerodynamical forces.
+
+* up-down movement control - "pitch": elevators. Elevators are (typically) attached to the horizontal stabiliser
+* left-right turn control - "yaw": rudder. Surface attached to the vertical stabiliser
+* longitudal "roll":  ailerons typically attached to the trailing edge of wings
+
 
 ## Flight movement
 
-A flight is characterised by the motion of an aircraft through the air from its starting point (aerodrome of departure) to its destination (aerodrome of destination). 
+A flight is characterised by the motion of an aircraft through the air from its starting point (aerodrome of departure) to its destination (aerodrome of destination).
 A series of terms exists to describe the (projected) path of movement for navigational purposes or in radio communication between pilot/aircrew and air trafic control.
 Unfortunately, for the uninitiated, these terms are often used interchangeably, but have a distinct - and different - meaning.
 
-* heading is the direction in which the longitudinal axis of an aircraft points. The heading is typically expressed in degrees from North (*). 
+* heading is the direction in which the longitudinal axis of an aircraft points. The heading is typically expressed in degrees from North (*).
 * track is the projected path of the aircraft on the surface of earth/map.
 * bearing is simply the direction between two points. A bearing can thus be expressed as to-a-point or from-a-point. For navigation purposes bearings can be expressed in relation to North. Sometimes bearings are expressed in relation to the heading, i.e., relative bearing.
 
@@ -98,7 +186,7 @@ It is important to note that heading, track, and bearing are referenced to North
 Since a magnetic compass is still an ultimate fallback instrument in aircraft, aircraft heading is predominantly used as magnetic heading.
 And accordingly, charts showing true North grids show also isogonic lines with the difference between true and magnetic North (i.e., variation) to account for the variation when determining positions or planning a flight.
 
-The difference between heading and track can be readily derived from a simple thought experiment. 
+The difference between heading and track can be readily derived from a simple thought experiment.
 Let's assume an aircraft is flying from the East to the West:
 
 * Without any wind influence, heading and track conincide. Strictly speaking we would have to plot positions of the aircraft flying a westerly heading (nose pointing to the west) and compare this to the heading.
@@ -107,12 +195,12 @@ Let's assume an aircraft is flying from the East to the West:
 To support the flying task, navigational aids help pilots/aircrew to determine the position of the aircraft or proceed on an intended path.
 For this purpose two additional terms are used to express the 'direction' of flight.
 
-* course is the desired dirction of flight. For a flight segment the course presents the bearing to the next way point. 
+* course is the desired dirction of flight. For a flight segment the course presents the bearing to the next way point.
 * radial refers to the magnetic bearing from a navigation aid (e.g. \acr{VOR}, \acr{TACAN}), i.e., it reflects the magnetic bearing from the \acr{NAVAID} to the aircraft.
 
 The latter can be confusing as a the direction of flight and its position in relation from (or to) a \acr{NAVAID} may not coincide.
 Even if an aircraft tracks on the radial of a NAVAID it may be flying to (inbound) or from (outbound) the station (on this radial).
-Absent of any wind influence, the (magnetic) heading would be the reverse course of a radial. 
+Absent of any wind influence, the (magnetic) heading would be the reverse course of a radial.
 <!-- maybe put a figure here --> If an aircraft flies towards a VOR on its (magnetic) radial 140, the (magnetic) compass heading reads 320.
 
 see <https://skybrary.aero/articles/heading-track-and-radial>
@@ -134,7 +222,7 @@ This section comprises an overview of a series of aircraft systems.
 
 In order to ensure the safe travel of aircraft a series of safety systems were developed. \acr{ACAS} is a generic term to describe systems that track the surrounding air traffic on the basis of their tansponders. Dependent on the determined distance and relative range rate and approach speed, a potential risk of collision can be detected.
 
-\acr{TCAS} is an implementation of the \acr{ICAO} \acr{ACAS} standard. To our knowledge, there are no other implementation of \acr{ACAS}. \acr{TCAS} II is mandated in Europe since the year 2000 and addresses changes to the logic of the detection and resolution logic. We consider therefore both terms as interchangable. 
+\acr{TCAS} is an implementation of the \acr{ICAO} \acr{ACAS} standard. To our knowledge, there are no other implementation of \acr{ACAS}. \acr{TCAS} II is mandated in Europe since the year 2000 and addresses changes to the logic of the detection and resolution logic. We consider therefore both terms as interchangable.
 
 \acr{ACAS}/\acr{TCAS} issue two types of alerts:
 
