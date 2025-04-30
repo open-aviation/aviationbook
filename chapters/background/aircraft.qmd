@@ -134,7 +134,7 @@ The A320 and 737 have several distinctive differences despite being similar-size
 
 The 737's low ground clearance is particularly noteworthy: its engine nacelles have a distinctive flattened bottom section to maintain minimum required ground clearance, as shown below on @fig-engine_b737.
 
-![The 737's engine nacelle has a distinctive flattened bottom due to ground clearance limitations](../../engine_b737.jpg){#fig-engine_b737 width=10cm}
+![The 737's engine nacelle has a distinctive flattened bottom due to ground clearance limitations](../../images/photos/engine_b737.jpg){#fig-engine_b737 width=10cm}
 
 :::
 
