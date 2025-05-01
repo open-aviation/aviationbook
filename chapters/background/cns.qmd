@@ -237,6 +237,7 @@ https://en.wikipedia.org/wiki/Korean_Air_Lines_Flight_007
 
 - Differential GPS
 - LIDAR
+- GBAS
 
 #### Airways structure
 
@@ -256,7 +257,10 @@ another. Typical navigational points can be defined as:
 Today, more navigational points are defined as simple GPS coordinates.
 
 
+TODO
 
+- ETOPS
+- L888
 
 
 
