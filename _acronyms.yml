@@ -15,6 +15,8 @@ acronyms:
       longname: Automatic Dependent Surveillance-Contract
     - shortname: AIC
       longname: Aeronautical Information Circular
+    - shortname: AIM
+      longname: Aeronautical Information Management
     - shortname: AIP
       longname: Aeronautical Information Publication
     - shortname: AIRAC
@@ -81,6 +83,8 @@ acronyms:
       longname: Flight Data Recorder
     - shortname: FIR
       longname: Flight Information Region
+    - shortname: FMS
+      longname: Flight Management System
     - shortname: FOQA
       longname: Flight Operational Quality Assurance
     - shortname: FP
@@ -121,6 +125,8 @@ acronyms:
       longname: NOtice To AirMen
     - shortname: OSN
       longname: OpenSky Network
+    - shortname: PBN
+      longname: Performance-Based Navigation
     - shortname: PIB
       longname: Prefilght Information Bulletin
     - shortname: PRC
@@ -135,6 +141,8 @@ acronyms:
       longname: Route Availability Document
     - shortname: RMSE
       longname: Root Mean Square Error
+    - shortname: RNP
+      longname: Required Navigation Performance
     - shortname: SSR
       longname: Secondary Surveillance Radar
     - shortname: TA
@@ -153,6 +161,8 @@ acronyms:
       longname: Universal Access Transceiver
     - shortname: UAV
       longname: Unmanned Aerial Vehicle
+    - shortname: UIR
+      longname: Upper Information Region
     - shortname: VFR
       longname: Visual Flight Rules
     - shortname: VMC
@@ -162,3 +172,4 @@ acronyms:
     - shortname: WTC
       longname: Wake Turbulence Category
 ---
+

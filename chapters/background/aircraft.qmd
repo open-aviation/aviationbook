@@ -14,7 +14,7 @@ There exists a wide variety of air vehicles that can be grouped in broad categor
 
 ![Balloon and airship](../../images/illustrations/balloon-airship.png){#fig-balloon-airship}
 
-**Heavier-than-air aircraft** consist mostly of aeroplanes, i.e., engine-driven, fixed-wing aircraft that achieve flight by the reaction of the air flowing around the wing and creating lift. These aircraft use either aerodynamic forces (for fixed-wing aircraft and rotorcraft) or direct engine thrust (for rockets) to counteract gravity. Unlike lighter-than-air vehicles, heavier-than-air aircraft require forward motion or powered lift to generate sufficient upward force. Heavier-than-air aircraf encompass a wide range of vehicle types including commercial airliners, military jets, helicopters, gliders, and modern unmanned aerial vehicles (UAVs). The category can be further subdivided based on wing configuration, propulsion system, and intended use, with each design optimized for specific performance characteristics such as speed, range, payload capacity, or maneuverability.
+**Heavier-than-air aircraft** consist mostly of aeroplanes, i.e., engine-driven, fixed-wing aircraft that achieve flight by the reaction of the air flowing around the wing and creating lift. These aircraft generate either aerodynamic forces (for fixed-wing aircraft and rotorcraft) or direct engine thrust (for rockets) to counteract gravity. Unlike lighter-than-air vehicles, heavier-than-air aircraft require forward motion or powered lift to generate sufficient upward force. Heavier-than-air aircraf encompass a wide range of vehicle types including commercial airliners, military jets, helicopters, gliders, and modern unmanned aerial vehicles (UAVs). The category can be further subdivided based on wing configuration, propulsion system, and intended use, with each design optimized for specific performance characteristics such as speed, range, payload capacity, or maneuverability.
 
 ![Heavier-than-air aircraft](../../images/illustrations/heavier_than_air.png){#fig-heavier-than-air}
 
@@ -48,7 +48,9 @@ Aircraft consist of several key components that work together to enable flight.
 
 - The **wings** are the primary surfaces that generate lift during flight. They are airfoil-shaped appendages extending from the sides of the fuselage, designed to create pressure differentials as air flows around them. Wings vary in design based on aircraft type and purpose, from the straight wings common on small aircraft to swept wings on commercial jets and delta wings on supersonic aircraft.
 
-  Wing components include **ailerons** for roll control, **flaps** and **slats** to modify lift characteristics during takeoff and landing, and **spoilers** (or airbrakes) to reduce lift and increase drag when needed. Modern wings also often feature *winglets* at their tips to reduce drag-inducing vortices and improve fuel efficiency. Wing construction typically uses aluminum alloys, though composite materials are increasingly common in newer aircraft designs for their superior strength-to-weight ratio and resistance to fatigue.
+  Wing components include **ailerons** for roll control, **flaps** and **slats** to modify lift characteristics during takeoff and landing, and **spoilers** (or airbrakes) to reduce lift and increase drag when needed[^1]. Modern wings also often feature *winglets* at their tips to reduce drag-inducing vortices and improve fuel efficiency. Wing construction typically uses aluminum alloys, though composite materials are increasingly common in newer aircraft designs for their superior strength-to-weight ratio and resistance to fatigue.
+
+[^1]: Some aircraft, such as the Airbus A300, also use spoilers for roll control in addition to or instead of traditional ailerons, particularly at high speeds where aileron effectiveness may be reduced.
 
 ![Parts of a wing ](../../images/illustrations/wings.jpg){#fig-wings}
 
@@ -79,7 +81,7 @@ Aircraft consist of several key components that work together to enable flight.
 
   **Airframe and engine life cycles** are largely decoupled in modern aviation. While airframes are typically designed to last 25-30 years, engines have much shorter service intervals. Aircraft engines generally require major overhauls every 10,000-15,000 flight hours, with complete replacement often necessary after 3-5 major maintenance cycles. This decoupling allows airlines to replace or upgrade engines multiple times during an aircraft's operational lifetime.
 
-  **Wide-body aircraft engines** vary significantly in size, with the largest examples being truly massive. For perspective, the GE90-115B engine used on the Boeing 777-300ER has a fan diameter of 3.25 meters and can produce up to 115,000 pounds of thrust. The Rolls-Royce Trent XWB engines powering the Airbus A350 have a fan diameter of about 3 meters (118 inches). For comparison, the entire fuselage diameter of a Boeing 737 narrow-body aircraft could fit inside the intake of these larger engines.
+  **High bypass ratio engines** vary significantly in size, with the largest examples being truly massive. For perspective, the GE90-115B engine used on the Boeing 777-300ER has a fan diameter of 3.25 meters and can produce up to 115,000 pounds of thrust. The Rolls-Royce Trent XWB engines powering the Airbus A350 have a fan diameter of about 3 meters (118 inches). For comparison, the entire fuselage diameter of a Boeing 737 narrow-body aircraft could fit inside the intake of these larger engines.
 
   :::{.callout-note}
   ## Spinner spirals
@@ -240,7 +242,7 @@ see <https://skybrary.aero/articles/heading-track-and-radial>
 
 Modern aircraft are equipped with sophisticated avionics (aviation electronics) that assist pilots in navigation, communication, and overall aircraft management.
 
-**Flight Management System (FMS)** is the central computer system that integrates navigation, performance, and engine control functions. It allows pilots to program the entire flight route before takeoff, monitors fuel consumption, calculates optimal speeds and altitudes, and interfaces with autopilot systems. The FMS typically includes a Control Display Unit (CDU) with a small screen and keyboard in the cockpit through which pilots interact with the system. Modern commercial aircraft rely heavily on FMS for efficient operation, especially during long flights where fuel optimization is critical.
+**\acr{FMS}** is the central computer system that integrates navigation, performance, and engine control functions. It allows pilots to program the entire flight route before takeoff, monitors fuel consumption, calculates optimal speeds and altitudes, and interfaces with autopilot systems. The FMS typically includes a Control Display Unit (CDU) with a small screen and keyboard in the cockpit through which pilots interact with the system. Modern commercial aircraft rely heavily on FMS for efficient operation, especially during long flights where fuel optimization is critical.
 
 **Autopilot systems** automatically control flight without constant pilot intervention, reducing workload during long flights. Basic autopilots maintain altitude and heading, while advanced systems can execute complex maneuvers including takeoffs and landings. These systems work by receiving input from various sensors and the FMS, then manipulating flight controls to maintain desired parameters. Most commercial flights operate with autopilot engaged for the majority of the flight, with pilots monitoring systems and intervening when necessary.
 
