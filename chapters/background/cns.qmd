@@ -1,6 +1,9 @@
 ---
 title: Air navigation services
-author: Manuel Waltert
+authors:
+- Manuel Waltert
+- Xavier Olive
+- Kim Gaume
 ---
 
 Merriam-Webster defines the term **airspace** as "the space lying above the earth or above a certain area of land or water".
@@ -30,13 +33,16 @@ In order to manage an airspace, a state usually commissions a so-called \acr{ANS
 For the remainder of this section, the components of air navigation services are described in more detail.
 
 
-## \acr{AIM}
-Aeronautical Information Management (AIM) is considered with the collection, assembly, publication, exchange, and dissemination of quality-assured, timely and digital aeronautical data in collaboration with all relevant stakeholders. Aeronautical data includes aeronautical information publications (AIP), notice to airmen (NOTAM), preflight information bulletins (PIB), and aeronautical information circulars (AIC).
+## Aeronautical Information Management (AIM)
+
+<!-- TODO actually, I would put AIM last, or just before SAR -->
+
+\acr{AIM} is considered with the collection, assembly, publication, exchange, and dissemination of quality-assured, timely and digital aeronautical data in collaboration with all relevant stakeholders. Aeronautical data includes aeronautical information publications (AIP), notice to airmen (NOTAM), preflight information bulletins (PIB), and aeronautical information circulars (AIC).
 
 **Aeronautical Information Publications (AIP)**, which contain "aeronautical information of a lasting character essential to air navigation", see [ICAO Annex 15][Annex_15], are issued by a state or by an authority of the state, such as an ANSP. Since their structure is standardized by ICAO Annex 15, AIP usually consist of three distinctive parts:
 
 * *GEN - General information*: As the name implies, GEN contains general information, such as the authority responsible for the AIP, locally applied units of measure, abbreviations used in the AIP, locally applicable time zones and daylight saving time regulations, airspace charges regulations, etc.
-* *ENR - Information referring to en-route*: ENR contains information that is of importance during the flight, i.e., while aircraft are *en-route*. ENR is divided into the following 6 parts: (i) information on general rules and procedures for \{VFR} and \acr{IFR} or the airspace classes applied, (ii) description of the vertical and horizontal spread of airspaces, (iii) description of airways, (iv) description of radio navigation systems and infrastructures, (v) navigation warnings such as military airspaces, known aviation obstacles, danger areas, etc., and (vi) en-route chart material.
+* *ENR - Information referring to en-route*: ENR contains information that is of importance during the flight, i.e., while aircraft are *en-route*. ENR is divided into the following 6 parts: (i) information on general rules and procedures for \acr{VFR} and \acr{IFR} or the airspace classes applied, (ii) description of the vertical and horizontal spread of airspaces, (iii) description of airways, (iv) description of radio navigation systems and infrastructures, (v) navigation warnings such as military airspaces, known aviation obstacles, danger areas, etc., and (vi) en-route chart material.
 * *AD - Information referring to aerodromes*: AD includes information on both aerodromes and heliports and is divided into 3 parts. The first part contains an index of all aerodromes and helipads of a state as well as a description of the classification system of aerodromes applied in the state. Parts 2 and 3 of AD include detailed information on individual aerodromes or heliports, such as opening times, aerodrome operators, available service facilities, dimensions and alignment of runways, runway and approach lights, relevant aeronautical obstructions, etc. detailed maps are also provided, which contain information on ground-based infrastructure, i.e., aprons, taxiway, runways, etc., as well as flight procedures, i.e., standard instrument departures, standard terminal arrival routes, approach procedures.
 
 To keep \acr{AIP}s up to date, they are revised in an internationally standardized cylce, which is known as the **\acr{AIRAC} cycle**. This \acr{AIRAC} cycle follows a fixed 28-day rhythm, which is internationally standardised. The publication dates are known years in advance and are published, for example, by [Eurocontrol](https://www.nm.eurocontrol.int/RAD/common/airac_dates.html).
@@ -45,130 +51,304 @@ To keep \acr{AIP}s up to date, they are revised in an internationally standardiz
 
 **\acr{PIB}** A \acr{PIB} consists of a compilation of a number of \acr{NOTAM}s which are important for the execution of a flight. Consequently, a \acr{PIB} contains \acr{NOTAM}s for the origin, destination and alternate airports, as well as \acr{NOTAM}s for the airspace that the flight is likely to use.
 
-**\acr{AIC}** [ICAO Annex 15][Annex_15] defines an \acr{AIC} as "a notice containing information that does not qualify for the origination of a NOTAM of for inclusion in the AIP, but which relates to flight safety , air navigation, technical, administrative or legislative matters." For example, \acr{AIC}s are issued to communicate a strategy in which a state explains how it aims to modernise its ground-based navigational aids, or how a certain new procedure will be implemented in the future.
+**\acr{AIC}** [ICAO Annex 15][Annex_15] defines an \acr{AIC} as "a notice containing information that does not qualify for the origination of a NOTAM of for inclusion in the AIP, but which relates to flight safety, air navigation, technical, administrative or legislative matters." For example, \acr{AIC}s are issued to communicate a strategy in which a state explains how it aims to modernise its ground-based navigational aids, or how a certain new procedure will be implemented in the future.
+
+## Air Traffic Management (ATM)
+
+\acr{ATM} represents one of the most complex and safety-critical components of air navigation services. The term \acr{ATM} is defined in ICAO Document 4444 as *"the aggregation of the airborne functions and ground-based functions [...] required to ensure the safe and efficient movement of aircraft during all phases of operations"*.
+
+ATM refers to the comprehensive system of procedures, personnel, equipment, and facilities that work together to manage aircraft movements from gate to gate.
+The ATM system achieves these objectives through three interconnected service areas:
+
+1. **Air Traffic Services (ATS)**: Direct control and guidance of aircraft through real-time communication and coordination
+2. **Airspace Management**: Strategic planning and organization of airspace use to optimize capacity and safety
+3. **Air Traffic Flow Management (ATFM)**: Optimization of traffic flows to prevent congestion and maximize system efficiency
+
+### Airspace Structure
+
+At the broadest level, global airspace is divided into [**Flight Information Regions**](<https://observablehq.com/@openaviation/flight-information-regions>) (FIRs): large, internationally agreed zones within which a designated authority is responsible for **providing air traffic services**. FIRs are the primary organizational units of controlled airspace, covering both territorial and oceanic regions. While small countries may be covered by a single FIR, larger or busier nations often operate several. In some cases, FIRs span multiple countries or are assigned over international waters to nearby states. Their structures may vary with altitude: for example, France is divided into five FIRs below flight level (FL) 195, but merges into a single **Upper Information Region (UIR)** above that altitude. These regions, defined under the coordination of the International Civil Aviation Organization (ICAO), provide the foundation upon which more detailed subdivisions are built.
 
 
-## \acr{ATM}
-The term \acr{ATM} is defined in ICAO Document 4444 as
+```{ojs}
+//| echo: false
+import { Plot, countries, firsAt } from "@openaviation/flight-information-regions"
+```
 
-> the aggregation of the airborne functions and ground-based functions [...] required to ensure the safe and efficient movement of aircraft during all phases of operations
+```{ojs}
+//| echo: false
+{
+  function franceMap(fir_uir, width) {
+    const height = width * 0.8;
+    const local_firs = firsAt(fir_uir ? 300 : 100).features.filter(
+      (d) => d.properties.designator.slice(0, 2) === "LF"
+    );
+    const other_firs = firsAt(fir_uir ? 300 : 100).features.filter(
+      (d) =>
+        d.properties.designator.slice(0, 2) !== "LF" &&
+        ["E", "L", "D", "U", "G", "H"].includes(d.properties.designator[0])
+    );
+    return Plot.carto({
+      projection: d3
+        .geoConicConformal()
+        .scale((10 * width) / 1.5 / Math.PI)
+        .rotate([-3, -46.5])
+        .parallels([49, 44])
+        .translate([width / 2, height / 2]),
+      color: { scheme: "tableau10", legend: true },
+      marks: [
+        Plot.feature(countries, {
+          stroke: "#333",
+          fill: "#ced4da"
+        }),
+        Plot.features(
+          local_firs.filter((x) => x.properties.designator),
+          {
+            fill: (d) => d.properties.designator,
+            fillOpacity: 0.6,
+            strokeWidth: 2,
+            stroke: "#eee"
+          }
+        ),
+        Plot.features(other_firs, {
+          fill: "#bab0ac",
+          fillOpacity: 0.2,
+          strokeWidth: 1,
+          stroke: "#eee"
+        }),
+        Plot.label(local_firs, {
+          text: (d) => `${d.properties.designator}\n${d.properties.name}`,
+          fontSize: (24 * width) / 960,
+          halo: true
+        })
+      ],
+      width,
+      height,
+      caption: fir_uir ? "Above FL 195" : "Below FL 195"
+    });
+  }
+  const franceFIR = franceMap(false, width / 2);
+  const franceUIR = franceMap(true, width / 2);
+  return html`<div style="display: flex; ">${franceFIR} ${franceUIR}`;
+}
+```
 
-which, in practice, is enabled by the following services
+Within each FIR or UIR, controlled airspace is further divided to ensure the safe and efficient management of air traffic across different phases of flight. Responsibility for these divisions typically lies with national or regional **Air Traffic Control Centres**, often referred to as **Area Control Centres (ACCs)**, which oversee large volumes of airspace, often spanning thousands of square kilometres.
 
-i. air traffic services,
-i. airspace management, and
-i. air traffic flow management.
+<!-- TODO add more illustrations for ACCs -->
 
-### \acr{ATS}
-\acr{ATS} is concerned with the control, regulation, and assistance of aircraft and flight crews in real time. To this end, \acr{ATS} has the following four main objectives:
+Because no single controller can monitor an entire centre, airspace is divided into small units called **sectors**. Each sector is a defined volume of airspace with its own boundaries, typically based on geography, altitude, traffic volume, and operational needs. It is typically managed by a team of controllers who are responsible for all aircraft within that area. As an aircraft travels along its route, it will pass through multiple sectors. With each transition, responsibility for the flight is handed over from one team to the next. This hand-off process is standardized to ensure that aircraft are continuously monitored from take-off to landing.
 
-1. The avoidance of collisions between aircraft.
-1. The provision of advice for the safe and efficient conduction of flights.
-1. The conduction and maintainance of an orderly flow of air traffic.
-1. The notification and assistance of concerned organisations in case of search and rescue operations.
+In busy regions, sectors can be quite small and specialized, each with a dedicated team managing dozens of aircraft per hour. In less busy areas, sectors may be much larger, with a single controller responsible for hundreds of square miles of airspace. To further support safe operations, sectors are layered vertically as well. This means that one controller might be responsible for aircraft flying between 24,000 and 32,000 feet, while another handles the same geographic area but at lower or higher altitudes. This vertical stacking allows for more efficient use of limited space and avoids bottlenecks. [**Airspace management**](#airspace-management) must also account for restricted zones, military operations areas, and weather events, all of which can require dynamic adjustments to sector boundaries or flight routing. In high-traffic situations, sectors can be split into smaller units, each staffed by additional controllers to distribute the workload. Conversely, during low-traffic periods, small sectors may be combined to form larger ones.
 
-To achieve these main objectives, \acr{ATS} provides the following main services:
+<!-- TODO add more illustrations for sectors and divisions -->
 
-i. air traffic control (ATC)
-i. air traffic advisory services
-i. flight information services, and
-i. alerting services.
+Overall, the division of airspaces into sectors allows a massive, complex environment to be broken into manageable pieces, each carefully monitored and coordinated to maintain safety, efficiency, and order.
 
-**\acr{ATC}**: According to [ICAO Annex 11][Annex_11], ATC is a service, which aims at the prevention of collisions between aircraft being airborne as well as between obstructions and aircraft being on the maneouvring area of an aerodrome. Besides that, ATC ensures the expedition and maintenance of an orderly flow of air traffic.
+Before any commercial flight takes off, a detailed [**flight plan**](<https://skybrary.aero/articles/flight-plan>) must be created and filed. This plan outlines the intended route an aircraft will follow, including departure and arrival points, altitudes, estimated times, and the specific path through controlled airspace. Flight plans are essential for ensuring that air traffic controllers can manage the [flow of aircraft](#air-traffic-flow-management) safely and efficiently.
 
-<!--Flight Rules: IFR vs. VFR-->
-<!-- RQ: the following is a bit intermingled: States define airspace --> operational limits --> rules of the air to operate in such airspaces --> ultimately requiring pilot/aircrews to operate a respectively equipped aircraft in accordance with these flight rules and associated meteorological condistions, i.e. \acr{IMC} or \acr{VMC} -->
-To ensure that the airspace is managed efficiently and effectively by ATC, flights are categorized and segmented according to the **flight rules** they are following.
-Basically, flights are thereby either following so-called *\acr{VFR}* or *\acr{IFR}*. As the name implies, \acr{VFR} flights follow the principle of "see and avoid". That is, by looking out of the window, flight crew of \acr{VFR} flights are responsible for ensuring that they are always sufficiently spatially separated from other flights and obstacles. Therefore, \acr{VFR} flights can only be conducted when meteorological conditions permit. For instance, \acr{VFR} flights can only operate in an airspace when the visibility is better than a certain minimum value. Moreover, pilots of \acr{VFR} flights are prohibited from flying closer than a certain distance to clouds, which implies requirements regarding clouds.
-These condistions are referred to as **\acr{VMC}**.
-In contrast, flight crew operating under IFR are not obliged to look out of their cockpit windows in order to "see and avoid" other flights and obstalce. Rather, IFR flights are separated from other aircraft and obstacles by the ATC or procedurally (e.g. departure procedure ensuring freedom of obstacles when departing from an aerodrome).
-<!-- reworded -->
-Therefore, the aforementioned meteorological requirements in terms of visibility and distance to clouds do not exist. <!-- replaced: to be met in IFR airspace is less stringent. -->
-The associated consditions are referred to as **\acr{IMC}***.
-With the exemption of so-called *special VFR (SVFR)* operations, it follows that when the \acr{VMC} are not met, flights operate in \acr{IMC}.
+To establish these routes, the aviation system relies on a network of predefined **waypoints**, which can be either specific geographic locations determined by GPS coordinates, or **ground-based navigation aids** such as VORs (VHF Omnidirectional Range beacons). These waypoints form the foundation of structured air traffic routes.
 
-<!--Airspace Classes-->
-<!-- RQ: we need to check how to handle this and what goes into the airspace.qmd -- conceptually we have airspace [above territory] to be chunked into volumes and associated uncontrolled/controlled portions -->
-Besides differentiating between VFR and IFR flights, the airspace managed by ATC is segmented into a number of smaller sub-segments or airspace volumes <!-- RQ 'airspace block' is linked to GANP - should be avoided here: ..., so-called airspace blocks as annother means --> to ensure safe and expeditious flow of air traffic.
-These airspace <!-- blocks --> volumes are further assigned a specific **airspace class**, which defines (i) which types of flight may use the airspace, (ii) under which circumstances these flights may enter this airspace, and (iii) which services are offered to aircraft and/or aircraft crews being present in this airspace block.
-In [ICAO Annex 11][Annex_11, a total of seven distinct airspace classes, called Class A to Class G, are defined. In a first distinction, a distinction can be made between controlled and uncontrolled airspace, which, as indicated in Table XX, refers to Class A to E, and Class F to G, respectively. In this regard, the term *controlled* airspace indicates that ATC offers and provides services to aircraft being present in this airspace block, while no services are provided *uncontrolled* airspace blocks.
-Besides that, airspace classes differ in they type of flight allowed to enter and operate therein. While IFR flights are allowed to operate in all airspace classes, VFR flights are prohibited from using airspace Class A. Moreover, flights require an **ATC clearance** to enter certain airspace classes. If a clearance is required, pilots must contact ATC and request clearance before entering the airspace. As such, IFR and (if applicable) VFR flights require an ATC clearance for airspace Classes, A, B, C, and D. In airspace Class E, only IFR aircraft require a clearance, while VFR flights are exempt from this obligation.
-Please note: Aircraft operating as a *special VFR* flight[^1], which refers to <!-- specially equipped --> aircraft conducting VFR flights under lower weather minima than those of conventional VFR flights.
+Traditionally, sequences of waypoints are connected to form **airways**, the highways of the sky. Aircraft follow these established corridors as part of their flight plans, allowing controllers to manage traffic safely and predictably, especially in busy or constrained airspace. Aircraft navigate from one waypoint to the next, following a path that resembles a series of connected legs rather than a single straight line. Modern aircraft are usually equipped with [**\acr{FMS}**](aircraft.qmd#flight-control-systems) that can store and follow these predefined routes automatically, making it easier for both pilots and controllers to maintain accurate navigation.
 
-[^1]: Special VFR (SVFR) flights are only allowed in controlled airspace, in which (i) the minimum visibility must be at least 1500m, (ii) ground must be visible at all times, and (iii) aircraft must be clear of clouds. <!-- the equipage statement is not correct --> Aircraft operating SVFR flights must be equipped as if they conducted an IFR flight.
+To further organise traffic in and out of airports, two types of standardized routes are used:
+
+- **Standard Instrument Departures (SID)** guide aircraft from an airport's runway to the en-route structure. These routes are designed to separate departures from each other and from arriving traffic.
+- **Standard Terminal Arrival Routes (STAR)** lead aircraft from the en-route phase back into the terminal area for landing. Like SIDs, they help manage traffic flow and reduce controller workload.
+
+These procedures are published on aviation charts and are often required for flights operating under [**Instrument Flight Rules (IFR)**](#flight-rules), which govern most commercial and high-altitude air traffic.
+
+While predictable trajectories are essential, air traffic controllers can also offer direct routing when conditions allow^[<https://wiki.ivao.aero/en/home/training/documentation/CTR_controller_position>]. If weather is clear and traffic conditions allow, controllers may instruct pilots to bypass certain waypoints or airways, offering a more efficient path that saves time and fuel. This flexibility is especially useful on longer flights, where even small adjustments can lead to significant operational savings.
+
+Modern systems such as [**\acr{PBN}**](https://www.eurocontrol.int/sites/default/files/2019-06/2013-introducing-pbn-a-rnp.pdf) and **\acr{RNP}** have further increased the precision and flexibility of routing, enabling aircraft to fly more direct paths even in complex or remote airspace.
+
+Whether following a standard route or taking advantage of more direct navigation options, aircraft must still be carefully monitored to ensure their safety and controlled flow. This is the role of air traffic controllers. From guiding planes during takeoff to overseeing them en route and managing their approach for landing, controllers are essential to every phase of flight.
+
+### Air Traffic Services (ATS)
+
+#### Flight Rules
+
+To ensure that airspace is managed efficiently and effectively by ATC, flights are categorized according to the **flight rules** they follow. Flights operate under either *Visual Flight Rules (\acr{VFR})* or *Instrument Flight Rules (\acr{IFR})*.
+
+**Visual Flight Rules (VFR)** flights follow the principle of "see and avoid". Flight crews are responsible for maintaining visual separation from other aircraft and obstacles by looking outside the cockpit. VFR flights can only operate when meteorological conditions permit adequate visibility and cloud clearance. These conditions are referred to as **Visual Meteorological Conditions (VMC)**.
+
+**Instrument Flight Rules (IFR)** flights rely on instruments and air traffic control for navigation and separation. Flight crews are not required to maintain visual separation, as ATC provides separation services between IFR flights. IFR flights can operate in lower visibility conditions, known as **Instrument Meteorological Conditions (IMC)**.
+With the exception of **special VFR (SVFR)**[^1] operations, when an aircraft conducts VFR flights although VMC are not met, flights must operate under IFR in IMC.
+
+Besides differentiating between VFR and IFR flights, controlled airspace is classified into specific **airspace classes** that define which types of flight may use the airspace, under which circumstances flights may enter this airspace, and which services are offered to aircraft in this airspace.
+
+#### Airspace Classes
+
+<!-- TODO explain the difference between airspace classes and sectors -->
+
+The International Civil Aviation Organization (ICAO) defines in [Annex 11][Annex_11] seven airspace classes, labeled A through G, with a fundamental distinction between **Controlled Airspace (Classes A-E)** where ATC provides services to aircraft, and **Uncontrolled Airspace (Classes F-G)** where no ATC services are provided.
+
+Airspace classes differ in the type of flight allowed to enter and operate therein. While IFR flights are allowed to operate in all airspace classes, VFR flights are prohibited from using airspace Class A. Moreover, flights require an **ATC clearance** to enter certain airspace classes. If a clearance is required, pilots must contact ATC and request clearance before entering the airspace. As such, IFR and (if applicable) VFR flights require an ATC clearance for airspace Classes A, B, C, and D. In airspace Class E, only IFR aircraft require a clearance, while VFR flights are exempt from this obligation.
+
+[^1]: Special VFR (SVFR) flights are only allowed in controlled airspace, in which (i) the minimum visibility must be at least 1500m, (ii) ground must be visible at all times, and (iii) aircraft must be clear of clouds. Aircraft operating SVFR flights must be equipped as if they conducted an IFR flight.
+
+| Airspace Class | Flight Types Allowed | ATC Clearance Required    |
+|----------------|----------------------|---------------------------|
+| A              | IFR only             | Yes (IFR)                 |
+| B              | IFR and VFR          | Yes (both)                |
+| C              | IFR and VFR          | Yes (both)                |
+| D              | IFR and VFR          | Yes (both)                |
+| E              | IFR and VFR          | Yes (IFR, SVFR), No (VFR) |
+| F              | IFR and VFR          | No                        |
+| G              | IFR and VFR          | No                        |
+
+The airspace classes described above are established by the [Chicago Convention on International Civil Aviation](https://www.icao.int/publications/Documents/7300_cons.pdf) and are applicable to all states that have ratified this convention. However, this does not mean that every airspace class must be implemented by every state. Rather, each state has the flexibility to design its own airspace structure and determine which airspace classifications to apply within its sovereign territory.
+
+For example, Italy uses airspace classes A, C, D, E, and G, while Germany, Austria, and Switzerland implement classes C, D, E, and G. In France, classes B and F are not utilized, and class A is restricted to the Paris region only. The French Upper Traffic Area, spanning from Flight Level (FL) 195 to FL 660, is designated as class C airspace^[<https://www.ivao.fr/en/pages/pilots/rules>].
+
+This upper airspace classification is particularly relevant for aircraft in their cruising phase, where they typically maintain consistent speeds and altitudes over long distances. Unlike Class A airspace, which permits only Instrument Flight Rules (IFR) operations with mandatory ATC separation between all flights, Class C airspace accommodates both IFR and Visual Flight Rules (VFR) traffic. In Class C airspace, air traffic control provides comprehensive services to all aircraft, ensuring separation between IFR flights and between IFR and VFR flights. While VFR flights are not separated from each other by ATC, they do receive traffic information about other VFR operations to enhance situational awareness^[<https://skybrary.aero/articles/classification-airspace>].
+
+#### Separation Rules
+
+| Airspace Class | Flight Rules | Separation provided                              |
+|----------------|--------------|--------------------------------------------------|
+| A              | IFR only     | Between all IFR flights                          |
+| B              | IFR, VFR     | Between all flights                              |
+| C              | IFR          | Between all flights                              |
+| C              | VFR          | Between IFR and VFR flights                      |
+| D              | IFR          | Between IFR flights                              |
+| D              | VFR          | No separations (traffic information only)        |
+| E              | IFR          | Between IFR flights                              |
+| E              | VFR          | No separations (traffic information only)        |
+| F              | IFR, VFR     | Between IFR flights, as far as practicable       |
+| G              | IFR, VFR     | No separations                                   |
+
+To prevent collisions between aircraft, ATC uses **separation minima** - specified minimum vertical and lateral distances that must be maintained between aircraft. The specific separations provided depend on both the airspace class and the flight rules under which aircraft are operating.
+
+**Separation by Airspace Class and Flight Rules:**
+
+**Separation Distances:**
+
+The actual separation distances depend on the radar coverage and airspace type:
+
+- **En-route airspace**: 10-20 nmi (long-range radar) or 5 nmi (European core area)
+- **Terminal airspace**: 3 nmi near airports
+- **Precision radar areas**: 2.5-2 nmi in airport proximity
 
 
-| Airspace Class | IFR-Flights | VFR-Flights | ATC-Clearance for IFR-Flights | ATC-Clearnace for VFR-Flights  |
-|----------------|-------------|-------------|-------------------------------|--------------------------------|
-| A              | Allowed     | Prohibited  | Required                      | n/a                            |
-| B              | Allowed     | Allowed     | Required                      | Required                       |
-| C              | Allowed     | Allowed     | Required                      | Required                       |
-| D              | Allowed     | Allowed     | Required                      | Required                       |
-| E              | Allowed     | Allowed     | Required                      | Only for SVFR-flights required |
-| F              | Allowed     | Allowed     | Not required                  | Not required                   |
-| G              | Allowed     | Allowed     | Not required                  | Not required                   |
+Air Traffic Services (ATS) represents the core operational component of air traffic management, providing direct, real-time control and guidance of aircraft throughout all phases of flight. According to [ICAO Annex 11][Annex_11], ATS encompasses four distinct but interconnected services that work together to ensure the safe, orderly, and expeditious flow of air traffic.
+
+The four main services provided under ATS are:
+
+1. **Air Traffic Control Service (ATC)**: The primary service responsible for preventing collisions between aircraft and between aircraft and obstacles on the maneuvering area
+2. **Flight Information Service (FIS)**: Provides pilots with information useful for the safe and efficient conduct of flights
+3. **Alerting Service**: Notifies appropriate organizations regarding aircraft in need of search and rescue aid
+4. **Air Traffic Advisory Service**: Provides advice and information to aircraft operating in advisory airspace where ATC service is not available
+
+#### Air Traffic Control Service (ATC)
+
+Air Traffic Control is the most visible and critical component of ATS. ATC provides active control services to aircraft operating in controlled airspace and at controlled aerodromes. The service is provided by qualified air traffic controllers who use radar surveillance, radio communication, and standardized procedures to:
+
+- **Prevent collisions** between aircraft in flight and between aircraft and obstacles on the maneuvering area
+- **Expedite and maintain** an orderly flow of air traffic
+- **Provide advice and information** useful for the safe and efficient conduct of flights
+- **Notify appropriate organizations** regarding aircraft in need of search and rescue aid
+
+ATC service is mandatory for all flights operating in controlled airspace, which includes airspace Classes A through E. The level of service provided varies depending on the airspace class and flight rules being followed.
+
+There are three main types of air traffic controllers, each responsible for a different phase of a flight.
+
+**Tower controllers**^[<https://skybrary.aero/articles/tower-controller>] work at airports and operate from the airport's control tower, where they maintain visual oversight of runways and taxiways. This allows them to coordinate traffic within the immediate vicinity of the airport. Their work ensures safe ground operations, as well as safe transitions between ground movement and flight.
+
+**Approach controllers**^[<https://skybrary.aero/articles/approach-controller>] handle aircraft as they climb after take-off or approach and descend for landing, serving as a link between tower and area controllers. Their job is to sequence flights into and out of airports and ensure that they are safely spaced from each other.
+
+**En-route or area controllers**^[<https://skybrary.aero/articles/area-controller>] manage aircraft in the cruising phase of flight. These controllers work in large regional centres and handle high-altitude traffic as it moves across long distances. Their main mission is to make sure the safety distance requirements are respected between all the aircraft in their responsibility. In most cases, each control sector is managed by a team of two controllers, each with distinct and complementary responsibilities. This division of labour enhances both safety and efficiency, particularly in busy en-route airspace where traffic density and complexity can be high.
+
+The **executive controller**, or **tactical controller**, is primarily responsible for managing aircraft within the boundaries of the sector. Their main task is to ensure safe separation between aircraft in real time, using radar surveillance and direct radio communication with pilots. They issue clearances such as heading changes, altitude adjustments, or speed restrictions, responding dynamically to evolving situations such as unexpected traffic convergence, weather deviations, or aircraft requests. The tactical controller is the voice pilots hear most often during flight.
+
+Working alongside them is the **planner controller**, sometimes referred to as the **coordinator**. This controller is in constant communication with adjacent sectors, negotiating handovers and ensuring that aircraft are sequenced and spaced appropriately for entry into and exit from the controlled airspace. The planner controller anticipates potential conflicts before they enter the tactical window, helping to reduce workload for the executive controller and maintain an orderly flow of traffic. Depending on the specific traffic situation, these responsibilities can be handled by only one controller, who performs both the tasks assigned to the executive and planner controller. If needed, some tasks can also be delegated to a third controller, though this configuration is uncommon.
+
+These controllers operate within a structured system of air traffic services, which provides the regulatory and operational framework for safe aircraft operations.
 
 
-<!--Every country can decide which airspace classes they implement (e.g. Switzerland only uses Class C, D, E, and G, while Italy uses Class A, C, D, E, and G, etc.)-->
-The above mentioned airspace classes are valid in all states that have ratified the [Chicago Convention on International Civil Aviation](https://www.icao.int/publications/Documents/7300_cons.pdf). This does not mean, however, that every airspace class is applied in practice by every State. Rather, each state is free to decide on the structure of its entire airspace and the categorisation of the resulting airspace blocks. For example, Italy applies airspace classes A, C, D, E and G, while Germany, Austria and Switzerland apply airspace classes C, D, E and G.
+#### Flight Information Service (FIS)
+
+Flight Information Service provides pilots with information that is useful for flight safety but does not include active control instructions. FIS is available to all aircraft, whether operating under VFR or IFR, in both controlled and uncontrolled airspace. The service includes:
+
+- **Meteorological information** including current weather conditions, forecasts, and significant weather phenomena
+- **Information on runway conditions** including surface conditions, available runway length, and any temporary restrictions
+- **Navigational information** including the status of navigation aids and any temporary outages
+- **Traffic information** about other aircraft when deemed relevant for flight safety
+- **Any other information** that may affect flight operations, such as military activities or airspace restrictions
+
+#### Alerting Service
+
+The Alerting Service is responsible for notifying search and rescue coordination centers and other appropriate organizations when aircraft are believed to be in emergency situations. This service monitors aircraft operations and initiates alerts based on:
+
+- **Overdue aircraft** that have not arrived at their destination within a specified time after their estimated time of arrival
+- **Communication failures** when aircraft fail to establish or maintain required radio contact
+- **Emergency signals** including distress calls or emergency transponder codes
+- **Deviation from flight plans** when aircraft significantly deviate from their filed route without authorization
+
+The alerting service operates through a graduated response system with three phases of emergency: uncertainty phase (INCERFA), alert phase (ALERFA), and distress phase (DETRESFA), each triggering increasingly comprehensive search and rescue responses.
+
+#### Air Traffic Advisory Service
+
+Air Traffic Advisory Service is provided in designated advisory airspace where full ATC service is not available, typically in remote or oceanic areas. Unlike ATC, advisory service does not include separation instructions but provides:
+
+- **Traffic information** about other known aircraft in the area
+- **Suggested routing** to avoid potential conflicts
+- **Position reports** from other aircraft to help maintain situational awareness
+- **Weather information** relevant to flight operations in the advisory area
+
+Aircraft operating in advisory airspace remain responsible for their own separation from other traffic, but benefit from the information sharing facilitated by the advisory service.
+
+The effectiveness of all ATS components depends heavily on the classification system that defines how different types of airspace are managed and what services are provided to aircraft operating within them. This classification system also determines the flight rules under which aircraft must operate.
+\acr{ATS} is concerned with the control, regulation, and assistance of aircraft and flight crews in real time. The primary objective of \acr{ATS} is the avoidance of collisions between aircraft, while simultaneously providing advice for the safe and efficient conduct of flights. Additionally, \acr{ATS} maintains an orderly flow of air traffic and ensures the notification and assistance of concerned organisations in case of search and rescue operations.
+
+To achieve these objectives, \acr{ATS} provides four main services: air traffic control (ATC), air traffic advisory services, flight information services, and alerting services. Each of these services plays a crucial role in maintaining the safety and efficiency of air operations.
 
 
-<!--Separations-->
-To prevent collisions between aircraft, ATC uses so-called **separation minima**. As such, the term separation refers to the vertical and lateral spatial spacing between aircraft. As a target for separations, ATC uses specified minimum separations, which define exactly which vertical and lateral minimum distances must be maintained at all times. In practice, not all aircraft are separated from each other, as separations are only (i) provided in certain airspace classes and (ii) not offered to all flights.
-With regard to flights, a distinction is made between aircraft operating under Instrument Flight Rules (IFR) and aircraft operating under Visual Flight Rules (VFR).
-The following table summarises for all airspace classes and types of flight, whether or not separation is provided by ATC. Note, the table must be read as follows: the first column indicates in which airspace class a particular flight is located. The second column indicates whether this flight is operating under IFR or VFR. The third column then indicates which separation services are offered to this flight.
+According to [ICAO Annex 11][Annex_11], \acr{ATC} is the service that manages the safe and coordinated movement of aircraft in the sky and on the ground. The people in charge of this task are air traffic controllers, who work in various types of control facilities to help pilots navigate safely from one location to another.
 
-| Airspace Class | Flight Rules             | Separation provided to this flight               |
-|----------------|--------------------------|--------------------------------------------------|
-| A              | Only IFR flights allowed | Between all IFR flights                          |
-| B              | IFR, VFR                 | Between all other flights                        |
-| C              | IFR                      | Between all other flights                        |
-| C              | VFR                      | Between other IFR flights                        |
-| D              | IFR                      | Between other IFR flights                        |
-| D              | VFR                      | No separations                                   |
-| E              | IFR                      | Between other IFR flights                        |
-| E              | VFR                      | No separations                                   |
-| F              | IFR                      | Between other IFR flights, as far as practicable |
-| F              | VFR                      | No separations                                   |
-| G              | IFR, VFR                 | No separations                                   |
+#### Air Traffic Advisory Services
 
-<!-- Add:Separation minima  En-route vs. terminal airspace-->
-A key aspect for the application of separation minima is the supporting infrastructure in terms of navigation and surveillance.
-For surveillance purposes, ATS use radar - both primary and secondary <!-- cross-reference to respective chapter/section -->.
-The primary driver for the associated minimum is linked to the type of radar and its technological characteristics.
-
-In certain airspaces only long-range radars are used. Here typical separation minima range from 10 to 20 nmi.
-Within the European core-area, with a sufficient highly coverage of a mix of primary and secondary radars, the separation minima is 5 nmi unless wake-turbulence categorisation requires a wider lateral spacing.
-Closer to aerodromes radars with a higher revolution are dployed. This increases the accuracy of measurement within the arrival and departure airspace. This allows for a reduction of the separation minima. Within Europe and the United States, the required minimum is 3NM unless wake-turbublence categorisation requires a wider separation distance.
-Within the close proximity of airports and given the deployment of so-called precision radars, the separation minima can be further reduced to 2 1/2 or 2 nmi.
-
-<!--![This is a test image](../../images/radar_coverage.png){#fig-test width=40%}
-
-See @fig-test for an illustration.-->
+Air traffic advisory services provide information and advice to aircraft operating in areas where full ATC service is not available. This service includes traffic information, meteorological information, and navigation assistance to help pilots make informed decisions about their flight path and operations.
 
 
-**Advisory services**
+#### Flight Information Services
 
-**Flight Information Services**
+Flight information services provide pilots with information useful for the safe and efficient conduct of flights. This includes weather information, airfield conditions, changes to navigation aids, and other information that may affect flight operations.
 
-**Alerting services**
+
+#### Alerting Services
 
 According to ICAO Annex 11 - Air Traffic Services - alerting services refers the notification of the appropriate organisations about aircraft in need of search and rescue or assist such organisations as required.
 Alerting services are part of air traffic services (ATS) and typically provided by the ATS units involved.
 Accordingly, this service applies to all aircraft under the control of an ATS unit, or processing the associated flight plan and therefor know to the unit or in support of adjacent units, or information about aircraft - known or believed to be - subject to unlawful interference.
 
 ### Airspace Management
-tbd
 
-### \acr{ATFM}
-tbd
+While ATS focuses on real-time control of aircraft, airspace management takes a strategic approach to optimizing airspace use.
+Airspace Management involves the strategic planning and real-time organization of airspace to optimize capacity and efficiency while maintaining safety. This includes:
+
+- **Airspace design**: Structuring airways and sectors for optimal traffic flow
+- **Flexible airspace use**: Dynamic allocation of airspace between civilian and military users
+- **Capacity planning**: Analyzing and adjusting airspace capacity based on traffic demand
+- **Coordination**: Working with adjacent control centers and military authorities
 
 
+### Air Traffic Flow Management
 
+\acr{ATFM} focuses on optimizing traffic flows to prevent congestion and delays while maximizing airspace capacity. **Traffic flow analysis** involves monitoring and predicting traffic patterns to identify potential bottlenecks before they occur. When capacity is exceeded, **flow control measures** are implemented to manage traffic through restrictions such as ground delays or rerouting. **Collaborative decision making** ensures coordination with airlines and airports to minimize the impact of these measures on operations. Finally, **strategic planning** focuses on long-term traffic flow optimization through infrastructure improvements and procedural changes.
+
+explain regulations
 
 
 ## \acr{MET}
-tbd
+
+Meteorological services provide weather information critical for flight safety and efficiency. These services include:
+
+- **Weather observations and forecasts** for flight planning and operations
+- **Aerodrome weather reports (METAR/SPECI)** providing current conditions at airports
+- **Terminal area forecasts (TAF)** for airport-specific weather predictions
+- **Significant weather information (SIGMET/AIRMET)** warning of hazardous weather conditions
+- **Upper-air data** including wind and temperature information for flight level planning
+
 
 
 
@@ -286,6 +466,12 @@ However, not until the Second World War, was the concept of RAdio Detection And 
 ## Search and Rescue (SAR)
 
 
+Search and Rescue services coordinate emergency response for aircraft in distress. SAR operations include:
+
+- **Alerting services coordination** to initiate rescue operations
+- **Search and rescue operations** coordination between civilian and military resources
+- **Emergency communication protocols** for distress situations
+- **Coordination with national and international rescue organizations**
 
 <!-- Collection of links used on this page -->
 [Annex_11]: https://www.bazl.admin.ch/dam/bazl/en/dokumente/Fachleute/Regulationen_und_Grundlagen/icao-annex/icao_annex_11_airtrafficservices.pdf.download.pdf/an11_cons.pdf
