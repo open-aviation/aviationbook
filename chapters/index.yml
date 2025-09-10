@@ -10,10 +10,10 @@
       href: background/atmosphere.html
     - text: Anatomy of an aircraft
       href: background/aircraft.html
+    - text: Air navigation services
+      href: background/ans.html
     - text: Aerodromes and airports
       href: background/aerodrome.html
-    - text: Air navigation services
-      href: background/cns.html
 - title: The ecosystem of aviation data
   subtitle: The most commonly used data formats in the aviation and ATM data analysis community
   links:

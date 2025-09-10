@@ -270,5 +270,4 @@ In order to ensure the safe travel of aircraft a series of safety systems were d
 **Anti-icing systems** prevent ice buildup on critical surfaces like wings, tail, engine inlets, and pitot tubes (airspeed sensors). These systems typically use heated air from the engines or electrical heating elements. Ice accumulation can drastically alter the aerodynamic properties of wings and control surfaces, potentially leading to dangerous flight conditions.
 
 
-## List of Acronyms {.unnumbered}
-
+## Glossary {.unnumbered}

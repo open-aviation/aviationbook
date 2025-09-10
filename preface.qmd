@@ -1,12 +1,5 @@
 ---
 output-file: preface
-acronyms:
-  include_unused: false
-  insert_links: false
-  insert_loa: "end"
-  loa_title: ""
-  fromfile: 
-    - _acronyms.yml
 ---
 
 # Preface {.unnumbered}
@@ -129,4 +122,4 @@ information brings additional value to a dataset. This part deals with
 the data sharing and publication process. (paper reproducibility?)
 
 
-## List of Acronyms {.unnumbered}
+## Glossary {.unnumbered}

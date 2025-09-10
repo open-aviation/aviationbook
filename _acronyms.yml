@@ -21,6 +21,8 @@ acronyms:
       longname: Aeronautical Information Publication
     - shortname: AIRAC
       longname: Aeronautical Information Regulation And Control
+    - shortname: AFIS
+      longname: Aerodrome Flight Information Service
     - shortname: AO
       longname: Aircraft Operator
     - shortname: AOBT
@@ -33,6 +35,8 @@ acronyms:
       longname: ARriVal Time
     - shortname: ATC
       longname: Air Traffic Control
+    - shortname: ATIS
+      longname: Automatic Terminal Information Service
     - shortname: ATFM
       longname: Air Traffic Flow Management
     - shortname: ATM
@@ -83,6 +87,10 @@ acronyms:
       longname: Flight Data Recorder
     - shortname: FIR
       longname: Flight Information Region
+    - shortname: FIS
+      longname: Flight Information Service
+    - shortname: FISO
+      longname: Flight Information Service Officer
     - shortname: FMS
       longname: Flight Management System
     - shortname: FOQA
@@ -122,7 +130,9 @@ acronyms:
     - shortname: NM
       longname: Network Manager
     - shortname: NOTAM
-      longname: NOtice To AirMen
+      longname: Notice To Airmen
+      plural:
+        - longname: Notices To Airmen
     - shortname: OSN
       longname: OpenSky Network
     - shortname: PBN

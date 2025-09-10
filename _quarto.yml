@@ -18,17 +18,16 @@ book:
   # date: "2023-12-25"
   # isbn: "12345678"
   chapters:
-    - index.qmd
-    - preface.qmd
     - chapters/index.qmd
+    - preface.qmd
     - part: "Background knowledge about aviation"
       chapters:
         - chapters/background/history.qmd
         - chapters/background/earth.qmd
         - chapters/background/atmosphere.qmd
         - chapters/background/aircraft.qmd
+        - chapters/background/ans.qmd
         - chapters/background/aerodrome.qmd
-        - chapters/background/cns.qmd
     - part: "The ecosystem of aviation data"
       chapters:
         - chapters/data_sources/flight-tracking.qmd
@@ -52,12 +51,13 @@ book:
     - part: "Share Data"
       chapters:
         - chapters/sharing/reproducible-research.qmd
-    - references.qmd
-    - authors.qmd
   appendices:
+    - index.qmd
     - chapters/appendix/index.qmd
     - chapters/appendix/glossary.qmd
     - chapters/appendix/contribute.qmd
+    - references.qmd
+    - authors.qmd
 
   # cover-image: images/book-front-cover.png
   site-url: https://aviationbook.netlify.app/
@@ -86,8 +86,8 @@ book:
             - chapters/background/earth.qmd
             - chapters/background/atmosphere.qmd
             - chapters/background/aircraft.qmd
+            - chapters/background/ans.qmd
             - chapters/background/aerodrome.qmd
-            - chapters/background/cns.qmd
         - section: Data sources
           contents:
             - chapters/data_sources/flight-tracking.qmd
@@ -133,6 +133,8 @@ book:
     left:
       - text: Overview
         href: /
+      - text: Preface
+        href: preface.qmd
       - text: Start reading
         href: /chapters/background/
       - chapters/index.qmd

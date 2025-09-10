@@ -3,6 +3,7 @@ acronyms:
   insert_loa: false
 resources: /images/aircraft_vintage.webp
 css: media/css/index.css
+number-sections: false
 ---
 
 This is the website for the book "{{< meta title >}}", a project started by a team of [**four aviation enthusiasts**](authors.qmd), working in the field of aviation and sharing a common objective to share open knowledge about all what is available to analyse aviation data.
