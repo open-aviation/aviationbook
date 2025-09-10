@@ -18,7 +18,7 @@ Under Article 28(a) of the Chicago Convention, each state must establish **\acr{
 ::: {.callout-tip}
 ### \acr{ANSP}s in Europe
 
-France's air navigation services are provided by the Direction des Services de la Navigation Aérienne (DSNA), a government agency, while the United Kingdom's services are delivered by NATS, a public-private partnership. In Germany, Deutsche Flugsicherung (DFS) operates as a state-owned enterprise.
+France's air navigation services are provided by the *Direction des Services de la Navigation Aérienne (DSNA)*, a government agency, while the United Kingdom's services are delivered by *National Air Traffic Services (NATS)*, a public-private partnership. In Germany, *Deutsche Flugsicherung (DFS)* operates as a state-owned enterprise.
 :::
 
 Air navigation services encompass five interconnected service groups that together form the backbone of modern aviation:
@@ -39,14 +39,17 @@ These services facilitate the 'safe, efficient, and orderly flow of air traffic'
 ATM refers to the comprehensive system of procedures, personnel, equipment, and facilities that work together to manage aircraft movements from gate to gate.
 The ATM system achieves these objectives through three interconnected service areas:
 
-1. **Air Traffic Services (ATS)**: Direct control and guidance of aircraft through real-time communication and coordination
-2. **Airspace Management**: Strategic planning and organization of airspace use to optimize capacity and safety
-3. **Air Traffic Flow Management (ATFM)**: Optimization of traffic flows to prevent congestion and maximize system efficiency
+1. [**Air Traffic Services (ATS)**](#air-traffic-services): Direct control and guidance of aircraft through real-time communication and coordination
+2. [**Airspace Management**](#airspace-management): Strategic planning and organization of airspace use to optimize capacity and safety
+3. [**Air Traffic Flow Management (ATFM)**](#air-traffic-flow-management): Optimization of traffic flows to prevent congestion and maximize system efficiency
 
 ### Flight Information Regions
 
 At the broadest level, global airspace is divided into [**Flight Information Regions**](<https://observablehq.com/@openaviation/flight-information-regions>) (FIRs): large, internationally agreed zones within which a designated authority is responsible for **providing air navigation services**. FIRs are the primary organizational units of controlled airspace, covering both territorial and oceanic regions. While small countries may be covered by a single FIR, larger or busier nations often operate several. **In some cases, FIRs span multiple countries or are assigned over international waters to nearby states**. Their structures may vary with altitude: for example, France is divided into five FIRs below flight level (FL) 195, but merges into a single **Upper Information Region (UIR)** above that altitude. These regions, defined under the coordination of the International Civil Aviation Organization (ICAO), provide the foundation upon which [more detailed subdivisions are built](#airspace-management).
 
+::: {.callout-warning}
+It is important to insist on the fact that FIRs are **not expressions of territorial sovereignty**, which is limited to 12 nautical miles from coastlines. FIRs represent commitments by states **to provide air navigation services over much larger areas**, including international airspace and oceanic regions.
+:::
 
 ```{ojs}
 //| echo: false
@@ -91,7 +94,7 @@ import { Plot, countries, firsAt } from "@openaviation/flight-information-region
         Plot.features(other_firs, {
           fill: "#bab0ac",
           fillOpacity: 0.2,
-          strokeWidth: 1,
+          strokeWidth: 2,
           stroke: "#eee"
         }),
         Plot.label(local_firs, {
@@ -111,6 +114,12 @@ import { Plot, countries, firsAt } from "@openaviation/flight-information-region
 }
 ```
 
+::: {.callout-tip}
+
+More details about FIR around the world:
+<https://observablehq.com/@openaviation/flight-information-regions>
+
+:::
 
 ### Air Traffic Services
 
@@ -120,8 +129,8 @@ The four main services provided under ATS are:
 
 - [**Air Traffic Control Service (ATC)**](#air-traffic-control-service): The primary service responsible for preventing collisions between aircraft and between aircraft and obstacles on the maneuvering area, while optimizing air traffic operations for maximum efficiency
 - [**Flight Information Service (FIS)**](#flight-information-service): Provides pilots with information useful for the safe and efficient conduct of flights
-- **Alerting Service**: Notifies appropriate organizations regarding aircraft in need of search and rescue aid
-- **Air Traffic Advisory Service**: Provides advice and information to aircraft operating in advisory airspace where ATC service is not available
+- [**Alerting Service**](#alerting-service): Notifies appropriate organizations regarding aircraft in need of search and rescue aid
+- [**Air Traffic Advisory Service**](#air-traffic-advisory-service): Provides advice and information to aircraft operating in advisory airspace where ATC service is not available
 
 ::: {#flight-rules}
 
@@ -157,6 +166,20 @@ Airspace classes differ in the type of flight allowed to enter and operate there
 The airspace classes described above are established by the [Chicago Convention on International Civil Aviation](https://www.icao.int/publications/Documents/7300_cons.pdf) and are applicable to all states that have ratified this convention. However, this does not mean that every airspace class must be implemented by every state. Rather, each state has the flexibility to design its own airspace structure and determine which airspace classifications to apply within its sovereign territory.
 
 For example, Italy uses airspace classes A, C, D, E, and G, while Germany, Austria, and Switzerland implement classes C, D, E, and G. In France, classes B and F are not utilized, and class A is restricted to the Paris region only. The French Upper Traffic Area, spanning from Flight Level (FL) 195 to FL 660, is designated as class C airspace: **\acr{ATC}** provides comprehensive services to all aircraft, ensuring separation between IFR flights and between IFR and VFR flights. While VFR flights are not separated from each other by ATC, they do receive traffic information about other VFR operations to enhance situational awareness.
+
+:::
+
+
+::: {.callout-tip}
+##### A practical illustration
+
+VFR pilots need VFR aeronautical maps for flight planning to identify controlled airspace requiring ATC clearance, during flight for navigation and airspace awareness, and for training purposes. The following excerpt from an VFR aeronautical map shows controlled airspace around Toulouse, France.
+
+![VFR aeronautical map excerpt around Toulouse, France](../../images/oaci_toulouse.png){style="min-width: 60%; max-width: 500px; display: block; margin: 0 auto;"}
+
+The major commercial airport is Toulouse-Blagnac, identified as LFBO. The **Control Zone (CTR)** extends from surface to 2,000 ft above mean sea level (AMSL) and is classified as class D airspace. The larger **Terminal Manoeuvring Area (TMA)** manages complex traffic flows with different airspace classes (C, D, and E) at various altitude levels.
+
+VFR pilots operating from smaller airports, such as Toulouse-Lasbordes (LFCL) to the east of the city, use this map to identify altitude boundaries and airspace classifications. This information tells them where ATC clearances are required and what services are available. For example, pilots can see that from surface to 1,500 ft ASFC (above surface), they are operating below the TMA and do not interfere with Blagnac airport operations.
 
 :::
 
@@ -229,9 +252,9 @@ While separation assurance is the fundamental safety responsibility of air traff
 
 FIS is universally available to all aircraft regardless of flight rules or airspace classification. Whether an aircraft operates under VFR or IFR, in controlled or uncontrolled airspace, pilots can access flight information services to enhance their situational awareness and operational safety.
 
-FIS controllers deliver services from various operational settings, adapting to local traffic demands and infrastructure. At busy airports with uncontrolled airspace, dedicated **\acrs{FISO}** may work from specialized facilities or airport towers. In remote or low-traffic areas, FIS may be integrated with other air traffic services or delivered through automated systems. These controllers primarily serve aircraft operating in uncontrolled airspace where no formal air traffic control service is available.
+<!--FIS controllers deliver services from various operational settings, adapting to local traffic demands and infrastructure. At busy airports with uncontrolled airspace, dedicated **\acrs{FISO}** may work from specialized facilities or airport towers. In remote or low-traffic areas, FIS may be integrated with other air traffic services or delivered through automated systems. These controllers primarily serve aircraft operating in uncontrolled airspace where no formal air traffic control service is available.-->
 
-The service encompasses several categories of information critical to flight operations:
+The service covers several categories of information critical to flight operations:
 
 **Meteorological information**. FIS provides pilots with current weather observations, forecasts, and significant weather phenomena along their route. This includes surface weather reports (**METAR**), terminal aerodrome forecasts (**TAF**), area forecasts covering broader geographical regions, and significant meteorological information (**SIGMET**) warnings about hazardous weather conditions such as severe turbulence, thunderstorms, or volcanic ash. Information about wind conditions, visibility, precipitation, cloud coverage, temperature, and barometric pressure settings  helps pilots assess flight conditions and make routing decisions.
 
@@ -279,7 +302,7 @@ Upon activation, the alerting service coordinates with **Search and Rescue Coord
 
 **Air Traffic Advisory Service** provides informational support to aircraft operating in designated advisory airspace where full air traffic control service is not available. This service fills a critical gap in areas where traffic density or infrastructure limitations make comprehensive ATC coverage impractical, yet aircraft still benefit from coordinated information sharing.
 
-Advisory airspace typically encompasses remote regions, oceanic areas, or transitional zones between controlled airspace sectors. Unlike controlled airspace where ATC issues binding instructions and assumes separation responsibility, advisory airspace operates on an informational model where pilots retain full responsibility for navigation and collision avoidance while receiving valuable situational awareness data.
+Advisory airspace typically covers remote regions, oceanic areas, or transitional zones between controlled airspace sectors. Unlike controlled airspace where ATC issues binding instructions and assumes separation responsibility, advisory airspace operates on an informational model where pilots retain full responsibility for navigation and collision avoidance while receiving valuable situational awareness data.
 
 The service provides several categories of information to enhance flight safety. **Traffic information** alerts pilots to other known aircraft operating in the advisory area, including position reports, altitude information, and intended routes. **Weather updates** relevant to the advisory airspace help pilots make informed routing decisions and prepare for changing conditions. **Navigational advisories** may include information about the operational status of navigation aids or temporary restrictions affecting normal routing.
 
@@ -324,6 +347,8 @@ These examples highlight how **operational needs often override administrative b
 
 <!-- TODO add more illustrations for ACCs -->
 
+#### Sectorization and capacity management
+
 Because no single controller can monitor an entire centre, airspace is divided into small units called **sectors**. Each sector is a defined volume of airspace with its own boundaries, typically based on geography, altitude, traffic volume, and operational needs. It is typically managed by a team of controllers who are responsible for all aircraft within that area. As an aircraft travels along its route, it will pass through multiple sectors. With each transition, responsibility for the flight is handed over from one team to the next. This hand-off process is standardized to ensure that aircraft are continuously monitored from take-off to landing.
 
 In busy regions, sectors can be quite small and specialized, each with a dedicated team managing dozens of aircraft per hour. In less busy areas, sectors may be much larger, with a single controller responsible for hundreds of square miles of airspace. To further support safe operations, sectors are layered vertically as well. This means that one controller might be responsible for aircraft flying between 24,000 and 32,000 feet, while another handles the same geographic area but at lower or higher altitudes. This vertical stacking allows for more efficient use of limited space and avoids bottlenecks. [**Airspace management**](#airspace-management) must also account for restricted zones, military operations areas, and weather events, all of which can require dynamic adjustments to sector boundaries or flight routing. In high-traffic situations, sectors can be split into smaller units, each staffed by additional controllers to distribute the workload. Conversely, during low-traffic periods, small sectors may be combined to form larger ones.
@@ -332,8 +357,13 @@ In busy regions, sectors can be quite small and specialized, each with a dedicat
 
 Overall, the division of airspaces into sectors allows a massive, complex environment to be broken into manageable pieces, each carefully monitored and coordinated to maintain safety, efficiency, and order.
 
+#### Flight plans
+
 Before any commercial flight takes off, a detailed [**flight plan**](<https://skybrary.aero/articles/flight-plan>) must be created and filed. This plan outlines the intended route an aircraft will follow, including departure and arrival points, altitudes, estimated times, and the specific path through controlled airspace. Flight plans are essential for ensuring that air traffic controllers can manage the [flow of aircraft](#air-traffic-flow-management) safely and efficiently.
 
+
+::: {.callout-warning}
+##### Move to CNS/Navigation?
 To establish these routes, the aviation system relies on a network of predefined **waypoints**, which can be either specific geographic locations determined by GPS coordinates, or **ground-based navigation aids** such as VORs (VHF Omnidirectional Range beacons). These waypoints form the foundation of structured air traffic routes.
 
 Traditionally, sequences of waypoints are connected to form **airways**, the highways of the sky. Aircraft follow these established corridors as part of their flight plans, allowing controllers to manage traffic safely and predictably, especially in busy or constrained airspace. Aircraft navigate from one waypoint to the next, following a path that resembles a series of connected legs rather than a single straight line. Modern aircraft are usually equipped with [**\acr{FMS}**](aircraft.qmd#flight-control-systems) that can store and follow these predefined routes automatically, making it easier for both pilots and controllers to maintain accurate navigation.
@@ -344,6 +374,7 @@ To further organise traffic in and out of airports, two types of standardized ro
 - **Standard Terminal Arrival Routes (STAR)** lead aircraft from the en-route phase back into the terminal area for landing. Like SIDs, they help manage traffic flow and reduce controller workload.
 
 These procedures are published on aviation charts and are often required for flights operating under [**Instrument Flight Rules (IFR)**](#flight-rules), which govern most commercial and high-altitude air traffic.
+:::
 
 While predictable trajectories are essential, air traffic controllers can also offer direct routing when conditions allow^[<https://wiki.ivao.aero/en/home/training/documentation/CTR_controller_position>]. If weather is clear and traffic conditions allow, controllers may instruct pilots to bypass certain waypoints or airways, offering a more efficient path that saves time and fuel. This flexibility is especially useful on longer flights, where even small adjustments can lead to significant operational savings.
 
@@ -488,7 +519,7 @@ However, not until the Second World War, was the concept of RAdio Detection And 
 - Add sub-chapter about ADS-B, mode S?
 :::
 
-## Aeronautical Information Management (AIM)
+## Aeronautical Information Management
 
 <!-- TODO actually, I would put AIM last, or just before SAR -->
 
@@ -507,7 +538,7 @@ To keep \acr{AIP}s up to date, they are revised in an internationally standardiz
 **\acr{AIC}** [ICAO Annex 15][Annex_15] defines an \acr{AIC} as "a notice containing information that does not qualify for the origination of a NOTAM of for inclusion in the AIP, but which relates to flight safety, air navigation, technical, administrative or legislative matters." For example, \acr{AIC}s are issued to communicate a strategy in which a state explains how it aims to modernise its ground-based navigational aids, or how a certain new procedure will be implemented in the future.
 
 
-## Search and Rescue (SAR)
+## Search and Rescue
 
 
 Search and Rescue services coordinate emergency response for aircraft in distress. SAR operations include:
