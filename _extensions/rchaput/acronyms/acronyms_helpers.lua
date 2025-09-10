@@ -52,7 +52,9 @@ end
 -- Helper function to generate the ID (identifier) from an acronym key.
 -- The ID can be used for, e.g., links.
 function Helpers.key_to_id(key)
-    return Options["id_prefix"] .. key
+    -- Sanitize the key, i.e., replace non-ASCII characters with `-`
+    local sanitized_key = string.gsub(key, "[^0-9A-Za-z]", "_")
+    return Options["id_prefix"] .. sanitized_key
 end
 
 
@@ -78,6 +80,10 @@ end
 -- Helper to convert a (case-insensitive) string to a boolean
 -- Recognized values: `true`, `false`, `yes`, `no`, `y`, `n`
 function Helpers.str_to_boolean(value)
+    if type(value) == "boolean" then
+        return value
+    end
+
     local converts = {
         ["true"] = true,
         ["false"] = false,

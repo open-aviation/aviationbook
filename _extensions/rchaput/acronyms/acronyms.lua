@@ -42,7 +42,10 @@ local function raiseAcronymCreationError(object)
             table.insert(unexpected_keys, k)
         end
     end
-    msg = msg .. "i Found unexpected keys: " .. table.concat(unexpected_keys, ",") .. ".\n"
+    if #unexpected_keys > 0 then
+    -- Concatenate the message only if there is at least 1 unexpected key
+        msg = msg .. "i Found unexpected keys: " .. table.concat(unexpected_keys, ",") .. ".\n"
+    end
     -- This str here represents the original metadata, not the formatted
     -- Acronym (which could be obtained with `tostring(object)`).
     local acronym_str = Helpers.metadata_to_str(object.original_metadata)
@@ -65,6 +68,17 @@ function Acronym:new(object)
     -- If the key is not set, we want to use the shortname instead.
     -- (Most of the time, the key is the shortname in lower case anyway...)
     object.key = object.key or object.shortname
+
+    -- If the plural forms are not set, we construct sane defaults instead.
+    if not object.plural then
+        object.plural = {}
+    end
+    if not object.plural.shortname then
+        object.plural.shortname = object.shortname .. 's'
+    end
+    if not object.plural.longname then
+        object.plural.longname = object.longname .. 's'
+    end
 
     return object
 end
@@ -93,6 +107,16 @@ end
 -- Is this the acronym's first occurrence?
 function Acronym:isFirstUse()
     return self.occurrences <= 1
+end
+
+
+-- Duplicate an acronym, especially when we want to change its case or use the plural form.
+function Acronym:clone()
+    local fields_copy = {}
+    for k, v in pairs(self) do
+        fields_copy[k] = v
+    end
+    return Acronym:new(fields_copy)
 end
 
 
@@ -196,10 +220,18 @@ function Acronyms:parseFromMetadata(metadata, on_duplicate)
         local key = v.key and pandoc.utils.stringify(v.key)
         local shortname = v.shortname and pandoc.utils.stringify(v.shortname)
         local longname = v.longname and pandoc.utils.stringify(v.longname)
+        local shortname_plural = v.plural and v.plural.shortname and 
+            pandoc.utils.stringify(v.plural.shortname)
+        local longname_plural = v.plural and v.plural.longname and
+            pandoc.utils.stringify(v.plural.longname)
         local acronym = Acronym:new{
             key = key,
             shortname = shortname,
             longname = longname,
+            plural = {
+                shortname = shortname_plural,
+                longname = longname_plural,
+            },
             original_metadata = v,
         }
         Acronyms:add(acronym, on_duplicate)
@@ -229,8 +261,39 @@ function Acronyms:parseFromYamlFile(filepath, on_duplicate)
     -- is YAML anyway).
     local metadata = pandoc.read(content, "markdown").meta
 
-    -- Finally, read the metadata as usual.
-    self:parseFromMetadata(metadata, on_duplicate)
+    -- Finally, read the metadata; we have 2 formats and need to find the correct one.
+    if (metadata and metadata.acronyms and metadata.acronyms.keys) then
+        -- The "original" format, a list of `{ key, shortname, longname }`.
+        self:parseFromMetadata(metadata, on_duplicate)
+    else
+        -- The "simplified" format, a map of `shortname: longname`.
+        self:parseSimplifiedFormat(metadata, on_duplicate)
+    end
 end
+
+
+-- Parse acronyms in a simplified format consisting of `key: value` like lines.
+-- Example:
+-- ```
+-- ---
+-- shortname1: Long name for acronym 1
+-- shortname2: Long name for acronym 2
+-- ---
+-- ```
+function Acronyms:parseSimplifiedFormat(metadata, on_duplicate)
+    for shortname, longname in pairs(metadata) do
+        local original_metadata = { shortname = shortname, longname = longname }
+        shortname = pandoc.utils.stringify(shortname)
+        longname = pandoc.utils.stringify(longname)
+        local acronym = Acronym:new{
+            key = nil,
+            shortname = shortname,
+            longname = longname,
+            original_metadata = original_metadata,
+        }
+        Acronyms:add(acronym, on_duplicate)
+    end
+end
+
 
 return Acronyms
