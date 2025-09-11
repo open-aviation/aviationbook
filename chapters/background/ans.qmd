@@ -327,35 +327,56 @@ Airspace Management involves the strategic planning and real-time organization o
 
 Within each FIR or UIR, controlled airspace is further divided to ensure the safe and efficient management of air traffic across different phases of flight. Responsibility for these divisions typically lies with national or regional **Air Traffic Control Centres**, often referred to as **Area Control Centres (ACCs)**, which oversee large volumes of airspace, often spanning thousands of square kilometres.
 
-**It's important to note that ACC areas of responsibility do not necessarily align with FIR boundaries.** ACCs are operational units that manage air traffic control services, while FIRs are administrative regions for air navigation services more broadly. This distinction becomes clear when examining real-world examples:
-
-**France** provides an excellent illustration of this complexity:
-
-- **FIR Structure**: France operates five separate FIRs below FL 195 (Paris, Reims, Brest, Bordeaux, and Marseille), which consolidate into a single Upper Information Region above that altitude.
-- **ACC Structure**: However, air traffic control is handled by just **two main ACCs**:
-  - **Paris ACC** manages the northern portion of French airspace
-  - **Marseille ACC** covers the southern regions
-- This means each ACC's area of responsibility spans across multiple FIRs.
-
-An even more striking example is the **Maastricht Upper Area Control Centre (MUAC)**:
-- MUAC provides air traffic control services for upper airspace (above FL 245) across **four different countries**: Belgium, Netherlands, Luxembourg, and northwestern Germany.
-- This single ACC operates across portions of multiple FIRs: Brussels FIR, Amsterdam FIR, and parts of the Düsseldorf and Rheims FIRs.
-- MUAC demonstrates how operational efficiency can require ACC boundaries that completely transcend both national borders and FIR divisions.
-
-These examples highlight how **operational needs often override administrative boundaries** in air traffic management. ACCs are positioned and sized based on traffic flows, geographic considerations, and operational efficiency rather than strictly following the FIR structure.
+**ACC areas of responsibility do not necessarily align with FIR or countries boundaries.** ACCs are operational units that manage air traffic control services, while FIRs are administrative regions for air navigation services more broadly. This distinction becomes clear when examining real-world examples:
 
 
-<!-- TODO add more illustrations for ACCs -->
+```{ojs}
+//| echo: false
+import { accAt, graticule, land, plot_sectors } from "@openaviation/acc-sectorization"
+```
+
+```{ojs}
+//| echo: false
+{
+  const plot_france = function (flight_level, pattern) {
+    return plot_sectors(
+      firsAt(360).features.filter(
+        (elt) => elt.properties.designator === "LFFF"
+      )[0],
+      {
+        fill: (elt) => elt.properties.designator,
+        label_filters: (elt) => true,
+        flight_level,
+        width: width / 2,
+        scale_factor: 2,
+        pattern,
+        caption: `FL ${flight_level}`
+      }
+    );
+  };
+  const low = plot_france(250, /^LF.*/);
+  const up = plot_france(360, /^(LF|LSAG|EGTT|EDYY).*/);
+  return html`<div style="display: flex; ">${low} ${up}`;
+}
+```
+
+France operates five separate FIRs below FL 195 which consolidate into a single UIR above that altitude. However, air traffic control is managed by **five main ACCs**:
+- **Paris ACC** (based in Athis-Mons near Paris) manages an extended approach sector for flights departing from or arriving at Paris airports;
+- en route flows are managed by **four regional ACCs**: **Brest ACC** (North-West), **Bordeaux ACC** (South-West), **Marseille/Aix ACC** (South-East), and **Reims ACC** (North-East).
+
+Two French ACCs extend their coverage beyond France's UIR boundaries: Brest ACC extends into the Atlantic Ocean (covering portions of London and Shanwick FIRs), whilst Marseille ACC extends into Italy (covering part of Milano FIR). Conversely, some French airspace is managed by foreign ACCs: London ACC controls a small section of Northern France, and Geneva ACC manages traffic above the Italian-French border on both sides of the Alps.
+
+**EUROCONTROL operates the Maastricht Upper Area Control Centre (MUAC)**, which manages en route traffic over the Benelux countries (comprising two FIRs) and a substantial portion of North-Western Germany. MUAC's area of responsibility also extends slightly across the Belgian-French border. Low altitude traffic within these regions remains under the responsibility of the respective national providers: Belgocontrol (Belgium), LVNL (Netherlands), and DFS (Germany).
 
 #### Sectorization and capacity management
 
 Because no single controller can monitor an entire centre, airspace is divided into small units called **sectors**. Each sector is a defined volume of airspace with its own boundaries, typically based on geography, altitude, traffic volume, and operational needs. It is typically managed by a team of controllers who are responsible for all aircraft within that area. As an aircraft travels along its route, it will pass through multiple sectors. With each transition, responsibility for the flight is handed over from one team to the next. This hand-off process is standardized to ensure that aircraft are continuously monitored from take-off to landing.
 
-In busy regions, sectors can be quite small and specialized, each with a dedicated team managing dozens of aircraft per hour. In less busy areas, sectors may be much larger, with a single controller responsible for hundreds of square miles of airspace. To further support safe operations, sectors are layered vertically as well. This means that one controller might be responsible for aircraft flying between 24,000 and 32,000 feet, while another handles the same geographic area but at lower or higher altitudes. This vertical stacking allows for more efficient use of limited space and avoids bottlenecks. [**Airspace management**](#airspace-management) must also account for restricted zones, military operations areas, and weather events, all of which can require dynamic adjustments to sector boundaries or flight routing. In high-traffic situations, sectors can be split into smaller units, each staffed by additional controllers to distribute the workload. Conversely, during low-traffic periods, small sectors may be combined to form larger ones.
+In busy regions, sectors can be quite small and specialized, each with a dedicated team managing dozens of aircraft per hour. In less busy areas, sectors may be much larger, with a single controller responsible for hundreds of square miles of airspace. To further support safe operations, sectors are layered vertically as well. This means that one controller might be responsible for aircraft flying between 24,000 and 32,000 feet, while another handles the same geographic area but at lower or higher altitudes. This vertical stacking allows for more efficient use of limited space and avoids bottlenecks.
 
 <!-- TODO add more illustrations for sectors and divisions -->
 
-Overall, the division of airspaces into sectors allows a massive, complex environment to be broken into manageable pieces, each carefully monitored and coordinated to maintain safety, efficiency, and order.
+[**Airspace management**](#airspace-management) must also account for restricted zones, military operations areas, and weather events, all of which can require dynamic adjustments to sector boundaries or flight routing. In high-traffic situations, sectors can be split into smaller units, each staffed by additional controllers to distribute the workload. Conversely, during low-traffic periods, small sectors may be combined to form larger ones.
 
 #### Flight plans
 
