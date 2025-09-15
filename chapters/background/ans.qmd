@@ -318,9 +318,9 @@ The procedural nature of advisory service requires precise communication protoco
 While ATS focuses on real-time control of aircraft, airspace management takes a strategic approach to optimizing airspace use.
 Airspace Management involves the strategic planning and real-time organization of airspace to optimize capacity and efficiency while maintaining safety. This includes:
 
-- **Airspace design**: Structuring airways and sectors for optimal traffic flow
+- **Airspace design**: Structuring airways and sectors for optimal traffic flow and theoretical capacity
 - **Flexible airspace use**: Dynamic allocation of airspace between civilian and military users
-- **Capacity planning**: Analyzing and adjusting airspace capacity based on traffic demand
+- **Strategic capacity planning**: Long-term analysis and planning for airspace modifications to increase capacity
 - **Coordination**: Working with adjacent control centers and military authorities
 
 #### Area Control Centres
@@ -361,22 +361,22 @@ import { accAt, graticule, land, plot_sectors } from "@openaviation/acc-sectoriz
 ```
 
 France operates five separate FIRs below FL 195 which consolidate into a single UIR above that altitude. However, air traffic control is managed by **five main ACCs**:
+
 - **Paris ACC** (based in Athis-Mons near Paris) manages an extended approach sector for flights departing from or arriving at Paris airports;
 - en route flows are managed by **four regional ACCs**: **Brest ACC** (North-West), **Bordeaux ACC** (South-West), **Marseille/Aix ACC** (South-East), and **Reims ACC** (North-East).
 
-Two French ACCs extend their coverage beyond France's UIR boundaries: Brest ACC extends into the Atlantic Ocean (covering portions of London and Shanwick FIRs), whilst Marseille ACC extends into Italy (covering part of Milano FIR). Conversely, some French airspace is managed by foreign ACCs: London ACC controls a small section of Northern France, and Geneva ACC manages traffic above the Italian-French border on both sides of the Alps.
+Two French ACCs extend their coverage beyond France's UIR boundaries: Brest ACC extends into the Atlantic Ocean (covering portions of London and Shanwick FIRs), whilst Marseille ACC extends into Italy (covering part of Milano FIR). Conversely, some French airspace is managed by foreign ACCs: **London ACC** controls a small portion of Northern France, and **Geneva ACC** manages traffic above the Italian-French border on both sides of the Alps.
 
 **EUROCONTROL operates the Maastricht Upper Area Control Centre (MUAC)**, which manages en route traffic over the Benelux countries (comprising two FIRs) and a substantial portion of North-Western Germany. MUAC's area of responsibility also extends slightly across the Belgian-French border. Low altitude traffic within these regions remains under the responsibility of the respective national providers: Belgocontrol (Belgium), LVNL (Netherlands), and DFS (Germany).
 
-#### Sectorization and capacity management
+#### Elementary sectors
 
-Because no single controller can monitor an entire centre, airspace is divided into small units called **sectors**. Each sector is a defined volume of airspace with its own boundaries, typically based on geography, altitude, traffic volume, and operational needs. It is typically managed by a team of controllers who are responsible for all aircraft within that area. As an aircraft travels along its route, it will pass through multiple sectors. With each transition, responsibility for the flight is handed over from one team to the next. This hand-off process is standardized to ensure that aircraft are continuously monitored from take-off to landing.
+Because no single controller can monitor an entire centre, airspace is divided into small units called **elementary sectors**. Each sector is a defined volume of airspace with its own boundaries, typically based on geography, altitude, traffic volume, and operational needs. It is typically managed by a team of controllers who are responsible for all aircraft within that area. As an aircraft travels along its route, it will pass through multiple sectors. With each transition, responsibility for the flight is handed over from one team to the next. This hand-off process is standardized to ensure that aircraft are continuously monitored from take-off to landing.
 
-In busy regions, sectors can be quite small and specialized, each with a dedicated team managing dozens of aircraft per hour. In less busy areas, sectors may be much larger, with a single controller responsible for hundreds of square miles of airspace. To further support safe operations, sectors are layered vertically as well. This means that one controller might be responsible for aircraft flying between 24,000 and 32,000 feet, while another handles the same geographic area but at lower or higher altitudes. This vertical stacking allows for more efficient use of limited space and avoids bottlenecks.
+**Sector design** considers multiple factors: **geographical boundaries** such as national borders, coastlines, or natural terrain features that provide logical divisions; **traffic patterns** including major airways, airport approach/departure corridors, and typical flight routes; **altitude stratification** with sectors often layered vertically to separate different flight levels; and **operational complexity** balancing workload distribution and coordination requirements between adjacent sectors.
 
-<!-- TODO add more illustrations for sectors and divisions -->
+In busy regions, sectors can be quite small and specialized, while in less busy areas, sectors may be much larger, with a single controller responsible for hundreds of square miles of airspace. Sectors are also layered vertically, meaning one controller might be responsible for aircraft flying between 24,000 and 32,000 feet, while another handles the same geographic area but at lower or higher altitudes.
 
-[**Airspace management**](#airspace-management) must also account for restricted zones, military operations areas, and weather events, all of which can require dynamic adjustments to sector boundaries or flight routing. In high-traffic situations, sectors can be split into smaller units, each staffed by additional controllers to distribute the workload. Conversely, during low-traffic periods, small sectors may be combined to form larger ones.
 
 #### Flight plans
 
@@ -403,17 +403,33 @@ Modern systems such as [**\acr{PBN}**](https://www.eurocontrol.int/sites/default
 
 Whether following a standard route or taking advantage of more direct navigation options, aircraft must still be carefully monitored to ensure their safety and controlled flow. This is the role of air traffic controllers. From guiding planes during takeoff to overseeing them en route and managing their approach for landing, controllers are essential to every phase of flight.
 
-#### Flight plans and routing
-
-
-Before any commercial flight takes off, a detailed flight plan must be created and filed. This plan outlines the intended route an aircraft will follow, including departure and arrival points, altitudes, estimated times, and the specific path through controlled airspace. Flight plans are essential for ensuring that air traffic controllers can manage the flow of aircraft safely and efficiently.
-
 
 ### Air Traffic Flow Management
 
-\acr{ATFM} focuses on optimizing traffic flows to prevent congestion and delays while maximizing airspace capacity. **Traffic flow analysis** involves monitoring and predicting traffic patterns to identify potential bottlenecks before they occur. When capacity is exceeded, **flow control measures** are implemented to manage traffic through restrictions such as ground delays or rerouting. **Collaborative decision making** ensures coordination with airlines and airports to minimize the impact of these measures on operations. Finally, **strategic planning** focuses on long-term traffic flow optimization through infrastructure improvements and procedural changes.
+\acr{ATFM} focuses on optimizing traffic flows to prevent congestion and delays while maximizing the utilization of available airspace capacity. **Traffic flow analysis** involves monitoring and predicting traffic patterns to identify potential bottlenecks before they occur. When capacity is exceeded, **flow control measures** are implemented to manage traffic through restrictions such as ground delays or rerouting. **Collaborative decision making** ensures coordination with airlines and airports to minimize the impact of these measures on operations.
 
-explain regulations
+**Dynamic capacity management** represents a key operational component of ATFM, involving real-time adjustments to airspace configuration based on traffic demand and operational conditions. In high-traffic situations, sectors can be **split** into smaller units, each staffed by additional controllers to distribute workload and increase capacity. Conversely, during low-traffic periods, multiple small sectors may be **combined** into larger ones, optimizing controller utilization and reducing operational costs. This dynamic reconfiguration must also account for **restricted zones, military operations areas, and weather events**, all of which can require immediate adjustments to sector boundaries or traffic routing to maintain safety and efficiency.
+
+#### Flight plans and routing
+
+Before any commercial flight takes off, a detailed [**flight plan**](<https://skybrary.aero/articles/flight-plan>) must be created and filed. This plan outlines the intended route an aircraft will follow, including departure and arrival points, altitudes, estimated times, and the specific path through controlled airspace. Flight plans are essential for ensuring that air traffic controllers can manage the flow of aircraft safely and efficiently.
+
+To establish these routes, the aviation system relies on a network of predefined **waypoints**, which can be either specific geographic locations determined by GPS coordinates, or **ground-based navigation aids** such as VORs (VHF Omnidirectional Range beacons). These waypoints form the foundation of structured air traffic routes.
+
+Traditionally, sequences of waypoints are connected to form **airways**, the highways of the sky. Aircraft follow these established corridors as part of their flight plans, allowing controllers to manage traffic safely and predictably, especially in busy or constrained airspace. Aircraft navigate from one waypoint to the next, following a path that resembles a series of connected legs rather than a single straight line. Modern aircraft are usually equipped with [**\acr{FMS}**](aircraft.qmd#flight-control-systems) that can store and follow these predefined routes automatically, making it easier for both pilots and controllers to maintain accurate navigation.
+
+To further organise traffic in and out of airports, two types of standardized routes are used:
+
+- **Standard Instrument Departures (SID)** guide aircraft from an airport's runway to the en-route structure. These routes are designed to separate departures from each other and from arriving traffic.
+- **Standard Terminal Arrival Routes (STAR)** lead aircraft from the en-route phase back into the terminal area for landing. Like SIDs, they help manage traffic flow and reduce controller workload.
+
+These procedures are published on aviation charts and are often required for flights operating under [**Instrument Flight Rules (IFR)**](#flight-rules), which govern most commercial and high-altitude air traffic.
+
+While predictable trajectories are essential, air traffic controllers can also offer direct routing when conditions allow^[<https://wiki.ivao.aero/en/home/training/documentation/CTR_controller_position>]. If weather is clear and traffic conditions allow, controllers may instruct pilots to bypass certain waypoints or airways, offering a more efficient path that saves time and fuel. This flexibility is especially useful on longer flights, where even small adjustments can lead to significant operational savings.
+
+Modern systems such as [**\acr{PBN}**](https://www.eurocontrol.int/sites/default/files/2019-06/2013-introducing-pbn-a-rnp.pdf) and **\acr{RNP}** have further increased the precision and flexibility of routing, enabling aircraft to fly more direct paths even in complex or remote airspace.
+
+Whether following a standard route or taking advantage of more direct navigation options, aircraft must still be carefully monitored to ensure their safety and controlled flow. This is the role of air traffic controllers. From guiding planes during takeoff to overseeing them en route and managing their approach for landing, controllers are essential to every phase of flight.
 
 
 ## \acr{MET}
