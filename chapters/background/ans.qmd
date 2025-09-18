@@ -13,7 +13,7 @@ The foundation of this system rests on international agreements and legal framew
 
 This sovereignty extends horizontally over the state's entire territory, including territorial waters up to 12 nmi (22.2 km) from the coastline according to the [United Nations Convention on the Law of the Sea](https://www.un.org/Depts/los/convention_agreements/texts/unclos/unclos_e.pdf). Vertically, a state's airspace begins at the earth's surface and extends to 100 km above mean sea level: the [Kármán Line](https://en.wikipedia.org/wiki/K%C3%A1rm%C3%A1n_line) that legally separates the Earth's atmosphere from space.
 
-Under Article 28(a) of the Chicago Convention, each state must establish **\acr{ANS}** within their airspace. To fulfill this obligation, states typically commission **\acr{ANSP}**, i.e. public or private entities that deliver the essential services enabling aircraft operations.
+Under Article 28(a) of the Chicago Convention, each state must establish **\acr{ANS}** within their airspace. To fulfill this obligation, states typically commission **\acr{ANSP}**, i.e., public or private entities that deliver the essential services enabling aircraft operations.
 
 ::: {.callout-tip}
 ### \acr{ANSP}s in Europe
@@ -29,7 +29,7 @@ Air navigation services encompass five interconnected service groups that togeth
 - **Aeronautical Information Management (AIM)** for the collection and dissemination of essential flight data; and
 - **Search and Rescue (SAR)** services that coordinate emergency response operations.
 
-These services facilitate the 'safe, efficient, and orderly flow of air traffic' through carefully designed airspace organizations, standardized rules of the air, and coordinated service provision. Understanding these services is crucial for comprehending how aviation operates as a global system, where aircraft can safely navigate complex airspace structures while maintaining the high levels of safety and efficiency that modern air transport demands.
+These services facilitate the 'safe, efficient, and orderly flow of air traffic' through carefully designed airspace organizations, standardized rules of the air, and coordinated service provision. Understanding these services is crucial for comprehending how aviation operates as a global system, where aircraft can safely navigate complex airspace structures, while maintaining the high levels of safety and efficiency that modern air transport demands.
 
 
 ## Air Traffic Management
@@ -136,9 +136,9 @@ The four main services provided under ATS are:
 
 To ensure that airspace is managed efficiently and effectively by ATC, flights are categorized according to the **flight rules** they follow. Flights operate under either **\acr{VFR}** or **\acr{IFR}**.
 
-**Visual Flight Rules (VFR)** flights follow the principle of "see and avoid". Flight crews are responsible for maintaining visual separation from other aircraft and obstacles by looking outside the cockpit. VFR flights can only operate when meteorological conditions permit adequate visibility and cloud clearance. These conditions are referred to as **Visual Meteorological Conditions (VMC)**.
+Flights under **Visual Flight Rules (VFR)** follow the principle of "see and avoid". Flight crews are responsible for maintaining visual separation from other aircraft and obstacles by looking outside the cockpit. VFR flights can only operate when meteorological conditions permit adequate visibility and cloud clearance. These conditions are referred to as **Visual Meteorological Conditions (VMC)**.
 
-**Instrument Flight Rules (IFR)** flights rely on instruments and air traffic control for navigation and separation. Flight crews are not required to maintain visual separation, as ATC provides separation services between IFR flights. IFR flights can operate in lower visibility conditions, known as **Instrument Meteorological Conditions (IMC)**.
+Flights under **Instrument Flight Rules (IFR)** rely on both their instruments and air traffic control for navigation and separation. Flight crews are not required to maintain visual separation to other aircraft, as ATC provides separation services between IFR flights. IFR flights can operate in lower visibility conditions, known as **Instrument Meteorological Conditions (IMC)**.
 With the exception of **special VFR (SVFR)**[^1] operations, when an aircraft conducts VFR flights although VMC are not met, flights must operate under IFR in IMC.
 
 Besides differentiating between VFR and IFR flights, controlled airspace is classified into specific **airspace classes** that define which types of flight may use the airspace, under which circumstances flights may enter this airspace, and which services are offered to aircraft in this airspace.
@@ -165,7 +165,7 @@ Airspace classes differ in the type of flight allowed to enter and operate there
 
 The airspace classes described above are established by the [Chicago Convention on International Civil Aviation](https://www.icao.int/publications/Documents/7300_cons.pdf) and are applicable to all states that have ratified this convention. However, this does not mean that every airspace class must be implemented by every state. Rather, each state has the flexibility to design its own airspace structure and determine which airspace classifications to apply within its sovereign territory.
 
-For example, Italy uses airspace classes A, C, D, E, and G, while Germany, Austria, and Switzerland implement classes C, D, E, and G. In France, classes B and F are not utilized, and class A is restricted to the Paris region only. The French Upper Traffic Area, spanning from Flight Level (FL) 195 to FL 660, is designated as class C airspace: **\acr{ATC}** provides comprehensive services to all aircraft, ensuring separation between IFR flights and between IFR and VFR flights. While VFR flights are not separated from each other by ATC, they do receive traffic information about other VFR operations to enhance situational awareness.
+For example, Italy uses airspace classes A, C, D, E, and G, while Germany, Austria, and Switzerland implement classes C, D, E, and G. In France, classes B and F are not utilized, and class A is restricted to the Paris region only. The French Upper Traffic Area, spanning from Flight Level (FL) 195 to FL 660, is designated as class C airspace: **\acr{ATC}** provides comprehensive services to all aircraft, ensuring separation between \acr{IFR} flights and between \acr{IFR} and \acr{VFR} flights. While \acr{VFR} flights are not separated from each other by \acr{ATC}, they do receive traffic information about other \acr{VFR} operations to enhance situational awareness.
 
 :::
 
@@ -173,7 +173,7 @@ For example, Italy uses airspace classes A, C, D, E, and G, while Germany, Austr
 ::: {.callout-tip}
 ##### A practical illustration
 
-VFR pilots need VFR aeronautical maps for flight planning to identify controlled airspace requiring ATC clearance, during flight for navigation and airspace awareness, and for training purposes. The following excerpt from an VFR aeronautical map shows controlled airspace around Toulouse, France.
+VFR pilots need VFR aeronautical maps for flight planning to identify controlled airspace requiring \acr{ATC} clearance, during flight for navigation and airspace awareness, and for training purposes. The following excerpt from an VFR aeronautical map shows controlled airspace around Toulouse, France.
 
 ![VFR aeronautical map excerpt around Toulouse, France](../../images/oaci_toulouse.png){style="min-width: 60%; max-width: 500px; display: block; margin: 0 auto;"}
 
@@ -186,9 +186,9 @@ VFR pilots operating from smaller airports, such as Toulouse-Lasbordes (LFCL) to
 
 #### Air Traffic Control Service
 
-**Air Traffic Control (ATC)** Service represents the most demanding and safety-critical component of air traffic services. Controllers work in specialized facilities using advanced radar systems, communication equipment, and standardized procedures to maintain safe separation between aircraft while facilitating efficient traffic flow.
+**Air Traffic Control (ATC)** Service represents the most demanding and safety-critical component of air traffic services. Controllers work in specialized facilities using advanced surveillance systems (e.g., radar systems), communication equipment, and standardized procedures to maintain safe separation between aircraft while facilitating efficient traffic flow.
 
-The fundamental principle of ATC is **separation assurance**, i.e. ensuring that aircraft maintain safe distances from each other at all times. Controllers achieve this through: **tactical separation**: real-time adjustments to aircraft paths, speeds, and altitudes to resolve conflicts; **strategic separation**: planned routing and timing to prevent conflicts from developing; or **contingency management**: immediate response to emergencies, equipment failures, or weather events.
+The fundamental principle of ATC is **separation assurance**, i.e., ensuring that aircraft maintain safe distances from each other at all times. Controllers achieve this through: **tactical separation**: real-time adjustments to aircraft paths, speeds, and altitudes to resolve conflicts; **strategic separation**: planned routing and timing to prevent conflicts from developing; or **contingency management**: immediate response to emergencies, equipment failures, or weather events.
 
 ::: {#separation}
 
@@ -207,7 +207,7 @@ ATC service is mandatory for all flights operating in controlled airspace, which
 | F              | IFR, VFR     | Between IFR flights, as far as practicable       |
 | G              | IFR, VFR     | No separations                                   |
 
-To prevent collisions between aircraft, ATC uses **separation minima**: specified minimum vertical and lateral distances that must be maintained between aircraft. The specific separations provided depend on both the airspace class and the flight rules under which aircraft are operating.
+To prevent collisions between aircraft, ATC uses **separation minima**: specified minimum vertical and lateral distances that must be maintained between aircraft at all times. The specific separations provided depend on both the airspace class and the flight rules under which aircraft are operating.
 
 Typical separation distances depend on the radar coverage and airspace type:
 
@@ -220,8 +220,7 @@ In addition to lateral (horizontal) separation, controllers must also maintain *
 - **1,000 feet** between aircraft below FL290 (Flight Level 290, approximately 29,000 feet)
 - **2,000 feet** between aircraft at or above FL290 (reduced to 1,000 feet in RVSM airspace)
 
-**Reduced Vertical Separation Minima (RVSM)** airspace allows 1,000 feet vertical separation between FL290 and FL410, increasing capacity and efficiency in busy airspace. Outside RVSM, the traditional 2,000 feet separation applies at these altitudes.
-
+**Reduced Vertical Separation Minima (RVSM)** airspace allows 1,000 feet vertical separation between FL290 and FL410, increasing capacity and efficiency in busy airspace. Outside RVSM, the traditional 2,000 feet separation applies at these altitudes. For an aircraft to be permitted to enter and operate in RVSM airspace, its technical equipment must meet a number of requirements. Among other things, aircraft must be equipped with at least two independent altimeters, a secondary surveillance radar (SSR) transponder capable of reporting altitude, and an autopilot capable of maintaining the assigned flight level.
 :::
 
 ATC operates 24/7 across three distinct operational environments, each requiring specialized training and procedures:
