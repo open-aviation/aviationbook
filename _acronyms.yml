@@ -12,7 +12,9 @@ acronyms:
     - shortname: ADS-B
       longname: Automatic Dependent Surveillance–Broadcast
     - shortname: ADS-C
-      longname: Automatic Dependent Surveillance-Contract
+      longname: Automatic Dependent Surveillance–Contract
+    - shortname: ADS-L
+      longname: Automatic Dependent Surveillance–Light
     - shortname: AIC
       longname: Aeronautical Information Circular
     - shortname: AIM
@@ -83,6 +85,8 @@ acronyms:
       longname: Estimated TakeOff Weight
     - shortname: EU
       longname: European Union
+    - shortname: FAA
+      longname: Federal Aviation Administration
     - shortname: FDR
       longname: Flight Data Recorder
     - shortname: FIR
@@ -153,6 +157,8 @@ acronyms:
       longname: Root Mean Square Error
     - shortname: RNP
       longname: Required Navigation Performance
+    - shortname: SAR
+      longname: Search And Rescue
     - shortname: SSR
       longname: Secondary Surveillance Radar
     - shortname: TA
@@ -171,6 +177,8 @@ acronyms:
       longname: Universal Access Transceiver
     - shortname: UAV
       longname: Unmanned Aerial Vehicle
+    - shortname: UAS
+      longname: Unmanned Aircraft System
     - shortname: UIR
       longname: Upper Information Region
     - shortname: VFR

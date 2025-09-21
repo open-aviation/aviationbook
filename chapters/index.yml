@@ -12,25 +12,27 @@
       href: background/aircraft.html
     - text: Air navigation services
       href: background/ans.html
+    - text: Communication, navigation and surveillance
+      href: background/cns.html
     - text: Aerodromes and airports
       href: background/aerodrome.html
 - title: The ecosystem of aviation data
   subtitle: The most commonly used data formats in the aviation and ATM data analysis community
   links:
     - text: Flight tracking technologies
-      href: data_sources/flight-tracking.html
+      href: data_sources/flight_tracking.html
     - text: Aircraft information
-      href: data_sources/aircraft-information.html
+      href: data_sources/aircraft_information.html
     - text: Flight plans
-      href: data_sources/flight-plans.html
+      href: data_sources/flight_plans.html
     - text: Aeronautical information
-      href: data_sources/aeronautical-information.html
+      href: data_sources/aeronautical_information.html
     - text: Weather, climate and environment
       href: data_sources/environment.html
     - text: Aircraft performance
-      href: data_sources/aircraft-performance.html
+      href: data_sources/aircraft_performance.html
     - text: Data sources in aviation
-      href: data_sources/aviation-data-sources.html
+      href: data_sources/aviation_data_sources.html
 - title: Processing aviation data
   subtitle: (Hatching)
   links:

@@ -1,22 +1,6 @@
-# Glossary {-}
+# Glossary {.unnumbered}
 
+This glossary contains all the acronyms used throughout this book.
 
-| acronym |  description |
-|---------|--------------|
-| ACC     |  **A**rea **C**ontrol **C**entre |
-| ADEP    |  **A**erodrome of **DEP**arture |
-| ADES    |  **A**erodrome of **DES**tination |
-| AO      |  **A**ircraft **O**perator |
-| ATC     |  **A**ir **T**raffic **C**ontrol |
-| CPR     |  **C**orrelated **P**osition **R**eport |
-| CTFM    |  **C**urrent **T**actical **F**light **M**odel |
-| DDR2    |  **D**emand **D**ata **R**epository version **2** |
-| FP      |  **F**light **P**lan |
-| FTFM    |  **F**iled **T**actical **F**light **M**odel |
-| ICAO    |  **I**nternational **C**ivil **A**viation **O**rganization |
-| NM      |  **N**etwork **M**anager |
-| OSN     |  **O**pen**s**ky **N**etwork |
-| RAD     |  **R**oute **A**vailability **D**ocument |
-
-: Acronyms {#tbl-acronyms}
+\printacronyms
 

@@ -20,6 +20,20 @@ Airspaces & / or aeronautical information in general (AIRAC):
 :::
 
 
+\acr{AIM} is considered with the collection, assembly, publication, exchange, and dissemination of quality-assured, timely and digital aeronautical data in collaboration with all relevant stakeholders. Aeronautical data includes aeronautical information publications (AIP), notice to airmen (NOTAM), preflight information bulletins (PIB), and aeronautical information circulars (AIC).
+
+**Aeronautical Information Publications (AIP)**, which contain "aeronautical information of a lasting character essential to air navigation", see [ICAO Annex 15][Annex_15], are issued by a state or by an authority of the state, such as an ANSP. Since their structure is standardized by ICAO Annex 15, AIP usually consist of three distinctive parts:
+
+* *GEN - General information*: As the name implies, GEN contains general information, such as the authority responsible for the AIP, locally applied units of measure, abbreviations used in the AIP, locally applicable time zones and daylight saving time regulations, airspace charges regulations, etc.
+* *ENR - Information referring to en-route*: ENR contains information that is of importance during the flight, i.e., while aircraft are *en-route*. ENR is divided into the following 6 parts: (i) information on general rules and procedures for \acr{VFR} and \acr{IFR} or the airspace classes applied, (ii) description of the vertical and horizontal spread of airspaces, (iii) description of airways, (iv) description of radio navigation systems and infrastructures, (v) navigation warnings such as military airspaces, known aviation obstacles, danger areas, etc., and (vi) en-route chart material.
+* *AD - Information referring to aerodromes*: AD includes information on both aerodromes and heliports and is divided into 3 parts. The first part contains an index of all aerodromes and helipads of a state as well as a description of the classification system of aerodromes applied in the state. Parts 2 and 3 of AD include detailed information on individual aerodromes or heliports, such as opening times, aerodrome operators, available service facilities, dimensions and alignment of runways, runway and approach lights, relevant aeronautical obstructions, etc. detailed maps are also provided, which contain information on ground-based infrastructure, i.e., aprons, taxiway, runways, etc., as well as flight procedures, i.e., standard instrument departures, standard terminal arrival routes, approach procedures.
+
+To keep \acr{AIP}s up to date, they are revised in an internationally standardized cylce, which is known as the **\acr{AIRAC} cycle**. This \acr{AIRAC} cycle follows a fixed 28-day rhythm, which is internationally standardised. The publication dates are known years in advance and are published, for example, by [Eurocontrol](https://www.nm.eurocontrol.int/RAD/common/airac_dates.html).
+
+**\acr{PIB}** A \acr{PIB} consists of a compilation of a number of \acr{NOTAM}s which are important for the execution of a flight. Consequently, a \acr{PIB} contains \acr{NOTAM}s for the origin, destination and alternate airports, as well as \acr{NOTAM}s for the airspace that the flight is likely to use.
+
+**\acr{AIC}** [ICAO Annex 15][Annex_15] defines an \acr{AIC} as "a notice containing information that does not qualify for the origination of a NOTAM of for inclusion in the AIP, but which relates to flight safety, air navigation, technical, administrative or legislative matters." For example, \acr{AIC}s are issued to communicate a strategy in which a state explains how it aims to modernise its ground-based navigational aids, or how a certain new procedure will be implemented in the future.
+
 
 
 Fatal events both en-route (mid-air collisions) and on the ground (landing or crashes)
@@ -51,7 +65,7 @@ of three parts
 
 AIPs are kept up-to-date following a 28-day cycle known as the AIRAC
 (Aeronautical Information Regulation And Control) cycle, @fig-airac.
-Revisions are produced every 56 days (double AIRAC cycle) or 
+Revisions are produced every 56 days (double AIRAC cycle) or
 every 28 days (single AIRAC cycle).
 These changes are received well in advance so that users of the aeronautical data
 can update their systems, i.e. flight management systems (FMS) or ATC databases.

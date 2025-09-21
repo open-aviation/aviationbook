@@ -1,15 +1,15 @@
 ---
 title: Air navigation services
 authors:
-- Manuel Waltert
 - Xavier Olive
+- Manuel Waltert
 - Kim Gaume
 ---
 
-**Air navigation services** represent the invisible infrastructure that enables the safe, efficient, and orderly movement of aircraft through the world's skies. Every commercial flight that takes off relies on a complex network of systems, services, and personnel working together to guide aircraft from departure gate to arrival gate.
+**Air navigation services** represent the infrastructure that enables the safe, efficient, and orderly movement of aircraft through the world's skies. Every commercial flight that takes off relies on a complex network of systems, services, and personnel working together to guide aircraft from departure gate to arrival gate.
 The foundation of this system rests on international agreements and legal frameworks that define responsibilities and standards. According to the [Chicago Convention on International Civil Aviation](https://www.icao.int/publications/Documents/7300_cons.pdf) of 1944, every state "has complete and exclusive sovereignty over the airspace above its territory".
 
-![Legal Boundaries of the Oceans and Airspace, Chapter 2 [@LawSeaPolicy2017].](/images/MaritimeZoneSchematic-1.png){#fig-coastline}
+![Legal Boundaries of the Oceans and Airspace, from Chapter 2 in [@LawSeaPolicy2017].](/images/MaritimeZoneSchematic-1.png){#fig-coastline}
 
 This sovereignty extends horizontally over the state's entire territory, including territorial waters up to 12 nmi (22.2 km) from the coastline according to the [United Nations Convention on the Law of the Sea](https://www.un.org/Depts/los/convention_agreements/texts/unclos/unclos_e.pdf). Vertically, a state's airspace begins at the earth's surface and extends to 100 km above mean sea level: the [Kármán Line](https://en.wikipedia.org/wiki/K%C3%A1rm%C3%A1n_line) that legally separates the Earth's atmosphere from space.
 
@@ -21,31 +21,79 @@ Under Article 28(a) of the Chicago Convention, each state must establish **\acr{
 France's air navigation services are provided by the *Direction des Services de la Navigation Aérienne (DSNA)*, a government agency, while the United Kingdom's services are delivered by *National Air Traffic Services (NATS)*, a public-private partnership. In Germany, *Deutsche Flugsicherung (DFS)* operates as a state-owned enterprise.
 :::
 
+## The five Air Navigation Services
+
 Air navigation services encompass five interconnected service groups that together form the backbone of modern aviation:
 
-- [**Air Traffic Management (ATM)**](#air-traffic-management) for the direct control and coordination of aircraft movements
-- **Communication, Navigation, and Surveillance (CNS)** systems that provide the technological infrastructure;
-- **Meteorological Services (MET)** that deliver critical weather information;
-- **Aeronautical Information Management (AIM)** for the collection and dissemination of essential flight data; and
-- **Search and Rescue (SAR)** services that coordinate emergency response operations.
+- [Air Traffic Management (ATM)](#air-traffic-management)\
+  for the direct control and coordination of aircraft movements
+- [Communication, Navigation, and Surveillance (CNS)](#communication-navigation-and-surveillance)\
+  for the technological infrastructure;
+- [Meteorological Services (MET)](#meteorological-services)\
+  for the delivery of critical weather information;
+- [Aeronautical Information Management (AIM)](#aeronautical-information-management)\
+  for the collection and dissemination of essential flight data; and
+- [Search and Rescue (SAR)](#search-and-rescue) services\
+  for the coordination of emergency response operations.
 
-These services facilitate the 'safe, efficient, and orderly flow of air traffic' through carefully designed airspace organizations, standardized rules of the air, and coordinated service provision. Understanding these services is crucial for comprehending how aviation operates as a global system, where aircraft can safely navigate complex airspace structures, while maintaining the high levels of safety and efficiency that modern air transport demands.
+These services enable the "safe, efficient, and orderly flow of air traffic" through structured airspace design, standardized procedures, and coordinated operations. Understanding these services is essential for grasping how aviation functions as a global system where aircraft navigate complex airspace while maintaining high safety and efficiency standards.
 
 
-## Air Traffic Management
+### Air Traffic Management
 
-\acr{ATM} represents one of the most complex and safety-critical components of air navigation services. The term \acr{ATM} is defined in ICAO Document 4444 as *"the aggregation of the airborne functions and ground-based functions [...] required to ensure the safe and efficient movement of aircraft during all phases of operations"*.
+**\acr{ATM}** represents one of the most complex and safety-critical components of air navigation services. The term \acr{ATM} is defined in ICAO Document 4444 as *"the aggregation of the airborne functions and ground-based functions [...] required to ensure the safe and efficient movement of aircraft during all phases of operations"*.
 
-ATM refers to the comprehensive system of procedures, personnel, equipment, and facilities that work together to manage aircraft movements from gate to gate.
-The ATM system achieves these objectives through three interconnected service areas:
+\acr{ATM} refers to the comprehensive system of procedures, personnel, equipment, and facilities that work together to manage aircraft movements from gate to gate.
 
-1. [**Air Traffic Services (ATS)**](#air-traffic-services): Direct control and guidance of aircraft through real-time communication and coordination
-2. [**Airspace Management**](#airspace-management): Strategic planning and organization of airspace use to optimize capacity and safety
-3. [**Air Traffic Flow Management (ATFM)**](#air-traffic-flow-management): Optimization of traffic flows to prevent congestion and maximize system efficiency
+The \acr{ATM} system achieves these objectives through three interconnected service areas, detailed below, further on this page.
 
-### Flight Information Regions
+- [Air Traffic Services (ATS)](#air-traffic-services)\
+  provide direct control and guidance to aircraft through real-time communication and coordination
+- [Airspace Management](#airspace-management)\
+  perform strategic planning and organize airspace use to optimize capacity and safety
+- [Air Traffic Flow Management (ATFM)](#air-traffic-flow-management)\
+  optimize traffic flows to prevent congestion and maximize system efficiency
 
-At the broadest level, global airspace is divided into [**Flight Information Regions**](<https://observablehq.com/@openaviation/flight-information-regions>) (FIRs): large, internationally agreed zones within which a designated authority is responsible for **providing air navigation services**. FIRs are the primary organizational units of controlled airspace, covering both territorial and oceanic regions. While small countries may be covered by a single FIR, larger or busier nations often operate several. **In some cases, FIRs span multiple countries or are assigned over international waters to nearby states**. Their structures may vary with altitude: for example, France is divided into five FIRs below flight level (FL) 195, but merges into a single **Upper Information Region (UIR)** above that altitude. These regions, defined under the coordination of the International Civil Aviation Organization (ICAO), provide the foundation upon which [more detailed subdivisions are built](#airspace-management).
+
+### Communication, Navigation and Surveillance
+
+### Meteorological Services
+
+**\acr{MET}** form an essential component of air navigation services, providing the weather information critical for flight safety and operational efficiency. Aviation weather differs significantly from general meteorological services due to its focus on phenomena that directly affect aircraft operations, including turbulence, icing conditions, wind shear, and visibility restrictions at various altitudes.
+
+These services operate through a global network of weather observation stations, upper-air monitoring systems, and specialized aviation weather centers that collect, analyze, and disseminate meteorological data specifically formatted for aviation use. The World Meteorological Organization (WMO) coordinates international standards for aviation meteorology, ensuring consistent weather reporting formats and observation procedures across all countries.
+
+**Aerodrome weather services** provide current conditions and short-term forecasts for airports through standardized reports. **Meteorological Aerodrome Reports (METAR)** deliver current weather observations taken at regular intervals, typically every 30 minutes at major airports. **Terminal Aerodrome Forecasts (TAF)** offer detailed weather predictions for airport areas, typically covering a 24-30 hour period with specific information about expected visibility, cloud coverage, precipitation, and wind conditions.
+
+**En-route meteorological services** support flight planning and in-flight operations with weather information covering broader geographical areas and various flight levels. **Significant Meteorological Information (SIGMET)** provides urgent warnings about hazardous weather phenomena such as severe turbulence, thunderstorms, tropical cyclones, volcanic ash, or severe icing conditions that could affect flight safety. **Meteorological Information for Aircraft in Flight (AIRMET)** covers weather phenomena of lower intensity that may still impact aircraft operations, particularly for smaller or less capable aircraft.
+
+**Upper-air meteorological data** includes wind and temperature information at various flight levels, essential for flight planning, fuel calculations, and route optimization. This information helps pilots and flight planners determine the most efficient altitudes and routes, accounting for jet stream patterns, temperature variations, and wind conditions that significantly affect flight time and fuel consumption.
+
+Modern meteorological services increasingly integrate real-time weather radar data, satellite imagery, and numerical weather prediction models to provide more accurate and timely weather information to the aviation community.
+
+The various formats introduced in this section are further details in the [Weather, climate and environment](../data_sources/environment.qmd) chapter.
+
+### Aeronautical Information Management
+
+**\acr{AIM}** ensures that pilots, air traffic controllers, and other aviation stakeholders have access to accurate, timely, and standardized information essential for safe flight operations. AIM encompasses the collection, processing, and distribution of aeronautical data through various publications including Aeronautical Information Publications (AIP), Notices to Airmen (NOTAM), and Aeronautical Information Circulars (AIC).
+
+These information services operate on different timescales, from the structured, long-term data found in AIPs that follow the standardized AIRAC amendment cycle, to the urgent, time-sensitive updates delivered through NOTAMs that alert aviation professionals to immediate operational changes or hazards.
+
+The comprehensive framework and specific publications that constitute AIM are detailed in the [Aeronautical Information](../data_sources/aeronautical_information.qmd) chapter.
+
+### Search and Rescue
+
+**\acr{SAR} services** coordinate comprehensive emergency response operations for aircraft and personnel in distress. These services operate under international frameworks established by ICAO and the International Maritime Organization (IMO), ensuring coordinated response capabilities across national boundaries and diverse operational environments.
+
+\acr{SAR} operations encompass both search activities to locate missing aircraft and rescue operations to provide assistance to located aircraft and their occupants. The system maintains continuous readiness to respond to emergencies ranging from routine technical difficulties to catastrophic accidents, operating across all environments where aviation activities occur including land, sea, mountains, and remote regions.
+
+\acr{SAR} operations integrate diverse rescue assets adapted to different operational environments and emergency types. **Aviation resources** include dedicated \acr{SAR} helicopters and fixed-wing aircraft equipped with specialized search equipment, navigation systems, and rescue capabilities. **Maritime assets** encompass coast guard vessels, naval ships, and commercial vessels that can respond to aircraft emergencies over water. **Ground-based teams** provide specialized capabilities for mountain rescue, wilderness operations, and technical rescue in challenging terrain. **Military resources** often provide significant \acr{SAR} capabilities including long-range aircraft, helicopter units, and specialized personnel trained for complex rescue operations.
+
+## Flight Information Regions
+
+At the broadest level, global airspace is divided into [**Flight Information Regions**](<https://observablehq.com/@openaviation/flight-information-regions>) (FIRs): large, internationally coordinated zones where designated authorities assume responsibility for delivering [**air traffic services**](#air-traffic-services). Within each FIR, the responsible authority provides **flight information services** and **alerting services**, including \acr{SAR}, ensuring pilots receive essential information for safe and efficient operations while maintaining readiness to notify relevant organizations when aircraft require assistance.
+
+FIRs are the primary organizational units of controlled airspace, covering both territorial and oceanic regions. While small countries may be covered by a single FIR, larger or busier nations often operate several. **In some cases, FIRs span multiple countries or are assigned over international waters to nearby states**. Their structures may vary with altitude: for example, France is divided into five FIRs below flight level (FL) 195, but merges into a single **Upper Information Region (UIR)** above that altitude. These regions, defined under the coordination of the International Civil Aviation Organization (ICAO), provide the foundation upon which [more detailed subdivisions are built](#airspace-management).
 
 ::: {.callout-warning}
 It is important to insist on the fact that FIRs are **not expressions of territorial sovereignty**, which is limited to 12 nautical miles from coastlines. FIRs represent commitments by states **to provide air navigation services over much larger areas**, including international airspace and oceanic regions.
@@ -116,23 +164,26 @@ import { Plot, countries, firsAt } from "@openaviation/flight-information-region
 
 ::: {.callout-tip}
 
-More details about FIR around the world:
+More details about FIR around the world can be found on this page:
 <https://observablehq.com/@openaviation/flight-information-regions>
 
 :::
 
-### Air Traffic Services
+## Air Traffic Services
 
 **\acr{ATS}** represent the core operational component of air traffic management, providing direct, real-time control and guidance of aircraft throughout all phases of flight. According to [ICAO Annex 11][Annex_11], ATS encompasses four distinct but interconnected services that work together to ensure the safe, orderly, and expeditious flow of air traffic.
 
 The four main services provided under ATS are:
 
-- [**Air Traffic Control Service (ATC)**](#air-traffic-control-service): The primary service responsible for preventing collisions between aircraft and between aircraft and obstacles on the maneuvering area, while optimizing air traffic operations for maximum efficiency
-- [**Flight Information Service (FIS)**](#flight-information-service): Provides pilots with information useful for the safe and efficient conduct of flights
-- [**Alerting Service**](#alerting-service): Notifies appropriate organizations regarding aircraft in need of search and rescue aid
-- [**Air Traffic Advisory Service**](#air-traffic-advisory-service): Provides advice and information to aircraft operating in advisory airspace where ATC service is not available
+- [Air Traffic Control Service (ATC)](#air-traffic-control-service): The primary service responsible for preventing collisions between aircraft and between aircraft and obstacles on the maneuvering area, while optimizing air traffic operations for maximum efficiency
+- [Flight Information Service (FIS)](#flight-information-service): Provides pilots with information useful for the safe and efficient conduct of flights
+- [Alerting Service (ALRS)](#alerting-service): Notifies appropriate organizations regarding aircraft in need of search and rescue aid
+- [Air Traffic Advisory Service](#air-traffic-advisory-service): Provides advice and information to aircraft operating in advisory airspace where ATC service is not available
 
-::: {#flight-rules}
+[Annex_11]: https://www.bazl.admin.ch/dam/bazl/en/dokumente/Fachleute/Regulationen_und_Grundlagen/icao-annex/icao_annex_11_airtrafficservices.pdf.download.pdf/an11_cons.pdf
+
+### Flight rules
+
 
 To ensure that airspace is managed efficiently and effectively by ATC, flights are categorized according to the **flight rules** they follow. Flights operate under either **\acr{VFR}** or **\acr{IFR}**.
 
@@ -143,7 +194,6 @@ With the exception of **special VFR (SVFR)**[^1] operations, when an aircraft co
 
 Besides differentiating between VFR and IFR flights, controlled airspace is classified into specific **airspace classes** that define which types of flight may use the airspace, under which circumstances flights may enter this airspace, and which services are offered to aircraft in this airspace.
 
-:::
 
 ::: {#airspace-classes}
 
@@ -184,7 +234,7 @@ VFR pilots operating from smaller airports, such as Toulouse-Lasbordes (LFCL) to
 :::
 
 
-#### Air Traffic Control Service
+### Air Traffic Control Service
 
 **Air Traffic Control (ATC)** Service represents the most demanding and safety-critical component of air traffic services. Controllers work in specialized facilities using advanced surveillance systems (e.g., radar systems), communication equipment, and standardized procedures to maintain safe separation between aircraft while facilitating efficient traffic flow.
 
@@ -245,7 +295,7 @@ While separation assurance is the fundamental safety responsibility of air traff
 
 :::
 
-#### Flight Information Service
+### Flight Information Service
 
 **Flight Information Service** represents a crucial informational component of air traffic services, providing pilots with essential data and advisories to support safe and efficient flight operations. Unlike ATC, which issues binding instructions and maintains separation responsibilities, FIS operates purely in an advisory capacity, disseminating information that pilots can use to make informed decisions about their flights.
 
@@ -257,24 +307,12 @@ The service covers several categories of information critical to flight operatio
 
 **Meteorological information**. FIS provides pilots with current weather observations, forecasts, and significant weather phenomena along their route. This includes surface weather reports (**METAR**), terminal aerodrome forecasts (**TAF**), area forecasts covering broader geographical regions, and significant meteorological information (**SIGMET**) warnings about hazardous weather conditions such as severe turbulence, thunderstorms, or volcanic ash. Information about wind conditions, visibility, precipitation, cloud coverage, temperature, and barometric pressure settings  helps pilots assess flight conditions and make routing decisions.
 
-::: {.callout-tip}
-##### Pressure Settings: QNH and QFE
-
-Aircraft altimeters measure altitude by detecting atmospheric pressure changes, but require proper pressure reference settings for accurate readings.
-
-**QNH** (Sea Level Pressure): When set to QNH, the altimeter displays altitude above mean sea level. This setting is required for en-route navigation and approach procedures, as published obstacle clearance altitudes and minimum safe altitudes are referenced to sea level. Aircraft use QNH during most phases of flight to ensure terrain and obstacle clearance.
-
-**QFE** (Aerodrome Pressure): When set to QFE, the altimeter reads zero when the aircraft is on the aerodrome elevation. This setting is particularly useful during airport operations, as pilots can directly read their height above the runway. Some airports and regions prefer QFE for approach and landing procedures, especially where terrain varies significantly around the airport.
-
-The difference between QNH and QFE equals the aerodrome elevation above sea level. For example, if an airport sits 1,000 feet above sea level, QFE will be lower than QNH by the pressure equivalent of that altitude difference. Pilots must ensure they use the correct pressure setting for their phase of flight and local procedures to maintain safe altitude references.
-:::
-
 **Airfield and navigation information** keeps pilots informed about runway conditions, including surface contamination, construction activities, and temporary closures. The service also provides information about the runway in use, potential updates on wildlife hazards, particularly bird activity that may pose collision risks during takeoff and landing phases. The service also provides updates on the operational status of navigation aids, including **VOR**, **DME**, and **ILS** systems, alerting them to equipment outages that might affect their planned routes or approaches.
 
 **Traffic information** services provide pilots with details about other aircraft operating in their vicinity when such information enhances safety awareness. Unlike ATC separation services, traffic information remains purely advisory and pilots retain full responsibility for maintaining their own separation from other aircraft and making appropriate collision avoidance decisions.
 
 ::: {.callout-tip}
-##### Aerodrome Flight Information Service (AFIS)
+#### Aerodrome Flight Information Service (AFIS)
 
 At some smaller airports without full air traffic control services, **\acr{AFIS}** provides a specialized form of flight information service tailored to aerodrome operations. AFIS operators, working from airport control towers or dedicated facilities, provide pilots with essential information about aerodrome conditions, traffic movements, and local weather without issuing control instructions or clearances. AFIS typically operates at airports in uncontrolled airspace (Class F or G) where traffic volume justifies information services but not full air traffic control.
 :::
@@ -286,7 +324,9 @@ As defined by [ICAO Annex 15][Annex_15], \acr{NOTAM} is defined as "a notice dis
 
 Modern FIS delivery increasingly incorporates digital systems alongside traditional voice communications. **Automatic Terminal Information Service (ATIS)** broadcasts provide standardized airport information on dedicated VHF frequencies, while digital data link systems can deliver weather and operational updates directly to aircraft systems. However, human operators remain essential for providing tailored information, interpreting complex situations, and responding to specific pilot requests.
 
-#### Alerting Service
+[Annex_15]: https://www.bazl.admin.ch/dam/bazl/en/dokumente/Fachleute/Regulationen_und_Grundlagen/icao-annex/icao_annex_15_aeronauticalinformationservices.pdf.download.pdf/an15_cons.pdf
+
+### Alerting Service
 
 **Alerting Service** represents a critical safety net within air traffic services, designed to identify aircraft that may be in distress and initiate appropriate emergency response procedures. This service operates continuously, monitoring all flights within controlled airspace and maintaining vigilance for situations that might indicate an aircraft emergency.
 
@@ -296,7 +336,7 @@ The service employs a graduated response system with three escalating phases of 
 
 Upon activation, the alerting service coordinates with **Search and Rescue Coordination Centers (RCC)** and other appropriate organizations to mobilize rescue resources. This coordination includes military and civilian aviation assets, maritime rescue services, ground-based emergency teams, and international rescue organizations when aircraft cross national boundaries. The service maintains detailed flight plan information and aircraft tracking data to provide rescue teams with accurate last-known positions, aircraft specifications, fuel endurance, and passenger manifests.
 
-#### Air Traffic Advisory Service
+### Air Traffic Advisory Service
 
 
 **Air Traffic Advisory Service** provides informational support to aircraft operating in designated advisory airspace where full air traffic control service is not available. This service fills a critical gap in areas where traffic density or infrastructure limitations make comprehensive ATC coverage impractical, yet aircraft still benefit from coordinated information sharing.
@@ -312,7 +352,7 @@ Advisory service proves particularly valuable in oceanic and remote continental 
 The procedural nature of advisory service requires precise communication protocols and standardized reporting formats. Aircraft operating in advisory airspace typically follow established reporting points and time intervals, ensuring that traffic information remains current and actionable for all participants in the shared airspace.
 
 
-### Airspace Management
+## Airspace Management
 
 While ATS focuses on real-time control of aircraft, airspace management takes a strategic approach to optimizing airspace use.
 Airspace Management involves the strategic planning and real-time organization of airspace to optimize capacity and efficiency while maintaining safety. This includes:
@@ -322,7 +362,7 @@ Airspace Management involves the strategic planning and real-time organization o
 - **Strategic capacity planning**: Long-term analysis and planning for airspace modifications to increase capacity
 - **Coordination**: Working with adjacent control centers and military authorities
 
-#### Area Control Centres
+### Area Control Centres
 
 Within each FIR or UIR, controlled airspace is further divided to ensure the safe and efficient management of air traffic across different phases of flight. Responsibility for these divisions typically lies with national or regional **Air Traffic Control Centres**, often referred to as **Area Control Centres (ACCs)**, which oversee large volumes of airspace, often spanning thousands of square kilometres.
 
@@ -368,7 +408,7 @@ Two French ACCs extend their coverage beyond France's UIR boundaries: Brest ACC 
 
 **EUROCONTROL operates the Maastricht Upper Area Control Centre (MUAC)**, which manages en route traffic over the Benelux countries (comprising two FIRs) and a substantial portion of North-Western Germany. MUAC's area of responsibility also extends slightly across the Belgian-French border. Low altitude traffic within these regions remains under the responsibility of the respective national providers: Belgocontrol (Belgium), LVNL (Netherlands), and DFS (Germany).
 
-#### Elementary sectors
+### Elementary sectors
 
 Because no single controller can monitor an entire centre, airspace is divided into small units called **elementary sectors**. Each sector is a defined volume of airspace with its own boundaries, typically based on geography, altitude, traffic volume, and operational needs. It is typically managed by a team of controllers who are responsible for all aircraft within that area. As an aircraft travels along its route, it will pass through multiple sectors. With each transition, responsibility for the flight is handed over from one team to the next. This hand-off process is standardized to ensure that aircraft are continuously monitored from take-off to landing.
 
@@ -377,24 +417,9 @@ Because no single controller can monitor an entire centre, airspace is divided i
 In busy regions, sectors can be quite small and specialized, while in less busy areas, sectors may be much larger, with a single controller responsible for hundreds of square miles of airspace. Sectors are also layered vertically, meaning one controller might be responsible for aircraft flying between 24,000 and 32,000 feet, while another handles the same geographic area but at lower or higher altitudes.
 
 
-#### Flight plans
+### Flight plans
 
 Before any commercial flight takes off, a detailed [**flight plan**](<https://skybrary.aero/articles/flight-plan>) must be created and filed. This plan outlines the intended route an aircraft will follow, including departure and arrival points, altitudes, estimated times, and the specific path through controlled airspace. Flight plans are essential for ensuring that air traffic controllers can manage the [flow of aircraft](#air-traffic-flow-management) safely and efficiently.
-
-
-::: {.callout-warning}
-##### Move to CNS/Navigation?
-To establish these routes, the aviation system relies on a network of predefined **waypoints**, which can be either specific geographic locations determined by GPS coordinates, or **ground-based navigation aids** such as VORs (VHF Omnidirectional Range beacons). These waypoints form the foundation of structured air traffic routes.
-
-Traditionally, sequences of waypoints are connected to form **airways**, the highways of the sky. Aircraft follow these established corridors as part of their flight plans, allowing controllers to manage traffic safely and predictably, especially in busy or constrained airspace. Aircraft navigate from one waypoint to the next, following a path that resembles a series of connected legs rather than a single straight line. Modern aircraft are usually equipped with [**\acr{FMS}**](aircraft.qmd#flight-control-systems) that can store and follow these predefined routes automatically, making it easier for both pilots and controllers to maintain accurate navigation.
-
-To further organise traffic in and out of airports, two types of standardized routes are used:
-
-- **Standard Instrument Departures (SID)** guide aircraft from an airport's runway to the en-route structure. These routes are designed to separate departures from each other and from arriving traffic.
-- **Standard Terminal Arrival Routes (STAR)** lead aircraft from the en-route phase back into the terminal area for landing. Like SIDs, they help manage traffic flow and reduce controller workload.
-
-These procedures are published on aviation charts and are often required for flights operating under [**Instrument Flight Rules (IFR)**](#flight-rules), which govern most commercial and high-altitude air traffic.
-:::
 
 While predictable trajectories are essential, air traffic controllers can also offer direct routing when conditions allow^[<https://wiki.ivao.aero/en/home/training/documentation/CTR_controller_position>]. If weather is clear and traffic conditions allow, controllers may instruct pilots to bypass certain waypoints or airways, offering a more efficient path that saves time and fuel. This flexibility is especially useful on longer flights, where even small adjustments can lead to significant operational savings.
 
@@ -403,13 +428,13 @@ Modern systems such as [**\acr{PBN}**](https://www.eurocontrol.int/sites/default
 Whether following a standard route or taking advantage of more direct navigation options, aircraft must still be carefully monitored to ensure their safety and controlled flow. This is the role of air traffic controllers. From guiding planes during takeoff to overseeing them en route and managing their approach for landing, controllers are essential to every phase of flight.
 
 
-### Air Traffic Flow Management
+## Air Traffic Flow Management
 
 \acr{ATFM} focuses on optimizing traffic flows to prevent congestion and delays while maximizing the utilization of available airspace capacity. **Traffic flow analysis** involves monitoring and predicting traffic patterns to identify potential bottlenecks before they occur. When capacity is exceeded, **flow control measures** are implemented to manage traffic through restrictions such as ground delays or rerouting. **Collaborative decision making** ensures coordination with airlines and airports to minimize the impact of these measures on operations.
 
 **Dynamic capacity management** represents a key operational component of ATFM, involving real-time adjustments to airspace configuration based on traffic demand and operational conditions. In high-traffic situations, sectors can be **split** into smaller units, each staffed by additional controllers to distribute workload and increase capacity. Conversely, during low-traffic periods, multiple small sectors may be **combined** into larger ones, optimizing controller utilization and reducing operational costs. This dynamic reconfiguration must also account for **restricted zones, military operations areas, and weather events**, all of which can require immediate adjustments to sector boundaries or traffic routing to maintain safety and efficiency.
 
-#### Flight plans and routing
+### Flight plans and routing
 
 Before any commercial flight takes off, a detailed [**flight plan**](<https://skybrary.aero/articles/flight-plan>) must be created and filed. This plan outlines the intended route an aircraft will follow, including departure and arrival points, altitudes, estimated times, and the specific path through controlled airspace. Flight plans are essential for ensuring that air traffic controllers can manage the flow of aircraft safely and efficiently.
 
@@ -429,165 +454,6 @@ While predictable trajectories are essential, air traffic controllers can also o
 Modern systems such as [**\acr{PBN}**](https://www.eurocontrol.int/sites/default/files/2019-06/2013-introducing-pbn-a-rnp.pdf) and **\acr{RNP}** have further increased the precision and flexibility of routing, enabling aircraft to fly more direct paths even in complex or remote airspace.
 
 Whether following a standard route or taking advantage of more direct navigation options, aircraft must still be carefully monitored to ensure their safety and controlled flow. This is the role of air traffic controllers. From guiding planes during takeoff to overseeing them en route and managing their approach for landing, controllers are essential to every phase of flight.
-
-
-## \acr{MET}
-
-Meteorological services provide weather information critical for flight safety and efficiency. These services include:
-
-- **Weather observations and forecasts** for flight planning and operations
-- **Aerodrome weather reports (METAR/SPECI)** providing current conditions at airports
-- **Terminal area forecasts (TAF)** for airport-specific weather predictions
-- **Significant weather information (SIGMET/AIRMET)** warning of hazardous weather conditions
-- **Upper-air data** including wind and temperature information for flight level planning
-
-
-
-
-## \acr{CNS}
-To ensure safe and efficient air transportation, \acr{ATM} relies on infrastructure, services, and functions in the areas of \acr{CNS}. As such, communication enables the exchange of information, be it in spoken or written form, between crews of aircraft and/or air traffic control. Navigation encompasses all services and infrastructures by means of which aircraft crews find their way through space in order to get from one place to another quickly, efficiently, and safely. Finally, surveillance comprises all technical possibilities by means of which air traffic control can determine the position of aircraft. In the following, the most important services, technologies, and processes in the field of CNS are presented.
-
-### Communication
-#### Voice communications
-VHF, HF
-AIREP
-
-#### Data communications
-ACARS, Data Link
-
-### Navigation
-Navigation deals with the question of how aircraft, ships, cars, etc. can move from one place to another in a safe and efficient manner. In this context, the main question navigation is concerned with is how an aircraft, a ship or a car can determine its own position relative to a reference system.
-
-In the past, rather simple and rudimentary methods were used for navigation. Using so-called dead-reckonin, the current position is determined based on a known prior position as well as the current direction and speed of movement. Furthermore, so-called celestial navigation was used, in which the current position is determined based on celestial measurements, i.e. by determining the position of celestial bodies in relation to an observer.
-
-In aviation, the above-mentioned rudimentary methods of navigation can be employed as well. However, over the last century, a number of different, more advanced ways of determining the position of an aircraft have been developed, implemented, and applied. These navigation methods are usually based on infrastructures that are stationed either on land or in space. The most important navigation methods in aviation are described in detail below.
-
-
-#### Non-Directional Beacon (NDB)
-
-#### VHF Omnidirectional Range (VOR)
-
-<https://www.skybrary.aero/articles/vhf-omnidirectional-radio-range-vor>
-<https://en.wikipedia.org/wiki/VHF_omnidirectional_range>
-
-#### Distance Measuring Equipment (DME)
-
-<https://www.skybrary.aero/articles/distance-measuring-equipment-dme>
-<https://en.wikipedia.org/wiki/Distance_measuring_equipment>
-
-
-:::{.callout-warning}
-**TODO**
-
-- add picture of VOR ground station
-- link to decoding with SDR ? (rather easy)
-:::
-
-VOR stations were developped in the United States in the 1930s before being deployed after the Second World War. VOR are simple short-ranged ground stations using radio waves to allow any receiver locked on its frequency to determine its bearing with respect to the ground station.
-
-A VOR ground station operates on line of sight (about 200 nautical miles). It uses a phased antenna array to send a strong omnidirectional signal on a determined frequency, serving as a reference for comparison with a highly directional signal rotating clockwise. The phase difference between the reference signal and the directional signal is the bearing from the VOR station to the receiver relative to magnetic north.
-
-VOR stations are often collocated with DME (Distance Measuring Equipments) which measure the distance between an aircraft and a ground station, by timing the propagation delay of radio signals initiated by the airborne interrogator and replicated after a known delay. Again, precise clocks are key to a precise measurement of distances.
-
-Today, VOR stations are being gradually decommissioned as navigation aids move to performance-based navigation.
-
-#### ILS
-
-
-::: {.infobox}
-a word about calibration flights?
-:::
-
-
-#### Global Navigation Satellite System (GNSS)
-
-GPS, Galileo, Baidu, ...
-
-https://en.wikipedia.org/wiki/Korean_Air_Lines_Flight_007
-
-
-#### Recent technologies
-
-- Differential GPS
-- LIDAR
-- GBAS
-
-#### Airways structure
-
-:::{.callout-warning}
-**TODO**
-
-- add an excerpt of route map
-:::
-
-VOR were traditionally used as intersections along airways. A typical airway will jump in non necessarily straight lines from one navigational point to
-another. Typical navigational points can be defined as:
-
-- a NDB (Non Directional Beacon, the ancestor of VOR), VOR or DME ground station;
-- intersections between two radials from different VOR stations;
-- a VOR radial and a DME distance.
-
-Today, more navigational points are defined as simple GPS coordinates.
-
-
-TODO
-
-- ETOPS
-- L888
-
-
-
-### Surveillance
-
-#### Radars
-
-The fundamental theory of radar started in late 19th century. Since the 1860s, when the electromagnetic theory was discovered by [James Clerk Maxwell](https://fr.wikipedia.org/wiki/James_Clerk_Maxwell), the foundation for many science and technology fields was laid out. In the late 19th century, [Heinrich Hertz](https://fr.wikipedia.org/wiki/Heinrich_Hertz), who proved the existence of electromagnetic waves, also confirmed that metals could reflect radio waves. In the first decades of the 20th century, several systems for using radio waves to provide short-range directional information of objects were developed. German inventor [Christian Hülsmeyer](https://fr.wikipedia.org/wiki/Christian_H%C3%BClsmeyer) is often considered as the first person to use radio waves to detect metal objects in 1904.
-
-<!-- ![Radar coverage over the British Isles during WW2](../../images/radar_coverage.png){#fig-radar-ww2 width=40%} -->
-
-However, not until the Second World War, was the concept of RAdio Detection And Ranging (RADAR) developed. The technology was simultaneously researched by both major Allies and Axis countries. However, the United Kingdom led the race in developing a functional radar system.
-
-:::{.callout-warning}
-**TODO**
-
-- Primary radar
-- Secondary radar
-- Add sub-chapter about ADS-B, mode S?
-:::
-
-## Aeronautical Information Management
-
-<!-- TODO actually, I would put AIM last, or just before SAR -->
-
-\acr{AIM} is considered with the collection, assembly, publication, exchange, and dissemination of quality-assured, timely and digital aeronautical data in collaboration with all relevant stakeholders. Aeronautical data includes aeronautical information publications (AIP), notice to airmen (NOTAM), preflight information bulletins (PIB), and aeronautical information circulars (AIC).
-
-**Aeronautical Information Publications (AIP)**, which contain "aeronautical information of a lasting character essential to air navigation", see [ICAO Annex 15][Annex_15], are issued by a state or by an authority of the state, such as an ANSP. Since their structure is standardized by ICAO Annex 15, AIP usually consist of three distinctive parts:
-
-* *GEN - General information*: As the name implies, GEN contains general information, such as the authority responsible for the AIP, locally applied units of measure, abbreviations used in the AIP, locally applicable time zones and daylight saving time regulations, airspace charges regulations, etc.
-* *ENR - Information referring to en-route*: ENR contains information that is of importance during the flight, i.e., while aircraft are *en-route*. ENR is divided into the following 6 parts: (i) information on general rules and procedures for \acr{VFR} and \acr{IFR} or the airspace classes applied, (ii) description of the vertical and horizontal spread of airspaces, (iii) description of airways, (iv) description of radio navigation systems and infrastructures, (v) navigation warnings such as military airspaces, known aviation obstacles, danger areas, etc., and (vi) en-route chart material.
-* *AD - Information referring to aerodromes*: AD includes information on both aerodromes and heliports and is divided into 3 parts. The first part contains an index of all aerodromes and helipads of a state as well as a description of the classification system of aerodromes applied in the state. Parts 2 and 3 of AD include detailed information on individual aerodromes or heliports, such as opening times, aerodrome operators, available service facilities, dimensions and alignment of runways, runway and approach lights, relevant aeronautical obstructions, etc. detailed maps are also provided, which contain information on ground-based infrastructure, i.e., aprons, taxiway, runways, etc., as well as flight procedures, i.e., standard instrument departures, standard terminal arrival routes, approach procedures.
-
-To keep \acr{AIP}s up to date, they are revised in an internationally standardized cylce, which is known as the **\acr{AIRAC} cycle**. This \acr{AIRAC} cycle follows a fixed 28-day rhythm, which is internationally standardised. The publication dates are known years in advance and are published, for example, by [Eurocontrol](https://www.nm.eurocontrol.int/RAD/common/airac_dates.html).
-
-**\acr{PIB}** A \acr{PIB} consists of a compilation of a number of \acr{NOTAM}s which are important for the execution of a flight. Consequently, a \acr{PIB} contains \acr{NOTAM}s for the origin, destination and alternate airports, as well as \acr{NOTAM}s for the airspace that the flight is likely to use.
-
-**\acr{AIC}** [ICAO Annex 15][Annex_15] defines an \acr{AIC} as "a notice containing information that does not qualify for the origination of a NOTAM of for inclusion in the AIP, but which relates to flight safety, air navigation, technical, administrative or legislative matters." For example, \acr{AIC}s are issued to communicate a strategy in which a state explains how it aims to modernise its ground-based navigational aids, or how a certain new procedure will be implemented in the future.
-
-
-## Search and Rescue
-
-
-Search and Rescue services coordinate emergency response for aircraft in distress. SAR operations include:
-
-- **Alerting services coordination** to initiate rescue operations
-- **Search and rescue operations** coordination between civilian and military resources
-- **Emergency communication protocols** for distress situations
-- **Coordination with national and international rescue organizations**
-
-<!-- Collection of links used on this page -->
-[Annex_11]: https://www.bazl.admin.ch/dam/bazl/en/dokumente/Fachleute/Regulationen_und_Grundlagen/icao-annex/icao_annex_11_airtrafficservices.pdf.download.pdf/an11_cons.pdf
-
-[Annex_15]: https://www.bazl.admin.ch/dam/bazl/en/dokumente/Fachleute/Regulationen_und_Grundlagen/icao-annex/icao_annex_15_aeronauticalinformationservices.pdf.download.pdf/an15_cons.pdf
 
 
 ## Glossary {.unnumbered}

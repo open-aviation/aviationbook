@@ -370,5 +370,19 @@ by @eq-TEMP_HP.
     same, when the atmosphere is standard
 
 
-## List of Acronyms {.unnumbered}
+::: {.callout-tip}
+#### Pressure Settings: QNH and QFE
+
+<!-- TODO move to "Atmosphere model" (atmosphere.qmd) -->
+
+Aircraft altimeters measure altitude by detecting atmospheric pressure changes, but require proper pressure reference settings for accurate readings.
+
+**QNH** (Sea Level Pressure): When set to QNH, the altimeter displays altitude above mean sea level. This setting is required for en-route navigation and approach procedures, as published obstacle clearance altitudes and minimum safe altitudes are referenced to sea level. Aircraft use QNH during most phases of flight to ensure terrain and obstacle clearance.
+
+**QFE** (Aerodrome Pressure): When set to QFE, the altimeter reads zero when the aircraft is on the aerodrome elevation. This setting is particularly useful during airport operations, as pilots can directly read their height above the runway. Some airports and regions prefer QFE for approach and landing procedures, especially where terrain varies significantly around the airport.
+
+The difference between QNH and QFE equals the aerodrome elevation above sea level. For example, if an airport sits 1,000 feet above sea level, QFE will be lower than QNH by the pressure equivalent of that altitude difference. Pilots must ensure they use the correct pressure setting for their phase of flight and local procedures to maintain safe altitude references.
+:::
+
+## Glossary {.unnumbered}
 

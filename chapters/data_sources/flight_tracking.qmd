@@ -7,7 +7,7 @@ authors:
   - Martin Strohmeier
 ---
 
-A trajectory is a mathematical abstraction used to describe the evolution of a moving object with a finite list of parameters. The most common features in aviation include latitude, longitude, altitude, all indexed by time, with first derivatives such as ground speed, track angle and vertical rate. Depending on the application, some models would expect more features. For example, [aircraft performance models](aircraft-performance.qmd) could require the pitch, roll and yaw angles, the true air speed, the indicated air speed, the Mach number, etc.
+A trajectory is a mathematical abstraction used to describe the evolution of a moving object with a finite list of parameters. The most common features in aviation include latitude, longitude, altitude, all indexed by time, with first derivatives such as ground speed, track angle and vertical rate. Depending on the application, some models would expect more features. For example, [aircraft performance models](aircraft_performance.qmd) could require the pitch, roll and yaw angles, the true air speed, the indicated air speed, the Mach number, etc.
 
 This chapter describes several common formats for trajectories depending on available technology to record them. Associated data sources come with different licensing terms which must be kept in mind when developing or applying computing methods.
 
@@ -35,7 +35,7 @@ Radar tracks have a prestigious aura for obvious coverage reasons. However, it i
 In general, trajectories based on radar plots produced by computer systems contain an identifier, timestamps, latitudes, longitudes, altitudes, ground speed, vertical speed and track angle. **Kalman filters** help to smoothen trajectories and compute the derivatives.
 
 
-## \acr{ADS-B}
+## ADS-B
 
 \acr{ADS-B} is probably one of the most well-known source of aircraft trajectories, popularized by famous websites such as [Flightradar24](https://www.flightradar24.com) or [The OpenSky Network](https://www.opensky-network.org). It is a surveillance technology designed to allow aircraft to broadcast their flight state periodically without the need for interrogation.
 
@@ -204,7 +204,7 @@ Coupling BDS 5,0 (for the \acr{TAS}, the true track angle and the ground speed 
 ![An overview of all Mode S services, excerpt from [www.mode-s.org](https://mode-s.org/decode/content/introduction.html#summary) @sun1090](../../images/mode_s_services.png)
 
 
-## \acr{ADS-C}
+## ADS-C
 
 Born from the challenges of managing growth in aviation, the International Civil Aviation Organization in 1983 initiated a committee to align emerging technologies with growing air transport needs. By 1987, the committee found issues with the prevailing navigation systems, including communication limitations and the lack of digital links. The answer was satellite technology integration.
 
@@ -224,7 +224,7 @@ The type of contract then defines what information the aircraft will return to t
 Every \acr{ADS-C} report comprises, at a minimum, a basic report detailing the aircraft's position, accompanied by a timestamp and a figure of merit. The figure of merit denotes the precision of the positional information within the report and the operational status of \acr{TCAS}. Advanced reports encompass extra data as stipulated in the \acr{ADS-C} contract.
 
 
-## \acr{UAT}
+## UAT
 
 **\acr{UAT}** is a technology similar to \acr{ADS-B} which operates on 978 MHz instead of 1090 MHz for \acr{ADS-B} \acr{ES}.
 
@@ -261,6 +261,18 @@ As FLARM is a proprietary product, there is little public information about the 
 
 According to the manual of PowerFLARM Fusion @flarm_manual, there are three levels of warnings with different types of annunciations: The first warning is issued around 18 seconds before impact, the second warning is issued around 12 seconds before impact and the third warning is issued around 8 seconds before impact. The warning is active as long as the collision risk remains and will change accordingly.
 
+## ADS-L
 
+**\acr{ADS-L}** is a developing cooperative surveillance technology for low-level airspace, typically below 10,000 feet. Its purpose is to address surveillance gaps in uncontrolled airspace where radar and [\acr{ADS-B}](#ads-b) coverage are limited or absent. Unlike traditional \acr{ADS-B}, \acr{ADS-L} is lightweight and low-cost, intended for gliders, light sport aircraft, paragliders, helicopters, skydivers, and \acr{UAS}. It aims to provide essential surveillance while remaining interoperable with \acr{ADS-B} and [FLARM](#flarm).
 
-## List of Acronyms {.unnumbered}
+\acr{ADS-L} operates in the M-Band (868.2 MHz, 868.4 MHz) and O-Band (869.525 MHz), similar to FLARM in Europe, Africa, and Asia. Recent developments allow use of LTE and 5G networks for aerial communication, based on CEPT/EEC Decision (22)07 (November 2022), enabling integration with cellular infrastructure for extended coverage.
+
+Messages typically include a unique device address (similar to the ICAO 24-bit code), aircraft type, position (latitude, longitude, altitude), velocity, timestamp, and status flags. Some implementations add trajectory prediction, intent data, and device capabilities. Broadcast rates are usually one to two messages per second per frequency, with a range up to 20 km for SRD 860 and potentially greater for LTE/5G systems. Power consumption is optimised for small devices.
+
+\acr{ADS-L} is designed to coexist with \acr{ADS-B} and FLARM, using similar formats and frequencies where possible. Some devices support dual-mode operation, and integration with ground-based receivers enables crowdsourced tracking.
+
+The technology is suited to dense, mixed traffic and areas with limited infrastructure, such as uncontrolled airspace, remote regions, UAS operations, and BVLOS missions. It aims to distinguish between cooperative and non-cooperative aircraft, though non-cooperative aircraft can only be detected by other means.
+
+\acr{ADS-L} is undergoing validation and trials in Europe and elsewhere. Technical standards and regulatory frameworks are in development, but operational deployment remains limited. Challenges include spectrum congestion, regulatory approval, device cost, privacy and security, and integration with existing surveillance systems.
+
+# Glossary {.unnumbered}

@@ -27,16 +27,17 @@ book:
         - chapters/background/atmosphere.qmd
         - chapters/background/aircraft.qmd
         - chapters/background/ans.qmd
+        - chapters/background/cns.qmd
         - chapters/background/aerodrome.qmd
     - part: "The ecosystem of aviation data"
       chapters:
-        - chapters/data_sources/flight-tracking.qmd
-        - chapters/data_sources/aircraft-information.qmd
-        - chapters/data_sources/flight-plans.qmd
-        - chapters/data_sources/aeronautical-information.qmd
+        - chapters/data_sources/flight_tracking.qmd
+        - chapters/data_sources/aircraft_information.qmd
+        - chapters/data_sources/flight_plans.qmd
+        - chapters/data_sources/aeronautical_information.qmd
         - chapters/data_sources/environment.qmd
-        - chapters/data_sources/aircraft-performance.qmd
-        - chapters/data_sources/aviation-data-sources.qmd
+        - chapters/data_sources/aircraft_performance.qmd
+        - chapters/data_sources/aviation_data_sources.qmd
     - part: "Process data"
       chapters:
         - chapters/processing/tidy-data.qmd
@@ -87,16 +88,17 @@ book:
             - chapters/background/atmosphere.qmd
             - chapters/background/aircraft.qmd
             - chapters/background/ans.qmd
+            - chapters/background/cns.qmd
             - chapters/background/aerodrome.qmd
         - section: Data sources
           contents:
-            - chapters/data_sources/flight-tracking.qmd
-            - chapters/data_sources/aircraft-information.qmd
-            - chapters/data_sources/flight-plans.qmd
-            - chapters/data_sources/aeronautical-information.qmd
+            - chapters/data_sources/flight_tracking.qmd
+            - chapters/data_sources/aircraft_information.qmd
+            - chapters/data_sources/flight_plans.qmd
+            - chapters/data_sources/aeronautical_information.qmd
             - chapters/data_sources/environment.qmd
-            - chapters/data_sources/aircraft-performance.qmd
-            - chapters/data_sources/aviation-data-sources.qmd
+            - chapters/data_sources/aircraft_performance.qmd
+            - chapters/data_sources/aviation_data_sources.qmd
         - section: Data processing
           contents:
             - chapters/processing/tidy-data.qmd
