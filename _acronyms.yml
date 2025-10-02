@@ -9,12 +9,16 @@ acronyms:
       longname: Aerodrome of DEParture
     - shortname: ADES
       longname: Aerodrome of DEStination
+    - shortname: ADS
+      longname: Automatic Dependent Surveillance
     - shortname: ADS-B
       longname: Automatic Dependent Surveillance–Broadcast
     - shortname: ADS-C
       longname: Automatic Dependent Surveillance–Contract
     - shortname: ADS-L
       longname: Automatic Dependent Surveillance–Light
+    - shortname: ADF
+      longname: Automatic Direction Finder
     - shortname: AIC
       longname: Aeronautical Information Circular
     - shortname: AIM
@@ -23,30 +27,36 @@ acronyms:
       longname: Aeronautical Information Publication
     - shortname: AIRAC
       longname: Aeronautical Information Regulation And Control
+    - shortname: AIREP
+      longname: Air Report
     - shortname: AFIS
       longname: Aerodrome Flight Information Service
     - shortname: AO
       longname: Aircraft Operator
     - shortname: AOBT
       longname: Actual Off-Block Time
+    - shortname: ANP
+      longname: Actual Navigation Performance
     - shortname: ANS
       longname: Air Navigation Service
     - shortname: ANSP
       longname: Air Navigation Service Provider
+    - shortname: APVI
+      longname: Approach with Vertical Guidance (APV-I)
     - shortname: ARVT
       longname: ARriVal Time
     - shortname: ATC
       longname: Air Traffic Control
-    - shortname: ATIS
-      longname: Automatic Terminal Information Service
+    - shortname: ATCRBS
+      longname: Air Traffic Control Radar Beacon System
     - shortname: ATFM
       longname: Air Traffic Flow Management
+    - shortname: ATIS
+      longname: Automatic Terminal Information Service
     - shortname: ATM
       longname: Air Traffic Management
     - shortname: ATOW
       longname: Actual TakeOff Weight
-    - shortname: ATCRBS
-      longname: Air Traffic Control Radar Beacon System
     - shortname: ATS
       longname: Air Traffic Services
     - shortname: ATSU
@@ -57,26 +67,34 @@ acronyms:
       longname: Basic Regulation
     - shortname: CNS
       longname: Communication, Navigation, Surveillance
+    - shortname: CPDLC
+      longname: Controller–Pilot Data Link Communication
     - shortname: CPR
       longname: Correlated Position Report
     - shortname: CTFM
       longname: Current Tactical Flight Model
     - shortname: CTR
       longname: Control Zone
+    - shortname: CVOR
+      longname: Conventional Very High Frequency Omnidirectional Range
     - shortname: DDR2
       longname: Demand Data Repository version 2
     - shortname: DF
       longname: Downlink Format
+    - shortname: DME
+      longname: Distance Measuring Equipment
+    - shortname: DVOR
+      longname: Doppler Very High Frequency Omnidirectional Range
     - shortname: EASA
       longname: European Union Aviation Safety Agency
     - shortname: ECEF
       longname: Earth-Centered, Earth-Fixed
-    - shortname: ECTL
-      longname: EUROCONTROL
     - shortname: EC
       longname: European Commission
     - shortname: ECMWF
       longname: European Centre for Medium-Range Weather Forecasts
+    - shortname: ECTL
+      longname: EUROCONTROL
     - shortname: ERA5
       longname: ECMWF's fifth generation of Atmospheric Reanalysis
     - shortname: ES
@@ -87,6 +105,8 @@ acronyms:
       longname: European Union
     - shortname: FAA
       longname: Federal Aviation Administration
+    - shortname: FANS
+      longname: Future Air Navigation System
     - shortname: FDR
       longname: Flight Data Recorder
     - shortname: FIR
@@ -99,14 +119,28 @@ acronyms:
       longname: Flight Management System
     - shortname: FOQA
       longname: Flight Operational Quality Assurance
+    - shortname: FOG
+      longname: Fiber-Optic Gyro
     - shortname: FP
       longname: Flight Plan
+    - shortname: FRA
+      longname: Free Route Airspace
     - shortname: FTFM
       longname: Filed Tactical Flight Model
+    - shortname: FUA
+      longname: Flexible Use of Airspace
+    - shortname: GBAS
+      longname: Ground-Based Augmentation System
+    - shortname: GLS
+      longname: GNSS Landing System
     - shortname: GNSS
       longname: Global Navigation Satellite System
     - shortname: GPS
       longname: Global Positioning System
+    - shortname: GS
+      longname: Glide Slope
+    - shortname: HF
+      longname: High Frequency
     - shortname: IAS
       longname: Indicated AirSpeed
     - shortname: ICAO
@@ -117,18 +151,32 @@ acronyms:
       longname: Instrument Landing System
     - shortname: IMC
       longname: Instrument Meteorological Conditions
+    - shortname: INS
+      longname: Inertial Navigation System
     - shortname: IR
       longname: Implementing Rule
+    - shortname: IRS
+      longname: Inertial Reference System
     - shortname: ISO
       longname: International Organization for Standardization
+    - shortname: LOC
+      longname: Localizer
+    - shortname: LPV
+      longname: Localizer Performance with Vertical Guidance
     - shortname: MET
       longname: Meteorological Services
     - shortname: ML
       longname: Machine Learning
+    - shortname: MLAT
+      longname: Multilateration
+    - shortname: MON
+      longname: Minimum Operational Network
     - shortname: MTOW
       longname: Maximum TakeOff Weight
     - shortname: NAVAID
       longname: NAVigational AID
+    - shortname: NDB
+      longname: Non-Directional Beacon
     - shortname: NED
       longname: North-East-Down
     - shortname: NM
@@ -139,6 +187,8 @@ acronyms:
         - longname: Notices To Airmen
     - shortname: OSN
       longname: OpenSky Network
+    - shortname: PBC
+      longname: Performance-Based Communication
     - shortname: PBN
       longname: Performance-Based Navigation
     - shortname: PIB
@@ -153,20 +203,34 @@ acronyms:
       longname: Resolution Advisory
     - shortname: RAD
       longname: Route Availability Document
+    - shortname: RAIM
+      longname: Receiver Autonomous Integrity Monitoring
+    - shortname: RCP
+      longname: Required Communication Performance
+    - shortname: RLG
+      longname: Ring-Laser Gyro
     - shortname: RMSE
       longname: Root Mean Square Error
+    - shortname: RNAV
+      longname: Area Navigation
     - shortname: RNP
       longname: Required Navigation Performance
+    - shortname: RVR
+      longname: Runway Visual Range
     - shortname: SAR
       longname: Search And Rescue
+    - shortname: SBAS
+      longname: Satellite-Based Augmentation System
+    - shortname: SELCAL
+      longname: Selective Calling
     - shortname: SSR
       longname: Secondary Surveillance Radar
     - shortname: TA
       longname: Traffic Advisory
-    - shortname: TAS
-      longname: True AirSpeed
     - shortname: TACAN
       longname: TactiCal Air Navigation system
+    - shortname: TAS
+      longname: True AirSpeed
     - shortname: TCAS
       longname: Traffic alert and Collision Avoidance System
     - shortname: TMA
@@ -175,14 +239,22 @@ acronyms:
       longname: TakeOff Weight
     - shortname: UAT
       longname: Universal Access Transceiver
-    - shortname: UAV
-      longname: Unmanned Aerial Vehicle
     - shortname: UAS
       longname: Unmanned Aircraft System
+    - shortname: UAV
+      longname: Unmanned Aerial Vehicle
+    - shortname: UHF
+      longname: Ultra High Frequency
     - shortname: UIR
       longname: Upper Information Region
+    - shortname: VDB
+      longname: VHF Data Broadcast
+    - shortname: VDL
+      longname: VHF Data Link
     - shortname: VFR
       longname: Visual Flight Rules
+    - shortname: VHF
+      longname: Very High Frequency
     - shortname: VMC
       longname: Visual Meteorological Conditions
     - shortname: VOR
@@ -190,4 +262,3 @@ acronyms:
     - shortname: WTC
       longname: Wake Turbulence Category
 ---
-

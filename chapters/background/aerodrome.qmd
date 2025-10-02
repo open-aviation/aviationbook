@@ -25,7 +25,6 @@ Aerodromes falling under the scope of the *basic regulation* must be certified. 
 
 Certification specifications are stipulated by the EASA in the [**CS-ADR** document](https://www.easa.europa.eu/en/certification-specifications/cs-adr-dsn-aerodromes-design) for aerodromes and the [**CS-HPT** document](https://www.easa.europa.eu/en/document-library/certification-specifications/group/cs-hpt-dsn-heliports-design) for heliports. These certification specifications define to a great detail, how large parts of an aerodrome and a heliport have to be designed and built. For example, CS-ADR defines how runways, taxiways, or aprons of an aerdrome must be designed, sized, or marked.
 
-## Anatomy of an aerodrome
 An aerodrome can be divided into two distinct parts: the **airside** and the **landside**. Although there are different definitions for these two terms both in the literature and in the industry, we use the following definitions in this document:
 
 * The **airside** of an aerodrome covers all areas which can be used by aircraft. This includes both the maneouvring area as well as the apron(s) of an aerodrome.
@@ -33,12 +32,13 @@ An aerodrome can be divided into two distinct parts: the **airside** and the **l
 
 In the following, aerodrome infrastructure and components associated to the airside and the landside are introducted and described in more detail.
 
-### Airside components of an aerodrome
+## Airside components of an aerodrome
 <!--runway, taxiways, aprons-->
 The airside of an aerodrome consists of the maneouvring area and the apron(s). In CS ADR-DSN.A.002, the **manevouvring area** is defined as the *"part of an aerodrome to be used for the take-off, landing and taxiing of aircraft, excluding aprons"*. Consequently, the maneouvring area consists of both runway(s) and taxiway(s). As such, CS ADR-DSN.A.002 defines a **runway** as a *"rectangular area on a land aerodrome prepared for the landing and take-off of aircraft"*, while a **taxiway** is a *"defined path on a land aerodrome established for the taxiing of aircraft and intended to provide a link between one part of the aerodrome and another"*. Finally, the **apron(s)** of an aerodrome are according to CS ADR-DSN.A.002 defined as an *"area intended to accommodate aircraft for purposes of loading or unloading passengers, mail or cargo, fuelling, parking, or maintenance"*.
 
 <!--Aerodrome Reference Code-->
-::: {.callout-note}
+::: {.callout-tip}
+#### Critical aircraft, aerodrome reference code, and aerodrome code number
 Facilities on the airside of an aerodrome are designed and sized for a **critical aircraft**, which is either a real-world of fictitious aircraft. Consequently, aircraft that put higher requirements to the facilities than the critical aircraft, e.g., greater weight, longer wingspan, etc., cannot use the airport or parts of the airport. To prevent each aerodrome from having to describe individually which critical aircraft was used, an **aerodrome reference code** (ARC) which describes certain characteristics of the critical aircraft applied is used instead. As such, the ARC consists of two components: an aerodrome code number and a code letter. The **aerodrome code number** describes the reference field length of the critical aircraft in four categories:
 
 | Aerodrome code number | Reference field length       |
@@ -62,21 +62,20 @@ The **aerodrome code letter** describes in six categories the maximum wingspan o
 | F                     | $>$ 65 m and $\leq$ 80 m |
 : Aerodrome code letter (CS ADR-DSN.A.005) {#tbl-arc-letter}
 
-
 For example, an aerodrome with an ARC of "4F" can be used by aircraft with a reference field length of more than 1800m and a wingspan of up to 80m, whereas on an aerodrome with an ARC of "4E" the wingspan is limited to 65m.
 :::
 
-#### Runways
+### Runways
 Runways facilitate the landing and taking-off of aircraft. In terms of their geometric properties, a runway can be described in terms of its width, slope(s), length, and orientation. 
 
-The **width** of a runway is defined in CS ADR-DSN.B.045 and is usually measured from at outside edges of the runway. As such, the width of the runway depends both on the Aerodrome Code Letter (see Table @tbl-arc-number) and the Outer Main Gear Wheel Span (OMGWS) of the critical aircraft as indicated in Table @tbl-rwy-width. Thereby, the OMWGS describes the distance between the outside edges of the main gear wheels of the critical aircraft.
+The **width** of a runway, as defined in CS ADR-DSN.B.045, is measured between the outside edges of the runway. It depends on both the Aerodrome Code Number (see Table @tbl-arc-number) and the Outer Main Gear Wheel Span (OMGWS) of the critical aircraft (Table @tbl-rwy-width). The OMGWS is the distance between the outer edges of the main landing gear wheels of the critical aircraft.  
 
-| Aerodrome Code number | 4.5m $\leq$ OMGWS | 4.5m $\leq$ OMGWS $<$ 6m | 6m $\leq$ OMGWS $<$ 9m | 9m $\leq$ OMGWS $<$ 15m |
-|:---------------------:|------------------:|-------------------------:|-----------------------:|------------------------:|
-| 1                     | 18m               | 18m                      | 23m                    | -                       |
-| 2                     | 23m               | 23m                      | 30m                    | -                       |
-| 3                     | 30m               | 30m                      | 30m                    | 45m                     |
-| 4                     | -                 | -                        | 45m                    | 45m                     |
+| Aerodrome Code Number | OMGWS < 4.5 m | 4.5 m ≤ OMGWS < 6 m | 6 m ≤ OMGWS < 9 m | 9 m ≤ OMGWS < 15 m |
+|:---------------------:|--------------:|--------------------:|------------------:|-------------------:|
+| 1                     | 18 m          | 18 m                | 23 m              | –                  |
+| 2                     | 23 m          | 23 m                | 30 m              | –                  |
+| 3                     | 30 m          | 30 m                | 30 m              | 45 m               |
+| 4                     | –             | –                   | 45 m              | 45 m               |
 : Runway width (CS ADR-DSN.B.045) {#tbl-rwy-width}
 
 The **slope** of a runway is specified both longitudinally and transversely. The **longitudinal slope** refers to the slope of the runway along its longitudinal axis. The average longitudinal slope of a runway is determined "by dividing the difference between the maximum and minimum elevation along the runway centre line by the runway length" (CS ADR-DSN.B.060). Additionally, CS ADR-DSN.B.060 specifies the maximum longitudinal slope which must not been exceeded in any portion of the runway. Finally, airport designers must ensure that the change in slope between two consecutive portions of the runway is below a certain value. The applicable values for the average longitudinal slope, maximum longitudinal slope, and the maximum longitudinal slope change, which all depend on the aerodrome code number (see Table @tbl-arc-number), are summarized in Table @tbl-rwy-lgnt-slope
@@ -109,7 +108,9 @@ There is no requirement as to the **number** of runways an aerodrome must offer.
 The **layout** of an aerodrome runway system depends on how many runways are available at a site as well as how they are arranged and oriented in relation to each other. While in practice the runway systems of most aerodromes are unique, in theory a distinction is made between the following generic aerodrome layout types:
 
 * **Single runway**: As the name suggests, aerodromes with a single runway layout have a single runway, as is the case, for example, for the airports of London Gatwick (EGKK), Geneva (LSGG), Luxembourg (ELLX), or San Diego International (KSAN). Thanks to the existence of a single runway, the single runway layout is the moste simple one, as no dependencies between runways exist. Consequently, the one runway can be optimally utilised by air traffic control, which in practice leads to single runway aerodromes having a remarkably high capacity. Indeed, depending on the aircraft mix at the aerodrome (i.e., the percentage of large aircraft vs. smaller aircraft utilising the aerodrome), single runway aerodromes can handle up to 98 aircraft movements per hour under visual flight conditions according to FAA Advisory Circular 150/5060-5. Under instrument flight conditions, up to 59 aircraft movements per hour are realistic. However, single runway layouts also comes with certain disadvantages. For instance, taxi distances can be long at single runway aerodromes, as the terminal(s), dock(s) and thus also the stands for the aircraft are often located at one of the two runway ends (e.g. at London Gatwick). Moreover, aircraft operations at single runway aerodromes can also be affected by weather conditions resulting in crosswind situations. In such cases, no other, differently oriented runways are available on which lower crosswind components would result. Finally, an incident or even an emergency on the runway of a single runway airport leads to the entire flight operation having to be suspended. The same can also happen if certain maintenance work has to be carried out on the single runway.
+
 * **Open-V** or **open-L runways**: Airports that have an open-V or open-L runway layout have more than one runway, which have different alignments and do not cross at any point. In open-L layouts, the runways are perpendicular to each other, while in open-V layouts the angle between the runways is less or more than 90°. An example of an open-L layout can be found in Rome Fiumicino (LIRF), while Dublin Airport (EIDW) has an open-V layout. One of the advantages of open-V and open-L layouts is the circumstance that the capacity of the aerodrome can be substantially higher than with a single runway layout. According to FAA Advisory Circular 150/5060-5, aerodromes with an open-L or open-V layout can carry out up to 150 aircraft movements per hour under visual flight conditions and 59 movements under instrument flight conditions. Besides that, the aerodrome is less restricted with regard to crosswinds and, thanks to the availability of a second runway, incidents, accidents or maintenance on one runway do not lead to the complete closure of the airport. However, since the runways do not have the same orientation, aerodromes with an open-V or open-L layout have a greater land consumption. Furthermore, the expansion of the apron, terminals and docks may be limited by the runways. Moreover, incidents in the apex between the runways of airports with an open-V and open-L layout can lead to a strong impact on flight operations.
+
 * **Intersecting** or **crossing runways**: At aerodromes with an intersecting or crossing runway layout, the runways physically intersect. A good example of an airport where the intersecting runways are arranged at 90° to each other is New York LaGuardia (KLGA), while the intersecting runways at Hamburg (EDDH) or Basel-Mulhouse (LFSB) airports, for example, have an angle not equal to 90°. At airports with intersecting runways, they can never be operated independently, which increases the complexity for air traffic control. Likewise, the capacity of the aerodromes depends on which pister to land on, which runway to take off on and where the intersection between the runways is located. To illustrate this, consider two runway configurations for New York LaGuardia Airport as shown in Figure @fig-capacity-crossing-runway. In configuration (a), the aircraft land on runway 13 and take off on runway 22. Consequently, both a taking-off and a landing aircraft have "quickly" passed the intersection point between the two runways, which means that after a take-off or landing clearance has been granted on one runway, the other runway can be used again by other aircraft relatively quickly. In configuration (b), on the other hand, in which aircraft land on runway 04 and take off on runway 31, the intersection point is relatively far away. In this configuration, once a take-off or landing clearance is given on one runway, air traffic control has to wait a "long time" until the other runway can be used again. Consequently, the capacity of the airport is higher under configuration (a) than under configuration (b). In addition to these effects of crossing runways on airport capacity, there is the further complication that incidents and accidents at the crossing point can lead to the suspension of all flight operations at the airport.
 
 ![Influence of runway configuration on capacity of aerodromes with crossing runway layout.](../../images/illustrations/capacity_crossing_rwy.png){#fig-capacity-crossing-runway}
@@ -136,43 +137,341 @@ At some aerodromes with independent parallel runways, the thresholds are displac
 ![Staggered parallel runways using the example of Athens Eleftherios Venizelos International Airport (LGAV): (a) Reduced taxi times due to staggered parallel runways, (b) additional vertical separation between two approaching aircraft due to staggered parallel runways, (c) longitudinal view of parallel approaches on staggered runways.](../../images/illustrations/stagger_parallel_rwy.png){#fig-staggered-parallel-runway}
 
 #### Adjacent areas
-To increase the level of safety of flight operations, airports have to install a number of so-called *adjacent areas* around runways. In particular, a distinction is made between the following adjacent areas for runways: (i) runway shoulder, (ii) runway strip, and (iii) runway end safety area (RESA):
+The term *adjacent areas* refers to the land immediately bordering a runway, which is prepared and graded to reduce the risk of damage to aircraft, for instance in the event of a runway excursion. In the following, we discuss several types of adjacent areas, including (i) runway shoulders, (ii) runway strips, (iii) runway end safety areas (RESA), (iv) engineered materials arrestor systems (EMAS), as well as (v) clearways and stopways. Figure @fig-adjacentAreas summarizes the location and extent of the adjacent areas described. Note that the dimensions shown are not to scale.
 
-* runway shoulder,
-* runway strip,
-* runway end safety area (RESA)
+![Adjacent areas associated with a runway. Note, the dimensions shown are not to scale.](../../images/illustrations/stagger_parallel_rwy.png){#fig-adjacentAreas}
+
+* A **runway shoulder** is an area adjacent to the edge of runway (i.e. left and right of the runway), which serves as a transition between the paved runway and the adjacent surface. According to *CS ADR-DSN.B.125*, a runway shoulder "should be so constructed as to mitigate any hazard to an aircraft running off the runway or stopway or to avoid the ingestion of loose stones or other objects by turbine engines". The design requirements placed on runway shoulders depend on the aerodrome code letter of the airport. For aerodromes with a code letter from A to C, runway shoulders are not required. However, for aerodromes with a code letter from D to F, shoulders are required if the OMGWS of the critical aircraft exceeds 9 m.  
+
+* The **runway strip** is an area specifically designed and constructed to "reduce the risk of damage to an aircraft accidentally running off the runway, to protect aircraft flying over it during take-off or landing, and to enable safe use by rescue and firefighting (RFF) vehicles" (*CS~ADR-DSN.B.150*). The surface of the runway strip does therefore not need to be paved, but rather be prepared to allow safe operations of RFF vehicles. In addition, a runway strip must remain free of obstacles to prevent aircraft from colliding with them. Objects essential for air navigation or safety purposes, e.g., meteorological instruments, PAPI lights, runway lighting, or ILS antennae, may be installed, but they must be as low-profile as possible and frangible, i.e., designed to break or bend upon impact so as to minimize the risk of damage to an aircraft. The runway strip is further subdivided into the so-called *graded portion* and a *non-graded portion*.  
+The *graded portion* is intended to serve in the event of an aeroplane running off the runway, while the *non-graded portion* is to be kept obstacle-free in order to protect low-flying aircraft in case of a missed approach.
+
+* The safety objective of the **Runway End Safety Area (RESA)** is to "minimise risks to aircraft and
+their occupants when an aeroplane overruns or undershoots a runway" (*CS ADR-DSN.C.210*). In this context, an **undershoot** describes the incident in which an aircraft touches down too early, as was the case with [British Airways Flight 38](https://en.wikipedia.org/wiki/British_Airways_Flight_38). In contrast, an **overrun** is an incident during which an aircraft is not capable of coming to a full stop on the runway and therefore runs beyond its end. An example of a runway overrun is [Miami Air Flight 293](https://en.wikipedia.org/wiki/Miami_Air_International_Flight_293). A RESA is mandatory for runways with aerodrome code numbers 3 and 4, and for instrument runways with code numbers 1 and 2. In terms of dimensions, a RESA must be at least twice the width of the runway (recommended is the width of the graded portion of the strip) and have a minimum length of 90 m. However, the regulations recommend a length of 240 m.
+
+An **Engineered Material Arrestor System (EMAS)** may be installed in cases where space at runway ends is limited, e.g., at runway ends located directly adjacent to rivers or bodies of water. An EMAS is an arresting system “consisting of high-energy absorbing materials of specific strength, which will reliably and predictably crush under the weight of an aircraft” (*CS ADR-DSN.C.236*). EMAS installations are increasingly used in practice. A notable example can be found at Zurich Airport at the end of runway 28. Here, the EMAS is located just before the River Glatt to mitigate the risk of a runway overrun, which could otherwise have catastrophic consequences. There are different EMAS designs, but in most cases they consist of modular foamed-concrete blocks. When an aircraft enters an EMAS, these blocks crush under the aircraft’s weight, resulting in rapid but controlled deceleration. According to the regulation (*CS ADR-DSN.C.236*), an EMAS must be designed to stop the critical aircraft, at maximum take-off weight (MTOW) or at 80% of maximum landing weight (MLW), from a runway exit speed of 70 kt without causing structural damage to the aircraft. In terms of dimensions, the width of an EMAS must be at least equal to the runway width. No specific regulatory requirement exists for the length of an EMAS, as this depends on the type of EMAS product used, i.e., block design and materials used, as well as the operating conditions of the associated runway.
+
+* **Clearways** and **stopways** are also considered adjacent areas, which must always remain free of obstacles. Their installation is optional, as there is no regulatory requirement for airports to provide them. A clearway extends the Take-Off Distance Available (TODA) and begins at the end of the Take-Off Run Available (TORA). It may be located over land or water, but in all cases it must be readily accessible to rescue and firefighting (RFF) units. In contrast, a stopway extends the Accelerate-Stop Distance Available (ASDA). Its surface must be capable of supporting the weight of an aircraft without causing structural damage.
+
+#### Runway markings and lighting
+Runways at airports must be equipped with appropriate markings and lighting. In a first step, we will address the most important types of markings. In a second step, we will consider both the most important types of runway lighting and approach lighting.
+
+##### Runway markings
+Runway markings are designed to provide pilots with orientation and guidance during take-off, landing, and taxiing. They serve both an instructional function and an informational one. Runway markings are safety critical. For this reason, they are designed to be highly visible to the human eye through the use of distinct colors and strong contrast. As a rule of thumb: Runway markings are typically white, while markings on taxiways, turnpads, or stands are generally yellow.
+
+In the following, we discuss the most important types of runway markings:
+
+* The **runway designation marking** provides a visual indication of the runway designation. Located at each runway threshold, it consists of a two-digit number that may be supplemented by a letter in the case of parallel runways.
+
+* The **threshold marking** indicates the point at which the full strength of the runway pavement begins, meaning from this point onward the surface can support the full load of aircraft. These markings consist of white longitudinal stripes painted across the runway. Because their appearance resembles the keys of a piano, threshold markings are colloquially referred to as *piano keys*. According to *CS ADR-DSN.L*, the exact placement of threshold markings (i.e., the distance from the physical end of the runway), as well as the dimensions of the stripes (length and width) and their number, are strictly regulated. Moreover, the required number of stripes depends on the runway width.
+
+* **Displaced threshold markings** are used when the runway threshold is not located at the very beginning of the runway but is displaced further down. They are typically introduced for two main reasons: (i) they may be required when obstacles, such as buildings or trees, are present in the approach path, making it unsafe to land at the start of the runway; and (ii) they are often implemented temporarily during construction works, in which case the threshold can later be restored to its original position.  Note, the threshold markings on a runway with displaced threshold are identical to those on a standard runway without displacement. The actual displacement is indicated by a series of white arrows painted on the runway, pointing towards the displaced threshold.
+
+* The **centerline marking** indicates the middle of the runway. It consists of a dashed white line aligned with the runway direction, extending between the two runway designation markings. Centerline markings are required on all paved runways.  
+
+* The **side stripe marking** provides pilots with a clear indication of where the runway ends and the runway shoulder begins. It consists of a continuous white line. Side stripe markings are mandatory for precision approach runways and optional for non-precision and non-instrument runways.  
+
+* **Aiming point markings** and **touchdown zone markings** guide pilots during approach to identify the correct area of the runway for touchdown. The **aiming point marking**, which consists of two solid white rectangles, indicates the point on the runway where pilots should ideally aim to touch down. It is required on runways where both the aerodrome code number is 2, 3, or 4, and an instrument approach is provided. On runways equipped with a PAPI system (described later), the aiming point corresponds to the origin of the PAPI lights. On runways without PAPI lights, the location of the aiming point is determined by the landing distance available (LDA). The **touchdown zone markings** indicate the permissible touchdown area of a runway. They consist of pairs of white bars placed symmetrically along the runway. These markings are mandatory on runways offering a precision approach, while for non-precision or non-instrument runways they are only required at aerodromes with a code number of 3 or 4. The number of bar pairs used to mark the touchdown zone depends on the LDA.
+
+##### Runway lights
+Runway lights, like runway markings, provide orientation and guidance for pilots, particularly under poor visibility conditions (e.g., fog), during twilight, and at night. For this reason, runway lighting is safety-critical. In this section, we address three main aspects of runway lighting: (i) an overview of the requirements for the electrical systems that power the lights, (ii) the different types of runway lighting, and (iii) the approach lighting systems commonly used in practice.
+
+::: {.callout-tip}
+#### Types of runway lights
+
+Two types of lights are installed on runways: *inset lights* and *elevated lights*. 
+
+**Inset lights** are embedded into the pavement and must be designed to withstand the weight of aircraft taxiing over them as well as very high temperatures (e.g., in summer, when heated pavement and continuous lamp operation cause additional heat buildup inside the fixture).  
+
+**Elevated lights**, on the other hand, must not exceed a height of 0.36 meters and must be frangible, meaning that they are designed to break or bend when struck by an aircraft. This ensures that aircraft do not sustain structural damage in the event of a collision with a light.
+
+:::
+
+Because runway lighting is safety-critical, the runway cannot be used in conditions of poor visibility, twilight, or darkness if the lights fail. To ensure availability, runway lights are powered by both a primary and a secondary electrical circuit. Moreover, a continuous monitoring system supervises the functionality of all runway lights and triggers an alarm in the event of lamp failure. If the primary power supply fails, the system automatically switches to the secondary circuit to keep the lights operational. Regulations specify strict time limits for this switchover, which are particularly short on runways supporting precision approaches, thereby imposing demanding requirements on both the hardware and the monitoring software.
+
+Several different types of runway lights are used in practice. The main types are as follows:
+ 
+* **Runway edge lights** indicate the boundary between the runway and the runway shoulder, serving the same function as side stripe markings. Runway edge lights are mandatory on all runways intended for night operations, on precision approach runways, and on any runway where take-offs are conducted with a runway visual range (RVR) of less than 800 meters during the day. Runway edge lights are white, except for the last third of the runway in the direction of landing, where they are yellow. On instrument runways they are spaced 60 meters apart, while on non-instrument runways the spacing is 100 meters.  
+  
+* **Runway centerline lights** are installed along the centerline of the runway, although in practice they may be offset laterally by up to 60 cm. This offset prevents aircraft positioned on the exact centerline from rolling continuously over the lights, which could create distracting noise for the flight crew. Centerline lights are required on runways equipped for non-precision approaches where daytime take-offs are permitted with an RVR of less than 400 meters. The lights are spaced at 15-meter intervals and are normally white; in the last 900 meters of the runway they alternate red and white, and in the final 300 meters they are entirely red. This color coding provides pilots with a visual cue as they approach the runway end.  
+ 
+* **Touchdown zone lights**, similar to touchdown zone markings, indicate the area where aircraft are expected to touch down. They are mandatory on CAT II and CAT III runways. The lights are arranged in so-called *barrettes*, i.e., groups of three lights, symmetrically placed on either side of the runway centerline. The touchdown zone lighting extends 900 meters from the threshold into the runway.  
+
+* **Runway treshold lights** mark the beginning of the runway and are green in color. **Runway end lights** mark the end of the runway and are displayed as a red bar. If a stopway is provided, it is also delineated with red lights.
+
+![Most important types of runway lights in use.](../../images/illustrations/RWY_Lights.png){#fig-rwyLights}
+
+##### Approach lights 
+To guide pilots in the final approach, approach lights provide arriving aircraft with guidance and orientation under poor visibility conditions, at twilight, and at night. They are installed in the area preceding the runway threshold, with different configurations depending on the type of approach supported (i.e., CAT I, II, III, or visual approaches). In particular, approach lighting systems give pilots information about their spatial position (e.g., roll angle of the aircraft relative to the runway) and their distance to the threshold. The most commonly used approach lighting systems in practice include:
+ 
+* A **simple approach lighting** system is installed on runways with non-instrument approaches that have a code letter of 3 or 4, as well as on non-precision approach runways.  
+
+* **Precision approach CAT lighting** systems are used on runways supporting CAT I precision approaches. Two configurations exist: the *Calvert* system and the *Barrett centerline* system. Both feature an extended centerline and crossbars. In the Calvert system, distance is indicated by five crossbars that increase in width with distance from the threshold. In the Barrett centerline system, all lights are arranged in *barrettes*, i.e., groups of three lights. The single crossbar in this system is located 300 meters from the threshold. Often, Barrett systems also include so-called *running rabbits*—white lights that sequence along the centerline towards the threshold, providing dynamic guidance to pilots.
+
+* A **precision approach CAT II/III lighting** system is used on runways supporting CAT II or III precision approaches. The lighting system is essentially identical to that of CAT I. The key difference is that the first 300 meters of the extended centerline consist of barrettes, with two additional rows of red barrettes installed laterally on either side.
+
+##### Precision approach path indicator (PAPI) lights
+Precision Approach Path Indicator, commonly referred to as PAPI, provides pilots on final approach with visual information about the aircraft’s position relative to the nominal glide path. In simple terms, the PAPI system tells the flight crew whether they are too high, too low, or correctly aligned with the intended glide slope. 
+
+This information is conveyed by four horizontally aligned light units, which can appear either red or white. If all four lights are red, the aircraft is too low; two white and two red indicate that the aircraft is on the correct glide path; and four white lights mean the aircraft is too high. PAPI lights are typically installed on the left side of the runway (as seen from the approach direction). In the “on glide path” configuration (two white, two red), the two red lights are positioned on the side closest to the runway.
+
+At some aerodromes, an *Abbreviated PAPI* (APAPI) is used. An APAPI consists of only two lights, but the operating principle is the same: two white lights mean “too high,” two red lights mean “too low,” and one white plus one red light indicates that the aircraft is on the glide path. 
+
+![Most important types of runway lights in use.](../../images/illustrations/PAPI.png){#fig-PAPI}
+
+#### Obstacles
+In addition with the geometric standards associated with the design of runways, there are specific requirements concerning the protection of airspace around aerodromes to provide for the safe navigation of aircraft to and from the airport. In this context, we have to differentiate between (i) requirements aiming for the obstacle-free construction of visual and instrument flight procedures, as covered for instance in ICAO Document 8169 (PANS-OPS), as well as (ii) obstacle limitation surfaces (OLS) und obstacle free zones (OFZ) for a particular runway and its intended operations. OLS and OFZ  are covered in ICAO Annex 14 and EASA CS ADR-DSN. While OLS aim at protecting aircraft in flight from fixed (whether temporary or permanent), OFZ protect aircraft from both fixed and mobile objects. In the following, we will discuss the various OLS and OFZ types that must be taken into account in airport planning and airport operations. We will then address the issue of how OLS and OFZ must be dimensioned in accordance with CS ADR-DSN.
+
+##### Obstacle limitation surfaces (OLS)
+An **Obstacle Limitation Surface (OLS)** is a set of imaginary, three-dimensional planes established around an aerodrome to define the limits to which fixed objects (e.g., buildings, trees, lamp posts, etc.) may project into the airspace. These OLS protect aircraft on take-off, during climb-out, and in the final phase of the approach-to-land manoeuvre from colliding with fixed obstacles.
+
+There are various different OLS types, each of which has a specific function, which we discuss in more detail in the following: 
+
+* The **inner horizontal surface** is a horizontal plane located above the aerodrome, centered on the runway, and extending in a circular shape with a defined radius. Its safety objective is to protect landing aircraft during a *circle-to-land* maneuver from fixed obstacles. In this procedure, an aircraft approaches one runway direction, then flies a circling pattern before landing in the opposite direction. Such procedures are typically used at airports located in valleys, such as Innsbruck.
+ 
+* The **conical surface** has the safety objective, similar to the inner horizontal surface, of facilitating safe visual maneuvering in the vicinity of the aerodrome (*CS ADR-DSN.H.415*).
+
+* The **approach surface** has the safety objective *"to protect an aircraft during the final approach to the runway by defining the area that should be kept free from obstacles to protect an aeroplane in the final phase of the approach-to-land manoeuvre"* (*CS ADR-DSN.H.425*). The approach surface consists of several sections: The first and second sections are inclined, whereas the horizontal section is level. Furthermore, the approach surface has a conical shape: at the elevation of the runway strip it is as wide as the strip itself, then gradually diverges outward.
+
+* The **take-off climb surface** protects aircraft during the take-off and climb-out phases from fixed obstacles (*CS ADR-DSN.H.435*). Unlike approach surfaces, the take-off climb surface consists of a single inclined section in the vertical plane. At ground level, its width corresponds to that of the runway strip, gradually diverging with altitude until a specified maximum width is reached, beyond which it remains constant.  
+
+* The **transitional surface** defines the limits of the area available along the runway for buildings, structures, or natural obstacles (*CS ADR-DSN.H.430*). The transitional surface lies between the approach and take-off climb surfaces along the runway strip.
+
+##### Obstacle free zones (OFZ)
+Obstacle Free Zones (OFZ) are only required on runways with Category II and III (CAT II/III) approaches. As these approaches place higher demands on safety levels and navigation accuracy, OFZs are used to (i) impose higher obstacle clearance requirements, and (ii) to protect aircraft not only from fixed obstacles but also from mobile ones, e.g., aircraft taxiing on the ground at an airport.  
+
+For example, OFZs ensure that aircraft taxiing on the ground cannot enter the critical and sensitive areas of the instrument landing system, which can lead to a degradation of signal quality and thus a reduction in navigation accuracy.  
+
+In practice, the following three different OFZ types are used:  
+
+* The **inner approach surface:** is directly adjacent to the runway strip and is a rectangular area that protects aircraft on final approach for CAT II or CAT III approaches from fixed and mobile obstacles.  
+
+* The **inner transitional surface** has the same function as the transitional surface: it protects aircraft from objects located along the runway. Unlike the transitional surface, the inner transitional surface is closer to the runway and also protects aircraft from mobile objects. Due to the requirements of the inner transitional surface in particular, runways with CAT II/III approaches usually have two holding points per taxiway instead of just one holding point, as is common with non-precision and CAT I runways. The holding point further away from the runway centreline is used for CAT II/III operations, while the closer holding point is used for all other types of operations.
+
+* The **balked landing surface** serves to protect aircraft that perform a go-around during a CAT II/III approach from fixed and mobile obstacles. The balked landing surface is therefore located on the opposite side of the runway from the approach.
+
+### Taxiways
+
+Taxiways are built to ensure the safe and efficient movement of aircraft on the ground, linking stands to runways and vice versa. Their design follows a set of fundamental principles aimed at safety, clarity, and long-term usability.  
+
+Wherever possible, taxiways should be straight. If curves are necessary, they must have radii that aircraft can realistically follow, with additional pavement areas (*fillets*) provided to accommodate the main landing gear. Equally important is a simple and intuitive layout that enables clear taxi routes, prevents pilot confusion, and ensures air traffic control instructions remain straightforward.  
+
+Taxiways must also be designed with expandability in mind. Systems should allow for later extensions without major reconstruction, supporting phased airport growth. For instance, from an initial layout for 20,000–30,000 annual movements to one accommodating 150,000–250,000 movements.  
+
+Sustainability is another key principle: taxi routes should be as short as possible to reduce fuel consumption and environmental impact.  
+
+Above all, safety is paramount. Ideally, taxiways should be fully visible from the control tower, giving controllers a clear overview of ground operations. Runway crossings should be avoided; if unavoidable, they should intersect at right angles (90°), providing optimal visibility for flight crews (similar to road junctions). Designers are also encouraged to prevent the formation of *hotspots*, areas where pilot error is more likely. A well-known example was Zurich Airport’s Taxiway H1, a rapid exit from Runway 14 that could lead aircraft directly onto the apron around Dock E at high speed. To mitigate the risk, part of Taxiway H1 was closed, reducing the chance of dangerous incursions.  
+
+Where hotspots cannot be fully eliminated, they are marked on aerodrome taxi charts and often accompanied by explanatory notes that describe the specific hazard.  
+
+#### Taxiway types
+At aerodromes, several different taxiway types are distinguished. These taxiway types serve different functions, which we will discuss in more detail below.
+* **Aircraft Stand Taxilane:**  
+  An aircraft stand taxilane is a taxiway located on the apron, intended solely to provide access to aircraft stands. To maintain efficiency on cul-de-sac aircraft stand taxilanes, no more than five stands per side should be connected to such taxilanes, as excessive stand numbers may cause congestion. For example, an aircraft being pushed back and starting its engines may block part of the taxilane for 3–5 minutes, during which other aircraft cannot pass.  
+
+* **Apron Taxiway:**  
+  An apron taxiway is part of the taxiway system located on an apron, providing a through-route across the apron but not direct access to stands (which is the function of taxilanes). At some airports, apron taxiways are designed to accommodate different aircraft codes simultaneously — for example, central portions may support larger Code E aircraft, while adjacent sections are restricted to Code C aircraft. This allows Code C aircraft to cross or pass each other, improving apron traffic flow.  
+
+* **Rapid Exit Taxiway (RET):**
+  Rapid Exit Taxiways (RETs) are taxiways connected to a runway at an acute angle of 25° to 45°, designed to enable aircraft to vacate the runway at relatively high speeds after landing. Their main purpose is to minimize the average *runway occupancy time* (ROT) of arriving aircraft, i.e., the time an aircraft remains on the runway after touchdown. Since only one aircraft can occupy a runway at a given moment, a runway's throughput (i.e., the number of aircraft movements it can handle per unit time) depends on how quickly aircraft clear the runway.
+
+* **Perimeter Taxiway:**  
+  A perimeter taxiway runs around the ends of runways to avoid runway crossings. They are usually built at large airports. By eliminating runway crossings, perimeter taxiways decouple runway operations (arrivals and departures) from crossing traffic, improving throughput and safety by reducing runway incursion risks. However, perimeter taxiways require significant space and are costly compared to simple runway crossings.  
+
+* **Bypasses:**  
+  A bypass is a widened section of taxiway allowing aircraft to overtake or cross one another. Bypasses enable air traffic controllers to adjust departure sequences, which helps optimize airspace usage. They are also sometimes used for engine run-up checks or altimeter checks.  
+
+* **Holding Positions / Holding Points:**  
+  Holding positions are designated areas before runways where departing aircraft wait for clearance to line up. Ideally, holding positions are arranged at 90° to the runway to give pilots maximum visibility of both the runway and the approach corridor. However, angled holding positions allow departing traffic to line up more quickly, reducing occupancy times and increasing runway capacity. Parallel holding positions along the runway further allow overtaking and give controllers more flexibility in sequencing departures.  
+
+  The required distance from the runway holding position to the runway centerline depends on the aerodrome code number and runway type. On runways with CAT II/III approaches, requirements are the most stringent, as obstacle-free zones (OFZ) and ILS critical/sensitive areas must be respected.  
+
+  The table below summarizes the prescribed distances between the runway holding position and the runway centerline. For example, on a Code 4 runway with a CAT I approach, the required distance between the holding position and the runway centerline is 90 m.  
+
+  | Type of Runway      | Code 1 | Code 2 | Code 3 | Code 4 |
+  |---------------------|--------|--------|--------|--------|
+  | Non-instrument      | 30 m   | 40 m   | 75 m   | 75 m   |
+  | Non-precision       | 40 m   | 40 m   | 75 m   | 75 m   |
+  | CAT I Approach      | 60 m   | 60 m   | 90 m   | 90 m   |
+  | CAT II/III Approach | --     | --     | 90 m   | 90 m   |
+  | Take-off Runway     | 30 m   | 40 m   | 75 m   | 75 m   |
 
 
-Some adjacent areas can be provided 
+#### Dimensioning of taxiways
+When designing taxiways, particular challenges arise in the layout of curved taxiway segments and their required minimum radii, the provision of taxiway shoulders and strips, as well as the definition of separation distances between taxiway centerlines and adjacent objects. 
 
-* clearway
-* stopway
+The **minimum curve radius** $r_{\text{min}}$ of a taxiway depends on the maximum permitted taxi speed $v_{\text{max}}$, as shown in the following equation:  
+
+$$
+r_{\text{min}} = \frac{v_{\text{max}}^{2}}{g \cdot f}
+$$
+
+where $g = 9.81 \,\text{m/s}^2$ is the gravitational acceleration, and $f = 0.133$ is the maximum allowable lateral load factor.  
+
+The **width** of a taxiway, together with its shoulders and strips, is specified in *CS ADR-DSN.D*. The required dimensions depend on the OMGWS of the critical aircraft. For example, for a Code C aircraft (such as the A320, B737, or A220), the taxiway must have a width of 15 m, the shoulders a width of 25 m, and the strip a width of 52 m. Note that all dimensions refer to edge-to-edge measurements.  
+
+| Code Letter | OMGWS     | Taxiway | Shoulder       | Strip |
+|-------------|-----------|---------|----------------|-------|
+| A           | < 4.5 m   | 7.5 m   | not required   | 31 m  |
+| B           | 4.5–6 m   | 10.5 m  | not required   | 40 m  |
+| C           | 6–9 m     | 15 m    | 25 m           | 52 m  |
+| D           | 9–15 m    | 23 m    | 34 m           | 74 m  |
+| E           | 9–15 m    | 23 m    | 38 m           | 87 m  |
+| F           | 9–15 m    | 23 m    | 44 m           | 102 m |
+
+**Taxiway Shoulders** are mandatory on taxiways designed for critical aircraft with code letters C, D, E, and F. In these cases, both straight and curved sections of the taxiway must be provided with shoulders. The primary safety objective of a shoulder is to ensure a smooth transition between the full-strength taxiway pavement and the adjacent surface, thereby minimizing the risk of engine damage (e.g., from ingesting loose stones), preventing erosion along the pavement edge, and allowing Rescue and Fire Fighting (RFF) vehicles to operate if required. The shoulder surface must be designed to withstand the occasional passage of an aircraft wheel, although full-strength pavement (i.e., concrete) is not mandatory.  
+
+The safety objective of the **Taxiway Strip** is to minimize hazards that may arise if an aircraft inadvertently veers off the taxiway. For this reason, fixed obstacles are not permitted within the taxiway strip. Taxiway strips must be provided for all taxiway types except aircraft stand taxilanes.  
+
+**Minimum separation distances** in the context of taxiways define the minimum required spacing between the taxiway centerline and other features such as runways, parallel taxiways, aircraft stand taxilanes, fixed objects, or parked aircraft. Separation distances depend on the code letter of the critical aircraft for which the taxiways are designed, and to some extent also on the taxiway type. In general, larger aircraft and taxiways where higher taxi speeds are permitted require greater separation distances than smaller aircraft or low-speed taxilanes.  Taxi speed plays a key role, as even minor lapses in pilot attention at higher taxi speeds can lead to larger deviations from the taxiway centerline. For this reason, taxiways intended for higher-speed operations are designed with larger separation distances to provide an additional safety margin.  
+
+::: {.callout-tip}
+#### Minimum taxiway separation distances required in practice
+
+Figure [fig-minSepDistTWY] provides an overview of the minimum separation distance requirements for taxiways. These requirements depend primarily on the code letter of the critical aircraft and, in cases where runways are involved, also on the aerodrome code number and the type of runway (instrument vs. non-instrument). To determine the minimum separation distances, the figure differentiates between the following five cases:
+
+1. *Distance between taxiway centerline and runway centerline* specifies the minimum required distance between the centerline of a runway and the centerline of a parallel taxiway. A distinction is made between instrument runways (which are subject to more stringent requirements) and non-instrument runways. In addition, the required distance depends on the aerodrome code number.  
+
+2. *Taxiway centerline to taxiway centerline* defines the minimum required separation between the centerlines of two parallel taxiway segments.  
+
+3. *Taxiway, other than aircraft stand taxilane, centerline to object* specifies the minimum required distance between the centerline of a taxiway (excluding aircraft stand taxilanes) and fixed objects such as buildings, light masts, or other infrastructure.  
+
+4. *Aircraft stand taxilane centerline to aircraft stand taxilane* specifies the minimum required distance between two aircraft stand taxilanes, and by implication, also the distance between adjacent stands.  
+
+5. *Aircraft stand taxilane centerline to object* specifies the minimum required distance between the centerline of an aircraft stand taxilane and fixed objects such as buildings, light masts, or passenger boarding bridges.  
+
+![Minimum Separation Distance Requirements for Taxiways. The distances are given in meters. From CS ADR-DSN.D.260.](../../images/illustrations/CS_ADR-DSN_D_260.png){#fig-minSepDistTWY}
+
+As an example, consider an aerodrome with code number 4, an instrument runway, and a critical aircraft of category E. In this case, the minimum required separation between the runway and taxiway centerlines is 172.5 m. Similarly, for two parallel taxiways designed for Code C aircraft, the minimum required centerline-to-centerline separation is 44 m. If these requirements cannot be met in practice, reclassification may be necessary. 
+
+:::
 
 
-#### Runway markings
+#### Marking of taxiways
+Markings on taxiways, runway turnpads, and stands are generally painted yellow to ensure high contrast, making them easy for flight crews to read and interpret unambiguously.
+In the following, we discuss the taxiway marking types most commonly used in practice, namely centerline markings, side stripe markings, runway holding positions, and mandatory instruction markings:
 
-#### Runway lights
+* **Centerline marking** Provide pilots with continuous guidance between the runway and the stand, and vice versa.  
+They are generally painted in yellow and consist of a continuous line approximately 20 centimeter wide. At some airports, centerlines are color-coded on apron areas (e.g., apron taxiways) to improve clarity. For example, at Frankfurt Airport, color coding allows certain taxiways to be used either by one Code E/F aircraft or simultaneously by two Code C aircraft, thereby reducing potential capacity bottlenecks on apron taxiways.
 
-#### Obstacle limitation surfaces (OLS) and obstacle free zones (OFZ)
+* **Side Stripe Markings** indicate the boundary between the load-bearing and the non-load-bearing portions of a taxiway. In other words, they show flight crews where aircraft may safely taxi (where the pavement has sufficient strength to support the aircraft) and where they must not taxi. A side stripe marking consists of a pair of yellow lines, each line approximately 15 cm wide and separated by 15 cm. To enhance visibility and interpretation for flight crews, additional stripes are sometimes placed on the non-load-bearing side. This precaution helps prevent pilots from inadvertently taxiing onto non-load-bearing areas or over nearby surface irregularities such as channels or ditches.
 
-#### Taxiways
+* **Runway Holding Position Markings** indicate the point at which flight crews must stop their aircraft before entering a runway. Without explicit clearance from air traffic control (ATC), crews are not permitted to cross runway holding position markings. Holding positions are defined and designed to protect the runway from incursions (i.e., the unauthorized entry or crossing of a runway by flight crews) and to safeguard the critical and sensitive areas of the Instrument Landing System (ILS) from interference caused by taxiing aircraft. 
+  
+  In practice, two different patterns are used for marking holding positions: *Pattern A* and *Pattern B*. Both are painted in yellow. *Pattern A* is always applied, while *Pattern B* is used only at runway entries of CAT I/II/III runways with two or more holding positions. In such cases, the marking closest to the runway is drawn in *Pattern A*, while all additional holding position markings are drawn in *Pattern B*. *Pattern A* allows flight crews to determine on which side of the marking the runway is located: the dashed line always faces the runway side, while the solid line faces away from the runway. In this way, *Pattern A* is read similarly to centerlines in road traffic.
 
-* Taxiway dimensioning
-* Taxiway marking, lighting, signage
+* **Enhanced Taxiway Centerline Markings** are often applied in the area leading up to runway holding positions to increase flight crews’ situational awareness of the proximity of a runway. These markings are not mandatory but are implemented on a voluntary basis. Studies have shown that enhanced centerline markings contribute positively to reducing the risk of runway incursions. Enhanced Taxiway Centerline Markings consist of dashed lines placed on either side of the standard centerline marking.
+
+* **Mandatory Instruction Markings** are painted on the pavement in front of a holding point when the taxiway is wider than 60 m or when signage cannot be installed. These markings consist of white lettering on a red background.
+
+#### Lighting of taxiways
+Taxiway Lighting has the same purpose as taxiway markings, but lighting provides additional support to pilots, particularly at night, during twilight, and in poor visibility. Below, we describe a series of taxiway lights that are commonly used in practice. These include centerline lights, edge lights, stop bar lights, and no-entry bar lights.
+
+* **Taxiway Centerline Lights** are green lights that provide flight crews with centerline guidance under low-visibility conditions. In the area before reaching a runway, the lights alternate between green and yellow to raise pilots' situational awareness of the approaching runway. The installation of taxiway centerline lights is not mandatory but optional.  
+
+* **Taxiway Edge Lights** are blue lights installed along the edges of taxiways. In contrast to taxiway centerline lights, the installation of edge lights is mandatory. 
+  
+  At some airports, taxiway edge lights are replaced with taxiway edge *markers*. Markers are passive light sources that reflect blue when illuminated by aircraft landing lights. The main reason for using markers is to mitigate the so-called *sea of blue effect*, which occurs when many blue lights are installed close together, making it difficult for the human eye to distinguish individual light sources [CASB, 1987].  
+
+* **Stop Bar Lights & No-Entry Bar Lights** are red lights arranged in a bar formation, clearly indicating to pilots that they must not taxi beyond this line. Stop bars are installed both at runway holding positions and at critical intersections within the taxiway system where two taxiways cross.  
+
+  Stop bar lights can be either *unidirectional* or *bidirectional*. Unidirectional lights are commonly used at runway holding positions: the red lights are visible only when approaching the runway from the taxiway. When viewed from the opposite direction, i.e., when vacating the runway across a unidirectional stop bar, pilots will not see the red lights (in most cases, green lights are displayed instead). Bidirectional stop bar lights, by contrast, are visible in both directions of movement.  
+
+  Stop bar lights are actively controlled by air traffic control. When a flight crew receives clearance to enter or line up on the runway, the controller can deactivate the stop bar, or switch it from red to green, providing the pilots with a clear visual confirmation that they are authorized to proceed.
+
+#### Signage of Taxiways
+Taxiway signs are part of the *taxi guidance system* and assist pilots in safely navigating an aerodrome. Signs must be installed so that they cannot be struck by aircraft, and they are required to be *frangible*, meaning that they will collapse or break if hit, preventing structural damage to the aircraft.  
+
+A distinction is made between instruction signs and information signs. **Instruction Signs** are easily recognizable by their red background with white lettering. They are used to identify runways and holding positions, as well as to mark no-entry points where access to a runway is prohibited. If a runway entry is located at the runway end, the instruction sign shows only a single runway designation. In this case, taxiing onto the runway leads directly onto the indicated runway. If the runway entry is not at the end of the runway, the sign displays both runway designations.
+
+At holding positions of *CAT I, II, and III* runways, the approach category corresponding to the holding point is also displayed. Where multiple holding positions exist (e.g., for aerodromes with CAT II or CAT III operations), each holding position is marked with the corresponding category.  
+
+**Information Signs** are subdivided into *Location Signs* and *Direction Signs*.  
+
+* **Location Signs** have a black background with yellow lettering and indicate the taxiway on which the aircraft is currently located.  
+* **Direction Signs**, with a yellow background and black lettering, provide directional guidance at intersections.  
 
 
-Types of taxiways:
-* "Normal" taxiways
-* Apron stand taxilane
-* Apron taxiway
-* Rapid exit taxiway
+### Aprons and Stands
+In the following, we first examine different apron categories and their functions, as well as apron design principles. We then turn to stands, discussing their types, operational requirements, and associated infrastructure.
+
 
 #### Aprons
+According to EASA CS ADR DSN, an apron is defined as an area on an aerodrome designated for the loading and unloading of aircraft. This includes the handling of passengers, mail, baggage, and cargo. In addition, aprons are used for refueling, maintenance, cleaning, potable water supply, catering services, and other ground-handling operations.  
 
-* Aprons
-* Stands
+::: {.callout-tip}
+### Apron Categories
+Various apron categories are used at airports (Note: not all categories are used at all airports). The most important categories are as follows:
 
-### Landside components of an aerodrome
+* **Passenger Terminal Aprons**  
+  Located near passenger terminals and concourses. They are specifically designed for the handling of passengers and baggage. Passenger terminal aprons typically include *contact stands* (directly adjacent to terminal buildings and usually equipped with passenger boarding bridges) as well as *open stands* (also called *remote stands*), where passengers are transported to the aircraft by bus or walk across the apron.  
+
+* **Remote Parking Aprons**  
+  Used when aircraft remain on the ground for an extended period. Since it is economically inefficient to occupy stands at passenger terminal aprons for long-term parking, aircraft are relocated to remote aprons.  
+
+* **General Aviation Aprons**  
+  Serve general aviation aircraft and are typically located in areas of the airport where general aviation operators are based.  
+
+* **Cargo Terminal Aprons**  
+  Specifically designed for the handling of dedicated cargo flights.  
+
+* **Service Aprons**  
+  Found in the vicinity of aircraft maintenance facilities, provided such operations exist at the aerodrome.  
+
+* **Isolated Aprons**  
+  Perhaps the least known category. Almost every airport has at least one isolated apron, located far from critical infrastructure such as runways, terminals, or navigation facilities. They are used in emergency or threat situations (e.g., a bomb threat on board an aircraft) to safely and efficiently neutralize the hazard. The exact location of isolated aprons is usually not disclosed publicly but is well known to an airport’s emergency response units.  
+:::
+
+*EASA CS ADR DSN* and *ICAO DOC 9157* recommend a series of **safety, security, and design principles** for aprons. First, aprons should be designed to allow the *simultaneous movement* of aircraft and ground vehicles. Unauthorized access by third parties must be prevented; hence, aprons are typically fenced and strictly controlled areas. From an operational perspective, apron design should aim to provide optimal and short taxi routes for aircraft in order to minimize delays. The goal is to reduce the time aircraft spend taxiing with engines running, thereby limiting environmental impacts. Whenever possible, each origin–destination pair (i.e., stand to runway, and vice versa) should have more than one available taxi route. This redundancy allows air traffic to reroute in case of congestion.  
+
+Where feasible, and if desired by the airport operator or handling agents, it is recommended to provide *fixed installations* for fueling and electrical power supply (e.g., underground fuel dispensers or ground power outlets embedded in the apron pavement), as well as an adequate integration of the baggage handling system into apron processes. However, such fixed infrastructure is typically expensive and therefore only economically justified at larger airports. Finally, a crucial design principle is that aprons must be planned with *expandability* in mind. Ideally, apron areas should be developed in modular units so that future airport expansions are not constrained by initial design choices.  
+
+An apron consists not only of stands but also of several other components. To enable aircraft to taxi to and from the stands, *apron stand taxilanes* are used, while *apron taxiways* facilitate the circulation of taxiing aircraft within the apron area. For parking, pilots follow *lead-in lines*, and when departing from stands under their own power, flight crews use *lead-out lines*. These lines are painted in yellow and carefully designed to ensure that aircraft following them do not collide with fixed objects surrounding the stands, e.g., buildings, light poles. In addition, aprons are equipped with *service roads* for ground vehicles.  
+
+
+#### Stands
+In the following, we take a closer look at aircraft stands. Specifically, we will examine different stand types, the required dimensions for stands, as well as clearance requirements.
+
+##### Types of stands
+Broadly, two main types of stands are distinguished: *contact stands* and *remote/open stands*.  
+
+* **Contact stands** are directly connected to a passenger terminal building, allowing passengers to board and disembark the aircraft via a jet bridge. Since passengers can move directly between the terminal and the aircraft, contact stands are generally preferred by passengers and perceived as offering higher service quality.  
+
+  To ensure precise aircraft positioning on stands, different lead-in guidance systems are used in practice:  
+
+  - *Docking Guidance Systems* automatically detect whether an approaching aircraft is aligned with the lead-in line and measure its lateral deviation. In addition, the system continuously monitors the aircraft’s distance to the designated stop point. Both pieces of information are displayed to pilots on a digital display, enabling them to taxi onto the stand independently.  
+  - *Marshallers* are ground staff who guide aircraft onto stands using illuminated wands. Based on standardized hand signals, they provide pilots with clear instructions for parking.  
+  - *Azimuth Guidance for Nose-In Stands (AGNIS)* is a hybrid between a docking guidance system and a marshaller. AGNIS consists of two components: the azimuth guidance unit, which indicates whether the aircraft is aligned with the centerline, and the stop information system, which shows how far the aircraft must taxi to reach the stop point. Both systems function mechanically, using parallax and shutters that make certain display elements visible only from specific angles.  
+
+  The main disadvantage of contact stands is that aircraft typically cannot depart under their own power and instead require a pushback. In this process, a tug repositions the aircraft onto the taxiway so that engines can be started. Pushback operations are complex and require experienced personnel. They also frequently block adjacent taxiways during the maneuver.  
+
+* **Remote stands** are not directly connected to passenger buildings. Instead, passengers either walk to these stands or are transported by bus. Remote stands may be equipped with lead-in guidance systems (mainly at large airports), or aircraft may be guided by marshallers. In other cases, pilots rely exclusively on painted lead-in lines, often combined with a stop line on the pavement, positioned so that it is clearly visible from the cockpit.  
+
+  In addition to the distinction between contact and remote stands, stands can also be categorized by the way aircraft are positioned:  
+
+  - **Angled / Nose-In & Nose-Out Stands** allow aircraft to taxi onto the stand under their own power and depart the stand without requiring a pushback. These are common at airports with lower traffic volumes.  
+  - **Parallel Stands** are aligned parallel to the terminal building. They are simple to lay out and do not require pushbacks, but they need more space and may create issues related to jet blast and equipment storage.  
+  - **Taxi-In & Push-Out Stands** are the most common worldwide. Although they require a pushback, they use space efficiently, integrate well with passenger terminals, and ensure safe operations.  
+  - **Multiple Aircraft Ramp System (MARS) Stands** are designed to accommodate different aircraft size categories on the same apron area. They offer flexibility but introduce operational complexity because the allocation of positions depends heavily on the aircraft already parked.  
+
+##### Stand dimensions
+The **geometric dimensions** required for aircraft stands depend on the code letter of the critical aircraft (Code A to F), and in particular on the maximum wingspan within each category.  
+
+| Code Letter | Example A/C Type | Width of Stand | Length of Stand | Clearance |
+|-------------|------------------|----------------|-----------------|-----------|
+| A           | Learjet 45       | 15 m           | 17.88 m         | 3 m       |
+| B           | CRJ9             | 24 m           | 36.3 m          | 3 m       |
+| C           | B727             | 36 m           | 46.7 m          | 4.5 m     |
+| D           | MD11             | 52 m           | 61 m            | 7.5 m     |
+| E           | A346             | 65 m           | 75.4 m          | 7.5 m     |
+| F           | A748             | 80 m           | 76.3 m          | 7.5 m     |
+
+In addition to wingspan, the maximum aircraft **length** is also important in determining the required size of a stand. For example, for Code C aircraft, it is recommended to base the design on the Boeing 727, implying that Code C stands should be at least 46.7 m long.  
+
+The table also specifies the required **clearance** between adjacent stands. For two adjacent Code C stands, a clearance of 4.5 m is required, while for two adjacent Code D, E, or F stands, the clearance must be at least 7.5 m.  
+
+
+## Landside components of an aerodrome
 <!--terminals & docks-->
 
 
