@@ -19,7 +19,7 @@ The most widely used system for voice communication is \acrfull{VHF} radio, oper
 
 For long-haul flights over oceans and other remote areas, \acrfull{HF} radio is used. \acr{HF} signals reflect off the ionosphere, enabling communication across thousands of kilometers where \acr{VHF} coverage is not possible. The system is less reliable than \acr{VHF} because signal quality depends on solar activity, time of day, and atmospheric conditions. Communication may be lost temporarily, and the audio quality is often poor. To reduce the burden on pilots, who would otherwise need to monitor the noisy channels continuously, \acrfull{SELCAL} is used: each aircraft has a unique code, and only when addressed by \acr{ATC} does the cockpit receive an audible alert.  
 
-In procedural or non-radar airspace, pilots also provide \acp{AIREP}. These reports contain position, weather observations, turbulence, and other relevant data and are transmitted to \acr{ATC} or Flight Information Services via voice, typically over \acr{VHF} or \acr{HF}. \acp{AIREP} are an important complement to radar surveillance and remain vital in oceanic and remote regions.
+In procedural or non-radar airspace, pilots also provide \acr{AIREP}. These reports contain position, weather observations, turbulence, and other relevant data and are transmitted to \acr{ATC} or Flight Information Services via voice, typically over \acr{VHF} or \acr{HF}. \acr{AIREP} are an important complement to radar surveillance and remain vital in oceanic and remote regions.
 
 ### Data communications
 
@@ -41,16 +41,16 @@ In aviation, the above-mentioned rudimentary methods of navigation can be employ
 
 ### Non-Directional Beacon (NDB)
 
-The \acrfull{NDB} is a ground-based transmitter that radiates a simple, omnidirectional signal in the low and medium frequency bands, typically between **190 and 535 kHz**. In some regions, operation extends to higher frequencies, but the majority of aeronautical \acp{NDB} are confined to this internationally allocated band. \acp{NDB} are channelized at 1 or 2 kHz intervals, and each beacon is identified by a short Morse code identifier transmitted in the **400–1020 Hz audio band**.  
+The \acrfull{NDB} is a ground-based transmitter that radiates a simple, omnidirectional signal in the low and medium frequency bands, typically between **190 and 535 kHz**. In some regions, operation extends to higher frequencies, but the majority of aeronautical \acr{NDB} are confined to this internationally allocated band. \acr{NDB} are channelized at 1 or 2 kHz intervals, and each beacon is identified by a short Morse code identifier transmitted in the **400–1020 Hz audio band**.  
 
-An \acr{NDB} works in conjunction with the aircraft’s \acrfull{ADF}. The \acr{ADF} needle points toward the beacon, giving the pilot a bearing relative to the aircraft’s heading. When combined with the aircraft’s magnetic compass, this provides a magnetic bearing to or from the station. Because the system only provides direction, without distance, pilots often use \acp{NDB} in combination with other navigation aids or time–distance calculations.  
+An \acr{NDB} works in conjunction with the aircraft’s \acrfull{ADF}. The \acr{ADF} needle points toward the beacon, giving the pilot a bearing relative to the aircraft’s heading. When combined with the aircraft’s magnetic compass, this provides a magnetic bearing to or from the station. Because the system only provides direction, without distance, pilots often use \acr{NDB} in combination with other navigation aids or time–distance calculations.  
 
 The system is technically straightforward but subject to a number of errors. These include **night effect**, caused by ionospheric reflections after sunset; **coastal refraction**, where signals bend as they cross shorelines; and **terrain or structural interference**, which can distort the bearing. Lightning and precipitation static can also disturb reception. Under good conditions the expected accuracy is about **±5°**, but actual errors can be considerably greater.  
 
 ::: {.callout-tip}
 ### NDB Error Sources
 
-\acp{NDB} are particularly vulnerable to propagation and environmental effects:
+\acr{NDB} are particularly vulnerable to propagation and environmental effects:
 
 - **Night effect**: ionospheric reflections after sunset cause fluctuating bearings.  
 - **Coastal refraction**: signals bend when crossing shorelines, distorting bearings near coasts.  
@@ -58,18 +58,18 @@ The system is technically straightforward but subject to a number of errors. The
 - **Thunderstorms and static**: lightning discharges can deflect the \acr{ADF} needle.  
 - **Quadrantal error**: aircraft structure and antenna location may distort the received signal.
 
-**Implication for pilots**: \acp{NDB} bearings should always be cross-checked with other sources. These error mechanisms explain why \acp{NDB} cannot meet modern performance standards (\acr{RNP}) and why their use is diminishing.
+**Implication for pilots**: \acr{NDB} bearings should always be cross-checked with other sources. These error mechanisms explain why \acr{NDB} cannot meet modern performance standards (\acr{RNP}) and why their use is diminishing.
 :::
 
-Coverage depends strongly on transmitter power and the conductivity of the ground or sea path. **Locator \acp{NDB} (L)** near airports typically have a range of 15–25 nautical miles, while larger en-route \acp{NDB} can reach 50 NM or more. This variability in coverage, together with the error sources, limits the precision of \acr{NDB} navigation compared with modern \acr{VHF} or satellite-based systems.  
+Coverage depends strongly on transmitter power and the conductivity of the ground or sea path. **Locator \acr{NDB} (L)** near airports typically have a range of 15–25 nautical miles, while larger en-route \acr{NDB} can reach 50 NM or more. This variability in coverage, together with the error sources, limits the precision of \acr{NDB} navigation compared with modern \acr{VHF} or satellite-based systems.  
 
-For decades \acp{NDB} were widely used for en-route navigation, non-precision approaches, and as locator beacons associated with the \acrfull{ILS}. Today, however, their role is diminishing. Many states have progressively decommissioned en-route \acp{NDB}, retaining only those needed as short-range locators. New procedures are no longer being designed around \acp{NDB}, and they are not part of performance-based navigation specifications, since they cannot meet the accuracy requirements of \acr{RNP} operations.  
+For decades \acr{NDB} were widely used for en-route navigation, non-precision approaches, and as locator beacons associated with the \acrfull{ILS}. Today, however, their role is diminishing. Many states have progressively decommissioned en-route \acr{NDB}, retaining only those needed as short-range locators. New procedures are no longer being designed around \acr{NDB}, and they are not part of performance-based navigation specifications, since they cannot meet the accuracy requirements of \acr{RNP} operations.  
 
-Where retained, \acp{NDB} now serve a limited but still useful role. They continue to function as **\acr{ILS} locator beacons** near the final approach fix, and in some regions they remain available as a simple backup means of navigation in case of \acr{GNSS} outages. In most operational environments, however, \acp{NDB} are regarded as a legacy aid in the process of being phased out.
+Where retained, \acr{NDB} now serve a limited but still useful role. They continue to function as **\acr{ILS} locator beacons** near the final approach fix, and in some regions they remain available as a simple backup means of navigation in case of \acr{GNSS} outages. In most operational environments, however, \acr{NDB} are regarded as a legacy aid in the process of being phased out.
 
 ### VHF Omnidirectional Range (VOR)
 
-The \acrfull{VOR} is a ground-based azimuth navigation aid that has formed the backbone of conventional air navigation for decades. Developed in the United States during the 1930s and deployed widely after the Second World War, \acp{VOR} quickly became the foundation of structured airways and instrument procedures.  
+The \acrfull{VOR} is a ground-based azimuth navigation aid that has formed the backbone of conventional air navigation for decades. Developed in the United States during the 1930s and deployed widely after the Second World War, \acr{VOR} quickly became the foundation of structured airways and instrument procedures.  
 
 \acr{VOR} operates in the band between 108.0 and 117.95 MHz, though the lower portion (108.0–112 MHz) is shared with \acr{ILS} localizers and only selected channels are available for \acr{VOR}. Each facility transmits two signals: a *reference signal* and a *variable signal*. The phase difference between them encodes the aircraft’s magnetic bearing from the station, which is displayed directly to the pilot. Facility identification is provided by a short Morse code identifier, typically repeated every ten seconds, and some stations also offer a limited voice channel for automatic broadcasts such as \acr{ATIS}.  
 
@@ -77,11 +77,11 @@ A \acr{VOR} ground station operates on a **line-of-sight principle**, with cover
 
 Two principal types of \acr{VOR} are in use. The \acrfull{CVOR} radiates its rotating field mechanically from a central antenna, while the \acrfull{DVOR} synthesises the rotation electronically using a circular array of about 13.5 metres in diameter. The Doppler principle of the \acr{DVOR} improves accuracy and reduces multipath errors caused by reflections from terrain or structures.  
 
-\acp{VOR} are classified by range: *Terminal (T)* units provide coverage up to 25 NM, *Low (L)* units up to 40 NM, and *High (H)* units offer 40 NM at low altitude and up to 130 NM at higher altitudes. Geometrical factors restrict usable coverage to about 40° above the horizon, and directly overhead the station a cone of silence exists.  
+\acr{VOR} are classified by range: *Terminal (T)* units provide coverage up to 25 NM, *Low (L)* units up to 40 NM, and *High (H)* units offer 40 NM at low altitude and up to 130 NM at higher altitudes. Geometrical factors restrict usable coverage to about 40° above the horizon, and directly overhead the station a cone of silence exists.  
 
 The accuracy of a \acr{VOR} is specified by \acr{ICAO} as *±4° total system error*, sufficient for conventional en-route and terminal navigation but not compliant with modern \acr{RNP} requirements. \acr{DVOR} technology mitigates site-dependent errors and achieves more consistent bearing information across the coverage area.  
 
-Operationally, \acp{VOR} have been indispensable. A single radial provides course guidance; when paired with \acrfull{DME}, a VOR/DME facility enables simultaneous azimuth and distance measurement from one site. Aircraft can also use radials from two \acp{VOR} for triangulation. This capability allowed \acp{VOR} to form the basis of airways and procedure design, supporting \acp{SID}, \acp{STAR}, and non-precision approaches for decades. Many stations are co-located with \acp{DME}, using precise timing to deliver slant-range distance to the aircraft in addition to bearing.  
+Operationally, \acr{VOR} have been indispensable. A single radial provides course guidance; when paired with \acrfull{DME}, a VOR/DME facility enables simultaneous azimuth and distance measurement from one site. Aircraft can also use radials from two \acr{VOR} for triangulation. This capability allowed \acr{VOR} to form the basis of airways and procedure design, supporting \acr{SID}, \acr{STAR}, and non-precision approaches for decades. Many stations are co-located with \acr{DME}, using precise timing to deliver slant-range distance to the aircraft in addition to bearing.  
 
 The system has clear strengths: stable \acr{VHF} propagation largely unaffected by ionospheric conditions, independence from aircraft attitude, and a long history of reliability. Its limitations, however, include multipath interference near terrain or tall structures, the overhead cone of silence, and the need for costly periodic flight inspections.  
 
@@ -111,7 +111,7 @@ In present-day practice, the \acr{VOR} retains operational significance, but its
 
 ### Distance Measuring Equipment (DME)
 
-\acrfull{DME} is a ground-based navigation aid that provides aircraft with a continuous measurement of their slant range distance to the station. It operates in the \acrfull{UHF} band between **960 and 1215 MHz**, clearly separated from the \acr{VOR} band in \acr{VHF}. The system is normally paired with \acp{VOR} or \acr{ILS} facilities, and the airborne receiver is channelized so that tuning the \acr{VOR} frequency automatically selects the associated \acr{DME} channel.
+\acrfull{DME} is a ground-based navigation aid that provides aircraft with a continuous measurement of their slant range distance to the station. It operates in the \acrfull{UHF} band between **960 and 1215 MHz**, clearly separated from the \acr{VOR} band in \acr{VHF}. The system is normally paired with \acr{VOR} or \acr{ILS} facilities, and the airborne receiver is channelized so that tuning the \acr{VOR} frequency automatically selects the associated \acr{DME} channel.
 
 The \acr{DME} works on the principle of **interrogator and transponder**. The aircraft equipment acts as the interrogator, transmitting a sequence of **pulse pairs** to the ground station. These are spaced either 12 microseconds apart (X channels) or 36 microseconds apart (Y channels). The ground transponder replies with its own paired pulses after a fixed delay. By measuring the round-trip time, minus this known delay, the airborne unit computes the slant range distance to the station.  
 
@@ -130,13 +130,13 @@ Because the measurement is based on time-of-flight, the indicated distance is a 
 **Implication for pilots**: Slant range error is operationally negligible except during close-in procedures near the station. Understanding this helps explain why \acr{DME} is often used together with \acr{ILS} or \acr{VOR} to provide reliable position information.
 :::
 
-\acp{DME} have the capacity to serve multiple aircraft simultaneously. Each interrogator typically transmits about **150 pulse pairs per second**, while the ground transponder can reply to **several thousand interrogations per second**. If the demand exceeds this capacity, the system uses selective reply techniques to maintain service.  
+\acr{DME} have the capacity to serve multiple aircraft simultaneously. Each interrogator typically transmits about **150 pulse pairs per second**, while the ground transponder can reply to **several thousand interrogations per second**. If the demand exceeds this capacity, the system uses selective reply techniques to maintain service.  
 
 The accuracy of \acr{DME} is high: \acr{ICAO} specifies about **±0.2 NM plus 0.25% of the distance** (often simplified in practice to ±0.2 NM plus 3%). This accuracy, combined with the line-of-sight coverage of \acr{UHF} signals and resistance to multipath interference, makes \acr{DME} a highly reliable aid.  
 
 Operationally, \acr{DME} is almost always used in combination with another aid. With \acr{VOR}, it forms **VOR/\acr{DME}**, providing both azimuth and distance from a single facility and thus enabling accurate position fixing from one site. With \acr{ILS}, it provides range information along the final approach. Many en-route procedures also reference cross-bearings from two VOR/\acr{DME} stations to establish position.  
 
-Although the global transition toward \acr{GNSS} has reduced reliance on conventional aids, \acr{DME} remains **essential infrastructure**. It is deeply embedded in procedure design, continues to support performance-based navigation as a conventional sensor, and is valued as a robust **backup to satellite navigation**. For these reasons, many \acp{ANSP} maintain an extensive \acr{DME} network even as \acp{NDB} and some \acp{VOR} are progressively decommissioned. 
+Although the global transition toward \acr{GNSS} has reduced reliance on conventional aids, \acr{DME} remains **essential infrastructure**. It is deeply embedded in procedure design, continues to support performance-based navigation as a conventional sensor, and is valued as a robust **backup to satellite navigation**. For these reasons, many \acr{ANSP} maintain an extensive \acr{DME} network even as \acr{NDB} and some \acr{VOR} are progressively decommissioned. 
 
 <!--
 <https://www.skybrary.aero/articles/distance-measuring-equipment-dme>
@@ -176,7 +176,7 @@ The \acrfull{GNSS} is the collective term for satellite-based positioning and na
 
 Several constellations contribute to the \acr{GNSS}. The \acrfull{GPS} of the United States is the oldest and most widely used system, consisting of at least 24 satellites in medium Earth orbit at an altitude of about 20,200 km. It transmits signals on multiple frequencies, including L1 and L5, and provides global coverage with a typical accuracy of around 10 metres without augmentation. The European Union’s Galileo system has been designed primarily for civilian use and comprises about 30 satellites. It provides accuracy comparable to, or better than, \acr{GPS}, and offers dual-frequency signals that help mitigate ionospheric errors. Russia’s GLONASS constellation is also fully operational, with roughly 24 satellites in service. Although its accuracy is generally somewhat lower than that of \acr{GPS} or Galileo, GLONASS contributes robustness when used in combination with other systems. China’s BeiDou system, which began as a regional service, has since expanded into a global constellation known as BDS-3, offering multiple frequencies together with regional augmentation services.  
 
-On their own, these \acp{GNSS} typically achieve a positional accuracy of about 10 to 15 metres. With augmentation, performance improves significantly. \acrfull{SBAS}, such as WAAS in the United States or EGNOS in Europe, can enhance accuracy to about one to two metres, enabling approach operations with \acr{APVI} and \acr{LPV} minima. In addition, \acrfull{GBAS} provides local corrections via a \acr{VHF} data link (\acrfull{VDB}), supporting \acrfull{GLS} approaches with accuracy comparable to, or even better than, the \acr{ILS}, down to CAT III minima.   
+On their own, these \acr{GNSS} typically achieve a positional accuracy of about 10 to 15 metres. With augmentation, performance improves significantly. \acrfull{SBAS}, such as WAAS in the United States or EGNOS in Europe, can enhance accuracy to about one to two metres, enabling approach operations with \acr{APVI} and \acr{LPV} minima. In addition, \acrfull{GBAS} provides local corrections via a \acr{VHF} data link (\acrfull{VDB}), supporting \acrfull{GLS} approaches with accuracy comparable to, or even better than, the \acr{ILS}, down to CAT III minima.   
 
 The \acr{GNSS} offers global coverage, high accuracy, and flexibility in routing and procedure design. It allows efficient use of airspace and supports direct routing, curved approaches, and advanced concepts such as \acr{RNP} with Authorization Required (RNP AR).  
 
@@ -187,7 +187,7 @@ In practice, the \acr{GNSS} has become the dominant navigation system, supported
 ::: {.callout-tip}
 ### Radio Frequency Interference (RFI) – Jamming and Spoofing
 
-\acp{GNSS} signals are extremely weak when they arrive at the Earth’s surface, making them vulnerable to **radio frequency interference (RFI)**. Two major threats are:
+\acr{GNSS} signals are extremely weak when they arrive at the Earth’s surface, making them vulnerable to **radio frequency interference (RFI)**. Two major threats are:
 
 - **Jamming**: The deliberate or accidental transmission of signals on \acr{GNSS} frequencies that overwhelm the legitimate satellite signals. This causes the receiver to lose lock and navigation information. Jamming can be unintentional (e.g., from malfunctioning equipment) or intentional (e.g., military jammers).  
 
@@ -209,7 +209,7 @@ While the core constellations of \acr{GNSS} provide global coverage with typical
 
 ##### Satellite-Based Augmentation System (SBAS)
 
-\acrfull{SBAS} extends \acr{GNSS} performance by providing correction and integrity information over a large region through geostationary satellites. Networks of precisely surveyed ground reference stations monitor \acr{GNSS} signals and forward measurements to a central processing facility, where corrections for clock errors, ionospheric delays, and ephemeris deviations are calculated. These corrections are then uplinked to geostationary satellites, which broadcast them on the same L-band frequencies as the \acp{GNSS}. Aircraft equipped with \acr{SBAS}-capable receivers can thus apply these corrections seamlessly while flying.
+\acrfull{SBAS} extends \acr{GNSS} performance by providing correction and integrity information over a large region through geostationary satellites. Networks of precisely surveyed ground reference stations monitor \acr{GNSS} signals and forward measurements to a central processing facility, where corrections for clock errors, ionospheric delays, and ephemeris deviations are calculated. These corrections are then uplinked to geostationary satellites, which broadcast them on the same L-band frequencies as the \acr{GNSS}. Aircraft equipped with \acr{SBAS}-capable receivers can thus apply these corrections seamlessly while flying.
 
 In Europe, the European Geostationary Navigation Overlay Service (EGNOS) is the operational \acr{SBAS}, while in the United States the equivalent is the Wide Area Augmentation System (WAAS). Other regions operate their own systems, such as MSAS in Japan or GAGAN in India. \acr{SBAS} improves position accuracy to about one to two metres and, crucially, provides an integrity signal that allows the receiver to verify the trustworthiness of the position solution. This capability enables procedures known as Approach with Vertical Guidance (\acr{APVI}) and \acr{LPV}, including minima down to 200 feet (LPV-200). Because \acr{SBAS} requires no ground installation at the airport itself, it allows even small or regional airports to offer precision-like approach procedures without the cost of an \acr{ILS}.
 
@@ -285,7 +285,7 @@ The methods by which aircraft navigate have evolved in distinct phases, each ref
 
 In the earliest days, flight was guided by **visual navigation**, with pilots relying on landmarks, coastlines, or celestial bodies, often supported by dead reckoning. This was inherently imprecise and restricted to clear weather and daylight conditions.  
 
-The introduction of **conventional radio aids** such as \acp{NDB}, \acp{VOR}, and \acp{DME} revolutionised navigation by providing objective position references that worked independently of visibility. These systems enabled instrument flight, but their limitation was structural: routes and procedures were constrained to the physical location of ground stations, leading to rigid beacon-to-beacon networks.  
+The introduction of **conventional radio aids** such as \acr{NDB}, \acr{VOR}, and \acr{DME} revolutionised navigation by providing objective position references that worked independently of visibility. These systems enabled instrument flight, but their limitation was structural: routes and procedures were constrained to the physical location of ground stations, leading to rigid beacon-to-beacon networks.  
 
 With the advent of satellite navigation and modern flight management systems, **Area Navigation (\acr{RNAV})** became possible. \acr{RNAV} allowed aircraft to fly any desired path within the coverage of ground- or space-based aids, or within the limits of onboard systems, making routes independent of beacon locations. This gave rise to more direct en-route trajectories and flexible departures and arrivals.  
 
@@ -297,7 +297,7 @@ This progression — from visual navigation to ground-based beacons, from \acr{R
 
 The evolution of navigation methods is directly reflected in the way airspace is organised. Airways provide the framework for safe and efficient traffic flows, ensuring predictable separation and orderly management of flights across complex or busy regions.  
 
-Traditionally, airways were defined by the location of **ground-based navigation aids**. Routes followed straight lines between \acp{NDB}, \acp{VOR}, or VOR/\acr{DME} intersections, and intersections were often defined by crossing radials or by a radial and \acr{DME} distance. This beacon-to-beacon design guaranteed safe separation but constrained flexibility, as trajectories were tied to the geometry of the ground network rather than to the needs of operators or traffic management.  
+Traditionally, airways were defined by the location of **ground-based navigation aids**. Routes followed straight lines between \acr{NDB}, \acr{VOR}, or VOR/\acr{DME} intersections, and intersections were often defined by crossing radials or by a radial and \acr{DME} distance. This beacon-to-beacon design guaranteed safe separation but constrained flexibility, as trajectories were tied to the geometry of the ground network rather than to the needs of operators or traffic management.  
 
 With the introduction of \acr{RNAV}, waypoints no longer needed to coincide with a physical beacon but could be defined by geographic coordinates. This allowed the design of more efficient routes, often straighter and shorter, while still retaining the structured airway concept. Modern aircraft, equipped with \acr{FMS}, can store and follow these predefined routes automatically, reducing workload for both pilots and controllers.  
 
@@ -305,7 +305,7 @@ Building further on \acr{RNP}, the organisation of airspace has shifted toward g
 
 Globally, airways remain important in managing traffic flows across congested corridors such as the north–south routes over Europe or transatlantic crossings. In procedural or oceanic airspace, where radar coverage is limited, structured route systems continue to ensure safe separation. But with the gradual transition to \acr{PBN} and trajectory-based operations, reliance on rigid airway networks is decreasing. The airway structure itself is becoming more of a flexible framework, with routes shaped increasingly by aircraft capability and navigation performance rather than by the physical location of ground beacons.  
 
-To organise traffic at the interface between airports and en-route structures, standard procedures remain essential. \acp{SID} lead traffic from runways into the wider network, while \acp{STAR} bring it back into terminal areas for sequencing and landing. These procedures, published on charts and integrated into \acr{FMS} databases, ensure orderly flows while still taking advantage of the flexibility enabled by \acr{RNAV} and \acr{RNP}.  
+To organise traffic at the interface between airports and en-route structures, standard procedures remain essential. \acr{SID} lead traffic from runways into the wider network, while \acr{STAR} bring it back into terminal areas for sequencing and landing. These procedures, published on charts and integrated into \acr{FMS} databases, ensure orderly flows while still taking advantage of the flexibility enabled by \acr{RNAV} and \acr{RNP}.  
 
 In summary, the structure of airways has mirrored the evolution of navigation technology: from beacon-defined corridors to flexible, performance-based trajectories. While legacy networks remain in use for resilience and mixed equipage, the long-term trend is clear — toward free routing and trajectory-based air traffic management.
 
