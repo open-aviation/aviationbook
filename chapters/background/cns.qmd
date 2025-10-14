@@ -113,30 +113,32 @@ In present-day practice, the \acr{VOR} retains operational significance, but its
 
 \acrfull{DME} is a ground-based navigation aid that provides aircraft with a continuous measurement of their slant range distance to the station. It operates in the \acrfull{UHF} band between **960 and 1215 MHz**, clearly separated from the \acr{VOR} band in \acr{VHF}. The system is normally paired with \acr{VOR} or \acr{ILS} facilities, and the airborne receiver is channelized so that tuning the \acr{VOR} frequency automatically selects the associated \acr{DME} channel.
 
-The \acr{DME} works on the principle of **interrogator and transponder**. The aircraft equipment acts as the interrogator, transmitting a sequence of **pulse pairs** to the ground station. These are spaced either 12 microseconds apart (X channels) or 36 microseconds apart (Y channels). The ground transponder replies with its own paired pulses after a fixed delay. By measuring the round-trip time, minus this known delay, the airborne unit computes the slant range distance to the station.  
-
-Because the measurement is based on time-of-flight, the indicated distance is a **slant range**, not the horizontal ground distance. This difference is negligible at most operational distances but becomes noticeable close to the station at high altitudes. For example, at 6,000 feet altitude and 6 nautical miles from the beacon, the indicated slant range is about 6.5 NM.
-
+The \acr{DME} works on the principle of **interrogator and transponder**. The aircraft equipment acts as the interrogator, transmitting a sequence of **pulse pairs** to the ground station. These are spaced either 12 microseconds apart (X channels) or 36 microseconds apart (Y channels). The ground transponder, i.e., the \acr{DME} station, replies with its own paired pulses after a fixed delay. By measuring the round-trip time, minus this known delay, the airborne unit computes the slant range distance to the station.
 
 ::: {.callout-tip}
 ### Slant Range Effect
 
-\acr{DME} measures the **slant range** — the straight-line distance between aircraft and station — not the horizontal ground distance.  
-
-- At long distances, slant range and ground distance are nearly identical.  
-- Close to the station and at high altitude, the difference becomes noticeable.  
-  - Example: at 6,000 ft altitude and 6 NM from the station, the indicated slant range is about 6.5 NM.  
+Because distance measurements by means of \acr{DME} are based on time-of-flight, the indicated distance is a **slant range**. The term slant range refers to the straight-line distance between aircraft and station, not the horizontal ground distance. At long distances, slant range and ground distance are nearly identical. Close to the station and at high altitude, however, the difference becomes noticeable. For example, at 6 000 feet altitude and 6 nautical miles from the beacon, the indicated slant range is about 6.5 NM.
 
 **Implication for pilots**: Slant range error is operationally negligible except during close-in procedures near the station. Understanding this helps explain why \acr{DME} is often used together with \acr{ILS} or \acr{VOR} to provide reliable position information.
 :::
 
-\acr{DME} have the capacity to serve multiple aircraft simultaneously. Each interrogator typically transmits about **150 pulse pairs per second**, while the ground transponder can reply to **several thousand interrogations per second**. If the demand exceeds this capacity, the system uses selective reply techniques to maintain service.  
+A key feature of \acr{DME} is that many aircraft can use the same ground station simultaneously without interfering with each other. This is achieved through a combination of precise **pulse-pair coding** and a built-in **pseudo-random jitter** mechanism.  
 
-The accuracy of \acr{DME} is high: \acr{ICAO} specifies about **±0.2 NM plus 0.25% of the distance** (often simplified in practice to ±0.2 NM plus 3%). This accuracy, combined with the line-of-sight coverage of \acr{UHF} signals and resistance to multipath interference, makes \acr{DME} a highly reliable aid.  
+Each aircraft’s interrogator transmits pulse pairs at a defined rate, typically around 150 pulse pairs per second, and the ground station replies after a fixed delay of about 50 microseconds. \acr{DME} channels are organized in two families, namely **X** and **Y**, which differ in their pulse timing and frequency pairing. In X-mode, the two pulses within each pair are spaced **12 microseconds apart**, while in Y-mode the spacing is **36 microseconds**. Y-channels also use a slightly different frequency relationship between the interrogation and reply frequencies. These fixed patterns allow the ground transponder to recognize valid interrogations and distinguish them from random noise.
 
-Operationally, \acr{DME} is almost always used in combination with another aid. With \acr{VOR}, it forms **VOR/\acr{DME}**, providing both azimuth and distance from a single facility and thus enabling accurate position fixing from one site. With \acr{ILS}, it provides range information along the final approach. Many en-route procedures also reference cross-bearings from two VOR/\acr{DME} stations to establish position.  
+To prevent confusion between multiple users, the aircraft does not transmit these interrogations at a perfectly regular rhythm. Instead, it introduces a **pseudo-random jitter** into the timing sequence — a deliberate, slightly irregular pattern that is unique to each aircraft. The ground transponder preserves this timing irregularity when sending its replies. As a result, when the airborne receiver detects the returning signals, it looks for its own jitter pattern within the stream of replies. Only those replies that match the expected timing pattern are accepted as belonging to that aircraft; all others are ignored as responses to different users.  
 
-Although the global transition toward \acr{GNSS} has reduced reliance on conventional aids, \acr{DME} remains **essential infrastructure**. It is deeply embedded in procedure design, continues to support performance-based navigation as a conventional sensor, and is valued as a robust **backup to satellite navigation**. For these reasons, many \acr{ANSP} maintain an extensive \acr{DME} network even as \acr{NDB} and some \acr{VOR} are progressively decommissioned. 
+This matching process is maintained by a continuous **tracking loop**, which constantly compares received replies with the transmitted pulse pattern. When the system finds a consistent correlation within a very small timing tolerance, it “locks on” to its own replies and uses them for distance measurement. Thanks to this clever use of coding and jitter, a single \acr{DME} ground station can serve roughly a hundred aircraft at the same time. Each aircraft identifies only its own responses, while the transponder efficiently interleaves replies for many users without mutual interference.
+
+The accuracy of \acr{DME} is high: \acr{ICAO} specifies about **± 0.2 NM plus 0.25 % of the distance** (often simplified in practice to ± 0.2 NM plus 3 %). This accuracy, combined with the line-of-sight coverage of \acr{UHF} signals and resistance to multipath interference, makes \acr{DME} a highly reliable aid. Each ground station can reply to **several thousand interrogations per second**, and if the demand exceeds this capacity, it uses selective-reply techniques to maintain service.
+
+Operationally, \acr{DME} is almost always used in combination with another aid:
+- With \acr{VOR}, it forms **VOR/\acr{DME}**, providing both azimuth and distance from a single facility and enabling accurate position fixing from one site.  
+- With \acr{ILS}, it provides range information along the final approach.  
+- Many en-route procedures also reference cross-bearings from two VOR/\acr{DME} stations.
+
+Although the global transition toward \acr{GNSS} has reduced reliance on conventional aids, \acr{DME} remains **essential infrastructure**. It is deeply embedded in procedure design, continues to support performance-based navigation as a conventional sensor, and is valued as a robust **backup to satellite navigation**. For these reasons, many \acr{ANSP}s maintain an extensive \acr{DME} network even as \acr{NDB} and some \acr{VOR} stations are progressively decommissioned.
 
 <!--
 <https://www.skybrary.aero/articles/distance-measuring-equipment-dme>
@@ -171,18 +173,39 @@ Together, these characteristics explain why the \acr{IRS} remains indispensable.
 
 ### Global Navigation Satellite System (GNSS)
 
-
 The \acrfull{GNSS} is the collective term for satellite-based positioning and navigation constellations. It has become the backbone of modern air navigation and is central to \acrfull{PBN} concepts, enabling area navigation (\acr{RNAV}) and \acrfull{RNP} across all phases of flight.
 
-Several constellations contribute to the \acr{GNSS}. The \acrfull{GPS} of the United States is the oldest and most widely used system, consisting of at least 24 satellites in medium Earth orbit at an altitude of about 20,200 km. It transmits signals on multiple frequencies, including L1 and L5, and provides global coverage with a typical accuracy of around 10 metres without augmentation. The European Union’s Galileo system has been designed primarily for civilian use and comprises about 30 satellites. It provides accuracy comparable to, or better than, \acr{GPS}, and offers dual-frequency signals that help mitigate ionospheric errors. Russia’s GLONASS constellation is also fully operational, with roughly 24 satellites in service. Although its accuracy is generally somewhat lower than that of \acr{GPS} or Galileo, GLONASS contributes robustness when used in combination with other systems. China’s BeiDou system, which began as a regional service, has since expanded into a global constellation known as BDS-3, offering multiple frequencies together with regional augmentation services.  
+#### Principle of Operation
 
-On their own, these \acr{GNSS} typically achieve a positional accuracy of about 10 to 15 metres. With augmentation, performance improves significantly. \acrfull{SBAS}, such as WAAS in the United States or EGNOS in Europe, can enhance accuracy to about one to two metres, enabling approach operations with \acr{APVI} and \acr{LPV} minima. In addition, \acrfull{GBAS} provides local corrections via a \acr{VHF} data link (\acrfull{VDB}), supporting \acrfull{GLS} approaches with accuracy comparable to, or even better than, the \acr{ILS}, down to CAT III minima.   
+The basic principle of \acr{GNSS} positioning is **ranging by signal timing**. Each satellite continuously transmits a precisely time-stamped signal that includes information about its orbital position (ephemeris) and the system time. The receiver determines the apparent distance, or **pseudorange**, to each satellite by measuring the time delay between signal transmission and reception. Since the receiver’s internal clock is not perfectly synchronized with the satellites’ atomic clocks, at least **four satellites** are required to solve for the three unknown position coordinates (latitude, longitude, altitude) and the receiver clock offset.
 
-The \acr{GNSS} offers global coverage, high accuracy, and flexibility in routing and procedure design. It allows efficient use of airspace and supports direct routing, curved approaches, and advanced concepts such as \acr{RNP} with Authorization Required (RNP AR).  
+By combining these pseudorange measurements, the receiver computes its three-dimensional position relative to the Earth’s reference frame. The accuracy of this process depends on several factors, including **satellite geometry**, **signal quality**, and **timing precision**. The quality of the satellite configuration is expressed through the **Dilution of Precision (DOP)** — a numerical indicator of how satellite geometry amplifies or reduces ranging errors. A wide spatial distribution of satellites provides a low DOP and therefore higher accuracy.
 
-However, \acr{GNSS} also has limitations. The signals are extremely weak when received at the Earth’s surface, making them vulnerable to interference, jamming, or spoofing. Satellite geometry can affect accuracy, and temporary outages may occur. For this reason, aviation standards require backup navigation infrastructure, such as \acr{VOR}/\acr{DME} or \acr{ILS}, and monitoring through systems like \acrfull{RAIM}.  
+Precise timing is fundamental to \acr{GNSS}. Each satellite carries one or more **atomic clocks** that maintain time to within nanoseconds. The constellation thus also functions as a **global time reference system**, and small clock errors can directly translate into several metres of positional error. Atmospheric effects further influence signal propagation: **ionospheric delay**, caused by the charged upper atmosphere, and **tropospheric delay**, caused by water vapour and pressure variations, both slow down the signal and must be modelled or corrected. Multipath reflections near the receiver, and minor orbital prediction (ephemeris) errors, are additional contributors to inaccuracy.
 
-In practice, the \acr{GNSS} has become the dominant navigation system, supported by augmentation to meet the accuracy, integrity, and availability requirements of aviation. It enables navigation and approach procedures worldwide and represents the future core infrastructure of civil aviation, while conventional aids remain in place as a resilient fallback.
+Dual-frequency measurements and augmentation systems help compensate for these effects. By comparing the delays of two frequencies, the receiver can estimate and remove most ionospheric error. Aviation-grade systems further rely on **augmentation and integrity monitoring** to ensure the accuracy, integrity, and availability of the navigation solution.
+
+#### Constellations and Augmentation Systems
+
+Several constellations contribute to the \acr{GNSS}. The \acrfull{GPS} of the United States is the oldest and most widely used system, consisting of at least 24 satellites in medium Earth orbit at an altitude of about 20 200 km. It transmits signals on multiple frequencies, including L1 and L5, and provides global coverage with a typical accuracy of around 10 metres without augmentation.  
+
+The European Union’s **Galileo** system has been designed primarily for civilian use and comprises about 30 satellites. It provides accuracy comparable to, or better than, \acr{GPS}, and offers dual-frequency signals that help mitigate ionospheric errors.  
+
+Russia’s **GLONASS** constellation is also fully operational, with roughly 24 satellites in service. Although its accuracy is generally somewhat lower than that of \acr{GPS} or Galileo, GLONASS contributes robustness when used in combination with other systems.  
+
+China’s **BeiDou** system, which began as a regional service, has since expanded into a global constellation known as BDS-3, offering multiple frequencies together with regional augmentation services.  
+
+On their own, these \acr{GNSS} typically achieve a positional accuracy of about 10 to 15 metres. With augmentation, performance improves significantly. \acrfull{SBAS}, such as **WAAS** in the United States or **EGNOS** in Europe, can enhance accuracy to about one to two metres, enabling approach operations with \acr{APVI} and \acr{LPV} minima. In addition, \acrfull{GBAS} provides local corrections via a \acr{VHF} data link (\acrfull{VDB}), supporting \acrfull{GLS} approaches with accuracy comparable to, or even better than, the \acr{ILS}, down to CAT III minima.
+
+#### Operational Use and Limitations
+
+The \acr{GNSS} offers global coverage, high accuracy, and flexibility in routing and procedure design. It allows efficient use of airspace and supports direct routing, curved approaches, and advanced concepts such as \acr{RNP} with Authorization Required (\acr{RNP AR}).  
+
+However, \acr{GNSS} also has inherent limitations. Because its signals are extremely weak when received at the Earth’s surface, they are vulnerable to **radio-frequency interference (RFI)**, including both unintentional disturbances and deliberate attacks such as jamming or spoofing. Accuracy can also be influenced by satellite geometry, atmospheric conditions, or temporary outages.  
+
+To maintain safety and continuity of navigation, aviation standards require **integrity monitoring** through systems like \acrfull{RAIM} and the availability of **backup navigation infrastructure** such as \acr{VOR}/\acr{DME} and \acr{ILS}. Modern receivers further improve resilience by using **multiple constellations and frequencies**, reducing the effects of local interference or signal loss.  
+
+In practice, the \acr{GNSS} has become the dominant navigation system, supported by augmentation and monitoring to meet the accuracy, integrity, and availability requirements of aviation. It enables navigation and approach procedures worldwide and represents the future core infrastructure of civil aviation, while conventional aids remain in place as a resilient fallback.
 
 ::: {.callout-tip}
 ### Radio Frequency Interference (RFI) – Jamming and Spoofing
@@ -193,15 +216,16 @@ In practice, the \acr{GNSS} has become the dominant navigation system, supported
 
 - **Spoofing**: The transmission of false \acr{GNSS}-like signals intended to mislead the receiver into computing an incorrect position or time. Unlike jamming, spoofing may remain undetected if the receiver cannot distinguish genuine from false signals.  
 
-**Implications for aviation**:  
-- Jamming can result in the sudden loss of \acr{GNSS} navigation or approach guidance, forcing reliance on conventional aids (\acr{VOR}/\acr{DME}, \acr{ILS}) or inertial systems.  
-- Spoofing could cause misleading information without the pilot being immediately aware, which is particularly hazardous during approach or in airspace where separation minima depend on \acr{GNSS} performance.  
-- Aviation mitigates these risks through measures such as \acr{RAIM}, multi-constellation/multi-frequency receivers, \acr{NOTAM}s for known jamming activities, and the continued maintenance of a conventional navigation aid network as a backup.  
+**Implications for aviation:** Jamming of \acr{GNSS} signals can lead to the sudden loss of satellite-based navigation or approach guidance, forcing aircraft to revert to conventional aids such as \acr{VOR}/\acr{DME}, \acr{ILS}, or onboard inertial systems. Even more concerning is spoofing, where false signals are introduced to mislead the receiver without the pilot’s immediate awareness. Such deception poses a serious hazard, particularly during approach or in airspace where separation minima depend on precise \acr{GNSS} performance.  
 
-The vulnerability of the \acr{GNSS} to RFI highlights the importance of **redundancy and resilience** in navigation infrastructure for aviation safety.
+To mitigate these risks, aviation employs several protective measures. These include \acr{RAIM} (Receiver Autonomous Integrity Monitoring) to detect inconsistencies in satellite data, the use of multi-constellation and multi-frequency receivers to improve robustness, and the publication of \acr{NOTAM}s for areas with known or anticipated jamming activity. Additionally, the continued maintenance of a conventional network of navigation aids serves as a crucial backup in case of \acr{GNSS} degradation or failure.  
+
+The vulnerability of \acr{GNSS} to radio-frequency interference underscores the importance of **redundancy and resilience** within the navigation infrastructure to ensure continued safety and operational reliability.
 :::
 
+<!--
 https://en.wikipedia.org/wiki/Korean_Air_Lines_Flight_007
+-->
 
 #### GNSS Augmentation
 
@@ -235,7 +259,7 @@ In the past, **marker beacons** operating at 75 MHz provided range information a
 
 \acr{ILS} performance is defined in terms of **categories**, which correspond to different minima:  
 
-| Category   | Decision Height (DH)                | Runway Visual Range (\acr{RVR}) |
+| Category   | Decision Height (DH)                | Runway Visual Range (RVR)      |
 |------------|-------------------------------------|---------------------------------|
 | **CAT I**  | Not lower than 200 ft               | ≥ 550 m                         |
 | **CAT II** | Not lower than 100 ft               | ≥ 300 m                         |
