@@ -159,9 +159,11 @@ Runways at airports must be equipped with appropriate markings and lighting. In 
 ##### Runway markings
 Runway markings are designed to provide pilots with orientation and guidance during take-off, landing, and taxiing. They serve both an instructional function and an informational one. Runway markings are safety critical. For this reason, they are designed to be highly visible to the human eye through the use of distinct colors and strong contrast. As a rule of thumb: Runway markings are typically white, while markings on taxiways, turnpads, or stands are generally yellow.
 
-In the following, we discuss the most important types of runway markings:
+![Overview of Runway Markings.](../../images/illustrations/RWY_Markings.png){#fig-runway-marking-overview}
 
-* The **runway designation marking** provides a visual indication of the runway designation. Located at each runway threshold, it consists of a two-digit number that may be supplemented by a letter in the case of parallel runways.
+In the following, we discuss the most important types of runway markings, which are also depicted in Figure @fig-runway-marking-overview for better reference:
+
+* The **runway designation marking** provides a visual indication of the runway designation. Located at each runway threshold, it consists of a two-digit number that may be supplemented by a letter 'L', 'R', or 'C' in the case of parallel runways.
 
 * The **threshold marking** indicates the point at which the full strength of the runway pavement begins, meaning from this point onward the surface can support the full load of aircraft. These markings consist of white longitudinal stripes painted across the runway. Because their appearance resembles the keys of a piano, threshold markings are colloquially referred to as *piano keys*. According to *CS ADR-DSN.L*, the exact placement of threshold markings (i.e., the distance from the physical end of the runway), as well as the dimensions of the stripes (length and width) and their number, are strictly regulated. Moreover, the required number of stripes depends on the runway width.
 
@@ -169,7 +171,7 @@ In the following, we discuss the most important types of runway markings:
 
 * The **centerline marking** indicates the middle of the runway. It consists of a dashed white line aligned with the runway direction, extending between the two runway designation markings. Centerline markings are required on all paved runways.  
 
-* The **side stripe marking** provides pilots with a clear indication of where the runway ends and the runway shoulder begins. It consists of a continuous white line. Side stripe markings are mandatory for precision approach runways and optional for non-precision and non-instrument runways.  
+* The **side strip marking** provides pilots with a clear indication of where the runway ends and the runway shoulder begins. It consists of a continuous white line. Side strip markings are mandatory for precision approach runways and optional for non-precision and non-instrument runways.  
 
 * **Aiming point markings** and **touchdown zone markings** guide pilots during approach to identify the correct area of the runway for touchdown. The **aiming point marking**, which consists of two solid white rectangles, indicates the point on the runway where pilots should ideally aim to touch down. It is required on runways where both the aerodrome code number is 2, 3, or 4, and an instrument approach is provided. On runways equipped with a PAPI system (described later), the aiming point corresponds to the origin of the PAPI lights. On runways without PAPI lights, the location of the aiming point is determined by the landing distance available (LDA). The **touchdown zone markings** indicate the permissible touchdown area of a runway. They consist of pairs of white bars placed symmetrically along the runway. These markings are mandatory on runways offering a precision approach, while for non-precision or non-instrument runways they are only required at aerodromes with a code number of 3 or 4. The number of bar pairs used to mark the touchdown zone depends on the LDA.
 
@@ -202,7 +204,11 @@ Several different types of runway lights are used in practice. The main types ar
 ![Most important types of runway lights in use.](../../images/illustrations/RWY_Lights.png){#fig-rwyLights}
 
 ##### Approach lights 
-To guide pilots in the final approach, approach lights provide arriving aircraft with guidance and orientation under poor visibility conditions, at twilight, and at night. They are installed in the area preceding the runway threshold, with different configurations depending on the type of approach supported (i.e., CAT I, II, III, or visual approaches). In particular, approach lighting systems give pilots information about their spatial position (e.g., roll angle of the aircraft relative to the runway) and their distance to the threshold. The most commonly used approach lighting systems in practice include:
+To guide pilots in the final approach, approach lights provide arriving aircraft with guidance and orientation under poor visibility conditions, at twilight, and at night. They are installed in the area preceding the runway threshold, with different configurations depending on the type of approach supported (i.e., CAT I, II, III, or visual approaches). 
+
+![Most important types of approach lighting systems in use.](../../images/illustrations/RWY_Appr_Lights.png){#fig-rwyApprLights} 
+
+In particular, approach lighting systems give pilots information about their spatial position (e.g., roll angle of the aircraft relative to the runway) and their distance to the threshold. The most commonly used approach lighting systems in practice include:
  
 * A **simple approach lighting** system is installed on runways with non-instrument approaches that have a code letter of 3 or 4, as well as on non-precision approach runways.  
 
