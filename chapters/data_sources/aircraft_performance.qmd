@@ -1,84 +1,585 @@
----
-title: Aircraft performance
-author: Junzi Sun
----
+# Aircraft performance
 
-::: {.callout-note}
-**Author's note**: This part goes through all the most commonly used data formats in the
-aviation and ATM data analysis community.
-
+::: {.callout-tip}
+Author: Junzi
 :::
 
-Here are some references for BADA [@nuic2010], OpenAP [@sun2020openap; @sun2020openap],
+::: {.callout-note}
+**Author's note**: This chapter covers aircraft performance models commonly used in air traffic management and aviation research, with a focus on both kinematic and dynamic modeling approaches.
+:::
 
-Aircraft performance models are used to study how aircraft fly. They are based on the laws of physics and can be used to predict the aircraft's speed, altitude, thrust, drag, and fuel consumption. There are different categories of performance models, with varying levels of detail. The most detailed, non-linear six-degree-of-freedom models are commonly used in aircraft control studies. Air traffic management research often assumes a stable aircraft and neglects fast rotational dynamics. This assumption means that a point-mass aircraft performance model is sufficient in most use cases. Such a point-mass model is used throughout this entire dissertation.
+## Introduction
+
+Aircraft performance models are used to study how aircraft fly. They are based on the laws of physics and can be used to predict the aircraft's speed, altitude, thrust, drag, and fuel consumption. There are different categories of performance models, with varying levels of detail. The most detailed, non-linear six-degree-of-freedom models are commonly used in aircraft control studies. Air traffic management research often assumes a stable aircraft and neglects fast rotational dynamics. This assumption means that a point-mass aircraft performance model is sufficient in most use cases. Such a point-mass model is used in most of the aviation research.
+
+Two prominent aircraft performance models are widely used in the aviation community. BADA [@nuic2010], developed by Eurocontrol, is a well-established model that includes both kinematic and dynamic models. The BADA aircraft performance operation file (OPF) models the dynamic properties of the aircraft, while the airline procedures file (APF) models the kinematic aspects of flights. Unlike BADA, which relies on strict user license agreements, OpenAP [@sun2020openap], a recent open aircraft model, also provides both kinematic and dynamic models for common aircraft types with full open access.
+
+## Point-Mass Models
 
 There are two different types of point-mass models: kinematic and dynamic. The primary difference is that while a dynamic model focuses on forces and energy, a kinematic model deals only with aircraft motions.
 
+| **Aspect** | **Kinematic Model** | **Dynamic Model** |
+|------------|---------------------|-------------------|
+| **Focus** | Observable motion parameters (speed, altitude, acceleration) | Forces (thrust, drag, weight) and energy |
+| **Equations** | Simple differential equations for position and velocity | Force balance and energy conservation equations |
+| **Data Requirements** | Surveillance data (ADS-B, Mode-S), statistical distributions | Aircraft mass, thrust coefficients, drag polar, fuel flow parameters |
+| **Computational Complexity** | Low - fast computation, suitable for real-time | Moderate to high - iterative calculations required |
+| **Use Cases** | Flight phase identification, trajectory prediction, pattern recognition | Fuel estimation, emissions, trajectory optimization, what-if analysis |
+| **Model Development** | Data-driven from surveillance data | Physics-based with parameter calibration |
+| **Physical Constraints** | May not respect all aircraft limits | Respects aircraft performance envelope |
 
-A well-know aircraft performance model, BADA [@nuic2010], is developed by Eurocontrol. It inlcuded both kinematic and dynamic models. The BADA aircraft performance operation file (OPF) models the dynamic properties of the aircraft, while the airline procedures file (APF) models the kinematic aspects of flights.
+: Comparison of kinematic and dynamic point-mass models {#tbl-model-comparison}
 
-Unlike BADA model that relies on strict user license agreement,  OpenAP [@sun2020openap; @sun2020openap], a recent open aircraft model also provide both kinematic and dynamic models for common aircraft types.
+## Kinematic Model
 
-## Kinematic model
+The kinematic model is a simplified way of describing aircraft motion without considering the forces involved. It is commonly used to analyze the motion of an aircraft during various flight phases, including takeoff, initial climb, climb, cruise, descent, final approach, and landing. 
 
-The kinematic model is a simplified way of describing aircraft motion without considering the forces involved. It is commonly used to analyze the motion of an aircraft during various flight phases, including takeoff, initial climb, climb, cruise, descent, final approach, and landing. For example, the General Aircraft Modelling Environment (GAME) [@calders2002], a very early model also developed by Eurocontrol, is another example of a kinematic performance model.
+### Flight Phases and Data-Driven Approaches
 
-The kinematics of aircraft motion varies across different flight phases. Fortunately, we can directly observe essential parameters such as velocity, altitude, acceleration, and range using aircraft surveillance data. By leveraging openly accessible ADS-B data, we can construct accurate models, as demonstrated in the OpenAP kinematic model [@sun2019wrap].
+The kinematics of aircraft motion varies across different flight phases. Through surveillance data, we can directly observe essential parameters such as velocity, altitude, and range. For example. with the openly accessible ADS-B data, we can construct accurate kinematic models, as demonstrated in the OpenAP's kinematic model component [@sun2019wrap].
 
-This approach enables us to gain valuable insights into the behavior and performance of aircraft during each flight phase. Therefore, the use of ADS-B data in constructing kinematic models is a powerful tool for analyzing and improving flight operations.
+The kinematic models allow us to describe the behavior and performance of aircraft during different flight phase. Furthermore, the adoption of large-scale open data in constructing kinematic models is a powerful approach for analyzing and improving flight operations. In the following part, we will explain two different kinematic models, which are part of the OpenAP and BADA aircraft performance models.
+
+### Examples of Kinematic Models
+
+#### OpenAP Kinematic Model
+
+The OpenAP's kinematic model divides flight into seven distinct flight phases, each characterized by a set of specific kinematic parameters. The model is data-driven, based on openly accessible ADS-B surveillance data, and uses probability density functions (normal, gamma, or beta distributions) to represent the statistical variation of each parameter.
+
+| **Flight Phase** | **Key Parameters** | **Description** |
+|------------------|-------------------|-----------------|
+| **Takeoff** | $V_{lof}$ [m/s]<br>$d_{tof}$ [km]<br>$\bar{a}_{tof}$ [m/s²] | Liftoff speed<br>Takeoff distance<br>Mean takeoff acceleration |
+| **Initial Climb** | $V_{cas,ic}$ [m/s]<br>$V_{S,ic}$ [m/s] | Calibrated airspeed<br>Vertical rate |
+| **Climb** | $R_{top,cl}$ [km]<br>$V_{cas,cl}$ [m/s]<br>$V_{S,cas,cl}$ [m/s]<br>$M_{cl}$ [-]<br>$V_{S,mach,cl}$ [m/s] | Range to top of climb<br>Constant CAS climb speed<br>Vertical rate during CAS climb<br>Constant Mach number<br>Vertical rate at Mach climb |
+| **Cruise** | $R_{cr}$ [km]<br>$h_{cr}$ [km]<br>$M_{cr}$ [-] | Cruise range<br>Cruise altitude<br>Cruise Mach number |
+| **Descent** | $R_{top,de}$ [km]<br>$M_{de}$ [-]<br>$V_{S,mach,de}$ [m/s]<br>$V_{cas,de}$ [m/s]<br>$V_{S,cas,de}$ [m/s] | Range from top of descent<br>Constant Mach number<br>Vertical rate at Mach descent<br>Constant CAS descent speed<br>Vertical rate during CAS descent |
+| **Final Approach** | $V_{cas,fa}$ [m/s]<br>$V_{S,fa}$ [m/s]<br>$\gamma_{fa}$ [deg] | Calibrated airspeed<br>Vertical rate<br>Flight path angle |
+| **Landing** | $V_{tcd}$ [m/s]<br>$d_{lnd}$ [km]<br>$\bar{a}_{lnd}$ [m/s²] | Touchdown speed<br>Braking distance<br>Mean braking deceleration |
+
+: OpenAP kinematic parameters by flight phase {#tbl-openap-kinematic}
+
+In OpenAP's kinematic module, each parameter is provided with a default value, minimum and maximum bounds, and a statistical distribution model, allowing for both deterministic and stochastic generation of trajectory parameters.
+
+#### BADA APF - Airline Procedures File
+
+The BADA Airline Procedures File contains speed procedure parameters for different aircraft types and mass categories. Unlike OpenAP's parametric approach, BADA APF provides procedural speed schedules that are "typically" followed in flight operations. 
 
 ::: {.callout-note}
-OpenAP kinematics table here
+There are only three procedure profiles available depending on the weight of the flight. The profile should only be used as references, as in reality, the flight profiles can differ a lot.
 :::
+
+**Speed schedules by flight phase:**
+
+- **Climb speeds**: Low altitude CAS ($CAS_{lo}$), high altitude CAS ($CAS_{hi}$), and climb Mach number
+- **Cruise speeds**: Low altitude CAS, high altitude CAS, and cruise Mach number  
+- **Descent speeds**: Descent Mach number, high altitude CAS, and low altitude CAS
+
+**Mass categories:**
+
+Each aircraft type in BADA has speed schedules for three mass ranges:
+
+- **LO (Low)**: Lighter aircraft configurations, typically faster climb rates
+- **AV (Average)**: Nominal operating mass, most common configuration
+- **HI (High)**: Heavier configurations, reduced climb performance
+
+This categorization allows the model to reflect performance variations with aircraft weight, particularly important for climb and descent phases where mass significantly affects vertical performance.
 
 ::: {.callout-note}
-BADA APF
+**Quick summary: key characteristics of kinematic models:**
+
+- Focus on observable motion parameters (speed, altitude, acceleration)
+- Do not require detailed force calculations
+- Can be constructed from surveillance data (e.g., ADS-B)
+- Useful for flight phase identification and trajectory prediction
+- Lower computational complexity compared to dynamic models
 :::
 
 
-## Dynamic model
+## Dynamic Model
 
 When aircraft forces are taken into account, a more complex model is required to accurately describe the aircraft's performance compared to what a kinematic model can provide.
 
-n air traffic management-related studies, the total energy model is commonly used to describe the aircraft's behavior. This model takes into account the conservation of total energy generated by the aircraft's engines to counteract drag and the change of kinetic and potential energy. This model is especially useful for trajectory based studies, like optimization and fuel estimations.
+In air traffic management-related studies, the total energy model is commonly used to describe the aircraft's behavior. This model takes into account the conservation of total energy generated by the aircraft's engines to counteract drag and the change of kinetic and potential energy. This model is especially useful for trajectory-based studies, like optimization and fuel estimations.
 
 The main components of the dynamic model are thrust, drag, and mass of the aircraft. Thrust represents the force generated by the aircraft's engines, while drag represents the force that opposes the motion of the aircraft through the air. Mass refers to the total weight of the aircraft, including fuel and passengers.
 
-::: {.callout-note}
-total energy equation + force figure
-:::
+### Total Energy Model
+
+In air traffic management, the point-mass dynamic model is commonly formulated using the total energy approach. This model describes the aircraft's motion through a set of differential equations that account for both translational motion and energy changes.
+
+#### Four-Degrees-of-Freedom Equations
+
+Under ISA conditions and zero wind, the aircraft motion is described by:
+
+$$\frac{dx}{dt} = V \cos(\psi) \cos(\gamma)$$ {#eq-dx}
+
+$$\frac{dy}{dt} = V \sin(\psi) \cos(\gamma)$$ {#eq-dy}
+
+$$\frac{dh}{dt} = V \sin(\gamma)$$ {#eq-dh}
+
+$$\frac{dV}{dt} = \frac{T - D}{m} - g \sin(\gamma)$$ {#eq-dv}
+
+$$\frac{d\psi}{dt} = \frac{g \tan(\phi)}{V \cos(\gamma)}$$ {#eq-dpsi}
+
+$$\frac{dm}{dt} = -f_{fuel}(T, h)$$ {#eq-dm}
+
+Where:
+
+- $V$: True airspeed [m/s]
+- $\psi$: Heading angle [rad]
+- $\gamma$: Flight path angle [rad]
+- $\phi$: Bank angle [rad]
+- $T$: Thrust [N]
+- $D$: Drag [N]
+- $m$: Aircraft mass [kg]
+- $g$: Gravitational acceleration [m/s²]
+- $h$: Altitude [m]
+- $f_{fuel}$: Fuel flow function [kg/s]
+
+#### Total Energy Equation
+
+The total energy model relates the net force (thrust minus drag) to changes in kinetic and potential energy:
+
+$$T - D = mg\sin(\gamma) + m\frac{dV}{dt}$$ {#eq-energy}
+
+This equation expresses the conservation of energy: the net force produced by the aircraft's engines (after overcoming drag) is used to climb against gravity and to accelerate. This formulation is particularly useful for trajectory-based studies such as optimization and fuel estimation, as it directly links the aircraft's energy state to its performance capabilities.
 
 ::: {.callout-note}
-BADA OPF
+**Note**: The total energy model assumes that changes in aircraft attitude are much slower than changes in velocity and altitude, which is valid for most air traffic management applications. For more detailed aircraft control studies, higher-order models that include rotational dynamics would be required.
 :::
 
-::: {.callout-note}
-OpenAP YAML
-:::
+### Model Examples
+
+<!-- #### BADA OPF (Operations Performance File)
+
+The BADA Operations Performance File contains comprehensive aircraft performance parameters organized into eight distinct blocks:
+
+**1. Aircraft Type Block**
+
+- ICAO aircraft code (e.g., A320, B738)
+- Number of engines
+- Engine type (Jet, Turboprop, or Piston)
+- Wake turbulence category (J=jumbo, H=heavy, M=medium, L=light)
+
+**2. Mass Block** (5 parameters)
+
+- $m_{ref}$: Reference mass [tonnes]
+- $m_{min}$: Minimum operating mass [tonnes]
+- $m_{max}$: Maximum takeoff mass (MTOW) [tonnes]
+- $m_{pyld}$: Maximum payload mass [tonnes]
+- $G_w$: Mass gradient on maximum altitude [feet/kg]
+
+**3. Flight Envelope Block** (5 parameters)
+
+- $V_{MO}$: Maximum operating speed [KCAS]
+- $M_{MO}$: Maximum operating Mach number
+- $h_{MO}$: Maximum operating altitude [ft]
+- $h_{max}$: Maximum altitude at MTOW under ISA [ft]
+- $G_t$: Temperature gradient on maximum altitude [ft/K]
+
+**4. Aerodynamics Block** (14-16 parameters)
+
+Includes drag polar coefficients for five flight configurations:
+
+- **CR (Cruise/Clean)**: $(V_{stall})_{CR}$, $C_{D0,CR}$, $C_{D2,CR}$
+- **IC (Initial Climb)**: $(V_{stall})_{IC}$, $C_{D0,IC}$, $C_{D2,IC}$
+- **TO (Takeoff)**: $(V_{stall})_{TO}$, $C_{D0,TO}$, $C_{D2,TO}$
+- **AP (Approach)**: $(V_{stall})_{AP}$, $C_{D0,AP}$, $C_{D2,AP}$
+- **LD (Landing)**: $(V_{stall})_{LD}$, $C_{D0,LD}$, $C_{D2,LD}$
+
+Additional parameters include:
+
+- $S$: Reference wing surface area [m²]
+- $C_{lbo}(M=0)$: Buffet onset lift coefficient (jets only)
+- $k$: Buffeting gradient (jets only)
+- $\Delta C_{D0,LDG}$: Landing gear drag increment
+
+**5. Engine Thrust Block** (12 parameters)
+
+Maximum climb thrust coefficients ($C_{Tc,1}$, $C_{Tc,2}$, $C_{Tc,3}$), temperature correction coefficients ($C_{Tc,4}$, $C_{Tc,5}$), and descent thrust coefficients for different flight phases ($C_{Tdes,low}$, $C_{Tdes,high}$, $C_{Tdes,app}$, $C_{Tdes,ld}$).
+
+For jet engines, thrust is modeled as:
+$$T_{max,climb} = C_{Tc,1} \left(1 - \frac{H_p}{C_{Tc,2}} + C_{Tc,3} H_p^2\right)$$
+
+**6. Fuel Consumption Block** (5 parameters)
+
+Thrust-specific fuel consumption (TSFC) approach:
+$$\eta = C_{f1} \left(1 + \frac{V_{TAS}}{C_{f2}}\right) \quad \text{[kg/(min·kN)]}$$
+
+Parameters include $C_{f1}$, $C_{f2}$ for nominal consumption, and $C_{f3}$, $C_{f4}$ for descent idle fuel flow.
+
+**7. Ground Movement Block**
+
+Takeoff length (TOL), landing length (LDL), wingspan, and aircraft length.
+
+**8. Additional Data**
+
+Version information, source references, and validation status.
+
+#### OpenAP YAML Structure
+
+OpenAP stores aircraft data in YAML format, providing a human-readable and easily parsable structure. A typical aircraft file contains:
+
+```yaml
+aircraft:
+  dimensions:
+    wing_span: 35.8      # [m]
+    length: 37.6         # [m]
+    height: 11.8         # [m]
+    wing_area: 122.6     # [m²]
+  
+  limits:
+    MMO: 0.82           # Maximum operating Mach
+    VMO: 350            # Maximum operating speed [KCAS]
+    ceiling: 12500      # Maximum altitude [m]
+  
+  weights:
+    reference: 64000    # Reference mass [kg]
+    min: 42000          # Minimum operating weight [kg]
+    max: 78000          # Maximum takeoff weight [kg]
+    
+  cruise:
+    height: 11000       # Nominal cruise altitude [m]
+    mach: 0.78          # Nominal cruise Mach number
+    
+  engine:
+    options:            # Compatible engine models
+      - CFM56-5B4
+      - CFM56-5B6
+```
+
+Engine data is stored separately with 11 key parameters per engine:
+
+- Name and manufacturer
+- Bypass ratio ($\lambda$) and pressure ratio
+- Maximum static thrust at sea level ($T_0$) [N]
+- Fuel flow coefficients ($C_{ff3}$, $C_{ff2}$, $C_{ff1}$) [kg/s]
+- Cruise performance parameters (thrust, Mach, altitude)
+
+The OpenAP structure emphasizes simplicity and accessibility, with all data files being open-source and freely redistributable, in contrast to BADA's licensing requirements. -->
 
 
 ### Thrust
 
-Thrust is produced by the engines of the aircraft, and modeling aircraft engine performance is a complicated research area. In air traffic management studies, the thrust model is simplified. Instead of trying to model the performance of engines, we are interested in the net force that is produced by the aircraft in different stages of the flight. For example, in BADA v3, thrust is modeled as a polynomial model related to the aircraft altitude.
+Thrust is produced by the engines of the aircraft, and modeling aircraft engine performance can be complicated. A thrust model often provide the maximum available thrust of the engines at specific flight conditions, like altitude and speed. 
 
-Aircraft thrust is a parameter that cannot be derived using surveillance data. We have to rely on open models that are created by other researchers. In OpenAP, an empirical model for two-shaft turbofan engine thrust calculation proposed by [@bartel2008]. The model is constructed and evaluated based on real engine performance data. Thus, in this dissertation, thrust is modeled as functions of both altitude and speed, as well as the vertical rate. This offers a more accurate interpolation than the BADA v3 model, in which the thrust is only dependent on aircraft altitude.
+In air traffic management studies, the maximum thrust models are also often simplified. For example, in BADA v3, thrust is modeled as a polynomial model related to the aircraft altitude. In OpenAP, the thrust model is based on an empirical model for two-shaft turbofan engines proposed by Bartel and Young [@bartel2008]. The model is constructed and evaluated based on engine performance data, where the maximum thrust is modeled as functions of both altitude and speed, as well as the vertical rate. 
 
+::: {.callout-note}
+For many applications in aviation, such as, studying fuel, emission, and noise, the net thrust is often used. The net thrust is not calculated with the these thrust models. It is usually derived based on the drag model and equilibrium of forces (see below).
+:::
 
 ### Drag
 
-drag polar models, how to estimate them, sample figures from OpenAP
+Aircraft drag is typically modeled using drag polar equations, which relate the drag coefficient to the lift coefficient. The total drag consists of two main components: parasitic drag (zero-lift drag) and induced drag (drag due to lift generation).
+
+The drag polar is commonly expressed as:
+$$C_D = C_{D_0} + k C_L^2$$
+
+Where:
+
+- $C_D$: Total drag coefficient
+- $C_{D_0}$: Zero-lift drag coefficient
+- $k$: Lift-induced drag coefficient, where $k = \frac{1}{\pi \cdot AR \cdot e}$
+- $C_L$: Lift coefficient
+- $AR$: Aspect ratio (wingspan² / wing area)
+- $e$: Oswald efficiency factor (typically 0.7–0.85 for transport aircraft)
+
+This equation is sometimes written in the expanded form:
+
+$$C_D = C_{D_0} + \frac{C_L^2}{\pi \cdot AR \cdot e}$$
+
+#### Estimating Drag Parameters
+
+Drag polar parameters can be estimated through various methods:
+
+1. **Wind-tunnel testing**: Traditional method using scaled models
+2. **Computational Fluid Dynamics (CFD)**: Numerical simulations of airflow
+3. **Flight test data**: Direct measurements from instrumented aircraft
+4. **Data-driven approaches**: Using flight data to infer drag characteristics
+
+The values of drag coefficients can change depending on the aerodynamic configurations of the aircraft. These configuration-specific coefficients reflect how flaps, slats, and landing gear affect aircraft drag. 
+
+Clean configuration (e.g. during later stage of climb, cruise, and earlier stage of descent) has the lowest drag, while landing configuration with full flaps and gear down produces the highest drag. The following figure shows some indicative values of the zero-lift drag coefficient and lift-induced drag coefficient.
+
+
+| **Configuration** | **Typical $C_{D0}$** | **Typical $k$** | **Description** |
+|-------------------|---------------------|---------------------|-----------------|
+| Clean (Cruise) | 0.020 - 0.025 | 0.045 - 0.055 | Minimal drag, optimal for cruise |
+| Initial Climb | 0.025 - 0.030 | 0.050 - 0.060 | Partial flaps extended |
+| Takeoff | 0.025 - 0.030 | 0.050 - 0.060 | Takeoff flap setting |
+| Approach | 0.045 - 0.055 | 0.055 - 0.065 | More flaps, moderate drag |
+| Landing | 0.080 - 0.100 | 0.055 - 0.065 | Full flaps + gear down, maximum drag |
+
+: Typical drag coefficients for modern commercial jets {#tbl-drag-coefficients}
+
+
+::: {.callout-note}
+**Example**: For an Airbus A320 or Boeing 737-800, the clean configuration drag polar coefficients are approximately $C_{D0} \approx 0.023$ and $k \approx 0.050$. In landing configuration, $C_{D0}$ increases to approximately 0.090, representing a nearly 4-fold increase in parasitic drag due to flaps and landing gear.
+:::
+
+It is worth noting that with the same aerodynamic configuration, the drag coefficient can also be affected by the speed aircraft, especially when the aircraft operates near the maximum Mach number. And a wave drag coefficient should be introduced to count for increase of drag. 
+
+
+
 
 
 ### Mass
 
-aircraft mass, why it is hard to find, and how to estimate them
+Aircraft mass is one of the most challenging parameters to determine accurately in air traffic management studies. The actual mass varies significantly throughout a flight due to fuel consumption and differs between flights based on payload (passengers, cargo) and fuel loading decisions.
+
+Estimating aircraft mass presents several challenges. Privacy concerns arise because airlines treat payload and fuel data as commercially sensitive information, limiting access to actual mass figures. Additionally, aircraft mass varies continuously throughout a flight due to fuel consumption, making it difficult to determine an accurate value at any given time. Data availability is another issue, as real-time mass information is rarely provided by surveillance systems, further complicating mass estimation efforts in operational contexts.
+
+#### Mass Estimation Methods
+
+Several approaches exist to estimate aircraft mass:
+
+1. **Fixed mass assumptions**: Using typical operating weights (conservative but inaccurate)
+2. **Statistical models**: Based on flight distance, aircraft type, and historical data
+3. **Performance-based estimation**: Inferring mass from observed climb/descent performance
+5. **Machine learning approaches**: Using multiple factors including origin/destination airports, time of day, airline fuel policies, and 4D trajectory characteristics
+
+#### Typical Mass Ranges
+
+Aircraft mass is typically characterized by several reference values:
+
+- **OEW (Operating Empty Weight)**: Aircraft structure, systems, and crew (but no payload or fuel)
+- **MTOW (Maximum Takeoff Weight)**: Maximum certified takeoff weight for safety and structural integrity
+- **MLW (Maximum Landing Weight)**: Maximum weight allowed for landing (usually less than MTOW)
+
+Following table provides typical mass ranges for some common commercial aircraft:
+
+| **Aircraft Type** | **OEW [kg]** | **MTOW [kg]** | **Typical Operating [kg]** | **Range [NM]** |
+|-------------------|--------------|---------------|---------------------------|----------------|
+| A320 | ~42,000 | ~78,000 | 60,000 - 70,000 | ~2,700 |
+| A20N | ~42,400 | ~79,000 | 62,000 - 72,000 | ~3,500 |
+| B738 | ~41,000 | ~79,000 | 60,000 - 70,000 | ~2,000 |
+| A321 | ~48,500 | ~90,000 | 70,000 - 80,000 | ~2,400 |
+| B77W | ~168,000 | ~350,000 | 280,000 - 320,000 | ~7,400 |
+
+: Typical mass ranges for common commercial aircraft {#tbl-mass-ranges}
 
 
-## Other models
+#### Impact of Mass on Performance
 
-ECAC Doc 29 [@ecac/ecea16a, @ecac/ecea16b, @ecac/ecea16c]
+Aircraft mass significantly affects several performance aspects:
 
-Piano-X
+- **Climb performance**: Rate of climb decreases with increasing mass (heavier aircraft climb more slowly)
+- **Fuel consumption**: Fuel flow increases with mass (more thrust required for heavier aircraft)
+- **Maximum altitude**: Cruise ceiling decreases with increasing mass (requires higher air density for higher lift)
+- **Stall speeds**: All stall speeds increase with mass (proportional to $\sqrt{m}$)
 
-In-house models [@poll_schumann_2021a; @poll_schumann_2021b]
+
+## Model Comparison and Use Cases
+
+The choice between kinematic and dynamic models depends on the specific research objectives and available data:
+
+### When to Use Kinematic Models
+
+- Flight phase identification and classification
+- Trajectory prediction without force calculations
+- Real-time applications requiring low computational cost
+- Studies where surveillance data is the primary input
+- Pattern recognition in flight operations
+
+### When to Use Dynamic Models
+
+- Fuel consumption estimation
+- Trajectory optimization problems
+- What-if scenario analysis with different aircraft configurations
+- Performance envelope studies
+- Emission calculations
+- Studies requiring physical consistency with aircraft limitations
+
+### Trade-offs
+
+Selecting the appropriate model requires careful consideration of several factors:
+
+| **Factor** | **Kinematic Model** | **Dynamic Model** |
+|------------|---------------------|-------------------|
+| **Data Requirements** | Surveillance data (ADS-B, Mode-S)<br>Statistical distributions<br>Flight phase definitions | All kinematic data plus:<br>Aircraft mass<br>Thrust coefficients<br>Drag polar parameters<br>Fuel flow models<br>Engine specifications |
+| **Computational Cost** | Fast - simple differential equations<br>Suitable for real-time operations<br>Can handle thousands of aircraft | Moderate - more complex equations<br>Iterative thrust/drag calculations<br>Still feasible for large-scale studies |
+| **Accuracy** | Excellent for trajectory shape/timing<br>Cannot predict fuel consumption<br>May not respect all physical constraints<br>Statistical uncertainty from distributions | Physically consistent trajectories<br>Fuel predictions within ±5-10%<br>Respects aircraft performance limits<br>Better for off-nominal scenarios |
+| **Model Calibration** | Data-driven - minimal calibration needed<br>Automatically learned from surveillance data | Requires detailed parameter estimation<br>Calibration against flight test data<br>May need proprietary information |
+| **Flexibility** | Quick trajectory generation<br>Easy to adapt to new aircraft types<br>Good for pattern analysis | Supports what-if scenarios<br>Can model different configurations<br>Enables optimization studies |
+| **Applications** | Flight phase identification<br>Trajectory prediction<br>Conflict detection<br>Pattern recognition<br>Fast-time simulation | Fuel/emission estimation<br>Trajectory optimization<br>Economic analysis<br>Environmental impact<br>Performance studies |
+
+: Detailed comparison of kinematic and dynamic models {#tbl-trade-offs}
+
+The choice often depends on the research question: if the goal is to understand where and when aircraft will be (trajectory prediction, conflict detection), kinematic models are sufficient and computationally efficient. If the goal is to understand fuel burn, emissions, or to optimize flight paths subject to physical constraints, dynamic models are necessary despite their higher complexity and data requirements.
+
+
+## Other Performance Models
+
+Beyond OpenAP and BADA, several other aircraft performance models are used in specialized applications:
+
+**ECAC Doc 29**: A model primarily designed for aircraft noise and emission calculations around airports. It provides a less detailed performance data for noise certification and environmental impact assessments, focusing on standard flight procedures and reference trajectories.
+
+**In-house models**: Many research institutions and airlines develop proprietary performance models tailored to their specific needs [@poll_schumann_2021a; @poll_schumann_2021b]. These models often combine publicly available data with organization-specific calibrations and enhancements.
+
+
+## Advanced Aircraft Mass Estimation
+
+Accurately estimating aircraft mass is a fundamental challenge in air traffic management research and operations. Aircraft mass is typically considered proprietary information by airlines, preventing ground-based decision support tools from accessing this critical parameter directly. This necessitates the development of sophisticated ground-based inverse estimation techniques capable of inferring mass from observable kinematic data such as ADS-B or Mode-S surveillance data.
+
+The need for accurate mass estimation extends beyond trajectory prediction to encompass fuel consumption modeling, emission calculations, and safety management. The challenge is compounded by the fact that mass varies continuously throughout a flight due to fuel consumption and differs significantly between flights based on payload and fuel loading decisions.
+
+### Foundational Physics: The Point-Mass Framework
+
+Ground-based mass estimation fundamentally relies on inverse modeling, where observable kinematic variables are used to infer non-observable operational parameters within the framework of the aircraft performance model. The most reliable approach for inferring mass from observed data involves fitting the dynamics to the aircraft's total energy rate.
+
+The energy of an aircraft is composed of kinetic and potential energy:
+
+$$E = \frac{1}{2} m V_a^2 + mgh$$
+
+The observed power input is related to the energy rate equation:
+
+$$\text{Power} = (\text{Thr} - D) V_a$$
+
+By comparing the derived energy rate from observed trajectory data (altitude and speed changes) to the power equation, the unknown mass ($m$) can be estimated. Many modern ATM tools utilize the industry-standard Base of Aircraft Data (BADA) equations for drag polar and thrust modeling; consequently, mass estimation is often framed as inferring the mass parameter that minimizes the deviation between the observed dynamics and the BADA equations.
+
+### Methodological Approaches
+
+Ground-based mass estimation methods can be classified into five major categories, each with distinct advantages and limitations.
+
+#### 1. Inverse Physics Methods
+
+Early ground-based approaches employed classical inverse physics techniques, comparing adaptive methods against least squares methods to estimate mass from trajectory data. These methods fit the observed dynamics to the point-mass equations, typically assuming maximum climb thrust during the analyzed segment. The challenge lies in solving differential algebraic equations to find the mass value that minimizes deviation between predicted and observed trajectories.
+
+These methods are computationally efficient but highly sensitive to uncertainties in coupled parameters such as thrust setting, drag coefficients, and wind velocity. Their accuracy depends entirely on how well the simplified point-mass model reflects the actual forces acting on the aircraft.
+
+#### 2. Recursive Bayesian Filtering
+
+A significant advancement came from recursive Bayesian methods, particularly the particle filter approach applied to mass and thrust estimation. This methodology treats mass estimation as a stochastic state estimation problem, enabling real-time tracking with rigorous uncertainty quantification.
+
+The particle filter method utilizes open surveillance data (ADS-B, Mode-S) and explicitly models observation noise using the Navigation Accuracy Category (NAC) parameters native to ADS-B transmissions. This approach achieves mass convergence typically within **30 seconds** of takeoff during the initial climb phase, with validation studies reporting Mean Absolute Errors (MAE) of approximately **4.3-4.6%** relative to true aircraft mass.
+
+The primary advantages of recursive Bayesian filtering are real-time capability, uncertainty quantification, and the ability to simultaneously estimate coupled parameters (mass and thrust setting). However, the computational demand is high, often requiring millions of particles to balance accuracy and processing speed.
+
+#### 3. Large-Scale Machine Learning
+
+Data-driven machine learning approaches leverage massive datasets from sources like the OpenSky Network to learn operational factors that minimize trajectory prediction errors. Neural networks and gradient-boosting machines are trained on millions of flight segments to predict mass and speed profiles during climb.
+
+Rather than optimizing for mass accuracy directly, these methods focus on operational utility—minimizing the Root Mean Square Error (RMSE) in predicted altitude and speed trajectories. Studies report RMSE reductions of **29-58%** in altitude prediction compared to baseline methods using reference mass assumptions. When using only information available before takeoff, ML approaches can still achieve **25%** average RMSE reduction.
+
+The strength of ML methods lies in their scalability and ability to capture complex, non-linear relationships without strict reliance on proprietary performance coefficients. However, purely data-driven models risk producing non-physical results in flight regimes not adequately represented in training data.
+
+#### 4. High-Fidelity Data Methods
+
+When proprietary Quick Access Recorder (QAR) or Flight Data Recorder (FDR) data is available, specialized techniques achieve higher accuracy. Gaussian Process Regression applied to takeoff ground roll data has demonstrated MAE as low as **3.6%**. Multilayer perceptron neural networks combined with QAR data also show strong performance for initial climb mass estimation.
+
+These methods represent an accuracy benchmark but are limited by data accessibility, making them less applicable for ground-based ATM systems that must rely on surveillance data.
+
+#### 5. Hybrid Physics-Guided Models
+
+An emerging trend addresses the limitations of purely data-driven approaches by incorporating physical constraints directly into neural network architectures. Physics-guided deep neural networks embed aircraft equations (fuel flow dynamics, force balance) into the loss function, penalizing results that violate known physics.
+
+This hybridization ensures physical consistency and robustness, yielding improved generalization in unseen flight regimes while maintaining the learning advantages of neural networks. This approach represents a promising convergence between model-based and data-driven methodologies.
+
+### Key Challenges and Sensitivities
+
+Several persistent challenges affect all ground-based estimation methods:
+
+- **Coupled parameter uncertainty**: Mass estimation requires simultaneous knowledge or estimation of thrust setting and pilot speed intent. Inaccurate assumptions about maximum thrust introduce systematic bias.
+- **Wind uncertainty**: The total energy model is highly sensitive to true airspeed, which requires accurate wind vector calculation. Errors in numerical weather predictions directly propagate to mass estimation errors.
+- **Flight phase selection**: The initial climb phase is strongly preferred for mass estimation due to high engine performance and significant energy changes, maximizing the signal-to-noise ratio. The cruise phase is generally less suitable for mass inference.
+- **Observation noise**: Altitude is typically derived from barometric pressure, introducing uncertainties that propagate through energy rate calculations.
+
+### Comparative Analysis
+
+The following tables synthesize the leading scientific approaches and provide a qualitative assessment of their strengths and limitations.
+
+| **Methodology Class** | **Specific Approach (Key Authors)** | **Primary Flight Phase** | **Input Data Source** | **Reported Accuracy (Error Type)** |
+|:---------------------|:------------------------------------|:------------------------|:---------------------|:------------------------------------|
+| Stochastic Bayesian | Particle Filter [@sun2019particle] | Initial Climb | ADS-B, Mode S (Open Data, NAC Noise) | MAE 4.6% |
+| Bayesian Inference | Total Energy Model Integration [@sun2018aircraft] | Initial Mass (Post-Process) | Trajectory Data | MAE 4.3% |
+| Data-Driven ML | Neural Networks/GBM [@alligier2015machine] | Climb | OpenSky ADS-B (Large Scale) | RMSE Reduction ≥ 29% (Altitude TP) |
+| Statistical Regression | Gaussian Process Regression [@chati2018modeling] | Takeoff Ground Roll | FDR/QAR (Proprietary) | MAE 3.6% |
+| Inverse Physics | Adaptive/Least Squares [@alligier2013ground] | Climb | ADS-B Track Data | Trajectory Error Reduction |
+
+: Summary of key aircraft mass estimation methodologies and performance benchmarks {#tbl-mass-estimation-methods}
+
+| **Methodology Class** | **Primary Advantage** | **Primary Limitation** | **Data Accessibility** | **Computational Demand** |
+|:---------------------|:---------------------|:----------------------|:----------------------|:------------------------|
+| Recursive Bayesian Filtering (Sun) | Real-time state tracking, Uncertainty quantification | Sensitivity to observation noise model, High PF execution cost | Open (ADS-B, Mode S) | High (Run-Time) |
+| Data-Driven ML (Alligier) | Highly scalable, Maximizes trajectory prediction accuracy | Requires massive training data, Risk of non-physical results in extreme regimes | Open (OpenSky Network) | High (Training) |
+| High-Fidelity Data ML (QAR/FDR) | Highest potential accuracy (MAE ≈ 3.6%), Robust inputs | Requires proprietary data, Limited applicability across diverse fleets | Proprietary/Internal | Medium |
+| Inverse Physics/Adaptive | Simple physical interpretation, Low computational overhead | Highly sensitive to unknown parameters (Thrust, Drag, Wind) | Open (Track Data) | Low |
+
+: Qualitative assessment of mass estimation methodology classes {#tbl-mass-estimation-assessment}
+
+### Performance Insights
+
+The comparative analysis reveals several important insights:
+
+1. **State Fidelity vs. Operational Utility**: Recursive Bayesian methods prioritize minimizing the MAE of the estimated mass parameter itself, establishing high state fidelity (MAE 4.3–4.6%). In contrast, ML methods prioritize operational utility for ATM, focusing on large reductions in RMSE of the resulting trajectory output (29–58% reduction).
+
+2. **Data Quality Compensation**: The accuracy gap between high-fidelity proprietary data methods (MAE ~3.6%) and open surveillance data methods (MAE ~4.3-4.6%) is remarkably small. This demonstrates that sophisticated mathematical techniques—particularly those that explicitly model measurement noise—can effectively compensate for data quality limitations.
+
+3. **Trade-offs**: The choice of methodology involves balancing computational complexity, data requirements, and optimization objectives. Both state fidelity (critical for performance analysis) and trajectory prediction accuracy (essential for ATM decision support tools) are valuable metrics.
+
+
+#### The EUROCONTROL Data Challenge
+
+A comprehensive data challenge organized by EUROCONTROL Performance Review Commission analyzed around 530,000 flights from 2022 across 30 distinct aircraft types to advance mass estimation methodologies [@spinielli2025]. The dataset provided new insights into the factors affecting aircraft takeoff weight, with the top 10 aircraft types accounting for approximately 80% of all flights in the dataset.
+
+**Dataset Composition**
+
+The dataset represents a collection of flight information, combining:
+
+- **Flight information**: Origin/destination airports, take-off/landing times, and aircraft type identifiers
+- **ADS-B trajectory data**: Complete 4D trajectories from OpenSky Network, covering 5 minutes before actual off-block time to 30 minutes after arrival
+- **Actual take-off weight data**: Airline-reported weights from EUROCONTROL's Network Manager, with airline information anonymized through agreements for open data sharing
+- **Meteorological data**: Enhanced with Copernicus ERA5 atmospheric data via the `fastmeteo` library
+
+The dataset spans 527,162 flights throughout Europe in 2022, representing 6.1% of all flights in EUROCONTROL airspace. All data is openly available at [4TU.ResearchData data repository](https://doi.org/10.4121/8cb8484b-dbe7-4750-8b87-a5b1dbc621b4). The dataset is more than 300 GB.
+
+
+| **ICAO Code** | **Aircraft Name** | **Flights** | **% of Flights** | **Range [NM]** | **Max Pax** |
+|---------------|-------------------|-------------|------------------|----------------|-------------|
+| A320 | Airbus A320 | 113,971 | 21.6% | 2,700 | 180 |
+| A20N | Airbus A320neo | 54,245 | 10.3% | 3,500 | 194 |
+| B738 | Boeing 737-800 | 53,813 | 10.2% | 2,000 | 189 |
+| A321 | Airbus A321 | 41,819 | 7.9% | 2,350 | 220 |
+| E195 | Embraer 195 | 35,370 | 6.7% | 2,300 | 124 |
+| A21N | Airbus A321neo | 33,158 | 6.3% | 4,000 | 244 |
+| CRJ9 | Bombardier CRJ900 | 32,846 | 6.2% | 1,550 | 90 |
+| A319 | Airbus A319 | 25,074 | 4.8% | 1,800 | 142 |
+| A333 | Airbus A330-300 | 24,316 | 4.6% | 5,650 | 335 |
+| B38M | Boeing 737 Max 8 | 17,396 | 3.3% | 3,550 | 210 |
+
+: Top 10 aircraft types in the EUROCONTROL data challenge dataset {#tbl-data-challenge}
+
+**Dataset Features and Structure**
+
+Each flight record in the dataset includes:
+
+- **Flight identification**: Callsign, aircraft registration (ICAO 24-bit address), aircraft type (ICAO code)
+- **Temporal information**: Date, actual off-block time, takeoff time, landing time, arrival time
+- **Spatial information**: Origin and destination airports (ICAO codes)
+- **Mass information**: Actual take-off weight (TOW) in kilograms, anonymized airline identifier
+- **Trajectory data**: Time-series ADS-B state vectors including latitude, longitude, altitude, ground speed, track angle, vertical rate
+- **Meteorological context**: Temperature, pressure, wind components at flight level from ERA5 reanalysis
+
+The dataset is organized daily, with one Parquet file per day throughout 2022 (366 files total), plus summary CSV files for training and testing subsets used in the original data challenge. This structure enables efficient access to specific time periods while maintaining the complete temporal coverage necessary for understanding seasonal and operational patterns in aircraft mass.
+
+
+
+## Conclusion
+
+Aircraft performance modeling is fundamental to air traffic management research and operations. This chapter has explored the two primary approaches to point-mass performance modeling: kinematic and dynamic models, each serving distinct but complementary purposes in aviation studies.
+
+**Choosing the Appropriate Model**
+
+The selection between kinematic and dynamic models depends primarily on the research objectives and available resources. Kinematic models excel at describing observable aircraft motion and are ideal for applications requiring computational efficiency and real-time performance, such as trajectory prediction and conflict detection. Dynamic models, while more complex, are essential when physical forces, fuel consumption, or emissions must be accurately represented, making them indispensable for trajectory optimization and environmental impact studies.
+
+**Model Fidelity and Practical Applicability**
+
+A key insight from comparing BADA and OpenAP approaches is the trade-off between model fidelity and practical applicability. BADA offers comprehensive, rigorously validated performance data but requires user agreements that limit accessibility. OpenAP demonstrates that data-driven approaches using openly available surveillance data can achieve comparable accuracy while promoting reproducibility and broader adoption in the research community. This balance between model sophistication and accessibility is crucial for advancing the field.
+
+**The Trend Toward Open and Data-Driven Approaches**
+
+The aviation research community is increasingly embracing open-source models and data-driven methodologies. The success of OpenAP in deriving performance parameters from ADS-B data illustrates how modern surveillance systems can support model development without relying solely on proprietary manufacturer data. This trend democratizes access to performance modeling capabilities and enables researchers worldwide to contribute to and benefit from shared knowledge.
+
+
+Aircraft performance modeling continues to evolve, driven by advances in surveillance technology, computational capabilities, and the increasing availability of operational data. The models and methodologies presented in this chapter provide a foundation for understanding aircraft behavior, but the field remains dynamic, with ongoing research addressing current limitations and expanding capabilities to meet emerging aviation challenges.
