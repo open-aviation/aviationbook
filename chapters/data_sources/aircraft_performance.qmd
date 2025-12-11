@@ -1,14 +1,9 @@
-# Aircraft performance
+---
+title: Aircraft performance
+authors:
+  - Junzi Sun
+---
 
-::: {.callout-tip}
-Author: Junzi
-:::
-
-::: {.callout-note}
-**Author's note**: This chapter covers aircraft performance models commonly used in air traffic management and aviation research, with a focus on both kinematic and dynamic modeling approaches.
-:::
-
-## Introduction
 
 Aircraft performance models are used to study how aircraft fly. They are based on the laws of physics and can be used to predict the aircraft's speed, altitude, thrust, drag, and fuel consumption. There are different categories of performance models, with varying levels of detail. The most detailed, non-linear six-degree-of-freedom models are commonly used in aircraft control studies. Air traffic management research often assumes a stable aircraft and neglects fast rotational dynamics. This assumption means that a point-mass aircraft performance model is sufficient in most use cases. Such a point-mass model is used in most of the aviation research.
 
@@ -32,7 +27,7 @@ There are two different types of point-mass models: kinematic and dynamic. The p
 
 ## Kinematic Model
 
-The kinematic model is a simplified way of describing aircraft motion without considering the forces involved. It is commonly used to analyze the motion of an aircraft during various flight phases, including takeoff, initial climb, climb, cruise, descent, final approach, and landing. 
+The kinematic model is a simplified way of describing aircraft motion without considering the forces involved. It is commonly used to analyze the motion of an aircraft during various flight phases, including takeoff, initial climb, climb, cruise, descent, final approach, and landing.
 
 ### Flight Phases and Data-Driven Approaches
 
@@ -62,7 +57,7 @@ In OpenAP's kinematic module, each parameter is provided with a default value, m
 
 #### BADA APF - Airline Procedures File
 
-The BADA Airline Procedures File contains speed procedure parameters for different aircraft types and mass categories. Unlike OpenAP's parametric approach, BADA APF provides procedural speed schedules that are "typically" followed in flight operations. 
+The BADA Airline Procedures File contains speed procedure parameters for different aircraft types and mass categories. Unlike OpenAP's parametric approach, BADA APF provides procedural speed schedules that are "typically" followed in flight operations.
 
 ::: {.callout-note}
 There are only three procedure profiles available depending on the weight of the flight. The profile should only be used as references, as in reality, the flight profiles can differ a lot.
@@ -71,7 +66,7 @@ There are only three procedure profiles available depending on the weight of the
 **Speed schedules by flight phase:**
 
 - **Climb speeds**: Low altitude CAS ($CAS_{lo}$), high altitude CAS ($CAS_{hi}$), and climb Mach number
-- **Cruise speeds**: Low altitude CAS, high altitude CAS, and cruise Mach number  
+- **Cruise speeds**: Low altitude CAS, high altitude CAS, and cruise Mach number
 - **Descent speeds**: Descent Mach number, high altitude CAS, and low altitude CAS
 
 **Mass categories:**
@@ -227,21 +222,21 @@ aircraft:
     length: 37.6         # [m]
     height: 11.8         # [m]
     wing_area: 122.6     # [m²]
-  
+
   limits:
     MMO: 0.82           # Maximum operating Mach
     VMO: 350            # Maximum operating speed [KCAS]
     ceiling: 12500      # Maximum altitude [m]
-  
+
   weights:
     reference: 64000    # Reference mass [kg]
     min: 42000          # Minimum operating weight [kg]
     max: 78000          # Maximum takeoff weight [kg]
-    
+
   cruise:
     height: 11000       # Nominal cruise altitude [m]
     mach: 0.78          # Nominal cruise Mach number
-    
+
   engine:
     options:            # Compatible engine models
       - CFM56-5B4
@@ -261,9 +256,9 @@ The OpenAP structure emphasizes simplicity and accessibility, with all data file
 
 ### Thrust
 
-Thrust is produced by the engines of the aircraft, and modeling aircraft engine performance can be complicated. A thrust model often provide the maximum available thrust of the engines at specific flight conditions, like altitude and speed. 
+Thrust is produced by the engines of the aircraft, and modeling aircraft engine performance can be complicated. A thrust model often provide the maximum available thrust of the engines at specific flight conditions, like altitude and speed.
 
-In air traffic management studies, the maximum thrust models are also often simplified. For example, in BADA v3, thrust is modeled as a polynomial model related to the aircraft altitude. In OpenAP, the thrust model is based on an empirical model for two-shaft turbofan engines proposed by Bartel and Young [@bartel2008]. The model is constructed and evaluated based on engine performance data, where the maximum thrust is modeled as functions of both altitude and speed, as well as the vertical rate. 
+In air traffic management studies, the maximum thrust models are also often simplified. For example, in BADA v3, thrust is modeled as a polynomial model related to the aircraft altitude. In OpenAP, the thrust model is based on an empirical model for two-shaft turbofan engines proposed by Bartel and Young [@bartel2008]. The model is constructed and evaluated based on engine performance data, where the maximum thrust is modeled as functions of both altitude and speed, as well as the vertical rate.
 
 ::: {.callout-note}
 For many applications in aviation, such as, studying fuel, emission, and noise, the net thrust is often used. The net thrust is not calculated with the these thrust models. It is usually derived based on the drag model and equilibrium of forces (see below).
@@ -298,7 +293,7 @@ Drag polar parameters can be estimated through various methods:
 3. **Flight test data**: Direct measurements from instrumented aircraft
 4. **Data-driven approaches**: Using flight data to infer drag characteristics
 
-The values of drag coefficients can change depending on the aerodynamic configurations of the aircraft. These configuration-specific coefficients reflect how flaps, slats, and landing gear affect aircraft drag. 
+The values of drag coefficients can change depending on the aerodynamic configurations of the aircraft. These configuration-specific coefficients reflect how flaps, slats, and landing gear affect aircraft drag.
 
 Clean configuration (e.g. during later stage of climb, cruise, and earlier stage of descent) has the lowest drag, while landing configuration with full flaps and gear down produces the highest drag. The following figure shows some indicative values of the zero-lift drag coefficient and lift-induced drag coefficient.
 
@@ -318,7 +313,7 @@ Clean configuration (e.g. during later stage of climb, cruise, and earlier stage
 **Example**: For an Airbus A320 or Boeing 737-800, the clean configuration drag polar coefficients are approximately $C_{D0} \approx 0.023$ and $k \approx 0.050$. In landing configuration, $C_{D0}$ increases to approximately 0.090, representing a nearly 4-fold increase in parasitic drag due to flaps and landing gear.
 :::
 
-It is worth noting that with the same aerodynamic configuration, the drag coefficient can also be affected by the speed aircraft, especially when the aircraft operates near the maximum Mach number. And a wave drag coefficient should be introduced to count for increase of drag. 
+It is worth noting that with the same aerodynamic configuration, the drag coefficient can also be affected by the speed aircraft, especially when the aircraft operates near the maximum Mach number. And a wave drag coefficient should be introduced to count for increase of drag.
 
 
 
