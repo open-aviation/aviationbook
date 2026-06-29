@@ -1,0 +1,27 @@
+---
+title: Baggage handling systems
+author: Manuel Waltert
+---
+
+Baggage handling systems move checked bags between passenger processing areas, aircraft stands, transfer connections, and baggage reclaim. They are a critical interface between terminal operations and aircraft turnaround.
+
+## Main functions
+
+A baggage system typically includes:
+
+- bag drop or check-in induction;
+- screening and sortation;
+- early bag storage where available;
+- make-up areas for loading bags into containers or carts;
+- transfer baggage routing;
+- inbound delivery to reclaim belts.
+
+## Operational constraints
+
+Baggage performance depends on sortation capacity, screening capacity, transfer times, stand location, staffing, and disruption recovery. Late bags can delay departures; missed transfer bags can affect passenger experience and airline cost.
+
+## Data relevance
+
+Useful data include bag-tag events, induction times, screening status, sortation destination, container loading, reclaim belt allocation, and mishandled-baggage reports.
+
+## List of Acronyms {.unnumbered}

@@ -1,0 +1,21 @@
+---
+title: Time series in aviation
+authors:
+- Xavier Olive
+---
+
+::: {.callout-warning}
+## TODO for this page
+
+This page has been copied or moved into the experimental `new/` architecture. Review the scope, trim or split content where needed, fix internal links, and add missing material described by the new table of contents.
+:::
+
+
+Planned scope:
+
+- irregular sampling;
+- UTC and time zones;
+- resampling;
+- rolling windows;
+- event alignment;
+- joining trajectories with messages and weather.

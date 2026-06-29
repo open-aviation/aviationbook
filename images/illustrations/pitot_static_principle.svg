@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 420" role="img" aria-labelledby="title desc">
+  <title id="title">Pitot-static principle</title>
+  <desc id="desc">Simplified diagram of total pressure entering a pitot probe, static pressure sensed by static ports, and dynamic pressure computed as their difference.</desc>
+  <defs>
+    <style>
+      .body{fill:#eef3f8;stroke:#52616f;stroke-width:3;}
+      .probe{fill:#dee2e6;stroke:#495057;stroke-width:3;}
+      .port{fill:#ffd43b;stroke:#f08c00;stroke-width:3;}
+      .box{fill:#fff;stroke:#8aa0b4;stroke-width:2;rx:10;}
+      .label{font: 19px sans-serif; fill:#243447;}
+      .small{font: 16px sans-serif; fill:#243447;}
+      .flow{stroke:#1c7ed6;stroke-width:4;fill:none;marker-end:url(#arrowBlue);}
+      .line{stroke:#475866;stroke-width:2;fill:none;marker-end:url(#arrow);}
+    </style>
+    <marker id="arrowBlue" markerWidth="10" markerHeight="10" refX="9" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#1c7ed6"/>
+    </marker>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#475866"/>
+    </marker>
+  </defs>
+
+  <text x="35" y="42" class="label" font-weight="700">Pitot-static measurements</text>
+
+  <path class="body" d="M160 140 C300 90 535 95 720 150 C760 162 760 258 720 270 C535 325 300 330 160 280 C95 257 95 163 160 140 Z"/>
+  <path class="probe" d="M120 195 L55 195 L55 225 L120 225 Z"/>
+  <circle class="port" cx="310" cy="135" r="10"/>
+  <circle class="port" cx="310" cy="285" r="10"/>
+
+  <path class="flow" d="M30 210 L55 210"/>
+  <text x="25" y="185" class="small">airflow</text>
+
+  <rect class="box" x="35" y="300" width="250" height="75"/>
+  <text x="55" y="330" class="small">Pitot probe</text>
+  <text x="55" y="354" class="small">measures total pressure</text>
+  <path class="line" d="M155 300 C135 270 120 240 95 222"/>
+
+  <rect class="box" x="380" y="45" width="250" height="75"/>
+  <text x="400" y="75" class="small">Static ports</text>
+  <text x="400" y="99" class="small">measure ambient pressure</text>
+  <path class="line" d="M380 88 C350 105 325 122 315 135"/>
+
+  <rect class="box" x="570" y="305" width="285" height="80"/>
+  <text x="590" y="335" class="small">Air-data computer</text>
+  <text x="590" y="359" class="small">dynamic pressure = total - static</text>
+  <path class="line" d="M570 340 C450 330 240 280 105 225"/>
+  <path class="line" d="M570 330 C470 240 380 160 320 138"/>
+</svg>

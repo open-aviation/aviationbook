@@ -1,0 +1,29 @@
+---
+title: A map of aviation data sources
+authors:
+- Xavier Olive
+---
+
+::: {.callout-warning}
+## TODO for this page
+
+This page has been copied or moved into the experimental `new/` architecture. Review the scope, trim or split content where needed, fix internal links, and add missing material described by the new table of contents.
+:::
+
+
+This page is the entry point to the aviation data ecosystem.
+
+| Data family | Examples | Main use |
+|---|---|---|
+| Surveillance | ADS-B, Mode S, radar, FLARM, UAT | trajectories, traffic state |
+| Communication/datalink | ACARS, VDL2, CPDLC, ADS-C | instructions, reports, intent |
+| Flight intent | flight plans, route strings, NM models | planned trajectories |
+| Aeronautical information | AIP, NOTAM, AIXM, ARINC 424 | infrastructure and constraints |
+| Weather/environment | METAR, TAF, SIGMET, ERA5 | context and hazards |
+| Airport/infrastructure | OurAirports, AIP, OSM | airports, runways, taxiways |
+| Aircraft/operator | registries, type designators | fleet, identity, metadata |
+| Performance | OpenAP, BADA, QAR/FDR | modelling and prediction |
+| Safety/occurrence | incident reports, accident databases | risk and safety analytics |
+| Maintenance/airworthiness | ADs, defects, reliability | reliability and constraints |
+
+Each source should be assessed by producer, access, licence, coverage, uncertainty, and sensitivity.

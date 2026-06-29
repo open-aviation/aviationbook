@@ -2,6 +2,7 @@
   border: none;
   font-size: 12pt;
   padding: 0;
+  margin: 0 0 1.5rem 0;
 }
 .link-cards .card-title h4 {
   margin-top: 0;
@@ -21,13 +22,15 @@ p.subtitle.lead {
   font-size: 1rem;
 }
 @media screen and (min-width: 900px) {
-  .link-cards {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-  }
   .link-cards .card {
-    width: 350px;
-    margin: 0 20px 12px 0;
+    width: 100%;
+  }
+  .link-cards .card-body ul {
+    column-count: 2;
+    column-gap: 2.5rem;
+  }
+  .link-cards .card-body li {
+    break-inside: avoid;
+    margin-bottom: 0.25rem;
   }
 }

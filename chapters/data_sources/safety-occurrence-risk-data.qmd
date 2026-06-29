@@ -1,0 +1,25 @@
+---
+title: Safety, occurrence, and risk data
+authors:
+- Xavier Olive
+---
+
+::: {.callout-warning}
+## TODO for this page
+
+This page has been copied or moved into the experimental `new/` architecture. Review the scope, trim or split content where needed, fix internal links, and add missing material described by the new table of contents.
+:::
+
+
+Skybrary makes safety and occurrence data a major missing theme.
+
+Planned scope:
+
+- occurrence reports;
+- accident and incident databases;
+- taxonomies;
+- runway incursions and excursions;
+- loss of separation;
+- TCAS/ACAS events;
+- reporting bias;
+- ethical use of safety data.

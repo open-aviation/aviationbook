@@ -1,0 +1,25 @@
+---
+title: Weather and environmental data
+authors:
+- Xavier Olive
+---
+
+::: {.callout-warning}
+## TODO for this page
+
+This page has been copied or moved into the experimental `new/` architecture. Review the scope, trim or split content where needed, fix internal links, and add missing material described by the new table of contents.
+:::
+
+
+This page replaces the current stub environment chapter with a real data-source chapter.
+
+Planned scope:
+
+- METAR;
+- TAF;
+- SIGMET and AIRMET;
+- winds and temperature aloft;
+- weather radar and satellite imagery;
+- ERA5 and reanalysis;
+- AMDAR;
+- climate, emissions, and noise data.

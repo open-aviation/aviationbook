@@ -1,0 +1,36 @@
+---
+title: The tidy data paradigm
+aliases:
+  - .
+---
+
+::: {.callout-warning}
+## TODO for this page
+
+This page has been copied or moved into the experimental `new/` architecture. Review the scope, trim or split content where needed, fix internal links, and add missing material described by the new table of contents.
+:::
+
+
+::: {.callout-tip}
+Author: Enrico, ?
+:::
+
+::: {.callout-note}
+**Author's note**: This part introduces more advanced mathematical and programming skills.
+The tidy paradigm to manipulate data frames is introduced. Challenges
+associated with geometrical shapes, geographical coordinates,
+trajectories, projections are presented, before introducing common AI
+tools for information extraction, prediction and optimisation.
+
+Examples in R, Javascript, Python
+:::
+
+See [@wickham14] and possibly [database normalization](https://en.wikipedia.org/wiki/Database_normalization).
+See also [Chapter 12](https://r4ds.had.co.nz/tidy-data.html) of [@r4ds].
+
+* concept
+* examples in various frameworks
+   - R: dplyr, tidyr
+   - Python: pandas (?)
+   - Javascript: [tidy.js](https://pbeshai.github.io/tidy/),
+     [tidy data at Observable](https://observablehq.com/@uwdata/tidy-data-in-javascript)

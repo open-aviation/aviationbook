@@ -1,0 +1,21 @@
+---
+title: Compare planned and flown trajectories
+authors:
+- Xavier Olive
+---
+
+::: {.callout-warning}
+## TODO for this page
+
+This page has been copied or moved into the experimental `new/` architecture. Review the scope, trim or split content where needed, fix internal links, and add missing material described by the new table of contents.
+:::
+
+
+Concepts:
+
+- flight plan route intent;
+- M1/M3 trajectories;
+- surveillance tracks;
+- lateral and vertical deviations.
+
+Candidate local data: `AA44380693.ALL_FT+`, `AA44380693.json`.

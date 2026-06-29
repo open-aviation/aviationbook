@@ -1,0 +1,22 @@
+---
+title: Visualising airspace, networks, and flows
+authors:
+- Xavier Olive
+---
+
+::: {.callout-warning}
+## TODO for this page
+
+This page has been copied or moved into the experimental `new/` architecture. Review the scope, trim or split content where needed, fix internal links, and add missing material described by the new table of contents.
+:::
+
+
+Planned scope:
+
+- FIRs and sectors;
+- airport networks;
+- origin/destination flows;
+- DAIO classification;
+- disruption and rerouting maps.
+
+Open Aviation notebooks to reuse: DAIO FIR notebook and Europe–Eastern Asia disruption notebook.

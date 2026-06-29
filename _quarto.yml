@@ -1,130 +1,330 @@
 project:
   type: book
+  output-dir: _book
 
 execute:
   freeze: auto
-  # echo: false
   warning: false
 
 book:
   title: "A journey through aviation data"
-  favicon: "favicon.png"
+  favicon: "favicon.svg"
   author:
     - Xavier Olive
     - Junzi Sun
     - Enrico Spinielli
     - Manuel Waltert
     - David Gianazza
-  # date: "2023-12-25"
-  # isbn: "12345678"
   chapters:
-    - chapters/index.qmd
+    - index.qmd
     - preface.qmd
-    - part: "Background knowledge about aviation"
+    - chapters/index.qmd
+    - chapters/background/history.qmd
+    - part: "Aviation background for data analysis"
       chapters:
-        - chapters/background/history.qmd
-        - chapters/background/earth.qmd
-        - chapters/background/atmosphere.qmd
-        - chapters/background/aircraft.qmd
-        - chapters/background/ans.qmd
-        - chapters/background/cns.qmd
-        - chapters/background/aerodrome.qmd
-    - part: "The ecosystem of aviation data"
+        - chapters/background/aircraft-categories-missions.qmd
+        - chapters/background/aircraft-anatomy.qmd
+        - chapters/background/flight-mechanics.qmd
+        - chapters/background/aircraft_instruments.qmd
+        - chapters/background/atmosphere-altimetry.qmd
+        - chapters/background/weather-flight-conditions.qmd
+        - chapters/background/earth-coordinates.qmd
+        - chapters/background/ans-institutions.qmd
+        - chapters/background/cns-overview.qmd
+        - chapters/background/communication-systems.qmd
+        - chapters/background/conventional-radio-navigation.qmd
+        - chapters/background/satellite-navigation.qmd
+        - chapters/background/surveillance-systems.qmd
+        - chapters/background/airspace-structure.qmd
+        - chapters/background/atm-separation-flow.qmd
+        - chapters/background/aerodromes-overview.qmd
+        - chapters/background/runways.qmd
+        - chapters/background/taxiways-aprons-stands.qmd
+        - chapters/background/passenger-buildings.qmd
+        - chapters/background/baggage-handling-systems.qmd
+        - chapters/background/aerodrome-ground-access.qmd
+        - chapters/background/airport-capacity.qmd
+        - chapters/background/demand-management.qmd
+        - chapters/background/airport-operations.qmd
+    - part: "The aviation data ecosystem"
       chapters:
-        - chapters/data_sources/flight_tracking.qmd
-        - chapters/data_sources/aircraft_information.qmd
-        - chapters/data_sources/flight_plans.qmd
-        - chapters/data_sources/aeronautical_information.qmd
-        - chapters/data_sources/environment.qmd
-        - chapters/data_sources/aircraft_performance.qmd
-        - chapters/data_sources/aviation_data_sources.qmd
-    - part: "Process data"
+        - chapters/data_sources/overview.qmd
+        - chapters/data_sources/aircraft-operator-information.qmd
+        - chapters/data_sources/airport-infrastructure-data.qmd
+        - chapters/data_sources/flight-tracking-surveillance.qmd
+        - chapters/data_sources/adsb-mode-s-decoding.qmd
+        - chapters/data_sources/datalink-beyond-transponder.qmd
+        - chapters/data_sources/acars-vdl2-hfdl-satcom.qmd
+        - chapters/data_sources/acars-message-routing.qmd
+        - chapters/data_sources/cpdlc-adsc-data.qmd
+        - chapters/data_sources/aoc-operational-datalink.qmd
+        - chapters/data_sources/flight-plans-intent.qmd
+        - chapters/data_sources/network-manager-formats.qmd
+        - chapters/data_sources/aeronautical-information.qmd
+        - chapters/data_sources/aip-notam-aic-pib.qmd
+        - chapters/data_sources/points-routes-airspaces-procedures.qmd
+        - chapters/data_sources/weather-environment-data.qmd
+        - chapters/data_sources/weather-hazards-impact.qmd
+        - chapters/data_sources/aircraft-performance.qmd
+        - chapters/data_sources/operational-performance-data.qmd
+        - chapters/data_sources/safety-occurrence-risk-data.qmd
+        - chapters/data_sources/human-factors-data.qmd
+        - chapters/data_sources/maintenance-airworthiness-data.qmd
+    - part: "Working with aviation data"
       chapters:
-        - chapters/processing/tidy-data.qmd
-        - chapters/processing/geometrice-geographic.qmd
-        - chapters/processing/processing-trajectories.qmd
-        - chapters/processing/information-extraction.qmd
-    - part: "Visualise Data"
+        - chapters/work/tidy-data.qmd
+        - chapters/work/time-series.qmd
+        - chapters/work/lazy-columnar-processing.qmd
+        - chapters/work/physical-units.qmd
+        - chapters/work/coordinates-projections-geometry.qmd
+        - chapters/work/trajectory-processing.qmd
+        - chapters/work/joining-heterogeneous-data.qmd
+        - chapters/work/information-extraction.qmd
+        - chapters/work/data-quality-uncertainty.qmd
+    - part: "Visualising and explaining aviation data"
       chapters:
-        - chapters/visualise/storytelling.qmd
         - chapters/visualise/grammar-of-graphics.qmd
-        - chapters/visualise/meaningful-maps.qmd
-    - part: "Share Data"
+        - chapters/visualise/time-series-profiles.qmd
+        - chapters/visualise/maps-projections.qmd
+        - chapters/visualise/trajectories.qmd
+        - chapters/visualise/airspace-networks-flows.qmd
+        - chapters/visualise/uncertainty-quality.qmd
+        - chapters/visualise/storytelling.qmd
+        - chapters/visualise/observable-narratives.qmd
+    - part: "Case studies: operational narratives"
+      chapters:
+        - chapters/case_studies/decode-adsb.qmd
+        - chapters/case_studies/build-trajectory.qmd
+        - chapters/case_studies/planned-vs-flown.qmd
+        - chapters/case_studies/oceanic-datalink-story.qmd
+        - chapters/case_studies/flight-information-regions.qmd
+        - chapters/case_studies/daio-fir.qmd
+        - chapters/case_studies/airports-world.qmd
+        - chapters/case_studies/gps-jamming.qmd
+        - chapters/case_studies/airspace-disruption.qmd
+        - chapters/case_studies/firefighting-aircraft.qmd
+        - chapters/case_studies/weather-impact.qmd
+        - chapters/case_studies/runway-safety-occurrence.qmd
+    - part: "Sharing reproducible aviation research"
       chapters:
         - chapters/sharing/reproducible-research.qmd
+        - chapters/sharing/notebook-to-pipeline.qmd
+        - chapters/sharing/data-licensing-attribution.qmd
+        - chapters/sharing/privacy-safety-responsible-publication.qmd
+        - chapters/sharing/publishing-interactive-narratives.qmd
   appendices:
-    - index.qmd
-    - chapters/appendix/index.qmd
     - chapters/appendix/glossary.qmd
+    - chapters/appendix/data-source-catalogue.qmd
     - chapters/appendix/contribute.qmd
-    - references.qmd
-    - authors.qmd
+    - chapters/appendix/references.qmd
+    - chapters/appendix/authors.qmd
 
-  # cover-image: images/book-front-cover.png
   site-url: https://aviationbook.netlify.app/
   repo-url: https://github.com/open-aviation/aviationbook/
   repo-branch: master
-
   search: true
   repo-actions: [edit, issue, source]
-  downloads: [pdf, epub]
-  sharing: [twitter, linkedin]
-
   page-navigation: true
-
-  # comments:
-  #   hypothesis: true
-
   sidebar:
     - title: Contents
       id: contents
       background: transparent
       collapse-level: 1
       contents:
-        - section: Background knowledge
+        - text: Home
+          href: index.qmd
+        - text: Preface
+          href: preface.qmd
+        - text: Table of contents
+          href: chapters/index.qmd
+        - text: A short history of aviation
+          href: chapters/background/history.qmd
+        - section: Aviation background
           contents:
-            - chapters/background/history.qmd
-            - chapters/background/earth.qmd
-            - chapters/background/atmosphere.qmd
-            - chapters/background/aircraft.qmd
-            - chapters/background/ans.qmd
-            - chapters/background/cns.qmd
-            - chapters/background/aerodrome.qmd
-        - section: Data sources
+            - text: 🔴 Aircraft categories
+              href: chapters/background/aircraft-categories-missions.qmd
+            - text: Anatomy of an aircraft
+              href: chapters/background/aircraft-anatomy.qmd
+            - text: Flight mechanics
+              href: chapters/background/flight-mechanics.qmd
+            - text: Aircraft instruments
+              href: chapters/background/aircraft_instruments.qmd
+            - text: Atmosphere models
+              href: chapters/background/atmosphere-altimetry.qmd
+            - text: 🔴 Weather conditions
+              href: chapters/background/weather-flight-conditions.qmd
+            - text: Earth models
+              href: chapters/background/earth-coordinates.qmd
+            - text: Air navigation services
+              href: chapters/background/ans-institutions.qmd
+            - text: CNS overview
+              href: chapters/background/cns-overview.qmd
+            - text: Communication systems
+              href: chapters/background/communication-systems.qmd
+            - text: Radio navigation
+              href: chapters/background/conventional-radio-navigation.qmd
+            - text: Satellite navigation
+              href: chapters/background/satellite-navigation.qmd
+            - text: Surveillance systems
+              href: chapters/background/surveillance-systems.qmd
+            - text: Airspace structure
+              href: chapters/background/airspace-structure.qmd
+            - text: Air traffic services
+              href: chapters/background/atm-separation-flow.qmd
+            - text: Aerodromes
+              href: chapters/background/aerodromes-overview.qmd
+            - text: Runways
+              href: chapters/background/runways.qmd
+            - text: Taxiways & stands
+              href: chapters/background/taxiways-aprons-stands.qmd
+            - text: 🔴 Passenger buildings
+              href: chapters/background/passenger-buildings.qmd
+            - text: 🔴 Baggage handling
+              href: chapters/background/baggage-handling-systems.qmd
+            - text: 🔴 Ground access
+              href: chapters/background/aerodrome-ground-access.qmd
+            - text: 🔴 Airport capacity
+              href: chapters/background/airport-capacity.qmd
+            - text: 🔴 Demand management
+              href: chapters/background/demand-management.qmd
+            - text: 🔴 Airport operations
+              href: chapters/background/airport-operations.qmd
+        - section: Data ecosystem
           contents:
-            - chapters/data_sources/flight_tracking.qmd
-            - chapters/data_sources/aircraft_information.qmd
-            - chapters/data_sources/flight_plans.qmd
-            - chapters/data_sources/aeronautical_information.qmd
-            - chapters/data_sources/environment.qmd
-            - chapters/data_sources/aircraft_performance.qmd
-            - chapters/data_sources/aviation_data_sources.qmd
-        - section: Data processing
+            - text: 🔴 Data source map
+              href: chapters/data_sources/overview.qmd
+            - text: 🔴 Aircraft & operators
+              href: chapters/data_sources/aircraft-operator-information.qmd
+            - text: 🔴 Airport data
+              href: chapters/data_sources/airport-infrastructure-data.qmd
+            - text: 🟢 Flight tracking
+              href: chapters/data_sources/flight-tracking-surveillance.qmd
+            - text: 🟡 ADS-B & Mode S
+              href: chapters/data_sources/adsb-mode-s-decoding.qmd
+            - text: 🟠 Datalink overview
+              href: chapters/data_sources/datalink-beyond-transponder.qmd
+            - text: 🟠 ACARS bearers
+              href: chapters/data_sources/acars-vdl2-hfdl-satcom.qmd
+            - text: 🟠 ACARS routing
+              href: chapters/data_sources/acars-message-routing.qmd
+            - text: 🟠 CPDLC & ADS-C
+              href: chapters/data_sources/cpdlc-adsc-data.qmd
+            - text: 🔴 AOC datalink
+              href: chapters/data_sources/aoc-operational-datalink.qmd
+            - text: 🟡 Flight intent
+              href: chapters/data_sources/flight-plans-intent.qmd
+            - text: 🟡 NM formats
+              href: chapters/data_sources/network-manager-formats.qmd
+            - text: 🟡 AIM overview
+              href: chapters/data_sources/aeronautical-information.qmd
+            - text: 🟡 AIP & NOTAM
+              href: chapters/data_sources/aip-notam-aic-pib.qmd
+            - text: 🟡 Routes & procedures
+              href: chapters/data_sources/points-routes-airspaces-procedures.qmd
+            - text: 🔴 Weather data
+              href: chapters/data_sources/weather-environment-data.qmd
+            - text: 🔴 Weather hazards
+              href: chapters/data_sources/weather-hazards-impact.qmd
+            - text: 🟢 Performance models
+              href: chapters/data_sources/aircraft-performance.qmd
+            - text: 🟡 Operational performance
+              href: chapters/data_sources/operational-performance-data.qmd
+            - text: 🔴 Safety data
+              href: chapters/data_sources/safety-occurrence-risk-data.qmd
+            - text: 🔴 Human factors
+              href: chapters/data_sources/human-factors-data.qmd
+            - text: 🔴 Maintenance data
+              href: chapters/data_sources/maintenance-airworthiness-data.qmd
+        - section: Working with data
           contents:
-            - chapters/processing/tidy-data.qmd
-            - chapters/processing/geometrice-geographic.qmd
-            - chapters/processing/processing-trajectories.qmd
-            - chapters/processing/information-extraction.qmd
-        - section: Data visualization
+            - text: 🟠 Tidy data
+              href: chapters/work/tidy-data.qmd
+            - text: 🔴 Time series
+              href: chapters/work/time-series.qmd
+            - text: 🔴 Lazy processing
+              href: chapters/work/lazy-columnar-processing.qmd
+            - text: 🔴 Physical units
+              href: chapters/work/physical-units.qmd
+            - text: 🟠 Geometry & projections
+              href: chapters/work/coordinates-projections-geometry.qmd
+            - text: 🟠 Trajectories
+              href: chapters/work/trajectory-processing.qmd
+            - text: 🔴 Data joins
+              href: chapters/work/joining-heterogeneous-data.qmd
+            - text: 🟠 Information extraction
+              href: chapters/work/information-extraction.qmd
+            - text: 🔴 Data quality
+              href: chapters/work/data-quality-uncertainty.qmd
+        - section: Visualise and explain
           contents:
-            - chapters/visualise/storytelling.qmd
-            - chapters/visualise/grammar-of-graphics.qmd
-            - chapters/visualise/meaningful-maps.qmd
-        - section: Data sharing
+            - text: 🟠 Grammar of graphics
+              href: chapters/visualise/grammar-of-graphics.qmd
+            - text: 🔴 Profiles
+              href: chapters/visualise/time-series-profiles.qmd
+            - text: 🟠 Maps
+              href: chapters/visualise/maps-projections.qmd
+            - text: 🔴 Trajectory maps
+              href: chapters/visualise/trajectories.qmd
+            - text: 🔴 Networks & flows
+              href: chapters/visualise/airspace-networks-flows.qmd
+            - text: 🔴 Visual uncertainty
+              href: chapters/visualise/uncertainty-quality.qmd
+            - text: 🟠 Storytelling
+              href: chapters/visualise/storytelling.qmd
+            - text: 🔴 Observable narratives
+              href: chapters/visualise/observable-narratives.qmd
+        - section: Case studies
           contents:
-            - chapters/sharing/reproducible-research.qmd
-
+            - text: 🔴 Decode ADS-B
+              href: chapters/case_studies/decode-adsb.qmd
+            - text: 🔴 Build trajectory
+              href: chapters/case_studies/build-trajectory.qmd
+            - text: 🔴 Planned vs flown
+              href: chapters/case_studies/planned-vs-flown.qmd
+            - text: 🔴 Oceanic datalink
+              href: chapters/case_studies/oceanic-datalink-story.qmd
+            - text: 🔴 FIR maps
+              href: chapters/case_studies/flight-information-regions.qmd
+            - text: 🔴 DAIO by FIR
+              href: chapters/case_studies/daio-fir.qmd
+            - text: 🔴 World airports
+              href: chapters/case_studies/airports-world.qmd
+            - text: 🔴 GPS jamming
+              href: chapters/case_studies/gps-jamming.qmd
+            - text: 🔴 Airspace disruption
+              href: chapters/case_studies/airspace-disruption.qmd
+            - text: 🔴 Firefighting aircraft
+              href: chapters/case_studies/firefighting-aircraft.qmd
+            - text: 🔴 Weather impact
+              href: chapters/case_studies/weather-impact.qmd
+            - text: 🔴 Runway occurrence
+              href: chapters/case_studies/runway-safety-occurrence.qmd
+        - section: Sharing
+          contents:
+            - text: 🟠 Reproducibility
+              href: chapters/sharing/reproducible-research.qmd
+            - text: 🔴 Notebook to pipeline
+              href: chapters/sharing/notebook-to-pipeline.qmd
+            - text: 🔴 Licensing
+              href: chapters/sharing/data-licensing-attribution.qmd
+            - text: 🔴 Responsible publishing
+              href: chapters/sharing/privacy-safety-responsible-publication.qmd
+            - text: 🔴 Interactive publishing
+              href: chapters/sharing/publishing-interactive-narratives.qmd
     - title: Appendices
       background: transparent
       id: appendices
       contents:
         - text: Appendices
         - text: ---
-        - chapters/appendix/index.qmd
-        - chapters/appendix/glossary.qmd
-        - chapters/appendix/contribute.qmd
-        - authors.qmd
-
+        - text: Glossary
+          href: chapters/appendix/glossary.qmd
+        - text: 🔴 Data catalogue
+          href: chapters/appendix/data-source-catalogue.qmd
+        - text: Contribute to the project
+          href: chapters/appendix/contribute.qmd
+        - text: 🟠 Authors
+          href: chapters/appendix/authors.qmd
   navbar:
     background: light
     logo: favicon.png
@@ -138,12 +338,13 @@ book:
       - text: Preface
         href: preface.qmd
       - text: Start reading
-        href: /chapters/background/
-      - chapters/index.qmd
-      # - authors.qmd
-      - chapters/appendix/glossary.qmd
-      - chapters/appendix/contribute.qmd
-
+        href: chapters/background/history.qmd
+      - text: Table of contents
+        href: chapters/index.qmd
+      - text: Glossary
+        href: chapters/appendix/glossary.qmd
+      - text: Contribute
+        href: chapters/appendix/contribute.qmd
     right: []
 
 crossref:
@@ -152,18 +353,10 @@ crossref:
   fig-prefix: Figure
   tbl-prefix: Table
   ref-hyperlink: true
-  #   appendix-title: "App."
-  #   appendix-delim: ":"
 
 bibliography: bibliography.bib
 csl: media/ieee.csl
-
-# for debug
-# geometry:
-#   - showframe
-
 pdf-engine: xelatex
-
 highlight-style: pygments
 
 format:
@@ -177,10 +370,11 @@ format:
     css:
       - media/css/style.css
       - media/css/box.css
+      - sidebar-compact.css
     grid:
-      sidebar-width: 250px
-      body-width: 900px
-      margin-width: 300px
+      sidebar-width: 310px
+      body-width: 880px
+      margin-width: 260px
   pdf:
     documentclass: scrbook
     papersize: a4

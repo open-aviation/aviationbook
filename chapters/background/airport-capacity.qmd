@@ -1,0 +1,28 @@
+---
+title: Airport capacity
+author: Manuel Waltert
+---
+
+Airport capacity is the ability of an airport system to handle aircraft, passengers, baggage, cargo, and ground movements over a given period while maintaining acceptable safety and service levels. Capacity is not a single number: it depends on the component being considered and on operational conditions.
+
+## Capacity components
+
+Important capacity components include:
+
+- runway capacity;
+- taxiway and apron capacity;
+- stand and gate capacity;
+- terminal processing capacity;
+- baggage-system capacity;
+- security, border-control, and customs capacity;
+- ground-access capacity.
+
+## Bottlenecks
+
+The limiting component can change during the day. A runway may be the bottleneck in peak arrival periods, while security screening, border control, baggage reclaim, or stand availability may dominate at other times. Weather, runway configuration, aircraft mix, and staffing all affect realized capacity.
+
+## Data relevance
+
+Capacity analysis uses declared capacity, schedules, movement counts, runway configuration, occupancy times, queue lengths, delay data, passenger flows, and resource allocation data.
+
+## List of Acronyms {.unnumbered}

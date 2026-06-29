@@ -88,38 +88,56 @@ any way or to use the text for commercial purposes.
 
 ## How is this book organised? {-}
 
+The book starts with a short history of aviation. This opening chapter is
+not meant to be encyclopedic; it gives the reader enough context to see
+why modern aviation became a data-rich system.
+
 *Part 1. Background knowledge about aviation*
 
-This part brings in the minimal background necessary to comprehend the
-aviation world, including vocabulary and historical aspects which led to
-the current situation.
+This part introduces the aviation concepts needed to make sense of data:
+aircraft, flight mechanics, atmosphere and altimetry, coordinates, navigation,
+communication, surveillance, airspace, air traffic services, and aerodrome
+operations. The goal is to give data scientists the vocabulary and mental models
+they need.
 
-*Part 2. The ecosystem of aviation data*
+*Part 2. The aviation data ecosystem*
 
-This part goes through all the most commonly used data formats in the
-aviation and ATM data analysis community.
+This part maps the main families of aviation data. It covers flight
+tracking and surveillance, aircraft and airport information, flight
+intent, aeronautical information, weather, performance, safety,
+maintenance, human factors, and datalink sources such as ACARS, CPDLC,
+and ADS-C. Each chapter explains what the data represents, where it comes
+from, how it is structured, and what its limitations are.
 
-*Part 3. Process Data*
+*Part 3. Working with aviation data*
 
-This part introduces mathematical and programming skills.
-The tidy paradigm to manipulate data frames is introduced. Challenges
-associated with geometrical shapes, geographical coordinates,
-trajectories, projections are presented, before introducing common AI
-tools for information extraction, prediction and optimisation.
+This part focuses on practical data work: tidy tabular data, time series,
+lazy and columnar processing, physical units, coordinates and projections,
+trajectory processing, joining heterogeneous sources, information
+extraction, and data quality. It connects general data-science methods to
+the specific problems that appear in aviation datasets.
 
-*Part 4. Visualise Data*
+*Part 4. Visualising and explaining aviation data*
 
-This part turns to the data visualisation aspects. It explains how to
-choose the most appropriate tool to convey a message with particular
-focus on geographical information.
+This part discusses how to turn aviation data into readable figures and
+narratives. It covers the grammar of graphics, time profiles, maps,
+trajectories, airspace networks, uncertainty, storytelling, and
+interactive Observable-style narratives.
 
-*Part 5. Share Data *
+*Part 5. Case studies: operational narratives*
 
-The most overlooked aspect of data analysis probably turns around data
-sharing. Data curation is often a very time consuming process and
-enriching data by labelling specific tags or merging several sources of
-information brings additional value to a dataset. This part deals with
-the data sharing and publication process. (paper reproducibility?)
+This part brings the previous material together through examples. The
+case studies follow concrete questions such as decoding ADS-B, building a
+trajectory, comparing planned and flown routes, mapping FIRs, studying
+GPS interference, analysing disruption, or explaining firefighting and
+runway-safety operations.
+
+*Part 6. Sharing reproducible aviation research*
+
+This final part deals with the often overlooked work that makes analysis
+usable by others: reproducible workflows, turning notebooks into
+pipelines, data licensing and attribution, privacy and safety concerns,
+and publishing interactive material responsibly.
 
 
 ## Glossary {.unnumbered}

@@ -1,0 +1,27 @@
+---
+title: Aerodrome ground access
+author: Manuel Waltert
+---
+
+Aerodrome ground access describes how passengers, staff, cargo, and service vehicles reach the airport from the surrounding region. It includes roads, public transport, parking, rental-car facilities, curbside areas, and sometimes rail or metro stations integrated into the terminal.
+
+## Access modes
+
+Typical access modes include:
+
+- private cars and parking;
+- taxis, ride-hailing, and kiss-and-fly areas;
+- buses and coaches;
+- rail, metro, tram, or automated people movers;
+- cycling and pedestrian access where relevant;
+- service and cargo vehicle access.
+
+## Operational role
+
+Ground access affects passenger arrival patterns, terminal congestion, staff punctuality, curbside capacity, and resilience during disruptions. For airports close to urban areas, ground access can be a major capacity and environmental constraint.
+
+## Data relevance
+
+Relevant data include passenger mode share, road travel times, parking occupancy, curbside dwell time, public transport schedules, and disruption information.
+
+## List of Acronyms {.unnumbered}

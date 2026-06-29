@@ -1,0 +1,35 @@
+/* Compact one-line sidebar labels, inspired by Algorithmica's dense TOC. */
+#quarto-sidebar .sidebar-item-text {
+  font-size: 1em;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+#quarto-sidebar .sidebar-item-container {
+  padding-top: 0.12rem;
+  padding-bottom: 0.12rem;
+}
+
+#quarto-sidebar .sidebar-section .sidebar-item-text,
+#quarto-sidebar .sidebar-section .sidebar-section-text {
+  font-size: .9em;
+}
+
+/* Hide Quarto chapter numbers in the experimental /new sidebar.
+   Quarto emits "<span class='chapter-number'>…</span>&nbsp; <span class='chapter-title'>…</span>";
+   hiding only the number leaves the non-breaking space behind, so pull the title back. */
+#quarto-sidebar .chapter-number {
+  display: none;
+}
+
+#quarto-sidebar .chapter-number+.chapter-title {
+  margin-left: -0.23em;
+}
+
+#quarto-sidebar .menu-text {
+  display: inline-flex;
+  align-items: center;
+  min-width: 0;
+}

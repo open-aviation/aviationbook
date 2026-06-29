@@ -1,0 +1,20 @@
+---
+title: Privacy, safety, and responsible publication
+authors:
+- Xavier Olive
+---
+
+::: {.callout-warning}
+## TODO for this page
+
+This page has been copied or moved into the experimental `new/` architecture. Review the scope, trim or split content where needed, fix internal links, and add missing material described by the new table of contents.
+:::
+
+
+Planned scope:
+
+- ADS-B privacy;
+- datalink sensitivity;
+- military/VIP filtering;
+- occurrence and safety data ethics;
+- avoiding operational misuse.

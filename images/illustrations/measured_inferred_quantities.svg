@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 560" role="img" aria-labelledby="title desc">
+  <title id="title">Measured and inferred aircraft quantities</title>
+  <desc id="desc">Two-column diagram showing basic physical quantities directly sensed by aircraft instruments and operational quantities inferred from them.</desc>
+  <defs>
+    <style>
+      .head{font:700 24px sans-serif;fill:#1f2d3d;}
+      .label{font:700 18px sans-serif;fill:#1f2d3d;}
+      .small{font:16px sans-serif;fill:#34495e;}
+      .measured{fill:#d0ebff;stroke:#1c7ed6;stroke-width:2.5;rx:14;}
+      .inferred{fill:#fff3bf;stroke:#f08c00;stroke-width:2.5;rx:14;}
+      .groupL{fill:#f8fbff;stroke:#91c6f2;stroke-width:2;rx:18;}
+      .groupR{fill:#fffaf0;stroke:#ffd27a;stroke-width:2;rx:18;}
+      .arrow{stroke:#8aa0b4;stroke-width:6;stroke-linecap:round;fill:none;marker-end:url(#arrow);opacity:.85;}
+    </style>
+    <marker id="arrow" markerWidth="16" markerHeight="16" refX="13" refY="8" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M1,1 L15,8 L1,15" fill="none" stroke="#8aa0b4" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <rect x="55" y="35" width="445" height="490" class="groupL"/>
+  <rect x="600" y="35" width="445" height="490" class="groupR"/>
+  <text x="85" y="78" class="head">Directly measured</text>
+  <text x="630" y="78" class="head">Inferred or computed</text>
+
+  <!-- measured boxes -->
+  <rect x="90" y="115" width="365" height="82" class="measured"/>
+  <text x="115" y="148" class="label">Pressure</text>
+  <text x="115" y="174" class="small">total pressure, static pressure</text>
+
+  <rect x="90" y="220" width="365" height="82" class="measured"/>
+  <text x="115" y="253" class="label">Air and atmosphere</text>
+  <text x="115" y="279" class="small">temperature, angle of attack</text>
+
+  <rect x="90" y="325" width="365" height="82" class="measured"/>
+  <text x="115" y="358" class="label">Aircraft motion</text>
+  <text x="115" y="384" class="small">acceleration, rotation rates</text>
+
+  <rect x="90" y="430" width="365" height="82" class="measured"/>
+  <text x="115" y="463" class="label">Radio signals</text>
+  <text x="115" y="489" class="small">GNSS signals, radio-altimeter returns</text>
+
+  <!-- inferred boxes -->
+  <rect x="645" y="110" width="355" height="100" class="inferred"/>
+  <text x="670" y="143" class="label">Air-data quantities</text>
+  <text x="670" y="169" class="small">dynamic pressure, IAS, CAS, TAS, Mach</text>
+  <text x="670" y="193" class="small">pressure altitude, vertical speed</text>
+
+  <rect x="645" y="260" width="355" height="82" class="inferred"/>
+  <text x="670" y="293" class="label">Attitude and heading</text>
+  <text x="670" y="319" class="small">pitch, roll, yaw, heading, attitude</text>
+
+  <rect x="645" y="410" width="355" height="100" class="inferred"/>
+  <text x="670" y="443" class="label">Navigation state</text>
+  <text x="670" y="469" class="small">position, ground speed, height above ground</text>
+  <text x="670" y="493" class="small">integrated with avionics and databases</text>
+
+  <!-- cleaner connectors -->
+  <path class="arrow" d="M465 156 H625"/>
+  <path class="arrow" d="M465 261 C535 245 570 190 625 170"/>
+  <path class="arrow" d="M465 366 C535 360 575 315 625 301"/>
+  <path class="arrow" d="M465 471 H625"/>
+</svg>

@@ -1,0 +1,65 @@
+---
+title: Air navigation services and institutions
+authors:
+- Xavier Olive
+- Manuel Waltert
+- Kim Gaume
+---
+
+Air navigation is organised through a chain of responsibilities. International rules define common principles, states are responsible for the airspace and services under their authority, regulators oversee safety and compliance, and service providers operate the systems used every day by pilots and controllers. This page introduces that institutional landscape before the more detailed chapters on [airspace structure](airspace-structure.qmd), [air traffic services](atm-separation-flow.qmd), and [CNS infrastructure](cns-overview.qmd).
+
+## State responsibility and airspace sovereignty
+
+The legal foundation is the [Chicago Convention on International Civil Aviation](https://www.icao.int/publications/Documents/7300_cons.pdf) of 1944. Its first article states that every state has “complete and exclusive sovereignty over the airspace above its territory”. This sovereign airspace extends over the state's land territory and territorial waters, generally up to 12 nautical miles from the coastline under the [United Nations Convention on the Law of the Sea](https://www.un.org/Depts/los/convention_agreements/texts/unclos/unclos_e.pdf).
+
+![Legal Boundaries of the Oceans and Airspace, from Chapter 2 in [@LawSeaPolicy2017].](../../images/MaritimeZoneSchematic-1.png){#fig-coastline}
+
+Sovereignty does not mean that every service boundary follows a national border. States may delegate, share, or coordinate responsibilities, especially over oceanic and international airspace. The operational expression of these responsibilities is usually organised through [Flight Information Regions](airspace-structure.qmd#flight-information-regions), which are not themselves claims of territorial sovereignty.
+
+Under Article 28 of the Chicago Convention, states undertake, so far as practicable, to provide or arrange the facilities and services needed for international air navigation. In practice, this means designating organisations to provide air navigation services, maintaining regulatory oversight, and coordinating with neighbouring states and international bodies.
+
+## Regulators and service providers
+
+A useful distinction is between **regulation** and **service provision**.
+
+The **Civil Aviation Authority** or national regulator defines and enforces safety requirements, certifies organisations and personnel, oversees compliance, and implements international standards in national law. The regulator should be institutionally distinct from the operator it supervises, even if both ultimately belong to the same state system.
+
+The **\acrfull{ANSP}** delivers operational services: air traffic control, communications, navigation aids, surveillance infrastructure, aeronautical information, and sometimes aviation meteorology. Depending on the country, an \acr{ANSP} may be a government department, a state-owned company, a public-private partnership, or a corporatised public entity.
+
+::: {.callout-tip}
+### Different ANSP models in Europe
+
+France's air navigation services are provided by the *Direction des Services de la Navigation Aérienne (DSNA)*, part of the civil aviation administration. The United Kingdom's *NATS* is a public-private partnership. Germany's *DFS* and Switzerland's *skyguide* operate as state-owned or state-controlled companies. The governance models differ, but all providers operate under regulatory oversight and international standards.
+:::
+
+## The five air navigation services
+
+Air navigation services are usually grouped into five interconnected areas. They are institutional categories as much as technical ones: they define what must be provided, coordinated, monitored, and funded.
+
+- **Air Traffic Management (ATM)** manages aircraft movements and traffic flows. It includes air traffic services, airspace management, and air traffic flow management. The operational details are introduced in [Air traffic services](atm-separation-flow.qmd), while the structure of FIRs, sectors, and airways is covered in [Airspace structure](airspace-structure.qmd).
+- **Communication, Navigation, and Surveillance (CNS)** provides the technical infrastructure that lets aircraft and ground systems exchange instructions, navigate, and maintain a traffic picture. The overview starts in [Communication, navigation, surveillance](cns-overview.qmd), with dedicated pages for [communication systems](communication-systems.qmd), [radio](conventional-radio-navigation.qmd) and [satellite navigation](satellite-navigation.qmd), and [surveillance systems](surveillance-systems.qmd) .
+- **Meteorological Services (MET)** provide aviation weather observations, forecasts, warnings, and climatological information for flight planning and operations.
+- **Aeronautical Information Management (AIM)** collects and distributes authoritative information required for safe flight operations: aerodromes, routes, procedures, airspace restrictions, NOTAMs, and AIP updates.
+- **Search and Rescue (SAR)** coordinates emergency response when aircraft or persons are in distress. \acr{SAR} relies on civil and military coordination and may involve aviation, maritime, and ground rescue organisations.
+
+::: {.callout-warning}
+# TODO
+adjust link in previous paragraph
+:::
+
+Together, these services support the safe, orderly, and efficient flow of air traffic. No single organisation necessarily provides all of them: weather services, military authorities, airport operators, data offices, and regional flow-management units may all contribute to the overall system.
+
+## International and regional coordination
+
+Civil aviation is international by design, so national responsibility is embedded in a wider framework.
+
+**ICAO** develops global Standards and Recommended Practices (SARPs), procedures, and guidance material. It does not directly control aircraft or operate national systems; instead, states implement ICAO provisions through their own laws, regulations, and institutions.
+
+In Europe, **EASA** develops and oversees common safety rules for the European aviation system, including certification, operational rules, and safety oversight frameworks. National aviation authorities remain responsible for many implementation and supervisory tasks within their states.
+
+**EUROCONTROL** supports pan-European air traffic management. Its Network Manager function coordinates capacity, traffic flows, route availability, and network performance across many states and \acr{ANSP}s. This role is especially important because traffic flows do not stop at national borders, while capacity constraints in one area can affect the whole network.
+
+Military authorities are also part of the institutional landscape. Many states reserve or activate airspace for military training, defence, or special operations. Civil-military coordination, including flexible use of airspace, is therefore a core part of airspace management.
+
+
+## Glossary {.unnumbered}

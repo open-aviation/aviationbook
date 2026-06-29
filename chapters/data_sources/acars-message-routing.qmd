@@ -1,0 +1,102 @@
+---
+title: ACARS messages and application routing
+authors:
+- Xavier Olive
+---
+
+
+::: {.callout-warning}
+## TODO for this page
+
+This material is adapted from slide notes. It needs diagrams/tables converted to book style, citations, and privacy/sensitivity caveats.
+:::
+
+### 2.3 — The ACARS frame (~2 slides)
+
+#### Slide: ACARS frame anatomy
+
+Every datalink message — whether over classic VHF or VDL2 AVLC (`FF FF 01` prefix) —
+shares this fundamental frame structure:
+
+```
+DEL  [mode 1B]  [reg 7B]  [ack 1B]  [label 2B]  [block_id 1B]
+     STX  [downlink header 10B ← air→ground only]  [text]  ETX/ETB  [CRC 2B]
+```
+
+| Field | Size | Content |
+|-------|------|---------|
+| `mode` | 1 B | message format identifier |
+| `reg` | 7 B | aircraft registration, e.g. `G-EZBJ ` |
+| `ack` | 1 B | `ACK` (0x06) positive / `NAK` (0x15) negative |
+| `label` | 2 B | **content router** — determines which application decoder runs |
+| `block_id` | 1 B | `A–G` = air→ground; `Q–Z` = ground→air; carries sequence number |
+| downlink header | 10 B | msg_number (3B) + msg_sequence (1B) + flight_id (6B); air→ground only |
+| `text` | var | free text *or* ARINC 622 envelope |
+| delimiter | 1 B | `ETX` = last/only block; `ETB` = more blocks follow |
+
+All parsed in `crates/acars/src/decode/acars.rs` → `AcarsMessage`.
+
+#### Slide: The label as application router
+
+The 2-byte label determines which decoder in `AcarsAppPayload` runs:
+
+| Label | Application | Module |
+|-------|-------------|--------|
+| `H1` / `T1` | ARINC 622 envelope (CPDLC, ADS-C) or OHMA | `payload/arinc622/` or `payload/boeing/` |
+| `B9` | ATIS request (ARINC 623 TI2) | `payload/arinc623/atis.rs` |
+| `A9` | ATIS delivery | `payload/arinc623/atis.rs` |
+| `A0` / `B0` | AFN contact/logon | `payload/arinc622/afn.rs` |
+| `B1` | Oceanic clearance OC1 | `payload/arinc622/oceanic.rs` |
+| `QF` / `QQ` | OOOI events | `payload/aoc/oooi.rs` |
+| `80` | AOC position/event report | `payload/aoc/label80.rs` |
+| `5Z` | AOC slash-fields | `payload/aoc/label5z.rs` |
+| `SA` | Media Advisory (link state) | `payload/arinc620/media_advisory.rs` |
+| `MA` | MIAM file transfer | `payload/miam.rs` |
+| `Q0` | Link test / heartbeat | *(empty payload)* |
+
+All routes wired in `crates/acars/src/decode/payload/mod.rs` → `AcarsAppPayload` enum.
+
+---
+
+### 2.4 — ARINC 622: the application envelope (~2 slides)
+
+#### Slide: ARINC 622 envelope structure
+
+When `label = H1` and the text starts with `/`, it is an **ARINC 622 envelope** —
+a structured addressing layer embedded in the ACARS text field:
+
+```
+/  ATSU_ADDR  .  IMI  .  REG  payload  CRC
+```
+
+| Part | Example | Meaning |
+|------|---------|---------|
+| `/` | `/` | envelope marker |
+| `ATSU_ADDR` | `CZQX` / `EGGX` / `KZWY` | ATSU address (ground station/facility) |
+| `.IMI.` | `.ADS.` / `.AT1.` | Interline Message Identifier — application router |
+| `REG` | `G-EZBJ` / `A7-ANR` | aircraft registration |
+| `payload` | binary | application data (encoding depends on IMI) |
+| `CRC` | 2 B | frame integrity check |
+
+Parsed by `crates/acars/src/decode/payload/arinc622/mod.rs` →
+`RawMessage` (deku) → `Message { atsu_address, imi, registration, payload }`.
+
+#### Slide: IMI — routing to the application
+
+The 3-character IMI selects the payload decoder (`Imi` enum → `Payload` enum):
+
+| IMI | Application | Payload encoding |
+|-----|-------------|------------------|
+| `ADS` | ADS-C position report or contract uplink | TLV (tag-length-value, 18 tag types) |
+| `AT1` | FANS-1/A CPDLC message body | UPER (handwritten bit-level decoder) |
+| `CR1` | CPDLC connect request | UPER + optional embedded uplink message |
+| `CC1` | CPDLC connect confirm | UPER |
+| `DR1` | CPDLC disconnect request | short UPER / CRC-only |
+| `AB1` | AOC message | raw hex preserved |
+| `DIS` | ADS-C disconnect | short control |
+
+ATSU addresses encode the **facility identity**:
+`CZQX` = Gander Oceanic, `EGGX` = Shanwick, `KZWY` = New York Oceanic,
+`BDOCAYA` = ARINC VDL2 ground network.
+
+---

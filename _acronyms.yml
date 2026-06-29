@@ -1,6 +1,8 @@
 ---
 acronyms:
   keys:
+    - shortname: ACARS
+      longname: Aircraft Communications Addressing and Reporting System
     - shortname: ACAS
       longname: Airborne Collision Avoidance System
     - shortname: ACC
@@ -33,6 +35,8 @@ acronyms:
       longname: Aerodrome Flight Information Service
     - shortname: AO
       longname: Aircraft Operator
+    - shortname: AOC
+      longname: Airline Operational Control
     - shortname: AOBT
       longname: Actual Off-Block Time
     - shortname: ANP
@@ -65,6 +69,8 @@ acronyms:
       longname: Base of Aircraft Data
     - shortname: BR
       longname: Basic Regulation
+    - shortname: CAS
+      longname: Calibrated Air Speed
     - shortname: CNS
       longname: Communication, Navigation, Surveillance
     - shortname: CPDLC
@@ -77,6 +83,8 @@ acronyms:
       longname: Control Zone
     - shortname: CVOR
       longname: Conventional Very High Frequency Omnidirectional Range
+    - shortname: DCL
+      longname: Datalink Clearance
     - shortname: DDR2
       longname: Demand Data Repository version 2
     - shortname: DF
@@ -109,6 +117,8 @@ acronyms:
       longname: Future Air Navigation System
     - shortname: FDR
       longname: Flight Data Recorder
+    - shortname: HFDL
+      longname: High Frequency Data Link
     - shortname: FIR
       longname: Flight Information Region
     - shortname: FIS
@@ -142,7 +152,7 @@ acronyms:
     - shortname: HF
       longname: High Frequency
     - shortname: IAS
-      longname: Indicated AirSpeed
+      longname: Indicated Air Speed
     - shortname: ICAO
       longname: International Civil Aviation Organization
     - shortname: IFR
@@ -185,12 +195,16 @@ acronyms:
       longname: Notice To Airmen
       plural:
         - longname: Notices To Airmen
+    - shortname: OOOI
+      longname: Out, Off, On, In
     - shortname: OSN
       longname: OpenSky Network
     - shortname: PBC
       longname: Performance-Based Communication
     - shortname: PBN
       longname: Performance-Based Navigation
+    - shortname: PDC
+      longname: Pre-Departure Clearance
     - shortname: PIB
       longname: Prefilght Information Bulletin
     - shortname: PRC
@@ -219,6 +233,8 @@ acronyms:
       longname: Runway Visual Range
     - shortname: SAR
       longname: Search And Rescue
+    - shortname: SATCOM
+      longname: Satellite Communication
     - shortname: SBAS
       longname: Satellite-Based Augmentation System
     - shortname: SELCAL
@@ -230,7 +246,7 @@ acronyms:
     - shortname: TACAN
       longname: TactiCal Air Navigation system
     - shortname: TAS
-      longname: True AirSpeed
+      longname: True Air Speed
     - shortname: TCAS
       longname: Traffic alert and Collision Avoidance System
     - shortname: TMA

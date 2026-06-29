@@ -1,0 +1,20 @@
+---
+title: Classify DAIO flights by FIR
+authors:
+- Xavier Olive
+---
+
+::: {.callout-warning}
+## TODO for this page
+
+This page has been copied or moved into the experimental `new/` architecture. Review the scope, trim or split content where needed, fix internal links, and add missing material described by the new table of contents.
+:::
+
+
+Case-study seed based on the Open Aviation DAIO flights per Country FIR notebook.
+
+Concepts:
+
+- spatial joins;
+- departure/arrival/internal/overflight classification;
+- airspace analytics.

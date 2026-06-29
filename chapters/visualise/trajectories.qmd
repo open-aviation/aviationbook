@@ -1,0 +1,21 @@
+---
+title: Visualising trajectories
+authors:
+- Xavier Olive
+---
+
+::: {.callout-warning}
+## TODO for this page
+
+This page has been copied or moved into the experimental `new/` architecture. Review the scope, trim or split content where needed, fix internal links, and add missing material described by the new table of contents.
+:::
+
+
+Planned scope:
+
+- single-flight maps;
+- multi-flight density;
+- route deviations;
+- holding patterns;
+- climb/descent profiles;
+- visualising uncertainty and coverage.

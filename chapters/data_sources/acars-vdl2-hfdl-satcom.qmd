@@ -1,0 +1,46 @@
+---
+title: ACARS, VDL2, HFDL, and SATCOM
+authors:
+- Xavier Olive
+---
+
+
+::: {.callout-warning}
+## TODO for this page
+
+This material is adapted from slide notes. It needs verification of frequencies/tooling, references, and a clear distinction between implemented examples and architectural context.
+:::
+
+### 2.2 — Bearers: physical layer and frequencies (~2 slides)
+
+#### Slide: Classic VHF ACARS (POA)
+
+- **Frequencies**: 131.525 / 131.725 / 131.825 / 130.025 MHz (region-dependent)
+- **Modulation**: MSK (Minimum Shift Keying), **2400 bps**, *continuous* transmission
+- No time-slotting; CSMA-style channel access
+- The audible "duck quack" on a VHF scanner — sounds the same since 1978
+- Decoded by: `acars131` frontend (`crates/acars/src/demod/acars131.rs`)
+- Also: SATCOM L-band (Inmarsat ~1.5 GHz, global, requires dish) and HF (HFDL, oceanic)
+
+#### Slide: VDL Mode 2
+
+- **Frequencies**: 136.725 / 136.775 / 136.875 / **136.975 MHz** (CSC — Common Signalling
+  Channel, globally monitored)
+- **Modulation**: D8PSK (Differential 8-Phase Shift Keying), **10.5 kbaud**, *burst*
+- Each burst:
+  ```
+  ramp-up  →  training sequence  →  FEC + interleaved payload  →  ramp-down
+  ```
+- Training sequence: known bit pattern for symbol sync and channel estimation
+- Convolutional FEC + bit interleaving: protects against burst errors
+- Decoded by: `vdl136` frontend (`crates/acars/src/demod/vdl2.rs`)
+
+| | Classic ACARS | VDL Mode 2 |
+|--|--------------|------------|
+| Band | 129–131 MHz | 136–137 MHz |
+| Modulation | MSK continuous | D8PSK burst |
+| Bitrate | 2 400 bps | ~31 500 bps |
+| Link layer | none | AVLC (HDLC-derived) |
+| Network layer | none | X.25 / CLNP / COTP |
+
+---

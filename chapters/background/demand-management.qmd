@@ -1,0 +1,20 @@
+---
+title: Demand management
+author: Manuel Waltert
+---
+
+Demand management balances demand for airport resources with available capacity. It is needed because airlines, passengers, aircraft, gates, runways, and ground handlers all compete for constrained time and space.
+
+## Strategic demand management
+
+At congested airports, demand is partly managed through airport slots, schedule coordination, declared capacity, and seasonal planning. These mechanisms influence which flights can be scheduled and at what times.
+
+## Tactical demand management
+
+On the day of operations, demand is managed through sequencing, departure metering, ground delay, gate changes, stand towing, flow restrictions, and collaborative decision making. Tactical measures aim to absorb disruption while preserving safety and minimizing delay propagation.
+
+## Data relevance
+
+Demand-management data include airport slots, scheduled times, target off-block times, calculated take-off times, arrival regulations, delay codes, stand plans, and operational milestones.
+
+## List of Acronyms {.unnumbered}

@@ -1,6 +1,6 @@
 ---
 css: ../media/css/cards.css
-subtitle: If you just found about this project, you may want to read the [preface](../preface.qmd) first.
+subtitle: A short-page architecture for the aviation data book.
 number-sections: false
 anchor-sections: false
 search: false
@@ -13,6 +13,8 @@ acronyms:
 ---
 
 # Table of contents {.unnumbered}
+
+This book keeps the short history of aviation outside the main parts, then organises the material around aviation background, data sources, processing, visualisation, case studies, and reproducible sharing.
 
 ::: {#guide-links .column-screen-inset-right style="max-width: 850px;"}
 :::

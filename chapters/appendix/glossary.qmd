@@ -1,6 +1,13 @@
-# Glossary {.unnumbered}
+---
+title: Glossary
+acronyms:
+  fromfile: ../../_acronyms.yml
+  include_unused: true
+  insert_loa: false
+  sorting: alphabetical
+  loa_title: ""
+---
 
-This glossary contains all the acronyms used throughout this book.
+This glossary contains the acronyms used throughout this book.
 
 \printacronyms
-

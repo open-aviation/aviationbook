@@ -1,0 +1,169 @@
+---
+title: Flight Information Regions and airspace structure
+authors:
+- Xavier Olive
+---
+
+
+Airspace structure defines where air navigation services are provided, who is responsible for them, and how airspace is divided into manageable volumes. This page focuses on Flight Information Regions, route and airway structures, airspace management, area control centres, sectors, and the relationship between administrative regions and operational control units.
+
+## Flight Information Regions
+
+At the broadest level, global airspace is divided into [**Flight Information Regions**](<https://observablehq.com/@openaviation/flight-information-regions>) (FIRs): large, internationally coordinated zones where designated authorities assume responsibility for delivering [**air traffic services**](atm-separation-flow.qmd#air-traffic-services). Within each FIR, the responsible authority provides **flight information services** and **alerting services**, including \acr{SAR}, ensuring pilots receive essential information for safe and efficient operations while maintaining readiness to notify relevant organizations when aircraft require assistance.
+
+FIRs are the primary organizational units of controlled airspace, covering both territorial and oceanic regions. While small countries may be covered by a single FIR, larger or busier nations often operate several. **In some cases, FIRs span multiple countries or are assigned over international waters to nearby states**. Their structures may vary with altitude: for example, France is divided into five FIRs below flight level (FL) 195, but merges into a single **Upper Information Region (UIR)** above that altitude. These regions, defined under the coordination of the International Civil Aviation Organization (ICAO), provide the foundation upon which [more detailed subdivisions are built](#airspace-management).
+
+::: {.callout-warning}
+It is important to insist on the fact that FIRs are **not expressions of territorial sovereignty**, which is limited to 12 nautical miles from coastlines. FIRs represent commitments by states **to provide air navigation services over much larger areas**, including international airspace and oceanic regions.
+:::
+
+```{ojs}
+//| echo: false
+import { Plot, countries, firsAt } from "@openaviation/flight-information-regions"
+```
+
+```{ojs}
+//| echo: false
+{
+  function franceMap(fir_uir, width) {
+    const height = width * 0.8;
+    const local_firs = firsAt(fir_uir ? 300 : 100).features.filter(
+      (d) => d.properties.designator.slice(0, 2) === "LF"
+    );
+    const other_firs = firsAt(fir_uir ? 300 : 100).features.filter(
+      (d) =>
+        d.properties.designator.slice(0, 2) !== "LF" &&
+        ["E", "L", "D", "U", "G", "H"].includes(d.properties.designator[0])
+    );
+    return Plot.carto({
+      projection: d3
+        .geoConicConformal()
+        .scale((10 * width) / 1.5 / Math.PI)
+        .rotate([-3, -46.5])
+        .parallels([49, 44])
+        .translate([width / 2, height / 2]),
+      color: { scheme: "tableau10", legend: true },
+      marks: [
+        Plot.feature(countries, {
+          stroke: "#333",
+          fill: "#ced4da"
+        }),
+        Plot.features(
+          local_firs.filter((x) => x.properties.designator),
+          {
+            fill: (d) => d.properties.designator,
+            fillOpacity: 0.6,
+            strokeWidth: 2,
+            stroke: "#eee"
+          }
+        ),
+        Plot.features(other_firs, {
+          fill: "#bab0ac",
+          fillOpacity: 0.2,
+          strokeWidth: 2,
+          stroke: "#eee"
+        }),
+        Plot.label(local_firs, {
+          text: (d) => `${d.properties.designator}\n${d.properties.name}`,
+          fontSize: (24 * width) / 960,
+          halo: true
+        })
+      ],
+      width,
+      height,
+      caption: fir_uir ? "Above FL 195" : "Below FL 195"
+    });
+  }
+  const franceFIR = franceMap(false, width / 2);
+  const franceUIR = franceMap(true, width / 2);
+  return html`<div style="display: flex; ">${franceFIR} ${franceUIR}`;
+}
+```
+
+::: {.callout-tip}
+
+More details about FIR around the world can be found on this page:
+<https://observablehq.com/@openaviation/flight-information-regions>
+
+:::
+
+
+## Airspace Management
+
+While ATS focuses on real-time control of aircraft, airspace management takes a strategic approach to optimizing capacity and efficiency while maintaining safety. This includes:
+
+- **Airspace design**: Structuring airways and sectors for optimal traffic flow and theoretical capacity
+- **Flexible airspace use**: Dynamic allocation of airspace between civilian and military users
+- **Strategic capacity planning**: Long-term analysis and planning for airspace modifications to increase capacity
+- **Coordination**: Working with adjacent control centers and military authorities
+
+### Route and airway structure
+
+Airways provide the route framework used to organise predictable traffic flows across controlled airspace. They help controllers separate aircraft, sequence demand through busy regions, and connect terminal procedures with the en-route network.
+
+Traditionally, airways were defined by the location of [**ground-based navigation aids**](conventional-radio-navigation.qmd). Routes followed straight lines between \acr{NDB}, \acr{VOR}, or VOR/\acr{DME} intersections, and intersections were often defined by crossing radials or by a radial and \acr{DME} distance. This beacon-to-beacon design was robust, but it tied trajectories to the geometry of the ground network rather than to the needs of traffic flows or aircraft operators.
+
+With \acr{RNAV}, waypoints no longer need to coincide with a physical beacon: they can be defined by geographic coordinates and stored in the \acr{FMS}. This allows straighter routes, more flexible departures and arrivals, and procedures that are less dependent on individual ground stations. \acr{RNP} adds onboard performance monitoring, so the aircraft can verify that its actual navigation performance remains compatible with the procedure being flown.
+
+Airway structures are therefore evolving from rigid beacon-defined corridors toward more flexible, performance-based networks. In Europe, the \acrfull{FRA} concept allows aircraft to plan trajectories directly between defined entry, intermediate, and exit points without following a fixed airway network. At the same time, structured routes remain important in congested corridors, terminal interfaces, mixed-equipage environments, and procedural or oceanic airspace where predictable flows are still essential for separation.
+
+Standard procedures organise the transition between airports and the en-route structure. \acr{SID} lead departing traffic from runways into the wider network, while \acr{STAR} bring arriving traffic back into terminal areas for sequencing and landing. These procedures are published on charts and encoded in navigation databases, allowing aircraft and controllers to use the flexibility of \acr{RNAV} and \acr{RNP} while preserving an orderly airspace structure.
+
+### Area Control Centres
+
+Within each FIR or UIR, controlled airspace is further divided to ensure the safe and efficient management of air traffic across different phases of flight. Responsibility for these divisions typically lies with national or regional **Air Traffic Control Centres**, often referred to as **Area Control Centres (ACCs)**, which oversee large volumes of airspace, often spanning thousands of square kilometres.
+
+**ACC areas of responsibility do not necessarily align with FIR or country boundaries.** ACCs are operational units that manage air traffic control services, while FIRs are administrative regions for air navigation services more broadly. This distinction becomes clear when examining real-world examples:
+
+
+```{ojs}
+//| echo: false
+import { accAt, graticule, land, plot_sectors } from "@openaviation/acc-sectorization"
+```
+
+```{ojs}
+//| echo: false
+{
+  const plot_france = function (flight_level, pattern) {
+    return plot_sectors(
+      firsAt(360).features.filter(
+        (elt) => elt.properties.designator === "LFFF"
+      )[0],
+      {
+        fill: (elt) => elt.properties.designator,
+        label_filters: (elt) => true,
+        flight_level,
+        width: width / 2,
+        scale_factor: 2,
+        pattern,
+        caption: `FL ${flight_level}`
+      }
+    );
+  };
+  const low = plot_france(250, /^LF.*/);
+  const up = plot_france(360, /^(LF|LSAG|EGTT|EDYY).*/);
+  return html`<div style="display: flex; ">${low} ${up}`;
+}
+```
+
+France operates five separate FIRs below FL 195 which consolidate into a single UIR above that altitude. However, air traffic control is managed by **five main ACCs**:
+
+- **Paris ACC** (based in Athis-Mons near Paris) manages an extended approach sector for flights departing from or arriving at Paris airports;
+- en route flows are managed by **four regional ACCs**: **Brest ACC** (North-West), **Bordeaux ACC** (South-West), **Marseille/Aix ACC** (South-East), and **Reims ACC** (North-East).
+
+Two French ACCs extend their coverage beyond France's UIR boundaries: Brest ACC extends into the Atlantic Ocean (covering portions of London and Shanwick FIRs), whilst Marseille ACC extends into Italy (covering part of Milano FIR). Conversely, some French airspace is managed by foreign ACCs: **London ACC** controls a small portion of Northern France, and **Geneva ACC** manages traffic above the Italian-French border on both sides of the Alps.
+
+**EUROCONTROL operates the Maastricht Upper Area Control Centre (MUAC)**, which manages en route traffic over the Benelux countries (comprising two FIRs) and a substantial portion of North-Western Germany. MUAC's area of responsibility also extends slightly across the Belgian-French border. Low altitude traffic within these regions remains under the responsibility of the respective national providers: Belgocontrol (Belgium), LVNL (Netherlands), and DFS (Germany).
+
+### Elementary sectors
+
+Because no single controller can monitor an entire centre, airspace is divided into small units called **elementary sectors**. Each sector is a defined volume of airspace with its own boundaries, typically based on geography, altitude, traffic volume, and operational needs. It is typically managed by a team of controllers who are responsible for all aircraft within that area. As an aircraft travels along its route, it will pass through multiple sectors. With each transition, responsibility for the flight is handed over from one team to the next. This hand-off process is standardized to ensure that aircraft are continuously monitored from take-off to landing.
+
+**Sector design** considers multiple factors: **geographical boundaries** such as national borders, coastlines, or natural terrain features that provide logical divisions; **traffic patterns** including major airways, airport approach/departure corridors, and typical flight routes; **altitude stratification** with sectors often layered vertically to separate different flight levels; and **operational complexity** balancing workload distribution and coordination requirements between adjacent sectors.
+
+In busy regions, sectors can be quite small and specialized, while in less busy areas, sectors may be much larger, with a single controller responsible for hundreds of square miles of airspace. Sectors are also layered vertically, meaning one controller might be responsible for aircraft flying between 24,000 and 32,000 feet, while another handles the same geographic area but at lower or higher altitudes.
+
+
+Flight plans describe how aircraft intend to use this route structure and are used operationally for traffic management; they are discussed in [Air traffic services, separation, and flow management](atm-separation-flow.qmd#flight-plans-and-routing).
+
+## Glossary {.unnumbered}

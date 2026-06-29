@@ -1,0 +1,25 @@
+---
+title: Weather and flight conditions
+authors:
+- Xavier Olive
+---
+
+::: {.callout-warning}
+## TODO for this page
+
+This page has been copied or moved into the experimental `new/` architecture. Review the scope, trim or split content where needed, fix internal links, and add missing material described by the new table of contents.
+:::
+
+
+Weather is a major operational driver and a major missing topic in the current manuscript.
+
+Planned scope:
+
+- VMC and IMC;
+- wind, cloud, visibility, precipitation;
+- jet streams;
+- fog and low-visibility operations;
+- thunderstorms, turbulence, icing, wind shear, and microbursts;
+- operational consequences: rerouting, holding, diversions, runway configuration, delays, fuel, and safety events.
+
+Sources to integrate include Lavionnaire meteorology pages, Skybrary weather topics, and the Formation CGX Aero material.

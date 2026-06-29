@@ -1,0 +1,24 @@
+---
+title: Airport operations
+author: Manuel Waltert
+---
+
+Airport operations coordinate the daily use of runways, taxiways, stands, terminals, baggage systems, ground handlers, airport services, airlines, and air traffic control. The objective is to turn infrastructure and schedules into safe and efficient aircraft and passenger movements.
+
+## Airside operations
+
+Airside operations include runway use, taxi routing, stand allocation, turnaround coordination, aircraft servicing, de-icing, surface movement control, wildlife management, and runway inspections.
+
+## Terminal and landside operations
+
+Terminal operations include passenger processing, queue management, gate allocation, boarding, arrivals, baggage reclaim, disruption assistance, and coordination with ground access providers.
+
+## Airport collaborative decision making
+
+Many airports use collaborative decision making to share milestones between airlines, ground handlers, the airport operator, and air traffic control. Shared milestones improve predictability for pushback, start-up, taxi-out, take-off, arrival, stand occupancy, and turnaround recovery.
+
+## Data relevance
+
+Airport operations data include A-CDM milestones, stand allocation, turnaround events, runway configuration, surface movement tracks, passenger counts, baggage events, resource rosters, and delay causes.
+
+## List of Acronyms {.unnumbered}

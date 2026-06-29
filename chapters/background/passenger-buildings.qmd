@@ -1,0 +1,25 @@
+---
+title: Passenger buildings
+author: Manuel Waltert
+---
+
+Passenger buildings connect the landside transport system with the airside aircraft operation. They host passenger processing, security controls, border control, commercial areas, waiting areas, boarding gates, and arrival flows.
+
+## Main functions
+
+A passenger terminal usually supports several functions:
+
+- departure processing: check-in, bag drop, security screening, border control where applicable, and boarding;
+- arrival processing: disembarkation, immigration where applicable, baggage reclaim, customs, and exit to ground transport;
+- transfer processing: connections between flights, sometimes between terminals or between Schengen/non-Schengen areas;
+- passenger services: retail, food, lounges, information desks, accessibility services, and disruption handling.
+
+## Terminal layouts
+
+Common terminal concepts include linear terminals, pier or finger layouts, satellites connected by people movers, and hybrid configurations. The layout affects walking distances, gate utilization, minimum connection times, and the scalability of the airport.
+
+## Data relevance
+
+Passenger buildings generate and consume operational data such as flight information displays, passenger counts, queue times, gate assignments, boarding milestones, and minimum connection times. These data are useful when analysing airport performance and passenger disruption.
+
+## List of Acronyms {.unnumbered}

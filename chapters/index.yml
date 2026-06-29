@@ -1,56 +1,190 @@
-- title: Background knowledge
-  subtitle: The minimal background necessary to comprehend the aviation world
-  other: A comprehensive overview of what to know in aviation and air traffic management
+- title: Aviation background for data analysis
+  subtitle: The aviation concepts needed to interpret data correctly
   links:
-    - text: A short history of aviation
-      href: background/history.html
-    - text: Earth models
-      href: background/earth.html
-    - text: Atmosphere models for aircraft altimetry
-      href: background/atmosphere.html
+    - text: Aircraft categories and missions
+      href: background/aircraft-categories-missions.html
     - text: Anatomy of an aircraft
-      href: background/aircraft.html
-    - text: Air navigation services
-      href: background/ans.html
-    - text: Communication, navigation and surveillance
-      href: background/cns.html
+      href: background/aircraft-anatomy.html
+    - text: Flight mechanics
+      href: background/flight-mechanics.html
+    - text: Aircraft instruments
+      href: background/aircraft_instruments.html
+    - text: Atmosphere models for aircraft altimetry
+      href: background/atmosphere-altimetry.html
+    - text: Weather and flight conditions
+      href: background/weather-flight-conditions.html
+    - text: Earth models
+      href: background/earth-coordinates.html
+    - text: Air navigation services and institutions
+      href: background/ans-institutions.html
+    - text: Communication, navigation, surveillance
+      href: background/cns-overview.html
+    - text: Communication systems
+      href: background/communication-systems.html
+    - text: Conventional radio navigation
+      href: background/conventional-radio-navigation.html
+    - text: Satellite navigation
+      href: background/satellite-navigation.html
+    - text: Surveillance systems
+      href: background/surveillance-systems.html
+    - text: Flight Information Regions and airspace structure
+      href: background/airspace-structure.html
+    - text: Air traffic services, separation, and flow management
+      href: background/atm-separation-flow.html
     - text: Aerodromes and airports
-      href: background/aerodrome.html
-- title: The ecosystem of aviation data
-  subtitle: The most commonly used data formats in the aviation and ATM data analysis community
+      href: background/aerodromes-overview.html
+    - text: Runways
+      href: background/runways.html
+    - text: Taxiways, aprons, and stands
+      href: background/taxiways-aprons-stands.html
+    - text: Passenger buildings
+      href: background/passenger-buildings.html
+    - text: Baggage handling systems
+      href: background/baggage-handling-systems.html
+    - text: Aerodrome ground access
+      href: background/aerodrome-ground-access.html
+    - text: Airport capacity
+      href: background/airport-capacity.html
+    - text: Demand management
+      href: background/demand-management.html
+    - text: Airport operations
+      href: background/airport-operations.html
+- title: The aviation data ecosystem
+  subtitle: Data sources by origin, access, structure, limitations, and use
   links:
-    - text: Flight tracking technologies
-      href: data_sources/flight_tracking.html
-    - text: Aircraft information
-      href: data_sources/aircraft_information.html
-    - text: Flight plans
-      href: data_sources/flight_plans.html
-    - text: Aeronautical information
-      href: data_sources/aeronautical_information.html
-    - text: Weather, climate and environment
-      href: data_sources/environment.html
-    - text: Aircraft performance
-      href: data_sources/aircraft_performance.html
-    - text: Data sources in aviation
-      href: data_sources/aviation_data_sources.html
-- title: Processing aviation data
-  subtitle: (Hatching)
+    - text: A map of aviation data sources
+      href: data_sources/overview.html
+    - text: Aircraft and operator information
+      href: data_sources/aircraft-operator-information.html
+    - text: Airport and infrastructure data
+      href: data_sources/airport-infrastructure-data.html
+    - text: Flight tracking and surveillance data
+      href: data_sources/flight-tracking-surveillance.html
+    - text: ADS-B and Mode S decoding
+      href: data_sources/adsb-mode-s-decoding.html
+    - text: Datalink beyond the transponder
+      href: data_sources/datalink-beyond-transponder.html
+    - text: ACARS, VDL2, HFDL, and SATCOM
+      href: data_sources/acars-vdl2-hfdl-satcom.html
+    - text: ACARS messages and application routing
+      href: data_sources/acars-message-routing.html
+    - text: CPDLC and ADS-C data
+      href: data_sources/cpdlc-adsc-data.html
+    - text: Airline operational datalink data
+      href: data_sources/aoc-operational-datalink.html
+    - text: Flight plans and route intent
+      href: data_sources/flight-plans-intent.html
+    - text: Network Manager trajectory formats
+      href: data_sources/network-manager-formats.html
+    - text: Aeronautical information management
+      href: data_sources/aeronautical-information.html
+    - text: AIP, NOTAM, AIC, SUP AIP, and PIB
+      href: data_sources/aip-notam-aic-pib.html
+    - text: Points, routes, airspaces, and procedures
+      href: data_sources/points-routes-airspaces-procedures.html
+    - text: Weather and environmental data
+      href: data_sources/weather-environment-data.html
+    - text: Weather hazards and operational impact
+      href: data_sources/weather-hazards-impact.html
+    - text: Aircraft performance data
+      href: data_sources/aircraft-performance.html
+    - text: Operational performance data
+      href: data_sources/operational-performance-data.html
+    - text: Safety, occurrence, and risk data
+      href: data_sources/safety-occurrence-risk-data.html
+    - text: Human factors and operational decision-making data
+      href: data_sources/human-factors-data.html
+    - text: Maintenance and airworthiness data
+      href: data_sources/maintenance-airworthiness-data.html
+- title: Working with aviation data
+  subtitle: Processing primitives and analytical patterns
   links:
-    - text: The tidy paradigm
-      href: processing/tidy-data.html
-- title: Visualizing aviation data
-  subtitle: (Hatching)
+    - text: The tidy data paradigm
+      href: work/tidy-data.html
+    - text: Time series in aviation
+      href: work/time-series.html
+    - text: Lazy and columnar data processing
+      href: work/lazy-columnar-processing.html
+    - text: Physical units and consistency
+      href: work/physical-units.html
+    - text: Coordinates, projections, and geometry
+      href: work/coordinates-projections-geometry.html
+    - text: Trajectory processing
+      href: work/trajectory-processing.html
+    - text: Joining heterogeneous aviation data
+      href: work/joining-heterogeneous-data.html
+    - text: Information extraction from semi-structured data
+      href: work/information-extraction.html
+    - text: Data quality and uncertainty
+      href: work/data-quality-uncertainty.html
+- title: Visualising and explaining aviation data
+  subtitle: From graphics grammar to interactive narratives
   links:
     - text: Grammar of graphics
       href: visualise/grammar-of-graphics.html
-- title: Sharing data
-  subtitle: The hitchhiker's guide to reproducible research
+    - text: Time series and vertical profiles
+      href: visualise/time-series-profiles.html
+    - text: Maps and projections
+      href: visualise/maps-projections.html
+    - text: Visualising trajectories
+      href: visualise/trajectories.html
+    - text: Visualising airspace, networks, and flows
+      href: visualise/airspace-networks-flows.html
+    - text: Visualising data quality and uncertainty
+      href: visualise/uncertainty-quality.html
+    - text: Storytelling with aviation data
+      href: visualise/storytelling.html
+    - text: Observable notebooks as interactive narratives
+      href: visualise/observable-narratives.html
+- title: Case studies — operational narratives
+  subtitle: Integrated examples based on Open Aviation notebooks and book datasets
   links:
-    - text: Best practices for reproducible research
+    - text: Decode a raw ADS-B message
+      href: case_studies/decode-adsb.html
+    - text: Build a flight trajectory from ADS-B
+      href: case_studies/build-trajectory.html
+    - text: Compare planned and flown trajectories
+      href: case_studies/planned-vs-flown.html
+    - text: Tell an oceanic flight story with ADS-B, ADS-C, and CPDLC
+      href: case_studies/oceanic-datalink-story.html
+    - text: Map Flight Information Regions
+      href: case_studies/flight-information-regions.html
+    - text: Classify DAIO flights by FIR
+      href: case_studies/daio-fir.html
+    - text: Visualise airports around the world
+      href: case_studies/airports-world.html
+    - text: Analyse GPS jamming around Kaliningrad
+      href: case_studies/gps-jamming.html
+    - text: Analyse airspace disruption after geopolitical restrictions
+      href: case_studies/airspace-disruption.html
+    - text: Firefighting aircraft operations in France
+      href: case_studies/firefighting-aircraft.html
+    - text: Weather impact on airport or route operations
+      href: case_studies/weather-impact.html
+    - text: Runway safety or occurrence data story
+      href: case_studies/runway-safety-occurrence.html
+- title: Sharing reproducible aviation research
+  subtitle: Responsible publication, licensing, notebooks, and pipelines
+  links:
+    - text: Reproducible research project structure
       href: sharing/reproducible-research.html
-- title: Appendices
+    - text: From exploratory notebook to maintained pipeline
+      href: sharing/notebook-to-pipeline.html
+    - text: Data licensing and attribution
+      href: sharing/data-licensing-attribution.html
+    - text: Privacy, safety, and responsible publication
+      href: sharing/privacy-safety-responsible-publication.html
+    - text: Publishing interactive aviation narratives
+      href: sharing/publishing-interactive-narratives.html
+- title: Appendices and reference material
   links:
     - text: Glossary
       href: appendix/glossary.html
+    - text: Data source catalogue
+      href: appendix/data-source-catalogue.html
+    - text: File formats and standards
+      href: appendix/formats-standards.html
     - text: Contribute to this project
       href: appendix/contribute.html
+    - text: Authors
+      href: appendix/authors.html

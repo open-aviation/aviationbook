@@ -1,0 +1,76 @@
+---
+title: Satellite navigation
+authors:
+- Xavier Olive
+---
+
+
+Modern navigation combines onboard sensors, satellite positioning, augmentation systems, and performance requirements. This page introduces the technical stack behind \acr{GNSS}, \acr{RNAV}, \acr{RNP}, and \acr{PBN}, as well as the resilience issues raised by jamming, spoofing, and loss of satellite navigation.
+
+## Inertial Navigation (INS/IRS)
+
+\acrfull{INS} and \acrfull{IRS} provide a self-contained estimate of **attitude, velocity, and position**. Unlike radio or satellite navigation, they do not depend on external signals: the aircraft measures its own accelerations and angular rates, then integrates them over time. This makes inertial navigation especially valuable as a continuous, jamming-resistant reference.
+
+Each unit contains three accelerometers and three gyroscopes. After an initial ground alignment, the system knows the local vertical, true north, and starting position. In flight, it maintains attitude and derives velocity and position by transforming measured accelerations into an Earth reference frame. Modern systems are usually **strapdown** designs, with sensors fixed to the airframe, and use high-stability technologies such as \acrfull{RLG} or \acrfull{FOG}.
+
+The main limitation is **drift**. Very small sensor errors accumulate over time, so the position estimate slowly degrades even though attitude remains very accurate. For this reason, inertial navigation is normally blended in the \acrfull{FMS} with external updates from \acr{GNSS}, DME/DME, or VOR/DME. The avionics compare the resulting \acrfull{ANP} with the required navigation performance for the procedure and alert the crew if the solution is no longer good enough.
+
+::: {.callout-tip}
+### Inertial navigation in practice
+
+The \acr{IRS} is not usually the most accurate long-term position sensor, but it is one of the most reliable. It provides attitude, heading, ground speed, and track continuously, even during short \acr{GNSS} outages or radio-navigation gaps. Historically, \acr{INS} enabled long-range oceanic navigation before satellite systems; today, it remains a backbone sensor for \acr{RNAV}, \acr{RNP}, flight control, and navigation resilience.
+:::
+
+## Global Navigation Satellite System (GNSS)
+
+The \acrfull{GNSS} is the collective term for satellite navigation constellations such as \acrfull{GPS}, Galileo, GLONASS, and BeiDou. It has become the main positioning source for modern aviation and is central to \acrfull{PBN}, \acr{RNAV}, and \acrfull{RNP} operations.
+
+### Principle of operation
+
+\acr{GNSS} positioning is based on **ranging by signal timing**. Each satellite broadcasts its position and a precise time stamp. The aircraft receiver measures how long the signal took to arrive and converts this delay into a distance, called a **pseudorange**. Because the receiver clock is not perfectly synchronized with satellite atomic clocks, at least **four satellites** are needed to solve for latitude, longitude, altitude, and clock error.
+
+Accuracy depends on satellite geometry, signal quality, atmospheric delay, timing errors, and multipath reflections near the receiver. A good spread of satellites in the sky improves the solution; this effect is often described by the **Dilution of Precision (DOP)**. Dual-frequency receivers and correction systems reduce several of these errors, especially ionospheric delay.
+
+### Constellations
+
+Civil aircraft increasingly use several constellations at once. \acr{GPS} remains the most widely used, Galileo adds a strong civil-oriented European service, GLONASS contributes additional satellites, and BeiDou provides global coverage from China. Multi-constellation and multi-frequency receivers improve availability and robustness, especially when part of the sky is masked or one system is degraded.
+
+On their own, core \acr{GNSS} constellations typically provide position accuracy on the order of several metres to around ten metres. Aviation use, however, also requires integrity: the system must warn the crew quickly if the position should not be trusted.
+
+::: {.callout-note}
+### GNSS augmentation
+
+Augmentation systems improve the accuracy and integrity of \acr{GNSS}. \acrfull{SBAS}, such as **EGNOS** in Europe and **WAAS** in the United States, broadcasts wide-area corrections and integrity information from geostationary satellites. This enables approach procedures with vertical guidance, including \acr{LPV} minima, without installing equipment at each airport. [\acrfull{GBAS}](conventional-radio-navigation.qmd#gbas-landing-system-gls) is the local airport-based alternative, which provides very accurate corrections for precision approaches.
+:::
+
+### Operational use and limitations
+
+\acr{GNSS} supports direct routing, flexible procedures, curved approaches, and modern \acr{RNP} operations. It reduces dependence on ground beacons and allows routes and waypoints to be defined by coordinates rather than by the physical location of navigation aids.
+
+Its main weakness is signal vulnerability. \acr{GNSS} signals are very weak at the Earth’s surface and can be affected by interference, jamming, spoofing, poor satellite geometry, or temporary outages. For this reason, aircraft combine \acr{GNSS} with integrity monitoring such as \acrfull{RAIM}, inertial sensors, and backup infrastructure such as \acr{VOR}/\acr{DME} or \acr{ILS}.
+
+::: {.callout-tip}
+### Jamming and spoofing
+
+**Jamming** overwhelms legitimate \acr{GNSS} signals, causing loss of satellite navigation. **Spoofing** is more subtle: false signals are transmitted so that the receiver computes an incorrect position or time. Both can affect navigation and approach guidance, which is why redundancy, monitoring, and conventional fallback systems remain important.
+:::
+
+<!--
+https://en.wikipedia.org/wiki/Korean_Air_Lines_Flight_007
+-->
+
+## Evolution of Navigation Concepts
+
+The methods by which aircraft navigate have evolved in distinct phases, each reflecting both the technological possibilities of the time and the operational needs of air traffic management.
+
+In the earliest days, flight was guided by **visual navigation**, with pilots relying on landmarks, coastlines, or celestial bodies, often supported by dead reckoning. This was inherently imprecise and restricted to clear weather and daylight conditions.
+
+The introduction of [**conventional radio aids** such as \acr{NDB}, \acr{VOR}, and \acr{DME}](conventional-radio-navigation.qmd) revolutionised navigation by providing objective position references that worked independently of visibility. These systems enabled instrument flight, but their limitation was structural: routes and procedures were constrained to the physical location of ground stations, leading to rigid beacon-to-beacon networks.
+
+With the advent of satellite navigation and modern flight management systems, **Area Navigation (\acr{RNAV})** became possible. \acr{RNAV} allowed aircraft to fly any desired path within the coverage of ground- or space-based aids, or within the limits of onboard systems, making routes independent of beacon locations. This gave rise to more direct en-route trajectories and flexible departures and arrivals.
+
+The next step was **Required Navigation Performance (\acr{RNP})**, which combines \acr{RNAV} capability with onboard performance monitoring and alerting. An \acr{RNP} specification defines the lateral accuracy required 95% of the time — for example, RNP 1, RNP 0.3, or even RNP 0.1 for highly demanding procedures. By continuously monitoring and displaying the \acr{ANP}, the avionics ensure that the aircraft meets the required standard and alert the crew if it cannot.
+
+This progression — from visual navigation to ground-based beacons, from \acr{RNAV} to \acr{RNP} — underpins the modern framework of \acr{PBN}. It enables flexible routing, efficient use of airspace, and precision approaches such as \acr{LPV}, all while reducing reliance on conventional ground infrastructure.
+
+## Glossary {.unnumbered}

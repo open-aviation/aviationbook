@@ -1,0 +1,22 @@
+
+
+::: {.callout-warning}
+## TODO for this page
+
+This page has been copied or moved into the experimental `new/` architecture. Review the scope, trim or split content where needed, fix internal links, and add missing material described by the new table of contents.
+:::
+
+# Processing geometric and geographical data
+
+::: {.callout-tip}
+Author: ?
+:::
+
+::: {.callout-note}
+**Author's note**: This part introduces more advanced mathematical and programming skills.
+The tidy paradigm to manipulate data frames is introduced. Challenges
+associated with geometrical shapes, geographical coordinates,
+trajectories, projections are presented, before introducing common AI
+tools for information extraction, prediction and optimisation.
+
+:::

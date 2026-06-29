@@ -1,0 +1,28 @@
+---
+title: Observable notebooks as interactive narratives
+authors:
+- Xavier Olive
+---
+
+::: {.callout-warning}
+## TODO for this page
+
+This page has been copied or moved into the experimental `new/` architecture. Review the scope, trim or split content where needed, fix internal links, and add missing material described by the new table of contents.
+:::
+
+
+Open Aviation notebooks should become a backbone for interactive storytelling in this book.
+
+Notebook inventory to map:
+
+- `rs1090`;
+- DAIO flights per Country FIR;
+- `firefighting-activities`;
+- `ourairports-data`;
+- `airports`;
+- `gps-jamming`;
+- `flying-to-kaliningrad`;
+- `how-flights-between-europe-and-eastern-asia-got-disrupted`;
+- `flight-information-regions`.
+
+For each notebook, decide whether to embed, adapt, or rewrite as prose.
