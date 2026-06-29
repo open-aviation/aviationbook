@@ -1,6 +1,8 @@
 project:
   type: book
   output-dir: _book
+  resources:
+    - data/patterns.json
 
 execute:
   freeze: auto
@@ -48,8 +50,7 @@ book:
         - chapters/background/airport-operations.qmd
     - part: "The aviation data ecosystem"
       chapters:
-        - chapters/data_sources/overview.qmd
-        - chapters/data_sources/aircraft-operator-information.qmd
+        - chapters/data_sources/aircraft-information.qmd
         - chapters/data_sources/airport-infrastructure-data.qmd
         - chapters/data_sources/flight-tracking-surveillance.qmd
         - chapters/data_sources/adsb-mode-s-decoding.qmd
@@ -191,11 +192,9 @@ book:
               href: chapters/background/airport-operations.qmd
         - section: Data ecosystem
           contents:
-            - text: 🔴 Data source map
-              href: chapters/data_sources/overview.qmd
-            - text: 🔴 Aircraft & operators
-              href: chapters/data_sources/aircraft-operator-information.qmd
-            - text: 🔴 Airport data
+            - text: Aircraft information
+              href: chapters/data_sources/aircraft-information.qmd
+            - text: 🔴 Airport and infrastructure
               href: chapters/data_sources/airport-infrastructure-data.qmd
             - text: 🟢 Flight tracking
               href: chapters/data_sources/flight-tracking-surveillance.qmd

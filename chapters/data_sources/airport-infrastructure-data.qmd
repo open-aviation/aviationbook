@@ -4,13 +4,6 @@ authors:
 - Xavier Olive
 ---
 
-::: {.callout-warning}
-## TODO for this page
-
-This page has been copied or moved into the experimental `new/` architecture. Review the scope, trim or split content where needed, fix internal links, and add missing material described by the new table of contents.
-:::
-
-
 Planned scope:
 
 - OurAirports;
@@ -24,3 +17,13 @@ Open Aviation Observable notebooks to reuse:
 
 - `ourairports-data`;
 - `airports`.
+
+Structure:
+
+- list of airports and their metadata (ICAO, IATA, name, location, country, region, type, etc.);
+- list of runways and their metadata (length, width, surface, declared distances, etc.);
+
+becomes more complex with taxiways and aprons:
+openstreetmap is a good one
+
+=> reuse the Observable notebook <https://observablehq.com/@xoolive/navigation> and see how to port things with OJS cells
