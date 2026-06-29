@@ -319,6 +319,8 @@ book:
         - text: ---
         - text: Glossary
           href: chapters/appendix/glossary.qmd
+        - text: References
+          href: chapters/appendix/references.qmd
         - text: 🔴 Data catalogue
           href: chapters/appendix/data-source-catalogue.qmd
         - text: Contribute to the project

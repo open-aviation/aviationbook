@@ -239,8 +239,12 @@ acronyms:
       longname: Satellite-Based Augmentation System
     - shortname: SELCAL
       longname: Selective Calling
+    - shortname: SID
+      longname: Standard Instrument Departure
     - shortname: SSR
       longname: Secondary Surveillance Radar
+    - shortname: STAR
+      longname: Standard Terminal Arrival
     - shortname: TA
       longname: Traffic Advisory
     - shortname: TACAN

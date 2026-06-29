@@ -22,8 +22,8 @@ CNS also determines how much traffic an airspace can handle. Congested voice fre
 This page is a map of the topic. The detailed systems are described in the following pages:
 
 - [Communication systems](communication-systems.qmd) covers voice radio, HF/VHF communication, SELCAL, ACARS, CPDLC, FANS, and performance-based communication.
-- [Conventional radio navigation](conventional-radio-navigation.qmd) introduces heading, track, bearing, course, radial, and true versus magnetic references, then covers NDB, VOR, DME, ILS, and other ground-based navigation aids.
-- [Satellite navigation, RNAV, RNP, and PBN](satellite-navigation-pbn.qmd) covers inertial navigation, GNSS, augmentation, integrity, RNAV/RNP, and performance-based navigation.
+- [Radio navigation](conventional-radio-navigation.qmd) introduces heading, track, bearing, course, radial, and true versus magnetic references, then covers NDB, VOR, DME, ILS, and other ground-based navigation aids.
+- [Satellite navigation](satellite-navigation.qmd) covers inertial navigation, GNSS, augmentation, integrity, RNAV/RNP, and performance-based navigation.
 - [Surveillance systems](surveillance-systems.qmd) covers primary radar, secondary radar, Mode S, ADS-B, ADS-C, and multilateration.
 
 ::: {.callout-warning}
