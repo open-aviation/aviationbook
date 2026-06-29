@@ -1,0 +1,1669 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.38">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>17&nbsp; Air traffic services, separation, and flow management – A journey through aviation data</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../chapters/background/aerodromes-overview.html" rel="next">
+<link href="../../chapters/background/airspace-structure.html" rel="prev">
+<link href="../../favicon.svg" rel="icon" type="image/svg+xml">
+<script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c875dbb4c9335aca9cc352e974a4ec92.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark-c875dbb4c9335aca9cc352e974a4ec92.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-c875dbb4c9335aca9cc352e974a4ec92.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap-fdf8cc39ee2ae84d2252cb2ac493c50d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark-33f2c2d7d8e63b716f88f80ac4599832.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../site_libs/bootstrap/bootstrap-fdf8cc39ee2ae84d2252cb2ac493c50d.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+
+<link rel="stylesheet" href="../../media/css/style.css">
+<link rel="stylesheet" href="../../media/css/box.css">
+<link rel="stylesheet" href="../../sidebar-compact.css">
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../favicon.png" alt="avbook logo" class="navbar-logo light-content">
+    <img src="../../favicon.png" alt="avbook logo" class="navbar-logo dark-content">
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../"> 
+<span class="menu-text">Overview</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="../../preface.html" aria-current="page"> 
+<span class="menu-text">Preface</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../chapters/background/history.html"> 
+<span class="menu-text">Start reading</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../chapters/index.html"> 
+<span class="menu-text">Table of contents</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../chapters/appendix/glossary.html"> 
+<span class="menu-text">Glossary</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../chapters/appendix/contribute.html"> 
+<span class="menu-text">Contribute</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+    <a href="https://github.com/open-aviation/aviationbook/" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/background/aircraft-categories-missions.html">Aviation background</a></li><li class="breadcrumb-item"><a href="../../chapters/background/atm-separation-flow.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Air traffic services</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Home</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../preface.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Preface</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Table of contents</span></a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/background/history.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">A short history of aviation</span></span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Aviation background</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/background/aircraft-categories-missions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">🔴 Aircraft categories</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/background/aircraft-anatomy.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Anatomy of an aircraft</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/background/flight-mechanics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Flight mechanics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/background/aircraft_instruments.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Aircraft instruments</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/background/atmosphere-altimetry.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Atmosphere models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/background/weather-flight-conditions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">🔴 Weather conditions</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/background/earth-coordinates.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Earth models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/background/ans-institutions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Air navigation services</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/background/cns-overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">CNS overview</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/background/communication-systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Communication systems</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/background/conventional-radio-navigation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Radio navigation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/background/satellite-navigation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Satellite navigation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/background/surveillance-systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Surveillance systems</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/background/airspace-structure.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Airspace structure</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/background/atm-separation-flow.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Air traffic services</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/background/aerodromes-overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Aerodromes</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/background/runways.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Runways</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/background/taxiways-aprons-stands.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Taxiways &amp; stands</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/background/passenger-buildings.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">🔴 Passenger buildings</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/background/baggage-handling-systems.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">🔴 Baggage handling</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/background/aerodrome-ground-access.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">🔴 Ground access</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/background/airport-capacity.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">🔴 Airport capacity</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/background/demand-management.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">25</span>&nbsp; <span class="chapter-title">🔴 Demand management</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/background/airport-operations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">26</span>&nbsp; <span class="chapter-title">🔴 Airport operations</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false">
+ <span class="menu-text">Data ecosystem</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/data_sources/overview.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">27</span>&nbsp; <span class="chapter-title">🔴 Data source map</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/data_sources/aircraft-operator-information.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">28</span>&nbsp; <span class="chapter-title">🔴 Aircraft &amp; operators</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/data_sources/airport-infrastructure-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">🔴 Airport data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/data_sources/flight-tracking-surveillance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">🟢 Flight tracking</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/data_sources/adsb-mode-s-decoding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">🟡 ADS-B &amp; Mode S</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/data_sources/datalink-beyond-transponder.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">🟠 Datalink overview</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/data_sources/acars-vdl2-hfdl-satcom.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">🟠 ACARS bearers</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/data_sources/acars-message-routing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">🟠 ACARS routing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/data_sources/cpdlc-adsc-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">🟠 CPDLC &amp; ADS-C</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/data_sources/aoc-operational-datalink.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">🔴 AOC datalink</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/data_sources/flight-plans-intent.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">🟡 Flight intent</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/data_sources/network-manager-formats.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">🟡 NM formats</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/data_sources/aeronautical-information.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">🟡 AIM overview</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/data_sources/aip-notam-aic-pib.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">🟡 AIP &amp; NOTAM</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/data_sources/points-routes-airspaces-procedures.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">🟡 Routes &amp; procedures</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/data_sources/weather-environment-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">🔴 Weather data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/data_sources/weather-hazards-impact.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">🔴 Weather hazards</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/data_sources/aircraft-performance.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">🟢 Performance models</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/data_sources/operational-performance-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">🟡 Operational performance</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/data_sources/safety-occurrence-risk-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">🔴 Safety data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/data_sources/human-factors-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">🔴 Human factors</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/data_sources/maintenance-airworthiness-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">🔴 Maintenance data</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false">
+ <span class="menu-text">Working with data</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/work/tidy-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">🟠 Tidy data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/work/time-series.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">🔴 Time series</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/work/lazy-columnar-processing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">🔴 Lazy processing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/work/physical-units.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">🔴 Physical units</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/work/coordinates-projections-geometry.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">🟠 Geometry &amp; projections</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/work/trajectory-processing.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">🟠 Trajectories</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/work/joining-heterogeneous-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">🔴 Data joins</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/work/information-extraction.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">56</span>&nbsp; <span class="chapter-title">🟠 Information extraction</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/work/data-quality-uncertainty.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">57</span>&nbsp; <span class="chapter-title">🔴 Data quality</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false">
+ <span class="menu-text">Visualise and explain</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/visualise/grammar-of-graphics.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">58</span>&nbsp; <span class="chapter-title">🟠 Grammar of graphics</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/visualise/time-series-profiles.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">59</span>&nbsp; <span class="chapter-title">🔴 Profiles</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/visualise/maps-projections.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">60</span>&nbsp; <span class="chapter-title">🟠 Maps</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/visualise/trajectories.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">61</span>&nbsp; <span class="chapter-title">🔴 Trajectory maps</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/visualise/airspace-networks-flows.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">62</span>&nbsp; <span class="chapter-title">🔴 Networks &amp; flows</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/visualise/uncertainty-quality.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">63</span>&nbsp; <span class="chapter-title">🔴 Visual uncertainty</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/visualise/storytelling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">64</span>&nbsp; <span class="chapter-title">🟠 Storytelling</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/visualise/observable-narratives.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">65</span>&nbsp; <span class="chapter-title">🔴 Observable narratives</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false">
+ <span class="menu-text">Case studies</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/case_studies/decode-adsb.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">66</span>&nbsp; <span class="chapter-title">🔴 Decode ADS-B</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/case_studies/build-trajectory.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">67</span>&nbsp; <span class="chapter-title">🔴 Build trajectory</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/case_studies/planned-vs-flown.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">68</span>&nbsp; <span class="chapter-title">🔴 Planned vs flown</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/case_studies/oceanic-datalink-story.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">69</span>&nbsp; <span class="chapter-title">🔴 Oceanic datalink</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/case_studies/flight-information-regions.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">70</span>&nbsp; <span class="chapter-title">🔴 FIR maps</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/case_studies/daio-fir.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">71</span>&nbsp; <span class="chapter-title">🔴 DAIO by FIR</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/case_studies/airports-world.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">72</span>&nbsp; <span class="chapter-title">🔴 World airports</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/case_studies/gps-jamming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">73</span>&nbsp; <span class="chapter-title">🔴 GPS jamming</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/case_studies/airspace-disruption.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">74</span>&nbsp; <span class="chapter-title">🔴 Airspace disruption</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/case_studies/firefighting-aircraft.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">75</span>&nbsp; <span class="chapter-title">🔴 Firefighting aircraft</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/case_studies/weather-impact.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">76</span>&nbsp; <span class="chapter-title">🔴 Weather impact</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/case_studies/runway-safety-occurrence.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">77</span>&nbsp; <span class="chapter-title">🔴 Runway occurrence</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false">
+ <span class="menu-text">Sharing</span></a>
+          <a class="sidebar-item-toggle text-start collapsed" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="false" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 ">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/sharing/reproducible-research.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">78</span>&nbsp; <span class="chapter-title">🟠 Reproducibility</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/sharing/notebook-to-pipeline.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">79</span>&nbsp; <span class="chapter-title">🔴 Notebook to pipeline</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/sharing/data-licensing-attribution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">80</span>&nbsp; <span class="chapter-title">🔴 Licensing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/sharing/privacy-safety-responsible-publication.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">81</span>&nbsp; <span class="chapter-title">🔴 Responsible publishing</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../chapters/sharing/publishing-interactive-narratives.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">82</span>&nbsp; <span class="chapter-title">🔴 Interactive publishing</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#air-traffic-services" id="toc-air-traffic-services" class="nav-link active" data-scroll-target="#air-traffic-services"><span class="header-section-number">17.1</span> Air Traffic Services</a>
+  <ul class="collapse">
+  <li><a href="#flight-rules" id="toc-flight-rules" class="nav-link" data-scroll-target="#flight-rules"><span class="header-section-number">17.1.1</span> Flight rules</a></li>
+  <li><a href="#air-traffic-control-service" id="toc-air-traffic-control-service" class="nav-link" data-scroll-target="#air-traffic-control-service"><span class="header-section-number">17.1.2</span> Air Traffic Control Service</a></li>
+  <li><a href="#flight-information-service" id="toc-flight-information-service" class="nav-link" data-scroll-target="#flight-information-service"><span class="header-section-number">17.1.3</span> Flight Information Service</a></li>
+  <li><a href="#alerting-service" id="toc-alerting-service" class="nav-link" data-scroll-target="#alerting-service"><span class="header-section-number">17.1.4</span> Alerting Service</a></li>
+  <li><a href="#air-traffic-advisory-service" id="toc-air-traffic-advisory-service" class="nav-link" data-scroll-target="#air-traffic-advisory-service"><span class="header-section-number">17.1.5</span> Air Traffic Advisory Service</a></li>
+  </ul></li>
+  <li><a href="#air-traffic-flow-management" id="toc-air-traffic-flow-management" class="nav-link" data-scroll-target="#air-traffic-flow-management"><span class="header-section-number">17.2</span> Air Traffic Flow Management</a></li>
+  <li><a href="#glossary" id="toc-glossary" class="nav-link" data-scroll-target="#glossary">Glossary</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/open-aviation/aviationbook/edit/master/chapters/background/atm-separation-flow.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/open-aviation/aviationbook/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/open-aviation/aviationbook/blob/master/chapters/background/atm-separation-flow.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/background/aircraft-categories-missions.html">Aviation background</a></li><li class="breadcrumb-item"><a href="../../chapters/background/atm-separation-flow.html"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Air traffic services</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Air traffic services, separation, and flow management</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Xavier Olive </p>
+          </div>
+  </div>
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>Air traffic services turn the institutional framework of air navigation into operational control. This page introduces the services provided to aircraft, the distinction between flight rules, the way separation is applied, and the flow-management mechanisms used when demand exceeds available capacity.</p>
+<section id="air-traffic-services" class="level2" data-number="17.1">
+<h2 data-number="17.1" class="anchored" data-anchor-id="air-traffic-services"><span class="header-section-number">17.1</span> Air Traffic Services</h2>
+<p><strong>Air Traffic Services (ATS)</strong> represent the core operational component of air traffic management, providing direct, real-time control and guidance of aircraft throughout all phases of flight. According to <a href="https://www.bazl.admin.ch/dam/bazl/en/dokumente/Fachleute/Regulationen_und_Grundlagen/icao-annex/icao_annex_11_airtrafficservices.pdf.download.pdf/an11_cons.pdf">ICAO Annex 11</a>, ATS encompasses four distinct but interconnected services that work together to ensure the safe, orderly, and expeditious flow of air traffic.</p>
+<p>The four main services provided under ATS are:</p>
+<ul>
+<li><a href="#air-traffic-control-service">Air Traffic Control Service (ATC)</a>: The primary service responsible for preventing collisions between aircraft and between aircraft and obstacles on the maneuvering area, while optimizing air traffic operations for maximum efficiency</li>
+<li><a href="#flight-information-service">Flight Information Service (FIS)</a>: Provides pilots with information useful for the safe and efficient conduct of flights</li>
+<li><a href="#alerting-service">Alerting Service (ALRS)</a>: Notifies appropriate organizations regarding aircraft in need of search and rescue aid</li>
+<li><a href="#air-traffic-advisory-service">Air Traffic Advisory Service</a>: Provides advice and information to aircraft operating in advisory airspace where ATC service is not available</li>
+</ul>
+<section id="flight-rules" class="level3" data-number="17.1.1">
+<h3 data-number="17.1.1" class="anchored" data-anchor-id="flight-rules"><span class="header-section-number">17.1.1</span> Flight rules</h3>
+<p>To ensure that airspace is managed efficiently and effectively by ATC, flights are categorized according to the <strong>flight rules</strong> they follow. Flights operate under either <strong>Visual Flight Rules (VFR)</strong> or <strong>Instrument Flight Rules (IFR)</strong>.</p>
+<p>Flights under <strong>Visual Flight Rules (VFR)</strong> follow the principle of “see and avoid”. Flight crews are responsible for maintaining visual separation from other aircraft and obstacles by looking outside the cockpit. VFR flights can only operate when meteorological conditions permit adequate visibility and cloud clearance. These conditions are referred to as <strong>Visual Meteorological Conditions (VMC)</strong>.</p>
+<p>Flights under <strong>Instrument Flight Rules (IFR)</strong> rely on both their instruments and air traffic control for navigation and separation. Flight crews are not required to maintain visual separation to other aircraft, as ATC provides separation services between IFR flights. IFR flights can operate in lower visibility conditions, known as <strong>Instrument Meteorological Conditions (IMC)</strong>. With the exception of <strong>special VFR (SVFR)</strong><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> operations, when an aircraft conducts VFR flights although VMC are not met, flights must operate under IFR in IMC.</p>
+<p>Besides differentiating between VFR and IFR flights, controlled airspace is classified into specific <strong>airspace classes</strong> that define which types of flight may use the airspace, under which circumstances flights may enter this airspace, and which services are offered to aircraft in this airspace.</p>
+<div id="airspace-classes">
+<p>The International Civil Aviation Organization (ICAO) defines in <a href="https://www.bazl.admin.ch/dam/bazl/en/dokumente/Fachleute/Regulationen_und_Grundlagen/icao-annex/icao_annex_11_airtrafficservices.pdf.download.pdf/an11_cons.pdf">Annex 11</a> seven airspace classes, labeled A through G, with a fundamental distinction between <strong>Controlled Airspace (Classes A-E)</strong> where ATC provides services to aircraft, and <strong>Uncontrolled Airspace (Classes F-G)</strong> where no ATC services are provided.</p>
+<p>Airspace classes differ in the type of flight allowed to enter and operate therein. While IFR flights are allowed to operate in all airspace classes, VFR flights are prohibited from using airspace Class A. Moreover, flights require an <strong>ATC clearance</strong> to enter certain airspace classes. If a clearance is required, pilots must contact ATC and request clearance before entering the airspace. As such, IFR and (if applicable) VFR flights require an ATC clearance for airspace Classes A, B, C, and D. In airspace Class E, only IFR aircraft require a clearance, while VFR flights are exempt from this obligation.</p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th>Airspace Class</th>
+<th>Flight Types Allowed</th>
+<th>ATC Clearance Required</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>IFR only</td>
+<td>Yes (IFR)</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>IFR and VFR</td>
+<td>Yes (both)</td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td>IFR and VFR</td>
+<td>Yes (both)</td>
+</tr>
+<tr class="even">
+<td>D</td>
+<td>IFR and VFR</td>
+<td>Yes (both)</td>
+</tr>
+<tr class="odd">
+<td>E</td>
+<td>IFR and VFR</td>
+<td>Yes (IFR, SVFR), No (VFR)</td>
+</tr>
+<tr class="even">
+<td>F</td>
+<td>IFR and VFR</td>
+<td>No</td>
+</tr>
+<tr class="odd">
+<td>G</td>
+<td>IFR and VFR</td>
+<td>No</td>
+</tr>
+</tbody>
+</table>
+<p>The airspace classes described above are established by the <a href="https://www.icao.int/publications/Documents/7300_cons.pdf">Chicago Convention on International Civil Aviation</a> and are applicable to all states that have ratified this convention. However, this does not mean that every airspace class must be implemented by every state. Rather, each state has the flexibility to design its own airspace structure and determine which airspace classifications to apply within its sovereign territory.</p>
+<p>For example, Italy uses airspace classes A, C, D, E, and G, while Germany, Austria, and Switzerland implement classes C, D, E, and G. In France, classes B and F are not utilized, and class A is restricted to the Paris region only. The French Upper Traffic Area, spanning from Flight Level (FL) 195 to FL 660, is designated as class C airspace: <strong>Air Traffic Control (ATC)</strong> provides comprehensive services to all aircraft, ensuring separation between IFR flights and between IFR and VFR flights. While VFR flights are not separated from each other by ATC, they do receive traffic information about other VFR operations to enhance situational awareness.</p>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>A practical illustration
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>VFR pilots need VFR aeronautical maps for flight planning to identify controlled airspace requiring ATC clearance, during flight for navigation and airspace awareness, and for training purposes. The following excerpt from an VFR aeronautical map shows controlled airspace around Toulouse, France.</p>
+<div class="quarto-figure quarto-figure-center" style="min-width: 60%; max-width: 500px; display: block; margin: 0 auto;">
+<figure class="figure">
+<p><img src="../../images/oaci_toulouse.png" class="img-fluid figure-img"></p>
+<figcaption>VFR aeronautical map excerpt around Toulouse, France</figcaption>
+</figure>
+</div>
+<p>The major commercial airport is Toulouse-Blagnac, identified as LFBO. The <strong>Control Zone (CTR)</strong> extends from surface to 2,000 ft above mean sea level (AMSL) and is classified as class D airspace. The larger <strong>Terminal Manoeuvring Area (TMA)</strong> manages complex traffic flows with different airspace classes (C, D, and E) at various altitude levels.</p>
+<p>VFR pilots operating from smaller airports, such as Toulouse-Lasbordes (LFCL) to the east of the city, use this map to identify altitude boundaries and airspace classifications. This information tells them where ATC clearances are required and what services are available. For example, pilots can see that from surface to 1,500 ft ASFC (above surface), they are operating below the TMA and do not interfere with Blagnac airport operations.</p>
+</div>
+</div>
+</section>
+<section id="air-traffic-control-service" class="level3" data-number="17.1.2">
+<h3 data-number="17.1.2" class="anchored" data-anchor-id="air-traffic-control-service"><span class="header-section-number">17.1.2</span> Air Traffic Control Service</h3>
+<p><strong>Air Traffic Control (ATC)</strong> Service represents the most demanding and safety-critical component of air traffic services. Controllers work in specialized facilities using advanced surveillance systems (e.g., radar systems), communication equipment, and standardized procedures to maintain safe separation between aircraft while facilitating efficient traffic flow.</p>
+<p>The fundamental principle of ATC is <strong>separation assurance</strong>, i.e., ensuring that aircraft maintain safe distances from each other at all times. Controllers achieve this through: <strong>tactical separation</strong>: real-time adjustments to aircraft paths, speeds, and altitudes to resolve conflicts; <strong>strategic separation</strong>: planned routing and timing to prevent conflicts from developing; or <strong>contingency management</strong>: immediate response to emergencies, equipment failures, or weather events.</p>
+<div id="separation">
+<p>ATC service is mandatory for all flights operating in controlled airspace, which includes airspace Classes A through E. The level of service provided varies depending on the airspace class and flight rules being followed.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 20%">
+<col style="width: 17%">
+<col style="width: 62%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Airspace Class</th>
+<th>Flight Rules</th>
+<th>Separation provided</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>A</td>
+<td>IFR only</td>
+<td>Between all IFR flights</td>
+</tr>
+<tr class="even">
+<td>B</td>
+<td>IFR, VFR</td>
+<td>Between all flights</td>
+</tr>
+<tr class="odd">
+<td>C</td>
+<td>IFR</td>
+<td>Between all flights</td>
+</tr>
+<tr class="even">
+<td>C</td>
+<td>VFR</td>
+<td>Between IFR and VFR flights</td>
+</tr>
+<tr class="odd">
+<td>D</td>
+<td>IFR</td>
+<td>Between IFR flights</td>
+</tr>
+<tr class="even">
+<td>D</td>
+<td>VFR</td>
+<td>No separations (traffic information only)</td>
+</tr>
+<tr class="odd">
+<td>E</td>
+<td>IFR</td>
+<td>Between IFR flights</td>
+</tr>
+<tr class="even">
+<td>E</td>
+<td>VFR</td>
+<td>No separations (traffic information only)</td>
+</tr>
+<tr class="odd">
+<td>F</td>
+<td>IFR, VFR</td>
+<td>Between IFR flights, as far as practicable</td>
+</tr>
+<tr class="even">
+<td>G</td>
+<td>IFR, VFR</td>
+<td>No separations</td>
+</tr>
+</tbody>
+</table>
+<p>To prevent collisions between aircraft, ATC uses <strong>separation minima</strong>: specified minimum vertical and lateral distances that must be maintained between aircraft at all times. The specific separations provided depend on both the airspace class and the flight rules under which aircraft are operating.</p>
+<p>Typical separation distances depend on the radar coverage and airspace type:</p>
+<ul>
+<li><strong>En-route airspace</strong>: 10-20 nmi (long-range radar) or 5 nmi (European core area)</li>
+<li><strong>Terminal airspace</strong>: 3 nmi near airports</li>
+<li><strong>Precision radar areas</strong>: 2.5-2 nmi in airport proximity</li>
+</ul>
+<p>In addition to lateral (horizontal) separation, controllers must also maintain <strong>vertical separation</strong> between aircraft. Standard vertical separation minima are:</p>
+<ul>
+<li><strong>1,000 feet</strong> between aircraft below FL290 (Flight Level 290, approximately 29,000 feet)</li>
+<li><strong>2,000 feet</strong> between aircraft at or above FL290 (reduced to 1,000 feet in RVSM airspace)</li>
+</ul>
+<p><strong>Reduced Vertical Separation Minima (RVSM)</strong> airspace allows 1,000 feet vertical separation between FL290 and FL410, increasing capacity and efficiency in busy airspace. Outside RVSM, the traditional 2,000 feet separation applies at these altitudes. For an aircraft to be permitted to enter and operate in RVSM airspace, its technical equipment must meet a number of requirements. Among other things, aircraft must be equipped with at least two independent altimeters, a secondary surveillance radar (SSR) transponder capable of reporting altitude, and an autopilot capable of maintaining the assigned flight level.</p>
+</div>
+<p>ATC operates 24/7 across three distinct operational environments, each requiring specialized training and procedures:</p>
+<p><strong>Aerodrome Control</strong> manages aircraft operations at airports, divided into two specialized functions. <strong>Tower Control</strong> coordinates takeoffs, landings, and aircraft movements in the immediate airport vicinity. Tower controllers work from airport control towers with panoramic views of runways, taxiways, and surrounding airspace. <strong>Ground Control</strong> specifically manages aircraft and vehicle movements on taxiways, aprons, and other ground areas of the airport. At busy airports, ground controllers work separately from tower controllers to handle the complex coordination required for aircraft pushback, taxi operations, and ground support vehicle movements.</p>
+<p><strong>Approach Control</strong> handles aircraft during the critical transition phases between aerodrome and en-route operations. These controllers manage departing aircraft as they climb to cruising altitude and arriving aircraft as they descend for landing. Approach control typically covers airspace from the airport surface up to approximately 10,000-15,000 feet within a 20-50 mile radius of major airports.</p>
+<p><strong>Area Control (En-route Control)</strong> manages aircraft during the cruise phase of flight, typically above 18,000 feet and across vast geographical areas. Area controllers work in <a href="../../chapters/background/airspace-structure.html#area-control-centres">area control centres</a>, managing aircraft as they traverse airways and navigate between airports hundreds or thousands of miles apart.</p>
+<p>Controllers usually work by pairs:</p>
+<ul>
+<li><p>The <strong>executive controller</strong>, or <strong>tactical controller</strong>, is primarily responsible for managing aircraft within the boundaries of the sector. Their main task is to ensure safe separation between aircraft in real time, using radar surveillance and direct radio communication with pilots. They issue clearances such as heading changes, altitude adjustments, or speed restrictions, responding dynamically to evolving situations such as unexpected traffic convergence, weather deviations, or aircraft requests. The tactical controller is the voice pilots hear most often during flight.</p></li>
+<li><p>The <strong>planner controller</strong>, or <strong>coordinator</strong>, is in constant communication with adjacent sectors, negotiating handovers and ensuring that aircraft are sequenced and spaced appropriately for entry into and exit from the controlled airspace. The planner controller anticipates potential conflicts before they enter the tactical window, helping to reduce workload for the executive controller and maintain an orderly flow of traffic. Depending on the specific traffic situation, these responsibilities can be handled by only one controller, who performs both the tasks assigned to the executive and planner controller. If needed, some tasks can also be delegated to a third controller, though this configuration is uncommon.</p></li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Controller responsibilities beyond separation
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>While separation assurance is the fundamental safety responsibility of air traffic controllers, their role extends far beyond maintaining safe distances between aircraft. Controllers actively <strong>optimize operations</strong> by sequencing traffic to maximize runway and airspace capacity. They provide <strong>tactical guidance</strong> such as speed adjustments, direct routings, and altitude optimizations to improve efficiency. Controllers also <strong>communicate critical information</strong> including weather updates, runway conditions, traffic advisories, and operational constraints. They <strong>coordinate with multiple stakeholders</strong> including pilots, other control positions, airline operations centers, and airport authorities. Finally, controllers <strong>manage contingencies</strong> such as weather deviations, equipment failures, medical emergencies, and irregular operations.</p>
+</div>
+</div>
+</section>
+<section id="flight-information-service" class="level3" data-number="17.1.3">
+<h3 data-number="17.1.3" class="anchored" data-anchor-id="flight-information-service"><span class="header-section-number">17.1.3</span> Flight Information Service</h3>
+<p><strong>Flight Information Service</strong> represents a crucial informational component of air traffic services, providing pilots with essential data and advisories to support safe and efficient flight operations. Unlike ATC, which issues binding instructions and maintains separation responsibilities, FIS operates purely in an advisory capacity, disseminating information that pilots can use to make informed decisions about their flights.</p>
+<p>FIS is universally available to all aircraft regardless of flight rules or airspace classification. Whether an aircraft operates under VFR or IFR, in controlled or uncontrolled airspace, pilots can access flight information services to enhance their situational awareness and operational safety.</p>
+<!--FIS controllers deliver services from various operational settings, adapting to local traffic demands and infrastructure. At busy airports with uncontrolled airspace, dedicated **\acrs{FISO}** may work from specialized facilities or airport towers. In remote or low-traffic areas, FIS may be integrated with other air traffic services or delivered through automated systems. These controllers primarily serve aircraft operating in uncontrolled airspace where no formal air traffic control service is available.-->
+<p>The service covers several categories of information critical to flight operations:</p>
+<p><strong>Meteorological information</strong>. FIS provides pilots with current weather observations, forecasts, and significant weather phenomena along their route. This includes surface weather reports (<strong>METAR</strong>), terminal aerodrome forecasts (<strong>TAF</strong>), area forecasts covering broader geographical regions, and significant meteorological information (<strong>SIGMET</strong>) warnings about hazardous weather conditions such as severe turbulence, thunderstorms, or volcanic ash. Information about wind conditions, visibility, precipitation, cloud coverage, temperature, and barometric pressure settings helps pilots assess flight conditions and make routing decisions.</p>
+<p><strong>Airfield and navigation information</strong> keeps pilots informed about runway conditions, including surface contamination, construction activities, and temporary closures. The service also provides information about the runway in use, potential updates on wildlife hazards, particularly bird activity that may pose collision risks during takeoff and landing phases. The service also provides updates on the operational status of navigation aids, including <strong>VOR</strong>, <strong>DME</strong>, and <strong>ILS</strong> systems, alerting them to equipment outages that might affect their planned routes or approaches.</p>
+<p><strong>Traffic information</strong> services provide pilots with details about other aircraft operating in their vicinity when such information enhances safety awareness. Unlike ATC separation services, traffic information remains purely advisory and pilots retain full responsibility for maintaining their own separation from other aircraft and making appropriate collision avoidance decisions.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Tip</span>Aerodrome Flight Information Service (AFIS)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>At some smaller airports without full air traffic control services, <strong>Aerodrome Flight Information Service (AFIS)</strong> provides a specialized form of flight information service tailored to aerodrome operations. AFIS operators, working from airport control towers or dedicated facilities, provide pilots with essential information about aerodrome conditions, traffic movements, and local weather without issuing control instructions or clearances. AFIS typically operates at airports in uncontrolled airspace (Class F or G) where traffic volume justifies information services but not full air traffic control.</p>
+</div>
+</div>
+<p><strong>Operational information</strong> covers a broad range of data affecting flight operations, including temporary airspace restrictions, military exercise areas, parachuting activities, and other special use airspace activations. Pilots also receive information about airport operational changes, such as modified operating hours or temporary service limitations.</p>
+<p><strong>Emergency and safety information</strong> includes Notice To Airmens (NOTAMs) that deliver urgent operational updates, including obstacle alerts, airport construction impacts, or procedural modifications. FIS also distributes information regarding search and rescue activities, security-imposed airspace limitations, and other critical safety developments. A NOTAM provides information essential to flight operations personnel. Unlike Aeronautical Information Publications (AIPs) that contain relatively stable information with extended validity periods known well in advance, NOTAMs convey dynamic information that cannot be predicted sufficiently early for publication through other means. As defined by <a href="https://www.bazl.admin.ch/dam/bazl/en/dokumente/Fachleute/Regulationen_und_Grundlagen/icao-annex/icao_annex_15_aeronauticalinformationservices.pdf.download.pdf/an15_cons.pdf">ICAO Annex 15</a>, NOTAM is defined as “a notice distributed by means of telecommunication containing information concerning the establishment, condition or change in any aeronautical facility, service, procedure or hazard, the timely knowledge of which is essential to personnel concerned with flight operations.”</p>
+<p>Modern FIS delivery increasingly incorporates digital systems alongside traditional voice communications. <strong>Automatic Terminal Information Service (ATIS)</strong> broadcasts provide standardized airport information on dedicated VHF frequencies, while digital data link systems can deliver weather and operational updates directly to aircraft systems. However, human operators remain essential for providing tailored information, interpreting complex situations, and responding to specific pilot requests.</p>
+</section>
+<section id="alerting-service" class="level3" data-number="17.1.4">
+<h3 data-number="17.1.4" class="anchored" data-anchor-id="alerting-service"><span class="header-section-number">17.1.4</span> Alerting Service</h3>
+<p><strong>Alerting Service</strong> represents a critical safety net within air traffic services, designed to identify aircraft that may be in distress and initiate appropriate emergency response procedures. This service operates continuously, monitoring all flights within controlled airspace and maintaining vigilance for situations that might indicate an aircraft emergency.</p>
+<p>The alerting service activates when specific conditions suggest an aircraft may require assistance. <strong>Overdue aircraft</strong> trigger alerts when they fail to arrive at their destination within a specified time after their estimated arrival, indicating potential navigation problems, fuel exhaustion, or other emergencies. <strong>Communication failures</strong> prompt alerting procedures when aircraft cannot establish or maintain required radio contact with air traffic control, suggesting equipment malfunctions or crew incapacitation. <strong>Emergency signals</strong> including distress calls, emergency transponder codes (such as 7700 for general emergency, 7600 for communication failure, or 7500 for hijacking/unlawful interference), or emergency locator transmitter activations immediately initiate alerting protocols.</p>
+<p>The service employs a graduated response system with three escalating phases of emergency response. The <strong>Uncertainty Phase (INCERFA)</strong> activates when doubt exists about an aircraft’s safety, such as when an aircraft is overdue by 30 minutes or fails to report at a mandatory reporting point. The <strong>Alert Phase (ALERFA)</strong> begins when apprehension exists for aircraft and occupant safety, typically when an aircraft is significantly overdue or reports serious operational difficulties. The <strong>Distress Phase (DETRESFA)</strong> initiates when reasonable certainty exists that an aircraft and its occupants face grave and imminent danger, such as confirmed emergency landings or ditching procedures.</p>
+<p>Upon activation, the alerting service coordinates with <strong>Search and Rescue Coordination Centers (RCC)</strong> and other appropriate organizations to mobilize rescue resources. This coordination includes military and civilian aviation assets, maritime rescue services, ground-based emergency teams, and international rescue organizations when aircraft cross national boundaries. The service maintains detailed flight plan information and aircraft tracking data to provide rescue teams with accurate last-known positions, aircraft specifications, fuel endurance, and passenger manifests.</p>
+</section>
+<section id="air-traffic-advisory-service" class="level3" data-number="17.1.5">
+<h3 data-number="17.1.5" class="anchored" data-anchor-id="air-traffic-advisory-service"><span class="header-section-number">17.1.5</span> Air Traffic Advisory Service</h3>
+<p><strong>Air Traffic Advisory Service</strong> provides informational support to aircraft operating in designated advisory airspace where full air traffic control service is not available. This service fills a critical gap in areas where traffic density or infrastructure limitations make comprehensive ATC coverage impractical, yet aircraft still benefit from coordinated information sharing.</p>
+<p>Advisory airspace typically covers remote regions, oceanic areas, or transitional zones between controlled airspace sectors. Unlike controlled airspace where ATC issues binding instructions and assumes separation responsibility, advisory airspace operates on an informational model where pilots retain full responsibility for navigation and collision avoidance while receiving valuable situational awareness data.</p>
+<p>The service provides several categories of information to enhance flight safety. <strong>Traffic information</strong> alerts pilots to other known aircraft operating in the advisory area, including position reports, altitude information, and intended routes. <strong>Weather updates</strong> relevant to the advisory airspace help pilots make informed routing decisions and prepare for changing conditions. <strong>Navigational advisories</strong> may include information about the operational status of navigation aids or temporary restrictions affecting normal routing.</p>
+<p>Controllers delivering advisory services coordinate with aircraft to collect and disseminate position reports, creating a shared operational picture that benefits all users of the airspace. When potential traffic conflicts are identified, controllers provide <strong>suggested routing</strong> or timing adjustments that pilots may choose to accept or modify based on their operational judgment.</p>
+<p>Advisory service proves particularly valuable in oceanic and remote continental areas where radar coverage is limited or unavailable. In these regions, pilots rely heavily on procedural separation techniques and position reporting, making the information-sharing function of advisory service essential for maintaining situational awareness across vast distances.</p>
+<p>The procedural nature of advisory service requires precise communication protocols and standardized reporting formats. Aircraft operating in advisory airspace typically follow established reporting points and time intervals, ensuring that traffic information remains current and actionable for all participants in the shared airspace.</p>
+</section>
+</section>
+<section id="air-traffic-flow-management" class="level2" data-number="17.2">
+<h2 data-number="17.2" class="anchored" data-anchor-id="air-traffic-flow-management"><span class="header-section-number">17.2</span> Air Traffic Flow Management</h2>
+<p>Air Traffic Flow Management (ATFM) focuses on optimizing traffic flows to prevent congestion and delays while maximizing the utilization of available airspace capacity. <strong>Traffic flow analysis</strong> involves monitoring and predicting traffic patterns to identify potential bottlenecks before they occur. When capacity is exceeded, <strong>flow control measures</strong> are implemented to manage traffic through restrictions such as ground delays or rerouting. <strong>Collaborative decision making</strong> ensures coordination with airlines and airports to minimize the impact of these measures on operations.</p>
+<p><strong>Dynamic capacity management</strong> represents a key operational component of ATFM, involving real-time adjustments to airspace configuration based on traffic demand and operational conditions. In high-traffic situations, sectors can be <strong>split</strong> into smaller units, each staffed by additional controllers to distribute workload and increase capacity. Conversely, during low-traffic periods, multiple small sectors may be <strong>combined</strong> into larger ones, optimizing controller utilization and reducing operational costs. This dynamic reconfiguration must also account for <strong>restricted zones, military operations areas, and weather events</strong>, all of which can require immediate adjustments to sector boundaries or traffic routing to maintain safety and efficiency.</p>
+<p>Before a commercial flight departs, a <a href="https://skybrary.aero/articles/flight-plan"><strong>flight plan</strong></a> is filed with the intended route, requested levels, departure and destination aerodromes, estimated times, aircraft capabilities, and other operational details. For air traffic services, the flight plan is not just an administrative document: it is the basis for anticipating demand, checking route availability, coordinating sectors, and activating alerting procedures if the flight becomes overdue.</p>
+<p>During operation, the filed route may be amended. Controllers can issue directs, headings, level changes, speed instructions, or reroutings to maintain separation, sequence traffic, avoid weather, or reduce delay. Flow-management units may also require rerouting or ground delay before departure when demand exceeds available capacity.</p>
+<p>The published route structure itself—airways, waypoints, SID, STAR, and free-route concepts—is described in <a href="../../chapters/background/airspace-structure.html#route-and-airway-structure">Flight Information Regions and airspace structure</a>. In this chapter, the focus is on how those routes are used tactically and strategically by ATS and ATFM.</p>
+</section>
+<section id="glossary" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="glossary">Glossary</h2>
+
+
+<dl>
+<dt><span id="acronyms_AFIS">AFIS</span></dt>
+<dd>
+Aerodrome Flight Information Service
+</dd>
+<dt><span id="acronyms_AIP">AIP</span></dt>
+<dd>
+Aeronautical Information Publication
+</dd>
+<dt><span id="acronyms_ATC">ATC</span></dt>
+<dd>
+Air Traffic Control
+</dd>
+<dt><span id="acronyms_ATFM">ATFM</span></dt>
+<dd>
+Air Traffic Flow Management
+</dd>
+<dt><span id="acronyms_ATS">ATS</span></dt>
+<dd>
+Air Traffic Services
+</dd>
+<dt><span id="acronyms_IFR">IFR</span></dt>
+<dd>
+Instrument Flight Rules
+</dd>
+<dt><span id="acronyms_NOTAM">NOTAM</span></dt>
+<dd>
+Notice To Airmen
+</dd>
+<dt><span id="acronyms_VFR">VFR</span></dt>
+<dd>
+Visual Flight Rules
+</dd>
+</dl>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Special VFR (SVFR) flights are only allowed in controlled airspace, in which (i) the minimum visibility must be at least 1500m, (ii) ground must be visible at all times, and (iii) aircraft must be clear of clouds. Aircraft operating SVFR flights must be equipped as if they conducted an IFR flight.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/aviationbook\.netlify\.app\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../../chapters/background/airspace-structure.html" class="pagination-link" aria-label="Airspace structure">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Airspace structure</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../../chapters/background/aerodromes-overview.html" class="pagination-link" aria-label="Aerodromes">
+        <span class="nav-page-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Aerodromes</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/open-aviation/aviationbook/edit/master/chapters/background/atm-separation-flow.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/open-aviation/aviationbook/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/open-aviation/aviationbook/blob/master/chapters/background/atm-separation-flow.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer><script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

@@ -1,0 +1,29 @@
+.infobox {
+  padding: 1em;
+  margin-bottom: 1em;
+  background: #eeeeee 5px center/3em no-repeat;
+  border-top: 2px solid;
+}
+.infobox .title {
+  height: 20px;
+  width: 100px;
+  background-color: #eeeeee;
+  text-align: center;
+  margin-top: -1.8em;
+  margin-bottom: 0.8em;
+  font-weight: bold;
+}
+.caution {
+}
+.important {
+}
+.note {
+}
+.tip {
+  border-top-color: #4c78a8;
+  color: #4c78a8;
+}
+.warning {
+  border-top-color: #f58518;
+  color: #f58518;
+}

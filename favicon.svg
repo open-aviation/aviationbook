@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" role="img" aria-labelledby="title desc">
+  <title id="title">Aviation book icon</title>
+  <desc id="desc">A paper aircraft and circular flight path.</desc>
+  <style>
+    :root {
+      --icon: #2f3133;
+      --accent: #5bc8b2;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --icon: #f3f6f8;
+        --accent: #63d6c0;
+      }
+    }
+
+    .path {
+      fill: none;
+      stroke: var(--icon);
+      stroke-width: 6;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .plane {
+      fill: var(--icon);
+      stroke: var(--icon);
+      stroke-width: 2.3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    .accent {
+      fill: var(--accent);
+    }
+  </style>
+
+  <path class="path" d="M 84.5 13.8 A 52 52 0 1 0 109.4 44.5" />
+  <circle class="accent" cx="104.5" cy="53.2" r="3.4" />
+  <path class="plane" d="M 38.615627,70.004268 19.730914,61.40624 95.629065,32.04118 79.800312,89.363219 58.60514,79.800881 48.682001,89.444558 47.525904,77.223365 94.165486,35.594127 Z" />
+</svg>

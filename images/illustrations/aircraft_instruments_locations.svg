@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 520" role="img" aria-labelledby="title desc">
+  <title id="title">Typical aircraft instrument and antenna locations</title>
+  <desc id="desc">Simplified top and side view showing common locations for pitot probes, static ports, angle-of-attack vanes, inertial sensors, GNSS antennas, transponder and TCAS antennas, weather radar, and radio altimeter antennas.</desc>
+  <defs>
+    <style>
+      .aircraft{fill:#eef3f8;stroke:#52616f;stroke-width:3;}
+      .wing{fill:#dce8f3;stroke:#52616f;stroke-width:3;}
+      .label{font: 18px sans-serif; fill:#243447;}
+      .small{font: 15px sans-serif; fill:#243447;}
+      .call{fill:#fff;stroke:#8aa0b4;stroke-width:1.5;rx:8;}
+      .line{stroke:#475866;stroke-width:2;fill:none;marker-end:url(#arrow);}
+      .sensor{fill:#ffcc80;stroke:#e67700;stroke-width:2;}
+      .antenna{fill:#b2f2bb;stroke:#2b8a3e;stroke-width:2;}
+      .computer{fill:#d0bfff;stroke:#7048e8;stroke-width:2;}
+      .radar{fill:#ffa8a8;stroke:#c92a2a;stroke-width:2;}
+    </style>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto">
+      <path d="M0,0 L8,4 L0,8 z" fill="#475866"/>
+    </marker>
+  </defs>
+
+  <text x="40" y="45" class="label" font-weight="700">Typical locations, not to scale</text>
+
+  <!-- top view -->
+  <path class="aircraft" d="M510 80 C540 120 555 180 555 250 C555 340 535 430 510 470 C485 430 465 340 465 250 C465 180 480 120 510 80 Z"/>
+  <path class="wing" d="M470 245 L160 180 L145 220 L470 290 Z"/>
+  <path class="wing" d="M550 245 L860 180 L875 220 L550 290 Z"/>
+  <path class="wing" d="M485 420 L350 470 L345 445 L485 390 Z"/>
+  <path class="wing" d="M535 420 L670 470 L675 445 L535 390 Z"/>
+
+  <!-- sensors -->
+  <circle class="radar" cx="510" cy="98" r="12"/>
+  <circle class="sensor" cx="455" cy="160" r="8"/>
+  <circle class="sensor" cx="565" cy="160" r="8"/>
+  <circle class="sensor" cx="458" cy="215" r="7"/>
+  <circle class="sensor" cx="562" cy="215" r="7"/>
+  <rect class="computer" x="488" y="258" width="44" height="26" rx="5"/>
+  <circle class="antenna" cx="510" cy="170" r="8"/>
+  <circle class="antenna" cx="510" cy="315" r="8"/>
+  <circle class="antenna" cx="510" cy="455" r="8"/>
+
+  <!-- labels -->
+  <rect class="call" x="40" y="85" width="210" height="48"/>
+  <text x="55" y="115" class="small">weather radar in nose</text>
+  <path class="line" d="M250 110 C335 92 430 92 498 98"/>
+
+  <rect class="call" x="705" y="85" width="245" height="70"/>
+  <text x="720" y="112" class="small">pitot probes, static ports,</text>
+  <text x="720" y="136" class="small">AoA vanes near forward fuselage</text>
+  <path class="line" d="M705 125 C650 140 610 155 570 160"/>
+
+  <rect class="call" x="40" y="250" width="240" height="70"/>
+  <text x="55" y="277" class="small">GNSS antennas usually</text>
+  <text x="55" y="301" class="small">on upper fuselage</text>
+  <path class="line" d="M280 285 C365 250 465 180 505 170"/>
+
+  <rect class="call" x="715" y="255" width="235" height="70"/>
+  <text x="730" y="282" class="small">transponder/TCAS antennas</text>
+  <text x="730" y="306" class="small">top and bottom fuselage</text>
+  <path class="line" d="M715 290 C640 305 570 313 518 315"/>
+
+  <rect class="call" x="55" y="390" width="235" height="70"/>
+  <text x="70" y="417" class="small">inertial reference units</text>
+  <text x="70" y="441" class="small">inside avionics bays</text>
+  <path class="line" d="M290 425 C390 360 455 295 488 272"/>
+
+  <rect class="call" x="710" y="400" width="230" height="70"/>
+  <text x="725" y="427" class="small">radio-altimeter antennas</text>
+  <text x="725" y="451" class="small">on lower fuselage</text>
+  <path class="line" d="M710 435 C635 448 565 454 518 455"/>
+</svg>
