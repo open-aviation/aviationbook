@@ -149,7 +149,7 @@ viewof registrationPatternPreset = {
 //| code-copy: false
 viewof registrationPatternQuery = {
   const input = htl.html`<input class="pattern-filter-input" type="search" placeholder="Search registration, country, prefix, or category">`;
-  const label = htl.html`<label class="pattern-filter-label"><span>Filter</span>${input}</label>`;
+  const label = htl.html`<label class="pattern-filter-label">${input}</label>`;
   Object.defineProperty(label, "value", { get: () => input.value });
   input.addEventListener("input", () => label.dispatchEvent(new Event("input", { bubbles: true })));
   return label;

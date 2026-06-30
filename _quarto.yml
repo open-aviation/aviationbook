@@ -190,11 +190,11 @@ book:
               href: chapters/background/demand-management.qmd
             - text: 🔴 Airport operations
               href: chapters/background/airport-operations.qmd
-        - section: Data ecosystem
+        - section: The aviation data ecosystem
           contents:
             - text: Aircraft information
               href: chapters/data_sources/aircraft-information.qmd
-            - text: 🔴 Airport and infrastructure
+            - text: Airport and infrastructure
               href: chapters/data_sources/airport-infrastructure-data.qmd
             - text: 🟢 Flight tracking
               href: chapters/data_sources/flight-tracking-surveillance.qmd
