@@ -567,13 +567,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/flight-tracking-surveillance.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">🟢 Flight tracking</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Flight tracking and surveillance</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/adsb-mode-s-decoding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">🟡 ADS-B &amp; Mode S</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Decode ADS-B and Mode S data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1759,35 +1759,35 @@ Table&nbsp;43.6: Summary of key aircraft mass estimation methodologies and perfo
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Stochastic Bayesian</td>
-<td style="text-align: left;">Particle Filter <span class="citation" data-cites="sun2019particle"><a href="../appendix/references.html#ref-sun2019particle" role="doc-biblioref">[7]</a></span></td>
+<td style="text-align: left;">Particle Filter <span class="citation" data-cites="sun2019particle"><a href="../appendix/references.html#ref-sun2019particle" role="doc-biblioref"><strong>sun2019particle?</strong></a></span></td>
 <td style="text-align: left;">Initial Climb</td>
 <td style="text-align: left;">ADS-B, Mode S (Open Data, NAC Noise)</td>
 <td style="text-align: left;">MAE 4.6%</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Bayesian Inference</td>
-<td style="text-align: left;">Total Energy Model Integration <span class="citation" data-cites="sun2018aircraft"><a href="../appendix/references.html#ref-sun2018aircraft" role="doc-biblioref">[8]</a></span></td>
+<td style="text-align: left;">Total Energy Model Integration <span class="citation" data-cites="sun2018aircraft"><a href="../appendix/references.html#ref-sun2018aircraft" role="doc-biblioref"><strong>sun2018aircraft?</strong></a></span></td>
 <td style="text-align: left;">Initial Mass (Post-Process)</td>
 <td style="text-align: left;">Trajectory Data</td>
 <td style="text-align: left;">MAE 4.3%</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Data-Driven ML</td>
-<td style="text-align: left;">Neural Networks/GBM <span class="citation" data-cites="alligier2015machine"><a href="../appendix/references.html#ref-alligier2015machine" role="doc-biblioref">[9]</a></span></td>
+<td style="text-align: left;">Neural Networks/GBM <span class="citation" data-cites="alligier2015machine"><a href="../appendix/references.html#ref-alligier2015machine" role="doc-biblioref"><strong>alligier2015machine?</strong></a></span></td>
 <td style="text-align: left;">Climb</td>
 <td style="text-align: left;">OpenSky ADS-B (Large Scale)</td>
 <td style="text-align: left;">RMSE Reduction ≥ 29% (Altitude TP)</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Statistical Regression</td>
-<td style="text-align: left;">Gaussian Process Regression <span class="citation" data-cites="chati2018modeling"><a href="../appendix/references.html#ref-chati2018modeling" role="doc-biblioref">[10]</a></span></td>
+<td style="text-align: left;">Gaussian Process Regression <span class="citation" data-cites="chati2018modeling"><a href="../appendix/references.html#ref-chati2018modeling" role="doc-biblioref"><strong>chati2018modeling?</strong></a></span></td>
 <td style="text-align: left;">Takeoff Ground Roll</td>
 <td style="text-align: left;">FDR/QAR (Proprietary)</td>
 <td style="text-align: left;">MAE 3.6%</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Inverse Physics</td>
-<td style="text-align: left;">Adaptive/Least Squares <span class="citation" data-cites="alligier2013ground"><a href="../appendix/references.html#ref-alligier2013ground" role="doc-biblioref">[11]</a></span></td>
+<td style="text-align: left;">Adaptive/Least Squares <span class="citation" data-cites="alligier2013ground"><a href="../appendix/references.html#ref-alligier2013ground" role="doc-biblioref"><strong>alligier2013ground?</strong></a></span></td>
 <td style="text-align: left;">Climb</td>
 <td style="text-align: left;">ADS-B Track Data</td>
 <td style="text-align: left;">Trajectory Error Reduction</td>
@@ -1865,7 +1865,7 @@ Table&nbsp;43.7: Qualitative assessment of mass estimation methodology classes
 </ol>
 <section id="the-eurocontrol-data-challenge" class="level4" data-number="43.6.5.1">
 <h4 data-number="43.6.5.1" class="anchored" data-anchor-id="the-eurocontrol-data-challenge"><span class="header-section-number">43.6.5.1</span> The EUROCONTROL Data Challenge</h4>
-<p>A comprehensive data challenge organized by EUROCONTROL Performance Review Commission analyzed around 530,000 flights from 2022 across 30 distinct aircraft types to advance mass estimation methodologies <span class="citation" data-cites="spinielli2025"><a href="../appendix/references.html#ref-spinielli2025" role="doc-biblioref">[12]</a></span>. The dataset provided new insights into the factors affecting aircraft takeoff weight, with the top 10 aircraft types accounting for approximately 80% of all flights in the dataset.</p>
+<p>A comprehensive data challenge organized by EUROCONTROL Performance Review Commission analyzed around 530,000 flights from 2022 across 30 distinct aircraft types to advance mass estimation methodologies <span class="citation" data-cites="spinielli2025"><a href="../appendix/references.html#ref-spinielli2025" role="doc-biblioref"><strong>spinielli2025?</strong></a></span>. The dataset provided new insights into the factors affecting aircraft takeoff weight, with the top 10 aircraft types accounting for approximately 80% of all flights in the dataset.</p>
 <p><strong>Dataset Composition</strong></p>
 <p>The dataset represents a collection of flight information, combining:</p>
 <ul>
@@ -2016,40 +2016,22 @@ Table&nbsp;43.8: Top 10 aircraft types in the EUROCONTROL data challenge dataset
 </dl>
 <div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list" style="display: none">
 <div id="ref-nuic2010" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[1] </div><div class="csl-right-inline">A. Nuic, <span>“User manual for the base of aircraft data (BADA) revision 3.10,”</span> Eurocontrol Experimental Centre, Bretigny-sur-Orge, France, 2010.</div>
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">A. Nuic, D. Poles, and V. Mouillet, <span>“BADA: An advanced aircraft performance model for present and future ATM systems,”</span> <em>International Journal of Adaptive Control and Signal Processing</em>, vol. 24, no. 10, pp. 850–866, Aug. 2010, doi: <a href="https://doi.org/10.1002/acs.1176">10.1002/acs.1176</a>.</div>
 </div>
 <div id="ref-sun2020openap" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[2] </div><div class="csl-right-inline">J. Sun, J. M. Hoekstra, and J. Ellerbroek, <span>“OpenAP: An open-source aircraft performance model for air transportation studies and simulations,”</span> <em>Aerospace</em>, vol. 7, no. 8, p. 104, 2020.</div>
+<div class="csl-left-margin">[2] </div><div class="csl-right-inline">J. Sun, J. Hoekstra, and J. Ellerbroek, <span>“OpenAP: An open-source aircraft performance model for air transportation studies and simulations,”</span> <em>Aerospace</em>, vol. 7, no. 8, p. 104, July 2020, doi: <a href="https://doi.org/10.3390/aerospace7080104">10.3390/aerospace7080104</a>.</div>
 </div>
 <div id="ref-sun2019wrap" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[3] </div><div class="csl-right-inline">J. Sun, J. Ellerbroek, and J. M. Hoekstra, <span>“WRAP: An open-source kinematic aircraft performance model,”</span> <em>Transportation Research Part C: Emerging Technologies</em>, vol. 98, pp. 118–138, 2019.</div>
+<div class="csl-left-margin">[3] </div><div class="csl-right-inline">J. Sun, J. Ellerbroek, and J. Hoekstra, <span>“WRAP: An open-source kinematic aircraft performance model,”</span> <em>Transportation Research Part C: Emerging Technologies</em>, vol. 98, pp. 118–138, Jan. 2019, doi: <a href="https://doi.org/10.1016/j.trc.2018.11.009">10.1016/j.trc.2018.11.009</a>.</div>
 </div>
 <div id="ref-bartel2008" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[4] </div><div class="csl-right-inline">M. Bartel and T. M. Young, <span>“Simplified thrust and fuel consumption models for modern two-shaft turbofan engines,”</span> <em>Journal of Aircraft</em>, vol. 45, no. 4, pp. 1450–1456, 2008.</div>
+<div class="csl-left-margin">[4] </div><div class="csl-right-inline">M. Bartel and T. M. Young, <span>“Simplified thrust and fuel consumption models for modern two-shaft turbofan engines,”</span> <em>Journal of Aircraft</em>, vol. 45, no. 4, pp. 1450–1456, 2008, doi: <a href="https://doi.org/10.2514/1.35589">10.2514/1.35589</a>.</div>
 </div>
 <div id="ref-poll_schumann_2021a" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[5] </div><div class="csl-right-inline">D. I. A. Poll and U. Schumann, <span>“An estimation method for the fuel burn and other performance characteristics of civil transport aircraft in the cruise. Part 1 fundamental quantities and governing relations for a general atmosphere,”</span> <em>The Aeronautical Journal</em>, vol. 125, no. 1284, pp. 257–295, 2021.</div>
+<div class="csl-left-margin">[5] </div><div class="csl-right-inline">D. I. A. Poll and U. Schumann, <span>“An estimation method for the fuel burn and other performance characteristics of civil transport aircraft during cruise: Part 2, determining the aircraft’s characteristic parameters,”</span> <em>The Aeronautical Journal</em>, vol. 125, no. 1284, pp. 296–340, 2021, doi: <a href="https://doi.org/10.1017/aer.2020.124">10.1017/aer.2020.124</a>.</div>
 </div>
 <div id="ref-poll_schumann_2021b" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[6] </div><div class="csl-right-inline">D. I. A. Poll and U. Schumann, <span>“An estimation method for the fuel burn and other performance characteristics of civil transport aircraft during cruise: Part 2, determining the aircraft’s characteristic parameters,”</span> <em>The Aeronautical Journal</em>, vol. 125, no. 1288, pp. 1004–1051, 2021.</div>
-</div>
-<div id="ref-sun2019particle" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[7] </div><div class="csl-right-inline">J. Sun, H. A. Blom, J. Ellerbroek, and J. M. Hoekstra, <span>“Particle filter for aircraft mass estimation and uncertainty modeling,”</span> <em>Transportation Research Part C: Emerging Technologies</em>, vol. 105, pp. 145–162, 2019.</div>
-</div>
-<div id="ref-sun2018aircraft" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[8] </div><div class="csl-right-inline">J. Sun, J. Ellerbroek, and J. M. Hoekstra, <span>“Aircraft initial mass estimation using bayesian inference method,”</span> <em>Transportation Research Part C: Emerging Technologies</em>, vol. 90, pp. 59–73, 2018.</div>
-</div>
-<div id="ref-alligier2015machine" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[9] </div><div class="csl-right-inline">R. Alligier, D. Gianazza, and N. Durand, <span>“Machine learning and mass estimation methods for ground-based aircraft climb prediction,”</span> <em>IEEE Transactions on Intelligent Transportation Systems</em>, vol. 16, no. 6, pp. 3138–3149, 2015.</div>
-</div>
-<div id="ref-chati2018modeling" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[10] </div><div class="csl-right-inline">Y. S. Chati and H. Balakrishnan, <span>“Modeling of aircraft takeoff weight using gaussian processes,”</span> <em>Journal of Air Transportation</em>, vol. 26, no. 4, pp. 153–162, 2018.</div>
-</div>
-<div id="ref-alligier2013ground" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[11] </div><div class="csl-right-inline">R. Alligier, D. Gianazza, and N. Durand, <span>“Ground-based estimation of the aircraft mass, adaptive vs. Least squares method,”</span> 2013.</div>
-</div>
-<div id="ref-spinielli2025" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[12] </div><div class="csl-right-inline">E. Spinielli <em>et al.</em>, <span>“Aircraft take-off weight estimation: The EUROCONTROL PRC 2024 data challenge,”</span> <em>Journal of Open Aviation Science</em>, vol. 3, no. 1, 2025.</div>
+<div class="csl-left-margin">[6] </div><div class="csl-right-inline">D. I. A. Poll and U. Schumann, <span>“An estimation method for the fuel burn and other performance characteristics of civil transport aircraft in the cruise. Part 1 fundamental quantities and governing relations for a general atmosphere,”</span> <em>The Aeronautical Journal</em>, vol. 125, no. 1284, pp. 257–295, 2021, doi: <a href="https://doi.org/10.1017/aer.2020.62">10.1017/aer.2020.62</a>.</div>
 </div>
 </div>
 </section>

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>29&nbsp; Flight tracking technologies – A journey through aviation data</title>
+<title>29&nbsp; Flight tracking and surveillance data – A journey through aviation data</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -135,35 +135,6 @@ div.csl-indent {
 <script type="module" src="../../site_libs/quarto-ojs/quarto-ojs-runtime.js"></script>
 <link href="../../site_libs/quarto-ojs/quarto-ojs.css" rel="stylesheet">
 
-  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
-  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
-
-<script type="text/javascript">
-const typesetMath = (el) => {
-  if (window.MathJax) {
-    // MathJax Typeset
-    window.MathJax.typeset([el]);
-  } else if (window.katex) {
-    // KaTeX Render
-    var mathElements = el.getElementsByClassName("math");
-    var macros = [];
-    for (var i = 0; i < mathElements.length; i++) {
-      var texText = mathElements[i].firstChild;
-      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
-        window.katex.render(texText.data, mathElements[i], {
-          displayMode: mathElements[i].classList.contains('display'),
-          throwOnError: false,
-          macros: macros,
-          fleqn: false
-        });
-      }
-    }
-  }
-}
-window.Quarto = {
-  typesetMath
-};
-</script>
 
 <link rel="stylesheet" href="../../media/css/style.css">
 <link rel="stylesheet" href="../../media/css/box.css">
@@ -389,7 +360,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/data_sources/aircraft-information.html">The aviation data ecosystem</a></li><li class="breadcrumb-item"><a href="../../chapters/data_sources/flight-tracking-surveillance.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">🟢 Flight tracking</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/data_sources/aircraft-information.html">The aviation data ecosystem</a></li><li class="breadcrumb-item"><a href="../../chapters/data_sources/flight-tracking-surveillance.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Flight tracking and surveillance</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -604,13 +575,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/flight-tracking-surveillance.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">🟢 Flight tracking</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Flight tracking and surveillance</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/adsb-mode-s-decoding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">🟡 ADS-B &amp; Mode S</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Decode ADS-B and Mode S data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -975,13 +946,17 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#radar-tracks" id="toc-radar-tracks" class="nav-link active" data-scroll-target="#radar-tracks"><span class="header-section-number">29.1</span> Radar tracks</a></li>
-  <li><a href="#ads-b" id="toc-ads-b" class="nav-link" data-scroll-target="#ads-b"><span class="header-section-number">29.2</span> ADS-B</a></li>
-  <li><a href="#mode-s" id="toc-mode-s" class="nav-link" data-scroll-target="#mode-s"><span class="header-section-number">29.3</span> Mode S</a></li>
-  <li><a href="#ads-c" id="toc-ads-c" class="nav-link" data-scroll-target="#ads-c"><span class="header-section-number">29.4</span> ADS-C</a></li>
-  <li><a href="#uat" id="toc-uat" class="nav-link" data-scroll-target="#uat"><span class="header-section-number">29.5</span> UAT</a></li>
-  <li><a href="#flarm" id="toc-flarm" class="nav-link" data-scroll-target="#flarm"><span class="header-section-number">29.6</span> FLARM</a></li>
-  <li><a href="#ads-l" id="toc-ads-l" class="nav-link" data-scroll-target="#ads-l"><span class="header-section-number">29.7</span> ADS-L</a></li>
+  <li><a href="#what-is-a-trajectory-dataset" id="toc-what-is-a-trajectory-dataset" class="nav-link active" data-scroll-target="#what-is-a-trajectory-dataset"><span class="header-section-number">29.1</span> What is a trajectory dataset?</a></li>
+  <li><a href="#sources-of-trajectory-data" id="toc-sources-of-trajectory-data" class="nav-link" data-scroll-target="#sources-of-trajectory-data"><span class="header-section-number">29.2</span> Sources of trajectory data</a>
+  <ul class="collapse">
+  <li><a href="#flight-data-recorders-and-quick-access-recorders" id="toc-flight-data-recorders-and-quick-access-recorders" class="nav-link" data-scroll-target="#flight-data-recorders-and-quick-access-recorders"><span class="header-section-number">29.2.1</span> Flight data recorders and quick access recorders</a></li>
+  <li><a href="#ansp-radar-and-surveillance-tracks" id="toc-ansp-radar-and-surveillance-tracks" class="nav-link" data-scroll-target="#ansp-radar-and-surveillance-tracks"><span class="header-section-number">29.2.2</span> ANSP radar and surveillance tracks</a></li>
+  <li><a href="#crowdsourced-and-open-receiver-networks" id="toc-crowdsourced-and-open-receiver-networks" class="nav-link" data-scroll-target="#crowdsourced-and-open-receiver-networks"><span class="header-section-number">29.2.3</span> Crowdsourced and open receiver networks</a></li>
+  <li><a href="#contract-based-surveillance-and-datalink-sources" id="toc-contract-based-surveillance-and-datalink-sources" class="nav-link" data-scroll-target="#contract-based-surveillance-and-datalink-sources"><span class="header-section-number">29.2.4</span> Contract-based surveillance and datalink sources</a></li>
+  <li><a href="#low-level-and-general-aviation-tracking" id="toc-low-level-and-general-aviation-tracking" class="nav-link" data-scroll-target="#low-level-and-general-aviation-tracking"><span class="header-section-number">29.2.5</span> Low-level and general aviation tracking</a></li>
+  </ul></li>
+  <li><a href="#an-example-trajectory" id="toc-an-example-trajectory" class="nav-link" data-scroll-target="#an-example-trajectory"><span class="header-section-number">29.3</span> An example trajectory</a></li>
+  <li><a href="#data-quality-and-coverage" id="toc-data-quality-and-coverage" class="nav-link" data-scroll-target="#data-quality-and-coverage"><span class="header-section-number">29.4</span> Data quality and coverage</a></li>
   <li><a href="#glossary" id="toc-glossary" class="nav-link" data-scroll-target="#glossary">Glossary</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/open-aviation/aviationbook/edit/master/chapters/data_sources/flight-tracking-surveillance.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/open-aviation/aviationbook/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/open-aviation/aviationbook/blob/master/chapters/data_sources/flight-tracking-surveillance.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
@@ -990,9 +965,9 @@ window.Quarto = {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/data_sources/aircraft-information.html">The aviation data ecosystem</a></li><li class="breadcrumb-item"><a href="../../chapters/data_sources/flight-tracking-surveillance.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">🟢 Flight tracking</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/data_sources/aircraft-information.html">The aviation data ecosystem</a></li><li class="breadcrumb-item"><a href="../../chapters/data_sources/flight-tracking-surveillance.html"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Flight tracking and surveillance</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Flight tracking technologies</span></h1>
+<h1 class="title"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Flight tracking and surveillance data</span></h1>
 </div>
 
 
@@ -1016,80 +991,61 @@ window.Quarto = {
 </header>
 
 
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>TODO for this page
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This page has been copied or moved into the experimental <code>new/</code> architecture. Review the scope, trim or split content where needed, fix internal links, and add missing material described by the new table of contents.</p>
-</div>
-</div>
-<p>A trajectory is a mathematical abstraction used to describe the evolution of a moving object with a finite list of parameters. The most common features in aviation include latitude, longitude, altitude, all indexed by time, with first derivatives such as ground speed, track angle and vertical rate. Depending on the application, some models would expect more features. For example, <a href="../../chapters/data_sources/aircraft-performance.html">aircraft performance models</a> could require the pitch, roll and yaw angles, the true air speed, the indicated air speed, the Mach number, etc.</p>
-<p>This chapter describes several common formats for trajectories depending on available technology to record them. Associated data sources come with different licensing terms which must be kept in mind when developing or applying computing methods.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Tip</span>Flight data recorders
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Obviously, the most comprehensive data source is produced by the aircraft itself, specifically by the Flight Data Recorder (FDR) or Quick Access Recorder (QAR). Use cases for such data range from Flight Operational Quality Assurance (FOQA), post-ops analysis to improve flight safety or operational efficiency, system analysis for predictive or condition-based maintenance. Such data typically contains over 2000 flight parameters and is considered very sensitive by aircraft operators as it may expose some commercial strategies.</p>
-<p><em>It is usually difficult for researchers to get full access to such data, even under non-disclosure agreement</em>. Also, as aircraft operators own the data, this solution cannot be used for global analyses of all aircraft flying in a designated area.</p>
-</div>
-</div>
-<section id="radar-tracks" class="level2" data-number="29.1">
-<h2 data-number="29.1" class="anchored" data-anchor-id="radar-tracks"><span class="header-section-number">29.1</span> Radar tracks</h2>
-<p>The concept of <strong>Primary Surveillance Radar (PSR)</strong> is fairly simple: it is a rotating radio transponder with an omnidirectional antenna. Commonly, the radar transmits a one-microsecond pulse for every one millisecond and listens to the reflections from the aircraft. The <strong>position of the aircraft</strong> is measured by the distance and angle to the radar. The distance is known as the <em>slant distance</em>, which is the line-of-sight distance between an aircraft and the radar. It can be calculated by measuring the time difference between the original signal and the reflection received, since the speed of the radio wave (speed of light) is known. The <em>azimuth angle</em> of the aircraft is determined by the rotation angle of the radar.</p>
-<p>The slant distance of an aircraft does not always correspond to the horizontal distance to the radar. Since the civil radar usually does not provide elevation information on the target, it is not possible to accurately convert the slant distance to the horizontal distance. Historically, it is sufficient to use primary radar for separating aircraft without considering these altitude differences. However, <a href="#mode-s">other systems</a> have been put in place to provide air traffic controllers more accurate altitudes of the aircraft.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>Air Navigation Service Provider (ANSP)</strong> own the data produced by the surveillance radar installations they operate.</p>
-</div>
-</div>
-<p>Radar tracks have a prestigious aura for obvious coverage reasons. However, it is rather unlikely that you gain access to radar trajectories on a systematic basis. Moreover, on international flights, getting a full trajectory would require agreements with each ANSP of all countries aircraft have flown.</p>
-<p>In general, trajectories based on radar plots produced by computer systems contain an identifier, timestamps, latitudes, longitudes, altitudes, ground speed, vertical speed and track angle. <strong>Kalman filters</strong> help to smoothen trajectories and compute the derivatives.</p>
-</section>
-<section id="ads-b" class="level2" data-number="29.2">
-<h2 data-number="29.2" class="anchored" data-anchor-id="ads-b"><span class="header-section-number">29.2</span> ADS-B</h2>
-<p>Automatic Dependent Surveillance–Broadcast (ADS-B) is probably one of the most well-known source of aircraft trajectories, popularized by famous websites such as <a href="https://www.flightradar24.com">Flightradar24</a> or <a href="https://www.opensky-network.org">The OpenSky Network</a>. It is a surveillance technology designed to allow aircraft to broadcast their flight state periodically without the need for interrogation.</p>
-<p>The word <em>automatic</em> refers to the fact that no inputs from controllers or pilots are required. The word <em>dependent</em> indicates this technology depends on information from other onboard systems, such as air data systems and navigation systems.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Messages do not contain any timestamp information. Timestamps are usually appended by the receiver of the messages, based on the reception time (and not the time of emission by the aircraft).</p>
-</div>
-</div>
-<p>Information broadcast in ADS-B messages contains, in addition to a unique <a href="#aircraft-information">24-bit transponder code</a>, named <code>icao24</code> in examples below:</p>
+<p>Flight tracking datasets describe how an aircraft state evolves over time.</p>
+<p>In their most common tabular form, they contain timestamped positions, altitudes, speeds, vertical rates, and identifiers such as the aircraft address or callsign. They may come from aircraft recorders, Air Navigation Service Provider (ANSP) systems, crowdsourced radio receivers, commercial aggregators, or specialised low-level traffic networks.</p>
+<p>This page focuses on data sources: what they contain, how they are accessed, and what limitations matter for analysis. The surveillance technologies themselves are introduced in the <a href="../../chapters/background/surveillance-systems.html">background section</a>; raw decoding of ADS-B data is treated in the <a href="../../chapters/data_sources/adsb-mode-s-decoding.html">next chapter</a>.</p>
+<section id="what-is-a-trajectory-dataset" class="level2" data-number="29.1">
+<h2 data-number="29.1" class="anchored" data-anchor-id="what-is-a-trajectory-dataset"><span class="header-section-number">29.1</span> What is a trajectory dataset?</h2>
+<p>A trajectory is a mathematical abstraction used to describe the evolution of a moving object with a finite list of parameters. In aviation, the usual state vector includes latitude, longitude, altitude, and timestamp, often completed with first derivatives such as ground speed, track angle, and vertical rate. Depending on the application, additional variables may be required: <a href="../../chapters/data_sources/aircraft-performance.html">aircraft performance models</a>, for example, may use pitch, roll, yaw, true airspeed, indicated airspeed, Mach number, or aircraft mass estimates.</p>
+<p>We usually distinguish three levels of data:</p>
 <ul>
-<li><em>identification information</em>: the <em>callsign</em> (an 8-character <em>non-unique</em> identifier of the mission or the route of the aircraft) and the wake vortex category;</li>
-<li><em>positional information</em>: latitude and longitude in degrees (encoded in Correlated Position Report (CPR) format), barometric altitude (converted to ISA equivalent), and GPS altitude in feet;</li>
-<li><em>velocity information</em>: track angle in degrees, ground speed in knots, vertical rate in feet per minute;</li>
-<li><em>uncertainty information</em> around the position and the velocity of the aircraft.</li>
+<li><strong>raw information</strong>, such as Mode S or ADS-B frames received by a radio receiver, radar plots, or ASTERIX records before they have been normalised into a common table;</li>
+<li><strong>decoded states</strong>, where message or sensor contents have been converted into physical values such as position, callsign, altitude, velocity, or squawk code;</li>
+<li><strong>reconstructed flights</strong>, where points have been grouped, cleaned, interpolated, and enriched into coherent trajectories.</li>
 </ul>
-<p>Positional and velocity information is computed by the aircraft based on GNSS and inertial navigation systems of the aircraft.</p>
+<p>Most analysis starts from the second or third level. The first level is essential when studying decoding, receiver networks, message quality, or protocol details.</p>
+</section>
+<section id="sources-of-trajectory-data" class="level2" data-number="29.2">
+<h2 data-number="29.2" class="anchored" data-anchor-id="sources-of-trajectory-data"><span class="header-section-number">29.2</span> Sources of trajectory data</h2>
+<section id="flight-data-recorders-and-quick-access-recorders" class="level3" data-number="29.2.1">
+<h3 data-number="29.2.1" class="anchored" data-anchor-id="flight-data-recorders-and-quick-access-recorders"><span class="header-section-number">29.2.1</span> Flight data recorders and quick access recorders</h3>
+<p>The most comprehensive trajectory and aircraft-state data are produced by the aircraft itself, especially by the Flight Data Recorder (FDR) and Quick Access Recorder (QAR). These records may contain thousands of parameters and support Flight Operational Quality Assurance (FOQA), post-operations safety analysis, operational-efficiency studies, and predictive maintenance.</p>
+<p>Recorder data are usually owned by the aircraft operator and are highly sensitive. They can expose operational practices, aircraft handling, maintenance information, and commercial strategies. Researchers may access such data only under strict agreements, and these data cannot support open global analyses across all aircraft in a region.</p>
+</section>
+<section id="ansp-radar-and-surveillance-tracks" class="level3" data-number="29.2.2">
+<h3 data-number="29.2.2" class="anchored" data-anchor-id="ansp-radar-and-surveillance-tracks"><span class="header-section-number">29.2.2</span> ANSP radar and surveillance tracks</h3>
+<p>Air navigation service providers build surveillance tracks from systems such as <a href="../../chapters/background/surveillance-systems.html#primary-surveillance-radar">radar</a>, Mode S, ADS-B, and multilateration. The data product available to controllers is not usually a raw sensor feed but a processed traffic picture: plots are associated to tracks, filtered, smoothed, fused, and sometimes correlated with flight plans.</p>
+<p>A typical radar or fused surveillance track contains an identifier, timestamps, position, altitude, ground speed, vertical speed, and track angle. Kalman filters and other tracking algorithms may smooth positions and compute derivatives.</p>
+<div class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Important
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>ANSPs own the data produced by the surveillance installations they operate. Systematic access to radar or fused surveillance trajectories is therefore difficult, and international flights may require agreements with several providers.</p>
+</div>
+</div>
+<p>Radar and fused tracks have excellent operational value, but they are rarely available as open data. When available, they may be provided in operational exchange formats such as ASTERIX, in post-processed archives, or through research agreements. Access conditions should be checked early: these records are operational data, receiver and sensor locations may be sensitive, and redistribution is often restricted.</p>
+<p>ASTERIX is a family of category-specific formats rather than a single trajectory schema:</p>
+<ul>
+<li><strong>CAT048</strong> is used for monoradar target reports. It may contain the data source identifier, time of day, measured polar position, Mode A squawk, flight level, aircraft address, aircraft identification, Mode S Comm-B payloads, track number, calculated position, and calculated track velocity. Positions may be radar-local polar or Cartesian quantities, so conversion to latitude/longitude depends on the radar reference and processing chain.</li>
+<li><strong>CAT021</strong> is used for ADS-B target reports. It commonly carries WGS-84 position, aircraft address, time of day, flight level, ground vector, target identification, Mode 3/A code, and quality indicators; however, CAT021 is version-sensitive, so the same category number can map field-reference numbers to different data items across editions.</li>
+</ul>
+</section>
+<section id="crowdsourced-and-open-receiver-networks" class="level3" data-number="29.2.3">
+<h3 data-number="29.2.3" class="anchored" data-anchor-id="crowdsourced-and-open-receiver-networks"><span class="header-section-number">29.2.3</span> Crowdsourced and open receiver networks</h3>
+<p><a href="../../chapters/background/surveillance-systems.html#ads-b">Automatic Dependent Surveillance–Broadcast (ADS-B)</a> and Mode S data are widely collected by networks of ground receivers. Public websites such as <a href="https://www.flightradar24.com">Flightradar24</a>, <a href="https://flightaware.com">FlightAware</a> aggregate messages from distributed receivers and produce aircraft state vectors or flight tracks. Access ranges from open research datasets to commercial APIs; licensing, privacy filtering, and redistribution rules differ by provider. <a href="https://opensky-network.org">The OpenSky Network</a> provide an open access to historical data for academics, limited to research usage.</p>
+<p>ADS-B is especially important because aircraft broadcast their own position, altitude, velocity, and identification without being interrogated. Mode S replies and Comm-B messages may add identity, altitude, aircraft parameters, or intent-related fields when interrogated by compatible ground infrastructure. Raw decoding details belong in <a href="../../chapters/data_sources/adsb-mode-s-decoding.html">Decode ADS-B and Mode S data</a>.</p>
+<p>Ground receiver coverage is dense in many populated regions and sparse over oceans, polar areas, deserts, and politically sensitive regions. Satellite ADS-B reduces some of these gaps by receiving 1090 MHz broadcasts from low-Earth-orbit satellites, but access is usually commercial or institutional.</p>
+</section>
+<section id="contract-based-surveillance-and-datalink-sources" class="level3" data-number="29.2.4">
+<h3 data-number="29.2.4" class="anchored" data-anchor-id="contract-based-surveillance-and-datalink-sources"><span class="header-section-number">29.2.4</span> Contract-based surveillance and datalink sources</h3>
+<p><a href="../../chapters/background/surveillance-systems.html#ads-c">Automatic Dependent Surveillance–Contract (ADS-C)</a> can also provide trajectory data, especially in oceanic and remote airspace. Unlike ADS-B, it is not an open broadcast. It is based on a contract between an aircraft and an Air Traffic Service Unit (ATSU) specifying what information should be sent and under which conditions.</p>
+<p>For flight tracking, ADS-C reports are valuable because they may include not only a position but also route intent, meteorological information, and air-reference data. These messages have traditionally been available mainly to operational stakeholders, but ADS-C data have also started to appear in research-oriented feeds, including the OpenSky Network. The detailed data model and decoded examples are covered in <a href="../../chapters/data_sources/cpdlc-adsc-data.html">CPDLC and ADS-C data</a>. Datalink context is introduced in <a href="../../chapters/data_sources/datalink-beyond-transponder.html">Datalink beyond the transponder</a>.</p>
 <div class="callout callout-style-default callout-warning callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1100,41 +1056,40 @@ Warning
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>There is a common confusion in aviation between three designations for angles:</p>
-<ul>
-<li>the <strong>track angle</strong> represents the direction the aircraft is flying. It is the angle of the speed vector, ranging from 0 (North) to 360 degrees (90° for East, 270° for West);</li>
-<li>the <strong>heading angle</strong> represents the direction the nose the aircraft is pointing at;</li>
-<li>the <strong>bearing angle</strong> usually represents the direction of/to a static object, e.g., the bearing of a runway, or the bearing to a navigational point.</li>
-</ul>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../../images/ZUw30.png" class="img-fluid figure-img"></p>
-<figcaption>source: https://aviation.stackexchange.com/a/96035</figcaption>
-</figure>
+<p>TODO update links in previous paragraph</p>
 </div>
 </div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled">
+</section>
+<section id="low-level-and-general-aviation-tracking" class="level3" data-number="29.2.5">
+<h3 data-number="29.2.5" class="anchored" data-anchor-id="low-level-and-general-aviation-tracking"><span class="header-section-number">29.2.5</span> Low-level and general aviation tracking</h3>
+<p>Not all flight tracking relies on certified transponders and 1090 MHz ADS-B. Low-level, general aviation, glider, and emerging uncrewed-aircraft operations use additional systems.</p>
+<p><strong>Universal Access Transceiver (UAT)</strong> is an ADS-B-like technology operating on 978 MHz. In the United States, it is used mainly by general aviation aircraft below 18,000 feet as an alternative to 1090 MHz Extended Squitter. It is therefore geographically and operationally limited: UAT data are mainly relevant within or near US airspace.</p>
+<p><strong>FLARM</strong> is widely used for traffic awareness and collision avoidance in gliders and other light aircraft. It broadcasts position, altitude, velocity, aircraft type, and short-term trajectory-prediction information. Its radio protocol is proprietary and encrypted, but crowdsourced reception is possible through networks such as the <a href="https://live.glidernet.org/">Open Glider Network</a>. The OpenSky Network also collects FLARM raw messages for institutional research users.</p>
+<p><strong>Automatic Dependent Surveillance–Light (ADS-L)</strong> is a developing cooperative surveillance technology for low-level airspace, typically below 10,000 feet. It targets aircraft and devices that may not carry conventional ADS-B equipment: gliders, light sport aircraft, paragliders, helicopters, parachuting operations, and Unmanned Aircraft System (UAS). It is still undergoing validation and regulatory development, so operational deployment and data access remain limited.</p>
+</section>
+</section>
+<section id="an-example-trajectory" class="level2" data-number="29.3">
+<h2 data-number="29.3" class="anchored" data-anchor-id="an-example-trajectory"><span class="header-section-number">29.3</span> An example trajectory</h2>
+<p>Even when all fields are not available at each timestamp, a tabular representation is the common starting point. Typical columns include a timestamp, aircraft <a href="../../chapters/data_sources/aircraft-information.html">icao24 address</a>, callsign, position, barometric or geometric altitude, ground speed, track, vertical rate, squawk, and sometimes receiver or source metadata. In this example, the <code>icao24</code> code <code>7c4779</code> matches a Qantas Boeing 747 registered as <code>VH-OEJ</code>.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>A note about callsign identifiers
+<span class="screen-reader-only">Tip</span>What is a callsign
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>A callsign is an eight-character identifier used for communication with the Air Traffic Control (ATC).</p>
-<p>General aviation commonly uses the aircraft registration (tail number) as a callsign; commercial flights use a (often unique) identifier per route, starting with three letters identifying the airline operator, <code>BAW</code> (<em>pronounce “speedbird”</em>) for British Airways, <code>AFR</code> for Air France, etc.</p>
-<p>Outside commercial aviation, the callsign commonly refers to the mission operated by an aircraft, and this can help distinguish the original intention of an aircraft used for specific purposes.</p>
-<p>For example, aircraft <code>F-HNAV</code> uses the <code>CALIBRA</code> callsign for flight inspection and Very High Frequency Omnidirectional Range Station (VOR)/Instrument Landing System (ILS) calibration operations, the <code>JAMMING</code> callsign during jamming investigation and a more regular <code>NAK</code> callsign when commuting between airfields.</p>
-<p>Similarly, test flights operated by Airbus use an <code>AIB</code> callsign; Boeing uses a <code>BOE</code> callsign; ambulance helicopters often use explicit callsigns: <code>SAMU</code> in France (stands for <em>Urgent Medical Aid Service</em>) and <code>LIFE</code> in many European countries.</p>
-<p>Australian firefighting operations use a specific callsign depending on the role of the aircraft during the operations: <code>BMBR</code> for firebombing; <code>SPTR</code> for fire spotters; <code>BDOG</code>, <em>bird dog</em>, for fire attack supervisions (often subcontracted); and <code>FSCN</code>, fire scan for remote sensing fire operations.</p>
+<p>A callsign is the identifier used in communication with ATC. General aviation often uses the aircraft registration, while commercial flights commonly use an airline telephony designator and a flight number, such as <code>BAW</code> (pronounced “speedbird”) for British Airways or <code>AFR</code> for Air France. Other operations may encode a mission in the callsign: calibration flights, firefighting, medical helicopters, test flights, or military operations.</p>
+<p>For data analysis, callsigns are useful but fragile. They are not globally unique, may be missing, can persist after a flight changes phase, and may be reused by different aircraft at different times. They should usually be combined with the aircraft address, time, and route context.</p>
 </div>
 </div>
-<p>Even though all information is not available at each timestamp, tabular data (csv) is a common format to represent trajectory data. In this example, the <code>icao24</code> code <code>7c4779</code> matches a Qantas Boeing B747 registered as <code>VH-OEJ</code>.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="97" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 96;"><span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> { Flight } <span class="im">from</span> <span class="st">"@xoolive/traffic-js"</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb1" data-startfrom="96" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 95;"><span id="cb1-96"><a href="#cb1-96" aria-hidden="true" tabindex="-1"></a>traffic <span class="op">=</span> <span class="pp">require</span>(<span class="st">"traffic.js@0.1.2"</span>)<span class="op">.</span><span class="fu">then</span>((traffic) <span class="kw">=&gt;</span> {</span>
+<span id="cb1-97"><a href="#cb1-97" aria-hidden="true" tabindex="-1"></a>  traffic<span class="op">.</span><span class="at">env</span><span class="op">.</span><span class="fu">setEnv</span>({ Inputs<span class="op">,</span> <span class="dt">html</span><span class="op">:</span> htl<span class="op">.</span><span class="at">html</span><span class="op">,</span> d3<span class="op">,</span> Plot })<span class="op">;</span></span>
+<span id="cb1-98"><a href="#cb1-98" aria-hidden="true" tabindex="-1"></a>  <span class="cf">return</span> traffic<span class="op">;</span></span>
+<span id="cb1-99"><a href="#cb1-99" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div id="ojs-cell-1" data-nodetype="declaration">
 
@@ -1142,236 +1097,117 @@ Warning
 </div>
 </div>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="103" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 102;"><span id="cb2-103"><a href="#cb2-103" aria-hidden="true" tabindex="-1"></a>qantas747 <span class="op">=</span> Flight<span class="op">.</span><span class="fu">fromSample</span>(<span class="st">"qantas747"</span>)</span>
-<span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a>qantas747<span class="op">.</span><span class="fu">table</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb2" data-startfrom="104" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 103;"><span id="cb2-104"><a href="#cb2-104" aria-hidden="true" tabindex="-1"></a>Flight <span class="op">=</span> traffic<span class="op">.</span><span class="at">core</span><span class="op">.</span><span class="at">Flight</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-2" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="109" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 108;"><span id="cb3-109"><a href="#cb3-109" aria-hidden="true" tabindex="-1"></a>leafletStyles <span class="op">=</span> htl<span class="op">.</span><span class="fu">html</span><span class="vs">`&lt;link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"&gt;`</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-3" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="114" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 113;"><span id="cb4-114"><a href="#cb4-114" aria-hidden="true" tabindex="-1"></a>L <span class="op">=</span> <span class="pp">require</span>(<span class="st">"leaflet@1.9.4"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-display">
+<div id="ojs-cell-4" data-nodetype="declaration">
+
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb5" data-startfrom="120" data-source-offset="-0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 119;"><span id="cb5-120"><a href="#cb5-120" aria-hidden="true" tabindex="-1"></a>qantas747 <span class="op">=</span> Flight<span class="op">.</span><span class="fu">fromSample</span>(<span class="st">"qantas747"</span>)</span>
+<span id="cb5-121"><a href="#cb5-121" aria-hidden="true" tabindex="-1"></a>qantas747<span class="op">.</span><span class="fu">table</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
 <div>
-<div id="ojs-cell-2-1" data-nodetype="declaration">
+<div id="ojs-cell-5-1" data-nodetype="declaration">
 
 </div>
 </div>
 </div>
 <div class="cell-output cell-output-display">
 <div>
-<div id="ojs-cell-2-2" data-nodetype="expression">
+<div id="ojs-cell-5-2" data-nodetype="expression">
 
 </div>
 </div>
 </div>
 </div>
-<p>This tabular information can easily be represented on a map, or as a regular plot for non-geographical features.</p>
+<p>The same data can be represented geographically or as time series for individual variables.</p>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb3" data-startfrom="110" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 109;"><span id="cb3-110"><a href="#cb3-110" aria-hidden="true" tabindex="-1"></a>{</span>
-<span id="cb3-111"><a href="#cb3-111" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> container <span class="op">=</span> <span class="kw">yield</span> htl<span class="op">.</span><span class="fu">html</span><span class="vs">`&lt;div style="height: 400px;"&gt;`</span><span class="op">;</span></span>
-<span id="cb3-112"><a href="#cb3-112" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> map <span class="op">=</span> L<span class="op">.</span><span class="fu">map</span>(container<span class="op">,</span> { <span class="dt">scrollWheelZoom</span><span class="op">:</span> <span class="kw">false</span> })<span class="op">;</span></span>
-<span id="cb3-113"><a href="#cb3-113" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> layer <span class="op">=</span> L<span class="op">.</span><span class="fu">geoJSON</span>(</span>
-<span id="cb3-114"><a href="#cb3-114" aria-hidden="true" tabindex="-1"></a>    qantas747<span class="op">.</span><span class="fu">resample</span>(d3<span class="op">.</span><span class="at">timeSecond</span><span class="op">.</span><span class="fu">every</span>(<span class="dv">5</span>))<span class="op">.</span><span class="fu">feature</span>()</span>
-<span id="cb3-115"><a href="#cb3-115" aria-hidden="true" tabindex="-1"></a>  )<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
-<span id="cb3-116"><a href="#cb3-116" aria-hidden="true" tabindex="-1"></a>  map<span class="op">.</span><span class="fu">fitBounds</span>(layer<span class="op">.</span><span class="fu">getBounds</span>()<span class="op">,</span> { <span class="dt">maxZoom</span><span class="op">:</span> <span class="dv">7</span> })<span class="op">;</span></span>
-<span id="cb3-117"><a href="#cb3-117" aria-hidden="true" tabindex="-1"></a>  L<span class="op">.</span><span class="fu">tileLayer</span>(</span>
-<span id="cb3-118"><a href="#cb3-118" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}.png"</span><span class="op">,</span></span>
-<span id="cb3-119"><a href="#cb3-119" aria-hidden="true" tabindex="-1"></a>    {</span>
-<span id="cb3-120"><a href="#cb3-120" aria-hidden="true" tabindex="-1"></a>      <span class="dt">attribution</span><span class="op">:</span></span>
-<span id="cb3-121"><a href="#cb3-121" aria-hidden="true" tabindex="-1"></a>        <span class="st">"© &lt;a href=https://www.openstreetmap.org/copyright&gt;OpenStreetMap&lt;/a&gt; contributors"</span></span>
-<span id="cb3-122"><a href="#cb3-122" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb3-123"><a href="#cb3-123" aria-hidden="true" tabindex="-1"></a>  )<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
-<span id="cb3-124"><a href="#cb3-124" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb6" data-startfrom="127" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 126;"><span id="cb6-127"><a href="#cb6-127" aria-hidden="true" tabindex="-1"></a>{</span>
+<span id="cb6-128"><a href="#cb6-128" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> container <span class="op">=</span> <span class="kw">yield</span> htl<span class="op">.</span><span class="fu">html</span><span class="vs">`&lt;div style="height: 400px;"&gt;`</span><span class="op">;</span></span>
+<span id="cb6-129"><a href="#cb6-129" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> map <span class="op">=</span> L<span class="op">.</span><span class="fu">map</span>(container<span class="op">,</span> { <span class="dt">scrollWheelZoom</span><span class="op">:</span> <span class="kw">false</span> })<span class="op">;</span></span>
+<span id="cb6-130"><a href="#cb6-130" aria-hidden="true" tabindex="-1"></a>  <span class="kw">const</span> layer <span class="op">=</span> L<span class="op">.</span><span class="fu">geoJSON</span>(</span>
+<span id="cb6-131"><a href="#cb6-131" aria-hidden="true" tabindex="-1"></a>    qantas747<span class="op">.</span><span class="fu">resample</span>(d3<span class="op">.</span><span class="at">timeSecond</span><span class="op">.</span><span class="fu">every</span>(<span class="dv">5</span>))<span class="op">.</span><span class="fu">feature</span>()</span>
+<span id="cb6-132"><a href="#cb6-132" aria-hidden="true" tabindex="-1"></a>  )<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
+<span id="cb6-133"><a href="#cb6-133" aria-hidden="true" tabindex="-1"></a>  map<span class="op">.</span><span class="fu">fitBounds</span>(layer<span class="op">.</span><span class="fu">getBounds</span>()<span class="op">,</span> { <span class="dt">maxZoom</span><span class="op">:</span> <span class="dv">7</span> })<span class="op">;</span></span>
+<span id="cb6-134"><a href="#cb6-134" aria-hidden="true" tabindex="-1"></a>  L<span class="op">.</span><span class="fu">tileLayer</span>(</span>
+<span id="cb6-135"><a href="#cb6-135" aria-hidden="true" tabindex="-1"></a>    <span class="st">"https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}.png"</span><span class="op">,</span></span>
+<span id="cb6-136"><a href="#cb6-136" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb6-137"><a href="#cb6-137" aria-hidden="true" tabindex="-1"></a>      <span class="dt">attribution</span><span class="op">:</span></span>
+<span id="cb6-138"><a href="#cb6-138" aria-hidden="true" tabindex="-1"></a>        <span class="st">"© &lt;a href=https://www.openstreetmap.org/copyright&gt;OpenStreetMap&lt;/a&gt; contributors"</span></span>
+<span id="cb6-139"><a href="#cb6-139" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb6-140"><a href="#cb6-140" aria-hidden="true" tabindex="-1"></a>  )<span class="op">.</span><span class="fu">addTo</span>(map)<span class="op">;</span></span>
+<span id="cb6-141"><a href="#cb6-141" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
-<div id="ojs-cell-3" data-nodetype="expression">
+<div id="ojs-cell-6" data-nodetype="expression">
 
 </div>
 </div>
 </div>
-<hr>
 <div class="cell">
-<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb4" data-startfrom="131" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 130;"><span id="cb4-131"><a href="#cb4-131" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
-<span id="cb4-132"><a href="#cb4-132" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
-<span id="cb4-133"><a href="#cb4-133" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(qantas747<span class="op">.</span><span class="at">data</span><span class="op">,</span> {</span>
-<span id="cb4-134"><a href="#cb4-134" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x</span><span class="op">:</span> <span class="st">"timestamp"</span><span class="op">,</span></span>
-<span id="cb4-135"><a href="#cb4-135" aria-hidden="true" tabindex="-1"></a>      <span class="dt">y</span><span class="op">:</span> <span class="st">"altitude"</span><span class="op">,</span></span>
-<span id="cb4-136"><a href="#cb4-136" aria-hidden="true" tabindex="-1"></a>      <span class="dt">stroke</span><span class="op">:</span> <span class="st">"steelblue"</span><span class="op">,</span></span>
-<span id="cb4-137"><a href="#cb4-137" aria-hidden="true" tabindex="-1"></a>    })</span>
-<span id="cb4-138"><a href="#cb4-138" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
-<span id="cb4-139"><a href="#cb4-139" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
-<span id="cb4-140"><a href="#cb4-140" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickFormat</span><span class="op">:</span> d3<span class="op">.</span><span class="fu">utcFormat</span>(<span class="st">"%H:%M"</span>)<span class="op">,</span></span>
-<span id="cb4-141"><a href="#cb4-141" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"timestamp (UTC)"</span></span>
-<span id="cb4-142"><a href="#cb4-142" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb4-143"><a href="#cb4-143" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
-<span id="cb4-144"><a href="#cb4-144" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"altitude (in feet)"</span></span>
-<span id="cb4-145"><a href="#cb4-145" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
-<span id="cb4-146"><a href="#cb4-146" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">50</span><span class="op">,</span></span>
-<span id="cb4-147"><a href="#cb4-147" aria-hidden="true" tabindex="-1"></a>  width<span class="op">,</span></span>
-<span id="cb4-148"><a href="#cb4-148" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">200</span><span class="op">,</span></span>
-<span id="cb4-149"><a href="#cb4-149" aria-hidden="true" tabindex="-1"></a>  <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span></span>
-<span id="cb4-150"><a href="#cb4-150" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code hidden" id="cb7" data-startfrom="146" data-source-offset="0"><pre class="sourceCode js code-with-copy"><code class="sourceCode javascript" style="counter-reset: source-line 145;"><span id="cb7-146"><a href="#cb7-146" aria-hidden="true" tabindex="-1"></a>Plot<span class="op">.</span><span class="fu">plot</span>({</span>
+<span id="cb7-147"><a href="#cb7-147" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marks</span><span class="op">:</span> [</span>
+<span id="cb7-148"><a href="#cb7-148" aria-hidden="true" tabindex="-1"></a>    Plot<span class="op">.</span><span class="fu">line</span>(qantas747<span class="op">.</span><span class="at">data</span><span class="op">,</span> {</span>
+<span id="cb7-149"><a href="#cb7-149" aria-hidden="true" tabindex="-1"></a>      <span class="dt">x</span><span class="op">:</span> <span class="st">"timestamp"</span><span class="op">,</span></span>
+<span id="cb7-150"><a href="#cb7-150" aria-hidden="true" tabindex="-1"></a>      <span class="dt">y</span><span class="op">:</span> <span class="st">"altitude"</span><span class="op">,</span></span>
+<span id="cb7-151"><a href="#cb7-151" aria-hidden="true" tabindex="-1"></a>      <span class="dt">stroke</span><span class="op">:</span> <span class="st">"steelblue"</span><span class="op">,</span></span>
+<span id="cb7-152"><a href="#cb7-152" aria-hidden="true" tabindex="-1"></a>    })</span>
+<span id="cb7-153"><a href="#cb7-153" aria-hidden="true" tabindex="-1"></a>  ]<span class="op">,</span></span>
+<span id="cb7-154"><a href="#cb7-154" aria-hidden="true" tabindex="-1"></a>  <span class="dt">x</span><span class="op">:</span> {</span>
+<span id="cb7-155"><a href="#cb7-155" aria-hidden="true" tabindex="-1"></a>    <span class="dt">tickFormat</span><span class="op">:</span> d3<span class="op">.</span><span class="fu">utcFormat</span>(<span class="st">"%H:%M"</span>)<span class="op">,</span></span>
+<span id="cb7-156"><a href="#cb7-156" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"timestamp (UTC)"</span></span>
+<span id="cb7-157"><a href="#cb7-157" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb7-158"><a href="#cb7-158" aria-hidden="true" tabindex="-1"></a>  <span class="dt">y</span><span class="op">:</span> {</span>
+<span id="cb7-159"><a href="#cb7-159" aria-hidden="true" tabindex="-1"></a>    <span class="dt">label</span><span class="op">:</span> <span class="st">"altitude (ft)"</span></span>
+<span id="cb7-160"><a href="#cb7-160" aria-hidden="true" tabindex="-1"></a>  }<span class="op">,</span></span>
+<span id="cb7-161"><a href="#cb7-161" aria-hidden="true" tabindex="-1"></a>  <span class="dt">marginLeft</span><span class="op">:</span> <span class="dv">50</span><span class="op">,</span></span>
+<span id="cb7-162"><a href="#cb7-162" aria-hidden="true" tabindex="-1"></a>  width<span class="op">,</span></span>
+<span id="cb7-163"><a href="#cb7-163" aria-hidden="true" tabindex="-1"></a>  <span class="dt">height</span><span class="op">:</span> <span class="dv">200</span><span class="op">,</span></span>
+<span id="cb7-164"><a href="#cb7-164" aria-hidden="true" tabindex="-1"></a>  <span class="dt">grid</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb7-165"><a href="#cb7-165" aria-hidden="true" tabindex="-1"></a>})</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-display">
-<div id="ojs-cell-4" data-nodetype="expression">
+<div id="ojs-cell-7" data-nodetype="expression">
 
 </div>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>What <em>broadcasting</em> means
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>The letter “B” in ADS-B means <em>broadcast</em>: aircraft broadcast messages at the same rate regardless of ground equipments and infrastructure, even if no aircraft or receiver is within range. Aircraft broadcast ADS-B data even over oceans, poles, or deserted areas.</p>
-<p>Recently, “Space-based ADS-B” has been implemented so that a constellation of low-altitude satellites attempts to receive and decode ADS-B messages from aircraft in the troposphere and forward positional information to ground-based stations. There have been high expectations around this technology which is expected to revolutionize traditional air traffic management over areas such as the North-Atlantic Ocean, controlled by Shannon (Ireland) and Gander (Canada) Area Control Centre (ACC)s.</p>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>A lot of details about the contents of ADS-B messages, Mode S data and their decoding is detailed in a different book, <em>The 1090 Megahertz Riddle</em> <span class="citation" data-cites="sun1090"><a href="../appendix/references.html#ref-sun1090" role="doc-biblioref">[1]</a></span>.</p>
-</div>
-</div>
 </section>
-<section id="mode-s" class="level2" data-number="29.3">
-<h2 data-number="29.3" class="anchored" data-anchor-id="mode-s"><span class="header-section-number">29.3</span> Mode S</h2>
-<p>The <strong>Secondary Surveillance Radar (SSR)</strong>, also known as the Air Traffic Control Radar Beacon System (ATCRBS), was designed to provide air traffic controllers more information than what is provided by the primary radar. The secondary radar can be installed separately or installed on top of the primary radar. It uses a different radio frequency to actively interrogate the aircraft and receive information transmitted by the aircraft.</p>
-<p>The SSR transmits interrogations using the 1030 MHz radio frequency and the aircraft transponder transmits replies using the 1090 MHz radio frequency. In the early design of SSR, two civilian communication protocols (Mode&nbsp;A and Mode&nbsp;C) were introduced. Mode&nbsp;A and Mode&nbsp;C respectively allow the SSR to continuously interrogate the <strong>identity (squawk code)</strong> and the <strong>altitude</strong> of an aircraft. The <strong>squawk code</strong> in Mode A is a unique 4-octal digit code given by air traffic controllers to aircraft in their Flight Information Region (FIR) for identification. The altitude in Mode C refers to the barometric altitude obtained from the aircraft’s air data system.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Some squawk codes are reserved for particular emergency situations:</p>
+<section id="data-quality-and-coverage" class="level2" data-number="29.4">
+<h2 data-number="29.4" class="anchored" data-anchor-id="data-quality-and-coverage"><span class="header-section-number">29.4</span> Data quality and coverage</h2>
+<p>Flight tracking data are not a neutral record of all aircraft movements: they reflect the surveillance technology, receiver deployment, aircraft equipage, regulatory mandates, filtering policies, and access conditions behind each feed.</p>
 <ul>
-<li><code>7500</code> for hijacking situations;</li>
-<li><code>7600</code> for radio failures;</li>
-<li><code>7700</code> for general emergencies <span class="citation" data-cites="opensky20"><a href="../appendix/references.html#ref-opensky20" role="doc-biblioref">[2]</a></span>.</li>
+<li><p>Coverage and sampling are the first limitations to inspect. Ground receivers are unevenly distributed, low-altitude aircraft disappear behind terrain or the radio horizon, satellite ADS-B has its own reception constraints, and ADS-B, radar, ADS-C, FLARM, UAT, and ADS-L all operate at different update rates; these differences affect event timing, speed estimates, vertical-rate estimates, phase detection, and comparisons between datasets.</p></li>
+<li><p>Timing is also source-dependent: ADS-B and Mode S messages do not carry a full emission timestamp, receiver clocks may drift, and network aggregation may replace local reception times with later processing times.</p></li>
+<li><p>Position and altitude fields require similar caution. ADS-B positions are aircraft-reported and depend on the onboard navigation solution, while radar and MLAT derive positions externally; fused tracks may hide which sensor contributed a given point.</p></li>
+<li><p>Barometric altitude, flight level, and geometric altitude do not describe the same quantity, and ISA/QNH assumptions or airport elevation become important near the surface.</p></li>
+<li><p>Several variables that look like direct measurements may in fact be derived, smoothed, or interpolated by the receiver or network, including ground speed, track angle, and vertical rate</p></li>
+<li><p>Identity and continuity are another source of error: callsigns may be stale or missing, aircraft addresses can be duplicated, reassigned, anonymised, or filtered, and long gaps may fragment a single flight into several tracks.</p></li>
 </ul>
-</div>
-</div>
-<p><strong>Mode&nbsp;S (Mode&nbsp;Select Beacon System)</strong> was designed by Lincoln Laboratory at Massachusetts Institute of Technology in the 1970s. Based on different iterations of hardware and software design in the 1980s, the implementation of Mode&nbsp;S in air traffic control began in the 1990s. Since then, Mode&nbsp;S has become one of the main sources for aircraft surveillance.</p>
-<p>The main characteristic of Mode&nbsp;S is its <strong>selective interrogation</strong>, which allows the SSR to interrogate different information from different aircraft separately. Unlike the limited number (4096) of unique identification codes in Mode&nbsp;A communication, the Mode&nbsp;S transponder is identified by a <a href="#aircraft-information">24-bit transponder code</a>, which can support up to <span class="math inline">\(2^{24} =\)</span> 6,777,216 unique addresses.</p>
-<div class="callout callout-style-default callout-important callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Important
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>As Mode S consists in selective interrogation, it is strongly dependent on ground infrastructure around. Mode S messages are only sent in reply to an interrogation, therefore <strong>no such data can be expected from an aircraft out of range of an SSR</strong>, over the ocean, poles or deserted areas.</p>
-</div>
-</div>
-<p>The Mode&nbsp;S uplink signal contains parameters that indicate which information is desired by the air traffic controller. Many Downlink Format (DF)s are described in the Mode S protocol in order to reply to such information:</p>
-<ul>
-<li><p><strong>Altitude and identity replies (DF 4/5)</strong> are rough equivalents to Mode A/C protocols;</p></li>
-<li><p><strong>All-call reply (DF 11)</strong> is the reply sent by Mode S compliant transponders to queries addressed to Mode A/C capable transponders. It contains the <a href="#aircraft-information">24-bit transponder code</a>, the transponder capabilities <span class="citation" data-cites="sun20capab"><a href="../appendix/references.html#ref-sun20capab" role="doc-biblioref">[3]</a></span>, and the interrogator identifier;</p></li>
-<li><p><strong>ACAS short and long replies (DF 0/16)</strong>: <strong>Airborne Collision Avoidance System (ACAS)</strong> is a system designed to reduce the risk of mid-air collisions and near mid-air collisions between aircraft. In particular <strong>Resolution Advisories (RA)</strong> generate particular messages (DF16) which can be used to find about past RA alerts <span class="citation" data-cites="opensky19"><a href="../appendix/references.html#ref-opensky19" role="doc-biblioref">[4]</a></span>.<br>
-Details of the protocol are described <a href="https://mode-s.org/decode/content/mode-s/4-acas.html">here</a>.</p></li>
-<li><p><strong>Comm-B, with altitude and identity replies (DF 20/21)</strong>: this protocol supports a large number of different types of messages, defined by <strong>BDS (Comm-B Data Selector)</strong> codes. <strong>Mode S Enhances Surveillance (EHS)</strong> accounts for a handful of BDS codes of particular interests:</p>
-<ul>
-<li><strong>BDS 4,0 – Selected vertical intention</strong>, with information about <em>selected altitude</em> in the autopilot, barometric pressure setting, and <em>navigation modes</em>;</li>
-<li><strong>BDS 5,0 – Track and turn report</strong>, with information about the <em>roll angle</em>, <em>true track angle rate</em> and <em>True Air Speed (TAS)</em> in addition to ground speed and true track angle information also defined in ADS-B;</li>
-<li><strong>BDS 6,0 – Heading and speed report</strong>, with information about <em>magnetic heading</em> of the aircraft, <em>Indicated Air Speed (IAS)</em>, <em>barometric altitude rate</em> and <em>inertial vertical velocity</em> (in feet per minute)</li>
-</ul></li>
-</ul>
-<p>Coupling BDS&nbsp;5,0 (for the TAS, the true track angle and the ground speed – the two last entries are also present in ADS-B) with BDS&nbsp;6,0 (for magnetic heading) and can be used to recompute the apparent wind seen by the aircraft.<br>
-<a href="earth.html#magnetic-declination">Magnetic declination</a> must be taken into account.</p>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tip
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>ADS-B messages also belong to the Mode S protocol, in the <strong>Extended Squitter (ES)</strong> category (BDS&nbsp;0,5 through to 0,9). Only ES messages (ADS-B) are broadcast, i.e., they are not the result of SSR interrogations.</p>
-</div>
-</div>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../../images/mode_s_services.png" class="img-fluid figure-img"></p>
-<figcaption>An overview of all Mode S services, excerpt from <a href="https://mode-s.org/decode/content/introduction.html#summary">www.mode-s.org</a> <span class="citation" data-cites="sun1090"><a href="../appendix/references.html#ref-sun1090" role="doc-biblioref">[1]</a></span></figcaption>
-</figure>
-</div>
+<p>These issues matter before modelling traffic flows, estimating performance, measuring emissions, or comparing flown trajectories with planned routes. Raw or decoded points therefore usually need <a href="../../chapters/work/trajectory-processing.html">preprocessing</a> before they become analytically useful flights: grouping by aircraft and callsign, splitting flights with time gaps or airport context, removing impossible jumps and duplicates, resampling, detecting flight phases, and enriching the trajectory with aircraft, airport, weather, airspace, or flight-plan data.</p>
+<p>The appropriate strategy depends on the question: a surface-movement study near an airport needs different assumptions from a continent-scale flow analysis or an aircraft-performance estimation. For a broader discussion of trajectory preprocessing challenges and reproducibility, see <span class="citation" data-cites="olive_filtering_2025"><a href="../appendix/references.html#ref-olive_filtering_2025" role="doc-biblioref">[1]</a></span>.</p>
 </section>
-<section id="ads-c" class="level2" data-number="29.4">
-<h2 data-number="29.4" class="anchored" data-anchor-id="ads-c"><span class="header-section-number">29.4</span> ADS-C</h2>
-<p>Born from the challenges of managing growth in aviation, the International Civil Aviation Organization in 1983 initiated a committee to align emerging technologies with growing air transport needs. By 1987, the committee found issues with the prevailing navigation systems, including communication limitations and the lack of digital links. The answer was satellite technology integration.</p>
-<p>This led to the idea of creating a Future Air Navigation System (FANS), comprising several new technologies including the <strong>Automatic Dependent Surveillance–Contract (ADS-C)</strong> system. ADS-C addresses the constraints of High Frequency and Very High Frequency communication through satellite data links, enabling surveillance in remote locations. It also minimizes voice communication by sending automatic position updates digitally. By 1991, manufacturers started adopting FANS technology. Boeing introduced FANS-1, while Airbus presented FANS-A. Both of these were later merged into the widely-used FANS-1/A.</p>
-<p>The term <strong>Contract</strong> means that aircraft and Air Traffic Service Unit (ATSU)s negotiate agreements to share data. While aircraft can establish concurrent contracts with multiple ATSUs, messages are exclusively exchanged between the aircraft and the ATSU with which a particular contract was established. This differs from ADS-B, where aircraft indiscriminately broadcast messages to everyone.</p>
-<p>All surveillance data from the aircraft is sent via contracts. To negotiate such a contract, the ATSU sends a contract request, containing information regarding the surveillance data the ATSU wants to receive, to an aircraft. The aircraft then responds to a contract with a positive acknowledgement and the appropriate report. In case of an error, the aircraft responds with a negative acknowledgement (if the message cannot be parsed), or a non-compliance notification (if the request contains data that is not available to the aircraft).</p>
-<p>The type of contract then defines what information the aircraft will return to the ATSU:</p>
-<ul>
-<li><strong>Periodic contract</strong>: With this contract type, an ATSU can request ADS-C reports at a specified reporting interval with following data: flight ID, predicted route, earth reference, meteorological data, airframe ID, air reference, and aircraft intent.</li>
-<li><strong>Event contract</strong>: Whenever an event contract is established, the aircraft sends reports in the case a given event occurs. It can be requested in case of the following events: vertical range change, altitude range change, waypoint change, and lateral deviation.</li>
-<li><strong>Demand contract</strong>: In the case of a demand contract, an aircraft only sends a single report. This can be useful, when a periodic report is not received in time.</li>
-</ul>
-<p>Every ADS-C report comprises, at a minimum, a basic report detailing the aircraft’s position, accompanied by a timestamp and a figure of merit. The figure of merit denotes the precision of the positional information within the report and the operational status of Traffic alert and Collision Avoidance System (TCAS). Advanced reports encompass extra data as stipulated in the ADS-C contract.</p>
-</section>
-<section id="uat" class="level2" data-number="29.5">
-<h2 data-number="29.5" class="anchored" data-anchor-id="uat"><span class="header-section-number">29.5</span> UAT</h2>
-<p><strong>Universal Access Transceiver (UAT)</strong> is a technology similar to ADS-B which operates on 978&nbsp;MHz instead of 1090&nbsp;MHz for ADS-B ES.</p>
-<p>The Federal Aviation Administration (FAA) has been encouraging General Aviation aircraft to equip with UAT compliant transponders for slightly cheaper than ES transponders in order to decongestionate the 1090 MHz frequency in the US. The 2020 Mandate allows aircraft to be equipped with UAT transponders if they remain <strong>within the US borders</strong> and <strong>below 18,000 feet</strong>.</p>
-<p>As a consequence, UAT messages can only be received by receivers located in the United States or near their borders.</p>
-</section>
-<section id="flarm" class="level2" data-number="29.6">
-<h2 data-number="29.6" class="anchored" data-anchor-id="flarm"><span class="header-section-number">29.6</span> FLARM</h2>
-<p><strong>FLARM</strong> (a portmanteau of “flight” and “alarm”) is, with TCAS, one of the most widespread technologies for <strong>traffic awareness and collision avoidance</strong>. It is a system used to prevent potential aviation collision and to raise awareness of the pilot, initially tailored for <strong>light aircraft, such as gliders, light aircraft, rotorcraft, and drones</strong>. FLARM obtains its position and altitude readings from an internal Global Positioning System (GPS) (or potentially other Global Navigation Satellite System (GNSS)) and a barometric sensor, then broadcasts these together with forecast data about the future 3D flight track, calculated considering its speed, acceleration, track, turn radius, wind and other parameters. This is imperative for smaller lighter (even wind-powered) aircraft.</p>
-<p>At the same time, the receiver listens for other FLARM devices within range and processes the information received. Upon receiving such messages, the FLARM system may issue alarms to alert the pilot or show the relative position if other aircraft are within detection range.</p>
-<p>The wireless nature of FLARM allows for the reception of signals in a crowdsourced fashion. Although the FLARM radio protocol features message encryption in order to ensure integrity and confidentiality, implementation and encryption keys are available:</p>
-<ul>
-<li>The <a href="https://live.glidernet.org/">Open Glider Network (OGN)</a> maintains a tracking platform with the help of many receivers, mostly collocated with flying clubs operating light aircraft at local airfields.</li>
-<li>The <a href="https://www.opensky-network.org">OpenSky Network</a> also collects FLARM raw messages, with data accessible to institutional researchers.</li>
-</ul>
-<p>FLARM devices are based on the nRF905 chip. Depending on the geographical area they operate in, they transmit in the SRD860 band or in the ISM-band that can be used freely.</p>
-<ul>
-<li>In Europe, Africa and Asia, the two frequencies <strong>868.2 MHz and 868.4 MHz</strong> are used, sending one to two messages per second per frequency. On 868.2MHZ, it transmits from 0.4s to 0.8s; On 868.4MHZ, it transmits from 0.4s to 1.2s.</li>
-<li>In the Americas, Oceania and Israel <strong>another undisclosed frequency hopping scheme</strong> is in place, in order to comply with local regulations.</li>
-</ul>
-<p>Information contained in FLARM messages contains:</p>
-<ul>
-<li>the <strong>device address</strong>, a unique identifier, similar to the <a href="aircraft-information.html#icao-identifiers">24-bit transponder code</a>. <em>In general,</em> if the aircraft is also equipped with a transponder, the same identifier is used;</li>
-<li>the <strong>aircraft type</strong>: glider, tow-plane, helicopter, parachute, parachute drop-plane, hangglider, paraglider, Unmanned Aerial Vehicle (UAV), balloon, etc.;</li>
-<li><strong>positional information</strong>: <em>latitude</em> and <em>longitude</em> in degrees, <em>GPS altitude</em> <strong>in meters</strong>;</li>
-<li><strong>velocity information</strong>: <em>horizontal</em> and <em>vertical speeds</em>.</li>
-</ul>
-<p>As FLARM is a proprietary product, there is little public information about the exact inner workings of the trajectory prediction algorithm that powers the collision alert function. One version has been developed by ONERA in France and been licensed to FLARM Technology Ltd <span class="citation" data-cites="flarm_patent"><a href="../appendix/references.html#ref-flarm_patent" role="doc-biblioref">[5]</a></span>. At a high level, the documentation <span class="citation" data-cites="flarm_manual"><a href="../appendix/references.html#ref-flarm_manual" role="doc-biblioref">[6]</a></span> describes it as follows: The device calculates its own predicted flight path for about the next 20 seconds. This prognosis is based on immediate past and current vectors, including but not limited to aircraft type, speed, vertical speed, turning radius etc. In addition, it uses a movement model that has been optimized for the respective user.</p>
-<p>According to the manual of PowerFLARM Fusion <span class="citation" data-cites="flarm_manual"><a href="../appendix/references.html#ref-flarm_manual" role="doc-biblioref">[6]</a></span>, there are three levels of warnings with different types of annunciations: The first warning is issued around 18 seconds before impact, the second warning is issued around 12 seconds before impact and the third warning is issued around 8 seconds before impact. The warning is active as long as the collision risk remains and will change accordingly.</p>
-</section>
-<section id="ads-l" class="level2" data-number="29.7">
-<h2 data-number="29.7" class="anchored" data-anchor-id="ads-l"><span class="header-section-number">29.7</span> ADS-L</h2>
-<p><strong>Automatic Dependent Surveillance–Light (ADS-L)</strong> is a developing cooperative surveillance technology for low-level airspace, typically below 10,000 feet. Its purpose is to address surveillance gaps in uncontrolled airspace where radar and <a href="#ads-b">ADS-B</a> coverage are limited or absent. Unlike traditional ADS-B, ADS-L is lightweight and low-cost, intended for gliders, light sport aircraft, paragliders, helicopters, skydivers, and Unmanned Aircraft System (UAS). It aims to provide essential surveillance while remaining interoperable with ADS-B and <a href="#flarm">FLARM</a>.</p>
-<p>ADS-L operates in the M-Band (868.2 MHz, 868.4 MHz) and O-Band (869.525 MHz), similar to FLARM in Europe, Africa, and Asia. Recent developments allow use of LTE and 5G networks for aerial communication, based on CEPT/EEC Decision (22)07 (November 2022), enabling integration with cellular infrastructure for extended coverage.</p>
-<p>Messages typically include a unique device address (similar to the ICAO 24-bit code), aircraft type, position (latitude, longitude, altitude), velocity, timestamp, and status flags. Some implementations add trajectory prediction, intent data, and device capabilities. Broadcast rates are usually one to two messages per second per frequency, with a range up to 20 km for SRD 860 and potentially greater for LTE/5G systems. Power consumption is optimised for small devices.</p>
-<p>ADS-L is designed to coexist with ADS-B and FLARM, using similar formats and frequencies where possible. Some devices support dual-mode operation, and integration with ground-based receivers enables crowdsourced tracking.</p>
-<p>The technology is suited to dense, mixed traffic and areas with limited infrastructure, such as uncontrolled airspace, remote regions, UAS operations, and BVLOS missions. It aims to distinguish between cooperative and non-cooperative aircraft, though non-cooperative aircraft can only be detected by other means.</p>
-<p>ADS-L is undergoing validation and trials in Europe and elsewhere. Technical standards and regulatory frameworks are in development, but operational deployment remains limited. Challenges include spectrum congestion, regulatory approval, device cost, privacy and security, and integration with existing surveillance systems.</p>
-</section>
-<section id="glossary" class="level1 unnumbered">
-<h1 class="unnumbered">Glossary</h1>
+<section id="glossary" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="glossary">Glossary</h2>
 
 
 <dl>
-<dt><span id="acronyms_ACC">ACC</span></dt>
-<dd>
-Area Control Centre
-</dd>
 <dt><span id="acronyms_ADS_B">ADS-B</span></dt>
 <dd>
 Automatic Dependent Surveillance–Broadcast
@@ -1388,81 +1224,21 @@ Automatic Dependent Surveillance–Light
 <dd>
 Air Navigation Service Provider
 </dd>
-<dt><span id="acronyms_ATC">ATC</span></dt>
-<dd>
-Air Traffic Control
-</dd>
-<dt><span id="acronyms_ATCRBS">ATCRBS</span></dt>
-<dd>
-Air Traffic Control Radar Beacon System
-</dd>
 <dt><span id="acronyms_ATSU">ATSU</span></dt>
 <dd>
 Air Traffic Service Unit
-</dd>
-<dt><span id="acronyms_CPR">CPR</span></dt>
-<dd>
-Correlated Position Report
-</dd>
-<dt><span id="acronyms_DF">DF</span></dt>
-<dd>
-Downlink Format
-</dd>
-<dt><span id="acronyms_ES">ES</span></dt>
-<dd>
-Extended Squitter
-</dd>
-<dt><span id="acronyms_FAA">FAA</span></dt>
-<dd>
-Federal Aviation Administration
 </dd>
 <dt><span id="acronyms_FDR">FDR</span></dt>
 <dd>
 Flight Data Recorder
 </dd>
-<dt><span id="acronyms_FIR">FIR</span></dt>
-<dd>
-Flight Information Region
-</dd>
 <dt><span id="acronyms_FOQA">FOQA</span></dt>
 <dd>
 Flight Operational Quality Assurance
 </dd>
-<dt><span id="acronyms_GNSS">GNSS</span></dt>
-<dd>
-Global Navigation Satellite System
-</dd>
-<dt><span id="acronyms_GPS">GPS</span></dt>
-<dd>
-Global Positioning System
-</dd>
-<dt><span id="acronyms_IAS">IAS</span></dt>
-<dd>
-Indicated Air Speed
-</dd>
-<dt><span id="acronyms_ILS">ILS</span></dt>
-<dd>
-Instrument Landing System
-</dd>
-<dt><span id="acronyms_PSR">PSR</span></dt>
-<dd>
-Primary Surveillance Radar
-</dd>
 <dt><span id="acronyms_QAR">QAR</span></dt>
 <dd>
 Quick Access Recorder
-</dd>
-<dt><span id="acronyms_SSR">SSR</span></dt>
-<dd>
-Secondary Surveillance Radar
-</dd>
-<dt><span id="acronyms_TAS">TAS</span></dt>
-<dd>
-True Air Speed
-</dd>
-<dt><span id="acronyms_TCAS">TCAS</span></dt>
-<dd>
-Traffic alert and Collision Avoidance System
 </dd>
 <dt><span id="acronyms_UAS">UAS</span></dt>
 <dd>
@@ -1472,40 +1248,17 @@ Unmanned Aircraft System
 <dd>
 Universal Access Transceiver
 </dd>
-<dt><span id="acronyms_UAV">UAV</span></dt>
-<dd>
-Unmanned Aerial Vehicle
-</dd>
-<dt><span id="acronyms_VOR">VOR</span></dt>
-<dd>
-Very High Frequency Omnidirectional Range Station
-</dd>
 </dl>
 <div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-sun1090" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[1] </div><div class="csl-right-inline">J. Sun, <em><a href="https://mode-s.org/decode/">The 1090 <span>Megahertz Riddle</span>: <span>A Guide</span> to <span>Decoding Mode S</span> and <span>ADS-B Signals</span></a></em>. 2021.</div>
-</div>
-<div id="ref-opensky20" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[2] </div><div class="csl-right-inline">X. Olive <em>et al.</em>, <span>“<span>OpenSky Report</span> 2020: <span>Analysing</span> in-flight emergencies using big data,”</span> 2020, doi: <a href="https://doi.org/10.1109/DASC50938.2020.9256787">10.1109/DASC50938.2020.9256787</a>.</div>
-</div>
-<div id="ref-sun20capab" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[3] </div><div class="csl-right-inline">J. Sun, H. Vû, X. Olive, and J. Hoekstra, <span>“Mode <span>S Transponder Comm-B Capabilities</span> in <span>Current Operational Aircraft</span>,”</span> presented at the <span>OpenSky Symposium</span>, Nov. 2020, doi: <a href="https://doi.org/10.3390/proceedings2020059004">10.3390/proceedings2020059004</a>.</div>
-</div>
-<div id="ref-opensky19" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[4] </div><div class="csl-right-inline">M. Schafer, X. Olive, M. Strohmeier, M. Smith, I. Martinovic, and V. Lenders, <span>“<span>OpenSky Report</span> 2019: <span>Analysing TCAS</span> in the <span>Real World</span> using <span>Big Data</span>,”</span> Sept. 2019, doi: <a href="https://doi.org/10.1109/DASC43569.2019.9081686">10.1109/DASC43569.2019.9081686</a>.</div>
-</div>
-<div id="ref-flarm_patent" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[5] </div><div class="csl-right-inline">C. Le Tallec and B. Gravier, <span>“<a href="https://patents.google.com/patent/WO2000002176A1/en">Device for improving the security of aircraft in visual flight regime</a>,”</span> WO 00/02176, Jan. 13, 2000.</div>
-</div>
-<div id="ref-flarm_manual" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[6] </div><div class="csl-right-inline">F. Technology, <span>“<span>PowerFLARM Fusion User</span> and <span>Maintenance Manual</span>,”</span> 2021. [Online]. Available: <a href="https://flarm.com/wp-content/uploads/man/FTD-078-PowerFLARM-Fusion-User-and-Maintenance-Manual.pdf">https://flarm.com/wp-content/uploads/man/FTD-078-PowerFLARM-Fusion-User-and-Maintenance-Manual.pdf</a>.</div>
+<div id="ref-olive_filtering_2025" class="csl-entry" role="listitem">
+<div class="csl-left-margin">[1] </div><div class="csl-right-inline">X. Olive, J. Krummer, B. Figuet, and R. Alligier, <span>“Filtering techniques for ADS-b trajectory preprocessing,”</span> <em>Journal of Open Aviation Science</em>, vol. 2, no. 2, Mar. 2025, doi: <a href="https://doi.org/10.59490/joas.2024.7882">10.59490/joas.2024.7882</a>.</div>
 </div>
 </div>
 </section>
 
 </main> <!-- /main -->
 <script type="ojs-module-contents">
-eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6ImltcG9ydCB7IEZsaWdodCB9IGZyb20gXCJAeG9vbGl2ZS90cmFmZmljLWpzXCJcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMiIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InFhbnRhczc0NyA9IEZsaWdodC5mcm9tU2FtcGxlKFwicWFudGFzNzQ3XCIpXG5xYW50YXM3NDcudGFibGUoKVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC0zIiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoie1xuICBjb25zdCBjb250YWluZXIgPSB5aWVsZCBodGwuaHRtbGA8ZGl2IHN0eWxlPVwiaGVpZ2h0OiA0MDBweDtcIj5gO1xuICBjb25zdCBtYXAgPSBMLm1hcChjb250YWluZXIsIHsgc2Nyb2xsV2hlZWxab29tOiBmYWxzZSB9KTtcbiAgY29uc3QgbGF5ZXIgPSBMLmdlb0pTT04oXG4gICAgcWFudGFzNzQ3LnJlc2FtcGxlKGQzLnRpbWVTZWNvbmQuZXZlcnkoNSkpLmZlYXR1cmUoKVxuICApLmFkZFRvKG1hcCk7XG4gIG1hcC5maXRCb3VuZHMobGF5ZXIuZ2V0Qm91bmRzKCksIHsgbWF4Wm9vbTogNyB9KTtcbiAgTC50aWxlTGF5ZXIoXG4gICAgXCJodHRwczovL3tzfS5iYXNlbWFwcy5jYXJ0b2Nkbi5jb20vcmFzdGVydGlsZXMvdm95YWdlcl9sYWJlbHNfdW5kZXIve3p9L3t4fS97eX0ucG5nXCIsXG4gICAge1xuICAgICAgYXR0cmlidXRpb246XG4gICAgICAgIFwiwqkgPGEgaHJlZj1odHRwczovL3d3dy5vcGVuc3RyZWV0bWFwLm9yZy9jb3B5cmlnaHQ+T3BlblN0cmVldE1hcDwvYT4gY29udHJpYnV0b3JzXCJcbiAgICB9XG4gICkuYWRkVG8obWFwKTtcbn1cbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNCIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlBsb3QucGxvdCh7XG4gIG1hcmtzOiBbXG4gICAgUGxvdC5saW5lKHFhbnRhczc0Ny5kYXRhLCB7XG4gICAgICB4OiBcInRpbWVzdGFtcFwiLFxuICAgICAgeTogXCJhbHRpdHVkZVwiLFxuICAgICAgc3Ryb2tlOiBcInN0ZWVsYmx1ZVwiLFxuICAgIH0pXG4gIF0sXG4gIHg6IHtcbiAgICB0aWNrRm9ybWF0OiBkMy51dGNGb3JtYXQoXCIlSDolTVwiKSxcbiAgICBsYWJlbDogXCJ0aW1lc3RhbXAgKFVUQylcIlxuICB9LFxuICB5OiB7XG4gICAgbGFiZWw6IFwiYWx0aXR1ZGUgKGluIGZlZXQpXCJcbiAgfSxcbiAgbWFyZ2luTGVmdDogNTAsXG4gIHdpZHRoLFxuICBoZWlnaHQ6IDIwMCxcbiAgZ3JpZDogdHJ1ZVxufSlcbiJ9XX0=
+eyJjb250ZW50cyI6W3sibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtMSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InRyYWZmaWMgPSByZXF1aXJlKFwidHJhZmZpYy5qc0AwLjEuMlwiKS50aGVuKCh0cmFmZmljKSA9PiB7XG4gIHRyYWZmaWMuZW52LnNldEVudih7IElucHV0cywgaHRtbDogaHRsLmh0bWwsIGQzLCBQbG90IH0pO1xuICByZXR1cm4gdHJhZmZpYztcbn0pXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTIiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJGbGlnaHQgPSB0cmFmZmljLmNvcmUuRmxpZ2h0XG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTMiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJsZWFmbGV0U3R5bGVzID0gaHRsLmh0bWxgPGxpbmsgcmVsPVwic3R5bGVzaGVldFwiIGhyZWY9XCJodHRwczovL3VucGtnLmNvbS9sZWFmbGV0QDEuOS40L2Rpc3QvbGVhZmxldC5jc3NcIj5gXG4ifSx7Im1ldGhvZE5hbWUiOiJpbnRlcnByZXQiLCJjZWxsTmFtZSI6Im9qcy1jZWxsLTQiLCJpbmxpbmUiOmZhbHNlLCJzb3VyY2UiOiJMID0gcmVxdWlyZShcImxlYWZsZXRAMS45LjRcIilcbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNSIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6InFhbnRhczc0NyA9IEZsaWdodC5mcm9tU2FtcGxlKFwicWFudGFzNzQ3XCIpXG5xYW50YXM3NDcudGFibGUoKVxuIn0seyJtZXRob2ROYW1lIjoiaW50ZXJwcmV0IiwiY2VsbE5hbWUiOiJvanMtY2VsbC02IiwiaW5saW5lIjpmYWxzZSwic291cmNlIjoie1xuICBjb25zdCBjb250YWluZXIgPSB5aWVsZCBodGwuaHRtbGA8ZGl2IHN0eWxlPVwiaGVpZ2h0OiA0MDBweDtcIj5gO1xuICBjb25zdCBtYXAgPSBMLm1hcChjb250YWluZXIsIHsgc2Nyb2xsV2hlZWxab29tOiBmYWxzZSB9KTtcbiAgY29uc3QgbGF5ZXIgPSBMLmdlb0pTT04oXG4gICAgcWFudGFzNzQ3LnJlc2FtcGxlKGQzLnRpbWVTZWNvbmQuZXZlcnkoNSkpLmZlYXR1cmUoKVxuICApLmFkZFRvKG1hcCk7XG4gIG1hcC5maXRCb3VuZHMobGF5ZXIuZ2V0Qm91bmRzKCksIHsgbWF4Wm9vbTogNyB9KTtcbiAgTC50aWxlTGF5ZXIoXG4gICAgXCJodHRwczovL3tzfS5iYXNlbWFwcy5jYXJ0b2Nkbi5jb20vcmFzdGVydGlsZXMvdm95YWdlcl9sYWJlbHNfdW5kZXIve3p9L3t4fS97eX0ucG5nXCIsXG4gICAge1xuICAgICAgYXR0cmlidXRpb246XG4gICAgICAgIFwiwqkgPGEgaHJlZj1odHRwczovL3d3dy5vcGVuc3RyZWV0bWFwLm9yZy9jb3B5cmlnaHQ+T3BlblN0cmVldE1hcDwvYT4gY29udHJpYnV0b3JzXCJcbiAgICB9XG4gICkuYWRkVG8obWFwKTtcbn1cbiJ9LHsibWV0aG9kTmFtZSI6ImludGVycHJldCIsImNlbGxOYW1lIjoib2pzLWNlbGwtNyIsImlubGluZSI6ZmFsc2UsInNvdXJjZSI6IlBsb3QucGxvdCh7XG4gIG1hcmtzOiBbXG4gICAgUGxvdC5saW5lKHFhbnRhczc0Ny5kYXRhLCB7XG4gICAgICB4OiBcInRpbWVzdGFtcFwiLFxuICAgICAgeTogXCJhbHRpdHVkZVwiLFxuICAgICAgc3Ryb2tlOiBcInN0ZWVsYmx1ZVwiLFxuICAgIH0pXG4gIF0sXG4gIHg6IHtcbiAgICB0aWNrRm9ybWF0OiBkMy51dGNGb3JtYXQoXCIlSDolTVwiKSxcbiAgICBsYWJlbDogXCJ0aW1lc3RhbXAgKFVUQylcIlxuICB9LFxuICB5OiB7XG4gICAgbGFiZWw6IFwiYWx0aXR1ZGUgKGZ0KVwiXG4gIH0sXG4gIG1hcmdpbkxlZnQ6IDUwLFxuICB3aWR0aCxcbiAgaGVpZ2h0OiAyMDAsXG4gIGdyaWQ6IHRydWVcbn0pXG4ifV19
 </script>
 <script type="module">
 if (window.location.protocol === "file:") { alert("The OJS runtime does not work with file:// URLs. Please use a web server to view this document."); }
@@ -1935,8 +1688,8 @@ window._ojs.runtime.interpretFromScriptTags();
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../chapters/data_sources/adsb-mode-s-decoding.html" class="pagination-link" aria-label="🟡 ADS-B &amp; Mode S">
-        <span class="nav-page-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">🟡 ADS-B &amp; Mode S</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../chapters/data_sources/adsb-mode-s-decoding.html" class="pagination-link" aria-label="Decode ADS-B and Mode S data">
+        <span class="nav-page-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Decode ADS-B and Mode S data</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -24,27 +24,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -568,13 +548,13 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/flight-tracking-surveillance.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">🟢 Flight tracking</span></span></a>
+ <span class="menu-text"><span class="chapter-number">29</span>&nbsp; <span class="chapter-title">Flight tracking and surveillance</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/adsb-mode-s-decoding.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">🟡 ADS-B &amp; Mode S</span></span></a>
+ <span class="menu-text"><span class="chapter-number">30</span>&nbsp; <span class="chapter-title">Decode ADS-B and Mode S data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -997,7 +977,7 @@ window.Quarto = {
 
 <p>Aircraft do not usually know their altitude by directly measuring their geometric height above the ground or above mean sea level. In most phases of flight, altitude is inferred from atmospheric pressure, using a conventional model of how pressure, temperature, and density vary with height. This convention is essential for vertical separation: two aircraft using the same pressure reference can be kept apart even when the real atmosphere differs from the model.</p>
 <p>Atmosphere models also connect altimetry to aircraft performance. Air density affects lift, drag, thrust, and fuel consumption; temperature affects the speed of sound and therefore Mach number. A consistent atmosphere model is therefore needed both to interpret flight levels and to compute aircraft trajectories.</p>
-<p>The elements presented in this section are mainly taken from the International Civil Aviation Organization (ICAO) Standard Atmosphere Manual and the atmosphere model used in the EUROCONTROL Base of Aircraft Data (BADA) performance model <span class="citation" data-cites="bada42manual"><a href="../appendix/references.html#ref-bada42manual" role="doc-biblioref">[1]</a></span>.</p>
+<p>The elements presented in this section are mainly taken from the International Civil Aviation Organization (ICAO) Standard Atmosphere Manual and the atmosphere model used in the EUROCONTROL Base of Aircraft Data (BADA) performance model <span class="citation" data-cites="bada42manual"><a href="../appendix/references.html#ref-bada42manual" role="doc-biblioref"><strong>bada42manual?</strong></a></span>.</p>
 <section id="sect:ISA" class="level2" data-number="7.1">
 <h2 data-number="7.1" class="anchored" data-anchor-id="sect:ISA"><span class="header-section-number">7.1</span> The International Standard Atmosphere (ISA)</h2>
 <p>The International Standard Atmosphere is a conventional reference atmosphere. It does not describe the exact weather at a given place and time; instead, it defines a common vertical profile of pressure, temperature, density, and speed of sound. This common reference is what makes pressure altitude, flight levels, aircraft performance tables, and speed conversions comparable across aircraft and datasets.</p>
@@ -1397,11 +1377,6 @@ Base of Aircraft Data
 International Civil Aviation Organization
 </dd>
 </dl>
-<div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-bada42manual" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[1] </div><div class="csl-right-inline">EUROCONTROL, <span>“User manual for the base of aircraft data (BADA) family 4,”</span> EUROCONTROL Experimental Centre, Brétigny-sur-Orge, France, 12/11/22-58, 2022.</div>
-</div>
-</div>
 </section>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
