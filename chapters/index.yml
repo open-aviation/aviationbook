@@ -60,7 +60,7 @@
       href: data_sources/airport-infrastructure-data.html
     - text: Flight tracking and surveillance data
       href: data_sources/flight-tracking-surveillance.html
-    - text: ADS-B and Mode S decoding
+    - text: Decode ADS-B and Mode S data
       href: data_sources/adsb-mode-s-decoding.html
     - text: Datalink beyond the transponder
       href: data_sources/datalink-beyond-transponder.html

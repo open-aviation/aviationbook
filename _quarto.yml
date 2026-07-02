@@ -196,9 +196,9 @@ book:
               href: chapters/data_sources/aircraft-information.qmd
             - text: Airport and infrastructure
               href: chapters/data_sources/airport-infrastructure-data.qmd
-            - text: 🟢 Flight tracking
+            - text: Flight tracking and surveillance
               href: chapters/data_sources/flight-tracking-surveillance.qmd
-            - text: 🟡 ADS-B & Mode S
+            - text: Decode ADS-B and Mode S data
               href: chapters/data_sources/adsb-mode-s-decoding.qmd
             - text: 🟠 Datalink overview
               href: chapters/data_sources/datalink-beyond-transponder.qmd

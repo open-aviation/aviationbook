@@ -1,5 +1,5 @@
 ---
-title: Flight tracking technologies
+title: Flight tracking and surveillance data
 aliases:
   - .
 authors:
@@ -7,95 +7,112 @@ authors:
   - Martin Strohmeier
 ---
 
-::: {.callout-warning}
-## TODO for this page
+Flight tracking datasets describe how an aircraft state evolves over time.
 
-This page has been copied or moved into the experimental `new/` architecture. Review the scope, trim or split content where needed, fix internal links, and add missing material described by the new table of contents.
+In their most common tabular form, they contain timestamped positions, altitudes, speeds, vertical rates, and identifiers such as the aircraft address or callsign. They may come from aircraft recorders, \acr{ANSP} systems, crowdsourced radio receivers, commercial aggregators, or specialised low-level traffic networks.
+
+This page focuses on data sources: what they contain, how they are accessed, and what limitations matter for analysis.  The surveillance technologies themselves are introduced in the [background section](../background/surveillance-systems.qmd); raw decoding of ADS-B data is treated in the [next chapter](adsb-mode-s-decoding.qmd).
+
+## What is a trajectory dataset?
+
+A trajectory is a mathematical abstraction used to describe the evolution of a moving object with a finite list of parameters. In aviation, the usual state vector includes latitude, longitude, altitude, and timestamp, often completed with first derivatives such as ground speed, track angle, and vertical rate. Depending on the application, additional variables may be required: [aircraft performance models](aircraft-performance.qmd), for example, may use pitch, roll, yaw, true airspeed, indicated airspeed, Mach number, or aircraft mass estimates.
+
+We usually distinguish three levels of data:
+
+- **raw information**, such as Mode S or ADS-B frames received by a radio receiver, radar plots, or ASTERIX records before they have been normalised into a common table;
+- **decoded states**, where message or sensor contents have been converted into physical values such as position, callsign, altitude, velocity, or squawk code;
+- **reconstructed flights**, where points have been grouped, cleaned, interpolated, and enriched into coherent trajectories.
+
+Most analysis starts from the second or third level. The first level is essential when studying decoding, receiver networks, message quality, or protocol details.
+
+## Sources of trajectory data
+
+### Flight data recorders and quick access recorders
+
+
+The most comprehensive trajectory and aircraft-state data are produced by the aircraft itself, especially by the \acr{FDR} and \acr{QAR}. These records may contain thousands of parameters and support \acr{FOQA}, post-operations safety analysis, operational-efficiency studies, and predictive maintenance.
+
+Recorder data are usually owned by the aircraft operator and are highly sensitive. They can expose operational practices, aircraft handling, maintenance information, and commercial strategies. Researchers may access such data only under strict agreements, and these data cannot support open global analyses across all aircraft in a region.
+
+### ANSP radar and surveillance tracks
+
+Air navigation service providers build surveillance tracks from systems such as [radar](../background/surveillance-systems.qmd#primary-surveillance-radar), Mode S, ADS-B, and multilateration. The data product available to controllers is not usually a raw sensor feed but a processed traffic picture: plots are associated to tracks, filtered, smoothed, fused, and sometimes correlated with flight plans.
+
+A typical radar or fused surveillance track contains an identifier, timestamps, position, altitude, ground speed, vertical speed, and track angle. Kalman filters and other tracking algorithms may smooth positions and compute derivatives.
+
+::: {.callout-important}
+\acr{ANSP}s own the data produced by the surveillance installations they operate. Systematic access to radar or fused surveillance trajectories is therefore difficult, and international flights may require agreements with several providers.
 :::
 
+Radar and fused tracks have excellent operational value, but they are rarely available as open data. When available, they may be provided in operational exchange formats such as ASTERIX, in post-processed archives, or through research agreements. Access conditions should be checked early: these records are operational data, receiver and sensor locations may be sensitive, and redistribution is often restricted.
 
-A trajectory is a mathematical abstraction used to describe the evolution of a moving object with a finite list of parameters. The most common features in aviation include latitude, longitude, altitude, all indexed by time, with first derivatives such as ground speed, track angle and vertical rate. Depending on the application, some models would expect more features. For example, [aircraft performance models](aircraft-performance.qmd) could require the pitch, roll and yaw angles, the true air speed, the indicated air speed, the Mach number, etc.
+ASTERIX is a family of category-specific formats rather than a single trajectory schema:
 
-This chapter describes several common formats for trajectories depending on available technology to record them. Associated data sources come with different licensing terms which must be kept in mind when developing or applying computing methods.
+- **CAT048** is used for monoradar target reports. It may contain the data source identifier, time of day, measured polar position, Mode A squawk, flight level, aircraft address, aircraft identification, Mode S Comm-B payloads, track number, calculated position, and calculated track velocity. Positions may be radar-local polar or Cartesian quantities, so conversion to latitude/longitude depends on the radar reference and processing chain.
+- **CAT021** is used for ADS-B target reports. It commonly carries WGS-84 position, aircraft address, time of day, flight level, ground vector, target identification, Mode 3/A code, and quality indicators; however, CAT021 is version-sensitive, so the same category number can map field-reference numbers to different data items across editions.
 
-::: {.callout-tip}
-# Flight data recorders
+### Crowdsourced and open receiver networks
 
-Obviously, the most comprehensive data source is produced by the aircraft itself, specifically by the \acr{FDR} or \acr{QAR}. Use cases for such data range from \acr{FOQA}, post-ops analysis to improve flight safety or operational efficiency, system analysis for predictive or condition-based maintenance. Such data typically contains over 2000 flight parameters and is considered very sensitive by aircraft operators as it may expose some commercial strategies.
+[\acrfull{ADS-B}](../background/surveillance-systems.qmd#ads-b) and Mode S data are widely collected by networks of ground receivers. Public websites such as [Flightradar24](https://www.flightradar24.com), [FlightAware](https://flightaware.com) aggregate messages from distributed receivers and produce aircraft state vectors or flight tracks. Access ranges from open research datasets to commercial APIs; licensing, privacy filtering, and redistribution rules differ by provider. [The OpenSky Network](https://opensky-network.org) provide an open access to historical data for academics, limited to research usage.
 
-*It is usually difficult for researchers to get full access to such data, even under non-disclosure agreement*. Also, as aircraft operators own the data, this solution cannot be used for global analyses of all aircraft flying in a designated area.
-:::
+ADS-B is especially important because aircraft broadcast their own position, altitude, velocity, and identification without being interrogated. Mode S replies and Comm-B messages may add identity, altitude, aircraft parameters, or intent-related fields when interrogated by compatible ground infrastructure. Raw decoding details belong in [Decode ADS-B and Mode S data](adsb-mode-s-decoding.qmd).
 
+Ground receiver coverage is dense in many populated regions and sparse over oceans, polar areas, deserts, and politically sensitive regions. Satellite ADS-B reduces some of these gaps by receiving 1090 MHz broadcasts from low-Earth-orbit satellites, but access is usually commercial or institutional.
 
-## Radar tracks
+### Contract-based surveillance and datalink sources
 
-The concept of **\acr{PSR}** is fairly simple: it is a rotating radio transponder with an omnidirectional antenna. Commonly, the radar transmits a one-microsecond pulse for every one millisecond and listens to the reflections from the aircraft. The **position of the aircraft** is measured by the distance and angle to the radar. The distance is known as the *slant distance*, which is the line-of-sight distance between an aircraft and the radar. It can be calculated by measuring the time difference between the original signal and the reflection received, since the speed of the radio wave (speed of light) is known. The *azimuth angle* of the aircraft is determined by the rotation angle of the radar.
+[\acrfull{ADS-C}](../background/surveillance-systems.qmd#ads-c) can also provide trajectory data, especially in oceanic and remote airspace. Unlike ADS-B, it is not an open broadcast. It is based on a contract between an aircraft and an \acr{ATSU} specifying what information should be sent and under which conditions.
 
-The slant distance of an aircraft does not always correspond to the horizontal distance to the radar. Since the civil radar usually does not provide elevation information on the target, it is not possible to accurately convert the slant distance to the horizontal distance. Historically, it is sufficient to use primary radar for separating aircraft without considering these altitude differences. However, [other systems](#mode-s) have been put in place to provide air traffic controllers more accurate altitudes of the aircraft.
-
-:::{.callout-important}
-**\acr{ANSP}** own the data produced by the surveillance radar installations they operate.
-:::
-
-Radar tracks have a prestigious aura for obvious coverage reasons. However, it is rather unlikely that you gain access to radar trajectories on a systematic basis. Moreover, on international flights, getting a full trajectory would require agreements with each \acr{ANSP} of all countries aircraft have flown.
-
-In general, trajectories based on radar plots produced by computer systems contain an identifier, timestamps, latitudes, longitudes, altitudes, ground speed, vertical speed and track angle. **Kalman filters** help to smoothen trajectories and compute the derivatives.
-
-
-## ADS-B
-
-\acr{ADS-B} is probably one of the most well-known source of aircraft trajectories, popularized by famous websites such as [Flightradar24](https://www.flightradar24.com) or [The OpenSky Network](https://www.opensky-network.org). It is a surveillance technology designed to allow aircraft to broadcast their flight state periodically without the need for interrogation.
-
-The word *automatic* refers to the fact that no inputs from controllers or pilots are required. The word *dependent* indicates this technology depends on information from other onboard systems, such as air data systems and navigation systems.
-
-
-:::{.callout-important}
-Messages do not contain any timestamp information. Timestamps are usually appended by the receiver of the messages, based on the reception time (and not the time of emission by the aircraft).
-:::
-
-Information broadcast in \acr{ADS-B} messages contains, in addition to a unique [24-bit transponder code](#aircraft-information), named `icao24` in examples below:
-
-- *identification information*: the *callsign* (an 8-character *non-unique* identifier of the mission or the route of the aircraft) and the wake vortex category;
-- *positional information*: latitude and longitude in degrees (encoded in \acr{CPR} format), barometric altitude (converted to ISA equivalent), and GPS altitude in feet;
-- *velocity information*: track angle in degrees, ground speed in knots, vertical rate in feet per minute;
-- *uncertainty information* around the position and the velocity of the aircraft.
-
-Positional and velocity information is computed by the aircraft based on GNSS and inertial navigation systems of the aircraft.
-
+For flight tracking, ADS-C reports are valuable because they may include not only a position but also route intent, meteorological information, and air-reference data. These messages have traditionally been available mainly to operational stakeholders, but ADS-C data have also started to appear in research-oriented feeds, including the OpenSky Network. The detailed data model and decoded examples are covered in [CPDLC and ADS-C data](cpdlc-adsc-data.qmd). Datalink context is introduced in [Datalink beyond the transponder](datalink-beyond-transponder.qmd).
 
 :::{.callout-warning}
-There is a common confusion in aviation between three designations for angles:
-
-- the **track angle** represents the direction the aircraft is flying. It is the angle of the speed vector, ranging from 0 (North) to 360 degrees (90° for East, 270° for West);
-- the **heading angle** represents the direction the nose the aircraft is pointing at;
-- the **bearing angle** usually represents the direction of/to a static object, e.g., the bearing of a runway, or the bearing to a navigational point.
-
-
-![source: https://aviation.stackexchange.com/a/96035](../../images/ZUw30.png)
-
+TODO update links in previous paragraph
 :::
 
-:::{.callout-note}
-## A note about callsign identifiers
+### Low-level and general aviation tracking
 
-A callsign is an eight-character identifier used for communication with the \acr{ATC}.
+Not all flight tracking relies on certified transponders and 1090 MHz ADS-B. Low-level, general aviation, glider, and emerging uncrewed-aircraft operations use additional systems.
 
-General aviation commonly uses the aircraft registration (tail number) as a callsign; commercial flights use a (often unique) identifier per route, starting with three letters identifying the airline operator, `BAW` (*pronounce "speedbird"*) for British Airways, `AFR` for Air France, etc.
+**\acr{UAT}** is an ADS-B-like technology operating on 978 MHz. In the United States, it is used mainly by general aviation aircraft below 18,000 feet as an alternative to 1090 MHz Extended Squitter. It is therefore geographically and operationally limited: UAT data are mainly relevant within or near US airspace.
 
-Outside commercial aviation, the callsign commonly refers to the mission operated by an aircraft, and this can help distinguish the original intention of an aircraft used for specific purposes.
+**FLARM** is widely used for traffic awareness and collision avoidance in gliders and other light aircraft. It broadcasts position, altitude, velocity, aircraft type, and short-term trajectory-prediction information. Its radio protocol is proprietary and encrypted, but crowdsourced reception is possible through networks such as the [Open Glider Network](https://live.glidernet.org/). The OpenSky Network also collects FLARM raw messages for institutional research users.
 
-For example, aircraft `F-HNAV` uses the `CALIBRA` callsign for flight inspection and \acr{VOR}/\acr{ILS} calibration operations, the `JAMMING` callsign during jamming investigation and a more regular `NAK` callsign when commuting between airfields.
+**\acr{ADS-L}** is a developing cooperative surveillance technology for low-level airspace, typically below 10,000 feet. It targets aircraft and devices that may not carry conventional ADS-B equipment: gliders, light sport aircraft, paragliders, helicopters, parachuting operations, and \acr{UAS}. It is still undergoing validation and regulatory development, so operational deployment and data access remain limited.
 
-Similarly, test flights operated by Airbus use an `AIB` callsign; Boeing uses a `BOE` callsign; ambulance helicopters often use explicit callsigns: `SAMU` in France (stands for *Urgent Medical Aid Service*) and `LIFE` in many European countries.
+## An example trajectory
 
-Australian firefighting operations use a specific callsign depending on the role of the aircraft during the operations: `BMBR` for firebombing; `SPTR` for fire spotters; `BDOG`, *bird dog*, for fire attack supervisions (often subcontracted); and `FSCN`, fire scan for remote sensing fire operations.
+Even when all fields are not available at each timestamp, a tabular representation is the common starting point. Typical columns include a timestamp, aircraft [icao24 address](aircraft-information.qmd), callsign, position, barometric or geometric altitude, ground speed, track, vertical rate, squawk, and sometimes receiver or source metadata. In this example, the `icao24` code `7c4779` matches a Qantas Boeing 747 registered as `VH-OEJ`.
+
+::: {.callout-tip}
+## What is a callsign
+
+A callsign is the identifier used in communication with ATC. General aviation often uses the aircraft registration, while commercial flights commonly use an airline telephony designator and a flight number, such as `BAW` (pronounced "speedbird") for British Airways or `AFR` for Air France. Other operations may encode a mission in the callsign: calibration flights, firefighting, medical helicopters, test flights, or military operations.
+
+For data analysis, callsigns are useful but fragile. They are not globally unique, may be missing, can persist after a flight changes phase, and may be reused by different aircraft at different times. They should usually be combined with the aircraft address, time, and route context.
 :::
 
-Even though all information is not available at each timestamp, tabular data (csv) is a common format to represent trajectory data. In this example, the `icao24` code `7c4779` matches a Qantas Boeing B747 registered as `VH-OEJ`.
 
 ```{ojs}
 //| echo: false
-import { Flight } from "@xoolive/traffic-js"
+traffic = require("traffic.js@0.1.2").then((traffic) => {
+  traffic.env.setEnv({ Inputs, html: htl.html, d3, Plot });
+  return traffic;
+})
+```
+
+```{ojs}
+//| echo: false
+Flight = traffic.core.Flight
+```
+
+```{ojs}
+//| echo: false
+leafletStyles = htl.html`<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">`
+```
+
+```{ojs}
+//| echo: false
+L = require("leaflet@1.9.4")
 ```
 
 ```{ojs}
@@ -104,7 +121,7 @@ qantas747 = Flight.fromSample("qantas747")
 qantas747.table()
 ```
 
-This tabular information can easily be represented on a map, or as a regular plot for non-geographical features.
+The same data can be represented geographically or as time series for individual variables.
 
 ```{ojs}
 //| echo: false
@@ -125,8 +142,6 @@ This tabular information can easily be represented on a map, or as a regular plo
 }
 ```
 
----
-
 ```{ojs}
 //| echo: false
 Plot.plot({
@@ -142,7 +157,7 @@ Plot.plot({
     label: "timestamp (UTC)"
   },
   y: {
-    label: "altitude (in feet)"
+    label: "altitude (ft)"
   },
   marginLeft: 50,
   width,
@@ -151,135 +166,24 @@ Plot.plot({
 })
 ```
 
+## Data quality and coverage
 
-:::{.callout-note}
-## What *broadcasting* means
+Flight tracking data are not a neutral record of all aircraft movements: they reflect the surveillance technology, receiver deployment, aircraft equipage, regulatory mandates, filtering policies, and access conditions behind each feed.
 
-The letter "B" in ADS-B means *broadcast*: aircraft broadcast messages at the same rate regardless of ground equipments and infrastructure, even if no aircraft or receiver is within range. Aircraft broadcast ADS-B data even over oceans, poles, or deserted areas.
+- Coverage and sampling are the first limitations to inspect. Ground receivers are unevenly distributed, low-altitude aircraft disappear behind terrain or the radio horizon, satellite ADS-B has its own reception constraints, and ADS-B, radar, ADS-C, FLARM, UAT, and ADS-L all operate at different update rates; these differences affect event timing, speed estimates, vertical-rate estimates, phase detection, and comparisons between datasets.
 
-Recently, "Space-based ADS-B" has been implemented so that a constellation of low-altitude satellites attempts to receive and decode ADS-B messages from aircraft in the troposphere and forward positional information to ground-based stations. There have been high expectations around this technology which is expected to revolutionize traditional air traffic management over areas such as the North-Atlantic Ocean, controlled by Shannon (Ireland) and Gander (Canada) \acr{ACC}s.
-:::
+- Timing is also source-dependent: ADS-B and Mode S messages do not carry a full emission timestamp, receiver clocks may drift, and network aggregation may replace local reception times with later processing times.
 
+- Position and altitude fields require similar caution. ADS-B positions are aircraft-reported and depend on the onboard navigation solution, while radar and MLAT derive positions externally; fused tracks may hide which sensor contributed a given point.
 
-:::{.callout-tip}
-A lot of details about the contents of ADS-B messages, Mode S data and their decoding is detailed in a different book, *The 1090 Megahertz Riddle* @sun1090.
-:::
+- Barometric altitude, flight level, and geometric altitude do not describe the same quantity, and ISA/QNH assumptions or airport elevation become important near the surface.
 
-## Mode S
+- Several variables that look like direct measurements may in fact be derived, smoothed, or interpolated by the receiver or network, including ground speed, track angle, and vertical rate
 
-The **\acr{SSR}**, also known as the \acr{ATCRBS}, was designed to provide air traffic controllers more information than what is provided by the primary radar. The secondary radar can be installed separately or installed on top of the primary radar. It uses a different radio frequency to actively interrogate the aircraft and receive information transmitted by the aircraft.
+- Identity and continuity are another source of error: callsigns may be stale or missing, aircraft addresses can be duplicated, reassigned, anonymised, or filtered, and long gaps may fragment a single flight into several tracks.
 
-The \acr{SSR} transmits interrogations using the 1030 MHz radio frequency and the aircraft transponder transmits replies using the 1090 MHz radio frequency. In the early design of SSR, two civilian communication protocols (Mode A and Mode C) were introduced. Mode A and Mode C respectively allow the \acr{SSR} to continuously interrogate the **identity (squawk code)** and the **altitude** of an aircraft. The **squawk code** in Mode A is a unique 4-octal digit code given by air traffic controllers to aircraft in their \acr{FIR} for identification. The altitude in Mode C refers to the barometric altitude obtained from the aircraft’s air data system.
+These issues matter before modelling traffic flows, estimating performance, measuring emissions, or comparing flown trajectories with planned routes. Raw or decoded points therefore usually need [preprocessing](../work/trajectory-processing.qmd) before they become analytically useful flights: grouping by aircraft and callsign, splitting flights with time gaps or airport context, removing impossible jumps and duplicates, resampling, detecting flight phases, and enriching the trajectory with aircraft, airport, weather, airspace, or flight-plan data.
 
-:::{.callout-tip}
-Some squawk codes are reserved for particular emergency situations:
+The appropriate strategy depends on the question: a surface-movement study near an airport needs different assumptions from a continent-scale flow analysis or an aircraft-performance estimation. For a broader discussion of trajectory preprocessing challenges and reproducibility, see @olive_filtering_2025.
 
-- `7500` for hijacking situations;
-- `7600` for radio failures;
-- `7700` for general emergencies @opensky20.
-:::
-
-**Mode S (Mode Select Beacon System)** was designed by Lincoln Laboratory at Massachusetts Institute of Technology in the 1970s. Based on different iterations of hardware and software design in the 1980s, the implementation of Mode S in air traffic control began in the 1990s. Since then, Mode S has become one of the main sources for aircraft surveillance.
-
-The main characteristic of Mode S is its **selective interrogation**, which allows the \acr{SSR} to interrogate different information from different aircraft separately.  Unlike the limited number (4096) of unique identification codes in Mode A communication, the Mode S transponder is identified by a [24-bit transponder code](#aircraft-information), which can support up to $2^{24} =$ 6,777,216 unique addresses.
-
-:::{.callout-important}
-As Mode S consists in selective interrogation, it is strongly dependent on ground infrastructure around. Mode S messages are only sent in reply to an interrogation, therefore **no such data can be expected from an aircraft out of range of an SSR**, over the ocean, poles or deserted areas.
-:::
-
-The Mode S uplink signal contains parameters that indicate which information is desired by the air traffic controller. Many \acr{DF}s are described in the Mode S protocol in order to reply to such information:
-
--  **Altitude and identity replies (DF 4/5)** are rough equivalents to Mode A/C protocols;
-
--  **All-call reply (DF 11)** is the reply sent by Mode S compliant transponders to queries addressed to Mode A/C capable transponders. It contains the [24-bit transponder code](#aircraft-information), the transponder capabilities @sun20capab, and the interrogator identifier;
-
--  **ACAS short and long replies (DF 0/16)**: **Airborne Collision Avoidance System (ACAS)** is a system designed to reduce the risk of mid-air collisions and near mid-air collisions between aircraft. In particular **Resolution Advisories (RA)** generate particular messages (DF16) which can be used to find about past RA alerts @opensky19.\
-   Details of the protocol are described [here](https://mode-s.org/decode/content/mode-s/4-acas.html).
-
--  **Comm-B, with altitude and identity replies (DF 20/21)**: this protocol supports a large number of different types of messages, defined by **BDS (Comm-B Data Selector)** codes. **Mode S Enhances Surveillance (EHS)** accounts for a handful of BDS codes of particular interests:
-   - **BDS 4,0 -- Selected vertical intention**, with information about *selected altitude* in the autopilot, barometric pressure setting, and *navigation modes*;
-   - **BDS 5,0 -- Track and turn report**, with information about the *roll angle*, *true track angle rate* and *\acr{TAS}* in addition to ground speed and true track angle information also defined in \acr{ADS-B};
-   - **BDS 6,0 -- Heading and speed report**, with information about *magnetic heading* of the aircraft, *\acr{IAS}*, *barometric altitude rate* and *inertial vertical velocity* (in feet per minute)
-
-Coupling BDS 5,0 (for the \acr{TAS}, the true track angle and the ground speed -- the two last entries are also present in ADS-B) with BDS 6,0 (for magnetic heading) and can be used to recompute the apparent wind seen by the aircraft.\
-[Magnetic declination](earth.html#magnetic-declination) must be taken into account.
-
-:::{.callout-tip}
-\acr{ADS-B} messages also belong to the Mode S protocol, in the **\acr{ES}** category (BDS 0,5 through to 0,9). Only \acr{ES} messages (ADS-B) are broadcast, i.e., they are not the result of \acr{SSR} interrogations.
-:::
-
-![An overview of all Mode S services, excerpt from [www.mode-s.org](https://mode-s.org/decode/content/introduction.html#summary) @sun1090](../../images/mode_s_services.png)
-
-
-## ADS-C
-
-Born from the challenges of managing growth in aviation, the International Civil Aviation Organization in 1983 initiated a committee to align emerging technologies with growing air transport needs. By 1987, the committee found issues with the prevailing navigation systems, including communication limitations and the lack of digital links. The answer was satellite technology integration.
-
-This led to the idea of creating a Future Air Navigation System (FANS), comprising several new technologies including the **\acr{ADS-C}** system. \acr{ADS-C} addresses the constraints of High Frequency and Very High Frequency communication through satellite data links, enabling surveillance in remote locations. It also minimizes voice communication by sending automatic position updates digitally. By 1991, manufacturers started adopting FANS technology. Boeing introduced FANS-1, while Airbus presented FANS-A. Both of these were later merged into the widely-used FANS-1/A.
-
-The term **Contract** means that aircraft and \acr{ATSU}s negotiate agreements to share data. While aircraft can establish concurrent contracts with multiple \acr{ATSU}s, messages are exclusively exchanged between the aircraft and the \acr{ATSU} with which a particular contract was established. This differs from \acr{ADS-B}, where aircraft indiscriminately broadcast messages to everyone.
-
-All surveillance data from the aircraft is sent via contracts. To negotiate such a contract, the \acr{ATSU} sends a contract request, containing information regarding the surveillance data the \acr{ATSU} wants to receive, to an aircraft. The aircraft then responds to a contract with a positive acknowledgement and the appropriate report. In case of an error, the aircraft responds with a negative acknowledgement (if the message cannot be parsed), or a non-compliance notification (if the request contains data that is not available to the aircraft).
-
-The type of contract then defines what information the aircraft will return to the \acr{ATSU}:
-
-- **Periodic contract**: With this contract type, an \acr{ATSU} can request \acr{ADS-C} reports at a specified reporting interval with following data: flight ID, predicted route, earth reference, meteorological data, airframe ID, air reference, and aircraft intent.
-- **Event contract**: Whenever an event contract is established, the aircraft sends reports in the case a given event occurs. It can be requested in case of the following events: vertical range change, altitude range change, waypoint change, and lateral deviation.
-- **Demand contract**: In the case of a demand contract, an aircraft only sends a single report. This can be useful, when a periodic report is not received in time.
-
-
-Every \acr{ADS-C} report comprises, at a minimum, a basic report detailing the aircraft's position, accompanied by a timestamp and a figure of merit. The figure of merit denotes the precision of the positional information within the report and the operational status of \acr{TCAS}. Advanced reports encompass extra data as stipulated in the \acr{ADS-C} contract.
-
-
-## UAT
-
-**\acr{UAT}** is a technology similar to \acr{ADS-B} which operates on 978 MHz instead of 1090 MHz for \acr{ADS-B} \acr{ES}.
-
-The \acr{FAA} has been encouraging General Aviation aircraft to equip with \acr{UAT} compliant transponders for slightly cheaper than \acr{ES} transponders in order to decongestionate the 1090 MHz frequency in the US. The 2020 Mandate allows aircraft to be equipped with \acr{UAT} transponders if they remain **within the US borders** and **below 18,000 feet**.
-
-As a consequence, \acr{UAT} messages can only be received by receivers located in the United States or near their borders.
-
-
-## FLARM
-
-**FLARM** (a portmanteau of "flight" and "alarm") is, with \acr{TCAS}, one of the most widespread technologies for **traffic awareness and collision avoidance**. It is a system used to prevent potential aviation collision and to raise awareness of the pilot, initially tailored for **light aircraft, such as gliders, light aircraft, rotorcraft, and drones**. FLARM obtains its position and altitude readings from an internal \acr{GPS} (or potentially other \acr{GNSS}) and a barometric sensor, then broadcasts these together with forecast data about the future 3D flight track, calculated considering its speed, acceleration, track, turn radius, wind and other parameters. This is imperative for smaller lighter (even wind-powered) aircraft.
-
-At the same time, the receiver listens for other FLARM devices within range and processes the information received. Upon receiving such messages, the FLARM system may issue alarms to alert the pilot or show the relative position if other aircraft are within detection range.
-
-The wireless nature of FLARM allows for the reception of signals in a crowdsourced fashion. Although the FLARM radio protocol features message encryption in order to ensure integrity and confidentiality, implementation and encryption keys are available:
-
-- The [Open Glider Network (OGN)](https://live.glidernet.org/) maintains a tracking platform with the help of many receivers, mostly collocated with flying clubs operating light aircraft at local airfields.
-- The [OpenSky Network](https://www.opensky-network.org) also collects FLARM raw messages, with data accessible to institutional researchers.
-
-
-FLARM devices are based on the nRF905 chip. Depending on the geographical area they operate in, they transmit in the SRD860 band or in the ISM-band that can be used freely.
-
-- In Europe, Africa and Asia, the two frequencies **868.2 MHz and 868.4 MHz** are used, sending one to two messages per second per frequency. On 868.2MHZ, it transmits from 0.4s to 0.8s; On 868.4MHZ, it transmits from 0.4s to 1.2s.
-- In the Americas, Oceania and Israel **another undisclosed frequency hopping scheme** is in place, in order to comply with local regulations.
-
-Information contained in FLARM messages contains:
-
-- the **device address**, a unique identifier, similar to the [24-bit transponder code](#icao-identifiers). *In general,* if the aircraft is also equipped with a transponder, the same identifier is used;
-- the **aircraft type**: glider, tow-plane, helicopter, parachute, parachute drop-plane, hangglider, paraglider, \acr{UAV}, balloon, etc.;
-- **positional information**: *latitude* and *longitude* in degrees, *GPS altitude* **in meters**;
-- **velocity information**: *horizontal* and *vertical speeds*.
-
-As FLARM is a proprietary product, there is little public information about the exact inner workings of the trajectory prediction algorithm that powers the collision alert function. One version has been developed by ONERA in France and been licensed to FLARM Technology Ltd @flarm_patent.  At a high level, the documentation @flarm_manual describes it as follows: The device calculates its own predicted flight path for about the next 20 seconds. This prognosis is based on immediate past and current vectors, including but not limited to aircraft type, speed, vertical speed, turning radius etc. In addition, it uses a movement model that has been optimized for the respective user.
-
-According to the manual of PowerFLARM Fusion @flarm_manual, there are three levels of warnings with different types of annunciations: The first warning is issued around 18 seconds before impact, the second warning is issued around 12 seconds before impact and the third warning is issued around 8 seconds before impact. The warning is active as long as the collision risk remains and will change accordingly.
-
-## ADS-L
-
-**\acr{ADS-L}** is a developing cooperative surveillance technology for low-level airspace, typically below 10,000 feet. Its purpose is to address surveillance gaps in uncontrolled airspace where radar and [\acr{ADS-B}](#ads-b) coverage are limited or absent. Unlike traditional \acr{ADS-B}, \acr{ADS-L} is lightweight and low-cost, intended for gliders, light sport aircraft, paragliders, helicopters, skydivers, and \acr{UAS}. It aims to provide essential surveillance while remaining interoperable with \acr{ADS-B} and [FLARM](#flarm).
-
-\acr{ADS-L} operates in the M-Band (868.2 MHz, 868.4 MHz) and O-Band (869.525 MHz), similar to FLARM in Europe, Africa, and Asia. Recent developments allow use of LTE and 5G networks for aerial communication, based on CEPT/EEC Decision (22)07 (November 2022), enabling integration with cellular infrastructure for extended coverage.
-
-Messages typically include a unique device address (similar to the ICAO 24-bit code), aircraft type, position (latitude, longitude, altitude), velocity, timestamp, and status flags. Some implementations add trajectory prediction, intent data, and device capabilities. Broadcast rates are usually one to two messages per second per frequency, with a range up to 20 km for SRD 860 and potentially greater for LTE/5G systems. Power consumption is optimised for small devices.
-
-\acr{ADS-L} is designed to coexist with \acr{ADS-B} and FLARM, using similar formats and frequencies where possible. Some devices support dual-mode operation, and integration with ground-based receivers enables crowdsourced tracking.
-
-The technology is suited to dense, mixed traffic and areas with limited infrastructure, such as uncontrolled airspace, remote regions, UAS operations, and BVLOS missions. It aims to distinguish between cooperative and non-cooperative aircraft, though non-cooperative aircraft can only be detected by other means.
-
-\acr{ADS-L} is undergoing validation and trials in Europe and elsewhere. Technical standards and regulatory frameworks are in development, but operational deployment remains limited. Challenges include spectrum congestion, regulatory approval, device cost, privacy and security, and integration with existing surveillance systems.
-
-# Glossary {.unnumbered}
+## Glossary {.unnumbered}
