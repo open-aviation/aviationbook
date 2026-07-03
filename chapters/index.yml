@@ -68,20 +68,12 @@
       href: data_sources/adsc-data.html
     - text: CPDLC data
       href: data_sources/cpdlc-data.html
-    - text: Flight plans and route intent
-      href: data_sources/flight-plans-intent.html
-    - text: Network Manager trajectory formats
-      href: data_sources/network-manager-formats.html
-    - text: Aeronautical information management
+    - text: Aeronautical information and data objects
       href: data_sources/aeronautical-information.html
-    - text: AIP, NOTAM, AIC, SUP AIP, and PIB
-      href: data_sources/aip-notam-aic-pib.html
-    - text: Points, routes, airspaces, and procedures
-      href: data_sources/points-routes-airspaces-procedures.html
+    - text: Flight plans, intent, and Network Manager trajectories
+      href: data_sources/flight-plans-intent.html
     - text: Weather and environmental data
       href: data_sources/weather-environment-data.html
-    - text: Weather hazards and operational impact
-      href: data_sources/weather-hazards-impact.html
     - text: Aircraft performance data
       href: data_sources/aircraft-performance.html
     - text: Operational performance data

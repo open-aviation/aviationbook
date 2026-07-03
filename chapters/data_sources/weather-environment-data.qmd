@@ -4,22 +4,150 @@ authors:
 - Xavier Olive
 ---
 
-::: {.callout-warning}
-## TODO for this page
+Weather is both an operational constraint and a data source. It affects route choice, runway configuration, fuel planning, delays, diversions, turbulence exposure, safety margins, and environmental assessment. For aviation data analysis, weather data is rarely a single table: it combines observations, forecasts, gridded model fields, hazard advisories, remote-sensing products, and aircraft-derived measurements.
 
-This page has been copied or moved into the experimental `new/` architecture. Review the scope, trim or split content where needed, fix internal links, and add missing material described by the new table of contents.
+The background chapter on [weather and flight conditions](../background/weather-flight-conditions.qmd) is the place for meteorological concepts such as visibility, clouds, thunderstorms, icing, turbulence, wind shear, and VMC/IMC. This chapter focuses on the **data sources** analysts can join with trajectories, flight plans, airport operations, and safety records.
+
+## Main weather data families
+
+| Data family | Typical content | Common use |
+|---|---|---|
+| METAR/SPECI | observed aerodrome weather | airport conditions, low visibility, wind, runway configuration proxies |
+| TAF | aerodrome forecasts | pre-flight planning, predicted constraints |
+| SIGMET/AIRMET | hazardous weather advisories | convective weather, turbulence, icing, volcanic ash, mountain waves |
+| upper-air forecasts | wind and temperature aloft | fuel burn, cruise trajectory, flight planning |
+| radar and satellite imagery | precipitation, convection, cloud fields | storm avoidance, nowcasting, delay analysis |
+| reanalysis and NWP grids | global atmospheric fields | trajectory enrichment, climate/weather studies |
+| aircraft reports | wind, temperature, turbulence, position reports | in-situ validation and model comparison |
+| environmental datasets | emissions factors, noise contours, climate metrics | environmental impact analysis |
+
+Each family has different spatial resolution, temporal resolution, latency, quality controls, and access conditions.
+
+## Aerodrome observations and forecasts
+
+**METAR** reports describe observed weather at aerodromes. They typically include time, wind direction and speed, visibility, runway visual range when relevant, present weather, cloud layers, temperature, dew point, pressure, and recent weather remarks. **SPECI** reports are special observations issued when conditions change significantly.
+
+**TAF** reports are aerodrome forecasts. They describe expected wind, visibility, weather, cloud, and significant changes over a forecast period. TAFs are useful for pre-flight context and for studying how expected conditions differ from what actually occurred.
+
+For airport and flight-analysis workflows, METAR and TAF data can help explain:
+
+- runway configuration changes driven by wind;
+- low-visibility operations;
+- convective or precipitation-driven delays;
+- approach minima constraints;
+- diversion risk;
+- discrepancies between planned and actual arrival times.
+
+::: {.callout-note}
+## METAR is point data
+
+A METAR is an aerodrome observation, not a complete description of the weather along a route. It is useful near the airport but should not be stretched to explain en-route phenomena without additional data.
 :::
 
+## Hazard advisories
 
-This page replaces the current stub environment chapter with a real data-source chapter.
+SIGMET and AIRMET messages warn about weather phenomena significant to aviation. Depending on region and product type, they may cover thunderstorms, severe turbulence, severe icing, mountain waves, dust storms, volcanic ash, tropical cyclones, and other hazards.
 
-Planned scope:
+As data, these products combine text, validity periods, affected FIRs or regions, vertical limits, movement, intensity, and sometimes polygon geometries. They are valuable for identifying hazardous-weather exposure, but they require careful spatio-temporal interpretation.
 
-- METAR;
-- TAF;
-- SIGMET and AIRMET;
-- winds and temperature aloft;
-- weather radar and satellite imagery;
-- ERA5 and reanalysis;
-- AMDAR;
-- climate, emissions, and noise data.
+Typical analysis questions include:
+
+- Did a trajectory intersect a SIGMET polygon during its validity window?
+- Did flights reroute around convective weather?
+- Were delays concentrated in periods of low visibility or thunderstorms?
+- Did turbulence reports coincide with forecast or advisory regions?
+
+## Gridded weather and reanalysis
+
+Numerical weather prediction and reanalysis datasets provide gridded atmospheric fields. Common variables include wind components, temperature, pressure, humidity, geopotential height, cloud variables, precipitation, radiation, and turbulence-related diagnostics.
+
+\acrfull{ERA5} is widely used in research because it provides global historical reanalysis with consistent coverage over decades. Other operational forecast products may have higher temporal resolution, lower latency, or better suitability for real-time applications.
+
+For trajectory enrichment, gridded data is usually interpolated in four dimensions: latitude, longitude, altitude or pressure level, and time. This makes it possible to attach wind, temperature, or humidity to each trajectory point.
+
+Important caveats:
+
+- model altitude coordinates may be pressure levels, model levels, or height fields;
+- interpolation choices can affect derived wind and temperature;
+- convective hazards are often under-resolved in global models;
+- forecast data and reanalysis data answer different questions;
+- model fields should not be treated as direct observations.
+
+## Radar, satellite, and nowcasting products
+
+Weather radar and satellite imagery provide high-value spatial context for convective weather, precipitation, cloud cover, and storm evolution. Radar is especially useful near land-based radar networks; satellite data is more global but has different retrieval limitations.
+
+These products are often image-like or gridded rather than tabular. Useful derived features include storm cells, echo tops, precipitation intensity, lightning density, cloud-top temperature, and convective masks. They can be joined with trajectories to study route deviations, holding, arrival regulation, and tactical weather avoidance.
+
+## Aircraft-derived weather data
+
+Aircraft themselves provide weather observations. Sources include:
+
+- AMDAR or Mode-S-derived wind and temperature estimates;
+- ADS-C meteorological tags;
+- CPDLC position reports with meteorological fields;
+- turbulence reports or eddy-dissipation-rate products;
+- pilot reports where available.
+
+Aircraft-derived data is valuable because it samples the atmosphere along actual flight routes and at cruise altitudes. It is also uneven: coverage follows traffic flows, reporting depends on equipage and data-sharing agreements, and measurements may require calibration or quality control.
+
+The [ADS-C data](adsc-data.qmd) and [CPDLC data](cpdlc-data.qmd) chapters describe datalink messages that may contain wind, temperature, or position-report information.
+
+## Operational impacts and hazards
+
+Weather influences operations through several mechanisms:
+
+- **thunderstorms and convection** cause rerouting, airborne holding, ground stops, and diversions;
+- **turbulence** affects flight-level choice, passenger safety, and route planning;
+- **icing** constrains climb/descent and affects aircraft performance;
+- **wind shear and microbursts** are critical near airports;
+- **fog and low visibility** reduce airport capacity and may trigger low-visibility procedures;
+- **crosswinds and tailwinds** influence runway selection and landing limits;
+- **runway contamination** affects braking action and take-off/landing performance;
+- **strong winds aloft** affect flight time, fuel burn, and route choice.
+
+This operational interpretation should be grounded in the background weather chapter. In data work, the key task is to choose sources that match the phenomenon: METAR for airport visibility, radar or satellite for convection, gridded winds for cruise performance, SIGMET for advisory regions, and aircraft reports for in-situ conditions.
+
+## Environmental data
+
+Environmental analysis often joins trajectories with additional datasets rather than using weather reports directly. Examples include:
+
+- fuel-flow and emissions models;
+- CO₂ and non-CO₂ climate metrics;
+- contrail formation potential using humidity and temperature fields;
+- airport noise contours and population exposure layers;
+- local air-quality measurements or inventories;
+- surface weather for dispersion or noise-propagation studies.
+
+These datasets have their own assumptions and scales. For example, contrail studies require upper-air humidity and temperature along the trajectory, while airport noise studies require detailed aircraft type, thrust, procedure, runway, and population data.
+
+## Joining weather with aviation data
+
+Weather joins are usually spatio-temporal. Common patterns are:
+
+- nearest-station join: attach the closest METAR to airport movements;
+- validity-window join: match a TAF, SIGMET, or NOTAM-like product by time and area;
+- grid interpolation: interpolate ERA5 or forecast fields to trajectory points;
+- polygon intersection: test whether a flight crossed a hazard region;
+- event-window analysis: compare delays, diversions, or holdings before and after weather onset.
+
+Be explicit about time semantics. Observations, forecasts, advisories, issue times, valid times, and reception times are different. Mixing them can accidentally use future information in a retrospective analysis.
+
+## Data caveats
+
+Weather and environmental data can explain a lot, but they can also mislead:
+
+- airport observations do not describe en-route weather;
+- forecasts should not be evaluated as if they were observations;
+- global models smooth local hazards;
+- advisory products reflect both meteorology and operational issuance practices;
+- aircraft reports are biased toward traffic density;
+- environmental metrics depend strongly on model assumptions;
+- time zones, validity periods, and vertical references require careful handling.
+
+For reproducible research, store the data source, version, issue time, validity time, interpolation method, and spatial reference. Weather enrichment should be traceable, especially when it is used to explain delays, safety events, or environmental impact.
+
+## Glossary {.unnumbered}
+
+\glsaddallunused
+\printacronyms

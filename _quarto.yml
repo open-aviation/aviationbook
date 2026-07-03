@@ -59,13 +59,9 @@ book:
         - chapters/data_sources/datalink-acars-message-sources.qmd
         - chapters/data_sources/adsc-data.qmd
         - chapters/data_sources/cpdlc-data.qmd
-        - chapters/data_sources/flight-plans-intent.qmd
-        - chapters/data_sources/network-manager-formats.qmd
         - chapters/data_sources/aeronautical-information.qmd
-        - chapters/data_sources/aip-notam-aic-pib.qmd
-        - chapters/data_sources/points-routes-airspaces-procedures.qmd
+        - chapters/data_sources/flight-plans-intent.qmd
         - chapters/data_sources/weather-environment-data.qmd
-        - chapters/data_sources/weather-hazards-impact.qmd
         - chapters/data_sources/aircraft-performance.qmd
         - chapters/data_sources/operational-performance-data.qmd
         - chapters/data_sources/safety-occurrence-risk-data.qmd
@@ -200,26 +196,18 @@ book:
               href: chapters/data_sources/flight-tracking-surveillance.qmd
             - text: Decode ADS-B and Mode S data
               href: chapters/data_sources/adsb-mode-s-decoding.qmd
-            - text: Datalink and ACARS sources
+            - text: 🟡 Datalink and ACARS sources
               href: chapters/data_sources/datalink-acars-message-sources.qmd
-            - text: ADS-C data
+            - text: 🟡 ADS-C data
               href: chapters/data_sources/adsc-data.qmd
-            - text: CPDLC data
+            - text: 🟡 CPDLC data
               href: chapters/data_sources/cpdlc-data.qmd
-            - text: 🟡 Flight intent
-              href: chapters/data_sources/flight-plans-intent.qmd
-            - text: 🟡 NM formats
-              href: chapters/data_sources/network-manager-formats.qmd
-            - text: 🟡 AIM overview
+            - text: 🟡 Aeronautical information
               href: chapters/data_sources/aeronautical-information.qmd
-            - text: 🟡 AIP & NOTAM
-              href: chapters/data_sources/aip-notam-aic-pib.qmd
-            - text: 🟡 Routes & procedures
-              href: chapters/data_sources/points-routes-airspaces-procedures.qmd
-            - text: 🔴 Weather data
+            - text: 🟡 Flight plans and intent
+              href: chapters/data_sources/flight-plans-intent.qmd
+            - text: 🟡 Weather and environmental data
               href: chapters/data_sources/weather-environment-data.qmd
-            - text: 🔴 Weather hazards
-              href: chapters/data_sources/weather-hazards-impact.qmd
             - text: Performance models
               href: chapters/data_sources/aircraft-performance.qmd
             - text: 🟡 Operational performance

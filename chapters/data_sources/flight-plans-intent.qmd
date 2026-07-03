@@ -1,156 +1,175 @@
 ---
-title: Flight plans and trajectories
-aliases:
-  - .
+title: Flight plans, intent, and Network Manager trajectories
 authors:
-  - Enrico Spinielli
+- Enrico Spinielli
+- Xavier Olive
 ---
 
-::: {.callout-warning}
-## TODO for this page
+A flight plan is a declaration of intent: where an aircraft is expected to depart, where it is expected to arrive, which route it requests, which level it requests, and which aircraft and equipment will be used. It is not the same as the flown trajectory. Between filing and landing, the route may be amended by flow-management measures, controller clearances, weather deviations, or tactical decisions.
 
-This page has been copied or moved into the experimental `new/` architecture. Review the scope, trim or split content where needed, fix internal links, and add missing material described by the new table of contents.
-:::
+This chapter focuses on flight-plan and trajectory-intent data sources. The operational role of flight plans in air traffic services and flow management is introduced in [air traffic services, separation, and flow management](../background/atm-separation-flow.qmd#air-traffic-flow-management). The published points, routes, airspaces, and procedures that flight plans refer to are introduced in [aeronautical information and data objects](aeronautical-information.qmd).
 
+## Intent layers
 
-EUROCONTROL's Network Manager has devised different flight trajectories
-formats in order to store and exchange information with the aviation community.
-Trajectories are recorded as either a sequence of 4D positions (3D plus timestamp)
-or like a sequence of 4D segments.
+There is rarely a single definitive “planned trajectory”. Analysts often need to distinguish several layers:
 
-In the following sections we will cover the most known formats: M1 (& M2) & M3, ALL_FT+ and SO6.
+| Layer | Meaning | Typical source |
+|---|---|---|
+| filed intent | what the aircraft operator files before departure | ICAO FPL, airline systems, IFPS/NM data |
+| accepted or regulated intent | what the network/flow system accepts after validation and restrictions | Network Manager systems, ATFM messages |
+| tactical intent | clearances and amendments during operation | CPDLC, voice-derived records, controller systems |
+| computed trajectory | trajectory model derived from flight plan, performance, restrictions, and environment | NM trajectory models, planning systems |
+| flown trajectory | what surveillance or ADS-C reports show actually happened | ADS-B, radar, ADS-C, MLAT |
 
-They are a mix of flight information (ADEP, ADES, callsign, ...) and trajectory (4D position, ground speed, ...).
+A good analysis keeps these layers separate. A filed route string is not a trajectory; a modeled trajectory is not surveillance truth; a flown trajectory does not reveal the original clearance unless joined with communication or flight-plan data.
 
-## Model 1 (M1 or *FTFM*)
+## Flight-plan content
 
-The flight trajectory known as *Model 1*, *M1* or *Filed Tactical Flight Model (FTFM)* is a
-mathematical model containing a point and airspace volume profile created in ETFMS for a flight.
-This trajectory is first created when Flight Plan (FPL) details, and any subsequent changes,
-are received by the Network Operations of EUROCONTROL's
-Network Manager^[Aircraft Operators (AO) willing to fly IFR flights in the Network Manager (NM)
-area of responsibility are mandated to file the relevant Flight Plan to the Network Manager.
-The aim of this centralised management of FPL's in Europe is linked to one of the NM mandates, i.e.
-the ability to detect imbalance between demand (willingness to fly by AO's) and
-offer (ability to guarantee safety by ATC / airport capacity providing an adequate level of safety).
-The NM provides the ACC's/airports to monitor the situation and implement measures to resolve
-the overload (typically via departure delays or rerouting.)].
+An ICAO flight plan contains structured fields for flight identification, rules, type of flight, aircraft type, wake turbulence category, equipment, departure aerodrome, departure time, cruising speed, level, route, destination, alternate aerodromes, endurance, persons on board, and other operational information.
 
-The M1 is a translation of a FPL (especially Field 15) to a point profile, i.e. a
-sequence of 4D positions (timestamp + longitude, latitude, altitude) plus relevant penetrated airspace ID's,
-calculated taking into account the aircraft type performance (via BADA) and the environment restrictions
-as published in the [Route Availability Document (RAD)][rad].
+For trajectory analysis, the most important fields are usually:
 
-[rad]: https://www.nm.eurocontrol.int/RAD/ "Rote Availability Document (RAD)"
+- aircraft identification or callsign;
+- aircraft type and performance-relevant information;
+- departure and destination aerodromes;
+- estimated off-block or departure time;
+- requested speed and cruising level;
+- route field;
+- equipment and capability indicators;
+- alternates and remarks when relevant.
 
-:::{.callout-note}
-**TODO**
+The route field is a compact textual representation of intent. It may combine procedure names, waypoints, ATS routes, direct segments, speed/level changes, and special indicators. It must be interpreted against the aeronautical information cycle effective for the flight date.
 
-1. add CSV file with sample M1 data in `data/` folder
-1. Add small sample of data frame for M1
-2. Plot M1
-:::
+Example route fragment:
 
+```text
+N0441F340 FISTO5B FISTO UY156 PERIG UT210 TUDRA/N0426F280 UT158 AMB AMB9W
+```
 
-## Model 2 (M2 or *RTFM*)
+This is not a sequence of coordinates. It is a route expression that must be expanded through the relevant procedure and route definitions.
 
-An updated version of the M1 when the flight is regulated (i.e. delayed.)
-This trajectory could be more than a shift in time because of the impact of
-possibly closed areas or route segments in the new time window of the flight.
+## From filed route to trajectory
 
-## Model 3 (M3 or *CTFM*)
+A route string can be expanded into a sequence of published points and segments, but a 4D trajectory requires more information:
 
-The flight trajectory known as *Model 3*, *M3* or *Current Tactical Flight Model (CTFM)* is an
-updated version of the M1 model (or eventually M2) where the point/airspace profile is recalculated taking into account
-surveillance data (*Correlated Position Reports* [CPR]^[CPRs are received by NM from ACC's,
-they consist of surveillance data (callsign longitude, latitude, altitude, timestamp) paired
-with flight plan info (aircraft type, ICAO 24-bit address)] or more recently
-ADS-B position reports)
-when these show a significant deviation from M1 (or M2.)
-The deviation considered is of 1 min in time, more than 400 feet in en-route phase,
-more than 1000 feet in climb/descent phase or more than 10 NM laterally,
-see 14.3.1 [@niarchakou_simonselva17].
+- aircraft performance model;
+- expected mass and speed schedule;
+- wind and temperature assumptions;
+- altitude constraints and level changes;
+- route restrictions and availability;
+- airport and runway assumptions;
+- flow-management measures.
 
-::: {.callout-note}
-**TODO**
+This is why systems such as EUROCONTROL's Network Manager maintain trajectory models rather than only storing the submitted flight plan. The model is updated as new information becomes available.
 
-1. add CSV file with sample M3 data in `data/` folder
-1. Add small sample of data frame for M3
-2. Plot M3 and M1/M3 overlapped to show the differences
-:::
+## Network Manager context
 
-## SO6
+EUROCONTROL's \acrfull{NM} supports flight-plan validation, demand prediction, capacity balancing, and flow management in the European network. Aircraft operators filing IFR flights in the NM area submit flight-plan information that is checked against route availability, restrictions, sector capacities, and other operational constraints.
 
-The SO6 format delivers a  flight segment sequence from origin to destination.
+The result is a set of trajectory and demand data products used by ANSPs, airports, aircraft operators, researchers, and tools such as NEST. Access may be operational, institutional, or subject to EUROCONTROL data-sharing conditions.
 
+## NM trajectory models
 
+Network Manager trajectory products distinguish several flight trajectory models. The names below are commonly encountered in DDR2/NM contexts.
 
-| #  | Field                 | Type | Size | Comment |
-|---:|-----------------------|------|------|---------|
-|  1 | segment identifier    | char |   | first point name "_" last point name |
-|  2 | origin of flight      | char | 4 | ICAO code |
-|  3 | destination of flight | char | 4 | ICAO code |
-|  4 | aircraft type         | char | 4 |  |
-|  5 | time begin segment    | num | 6  | HHMMSS  |
-|  6 | time end segment      | num | 6  | HHMMSS  |
-|  7 | FL begin segment      | num | 1 to 3 |  |
-|  8 | FL end segment        | num | 1 to 3 |  |
-|  9 | status                | char  | 1 | 0=climb, 1=descent, 2=cruise |
-| 10 | call sign             | char  |   |  |
-| 11 | date begin segment    | num   | 6 | YYMMDD |
-| 12 | date end segment      | num   | 6 | YYMMDD |
-| 13 | lat begin segment     | float |   | decimal minute |
-| 14 | lon begin segment     | float |   | decimal minute |
-| 15 | lat end segment       | float |   | decimal minute |
-| 16 | lon end segment       | float |   | decimal minute |
-| 17 | flight identifier     | num   |   | must be unique |
-| 18 | sequence              | num   |   | start at 1 for every new flight |
-| 19 | segment length        | float |   | nautical miles |
-| 20 | segment parity        | num   |   |  0=NO, 1=ODD, 2=EVEN, 3=ODD_LOW, 4=EVEN_LOW), 5=ODD_HIGH, 6=EVEN_HIGH, 7=General Purpose Red , 8=General Purpose Orange , 9=General Purpose Yellow |
+### Model 1: FTFM
 
-The parity decides flight level allocation: Odd levels are FL290,310,330... and Even levels are FL280,300,320 ...
+Model 1, or **Filed Tactical Flight Model** (FTFM), is the trajectory model initially created from the filed flight plan and subsequent pre-tactical updates. It translates the route, especially the route field, into a point and airspace profile.
 
+The model can include:
 
+- a sequence of 4D positions;
+- penetrated airspaces and sectors;
+- estimated times;
+- requested or computed levels;
+- aircraft type and performance assumptions;
+- route restrictions, including the Route Availability Document (RAD).
+
+FTFM is therefore a computed intent trajectory: it is more structured than the filed route string, but it is still a plan.
+
+### Model 2: RTFM
+
+Model 2, or **Regulated Tactical Flight Model** (RTFM), reflects the trajectory after regulation. A regulation may impose delay or require a rerouting to balance demand and capacity. The update can be more than a simple time shift because route availability, airspace restrictions, or sector configurations may differ in the new time window.
+
+### Model 3: CTFM
+
+Model 3, or **Current Tactical Flight Model** (CTFM), updates the trajectory during operation. It may incorporate correlated position reports, radar-derived data, ADS-B reports, and other updates when the aircraft deviates from earlier models.
+
+CTFM is closer to the flown trajectory than FTFM or RTFM, but it is still a model maintained by a network system. It should not be treated as identical to raw surveillance data.
+
+## SO6 segment files
+
+SO6 is a segment-based format. Instead of representing a trajectory only as points, it stores flight segments from origin to destination. A typical segment contains the two endpoint names, origin and destination airports, aircraft type, begin and end times, begin and end flight levels, segment status, callsign, dates, endpoint coordinates, flight identifier, sequence number, segment length, and flight-level parity.
+
+| Field group | Examples |
+|---|---|
+| flight identifiers | origin, destination, aircraft type, callsign, flight identifier |
+| segment timing | begin/end date and time |
+| vertical profile | begin/end flight level, climb/descent/cruise status |
+| geometry | begin/end point names, begin/end coordinates, segment length |
+| sequencing | segment sequence number, parity/allocation flags |
+
+SO6 is useful for airspace-demand and route-usage analysis because each segment can be intersected with sectors, airspaces, or route structures. Its segment representation is less natural for high-rate trajectory processing than point-by-point surveillance data, but more compact for network demand analysis.
 
 ## ALL_FT+
 
-ALL_FT+ files are available via DDR2 and typically follow a naming convention like
-`yyyyMMdd.ALL_FT+`, i.e. `20231124.ALL_FT+.7z` for data covering November 24th 2022.
+ALL_FT+ is a large Network Manager archive format available through DDR2. Files are typically named by date, for example `yyyyMMdd.ALL_FT+`, and may contain hundreds of columns depending on version. It is best understood as an internal operational archive exposed for analysis rather than as a clean public data model.
 
-The content of an ALL_FT+ file is quite *massive*, at the time of this writing for version 7
-contains 207 columns!
-ALL_FT+ is clearly an internal NM systems archiving format that has been plainly
-exchanged.
+Typical information includes:
 
-Documentation and metadata is sparse even from the DDR2 manual or NEST help pages.
+- flight identifiers and callsign;
+- departure and destination aerodromes;
+- aircraft type;
+- flight-plan and regulation fields;
+- trajectory point sequence;
+- timestamps and positions;
+- flight levels and speeds;
+- airspace and sector penetrations;
+- route and restriction information.
 
+The richness is attractive, but documentation and metadata can be sparse. Analysts should build small, explicit extraction layers rather than relying on column positions without version checks.
 
-:::{.callout-note}
-TODO this part could help?
+## DDR2 demand files
+
+EUROCONTROL's Demand Data Repository (DDR2) provides historical demand datasets for selected periods and areas. A common demand file, often referred to as `exp2`, contains one row per flight with fields such as departure time, origin and destination aerodromes, unique flight identifier, callsign, aircraft type, and requested flight level.
+
+Such files are useful for aggregate demand studies, sector-load estimation, traffic-flow analysis, and comparisons between planned and flown traffic. They usually need to be joined with aeronautical information, sector definitions, and surveillance trajectories to answer detailed operational questions.
+
+## Planned versus flown trajectories
+
+Planned and flown trajectories differ for several reasons:
+
+- tactical shortcuts or directs;
+- weather deviations;
+- departure delay or slot regulation;
+- runway or procedure changes;
+- level-off during climb;
+- flow-management rerouting;
+- holding, vectoring, or sequencing near arrival;
+- aircraft performance and wind differences.
+
+A robust analysis should name which comparison is being made: filed route versus flown path, FTFM versus ADS-B, RTFM versus CTFM, or NM demand versus actual traffic. Each comparison answers a different question.
+
+::: {.callout-tip}
+## Useful joins
+
+Flight-plan and NM data become more useful when joined with other sources: ADS-B or radar trajectories for actual movement, ADS-C for oceanic position and intent, CPDLC for clearances, AIRAC-cycle aeronautical data for route expansion, and weather data for rerouting or performance analysis.
 :::
 
-Data for a trajectory refer typically to a point profile and can
-include:
+## Access and quality caveats
 
-* flight ID / flight number / callsign
-* sequence number
-* timestamp
-* position (longitude, latitude, altitude)
-* position ID (i.e. published point ID)
-* airspace ID
-* (ground / vertical) speed
+Flight-plan and NM trajectory data are operational data. Access is often restricted, licensed, or subject to aggregation rules. Even when available, the data requires careful handling:
 
-with timestamp and position as a minimum.
+- route strings depend on the correct AIRAC cycle;
+- identifiers can change between filing, operation, and surveillance;
+- timestamps may represent planned, calculated, regulated, or observed times;
+- modeled trajectories depend on assumptions not always visible in the file;
+- late flight-plan changes can invalidate earlier intent;
+- surveillance-derived updates can blur the distinction between plan and flown path.
 
-## Flight route
+Keep the source, model name, cycle, timestamp semantics, and flight identifier lineage explicit. Without these, intent data can easily be mistaken for observed truth.
 
-Example: N0441F340 FISTO5B FISTO UY156 PERIG UT210 TUDRA/N0426F280 UT158 AMB AMB9W
+## Glossary {.unnumbered}
 
-## DDR2 `exp2`
-
-The traffic demand file (exp2) can obtained from the EUROCONTROL’s Demand Data Repository
-(DDR2) for a selected period of time (typically one day) and geographic area (e.g. FABEC).
-The `exp2` includes, for each flight, basic information about the departure time,
-the origin and destination airports, a unique flight identifier, the callsign,
-the aircraft ICAO code (e.g. A320) and the requested flight level by the airspace user as
-submitted in the flight plan.
+\glsaddallunused
+\printacronyms
