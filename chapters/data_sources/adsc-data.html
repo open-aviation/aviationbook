@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>35&nbsp; Airline operational datalink data – A journey through aviation data</title>
+<title>32&nbsp; ADS-C data – A journey through aviation data</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -32,8 +67,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../chapters/data_sources/flight-plans-intent.html" rel="next">
-<link href="../../chapters/data_sources/cpdlc-adsc-data.html" rel="prev">
+<link href="../../chapters/data_sources/cpdlc-data.html" rel="next">
+<link href="../../chapters/data_sources/datalink-acars-message-sources.html" rel="prev">
 <link href="../../favicon.svg" rel="icon" type="image/svg+xml">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -303,7 +338,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/data_sources/aircraft-information.html">The aviation data ecosystem</a></li><li class="breadcrumb-item"><a href="../../chapters/data_sources/aoc-operational-datalink.html"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">🔴 AOC datalink</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/data_sources/aircraft-information.html">The aviation data ecosystem</a></li><li class="breadcrumb-item"><a href="../../chapters/data_sources/adsc-data.html"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">ADS-C data</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -529,104 +564,92 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/data_sources/datalink-beyond-transponder.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">🟠 Datalink overview</span></span></a>
+  <a href="../../chapters/data_sources/datalink-acars-message-sources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Datalink and ACARS sources</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/data_sources/acars-vdl2-hfdl-satcom.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">🟠 ACARS bearers</span></span></a>
+  <a href="../../chapters/data_sources/adsc-data.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">ADS-C data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/data_sources/acars-message-routing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">🟠 ACARS routing</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../chapters/data_sources/cpdlc-adsc-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">🟠 CPDLC &amp; ADS-C</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../chapters/data_sources/aoc-operational-datalink.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">🔴 AOC datalink</span></span></a>
+  <a href="../../chapters/data_sources/cpdlc-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">CPDLC data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/flight-plans-intent.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">🟡 Flight intent</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">🟡 Flight intent</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/network-manager-formats.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">🟡 NM formats</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">🟡 NM formats</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/aeronautical-information.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">🟡 AIM overview</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">🟡 AIM overview</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/aip-notam-aic-pib.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">🟡 AIP &amp; NOTAM</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">🟡 AIP &amp; NOTAM</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/points-routes-airspaces-procedures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">🟡 Routes &amp; procedures</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">🟡 Routes &amp; procedures</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/weather-environment-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">🔴 Weather data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">🔴 Weather data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/weather-hazards-impact.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">🔴 Weather hazards</span></span></a>
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">🔴 Weather hazards</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/aircraft-performance.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">🟢 Performance models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Performance models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/operational-performance-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">🟡 Operational performance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">🟡 Operational performance</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/safety-occurrence-risk-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">🔴 Safety data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">🔴 Safety data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/human-factors-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">🔴 Human factors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">🔴 Human factors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/maintenance-airworthiness-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">🔴 Maintenance data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">🔴 Maintenance data</span></span></a>
   </div>
 </li>
       </ul>
@@ -643,55 +666,55 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/work/tidy-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">🟠 Tidy data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">🟠 Tidy data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/work/time-series.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">🔴 Time series</span></span></a>
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">🔴 Time series</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/work/lazy-columnar-processing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">🔴 Lazy processing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">🔴 Lazy processing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/work/physical-units.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">🔴 Physical units</span></span></a>
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">🔴 Physical units</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/work/coordinates-projections-geometry.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">🟠 Geometry &amp; projections</span></span></a>
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">🟠 Geometry &amp; projections</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/work/trajectory-processing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">🟠 Trajectories</span></span></a>
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">🟠 Trajectories</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/work/joining-heterogeneous-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">🔴 Data joins</span></span></a>
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">🔴 Data joins</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/work/information-extraction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">🟠 Information extraction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">🟠 Information extraction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/work/data-quality-uncertainty.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">56</span>&nbsp; <span class="chapter-title">🔴 Data quality</span></span></a>
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">🔴 Data quality</span></span></a>
   </div>
 </li>
       </ul>
@@ -708,49 +731,49 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/visualise/grammar-of-graphics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">57</span>&nbsp; <span class="chapter-title">🟠 Grammar of graphics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">🟠 Grammar of graphics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/visualise/time-series-profiles.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">58</span>&nbsp; <span class="chapter-title">🔴 Profiles</span></span></a>
+ <span class="menu-text"><span class="chapter-number">56</span>&nbsp; <span class="chapter-title">🔴 Profiles</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/visualise/maps-projections.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">59</span>&nbsp; <span class="chapter-title">🟠 Maps</span></span></a>
+ <span class="menu-text"><span class="chapter-number">57</span>&nbsp; <span class="chapter-title">🟠 Maps</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/visualise/trajectories.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">60</span>&nbsp; <span class="chapter-title">🔴 Trajectory maps</span></span></a>
+ <span class="menu-text"><span class="chapter-number">58</span>&nbsp; <span class="chapter-title">🔴 Trajectory maps</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/visualise/airspace-networks-flows.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">61</span>&nbsp; <span class="chapter-title">🔴 Networks &amp; flows</span></span></a>
+ <span class="menu-text"><span class="chapter-number">59</span>&nbsp; <span class="chapter-title">🔴 Networks &amp; flows</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/visualise/uncertainty-quality.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">62</span>&nbsp; <span class="chapter-title">🔴 Visual uncertainty</span></span></a>
+ <span class="menu-text"><span class="chapter-number">60</span>&nbsp; <span class="chapter-title">🔴 Visual uncertainty</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/visualise/storytelling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">63</span>&nbsp; <span class="chapter-title">🟠 Storytelling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">61</span>&nbsp; <span class="chapter-title">🟠 Storytelling</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/visualise/observable-narratives.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">64</span>&nbsp; <span class="chapter-title">🔴 Observable narratives</span></span></a>
+ <span class="menu-text"><span class="chapter-number">62</span>&nbsp; <span class="chapter-title">🔴 Observable narratives</span></span></a>
   </div>
 </li>
       </ul>
@@ -767,73 +790,73 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/decode-adsb.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">65</span>&nbsp; <span class="chapter-title">🔴 Decode ADS-B</span></span></a>
+ <span class="menu-text"><span class="chapter-number">63</span>&nbsp; <span class="chapter-title">🔴 Decode ADS-B</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/build-trajectory.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">66</span>&nbsp; <span class="chapter-title">🔴 Build trajectory</span></span></a>
+ <span class="menu-text"><span class="chapter-number">64</span>&nbsp; <span class="chapter-title">🔴 Build trajectory</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/planned-vs-flown.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">67</span>&nbsp; <span class="chapter-title">🔴 Planned vs flown</span></span></a>
+ <span class="menu-text"><span class="chapter-number">65</span>&nbsp; <span class="chapter-title">🔴 Planned vs flown</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/oceanic-datalink-story.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">68</span>&nbsp; <span class="chapter-title">🔴 Oceanic datalink</span></span></a>
+ <span class="menu-text"><span class="chapter-number">66</span>&nbsp; <span class="chapter-title">🔴 Oceanic datalink</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/flight-information-regions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">69</span>&nbsp; <span class="chapter-title">🔴 FIR maps</span></span></a>
+ <span class="menu-text"><span class="chapter-number">67</span>&nbsp; <span class="chapter-title">🔴 FIR maps</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/daio-fir.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">70</span>&nbsp; <span class="chapter-title">🔴 DAIO by FIR</span></span></a>
+ <span class="menu-text"><span class="chapter-number">68</span>&nbsp; <span class="chapter-title">🔴 DAIO by FIR</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/airports-world.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">71</span>&nbsp; <span class="chapter-title">🔴 World airports</span></span></a>
+ <span class="menu-text"><span class="chapter-number">69</span>&nbsp; <span class="chapter-title">🔴 World airports</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/gps-jamming.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">72</span>&nbsp; <span class="chapter-title">🔴 GPS jamming</span></span></a>
+ <span class="menu-text"><span class="chapter-number">70</span>&nbsp; <span class="chapter-title">🔴 GPS jamming</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/airspace-disruption.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">73</span>&nbsp; <span class="chapter-title">🔴 Airspace disruption</span></span></a>
+ <span class="menu-text"><span class="chapter-number">71</span>&nbsp; <span class="chapter-title">🔴 Airspace disruption</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/firefighting-aircraft.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">74</span>&nbsp; <span class="chapter-title">🔴 Firefighting aircraft</span></span></a>
+ <span class="menu-text"><span class="chapter-number">72</span>&nbsp; <span class="chapter-title">🔴 Firefighting aircraft</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/weather-impact.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">75</span>&nbsp; <span class="chapter-title">🔴 Weather impact</span></span></a>
+ <span class="menu-text"><span class="chapter-number">73</span>&nbsp; <span class="chapter-title">🔴 Weather impact</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/runway-safety-occurrence.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">76</span>&nbsp; <span class="chapter-title">🔴 Runway occurrence</span></span></a>
+ <span class="menu-text"><span class="chapter-number">74</span>&nbsp; <span class="chapter-title">🔴 Runway occurrence</span></span></a>
   </div>
 </li>
       </ul>
@@ -850,31 +873,31 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/sharing/reproducible-research.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">77</span>&nbsp; <span class="chapter-title">🟠 Reproducibility</span></span></a>
+ <span class="menu-text"><span class="chapter-number">75</span>&nbsp; <span class="chapter-title">🟠 Reproducibility</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/sharing/notebook-to-pipeline.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">78</span>&nbsp; <span class="chapter-title">🔴 Notebook to pipeline</span></span></a>
+ <span class="menu-text"><span class="chapter-number">76</span>&nbsp; <span class="chapter-title">🔴 Notebook to pipeline</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/sharing/data-licensing-attribution.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">79</span>&nbsp; <span class="chapter-title">🔴 Licensing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">77</span>&nbsp; <span class="chapter-title">🔴 Licensing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/sharing/privacy-safety-responsible-publication.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">80</span>&nbsp; <span class="chapter-title">🔴 Responsible publishing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">78</span>&nbsp; <span class="chapter-title">🔴 Responsible publishing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/sharing/publishing-interactive-narratives.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">81</span>&nbsp; <span class="chapter-title">🔴 Interactive publishing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">79</span>&nbsp; <span class="chapter-title">🔴 Interactive publishing</span></span></a>
   </div>
 </li>
       </ul>
@@ -884,16 +907,30 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#contract-model" id="toc-contract-model" class="nav-link active" data-scroll-target="#contract-model"><span class="header-section-number">32.1</span> Contract model</a></li>
+  <li><a href="#report-contents" id="toc-report-contents" class="nav-link" data-scroll-target="#report-contents"><span class="header-section-number">32.2</span> Report contents</a></li>
+  <li><a href="#ads-b-and-ads-c-compared" id="toc-ads-b-and-ads-c-compared" class="nav-link" data-scroll-target="#ads-b-and-ads-c-compared"><span class="header-section-number">32.3</span> ADS-B and ADS-C compared</a></li>
+  <li><a href="#example-decoded-report" id="toc-example-decoded-report" class="nav-link" data-scroll-target="#example-decoded-report"><span class="header-section-number">32.4</span> Example decoded report</a></li>
+  <li><a href="#uplink-contracts" id="toc-uplink-contracts" class="nav-link" data-scroll-target="#uplink-contracts"><span class="header-section-number">32.5</span> Uplink contracts</a></li>
+  <li><a href="#access-paths" id="toc-access-paths" class="nav-link" data-scroll-target="#access-paths"><span class="header-section-number">32.6</span> Access paths</a></li>
+  <li><a href="#analytical-uses" id="toc-analytical-uses" class="nav-link" data-scroll-target="#analytical-uses"><span class="header-section-number">32.7</span> Analytical uses</a></li>
+  <li><a href="#data-caveats" id="toc-data-caveats" class="nav-link" data-scroll-target="#data-caveats"><span class="header-section-number">32.8</span> Data caveats</a></li>
+  <li><a href="#glossary" id="toc-glossary" class="nav-link" data-scroll-target="#glossary">Glossary</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/open-aviation/aviationbook/edit/master/chapters/data_sources/adsc-data.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/open-aviation/aviationbook/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/open-aviation/aviationbook/blob/master/chapters/data_sources/adsc-data.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/data_sources/aircraft-information.html">The aviation data ecosystem</a></li><li class="breadcrumb-item"><a href="../../chapters/data_sources/aoc-operational-datalink.html"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">🔴 AOC datalink</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/data_sources/aircraft-information.html">The aviation data ecosystem</a></li><li class="breadcrumb-item"><a href="../../chapters/data_sources/adsc-data.html"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">ADS-C data</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Airline operational datalink data</span></h1>
+<h1 class="title"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">ADS-C data</span></h1>
 </div>
 
 
@@ -916,31 +953,250 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>TODO for this page
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This page has been copied or moved into the experimental <code>new/</code> architecture. Review the scope, trim or split content where needed, fix internal links, and add missing material described by the new table of contents.</p>
-</div>
-</div>
-<p>Planned scope:</p>
+<p>Automatic Dependent Surveillance–Contract (ADS-C) is the contract-based counterpart to Automatic Dependent Surveillance–Broadcast (ADS-B). Both are automatic dependent surveillance systems: the aircraft reports information derived from its own navigation systems. The difference is the final letter. ADS-B is a broadcast to anyone in range; ADS-C is a negotiated exchange between an aircraft and an air traffic service unit.</p>
+<p>This makes ADS-C an important data source for oceanic and remote operations. It is lower rate than ADS-B, but its reports can contain route intent, meteorological data, and air-reference information that are absent from most ADS-B trajectories.</p>
+<section id="contract-model" class="level2" data-number="32.1">
+<h2 data-number="32.1" class="anchored" data-anchor-id="contract-model"><span class="header-section-number">32.1</span> Contract model</h2>
+<p>An Air Traffic Service Unit (ATSU) negotiates a contract with the aircraft. The contract defines what the aircraft should report and when. Common contract types are:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Contract</th>
+<th>Trigger</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>periodic</td>
+<td>reports at a fixed interval, for example every 10 minutes over oceanic airspace</td>
+</tr>
+<tr class="even">
+<td>event</td>
+<td>reports when a condition changes, such as waypoint passage, altitude change, or lateral deviation</td>
+</tr>
+<tr class="odd">
+<td>demand</td>
+<td>one report requested by the ground system</td>
+</tr>
+<tr class="even">
+<td>emergency periodic</td>
+<td>periodic reports activated in emergency mode</td>
+</tr>
+</tbody>
+</table>
+<p>The uplink is therefore part of the surveillance source. It tells the aircraft what to send: which report groups to include, how often to include them, and which events should trigger a report. This is a key difference from ADS-B, where the receiver passively observes a standard broadcast stream.</p>
+</section>
+<section id="report-contents" class="level2" data-number="32.2">
+<h2 data-number="32.2" class="anchored" data-anchor-id="report-contents"><span class="header-section-number">32.2</span> Report contents</h2>
+<p>ADS-C downlinks are commonly encoded as tag-length-value payloads inside an ARINC 622 <code>ADS</code> envelope. A basic report gives a four-dimensional position: latitude, longitude, altitude, and time within the current hour. Additional tags enrich that position with intent, speed, meteorology, and aircraft identity.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Tag</th>
+<th>Typical content</th>
+<th>Analytical use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Basic report</td>
+<td>latitude, longitude, altitude, timestamp, accuracy code</td>
+<td>sparse trajectory reconstruction</td>
+</tr>
+<tr class="even">
+<td>Flight identification</td>
+<td>flight id or callsign-like identifier</td>
+<td>flight matching and filtering</td>
+</tr>
+<tr class="odd">
+<td>Predicted route</td>
+<td>next and next-next waypoint, altitude, estimated time</td>
+<td>FMS intent and oceanic route analysis</td>
+</tr>
+<tr class="even">
+<td>Earth-reference data</td>
+<td>track, ground speed, vertical rate</td>
+<td>trajectory dynamics</td>
+</tr>
+<tr class="odd">
+<td>Air-reference data</td>
+<td>heading, indicated/true airspeed, Mach</td>
+<td>wind and performance analysis</td>
+</tr>
+<tr class="even">
+<td>Meteorological data</td>
+<td>wind speed, wind direction, temperature</td>
+<td>in-situ weather comparison</td>
+</tr>
+<tr class="odd">
+<td>Airframe identifier</td>
+<td>ICAO 24-bit address</td>
+<td>joining with aircraft and surveillance data</td>
+</tr>
+</tbody>
+</table>
+<p>The richness depends on the active contract. A receiver should not assume that every report contains every group.</p>
+</section>
+<section id="ads-b-and-ads-c-compared" class="level2" data-number="32.3">
+<h2 data-number="32.3" class="anchored" data-anchor-id="ads-b-and-ads-c-compared"><span class="header-section-number">32.3</span> ADS-B and ADS-C compared</h2>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Feature</th>
+<th>ADS-B</th>
+<th>ADS-C</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Trigger</td>
+<td>automatic broadcast</td>
+<td>negotiated contract</td>
+</tr>
+<tr class="even">
+<td>Recipients</td>
+<td>anyone in range</td>
+<td>contracted ground facility</td>
+</tr>
+<tr class="odd">
+<td>Typical update rate</td>
+<td>sub-second to a few seconds</td>
+<td>minutes for periodic reports</td>
+</tr>
+<tr class="even">
+<td>Coverage</td>
+<td>receiver-dependent; line-of-sight for ground stations</td>
+<td>VHF, HF, or satellite depending on bearer</td>
+</tr>
+<tr class="odd">
+<td>Data</td>
+<td>position, velocity, identity, status</td>
+<td>position, intent, meteorology, air-reference data</td>
+</tr>
+<tr class="even">
+<td>Direction</td>
+<td>one-way broadcast</td>
+<td>bidirectional: uplink contract, downlink report</td>
+</tr>
+</tbody>
+</table>
+<p>ADS-C does not replace ADS-B for high-rate trajectory analysis. It complements it in places where ADS-B coverage is sparse and where route-intent or meteorological fields matter more than update rate.</p>
+</section>
+<section id="example-decoded-report" class="level2" data-number="32.4">
+<h2 data-number="32.4" class="anchored" data-anchor-id="example-decoded-report"><span class="header-section-number">32.4</span> Example decoded report</h2>
+<p>The exact JSON shape depends on the decoder, but a normalized ADS-C event usually exposes the ARINC 622 envelope, the <code>ADS</code> IMI, and the decoded tags. A compact example looks like this:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"bearer"</span><span class="fu">:</span> <span class="st">"vdl2"</span><span class="fu">,</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"path"</span><span class="fu">:</span> <span class="st">"acars"</span><span class="fu">,</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"message_class"</span><span class="fu">:</span> <span class="st">"app_message"</span><span class="fu">,</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"summary"</span><span class="fu">:</span> <span class="st">"ADS-C: 48.3420°N 007.8210°W FL350 track 280.3° gs 487kt"</span><span class="fu">,</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"app"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"protocol"</span><span class="fu">:</span> <span class="st">"ads_c"</span><span class="fu">,</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"registration"</span><span class="fu">:</span> <span class="st">"G-EZBJ"</span><span class="fu">,</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"tags"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">{</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"BasicReport"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"latitude"</span><span class="fu">:</span> <span class="fl">48.342</span><span class="fu">,</span></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"longitude"</span><span class="fu">:</span> <span class="fl">-7.821</span><span class="fu">,</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"altitude_ft"</span><span class="fu">:</span> <span class="dv">35000</span><span class="fu">,</span></span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"timestamp_seconds_past_hour"</span><span class="fu">:</span> <span class="fl">1843.0</span><span class="fu">,</span></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"position_accuracy_code"</span><span class="fu">:</span> <span class="dv">2</span><span class="fu">,</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"tcas_ok"</span><span class="fu">:</span> <span class="kw">true</span></span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>        <span class="fu">}</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a>      <span class="fu">{</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"PredictedRoute"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"next_latitude"</span><span class="fu">:</span> <span class="fl">50.0</span><span class="fu">,</span></span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"next_longitude"</span><span class="fu">:</span> <span class="fl">-15.0</span><span class="fu">,</span></span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"next_altitude_ft"</span><span class="fu">:</span> <span class="dv">35000</span><span class="fu">,</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"next_eta_seconds"</span><span class="fu">:</span> <span class="dv">1240</span></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a>        <span class="fu">}</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a>      <span class="fu">{</span></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"MeteoData"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"wind_speed_kt"</span><span class="fu">:</span> <span class="fl">62.0</span><span class="fu">,</span></span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"wind_direction_true_degrees"</span><span class="fu">:</span> <span class="fl">245.0</span><span class="fu">,</span></span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"temperature_c"</span><span class="fu">:</span> <span class="fl">-54.5</span></span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>        <span class="fu">}</span></span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a>    <span class="ot">]</span></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>The <code>PredictedRoute</code> tag is particularly valuable for data analysis: it gives a glimpse of the aircraft’s planned path, not just its current position. The meteorological tag is also useful because it provides in-situ measurements along routes where conventional observations are sparse.</p>
+</section>
+<section id="uplink-contracts" class="level2" data-number="32.5">
+<h2 data-number="32.5" class="anchored" data-anchor-id="uplink-contracts"><span class="header-section-number">32.5</span> Uplink contracts</h2>
+<p>ADS-C uplinks are not just protocol noise. They describe the surveillance contract itself. For example, a periodic contract request may specify an interval and a list of report groups. An event contract may ask the aircraft to report when it crosses a waypoint, deviates laterally, changes altitude, or enters an emergency condition.</p>
+<p>A decoder that keeps only downlink positions loses this context. For research, uplinks can explain why reports appear at a given cadence and why some fields are present or absent.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"summary"</span><span class="fu">:</span> <span class="st">"ADS-C uplink: periodic contract every 600s, demand basic+flight_id+predicted_route"</span><span class="fu">,</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"app"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"protocol"</span><span class="fu">:</span> <span class="st">"ads_c_uplink"</span><span class="fu">,</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"periodic_interval"</span><span class="fu">:</span> <span class="dv">600</span><span class="fu">,</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"demand_groups"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"basic"</span><span class="ot">,</span> <span class="st">"flight_id"</span><span class="ot">,</span> <span class="st">"predicted_route"</span><span class="ot">]</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="access-paths" class="level2" data-number="32.6">
+<h2 data-number="32.6" class="anchored" data-anchor-id="access-paths"><span class="header-section-number">32.6</span> Access paths</h2>
+<p>ADS-C messages can be observed through several paths:</p>
 <ul>
-<li>AOC messages;</li>
-<li>OOOI events;</li>
-<li>ATIS;</li>
-<li>maintenance and weather messages;</li>
-<li>operational usefulness and sensitivity.</li>
+<li>Airframes.io and similar aggregators may expose ACARS, HFDL, SATCOM, or VDL2-origin rows;</li>
+<li>local VHF or VDL2 reception can capture line-of-sight messages;</li>
+<li>HFDL and satellite reception extend coverage to oceanic or remote areas;</li>
+<li>institutional datasets, including ANSP or OpenSky-derived sources, may provide decoded ADS-C reports directly.</li>
 </ul>
+<p>The <a href="../../chapters/data_sources/datalink-acars-message-sources.html">datalink and ACARS message sources</a> chapter explains the bearer and envelope layers. For ADS-C analysis, the important fields are the contract, report tags, aircraft identifier, report timestamp, and receiver/source metadata.</p>
+</section>
+<section id="analytical-uses" class="level2" data-number="32.7">
+<h2 data-number="32.7" class="anchored" data-anchor-id="analytical-uses"><span class="header-section-number">32.7</span> Analytical uses</h2>
+<p>ADS-C is useful when the research question needs more than high-rate ADS-B positions:</p>
+<ul>
+<li>reconstructing oceanic trajectories across ADS-B coverage gaps;</li>
+<li>studying route intent through predicted waypoints and estimated times;</li>
+<li>comparing in-situ wind and temperature with numerical weather models;</li>
+<li>understanding surveillance contracts and report cadences;</li>
+<li>linking controller-pilot communication, ADS-C reports, and flown trajectories.</li>
+</ul>
+<p>A natural case study is an oceanic flight: ADS-B gives high-rate positions near the coasts, ADS-C continues the trajectory across remote airspace, and CPDLC explains some of the clearances and acknowledgements exchanged along the way.</p>
+</section>
+<section id="data-caveats" class="level2" data-number="32.8">
+<h2 data-number="32.8" class="anchored" data-anchor-id="data-caveats"><span class="header-section-number">32.8</span> Data caveats</h2>
+<p>ADS-C data is sparse and contract-dependent. Reports may arrive every several minutes, not every second. The active contract determines which groups are present. Public feeds may not expose every uplink or every bearer equally. Some fields are decoded only partially by open-source tooling. Finally, ADS-C is operational communication data; publishing raw examples should be done carefully.</p>
+</section>
+<section id="glossary" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="glossary">Glossary</h2>
 
 
 <dl>
+<dt><span id="acronyms_ADS_B">ADS-B</span></dt>
+<dd>
+Automatic Dependent Surveillance–Broadcast
+</dd>
+<dt><span id="acronyms_ADS_C">ADS-C</span></dt>
+<dd>
+Automatic Dependent Surveillance–Contract
+</dd>
+<dt><span id="acronyms_ATSU">ATSU</span></dt>
+<dd>
+Air Traffic Service Unit
+</dd>
 </dl>
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1358,13 +1614,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/data_sources/cpdlc-adsc-data.html" class="pagination-link" aria-label="🟠 CPDLC &amp; ADS-C">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">🟠 CPDLC &amp; ADS-C</span></span>
+      <a href="../../chapters/data_sources/datalink-acars-message-sources.html" class="pagination-link" aria-label="Datalink and ACARS sources">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Datalink and ACARS sources</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../chapters/data_sources/flight-plans-intent.html" class="pagination-link" aria-label="🟡 Flight intent">
-        <span class="nav-page-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">🟡 Flight intent</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../chapters/data_sources/cpdlc-data.html" class="pagination-link" aria-label="CPDLC data">
+        <span class="nav-page-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">CPDLC data</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1373,5 +1629,5 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions"><ul><li><a href="https://github.com/open-aviation/aviationbook/edit/master/chapters/data_sources/aoc-operational-datalink.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/open-aviation/aviationbook/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/open-aviation/aviationbook/blob/master/chapters/data_sources/aoc-operational-datalink.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer><script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/open-aviation/aviationbook/edit/master/chapters/data_sources/adsc-data.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/open-aviation/aviationbook/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/open-aviation/aviationbook/blob/master/chapters/data_sources/adsc-data.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer><script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>

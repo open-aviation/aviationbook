@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>32&nbsp; ACARS, VDL2, HFDL, and SATCOM – A journey through aviation data</title>
+<title>33&nbsp; CPDLC data – A journey through aviation data</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,6 +23,41 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -32,8 +67,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../chapters/data_sources/acars-message-routing.html" rel="next">
-<link href="../../chapters/data_sources/datalink-beyond-transponder.html" rel="prev">
+<link href="../../chapters/data_sources/flight-plans-intent.html" rel="next">
+<link href="../../chapters/data_sources/adsc-data.html" rel="prev">
 <link href="../../favicon.svg" rel="icon" type="image/svg+xml">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -303,7 +338,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/data_sources/aircraft-information.html">The aviation data ecosystem</a></li><li class="breadcrumb-item"><a href="../../chapters/data_sources/acars-vdl2-hfdl-satcom.html"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">🟠 ACARS bearers</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/data_sources/aircraft-information.html">The aviation data ecosystem</a></li><li class="breadcrumb-item"><a href="../../chapters/data_sources/cpdlc-data.html"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">CPDLC data</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -529,104 +564,92 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/data_sources/datalink-beyond-transponder.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">🟠 Datalink overview</span></span></a>
+  <a href="../../chapters/data_sources/datalink-acars-message-sources.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Datalink and ACARS sources</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/data_sources/acars-vdl2-hfdl-satcom.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">🟠 ACARS bearers</span></span></a>
+  <a href="../../chapters/data_sources/adsc-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">ADS-C data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/data_sources/acars-message-routing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">🟠 ACARS routing</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../chapters/data_sources/cpdlc-adsc-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">🟠 CPDLC &amp; ADS-C</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../chapters/data_sources/aoc-operational-datalink.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">🔴 AOC datalink</span></span></a>
+  <a href="../../chapters/data_sources/cpdlc-data.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">CPDLC data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/flight-plans-intent.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">🟡 Flight intent</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">🟡 Flight intent</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/network-manager-formats.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">🟡 NM formats</span></span></a>
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">🟡 NM formats</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/aeronautical-information.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">🟡 AIM overview</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">🟡 AIM overview</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/aip-notam-aic-pib.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">🟡 AIP &amp; NOTAM</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">🟡 AIP &amp; NOTAM</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/points-routes-airspaces-procedures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">🟡 Routes &amp; procedures</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">🟡 Routes &amp; procedures</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/weather-environment-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">🔴 Weather data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">🔴 Weather data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/weather-hazards-impact.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">🔴 Weather hazards</span></span></a>
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">🔴 Weather hazards</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/aircraft-performance.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">🟢 Performance models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Performance models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/operational-performance-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">🟡 Operational performance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">🟡 Operational performance</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/safety-occurrence-risk-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">🔴 Safety data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">🔴 Safety data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/human-factors-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">🔴 Human factors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">🔴 Human factors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/maintenance-airworthiness-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">🔴 Maintenance data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">🔴 Maintenance data</span></span></a>
   </div>
 </li>
       </ul>
@@ -643,55 +666,55 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/work/tidy-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">🟠 Tidy data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">🟠 Tidy data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/work/time-series.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">🔴 Time series</span></span></a>
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">🔴 Time series</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/work/lazy-columnar-processing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">🔴 Lazy processing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">🔴 Lazy processing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/work/physical-units.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">🔴 Physical units</span></span></a>
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">🔴 Physical units</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/work/coordinates-projections-geometry.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">🟠 Geometry &amp; projections</span></span></a>
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">🟠 Geometry &amp; projections</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/work/trajectory-processing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">🟠 Trajectories</span></span></a>
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">🟠 Trajectories</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/work/joining-heterogeneous-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">🔴 Data joins</span></span></a>
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">🔴 Data joins</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/work/information-extraction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">🟠 Information extraction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">🟠 Information extraction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/work/data-quality-uncertainty.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">56</span>&nbsp; <span class="chapter-title">🔴 Data quality</span></span></a>
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">🔴 Data quality</span></span></a>
   </div>
 </li>
       </ul>
@@ -708,49 +731,49 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/visualise/grammar-of-graphics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">57</span>&nbsp; <span class="chapter-title">🟠 Grammar of graphics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">🟠 Grammar of graphics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/visualise/time-series-profiles.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">58</span>&nbsp; <span class="chapter-title">🔴 Profiles</span></span></a>
+ <span class="menu-text"><span class="chapter-number">56</span>&nbsp; <span class="chapter-title">🔴 Profiles</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/visualise/maps-projections.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">59</span>&nbsp; <span class="chapter-title">🟠 Maps</span></span></a>
+ <span class="menu-text"><span class="chapter-number">57</span>&nbsp; <span class="chapter-title">🟠 Maps</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/visualise/trajectories.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">60</span>&nbsp; <span class="chapter-title">🔴 Trajectory maps</span></span></a>
+ <span class="menu-text"><span class="chapter-number">58</span>&nbsp; <span class="chapter-title">🔴 Trajectory maps</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/visualise/airspace-networks-flows.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">61</span>&nbsp; <span class="chapter-title">🔴 Networks &amp; flows</span></span></a>
+ <span class="menu-text"><span class="chapter-number">59</span>&nbsp; <span class="chapter-title">🔴 Networks &amp; flows</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/visualise/uncertainty-quality.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">62</span>&nbsp; <span class="chapter-title">🔴 Visual uncertainty</span></span></a>
+ <span class="menu-text"><span class="chapter-number">60</span>&nbsp; <span class="chapter-title">🔴 Visual uncertainty</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/visualise/storytelling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">63</span>&nbsp; <span class="chapter-title">🟠 Storytelling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">61</span>&nbsp; <span class="chapter-title">🟠 Storytelling</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/visualise/observable-narratives.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">64</span>&nbsp; <span class="chapter-title">🔴 Observable narratives</span></span></a>
+ <span class="menu-text"><span class="chapter-number">62</span>&nbsp; <span class="chapter-title">🔴 Observable narratives</span></span></a>
   </div>
 </li>
       </ul>
@@ -767,73 +790,73 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/decode-adsb.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">65</span>&nbsp; <span class="chapter-title">🔴 Decode ADS-B</span></span></a>
+ <span class="menu-text"><span class="chapter-number">63</span>&nbsp; <span class="chapter-title">🔴 Decode ADS-B</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/build-trajectory.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">66</span>&nbsp; <span class="chapter-title">🔴 Build trajectory</span></span></a>
+ <span class="menu-text"><span class="chapter-number">64</span>&nbsp; <span class="chapter-title">🔴 Build trajectory</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/planned-vs-flown.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">67</span>&nbsp; <span class="chapter-title">🔴 Planned vs flown</span></span></a>
+ <span class="menu-text"><span class="chapter-number">65</span>&nbsp; <span class="chapter-title">🔴 Planned vs flown</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/oceanic-datalink-story.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">68</span>&nbsp; <span class="chapter-title">🔴 Oceanic datalink</span></span></a>
+ <span class="menu-text"><span class="chapter-number">66</span>&nbsp; <span class="chapter-title">🔴 Oceanic datalink</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/flight-information-regions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">69</span>&nbsp; <span class="chapter-title">🔴 FIR maps</span></span></a>
+ <span class="menu-text"><span class="chapter-number">67</span>&nbsp; <span class="chapter-title">🔴 FIR maps</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/daio-fir.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">70</span>&nbsp; <span class="chapter-title">🔴 DAIO by FIR</span></span></a>
+ <span class="menu-text"><span class="chapter-number">68</span>&nbsp; <span class="chapter-title">🔴 DAIO by FIR</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/airports-world.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">71</span>&nbsp; <span class="chapter-title">🔴 World airports</span></span></a>
+ <span class="menu-text"><span class="chapter-number">69</span>&nbsp; <span class="chapter-title">🔴 World airports</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/gps-jamming.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">72</span>&nbsp; <span class="chapter-title">🔴 GPS jamming</span></span></a>
+ <span class="menu-text"><span class="chapter-number">70</span>&nbsp; <span class="chapter-title">🔴 GPS jamming</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/airspace-disruption.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">73</span>&nbsp; <span class="chapter-title">🔴 Airspace disruption</span></span></a>
+ <span class="menu-text"><span class="chapter-number">71</span>&nbsp; <span class="chapter-title">🔴 Airspace disruption</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/firefighting-aircraft.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">74</span>&nbsp; <span class="chapter-title">🔴 Firefighting aircraft</span></span></a>
+ <span class="menu-text"><span class="chapter-number">72</span>&nbsp; <span class="chapter-title">🔴 Firefighting aircraft</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/weather-impact.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">75</span>&nbsp; <span class="chapter-title">🔴 Weather impact</span></span></a>
+ <span class="menu-text"><span class="chapter-number">73</span>&nbsp; <span class="chapter-title">🔴 Weather impact</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/runway-safety-occurrence.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">76</span>&nbsp; <span class="chapter-title">🔴 Runway occurrence</span></span></a>
+ <span class="menu-text"><span class="chapter-number">74</span>&nbsp; <span class="chapter-title">🔴 Runway occurrence</span></span></a>
   </div>
 </li>
       </ul>
@@ -850,31 +873,31 @@ ul.task-list li input[type="checkbox"] {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/sharing/reproducible-research.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">77</span>&nbsp; <span class="chapter-title">🟠 Reproducibility</span></span></a>
+ <span class="menu-text"><span class="chapter-number">75</span>&nbsp; <span class="chapter-title">🟠 Reproducibility</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/sharing/notebook-to-pipeline.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">78</span>&nbsp; <span class="chapter-title">🔴 Notebook to pipeline</span></span></a>
+ <span class="menu-text"><span class="chapter-number">76</span>&nbsp; <span class="chapter-title">🔴 Notebook to pipeline</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/sharing/data-licensing-attribution.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">79</span>&nbsp; <span class="chapter-title">🔴 Licensing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">77</span>&nbsp; <span class="chapter-title">🔴 Licensing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/sharing/privacy-safety-responsible-publication.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">80</span>&nbsp; <span class="chapter-title">🔴 Responsible publishing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">78</span>&nbsp; <span class="chapter-title">🔴 Responsible publishing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/sharing/publishing-interactive-narratives.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">81</span>&nbsp; <span class="chapter-title">🔴 Interactive publishing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">79</span>&nbsp; <span class="chapter-title">🔴 Interactive publishing</span></span></a>
   </div>
 </li>
       </ul>
@@ -889,17 +912,27 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#bearers-physical-layer-and-frequencies-2-slides" id="toc-bearers-physical-layer-and-frequencies-2-slides" class="nav-link active" data-scroll-target="#bearers-physical-layer-and-frequencies-2-slides"><span class="header-section-number">32.0.1</span> 2.2 — Bearers: physical layer and frequencies (~2 slides)</a></li>
+  <li><a href="#why-cpdlc-matters-as-data" id="toc-why-cpdlc-matters-as-data" class="nav-link active" data-scroll-target="#why-cpdlc-matters-as-data"><span class="header-section-number">33.1</span> Why CPDLC matters as data</a></li>
+  <li><a href="#two-major-protocol-paths" id="toc-two-major-protocol-paths" class="nav-link" data-scroll-target="#two-major-protocol-paths"><span class="header-section-number">33.2</span> Two major protocol paths</a></li>
+  <li><a href="#session-lifecycle" id="toc-session-lifecycle" class="nav-link" data-scroll-target="#session-lifecycle"><span class="header-section-number">33.3</span> Session lifecycle</a></li>
+  <li><a href="#message-elements" id="toc-message-elements" class="nav-link" data-scroll-target="#message-elements"><span class="header-section-number">33.4</span> Message elements</a></li>
+  <li><a href="#example-contact-instruction" id="toc-example-contact-instruction" class="nav-link" data-scroll-target="#example-contact-instruction"><span class="header-section-number">33.5</span> Example: contact instruction</a></li>
+  <li><a href="#example-altitude-clearance" id="toc-example-altitude-clearance" class="nav-link" data-scroll-target="#example-altitude-clearance"><span class="header-section-number">33.6</span> Example: altitude clearance</a></li>
+  <li><a href="#route-clearances-and-position-reports" id="toc-route-clearances-and-position-reports" class="nav-link" data-scroll-target="#route-clearances-and-position-reports"><span class="header-section-number">33.7</span> Route clearances and position reports</a></li>
+  <li><a href="#atn-b1-examples" id="toc-atn-b1-examples" class="nav-link" data-scroll-target="#atn-b1-examples"><span class="header-section-number">33.8</span> ATN B1 examples</a></li>
+  <li><a href="#building-operational-narratives" id="toc-building-operational-narratives" class="nav-link" data-scroll-target="#building-operational-narratives"><span class="header-section-number">33.9</span> Building operational narratives</a></li>
+  <li><a href="#data-caveats" id="toc-data-caveats" class="nav-link" data-scroll-target="#data-caveats"><span class="header-section-number">33.10</span> Data caveats</a></li>
+  <li><a href="#glossary" id="toc-glossary" class="nav-link" data-scroll-target="#glossary">Glossary</a></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/open-aviation/aviationbook/edit/master/chapters/data_sources/acars-vdl2-hfdl-satcom.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/open-aviation/aviationbook/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/open-aviation/aviationbook/blob/master/chapters/data_sources/acars-vdl2-hfdl-satcom.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/open-aviation/aviationbook/edit/master/chapters/data_sources/cpdlc-data.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/open-aviation/aviationbook/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/open-aviation/aviationbook/blob/master/chapters/data_sources/cpdlc-data.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/data_sources/aircraft-information.html">The aviation data ecosystem</a></li><li class="breadcrumb-item"><a href="../../chapters/data_sources/acars-vdl2-hfdl-satcom.html"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">🟠 ACARS bearers</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/data_sources/aircraft-information.html">The aviation data ecosystem</a></li><li class="breadcrumb-item"><a href="../../chapters/data_sources/cpdlc-data.html"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">CPDLC data</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">ACARS, VDL2, HFDL, and SATCOM</span></h1>
+<h1 class="title"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">CPDLC data</span></h1>
 </div>
 
 
@@ -922,85 +955,273 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>TODO for this page
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This material is adapted from slide notes. It needs verification of frequencies/tooling, references, and a clear distinction between implemented examples and architectural context.</p>
-</div>
-</div>
-<section id="bearers-physical-layer-and-frequencies-2-slides" class="level3" data-number="32.0.1">
-<h3 data-number="32.0.1" class="anchored" data-anchor-id="bearers-physical-layer-and-frequencies-2-slides"><span class="header-section-number">32.0.1</span> 2.2 — Bearers: physical layer and frequencies (~2 slides)</h3>
-<section id="slide-classic-vhf-acars-poa" class="level4" data-number="32.0.1.1">
-<h4 data-number="32.0.1.1" class="anchored" data-anchor-id="slide-classic-vhf-acars-poa"><span class="header-section-number">32.0.1.1</span> Slide: Classic VHF ACARS (POA)</h4>
+<p>Controller–Pilot Data Link Communication (CPDLC) is structured text communication between controllers and pilots. It carries clearances, requests, acknowledgements, contact instructions, route clearances, and position reports. For data analysis, CPDLC answers a question that ADS-B cannot answer: what did the ground ask the crew to do, and how did the crew respond?</p>
+<p>The operational background is introduced in <a href="../../chapters/background/communication-systems.html">communication systems</a>. This chapter focuses on CPDLC as a data source: message paths, session structure, decoded elements, examples, and caveats.</p>
+<section id="why-cpdlc-matters-as-data" class="level2" data-number="33.1">
+<h2 data-number="33.1" class="anchored" data-anchor-id="why-cpdlc-matters-as-data"><span class="header-section-number">33.1</span> Why CPDLC matters as data</h2>
+<p>A trajectory alone can show that an aircraft climbed, turned, or changed route. CPDLC can sometimes show the instruction or clearance behind that change. It is therefore useful for operational narratives, oceanic-airspace studies, route-clearance analysis, and workload or communication studies.</p>
+<p>Typical CPDLC content includes:</p>
 <ul>
-<li><strong>Frequencies</strong>: 131.525 / 131.725 / 131.825 / 130.025 MHz (region-dependent)</li>
-<li><strong>Modulation</strong>: MSK (Minimum Shift Keying), <strong>2400 bps</strong>, <em>continuous</em> transmission</li>
-<li>No time-slotting; CSMA-style channel access</li>
-<li>The audible “duck quack” on a VHF scanner — sounds the same since 1978</li>
-<li>Decoded by: <code>acars131</code> frontend (<code>crates/acars/src/demod/acars131.rs</code>)</li>
-<li>Also: SATCOM L-band (Inmarsat ~1.5 GHz, global, requires dish) and HF (HFDL, oceanic)</li>
+<li>altitude clearances, e.g.&nbsp;<em>CLIMB TO AND MAINTAIN FL350</em>;</li>
+<li>route clearances and oceanic track instructions;</li>
+<li>contact instructions, e.g.&nbsp;<em>CONTACT EGTT 129.605 MHz</em>;</li>
+<li>pilot responses such as <em>WILCO</em> or <em>UNABLE</em>;</li>
+<li>downlinked position reports with time, altitude, route, and meteorological fields;</li>
+<li>connection management messages.</li>
 </ul>
 </section>
-<section id="slide-vdl-mode-2" class="level4" data-number="32.0.1.2">
-<h4 data-number="32.0.1.2" class="anchored" data-anchor-id="slide-vdl-mode-2"><span class="header-section-number">32.0.1.2</span> Slide: VDL Mode 2</h4>
-<ul>
-<li><p><strong>Frequencies</strong>: 136.725 / 136.775 / 136.875 / <strong>136.975 MHz</strong> (CSC — Common Signalling Channel, globally monitored)</p></li>
-<li><p><strong>Modulation</strong>: D8PSK (Differential 8-Phase Shift Keying), <strong>10.5 kbaud</strong>, <em>burst</em></p></li>
-<li><p>Each burst:</p>
-<pre><code>ramp-up  →  training sequence  →  FEC + interleaved payload  →  ramp-down</code></pre></li>
-<li><p>Training sequence: known bit pattern for symbol sync and channel estimation</p></li>
-<li><p>Convolutional FEC + bit interleaving: protects against burst errors</p></li>
-<li><p>Decoded by: <code>vdl136</code> frontend (<code>crates/acars/src/demod/vdl2.rs</code>)</p></li>
-</ul>
+<section id="two-major-protocol-paths" class="level2" data-number="33.2">
+<h2 data-number="33.2" class="anchored" data-anchor-id="two-major-protocol-paths"><span class="header-section-number">33.2</span> Two major protocol paths</h2>
+<p>CPDLC is an application, not a frequency. It can arrive through different protocol stacks.</p>
 <table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
 <thead>
 <tr class="header">
-<th></th>
-<th>Classic ACARS</th>
-<th>VDL Mode 2</th>
+<th>Path</th>
+<th>Typical stack</th>
+<th>Notes</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td>Band</td>
-<td>129–131 MHz</td>
-<td>136–137 MHz</td>
+<td>FANS-1/A CPDLC</td>
+<td>ACARS → ARINC 622 <code>AT1</code></td>
+<td>common in oceanic and long-haul operations</td>
 </tr>
 <tr class="even">
-<td>Modulation</td>
-<td>MSK continuous</td>
-<td>D8PSK burst</td>
-</tr>
-<tr class="odd">
-<td>Bitrate</td>
-<td>2 400 bps</td>
-<td>~31 500 bps</td>
-</tr>
-<tr class="even">
-<td>Link layer</td>
-<td>none</td>
-<td>AVLC (HDLC-derived)</td>
-</tr>
-<tr class="odd">
-<td>Network layer</td>
-<td>none</td>
-<td>X.25 / CLNP / COTP</td>
+<td>ATN B1 CPDLC</td>
+<td>VDL2 → AVLC → X.25 → CLNP → COTP → ULCS</td>
+<td>common in continental VDL2 environments</td>
 </tr>
 </tbody>
 </table>
-<hr>
+<p>The decoded application may look similar—a controller message element with an identifier and template—but the lower layers are different. A dataset should therefore preserve both the decoded CPDLC element and the path by which it was received.</p>
+</section>
+<section id="session-lifecycle" class="level2" data-number="33.3">
+<h2 data-number="33.3" class="anchored" data-anchor-id="session-lifecycle"><span class="header-section-number">33.3</span> Session lifecycle</h2>
+<p>FANS-1/A CPDLC uses a connection model. A simplified session looks like this:</p>
+<pre class="text"><code>Aircraft → ATSU:  CR1  CONNECT REQUEST
+ATSU → Aircraft:  CC1  CONNECT CONFIRM
+
+  ↕  AT1  CPDLC message elements
+
+Aircraft → ATSU:  DR1  DISCONNECT REQUEST</code></pre>
+<p>The <code>AT1</code> messages carry the controller-pilot dialogue. The control IMIs (<code>CR1</code>, <code>CC1</code>, <code>DR1</code>) explain the session context: which facility is connected and when the connection begins or ends.</p>
+</section>
+<section id="message-elements" class="level2" data-number="33.4">
+<h2 data-number="33.4" class="anchored" data-anchor-id="message-elements"><span class="header-section-number">33.4</span> Message elements</h2>
+<p>A CPDLC message body contains a header and one or more message elements. Each element has an identifier, a phrase template, and sometimes a typed body. For example, an altitude instruction fills an altitude slot; a contact instruction fills facility and frequency slots.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Element</th>
+<th>Template</th>
+<th>Typical body</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>uM20</code></td>
+<td>CLIMB TO AND MAINTAIN [altitude]</td>
+<td>flight level or altitude</td>
+</tr>
+<tr class="even">
+<td><code>uM80</code></td>
+<td>CLEARED TO [position] VIA [route clearance]</td>
+<td>route-clearance structure</td>
+</tr>
+<tr class="odd">
+<td><code>uM117</code></td>
+<td>CONTACT [facility] [frequency]</td>
+<td>facility and radio frequency</td>
+</tr>
+<tr class="even">
+<td><code>dM0</code></td>
+<td>WILCO</td>
+<td>no body</td>
+</tr>
+<tr class="odd">
+<td><code>dM40</code></td>
+<td>CURRENT DATA AUTHORITY [route clearance]</td>
+<td>route-clearance structure</td>
+</tr>
+<tr class="even">
+<td><code>dM48</code></td>
+<td>POSITION REPORT […]</td>
+<td>position, time, altitude, optional met/route fields</td>
+</tr>
+<tr class="odd">
+<td><code>uM227</code></td>
+<td>LOGICAL ACKNOWLEDGMENT</td>
+<td>no body</td>
+</tr>
+</tbody>
+</table>
+<p>The element identifier alone is not enough for analysis. The body may contain the actual altitude, route, fix, frequency, or position values needed to link the message with the trajectory.</p>
+</section>
+<section id="example-contact-instruction" class="level2" data-number="33.5">
+<h2 data-number="33.5" class="anchored" data-anchor-id="example-contact-instruction"><span class="header-section-number">33.5</span> Example: contact instruction</h2>
+<p>This example is adapted from local <code>datalink</code> analysis fixtures. The raw Airframes row contains an ARINC 622 <code>AT1</code> envelope; the decoder extracts a CPDLC uplink element:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"atsu_address"</span><span class="fu">:</span> <span class="st">"FUKJJYA"</span><span class="fu">,</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"imi"</span><span class="fu">:</span> <span class="st">"AT1"</span><span class="fu">,</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"registration"</span><span class="fu">:</span> <span class="st">"HL8572"</span><span class="fu">,</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"payload"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"Cpdlc"</span><span class="fu">,</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"data"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"uplink"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"header"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"msg_id"</span><span class="fu">:</span> <span class="dv">8</span><span class="fu">,</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"timestamp"</span><span class="fu">:</span> <span class="st">"11:43:54"</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>        <span class="fu">},</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"elements"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>          <span class="fu">{</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"id"</span><span class="fu">:</span> <span class="dv">117</span><span class="fu">,</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"uM117ICAOunitnameFrequency"</span><span class="fu">,</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"template"</span><span class="fu">:</span> <span class="st">"CONTACT [icaounitname] [frequency]"</span><span class="fu">,</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"body"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>              <span class="dt">"icao_unit"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>                <span class="dt">"facility"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>                  <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"Designation"</span><span class="fu">,</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>                  <span class="dt">"value"</span><span class="fu">:</span> <span class="st">"KSFO"</span></span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>                <span class="fu">},</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>                <span class="dt">"function"</span><span class="fu">:</span> <span class="st">"Center"</span></span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>              <span class="fu">},</span></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>              <span class="dt">"frequency"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>                <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"HfKhz"</span><span class="fu">,</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>                <span class="dt">"value"</span><span class="fu">:</span> <span class="dv">10048</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>              <span class="fu">}</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>            <span class="fu">}</span></span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>          <span class="fu">}</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>        <span class="ot">]</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>For a human reader this means a contact instruction. For data analysis it is a structured event with a facility, frequency, aircraft, timestamp, and message direction.</p>
+</section>
+<section id="example-altitude-clearance" class="level2" data-number="33.6">
+<h2 data-number="33.6" class="anchored" data-anchor-id="example-altitude-clearance"><span class="header-section-number">33.6</span> Example: altitude clearance</h2>
+<p>A compact altitude-clearance example decodes to a <code>uM20</code> element:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"atsu_address"</span><span class="fu">:</span> <span class="st">"BNECAYA"</span><span class="fu">,</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"imi"</span><span class="fu">:</span> <span class="st">"AT1"</span><span class="fu">,</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"registration"</span><span class="fu">:</span> <span class="st">"VH-EBN"</span><span class="fu">,</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"payload"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"type"</span><span class="fu">:</span> <span class="st">"Cpdlc"</span><span class="fu">,</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"data"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"uplink"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"header"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"msg_id"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"msg_ref"</span><span class="fu">:</span> <span class="dv">5</span><span class="fu">,</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"timestamp"</span><span class="fu">:</span> <span class="st">"11:48:36"</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>        <span class="fu">},</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"elements"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>          <span class="fu">{</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"id"</span><span class="fu">:</span> <span class="dv">20</span><span class="fu">,</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"uM20Altitude"</span><span class="fu">,</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"template"</span><span class="fu">:</span> <span class="st">"CLIMB TO AND MAINTAIN [altitude]"</span><span class="fu">,</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a>            <span class="dt">"body"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a>              <span class="dt">"altitude"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>                <span class="dt">"FL"</span><span class="fu">:</span> <span class="dv">350</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>              <span class="fu">}</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>            <span class="fu">}</span></span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>          <span class="fu">}</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>        <span class="ot">]</span></span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Such messages are useful when aligned with a trajectory: the climb can be compared with the clearance time, the aircraft state, and the following ADS-B or ADS-C reports.</p>
+</section>
+<section id="route-clearances-and-position-reports" class="level2" data-number="33.7">
+<h2 data-number="33.7" class="anchored" data-anchor-id="route-clearances-and-position-reports"><span class="header-section-number">33.7</span> Route clearances and position reports</h2>
+<p>Route-clearance elements can contain structured route information rather than plain text. A route clearance may include departure and destination airports, published identifiers, oceanic waypoints, runways, procedures, or additional route details.</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"uM80RouteClearance"</span><span class="fu">,</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"body"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"route_clearance"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"departure"</span><span class="fu">:</span> <span class="st">"CYQX"</span><span class="fu">,</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"destination"</span><span class="fu">:</span> <span class="st">"EGLL"</span><span class="fu">,</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>      <span class="dt">"route_information"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>        <span class="fu">{</span> <span class="dt">"published_identifier"</span><span class="fu">:</span> <span class="st">"57N020W"</span> <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>        <span class="fu">{</span> <span class="dt">"published_identifier"</span><span class="fu">:</span> <span class="st">"58N030W"</span> <span class="fu">}</span><span class="ot">,</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>        <span class="fu">{</span> <span class="dt">"published_identifier"</span><span class="fu">:</span> <span class="st">"MIMKU"</span> <span class="fu">}</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>      <span class="ot">]</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">}</span></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>Downlinked position reports (<code>dM48</code>) can be even richer. They may include current position and time, altitude, next fixes, estimated times, temperature, wind, speed, vertical change, track angle, true heading, and reported waypoint fields. This overlaps with ADS-C in content, but the message belongs to the controller-pilot dialogue rather than to a surveillance contract.</p>
+</section>
+<section id="atn-b1-examples" class="level2" data-number="33.8">
+<h2 data-number="33.8" class="anchored" data-anchor-id="atn-b1-examples"><span class="header-section-number">33.8</span> ATN B1 examples</h2>
+<p>Continental VDL2 can carry CPDLC through the ATN B1 stack instead of an ACARS/ARINC 622 envelope. In that case the protocol stack itself is informative:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode json code-with-copy"><code class="sourceCode json"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">{</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"bearer"</span><span class="fu">:</span> <span class="st">"vdl2"</span><span class="fu">,</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"path"</span><span class="fu">:</span> <span class="st">"atn"</span><span class="fu">,</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"protocol_stack"</span><span class="fu">:</span> <span class="ot">[</span><span class="st">"vdl2"</span><span class="ot">,</span> <span class="st">"avlc"</span><span class="ot">,</span> <span class="st">"x25"</span><span class="ot">,</span> <span class="st">"clnp"</span><span class="ot">,</span> <span class="st">"cotp"</span><span class="ot">,</span> <span class="st">"ulcs"</span><span class="ot">,</span> <span class="st">"atn_b1"</span><span class="ot">,</span> <span class="st">"cpdlc"</span><span class="ot">]</span><span class="fu">,</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"summary"</span><span class="fu">:</span> <span class="st">"ATN B1 CPDLC: uM117UnitNameFrequency: CONTACT EGTT 129.605 MHz"</span><span class="fu">,</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="dt">"app"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"protocol"</span><span class="fu">:</span> <span class="st">"atn_b1_cpdlc"</span><span class="fu">,</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"standard"</span><span class="fu">:</span> <span class="st">"ATN B1"</span><span class="fu">,</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">"elements"</span><span class="fu">:</span> <span class="ot">[</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>      <span class="fu">{</span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"id"</span><span class="fu">:</span> <span class="dv">117</span><span class="fu">,</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"name"</span><span class="fu">:</span> <span class="st">"uM117UnitNameFrequency"</span><span class="fu">,</span></span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"template"</span><span class="fu">:</span> <span class="st">"CONTACT [unit name] [frequency]"</span><span class="fu">,</span></span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>        <span class="dt">"body"</span><span class="fu">:</span> <span class="fu">{</span></span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"facility"</span><span class="fu">:</span> <span class="st">"EGTT"</span><span class="fu">,</span></span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>          <span class="dt">"frequency"</span><span class="fu">:</span> <span class="st">"129.605 MHz"</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>        <span class="fu">}</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>      <span class="fu">}</span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a>    <span class="ot">]</span></span>
+<span id="cb5-20"><a href="#cb5-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">}</span></span>
+<span id="cb5-21"><a href="#cb5-21" aria-hidden="true" tabindex="-1"></a><span class="fu">}</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>This is why the general <a href="../../chapters/data_sources/datalink-acars-message-sources.html">datalink and ACARS message sources</a> chapter keeps the bearer and wrapper layers visible. CPDLC data is not only the decoded phrase; it is also the protocol path, direction, facility, and session context.</p>
+</section>
+<section id="building-operational-narratives" class="level2" data-number="33.9">
+<h2 data-number="33.9" class="anchored" data-anchor-id="building-operational-narratives"><span class="header-section-number">33.9</span> Building operational narratives</h2>
+<p>CPDLC becomes most useful when joined with other sources. A transatlantic narrative might combine:</p>
+<ul>
+<li>ADS-B near departure and arrival, where receiver coverage is dense;</li>
+<li>ADS-C periodic and event reports over oceanic airspace;</li>
+<li>CPDLC clearances, route changes, contact instructions, WILCO responses, and position reports;</li>
+<li>flight plan, route, FIR, and airport data.</li>
+</ul>
+<p>Together these sources can explain not only where the aircraft flew, but also what it was cleared to do and when the crew acknowledged the instruction.</p>
+</section>
+<section id="data-caveats" class="level2" data-number="33.10">
+<h2 data-number="33.10" class="anchored" data-anchor-id="data-caveats"><span class="header-section-number">33.10</span> Data caveats</h2>
+<p>CPDLC is operational communication data. Several caveats matter:</p>
+<ul>
+<li>public feeds are incomplete and bearer-dependent;</li>
+<li>message timestamps may be receiver or aggregator timestamps, not exact cockpit event times;</li>
+<li>some payload bodies require complex ASN.1/UPER parsing and may be only partially decoded;</li>
+<li>route-clearance structures have many alternatives and edge cases;</li>
+<li>free text and operational messages may contain sensitive information;</li>
+<li>the absence of a CPDLC message in a public feed does not mean that no instruction was issued.</li>
+</ul>
+<p>Use CPDLC to enrich operational analysis, not as a standalone ground truth unless the source and decoding chain are well understood.</p>
+</section>
+<section id="glossary" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="glossary">Glossary</h2>
 
 
 <dl>
+<dt><span id="acronyms_CPDLC">CPDLC</span></dt>
+<dd>
+Controller–Pilot Data Link Communication
+</dd>
 </dl>
-</section>
 </section>
 
 </main> <!-- /main -->
@@ -1419,13 +1640,13 @@ ul.task-list li input[type="checkbox"] {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/data_sources/datalink-beyond-transponder.html" class="pagination-link" aria-label="🟠 Datalink overview">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">🟠 Datalink overview</span></span>
+      <a href="../../chapters/data_sources/adsc-data.html" class="pagination-link" aria-label="ADS-C data">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">ADS-C data</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../chapters/data_sources/acars-message-routing.html" class="pagination-link" aria-label="🟠 ACARS routing">
-        <span class="nav-page-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">🟠 ACARS routing</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../chapters/data_sources/flight-plans-intent.html" class="pagination-link" aria-label="🟡 Flight intent">
+        <span class="nav-page-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">🟡 Flight intent</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1434,5 +1655,5 @@ ul.task-list li input[type="checkbox"] {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/open-aviation/aviationbook/edit/master/chapters/data_sources/acars-vdl2-hfdl-satcom.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/open-aviation/aviationbook/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/open-aviation/aviationbook/blob/master/chapters/data_sources/acars-vdl2-hfdl-satcom.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer><script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/open-aviation/aviationbook/edit/master/chapters/data_sources/cpdlc-data.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/open-aviation/aviationbook/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/open-aviation/aviationbook/blob/master/chapters/data_sources/cpdlc-data.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></div></div></footer><script src="../../site_libs/quarto-html/zenscroll-min.js"></script>
 </body></html>
