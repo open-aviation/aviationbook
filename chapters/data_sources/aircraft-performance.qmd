@@ -4,14 +4,6 @@ authors:
   - Junzi Sun
 ---
 
-::: {.callout-warning}
-## TODO for this page
-
-This page has been copied or moved into the experimental `new/` architecture. Review the scope, trim or split content where needed, fix internal links, and add missing material described by the new table of contents.
-:::
-
-
-
 Aircraft performance models are used to study how aircraft fly. They are based on the laws of physics and can be used to predict the aircraft's speed, altitude, thrust, drag, and fuel consumption. There are different categories of performance models, with varying levels of detail. The most detailed, non-linear six-degree-of-freedom models are commonly used in aircraft control studies. Air traffic management research often assumes a stable aircraft and neglects fast rotational dynamics. This assumption means that a point-mass aircraft performance model is sufficient in most use cases. Such a point-mass model is used in most of the aviation research.
 
 Two prominent aircraft performance models are widely used in the aviation community. BADA [@nuic2010], developed by Eurocontrol, is a well-established model that includes both kinematic and dynamic models. The BADA aircraft performance operation file (OPF) models the dynamic properties of the aircraft, while the airline procedures file (APF) models the kinematic aspects of flights. Unlike BADA, which relies on strict user license agreements, OpenAP [@sun2020openap], a recent open aircraft model, also provides both kinematic and dynamic models for common aircraft types with full open access.

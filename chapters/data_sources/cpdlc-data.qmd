@@ -1,0 +1,229 @@
+---
+title: CPDLC data
+authors:
+- Xavier Olive
+---
+
+\acr{CPDLC} is structured text communication between controllers and pilots. It carries clearances, requests, acknowledgements, contact instructions, route clearances, and position reports. For data analysis, CPDLC answers a question that ADS-B cannot answer: what did the ground ask the crew to do, and how did the crew respond?
+
+The operational background is introduced in [communication systems](../background/communication-systems.qmd). This chapter focuses on CPDLC as a data source: message paths, session structure, decoded elements, examples, and caveats.
+
+## Why CPDLC matters as data
+
+A trajectory alone can show that an aircraft climbed, turned, or changed route. CPDLC can sometimes show the instruction or clearance behind that change. It is therefore useful for operational narratives, oceanic-airspace studies, route-clearance analysis, and workload or communication studies.
+
+Typical CPDLC content includes:
+
+- altitude clearances, e.g. *CLIMB TO AND MAINTAIN FL350*;
+- route clearances and oceanic track instructions;
+- contact instructions, e.g. *CONTACT EGTT 129.605 MHz*;
+- pilot responses such as *WILCO* or *UNABLE*;
+- downlinked position reports with time, altitude, route, and meteorological fields;
+- connection management messages.
+
+## Two major protocol paths
+
+CPDLC is an application, not a frequency. It can arrive through different protocol stacks.
+
+| Path | Typical stack | Notes |
+|---|---|---|
+| FANS-1/A CPDLC | ACARS → ARINC 622 `AT1` | common in oceanic and long-haul operations |
+| ATN B1 CPDLC | VDL2 → AVLC → X.25 → CLNP → COTP → ULCS | common in continental VDL2 environments |
+
+The decoded application may look similar—a controller message element with an identifier and template—but the lower layers are different. A dataset should therefore preserve both the decoded CPDLC element and the path by which it was received.
+
+## Session lifecycle
+
+FANS-1/A CPDLC uses a connection model. A simplified session looks like this:
+
+```text
+Aircraft → ATSU:  CR1  CONNECT REQUEST
+ATSU → Aircraft:  CC1  CONNECT CONFIRM
+
+  ↕  AT1  CPDLC message elements
+
+Aircraft → ATSU:  DR1  DISCONNECT REQUEST
+```
+
+The `AT1` messages carry the controller-pilot dialogue. The control IMIs (`CR1`, `CC1`, `DR1`) explain the session context: which facility is connected and when the connection begins or ends.
+
+## Message elements
+
+A CPDLC message body contains a header and one or more message elements. Each element has an identifier, a phrase template, and sometimes a typed body. For example, an altitude instruction fills an altitude slot; a contact instruction fills facility and frequency slots.
+
+| Element | Template | Typical body |
+|---|---|---|
+| `uM20` | CLIMB TO AND MAINTAIN [altitude] | flight level or altitude |
+| `uM80` | CLEARED TO [position] VIA [route clearance] | route-clearance structure |
+| `uM117` | CONTACT [facility] [frequency] | facility and radio frequency |
+| `dM0` | WILCO | no body |
+| `dM40` | CURRENT DATA AUTHORITY [route clearance] | route-clearance structure |
+| `dM48` | POSITION REPORT [...] | position, time, altitude, optional met/route fields |
+| `uM227` | LOGICAL ACKNOWLEDGMENT | no body |
+
+The element identifier alone is not enough for analysis. The body may contain the actual altitude, route, fix, frequency, or position values needed to link the message with the trajectory.
+
+## Example: contact instruction
+
+This example is adapted from local `datalink` analysis fixtures. The raw Airframes row contains an ARINC 622 `AT1` envelope; the decoder extracts a CPDLC uplink element:
+
+```json
+{
+  "atsu_address": "FUKJJYA",
+  "imi": "AT1",
+  "registration": "HL8572",
+  "payload": {
+    "type": "Cpdlc",
+    "data": {
+      "uplink": {
+        "header": {
+          "msg_id": 8,
+          "timestamp": "11:43:54"
+        },
+        "elements": [
+          {
+            "id": 117,
+            "name": "uM117ICAOunitnameFrequency",
+            "template": "CONTACT [icaounitname] [frequency]",
+            "body": {
+              "icao_unit": {
+                "facility": {
+                  "type": "Designation",
+                  "value": "KSFO"
+                },
+                "function": "Center"
+              },
+              "frequency": {
+                "type": "HfKhz",
+                "value": 10048
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
+```
+
+For a human reader this means a contact instruction. For data analysis it is a structured event with a facility, frequency, aircraft, timestamp, and message direction.
+
+## Example: altitude clearance
+
+A compact altitude-clearance example decodes to a `uM20` element:
+
+```json
+{
+  "atsu_address": "BNECAYA",
+  "imi": "AT1",
+  "registration": "VH-EBN",
+  "payload": {
+    "type": "Cpdlc",
+    "data": {
+      "uplink": {
+        "header": {
+          "msg_id": 5,
+          "msg_ref": 5,
+          "timestamp": "11:48:36"
+        },
+        "elements": [
+          {
+            "id": 20,
+            "name": "uM20Altitude",
+            "template": "CLIMB TO AND MAINTAIN [altitude]",
+            "body": {
+              "altitude": {
+                "FL": 350
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
+```
+
+Such messages are useful when aligned with a trajectory: the climb can be compared with the clearance time, the aircraft state, and the following ADS-B or ADS-C reports.
+
+## Route clearances and position reports
+
+Route-clearance elements can contain structured route information rather than plain text. A route clearance may include departure and destination airports, published identifiers, oceanic waypoints, runways, procedures, or additional route details.
+
+```json
+{
+  "name": "uM80RouteClearance",
+  "body": {
+    "route_clearance": {
+      "departure": "CYQX",
+      "destination": "EGLL",
+      "route_information": [
+        { "published_identifier": "57N020W" },
+        { "published_identifier": "58N030W" },
+        { "published_identifier": "MIMKU" }
+      ]
+    }
+  }
+}
+```
+
+Downlinked position reports (`dM48`) can be even richer. They may include current position and time, altitude, next fixes, estimated times, temperature, wind, speed, vertical change, track angle, true heading, and reported waypoint fields. This overlaps with ADS-C in content, but the message belongs to the controller-pilot dialogue rather than to a surveillance contract.
+
+## ATN B1 examples
+
+Continental VDL2 can carry CPDLC through the ATN B1 stack instead of an ACARS/ARINC 622 envelope. In that case the protocol stack itself is informative:
+
+```json
+{
+  "bearer": "vdl2",
+  "path": "atn",
+  "protocol_stack": ["vdl2", "avlc", "x25", "clnp", "cotp", "ulcs", "atn_b1", "cpdlc"],
+  "summary": "ATN B1 CPDLC: uM117UnitNameFrequency: CONTACT EGTT 129.605 MHz",
+  "app": {
+    "protocol": "atn_b1_cpdlc",
+    "standard": "ATN B1",
+    "elements": [
+      {
+        "id": 117,
+        "name": "uM117UnitNameFrequency",
+        "template": "CONTACT [unit name] [frequency]",
+        "body": {
+          "facility": "EGTT",
+          "frequency": "129.605 MHz"
+        }
+      }
+    ]
+  }
+}
+```
+
+This is why the general [datalink and ACARS message sources](datalink-acars-message-sources.qmd) chapter keeps the bearer and wrapper layers visible. CPDLC data is not only the decoded phrase; it is also the protocol path, direction, facility, and session context.
+
+## Building operational narratives
+
+CPDLC becomes most useful when joined with other sources. A transatlantic narrative might combine:
+
+- ADS-B near departure and arrival, where receiver coverage is dense;
+- ADS-C periodic and event reports over oceanic airspace;
+- CPDLC clearances, route changes, contact instructions, WILCO responses, and position reports;
+- flight plan, route, FIR, and airport data.
+
+Together these sources can explain not only where the aircraft flew, but also what it was cleared to do and when the crew acknowledged the instruction.
+
+## Data caveats
+
+CPDLC is operational communication data. Several caveats matter:
+
+- public feeds are incomplete and bearer-dependent;
+- message timestamps may be receiver or aggregator timestamps, not exact cockpit event times;
+- some payload bodies require complex ASN.1/UPER parsing and may be only partially decoded;
+- route-clearance structures have many alternatives and edge cases;
+- free text and operational messages may contain sensitive information;
+- the absence of a CPDLC message in a public feed does not mean that no instruction was issued.
+
+Use CPDLC to enrich operational analysis, not as a standalone ground truth unless the source and decoding chain are well understood.
+
+## Glossary {.unnumbered}
+
+\glsaddallunused
+\printacronyms

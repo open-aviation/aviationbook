@@ -1,0 +1,146 @@
+---
+title: ADS-C data
+authors:
+- Xavier Olive
+---
+
+\acr{ADS-C} is the contract-based counterpart to \acr{ADS-B}. Both are automatic dependent surveillance systems: the aircraft reports information derived from its own navigation systems. The difference is the final letter. \acr{ADS-B} is a broadcast to anyone in range; \acr{ADS-C} is a negotiated exchange between an aircraft and an air traffic service unit.
+
+This makes \acr{ADS-C} an important data source for oceanic and remote operations. It is lower rate than ADS-B, but its reports can contain route intent, meteorological data, and air-reference information that are absent from most ADS-B trajectories.
+
+## Contract model
+
+An \acr{ATSU} negotiates a contract with the aircraft. The contract defines what the aircraft should report and when. Common contract types are:
+
+| Contract | Trigger |
+|---|---|
+| periodic | reports at a fixed interval, for example every 10 minutes over oceanic airspace |
+| event | reports when a condition changes, such as waypoint passage, altitude change, or lateral deviation |
+| demand | one report requested by the ground system |
+| emergency periodic | periodic reports activated in emergency mode |
+
+The uplink is therefore part of the surveillance source. It tells the aircraft what to send: which report groups to include, how often to include them, and which events should trigger a report. This is a key difference from ADS-B, where the receiver passively observes a standard broadcast stream.
+
+## Report contents
+
+ADS-C downlinks are commonly encoded as tag-length-value payloads inside an ARINC 622 `ADS` envelope. A basic report gives a four-dimensional position: latitude, longitude, altitude, and time within the current hour. Additional tags enrich that position with intent, speed, meteorology, and aircraft identity.
+
+| Tag | Typical content | Analytical use |
+|---|---|---|
+| Basic report | latitude, longitude, altitude, timestamp, accuracy code | sparse trajectory reconstruction |
+| Flight identification | flight id or callsign-like identifier | flight matching and filtering |
+| Predicted route | next and next-next waypoint, altitude, estimated time | FMS intent and oceanic route analysis |
+| Earth-reference data | track, ground speed, vertical rate | trajectory dynamics |
+| Air-reference data | heading, indicated/true airspeed, Mach | wind and performance analysis |
+| Meteorological data | wind speed, wind direction, temperature | in-situ weather comparison |
+| Airframe identifier | ICAO 24-bit address | joining with aircraft and surveillance data |
+
+The richness depends on the active contract. A receiver should not assume that every report contains every group.
+
+## ADS-B and ADS-C compared
+
+| Feature | ADS-B | ADS-C |
+|---|---|---|
+| Trigger | automatic broadcast | negotiated contract |
+| Recipients | anyone in range | contracted ground facility |
+| Typical update rate | sub-second to a few seconds | minutes for periodic reports |
+| Coverage | receiver-dependent; line-of-sight for ground stations | VHF, HF, or satellite depending on bearer |
+| Data | position, velocity, identity, status | position, intent, meteorology, air-reference data |
+| Direction | one-way broadcast | bidirectional: uplink contract, downlink report |
+
+ADS-C does not replace ADS-B for high-rate trajectory analysis. It complements it in places where ADS-B coverage is sparse and where route-intent or meteorological fields matter more than update rate.
+
+## Example decoded report
+
+The exact JSON shape depends on the decoder, but a normalized ADS-C event usually exposes the ARINC 622 envelope, the `ADS` IMI, and the decoded tags. A compact example looks like this:
+
+```json
+{
+  "bearer": "vdl2",
+  "path": "acars",
+  "message_class": "app_message",
+  "summary": "ADS-C: 48.3420°N 007.8210°W FL350 track 280.3° gs 487kt",
+  "app": {
+    "protocol": "ads_c",
+    "registration": "G-EZBJ",
+    "tags": [
+      {
+        "BasicReport": {
+          "latitude": 48.342,
+          "longitude": -7.821,
+          "altitude_ft": 35000,
+          "timestamp_seconds_past_hour": 1843.0,
+          "position_accuracy_code": 2,
+          "tcas_ok": true
+        }
+      },
+      {
+        "PredictedRoute": {
+          "next_latitude": 50.0,
+          "next_longitude": -15.0,
+          "next_altitude_ft": 35000,
+          "next_eta_seconds": 1240
+        }
+      },
+      {
+        "MeteoData": {
+          "wind_speed_kt": 62.0,
+          "wind_direction_true_degrees": 245.0,
+          "temperature_c": -54.5
+        }
+      }
+    ]
+  }
+}
+```
+
+The `PredictedRoute` tag is particularly valuable for data analysis: it gives a glimpse of the aircraft's planned path, not just its current position. The meteorological tag is also useful because it provides in-situ measurements along routes where conventional observations are sparse.
+
+## Uplink contracts
+
+ADS-C uplinks are not just protocol noise. They describe the surveillance contract itself. For example, a periodic contract request may specify an interval and a list of report groups. An event contract may ask the aircraft to report when it crosses a waypoint, deviates laterally, changes altitude, or enters an emergency condition.
+
+A decoder that keeps only downlink positions loses this context. For research, uplinks can explain why reports appear at a given cadence and why some fields are present or absent.
+
+```json
+{
+  "summary": "ADS-C uplink: periodic contract every 600s, demand basic+flight_id+predicted_route",
+  "app": {
+    "protocol": "ads_c_uplink",
+    "periodic_interval": 600,
+    "demand_groups": ["basic", "flight_id", "predicted_route"]
+  }
+}
+```
+
+## Access paths
+
+ADS-C messages can be observed through several paths:
+
+- Airframes.io and similar aggregators may expose ACARS, HFDL, SATCOM, or VDL2-origin rows;
+- local VHF or VDL2 reception can capture line-of-sight messages;
+- HFDL and satellite reception extend coverage to oceanic or remote areas;
+- institutional datasets, including ANSP or OpenSky-derived sources, may provide decoded ADS-C reports directly.
+
+The [datalink and ACARS message sources](datalink-acars-message-sources.qmd) chapter explains the bearer and envelope layers. For ADS-C analysis, the important fields are the contract, report tags, aircraft identifier, report timestamp, and receiver/source metadata.
+
+## Analytical uses
+
+ADS-C is useful when the research question needs more than high-rate ADS-B positions:
+
+- reconstructing oceanic trajectories across ADS-B coverage gaps;
+- studying route intent through predicted waypoints and estimated times;
+- comparing in-situ wind and temperature with numerical weather models;
+- understanding surveillance contracts and report cadences;
+- linking controller-pilot communication, ADS-C reports, and flown trajectories.
+
+A natural case study is an oceanic flight: ADS-B gives high-rate positions near the coasts, ADS-C continues the trajectory across remote airspace, and CPDLC explains some of the clearances and acknowledgements exchanged along the way.
+
+## Data caveats
+
+ADS-C data is sparse and contract-dependent. Reports may arrive every several minutes, not every second. The active contract determines which groups are present. Public feeds may not expose every uplink or every bearer equally. Some fields are decoded only partially by open-source tooling. Finally, ADS-C is operational communication data; publishing raw examples should be done carefully.
+
+## Glossary {.unnumbered}
+
+\glsaddallunused
+\printacronyms

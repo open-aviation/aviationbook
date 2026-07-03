@@ -1,0 +1,150 @@
+---
+title: Datalink and ACARS message sources
+authors:
+- Xavier Olive
+---
+
+ADS-B and Mode S tell us where an aircraft is and, sometimes, what its transponder can report. They do not tell us what the crew and the ground exchanged: clearances, acknowledgements, weather requests, operational events, or negotiated surveillance contracts. Those exchanges belong to aviation **datalink**.
+
+This chapter is the data-source entry point for datalink messages. The aviation background page on [communication systems](../background/communication-systems.qmd) introduces voice and datalink at the operational level; here we focus on the structure of the data and on how public receivers and aggregators expose it.
+
+## What datalink adds to surveillance data
+
+Datalink complements the surveillance sources discussed in [flight tracking and surveillance data](flight-tracking-surveillance.qmd):
+
+- it records **communication**, such as controller clearances and pilot responses;
+- it can expose **route intent**, for example predicted waypoints or route clearances;
+- it supports **contract-based surveillance** through \acr{ADS-C};
+- it carries **airline operational messages**, including out/off/on/in events, maintenance reports, weather requests, and free text;
+- it can remain available over oceanic or remote areas through HF or satellite bearers.
+
+The important distinction is that datalink is not a single frequency or protocol. It is a stack: radio bearer, link-layer framing, message container, routing label, and application payload.
+
+## Bearers
+
+A **bearer** is the communication technology that carries the message. The same operational application may appear over different bearers depending on aircraft equipage, region, range, and service provider.
+
+| Bearer | Medium | Typical use | Notes |
+|---|---|---|---|
+| VHF ACARS | VHF data link, mainly around 129–131 MHz | airline operations, ATIS, weather, some ATS traffic | legacy, low-rate, line-of-sight |
+| \acr{VDL} Mode 2 | VHF digital data link, 136–137 MHz | \acr{CPDLC}, \acr{ADS-C}, \acr{AOC}, network management | higher capacity; carries AVLC frames |
+| \acr{HFDL} | HF radio, roughly 2–22 MHz | oceanic and remote communications | long range, propagation-dependent |
+| \acr{SATCOM} / Iridium | L-band satellite links | oceanic, polar, long-haul communication | global or near-global coverage, provider-dependent |
+
+Classic VHF \acr{ACARS} uses MSK at 2400 bps. \acr{VDL} Mode 2 uses D8PSK bursts around 136–137 MHz and can carry both ACARS-style traffic and ATN/VDL2 network traffic. HFDL and satellite links are essential context because public aggregators may expose messages received through them, even if a local receiver only monitors VHF.
+
+## Receiving radio data with SDR
+
+Many open aviation data feeds begin with a software-defined radio. An \acr{SDR} digitises a slice of spectrum; software then demodulates and decodes the aviation protocol of interest. Cheap RTL-SDR dongles are common and sufficient for many VHF and 1090 MHz experiments, but they have limited bandwidth and dynamic range. Airspy, HackRF, LimeSDR, and similar devices offer different trade-offs.
+
+A single receiver setup cannot receive all aviation links at once. ADS-B and Mode S use 1090 MHz; VHF ACARS is mostly around 129–131 MHz; \acr{VDL} Mode 2 uses 136–137 MHz; HFDL is in HF bands; satellite ACARS and Iridium are in L-band. Antenna placement, filtering, gain, and local radio noise often matter as much as decoder software.
+
+::: {.callout-note}
+## Responsible reception
+
+Radio reception and redistribution rules vary by country. Datalink messages may include operationally sensitive or personal information. Treat raw messages carefully, aggregate when possible, and avoid publishing unnecessary identifiers or free text.
+:::
+
+## ACARS as a message container
+
+\acr{ACARS} began as an aircraft communications addressing and reporting system, but for data analysis it is useful to view it as a common message container. A decoded ACARS frame contains fields such as aircraft registration, acknowledgement state, label, block identifier, text, and checksum.
+
+```text
+mode · registration · ack · label · block_id · text · checksum
+```
+
+The two-character **label** is the first routing key. It tells a decoder whether the text should be interpreted as an ARINC 622 envelope, an ATIS request, an OOOI event, an airline operational message, a media advisory, or another payload family.
+
+| Label family | Common use |
+|---|---|
+| `H1`, `T1` | ARINC 622 envelopes: \acr{ADS-C}, \acr{CPDLC}, AFN, related ATS traffic |
+| `A0`, `B0` | AFN contact or logon |
+| `A9`, `B9` | ATIS delivery or request |
+| `B1` | oceanic clearance |
+| `QF`, `QQ` | \acr{OOOI} events: out, off, on, in |
+| `5Z`, `80` | airline operational control reports |
+| `SA`, `_d` | media advisory or link-state messages |
+| `MA` | MIAM file transfer |
+| `Q0` | link test or heartbeat |
+
+## VDL2 and network paths
+
+\acr{VDL} Mode 2 adds a link layer called AVLC. AVLC frames include source and destination addresses, link control information, a payload, and a frame check sequence. The payload can follow two important paths:
+
+```text
+VDL2 burst → AVLC I-frame → ACARS prefix → ACARS frame → ARINC 622 / ACARS applications
+VDL2 burst → AVLC I-frame → X.25 → CLNP/COTP/ULCS → ATN B1 applications
+```
+
+The first path leads to ACARS-style payloads, including FANS-1/A \acr{CPDLC} and \acr{ADS-C}. The second path leads to ATN B1 applications, including continental CPDLC over the VDL2 network stack. The same high-level application name can therefore hide very different protocol stacks.
+
+## ARINC 622 envelopes
+
+High-value ATS messages often appear as an ARINC 622 envelope inside the ACARS text field:
+
+```text
+/ATSU.IMI.REGISTRATION payload checksum
+```
+
+| Part | Example | Meaning |
+|---|---|---|
+| `ATSU` | `CZQX`, `EGGX`, `KZWY` | air traffic service unit or datalink facility |
+| `IMI` | `ADS`, `AT1`, `CR1`, `CC1`, `DR1` | interline message identifier; selects the application |
+| registration | `G-EZBJ`, `A7-ANR` | aircraft registration |
+| payload | binary or hex-like text | application-specific content |
+| checksum | trailing bytes | integrity check |
+
+Common IMIs include:
+
+| IMI | Application |
+|---|---|
+| `ADS` | \acr{ADS-C} report, contract, or control message |
+| `AT1` | FANS-1/A \acr{CPDLC} message body |
+| `CR1` | \acr{CPDLC} connect request |
+| `CC1` | \acr{CPDLC} connect confirm |
+| `DR1` | \acr{CPDLC} disconnect request |
+| `DIS` | \acr{ADS-C} disconnect or control message |
+
+The dedicated chapters on [ADS-C data](adsc-data.qmd) and [CPDLC data](cpdlc-data.qmd) decode these application payloads in more detail.
+
+## Public feeds and software
+
+[Airframes.io](https://docs.airframes.io/docs/intro/) aggregates ACARS-related traffic from community feeders and exposes live and historical messages. Its documentation emphasises that ACARS is an accumulation of transmission media, formats, and protocols including VDL, HFDL, SATCOM, and related systems. For researchers, Airframes is useful because it makes datalink visible beyond a local receiver footprint.
+
+The local `datalink` tool used for this book follows the same layered view. It can read supported SDR/file sources, consume Airframes.io websocket rows, decode several bearer and application formats, and emit normalized JSONL events with source, receiver, aircraft, kinematics, raw-frame, and protocol-body fields.
+
+Example standalone commands include:
+
+```bash
+# Hex-encoded ACARS frame bytes
+datalink decode acars --direction downlink '<hex>'
+
+# Hex-encoded AVLC frame including FCS
+datalink decode avlc '<hex>'
+
+# ADS-C application text payload
+datalink decode adsc '/ATSU.ADS....'
+```
+
+## Other datalink applications
+
+Not every datalink message is CPDLC or ADS-C. Airline operational control messages can include fuel, gate, load, maintenance, diversion, or dispatch information. OOOI messages timestamp gate departure, take-off, landing, and gate arrival. ATIS requests and deliveries show which weather or airport information crews request. Some messages are structured; others are airline-specific or free text.
+
+For book purposes, these applications are important as context and enrichment sources, but they do not need separate chapters. The deeper operational narrative comes from combining them with ADS-B, ADS-C, CPDLC, flight plans, and airport data.
+
+## Data caveats
+
+Datalink data is rich but uneven:
+
+- coverage depends on receiver location, bearer, propagation, and aggregation network;
+- labels and envelopes route messages, but airline-specific payloads are often undocumented;
+- public feeds may include duplicates, partial messages, or rows without a decoded payload;
+- CPDLC and ADS-C decoding require bit-level application parsers;
+- privacy and safety concerns are stronger than for simple position broadcasts.
+
+Use datalink as a complementary source: it can explain what the aircraft and ground systems communicated, but it should be interpreted with the same care as any operational communication record.
+
+## Glossary {.unnumbered}
+
+\glsaddallunused
+\printacronyms

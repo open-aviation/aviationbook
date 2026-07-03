@@ -63,11 +63,7 @@ Ground receiver coverage is dense in many populated regions and sparse over ocea
 
 [\acrfull{ADS-C}](../background/surveillance-systems.qmd#ads-c) can also provide trajectory data, especially in oceanic and remote airspace. Unlike ADS-B, it is not an open broadcast. It is based on a contract between an aircraft and an \acr{ATSU} specifying what information should be sent and under which conditions.
 
-For flight tracking, ADS-C reports are valuable because they may include not only a position but also route intent, meteorological information, and air-reference data. These messages have traditionally been available mainly to operational stakeholders, but ADS-C data have also started to appear in research-oriented feeds, including the OpenSky Network. The detailed data model and decoded examples are covered in [CPDLC and ADS-C data](cpdlc-adsc-data.qmd). Datalink context is introduced in [Datalink beyond the transponder](datalink-beyond-transponder.qmd).
-
-:::{.callout-warning}
-TODO update links in previous paragraph
-:::
+For flight tracking, ADS-C reports are valuable because they may include not only a position but also route intent, meteorological information, and air-reference data. These messages have traditionally been available mainly to operational stakeholders, but ADS-C data have also started to appear in research-oriented feeds, including the OpenSky Network. The detailed data model and decoded examples are covered in [ADS-C data](adsc-data.qmd). Datalink context is introduced in [Datalink and ACARS message sources](datalink-acars-message-sources.qmd).
 
 ### Low-level and general aviation tracking
 

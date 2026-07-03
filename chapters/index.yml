@@ -62,16 +62,12 @@
       href: data_sources/flight-tracking-surveillance.html
     - text: Decode ADS-B and Mode S data
       href: data_sources/adsb-mode-s-decoding.html
-    - text: Datalink beyond the transponder
-      href: data_sources/datalink-beyond-transponder.html
-    - text: ACARS, VDL2, HFDL, and SATCOM
-      href: data_sources/acars-vdl2-hfdl-satcom.html
-    - text: ACARS messages and application routing
-      href: data_sources/acars-message-routing.html
-    - text: CPDLC and ADS-C data
-      href: data_sources/cpdlc-adsc-data.html
-    - text: Airline operational datalink data
-      href: data_sources/aoc-operational-datalink.html
+    - text: Datalink and ACARS message sources
+      href: data_sources/datalink-acars-message-sources.html
+    - text: ADS-C data
+      href: data_sources/adsc-data.html
+    - text: CPDLC data
+      href: data_sources/cpdlc-data.html
     - text: Flight plans and route intent
       href: data_sources/flight-plans-intent.html
     - text: Network Manager trajectory formats

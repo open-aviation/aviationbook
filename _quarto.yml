@@ -56,11 +56,9 @@ book:
         - chapters/data_sources/airport-infrastructure-data.qmd
         - chapters/data_sources/flight-tracking-surveillance.qmd
         - chapters/data_sources/adsb-mode-s-decoding.qmd
-        - chapters/data_sources/datalink-beyond-transponder.qmd
-        - chapters/data_sources/acars-vdl2-hfdl-satcom.qmd
-        - chapters/data_sources/acars-message-routing.qmd
-        - chapters/data_sources/cpdlc-adsc-data.qmd
-        - chapters/data_sources/aoc-operational-datalink.qmd
+        - chapters/data_sources/datalink-acars-message-sources.qmd
+        - chapters/data_sources/adsc-data.qmd
+        - chapters/data_sources/cpdlc-data.qmd
         - chapters/data_sources/flight-plans-intent.qmd
         - chapters/data_sources/network-manager-formats.qmd
         - chapters/data_sources/aeronautical-information.qmd
@@ -202,16 +200,12 @@ book:
               href: chapters/data_sources/flight-tracking-surveillance.qmd
             - text: Decode ADS-B and Mode S data
               href: chapters/data_sources/adsb-mode-s-decoding.qmd
-            - text: 🟠 Datalink overview
-              href: chapters/data_sources/datalink-beyond-transponder.qmd
-            - text: 🟠 ACARS bearers
-              href: chapters/data_sources/acars-vdl2-hfdl-satcom.qmd
-            - text: 🟠 ACARS routing
-              href: chapters/data_sources/acars-message-routing.qmd
-            - text: 🟠 CPDLC & ADS-C
-              href: chapters/data_sources/cpdlc-adsc-data.qmd
-            - text: 🔴 AOC datalink
-              href: chapters/data_sources/aoc-operational-datalink.qmd
+            - text: Datalink and ACARS sources
+              href: chapters/data_sources/datalink-acars-message-sources.qmd
+            - text: ADS-C data
+              href: chapters/data_sources/adsc-data.qmd
+            - text: CPDLC data
+              href: chapters/data_sources/cpdlc-data.qmd
             - text: 🟡 Flight intent
               href: chapters/data_sources/flight-plans-intent.qmd
             - text: 🟡 NM formats
@@ -226,7 +220,7 @@ book:
               href: chapters/data_sources/weather-environment-data.qmd
             - text: 🔴 Weather hazards
               href: chapters/data_sources/weather-hazards-impact.qmd
-            - text: 🟢 Performance models
+            - text: Performance models
               href: chapters/data_sources/aircraft-performance.qmd
             - text: 🟡 Operational performance
               href: chapters/data_sources/operational-performance-data.qmd
