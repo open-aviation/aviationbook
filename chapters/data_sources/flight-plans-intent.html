@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>34&nbsp; Flight plans and trajectories – A journey through aviation data</title>
+<title>35&nbsp; Flight plans, intent, and Network Manager trajectories – A journey through aviation data</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -23,27 +23,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -52,8 +32,8 @@ div.csl-indent {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../chapters/data_sources/network-manager-formats.html" rel="next">
-<link href="../../chapters/data_sources/cpdlc-data.html" rel="prev">
+<link href="../../chapters/data_sources/weather-environment-data.html" rel="next">
+<link href="../../chapters/data_sources/aeronautical-information.html" rel="prev">
 <link href="../../favicon.svg" rel="icon" type="image/svg+xml">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -323,7 +303,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/data_sources/aircraft-information.html">The aviation data ecosystem</a></li><li class="breadcrumb-item"><a href="../../chapters/data_sources/flight-plans-intent.html"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">🟡 Flight intent</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/data_sources/aircraft-information.html">The aviation data ecosystem</a></li><li class="breadcrumb-item"><a href="../../chapters/data_sources/flight-plans-intent.html"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">🟡 Flight plans and intent</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -550,91 +530,67 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/datalink-acars-message-sources.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Datalink and ACARS sources</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">🟡 Datalink and ACARS sources</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/adsc-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">ADS-C data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">🟡 ADS-C data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/cpdlc-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">CPDLC data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../chapters/data_sources/flight-plans-intent.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">🟡 Flight intent</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../chapters/data_sources/network-manager-formats.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">🟡 NM formats</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">🟡 CPDLC data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/aeronautical-information.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">🟡 AIM overview</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">🟡 Aeronautical information</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/data_sources/aip-notam-aic-pib.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">🟡 AIP &amp; NOTAM</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../chapters/data_sources/points-routes-airspaces-procedures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">🟡 Routes &amp; procedures</span></span></a>
+  <a href="../../chapters/data_sources/flight-plans-intent.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">🟡 Flight plans and intent</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/weather-environment-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">🔴 Weather data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../chapters/data_sources/weather-hazards-impact.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">🔴 Weather hazards</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">🟡 Weather and environmental data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/aircraft-performance.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Performance models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Performance models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/operational-performance-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">🟡 Operational performance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">🟡 Operational performance</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/safety-occurrence-risk-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">🔴 Safety data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">🔴 Safety data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/human-factors-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">🔴 Human factors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">🔴 Human factors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/maintenance-airworthiness-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">🔴 Maintenance data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">🔴 Maintenance data</span></span></a>
   </div>
 </li>
       </ul>
@@ -651,55 +607,55 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/work/tidy-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">🟠 Tidy data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">🟠 Tidy data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/work/time-series.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">🔴 Time series</span></span></a>
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">🔴 Time series</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/work/lazy-columnar-processing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">🔴 Lazy processing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">🔴 Lazy processing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/work/physical-units.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">🔴 Physical units</span></span></a>
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">🔴 Physical units</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/work/coordinates-projections-geometry.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">🟠 Geometry &amp; projections</span></span></a>
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">🟠 Geometry &amp; projections</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/work/trajectory-processing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">🟠 Trajectories</span></span></a>
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">🟠 Trajectories</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/work/joining-heterogeneous-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">🔴 Data joins</span></span></a>
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">🔴 Data joins</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/work/information-extraction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">🟠 Information extraction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">🟠 Information extraction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/work/data-quality-uncertainty.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">🔴 Data quality</span></span></a>
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">🔴 Data quality</span></span></a>
   </div>
 </li>
       </ul>
@@ -716,49 +672,49 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/visualise/grammar-of-graphics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">🟠 Grammar of graphics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">🟠 Grammar of graphics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/visualise/time-series-profiles.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">56</span>&nbsp; <span class="chapter-title">🔴 Profiles</span></span></a>
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">🔴 Profiles</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/visualise/maps-projections.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">57</span>&nbsp; <span class="chapter-title">🟠 Maps</span></span></a>
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">🟠 Maps</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/visualise/trajectories.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">58</span>&nbsp; <span class="chapter-title">🔴 Trajectory maps</span></span></a>
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">🔴 Trajectory maps</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/visualise/airspace-networks-flows.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">59</span>&nbsp; <span class="chapter-title">🔴 Networks &amp; flows</span></span></a>
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">🔴 Networks &amp; flows</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/visualise/uncertainty-quality.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">60</span>&nbsp; <span class="chapter-title">🔴 Visual uncertainty</span></span></a>
+ <span class="menu-text"><span class="chapter-number">56</span>&nbsp; <span class="chapter-title">🔴 Visual uncertainty</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/visualise/storytelling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">61</span>&nbsp; <span class="chapter-title">🟠 Storytelling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">57</span>&nbsp; <span class="chapter-title">🟠 Storytelling</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/visualise/observable-narratives.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">62</span>&nbsp; <span class="chapter-title">🔴 Observable narratives</span></span></a>
+ <span class="menu-text"><span class="chapter-number">58</span>&nbsp; <span class="chapter-title">🔴 Observable narratives</span></span></a>
   </div>
 </li>
       </ul>
@@ -775,73 +731,73 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/decode-adsb.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">63</span>&nbsp; <span class="chapter-title">🔴 Decode ADS-B</span></span></a>
+ <span class="menu-text"><span class="chapter-number">59</span>&nbsp; <span class="chapter-title">🔴 Decode ADS-B</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/build-trajectory.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">64</span>&nbsp; <span class="chapter-title">🔴 Build trajectory</span></span></a>
+ <span class="menu-text"><span class="chapter-number">60</span>&nbsp; <span class="chapter-title">🔴 Build trajectory</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/planned-vs-flown.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">65</span>&nbsp; <span class="chapter-title">🔴 Planned vs flown</span></span></a>
+ <span class="menu-text"><span class="chapter-number">61</span>&nbsp; <span class="chapter-title">🔴 Planned vs flown</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/oceanic-datalink-story.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">66</span>&nbsp; <span class="chapter-title">🔴 Oceanic datalink</span></span></a>
+ <span class="menu-text"><span class="chapter-number">62</span>&nbsp; <span class="chapter-title">🔴 Oceanic datalink</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/flight-information-regions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">67</span>&nbsp; <span class="chapter-title">🔴 FIR maps</span></span></a>
+ <span class="menu-text"><span class="chapter-number">63</span>&nbsp; <span class="chapter-title">🔴 FIR maps</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/daio-fir.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">68</span>&nbsp; <span class="chapter-title">🔴 DAIO by FIR</span></span></a>
+ <span class="menu-text"><span class="chapter-number">64</span>&nbsp; <span class="chapter-title">🔴 DAIO by FIR</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/airports-world.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">69</span>&nbsp; <span class="chapter-title">🔴 World airports</span></span></a>
+ <span class="menu-text"><span class="chapter-number">65</span>&nbsp; <span class="chapter-title">🔴 World airports</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/gps-jamming.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">70</span>&nbsp; <span class="chapter-title">🔴 GPS jamming</span></span></a>
+ <span class="menu-text"><span class="chapter-number">66</span>&nbsp; <span class="chapter-title">🔴 GPS jamming</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/airspace-disruption.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">71</span>&nbsp; <span class="chapter-title">🔴 Airspace disruption</span></span></a>
+ <span class="menu-text"><span class="chapter-number">67</span>&nbsp; <span class="chapter-title">🔴 Airspace disruption</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/firefighting-aircraft.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">72</span>&nbsp; <span class="chapter-title">🔴 Firefighting aircraft</span></span></a>
+ <span class="menu-text"><span class="chapter-number">68</span>&nbsp; <span class="chapter-title">🔴 Firefighting aircraft</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/weather-impact.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">73</span>&nbsp; <span class="chapter-title">🔴 Weather impact</span></span></a>
+ <span class="menu-text"><span class="chapter-number">69</span>&nbsp; <span class="chapter-title">🔴 Weather impact</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/runway-safety-occurrence.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">74</span>&nbsp; <span class="chapter-title">🔴 Runway occurrence</span></span></a>
+ <span class="menu-text"><span class="chapter-number">70</span>&nbsp; <span class="chapter-title">🔴 Runway occurrence</span></span></a>
   </div>
 </li>
       </ul>
@@ -858,31 +814,31 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/sharing/reproducible-research.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">75</span>&nbsp; <span class="chapter-title">🟠 Reproducibility</span></span></a>
+ <span class="menu-text"><span class="chapter-number">71</span>&nbsp; <span class="chapter-title">🟠 Reproducibility</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/sharing/notebook-to-pipeline.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">76</span>&nbsp; <span class="chapter-title">🔴 Notebook to pipeline</span></span></a>
+ <span class="menu-text"><span class="chapter-number">72</span>&nbsp; <span class="chapter-title">🔴 Notebook to pipeline</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/sharing/data-licensing-attribution.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">77</span>&nbsp; <span class="chapter-title">🔴 Licensing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">73</span>&nbsp; <span class="chapter-title">🔴 Licensing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/sharing/privacy-safety-responsible-publication.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">78</span>&nbsp; <span class="chapter-title">🔴 Responsible publishing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">74</span>&nbsp; <span class="chapter-title">🔴 Responsible publishing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/sharing/publishing-interactive-narratives.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">79</span>&nbsp; <span class="chapter-title">🔴 Interactive publishing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">75</span>&nbsp; <span class="chapter-title">🔴 Interactive publishing</span></span></a>
   </div>
 </li>
       </ul>
@@ -897,13 +853,22 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#model-1-m1-or-ftfm" id="toc-model-1-m1-or-ftfm" class="nav-link active" data-scroll-target="#model-1-m1-or-ftfm"><span class="header-section-number">34.1</span> Model 1 (M1 or <em>FTFM</em>)</a></li>
-  <li><a href="#model-2-m2-or-rtfm" id="toc-model-2-m2-or-rtfm" class="nav-link" data-scroll-target="#model-2-m2-or-rtfm"><span class="header-section-number">34.2</span> Model 2 (M2 or <em>RTFM</em>)</a></li>
-  <li><a href="#model-3-m3-or-ctfm" id="toc-model-3-m3-or-ctfm" class="nav-link" data-scroll-target="#model-3-m3-or-ctfm"><span class="header-section-number">34.3</span> Model 3 (M3 or <em>CTFM</em>)</a></li>
-  <li><a href="#so6" id="toc-so6" class="nav-link" data-scroll-target="#so6"><span class="header-section-number">34.4</span> SO6</a></li>
-  <li><a href="#all_ft" id="toc-all_ft" class="nav-link" data-scroll-target="#all_ft"><span class="header-section-number">34.5</span> ALL_FT+</a></li>
-  <li><a href="#flight-route" id="toc-flight-route" class="nav-link" data-scroll-target="#flight-route"><span class="header-section-number">34.6</span> Flight route</a></li>
-  <li><a href="#ddr2-exp2" id="toc-ddr2-exp2" class="nav-link" data-scroll-target="#ddr2-exp2"><span class="header-section-number">34.7</span> DDR2 <code>exp2</code></a></li>
+  <li><a href="#intent-layers" id="toc-intent-layers" class="nav-link active" data-scroll-target="#intent-layers"><span class="header-section-number">35.1</span> Intent layers</a></li>
+  <li><a href="#flight-plan-content" id="toc-flight-plan-content" class="nav-link" data-scroll-target="#flight-plan-content"><span class="header-section-number">35.2</span> Flight-plan content</a></li>
+  <li><a href="#from-filed-route-to-trajectory" id="toc-from-filed-route-to-trajectory" class="nav-link" data-scroll-target="#from-filed-route-to-trajectory"><span class="header-section-number">35.3</span> From filed route to trajectory</a></li>
+  <li><a href="#network-manager-context" id="toc-network-manager-context" class="nav-link" data-scroll-target="#network-manager-context"><span class="header-section-number">35.4</span> Network Manager context</a></li>
+  <li><a href="#nm-trajectory-models" id="toc-nm-trajectory-models" class="nav-link" data-scroll-target="#nm-trajectory-models"><span class="header-section-number">35.5</span> NM trajectory models</a>
+  <ul class="collapse">
+  <li><a href="#model-1-ftfm" id="toc-model-1-ftfm" class="nav-link" data-scroll-target="#model-1-ftfm"><span class="header-section-number">35.5.1</span> Model 1: FTFM</a></li>
+  <li><a href="#model-2-rtfm" id="toc-model-2-rtfm" class="nav-link" data-scroll-target="#model-2-rtfm"><span class="header-section-number">35.5.2</span> Model 2: RTFM</a></li>
+  <li><a href="#model-3-ctfm" id="toc-model-3-ctfm" class="nav-link" data-scroll-target="#model-3-ctfm"><span class="header-section-number">35.5.3</span> Model 3: CTFM</a></li>
+  </ul></li>
+  <li><a href="#so6-segment-files" id="toc-so6-segment-files" class="nav-link" data-scroll-target="#so6-segment-files"><span class="header-section-number">35.6</span> SO6 segment files</a></li>
+  <li><a href="#all_ft" id="toc-all_ft" class="nav-link" data-scroll-target="#all_ft"><span class="header-section-number">35.7</span> ALL_FT+</a></li>
+  <li><a href="#ddr2-demand-files" id="toc-ddr2-demand-files" class="nav-link" data-scroll-target="#ddr2-demand-files"><span class="header-section-number">35.8</span> DDR2 demand files</a></li>
+  <li><a href="#planned-versus-flown-trajectories" id="toc-planned-versus-flown-trajectories" class="nav-link" data-scroll-target="#planned-versus-flown-trajectories"><span class="header-section-number">35.9</span> Planned versus flown trajectories</a></li>
+  <li><a href="#access-and-quality-caveats" id="toc-access-and-quality-caveats" class="nav-link" data-scroll-target="#access-and-quality-caveats"><span class="header-section-number">35.10</span> Access and quality caveats</a></li>
+  <li><a href="#glossary" id="toc-glossary" class="nav-link" data-scroll-target="#glossary">Glossary</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/open-aviation/aviationbook/edit/master/chapters/data_sources/flight-plans-intent.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/open-aviation/aviationbook/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/open-aviation/aviationbook/blob/master/chapters/data_sources/flight-plans-intent.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -911,9 +876,9 @@ div.csl-indent {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/data_sources/aircraft-information.html">The aviation data ecosystem</a></li><li class="breadcrumb-item"><a href="../../chapters/data_sources/flight-plans-intent.html"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">🟡 Flight intent</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/data_sources/aircraft-information.html">The aviation data ecosystem</a></li><li class="breadcrumb-item"><a href="../../chapters/data_sources/flight-plans-intent.html"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">🟡 Flight plans and intent</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Flight plans and trajectories</span></h1>
+<h1 class="title"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">Flight plans, intent, and Network Manager trajectories</span></h1>
 </div>
 
 
@@ -921,9 +886,10 @@ div.csl-indent {
 <div class="quarto-title-meta">
 
     <div>
-    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-heading">Authors</div>
     <div class="quarto-title-meta-contents">
              <p>Enrico Spinielli </p>
+             <p>Xavier Olive </p>
           </div>
   </div>
     
@@ -936,289 +902,231 @@ div.csl-indent {
 </header>
 
 
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>TODO for this page
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This page has been copied or moved into the experimental <code>new/</code> architecture. Review the scope, trim or split content where needed, fix internal links, and add missing material described by the new table of contents.</p>
-</div>
-</div>
-<p>EUROCONTROL’s Network Manager has devised different flight trajectories formats in order to store and exchange information with the aviation community. Trajectories are recorded as either a sequence of 4D positions (3D plus timestamp) or like a sequence of 4D segments.</p>
-<p>In the following sections we will cover the most known formats: M1 (&amp; M2) &amp; M3, ALL_FT+ and SO6.</p>
-<p>They are a mix of flight information (ADEP, ADES, callsign, …) and trajectory (4D position, ground speed, …).</p>
-<section id="model-1-m1-or-ftfm" class="level2" data-number="34.1">
-<h2 data-number="34.1" class="anchored" data-anchor-id="model-1-m1-or-ftfm"><span class="header-section-number">34.1</span> Model 1 (M1 or <em>FTFM</em>)</h2>
-<p>The flight trajectory known as <em>Model 1</em>, <em>M1</em> or <em>Filed Tactical Flight Model (FTFM)</em> is a mathematical model containing a point and airspace volume profile created in ETFMS for a flight. This trajectory is first created when Flight Plan (FPL) details, and any subsequent changes, are received by the Network Operations of EUROCONTROL’s Network Manager<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
-<p>The M1 is a translation of a FPL (especially Field 15) to a point profile, i.e.&nbsp;a sequence of 4D positions (timestamp + longitude, latitude, altitude) plus relevant penetrated airspace ID’s, calculated taking into account the aircraft type performance (via BADA) and the environment restrictions as published in the <a href="https://www.nm.eurocontrol.int/RAD/" title="Rote Availability Document (RAD)">Route Availability Document (RAD)</a>.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>TODO</strong></p>
-<ol type="1">
-<li>add CSV file with sample M1 data in <code>data/</code> folder</li>
-<li>Add small sample of data frame for M1</li>
-<li>Plot M1</li>
-</ol>
-</div>
-</div>
-</section>
-<section id="model-2-m2-or-rtfm" class="level2" data-number="34.2">
-<h2 data-number="34.2" class="anchored" data-anchor-id="model-2-m2-or-rtfm"><span class="header-section-number">34.2</span> Model 2 (M2 or <em>RTFM</em>)</h2>
-<p>An updated version of the M1 when the flight is regulated (i.e.&nbsp;delayed.) This trajectory could be more than a shift in time because of the impact of possibly closed areas or route segments in the new time window of the flight.</p>
-</section>
-<section id="model-3-m3-or-ctfm" class="level2" data-number="34.3">
-<h2 data-number="34.3" class="anchored" data-anchor-id="model-3-m3-or-ctfm"><span class="header-section-number">34.3</span> Model 3 (M3 or <em>CTFM</em>)</h2>
-<p>The flight trajectory known as <em>Model 3</em>, <em>M3</em> or <em>Current Tactical Flight Model (CTFM)</em> is an updated version of the M1 model (or eventually M2) where the point/airspace profile is recalculated taking into account surveillance data (<em>Correlated Position Reports</em> [CPR]<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> or more recently ADS-B position reports) when these show a significant deviation from M1 (or M2.) The deviation considered is of 1 min in time, more than 400 feet in en-route phase, more than 1000 feet in climb/descent phase or more than 10 NM laterally, see 14.3.1 <span class="citation" data-cites="niarchakou_simonselva17"><a href="../appendix/references.html#ref-niarchakou_simonselva17" role="doc-biblioref">[1]</a></span>.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p><strong>TODO</strong></p>
-<ol type="1">
-<li>add CSV file with sample M3 data in <code>data/</code> folder</li>
-<li>Add small sample of data frame for M3</li>
-<li>Plot M3 and M1/M3 overlapped to show the differences</li>
-</ol>
-</div>
-</div>
-</section>
-<section id="so6" class="level2" data-number="34.4">
-<h2 data-number="34.4" class="anchored" data-anchor-id="so6"><span class="header-section-number">34.4</span> SO6</h2>
-<p>The SO6 format delivers a flight segment sequence from origin to destination.</p>
+<p>A flight plan is a declaration of intent: where an aircraft is expected to depart, where it is expected to arrive, which route it requests, which level it requests, and which aircraft and equipment will be used. It is not the same as the flown trajectory. Between filing and landing, the route may be amended by flow-management measures, controller clearances, weather deviations, or tactical decisions.</p>
+<p>This chapter focuses on flight-plan and trajectory-intent data sources. The operational role of flight plans in air traffic services and flow management is introduced in <a href="../../chapters/background/atm-separation-flow.html#air-traffic-flow-management">air traffic services, separation, and flow management</a>. The published points, routes, airspaces, and procedures that flight plans refer to are introduced in <a href="../../chapters/data_sources/aeronautical-information.html">aeronautical information and data objects</a>.</p>
+<section id="intent-layers" class="level2" data-number="35.1">
+<h2 data-number="35.1" class="anchored" data-anchor-id="intent-layers"><span class="header-section-number">35.1</span> Intent layers</h2>
+<p>There is rarely a single definitive “planned trajectory”. Analysts often need to distinguish several layers:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 8%">
-<col style="width: 47%">
-<col style="width: 12%">
-<col style="width: 12%">
-<col style="width: 18%">
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
 </colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: right;">#</th>
-<th>Field</th>
-<th>Type</th>
-<th>Size</th>
-<th>Comment</th>
+<th>Layer</th>
+<th>Meaning</th>
+<th>Typical source</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td style="text-align: right;">1</td>
-<td>segment identifier</td>
-<td>char</td>
-<td></td>
-<td>first point name “_” last point name</td>
+<td>filed intent</td>
+<td>what the aircraft operator files before departure</td>
+<td>ICAO FPL, airline systems, IFPS/NM data</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">2</td>
-<td>origin of flight</td>
-<td>char</td>
-<td>4</td>
-<td>ICAO code</td>
+<td>accepted or regulated intent</td>
+<td>what the network/flow system accepts after validation and restrictions</td>
+<td>Network Manager systems, ATFM messages</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">3</td>
-<td>destination of flight</td>
-<td>char</td>
-<td>4</td>
-<td>ICAO code</td>
+<td>tactical intent</td>
+<td>clearances and amendments during operation</td>
+<td>CPDLC, voice-derived records, controller systems</td>
 </tr>
 <tr class="even">
-<td style="text-align: right;">4</td>
-<td>aircraft type</td>
-<td>char</td>
-<td>4</td>
-<td></td>
+<td>computed trajectory</td>
+<td>trajectory model derived from flight plan, performance, restrictions, and environment</td>
+<td>NM trajectory models, planning systems</td>
 </tr>
 <tr class="odd">
-<td style="text-align: right;">5</td>
-<td>time begin segment</td>
-<td>num</td>
-<td>6</td>
-<td>HHMMSS</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">6</td>
-<td>time end segment</td>
-<td>num</td>
-<td>6</td>
-<td>HHMMSS</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">7</td>
-<td>FL begin segment</td>
-<td>num</td>
-<td>1 to 3</td>
-<td></td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">8</td>
-<td>FL end segment</td>
-<td>num</td>
-<td>1 to 3</td>
-<td></td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">9</td>
-<td>status</td>
-<td>char</td>
-<td>1</td>
-<td>0=climb, 1=descent, 2=cruise</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">10</td>
-<td>call sign</td>
-<td>char</td>
-<td></td>
-<td></td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">11</td>
-<td>date begin segment</td>
-<td>num</td>
-<td>6</td>
-<td>YYMMDD</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">12</td>
-<td>date end segment</td>
-<td>num</td>
-<td>6</td>
-<td>YYMMDD</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">13</td>
-<td>lat begin segment</td>
-<td>float</td>
-<td></td>
-<td>decimal minute</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">14</td>
-<td>lon begin segment</td>
-<td>float</td>
-<td></td>
-<td>decimal minute</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">15</td>
-<td>lat end segment</td>
-<td>float</td>
-<td></td>
-<td>decimal minute</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">16</td>
-<td>lon end segment</td>
-<td>float</td>
-<td></td>
-<td>decimal minute</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">17</td>
-<td>flight identifier</td>
-<td>num</td>
-<td></td>
-<td>must be unique</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">18</td>
-<td>sequence</td>
-<td>num</td>
-<td></td>
-<td>start at 1 for every new flight</td>
-</tr>
-<tr class="odd">
-<td style="text-align: right;">19</td>
-<td>segment length</td>
-<td>float</td>
-<td></td>
-<td>nautical miles</td>
-</tr>
-<tr class="even">
-<td style="text-align: right;">20</td>
-<td>segment parity</td>
-<td>num</td>
-<td></td>
-<td>0=NO, 1=ODD, 2=EVEN, 3=ODD_LOW, 4=EVEN_LOW), 5=ODD_HIGH, 6=EVEN_HIGH, 7=General Purpose Red , 8=General Purpose Orange , 9=General Purpose Yellow</td>
+<td>flown trajectory</td>
+<td>what surveillance or ADS-C reports show actually happened</td>
+<td>ADS-B, radar, ADS-C, MLAT</td>
 </tr>
 </tbody>
 </table>
-<p>The parity decides flight level allocation: Odd levels are FL290,310,330… and Even levels are FL280,300,320 …</p>
+<p>A good analysis keeps these layers separate. A filed route string is not a trajectory; a modeled trajectory is not surveillance truth; a flown trajectory does not reveal the original clearance unless joined with communication or flight-plan data.</p>
 </section>
-<section id="all_ft" class="level2" data-number="34.5">
-<h2 data-number="34.5" class="anchored" data-anchor-id="all_ft"><span class="header-section-number">34.5</span> ALL_FT+</h2>
-<p>ALL_FT+ files are available via DDR2 and typically follow a naming convention like <code>yyyyMMdd.ALL_FT+</code>, i.e.&nbsp;<code>20231124.ALL_FT+.7z</code> for data covering November 24th 2022.</p>
-<p>The content of an ALL_FT+ file is quite <em>massive</em>, at the time of this writing for version 7 contains 207 columns! ALL_FT+ is clearly an internal NM systems archiving format that has been plainly exchanged.</p>
-<p>Documentation and metadata is sparse even from the DDR2 manual or NEST help pages.</p>
-<div class="callout callout-style-default callout-note callout-titled">
+<section id="flight-plan-content" class="level2" data-number="35.2">
+<h2 data-number="35.2" class="anchored" data-anchor-id="flight-plan-content"><span class="header-section-number">35.2</span> Flight-plan content</h2>
+<p>An ICAO flight plan contains structured fields for flight identification, rules, type of flight, aircraft type, wake turbulence category, equipment, departure aerodrome, departure time, cruising speed, level, route, destination, alternate aerodromes, endurance, persons on board, and other operational information.</p>
+<p>For trajectory analysis, the most important fields are usually:</p>
+<ul>
+<li>aircraft identification or callsign;</li>
+<li>aircraft type and performance-relevant information;</li>
+<li>departure and destination aerodromes;</li>
+<li>estimated off-block or departure time;</li>
+<li>requested speed and cruising level;</li>
+<li>route field;</li>
+<li>equipment and capability indicators;</li>
+<li>alternates and remarks when relevant.</li>
+</ul>
+<p>The route field is a compact textual representation of intent. It may combine procedure names, waypoints, ATS routes, direct segments, speed/level changes, and special indicators. It must be interpreted against the aeronautical information cycle effective for the flight date.</p>
+<p>Example route fragment:</p>
+<pre class="text"><code>N0441F340 FISTO5B FISTO UY156 PERIG UT210 TUDRA/N0426F280 UT158 AMB AMB9W</code></pre>
+<p>This is not a sequence of coordinates. It is a route expression that must be expanded through the relevant procedure and route definitions.</p>
+</section>
+<section id="from-filed-route-to-trajectory" class="level2" data-number="35.3">
+<h2 data-number="35.3" class="anchored" data-anchor-id="from-filed-route-to-trajectory"><span class="header-section-number">35.3</span> From filed route to trajectory</h2>
+<p>A route string can be expanded into a sequence of published points and segments, but a 4D trajectory requires more information:</p>
+<ul>
+<li>aircraft performance model;</li>
+<li>expected mass and speed schedule;</li>
+<li>wind and temperature assumptions;</li>
+<li>altitude constraints and level changes;</li>
+<li>route restrictions and availability;</li>
+<li>airport and runway assumptions;</li>
+<li>flow-management measures.</li>
+</ul>
+<p>This is why systems such as EUROCONTROL’s Network Manager maintain trajectory models rather than only storing the submitted flight plan. The model is updated as new information becomes available.</p>
+</section>
+<section id="network-manager-context" class="level2" data-number="35.4">
+<h2 data-number="35.4" class="anchored" data-anchor-id="network-manager-context"><span class="header-section-number">35.4</span> Network Manager context</h2>
+<p>EUROCONTROL’s Network Manager (NM) supports flight-plan validation, demand prediction, capacity balancing, and flow management in the European network. Aircraft operators filing IFR flights in the NM area submit flight-plan information that is checked against route availability, restrictions, sector capacities, and other operational constraints.</p>
+<p>The result is a set of trajectory and demand data products used by ANSPs, airports, aircraft operators, researchers, and tools such as NEST. Access may be operational, institutional, or subject to EUROCONTROL data-sharing conditions.</p>
+</section>
+<section id="nm-trajectory-models" class="level2" data-number="35.5">
+<h2 data-number="35.5" class="anchored" data-anchor-id="nm-trajectory-models"><span class="header-section-number">35.5</span> NM trajectory models</h2>
+<p>Network Manager trajectory products distinguish several flight trajectory models. The names below are commonly encountered in DDR2/NM contexts.</p>
+<section id="model-1-ftfm" class="level3" data-number="35.5.1">
+<h3 data-number="35.5.1" class="anchored" data-anchor-id="model-1-ftfm"><span class="header-section-number">35.5.1</span> Model 1: FTFM</h3>
+<p>Model 1, or <strong>Filed Tactical Flight Model</strong> (FTFM), is the trajectory model initially created from the filed flight plan and subsequent pre-tactical updates. It translates the route, especially the route field, into a point and airspace profile.</p>
+<p>The model can include:</p>
+<ul>
+<li>a sequence of 4D positions;</li>
+<li>penetrated airspaces and sectors;</li>
+<li>estimated times;</li>
+<li>requested or computed levels;</li>
+<li>aircraft type and performance assumptions;</li>
+<li>route restrictions, including the Route Availability Document (RAD).</li>
+</ul>
+<p>FTFM is therefore a computed intent trajectory: it is more structured than the filed route string, but it is still a plan.</p>
+</section>
+<section id="model-2-rtfm" class="level3" data-number="35.5.2">
+<h3 data-number="35.5.2" class="anchored" data-anchor-id="model-2-rtfm"><span class="header-section-number">35.5.2</span> Model 2: RTFM</h3>
+<p>Model 2, or <strong>Regulated Tactical Flight Model</strong> (RTFM), reflects the trajectory after regulation. A regulation may impose delay or require a rerouting to balance demand and capacity. The update can be more than a simple time shift because route availability, airspace restrictions, or sector configurations may differ in the new time window.</p>
+</section>
+<section id="model-3-ctfm" class="level3" data-number="35.5.3">
+<h3 data-number="35.5.3" class="anchored" data-anchor-id="model-3-ctfm"><span class="header-section-number">35.5.3</span> Model 3: CTFM</h3>
+<p>Model 3, or <strong>Current Tactical Flight Model</strong> (CTFM), updates the trajectory during operation. It may incorporate correlated position reports, radar-derived data, ADS-B reports, and other updates when the aircraft deviates from earlier models.</p>
+<p>CTFM is closer to the flown trajectory than FTFM or RTFM, but it is still a model maintained by a network system. It should not be treated as identical to raw surveillance data.</p>
+</section>
+</section>
+<section id="so6-segment-files" class="level2" data-number="35.6">
+<h2 data-number="35.6" class="anchored" data-anchor-id="so6-segment-files"><span class="header-section-number">35.6</span> SO6 segment files</h2>
+<p>SO6 is a segment-based format. Instead of representing a trajectory only as points, it stores flight segments from origin to destination. A typical segment contains the two endpoint names, origin and destination airports, aircraft type, begin and end times, begin and end flight levels, segment status, callsign, dates, endpoint coordinates, flight identifier, sequence number, segment length, and flight-level parity.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 50%">
+<col style="width: 50%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Field group</th>
+<th>Examples</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>flight identifiers</td>
+<td>origin, destination, aircraft type, callsign, flight identifier</td>
+</tr>
+<tr class="even">
+<td>segment timing</td>
+<td>begin/end date and time</td>
+</tr>
+<tr class="odd">
+<td>vertical profile</td>
+<td>begin/end flight level, climb/descent/cruise status</td>
+</tr>
+<tr class="even">
+<td>geometry</td>
+<td>begin/end point names, begin/end coordinates, segment length</td>
+</tr>
+<tr class="odd">
+<td>sequencing</td>
+<td>segment sequence number, parity/allocation flags</td>
+</tr>
+</tbody>
+</table>
+<p>SO6 is useful for airspace-demand and route-usage analysis because each segment can be intersected with sectors, airspaces, or route structures. Its segment representation is less natural for high-rate trajectory processing than point-by-point surveillance data, but more compact for network demand analysis.</p>
+</section>
+<section id="all_ft" class="level2" data-number="35.7">
+<h2 data-number="35.7" class="anchored" data-anchor-id="all_ft"><span class="header-section-number">35.7</span> ALL_FT+</h2>
+<p>ALL_FT+ is a large Network Manager archive format available through DDR2. Files are typically named by date, for example <code>yyyyMMdd.ALL_FT+</code>, and may contain hundreds of columns depending on version. It is best understood as an internal operational archive exposed for analysis rather than as a clean public data model.</p>
+<p>Typical information includes:</p>
+<ul>
+<li>flight identifiers and callsign;</li>
+<li>departure and destination aerodromes;</li>
+<li>aircraft type;</li>
+<li>flight-plan and regulation fields;</li>
+<li>trajectory point sequence;</li>
+<li>timestamps and positions;</li>
+<li>flight levels and speeds;</li>
+<li>airspace and sector penetrations;</li>
+<li>route and restriction information.</li>
+</ul>
+<p>The richness is attractive, but documentation and metadata can be sparse. Analysts should build small, explicit extraction layers rather than relying on column positions without version checks.</p>
+</section>
+<section id="ddr2-demand-files" class="level2" data-number="35.8">
+<h2 data-number="35.8" class="anchored" data-anchor-id="ddr2-demand-files"><span class="header-section-number">35.8</span> DDR2 demand files</h2>
+<p>EUROCONTROL’s Demand Data Repository (DDR2) provides historical demand datasets for selected periods and areas. A common demand file, often referred to as <code>exp2</code>, contains one row per flight with fields such as departure time, origin and destination aerodromes, unique flight identifier, callsign, aircraft type, and requested flight level.</p>
+<p>Such files are useful for aggregate demand studies, sector-load estimation, traffic-flow analysis, and comparisons between planned and flown traffic. They usually need to be joined with aeronautical information, sector definitions, and surveillance trajectories to answer detailed operational questions.</p>
+</section>
+<section id="planned-versus-flown-trajectories" class="level2" data-number="35.9">
+<h2 data-number="35.9" class="anchored" data-anchor-id="planned-versus-flown-trajectories"><span class="header-section-number">35.9</span> Planned versus flown trajectories</h2>
+<p>Planned and flown trajectories differ for several reasons:</p>
+<ul>
+<li>tactical shortcuts or directs;</li>
+<li>weather deviations;</li>
+<li>departure delay or slot regulation;</li>
+<li>runway or procedure changes;</li>
+<li>level-off during climb;</li>
+<li>flow-management rerouting;</li>
+<li>holding, vectoring, or sequencing near arrival;</li>
+<li>aircraft performance and wind differences.</li>
+</ul>
+<p>A robust analysis should name which comparison is being made: filed route versus flown path, FTFM versus ADS-B, RTFM versus CTFM, or NM demand versus actual traffic. Each comparison answers a different question.</p>
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Note
+<span class="screen-reader-only">Tip</span>Useful joins
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>TODO this part could help?</p>
+<p>Flight-plan and NM data become more useful when joined with other sources: ADS-B or radar trajectories for actual movement, ADS-C for oceanic position and intent, CPDLC for clearances, AIRAC-cycle aeronautical data for route expansion, and weather data for rerouting or performance analysis.</p>
 </div>
 </div>
-<p>Data for a trajectory refer typically to a point profile and can include:</p>
+</section>
+<section id="access-and-quality-caveats" class="level2" data-number="35.10">
+<h2 data-number="35.10" class="anchored" data-anchor-id="access-and-quality-caveats"><span class="header-section-number">35.10</span> Access and quality caveats</h2>
+<p>Flight-plan and NM trajectory data are operational data. Access is often restricted, licensed, or subject to aggregation rules. Even when available, the data requires careful handling:</p>
 <ul>
-<li>flight ID / flight number / callsign</li>
-<li>sequence number</li>
-<li>timestamp</li>
-<li>position (longitude, latitude, altitude)</li>
-<li>position ID (i.e.&nbsp;published point ID)</li>
-<li>airspace ID</li>
-<li>(ground / vertical) speed</li>
+<li>route strings depend on the correct AIRAC cycle;</li>
+<li>identifiers can change between filing, operation, and surveillance;</li>
+<li>timestamps may represent planned, calculated, regulated, or observed times;</li>
+<li>modeled trajectories depend on assumptions not always visible in the file;</li>
+<li>late flight-plan changes can invalidate earlier intent;</li>
+<li>surveillance-derived updates can blur the distinction between plan and flown path.</li>
 </ul>
-<p>with timestamp and position as a minimum.</p>
+<p>Keep the source, model name, cycle, timestamp semantics, and flight identifier lineage explicit. Without these, intent data can easily be mistaken for observed truth.</p>
 </section>
-<section id="flight-route" class="level2" data-number="34.6">
-<h2 data-number="34.6" class="anchored" data-anchor-id="flight-route"><span class="header-section-number">34.6</span> Flight route</h2>
-<p>Example: N0441F340 FISTO5B FISTO UY156 PERIG UT210 TUDRA/N0426F280 UT158 AMB AMB9W</p>
-</section>
-<section id="ddr2-exp2" class="level2" data-number="34.7">
-<h2 data-number="34.7" class="anchored" data-anchor-id="ddr2-exp2"><span class="header-section-number">34.7</span> DDR2 <code>exp2</code></h2>
-<p>The traffic demand file (exp2) can obtained from the EUROCONTROL’s Demand Data Repository (DDR2) for a selected period of time (typically one day) and geographic area (e.g.&nbsp;FABEC). The <code>exp2</code> includes, for each flight, basic information about the departure time, the origin and destination airports, a unique flight identifier, the callsign, the aircraft ICAO code (e.g.&nbsp;A320) and the requested flight level by the airspace user as submitted in the flight plan.</p>
+<section id="glossary" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="glossary">Glossary</h2>
 
 
 <dl>
+<dt><span id="acronyms_NM">NM</span></dt>
+<dd>
+Network Manager
+</dd>
 </dl>
-<div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-niarchakou_simonselva17" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[1] </div><div class="csl-right-inline">S. Niarchakou and J. Simón Selva, <span>“ATFCM operations manual,”</span> Network Manager, EUROCONTROL, 21.0, May 2017.</div>
-</div>
-</div>
-</section>
-<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn1"><p>Aircraft Operators (AO) willing to fly IFR flights in the Network Manager (NM) area of responsibility are mandated to file the relevant Flight Plan to the Network Manager. The aim of this centralised management of FPL’s in Europe is linked to one of the NM mandates, i.e. the ability to detect imbalance between demand (willingness to fly by AO’s) and offer (ability to guarantee safety by ATC / airport capacity providing an adequate level of safety). The NM provides the ACC’s/airports to monitor the situation and implement measures to resolve the overload (typically via departure delays or rerouting.)<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>CPRs are received by NM from ACC’s, they consist of surveillance data (callsign longitude, latitude, altitude, timestamp) paired with flight plan info (aircraft type, ICAO 24-bit address)<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
 </section>
 
 </main> <!-- /main -->
@@ -1637,13 +1545,13 @@ Note
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/data_sources/cpdlc-data.html" class="pagination-link" aria-label="CPDLC data">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">CPDLC data</span></span>
+      <a href="../../chapters/data_sources/aeronautical-information.html" class="pagination-link" aria-label="🟡 Aeronautical information">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">🟡 Aeronautical information</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../chapters/data_sources/network-manager-formats.html" class="pagination-link" aria-label="🟡 NM formats">
-        <span class="nav-page-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">🟡 NM formats</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../chapters/data_sources/weather-environment-data.html" class="pagination-link" aria-label="🟡 Weather and environmental data">
+        <span class="nav-page-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">🟡 Weather and environmental data</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Enrico Spinielli">
 
-<title>36&nbsp; Aeronautical information – A journey through aviation data</title>
+<title>34&nbsp; Aeronautical information and data objects – A journey through aviation data</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -24,27 +23,7 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for citations */
-div.csl-bib-body { }
-div.csl-entry {
-  clear: both;
-  margin-bottom: 0em;
-}
-.hanging-indent div.csl-entry {
-  margin-left:2em;
-  text-indent:-2em;
-}
-div.csl-left-margin {
-  min-width:2em;
-  float:left;
-}
-div.csl-right-inline {
-  margin-left:2em;
-  padding-left:1em;
-}
-div.csl-indent {
-  margin-left: 2em;
-}</style>
+</style>
 
 
 <script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -53,8 +32,8 @@ div.csl-indent {
 <script src="../../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../../">
-<link href="../../chapters/data_sources/aip-notam-aic-pib.html" rel="next">
-<link href="../../chapters/data_sources/network-manager-formats.html" rel="prev">
+<link href="../../chapters/data_sources/flight-plans-intent.html" rel="next">
+<link href="../../chapters/data_sources/cpdlc-data.html" rel="prev">
 <link href="../../favicon.svg" rel="icon" type="image/svg+xml">
 <script src="../../site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -324,7 +303,7 @@ div.csl-indent {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/data_sources/aircraft-information.html">The aviation data ecosystem</a></li><li class="breadcrumb-item"><a href="../../chapters/data_sources/aeronautical-information.html"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">🟡 AIM overview</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/data_sources/aircraft-information.html">The aviation data ecosystem</a></li><li class="breadcrumb-item"><a href="../../chapters/data_sources/aeronautical-information.html"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">🟡 Aeronautical information</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
     </div>
@@ -551,91 +530,67 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/datalink-acars-message-sources.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">Datalink and ACARS sources</span></span></a>
+ <span class="menu-text"><span class="chapter-number">31</span>&nbsp; <span class="chapter-title">🟡 Datalink and ACARS sources</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/adsc-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">ADS-C data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">32</span>&nbsp; <span class="chapter-title">🟡 ADS-C data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/cpdlc-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">CPDLC data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../chapters/data_sources/flight-plans-intent.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">🟡 Flight intent</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../chapters/data_sources/network-manager-formats.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">🟡 NM formats</span></span></a>
+ <span class="menu-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">🟡 CPDLC data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/aeronautical-information.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">🟡 AIM overview</span></span></a>
+ <span class="menu-text"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">🟡 Aeronautical information</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../chapters/data_sources/aip-notam-aic-pib.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">🟡 AIP &amp; NOTAM</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../chapters/data_sources/points-routes-airspaces-procedures.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">🟡 Routes &amp; procedures</span></span></a>
+  <a href="../../chapters/data_sources/flight-plans-intent.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">🟡 Flight plans and intent</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/weather-environment-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">🔴 Weather data</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../chapters/data_sources/weather-hazards-impact.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">🔴 Weather hazards</span></span></a>
+ <span class="menu-text"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">🟡 Weather and environmental data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/aircraft-performance.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">Performance models</span></span></a>
+ <span class="menu-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">Performance models</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/operational-performance-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">🟡 Operational performance</span></span></a>
+ <span class="menu-text"><span class="chapter-number">38</span>&nbsp; <span class="chapter-title">🟡 Operational performance</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/safety-occurrence-risk-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">🔴 Safety data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">39</span>&nbsp; <span class="chapter-title">🔴 Safety data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/human-factors-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">🔴 Human factors</span></span></a>
+ <span class="menu-text"><span class="chapter-number">40</span>&nbsp; <span class="chapter-title">🔴 Human factors</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/data_sources/maintenance-airworthiness-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">🔴 Maintenance data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">41</span>&nbsp; <span class="chapter-title">🔴 Maintenance data</span></span></a>
   </div>
 </li>
       </ul>
@@ -652,55 +607,55 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/work/tidy-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">🟠 Tidy data</span></span></a>
+ <span class="menu-text"><span class="chapter-number">42</span>&nbsp; <span class="chapter-title">🟠 Tidy data</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/work/time-series.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">🔴 Time series</span></span></a>
+ <span class="menu-text"><span class="chapter-number">43</span>&nbsp; <span class="chapter-title">🔴 Time series</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/work/lazy-columnar-processing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">🔴 Lazy processing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">44</span>&nbsp; <span class="chapter-title">🔴 Lazy processing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/work/physical-units.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">🔴 Physical units</span></span></a>
+ <span class="menu-text"><span class="chapter-number">45</span>&nbsp; <span class="chapter-title">🔴 Physical units</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/work/coordinates-projections-geometry.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">🟠 Geometry &amp; projections</span></span></a>
+ <span class="menu-text"><span class="chapter-number">46</span>&nbsp; <span class="chapter-title">🟠 Geometry &amp; projections</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/work/trajectory-processing.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">🟠 Trajectories</span></span></a>
+ <span class="menu-text"><span class="chapter-number">47</span>&nbsp; <span class="chapter-title">🟠 Trajectories</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/work/joining-heterogeneous-data.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">🔴 Data joins</span></span></a>
+ <span class="menu-text"><span class="chapter-number">48</span>&nbsp; <span class="chapter-title">🔴 Data joins</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/work/information-extraction.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">🟠 Information extraction</span></span></a>
+ <span class="menu-text"><span class="chapter-number">49</span>&nbsp; <span class="chapter-title">🟠 Information extraction</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/work/data-quality-uncertainty.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">🔴 Data quality</span></span></a>
+ <span class="menu-text"><span class="chapter-number">50</span>&nbsp; <span class="chapter-title">🔴 Data quality</span></span></a>
   </div>
 </li>
       </ul>
@@ -717,49 +672,49 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/visualise/grammar-of-graphics.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">🟠 Grammar of graphics</span></span></a>
+ <span class="menu-text"><span class="chapter-number">51</span>&nbsp; <span class="chapter-title">🟠 Grammar of graphics</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/visualise/time-series-profiles.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">56</span>&nbsp; <span class="chapter-title">🔴 Profiles</span></span></a>
+ <span class="menu-text"><span class="chapter-number">52</span>&nbsp; <span class="chapter-title">🔴 Profiles</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/visualise/maps-projections.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">57</span>&nbsp; <span class="chapter-title">🟠 Maps</span></span></a>
+ <span class="menu-text"><span class="chapter-number">53</span>&nbsp; <span class="chapter-title">🟠 Maps</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/visualise/trajectories.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">58</span>&nbsp; <span class="chapter-title">🔴 Trajectory maps</span></span></a>
+ <span class="menu-text"><span class="chapter-number">54</span>&nbsp; <span class="chapter-title">🔴 Trajectory maps</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/visualise/airspace-networks-flows.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">59</span>&nbsp; <span class="chapter-title">🔴 Networks &amp; flows</span></span></a>
+ <span class="menu-text"><span class="chapter-number">55</span>&nbsp; <span class="chapter-title">🔴 Networks &amp; flows</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/visualise/uncertainty-quality.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">60</span>&nbsp; <span class="chapter-title">🔴 Visual uncertainty</span></span></a>
+ <span class="menu-text"><span class="chapter-number">56</span>&nbsp; <span class="chapter-title">🔴 Visual uncertainty</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/visualise/storytelling.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">61</span>&nbsp; <span class="chapter-title">🟠 Storytelling</span></span></a>
+ <span class="menu-text"><span class="chapter-number">57</span>&nbsp; <span class="chapter-title">🟠 Storytelling</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/visualise/observable-narratives.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">62</span>&nbsp; <span class="chapter-title">🔴 Observable narratives</span></span></a>
+ <span class="menu-text"><span class="chapter-number">58</span>&nbsp; <span class="chapter-title">🔴 Observable narratives</span></span></a>
   </div>
 </li>
       </ul>
@@ -776,73 +731,73 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/decode-adsb.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">63</span>&nbsp; <span class="chapter-title">🔴 Decode ADS-B</span></span></a>
+ <span class="menu-text"><span class="chapter-number">59</span>&nbsp; <span class="chapter-title">🔴 Decode ADS-B</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/build-trajectory.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">64</span>&nbsp; <span class="chapter-title">🔴 Build trajectory</span></span></a>
+ <span class="menu-text"><span class="chapter-number">60</span>&nbsp; <span class="chapter-title">🔴 Build trajectory</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/planned-vs-flown.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">65</span>&nbsp; <span class="chapter-title">🔴 Planned vs flown</span></span></a>
+ <span class="menu-text"><span class="chapter-number">61</span>&nbsp; <span class="chapter-title">🔴 Planned vs flown</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/oceanic-datalink-story.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">66</span>&nbsp; <span class="chapter-title">🔴 Oceanic datalink</span></span></a>
+ <span class="menu-text"><span class="chapter-number">62</span>&nbsp; <span class="chapter-title">🔴 Oceanic datalink</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/flight-information-regions.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">67</span>&nbsp; <span class="chapter-title">🔴 FIR maps</span></span></a>
+ <span class="menu-text"><span class="chapter-number">63</span>&nbsp; <span class="chapter-title">🔴 FIR maps</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/daio-fir.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">68</span>&nbsp; <span class="chapter-title">🔴 DAIO by FIR</span></span></a>
+ <span class="menu-text"><span class="chapter-number">64</span>&nbsp; <span class="chapter-title">🔴 DAIO by FIR</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/airports-world.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">69</span>&nbsp; <span class="chapter-title">🔴 World airports</span></span></a>
+ <span class="menu-text"><span class="chapter-number">65</span>&nbsp; <span class="chapter-title">🔴 World airports</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/gps-jamming.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">70</span>&nbsp; <span class="chapter-title">🔴 GPS jamming</span></span></a>
+ <span class="menu-text"><span class="chapter-number">66</span>&nbsp; <span class="chapter-title">🔴 GPS jamming</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/airspace-disruption.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">71</span>&nbsp; <span class="chapter-title">🔴 Airspace disruption</span></span></a>
+ <span class="menu-text"><span class="chapter-number">67</span>&nbsp; <span class="chapter-title">🔴 Airspace disruption</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/firefighting-aircraft.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">72</span>&nbsp; <span class="chapter-title">🔴 Firefighting aircraft</span></span></a>
+ <span class="menu-text"><span class="chapter-number">68</span>&nbsp; <span class="chapter-title">🔴 Firefighting aircraft</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/weather-impact.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">73</span>&nbsp; <span class="chapter-title">🔴 Weather impact</span></span></a>
+ <span class="menu-text"><span class="chapter-number">69</span>&nbsp; <span class="chapter-title">🔴 Weather impact</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/case_studies/runway-safety-occurrence.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">74</span>&nbsp; <span class="chapter-title">🔴 Runway occurrence</span></span></a>
+ <span class="menu-text"><span class="chapter-number">70</span>&nbsp; <span class="chapter-title">🔴 Runway occurrence</span></span></a>
   </div>
 </li>
       </ul>
@@ -859,31 +814,31 @@ div.csl-indent {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/sharing/reproducible-research.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">75</span>&nbsp; <span class="chapter-title">🟠 Reproducibility</span></span></a>
+ <span class="menu-text"><span class="chapter-number">71</span>&nbsp; <span class="chapter-title">🟠 Reproducibility</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/sharing/notebook-to-pipeline.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">76</span>&nbsp; <span class="chapter-title">🔴 Notebook to pipeline</span></span></a>
+ <span class="menu-text"><span class="chapter-number">72</span>&nbsp; <span class="chapter-title">🔴 Notebook to pipeline</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/sharing/data-licensing-attribution.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">77</span>&nbsp; <span class="chapter-title">🔴 Licensing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">73</span>&nbsp; <span class="chapter-title">🔴 Licensing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/sharing/privacy-safety-responsible-publication.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">78</span>&nbsp; <span class="chapter-title">🔴 Responsible publishing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">74</span>&nbsp; <span class="chapter-title">🔴 Responsible publishing</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../chapters/sharing/publishing-interactive-narratives.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">79</span>&nbsp; <span class="chapter-title">🔴 Interactive publishing</span></span></a>
+ <span class="menu-text"><span class="chapter-number">75</span>&nbsp; <span class="chapter-title">🔴 Interactive publishing</span></span></a>
   </div>
 </li>
       </ul>
@@ -898,9 +853,21 @@ div.csl-indent {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#aip" id="toc-aip" class="nav-link active" data-scroll-target="#aip"><span class="header-section-number">36.1</span> AIP</a></li>
-  <li><a href="#airports-points-and-routes" id="toc-airports-points-and-routes" class="nav-link" data-scroll-target="#airports-points-and-routes"><span class="header-section-number">36.2</span> Airports, Points and Routes</a></li>
-  <li><a href="#airspaces" id="toc-airspaces" class="nav-link" data-scroll-target="#airspaces"><span class="header-section-number">36.3</span> Airspaces</a></li>
+  <li><a href="#from-ais-to-aim" id="toc-from-ais-to-aim" class="nav-link active" data-scroll-target="#from-ais-to-aim"><span class="header-section-number">34.1</span> From AIS to AIM</a></li>
+  <li><a href="#aip-structure" id="toc-aip-structure" class="nav-link" data-scroll-target="#aip-structure"><span class="header-section-number">34.2</span> AIP structure</a></li>
+  <li><a href="#airac-cycles" id="toc-airac-cycles" class="nav-link" data-scroll-target="#airac-cycles"><span class="header-section-number">34.3</span> AIRAC cycles</a></li>
+  <li><a href="#notam-sup-aip-aic-and-pib" id="toc-notam-sup-aip-aic-and-pib" class="nav-link" data-scroll-target="#notam-sup-aip-aic-and-pib"><span class="header-section-number">34.4</span> NOTAM, SUP AIP, AIC, and PIB</a></li>
+  <li><a href="#aeronautical-data-objects" id="toc-aeronautical-data-objects" class="nav-link" data-scroll-target="#aeronautical-data-objects"><span class="header-section-number">34.5</span> Aeronautical data objects</a>
+  <ul class="collapse">
+  <li><a href="#airports-and-aerodromes" id="toc-airports-and-aerodromes" class="nav-link" data-scroll-target="#airports-and-aerodromes"><span class="header-section-number">34.5.1</span> Airports and aerodromes</a></li>
+  <li><a href="#points-and-navigation-aids" id="toc-points-and-navigation-aids" class="nav-link" data-scroll-target="#points-and-navigation-aids"><span class="header-section-number">34.5.2</span> Points and navigation aids</a></li>
+  <li><a href="#routes-and-route-segments" id="toc-routes-and-route-segments" class="nav-link" data-scroll-target="#routes-and-route-segments"><span class="header-section-number">34.5.3</span> Routes and route segments</a></li>
+  <li><a href="#airspaces" id="toc-airspaces" class="nav-link" data-scroll-target="#airspaces"><span class="header-section-number">34.5.4</span> Airspaces</a></li>
+  <li><a href="#procedures" id="toc-procedures" class="nav-link" data-scroll-target="#procedures"><span class="header-section-number">34.5.5</span> Procedures</a></li>
+  </ul></li>
+  <li><a href="#digital-exchange-formats" id="toc-digital-exchange-formats" class="nav-link" data-scroll-target="#digital-exchange-formats"><span class="header-section-number">34.6</span> Digital exchange formats</a></li>
+  <li><a href="#quality-and-consistency-caveats" id="toc-quality-and-consistency-caveats" class="nav-link" data-scroll-target="#quality-and-consistency-caveats"><span class="header-section-number">34.7</span> Quality and consistency caveats</a></li>
+  <li><a href="#glossary" id="toc-glossary" class="nav-link" data-scroll-target="#glossary">Glossary</a></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/open-aviation/aviationbook/edit/master/chapters/data_sources/aeronautical-information.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/open-aviation/aviationbook/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li><li><a href="https://github.com/open-aviation/aviationbook/blob/master/chapters/data_sources/aeronautical-information.qmd" class="toc-action"><i class="bi empty"></i>View source</a></li></ul></div></nav>
     </div>
@@ -908,9 +875,9 @@ div.csl-indent {
 <main class="content" id="quarto-document-content">
 
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/data_sources/aircraft-information.html">The aviation data ecosystem</a></li><li class="breadcrumb-item"><a href="../../chapters/data_sources/aeronautical-information.html"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">🟡 AIM overview</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../chapters/data_sources/aircraft-information.html">The aviation data ecosystem</a></li><li class="breadcrumb-item"><a href="../../chapters/data_sources/aeronautical-information.html"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">🟡 Aeronautical information</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">36</span>&nbsp; <span class="chapter-title">Aeronautical information</span></h1>
+<h1 class="title"><span class="chapter-number">34</span>&nbsp; <span class="chapter-title">Aeronautical information and data objects</span></h1>
 </div>
 
 
@@ -918,9 +885,10 @@ div.csl-indent {
 <div class="quarto-title-meta">
 
     <div>
-    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-heading">Authors</div>
     <div class="quarto-title-meta-contents">
              <p>Enrico Spinielli </p>
+             <p>Xavier Olive </p>
           </div>
   </div>
     
@@ -933,177 +901,202 @@ div.csl-indent {
 </header>
 
 
-<div class="callout callout-style-default callout-warning callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Warning</span>TODO for this page
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>This page has been copied or moved into the experimental <code>new/</code> architecture. Review the scope, trim or split content where needed, fix internal links, and add missing material described by the new table of contents.</p>
-</div>
-</div>
-<div class="infobox note">
-<p><strong>Author’s note</strong>: This part goes through all the most commonly used data formats in the aviation and ATM data analysis community.</p>
-<p>Airspaces &amp; / or aeronautical information in general (AIRAC):</p>
+<p>Aeronautical information is the authoritative description of the environment in which flights are planned and conducted. It includes publications, updates, coordinates, procedures, airspace boundaries, airport data, navigation aids, and many other objects that must remain consistent across flight planning systems, avionics, charts, and air traffic management tools.</p>
+<p>This chapter treats aeronautical information as a <strong>data source</strong>. The operational meaning of FIRs, sectors, route structures, and air traffic services is introduced in the background chapters on <a href="../../chapters/background/airspace-structure.html">airspace structure</a> and <a href="../../chapters/background/atm-separation-flow.html">air traffic services</a>. Airport design and surface infrastructure are covered separately in <a href="../../chapters/data_sources/airport-infrastructure-data.html">airport and infrastructure data</a>. Here the focus is on publication mechanisms, update cycles, object types, data formats, and quality caveats.</p>
+<section id="from-ais-to-aim" class="level2" data-number="34.1">
+<h2 data-number="34.1" class="anchored" data-anchor-id="from-ais-to-aim"><span class="header-section-number">34.1</span> From AIS to AIM</h2>
+<p>Aeronautical Information Management (AIM) covers the collection, validation, publication, exchange, and dissemination of aeronautical data. It evolved from paper-oriented aeronautical information services toward digital, machine-readable data management. The goal is not only to publish information for pilots, but also to feed navigation databases, flight planning systems, air traffic management systems, airport systems, and research datasets.</p>
+<p>Typical AIM products include:</p>
 <ul>
-<li>airport information:
-<ul>
-<li>ARP</li>
-<li>runway thresholds</li>
-<li>parking positions]</li>
-</ul></li>
-<li>Published Points</li>
-<li>Routes</li>
-<li>SID / STAR</li>
-<li>…</li>
+<li>Aeronautical Information Publication (AIP);</li>
+<li>AIP supplements and amendments;</li>
+<li>Notice To Airmen (NOTAM);</li>
+<li>Prefilght Information Bulletin (PIB);</li>
+<li>Aeronautical Information Circular (AIC);</li>
+<li>digital datasets such as AIXM packages, obstacle data, terrain data, procedure coding, and chart data.</li>
 </ul>
-</div>
-<p>Aeronautical Information Management (AIM) is considered with the collection, assembly, publication, exchange, and dissemination of quality-assured, timely and digital aeronautical data in collaboration with all relevant stakeholders. Aeronautical data includes aeronautical information publications (AIP), notice to airmen (NOTAM), preflight information bulletins (PIB), and aeronautical information circulars (AIC).</p>
-<p><strong>Aeronautical Information Publications (AIP)</strong>, which contain “aeronautical information of a lasting character essential to air navigation”, see [ICAO Annex 15][Annex_15], are issued by a state or by an authority of the state, such as an ANSP. Since their structure is standardized by ICAO Annex 15, AIP usually consist of three distinctive parts:</p>
-<ul>
-<li><em>GEN - General information</em>: As the name implies, GEN contains general information, such as the authority responsible for the AIP, locally applied units of measure, abbreviations used in the AIP, locally applicable time zones and daylight saving time regulations, airspace charges regulations, etc.</li>
-<li><em>ENR - Information referring to en-route</em>: ENR contains information that is of importance during the flight, i.e., while aircraft are <em>en-route</em>. ENR is divided into the following 6 parts: (i) information on general rules and procedures for Visual Flight Rules (VFR) and Instrument Flight Rules (IFR) or the airspace classes applied, (ii) description of the vertical and horizontal spread of airspaces, (iii) description of airways, (iv) description of radio navigation systems and infrastructures, (v) navigation warnings such as military airspaces, known aviation obstacles, danger areas, etc., and (vi) en-route chart material.</li>
-<li><em>AD - Information referring to aerodromes</em>: AD includes information on both aerodromes and heliports and is divided into 3 parts. The first part contains an index of all aerodromes and helipads of a state as well as a description of the classification system of aerodromes applied in the state. Parts 2 and 3 of AD include detailed information on individual aerodromes or heliports, such as opening times, aerodrome operators, available service facilities, dimensions and alignment of runways, runway and approach lights, relevant aeronautical obstructions, etc. detailed maps are also provided, which contain information on ground-based infrastructure, i.e., aprons, taxiway, runways, etc., as well as flight procedures, i.e., standard instrument departures, standard terminal arrival routes, approach procedures.</li>
-</ul>
-<p>To keep Aeronautical Information Publication (AIP)s up to date, they are revised in an internationally standardized cylce, which is known as the <strong>Aeronautical Information Regulation And Control (AIRAC) cycle</strong>. This AIRAC cycle follows a fixed 28-day rhythm, which is internationally standardised. The publication dates are known years in advance and are published, for example, by <a href="https://www.nm.eurocontrol.int/RAD/common/airac_dates.html">Eurocontrol</a>.</p>
-<p><strong>Prefilght Information Bulletin (PIB)</strong> A PIB consists of a compilation of a number of Notice To Airmen (NOTAM)s which are important for the execution of a flight. Consequently, a PIB contains NOTAMs for the origin, destination and alternate airports, as well as NOTAMs for the airspace that the flight is likely to use.</p>
-<p><strong>Aeronautical Information Circular (AIC)</strong> [ICAO Annex 15][Annex_15] defines an AIC as “a notice containing information that does not qualify for the origination of a NOTAM of for inclusion in the AIP, but which relates to flight safety, air navigation, technical, administrative or legislative matters.” For example, AICs are issued to communicate a strategy in which a state explains how it aims to modernise its ground-based navigational aids, or how a certain new procedure will be implemented in the future.</p>
-<p>Fatal events both en-route (mid-air collisions) and on the ground (landing or crashes) are at the origin of modern Air Traffic Control. In particular, flight plan filing was devised as a means to let controllers know where an aircraft was supposed to be and eventually be able to deconflict its trajectory with other flights nearby. The flight plan together with latest position reports was (and still is) the best information available to eventually launch search and rescue operations.</p>
-<p>In principle, a flight plan could simply be a list of 4D coordinates (3D + time), but it surely was computationally and practically difficult to use it as such by ATC controllers who had to manually follow up airborne flights. So the en-route network was designed to have fixed and limited paths to follow. In doing so the probability of conflicts was increased but at the same time such network improves the efficiency in spotting them.</p>
-<section id="aip" class="level2" data-number="36.1">
-<h2 data-number="36.1" class="anchored" data-anchor-id="aip"><span class="header-section-number">36.1</span> AIP</h2>
-<p>The data necessary for flight plan submission, air navigation and movements on the apron are managed via Aeronautical Information Publication (AIP) at country level by or on behalf of the respective civil aviation administration. The AIP structure and content is standardized. The AIP is normally composed of three parts</p>
-<ul>
-<li>GEN (general)</li>
-<li>ENR (en route)</li>
-<li>AD (aerodromes).</li>
-</ul>
-<p>AIPs are kept up-to-date following a 28-day cycle known as the AIRAC (Aeronautical Information Regulation And Control) cycle, <a href="aip-notam-aic-pib.html#fig-airac" class="quarto-xref">Figure&nbsp;<span>37.1</span></a>. Revisions are produced every 56 days (double AIRAC cycle) or every 28 days (single AIRAC cycle). These changes are received well in advance so that users of the aeronautical data can update their systems, i.e.&nbsp;flight management systems (FMS) or ATC databases. AIPS are publicly available for example as listed at <span class="citation" data-cites="eAIPs"><a href="../appendix/references.html#ref-eAIPs" role="doc-biblioref">[1]</a></span>.</p>
+<p>For analysis, the main difficulty is that these sources mix stable, cyclically updated, and temporary information. A runway threshold, a restricted area, a route segment, and a temporary closure do not have the same lifetime or reliability profile.</p>
+</section>
+<section id="aip-structure" class="level2" data-number="34.2">
+<h2 data-number="34.2" class="anchored" data-anchor-id="aip-structure"><span class="header-section-number">34.2</span> AIP structure</h2>
+<p>An AIP contains aeronautical information of lasting character essential to air navigation. AIPs are issued by states or by authorities acting on behalf of states, often the national ANSP or AIS provider. The high-level ICAO structure is standardized into three parts:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Part</th>
+<th>Scope</th>
+<th>Examples of data</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>GEN</td>
+<td>general information</td>
+<td>responsible authorities, units of measure, abbreviations, time systems, charges, national procedures</td>
+</tr>
+<tr class="even">
+<td>ENR</td>
+<td>en-route information</td>
+<td>airspace structure, ATS routes, navigation aids, restricted areas, radio navigation services, en-route charts</td>
+</tr>
+<tr class="odd">
+<td>AD</td>
+<td>aerodromes and heliports</td>
+<td>aerodrome data, runways, lighting, declared distances, procedures, charts, obstacles, local rules</td>
+</tr>
+</tbody>
+</table>
+<p>AIPs are often available online as eAIP documents. They are human-readable and increasingly structured, but not always easy to process automatically. Tables, charts, textual notes, and PDF procedures may encode information that is difficult to convert into clean geospatial data.</p>
+</section>
+<section id="airac-cycles" class="level2" data-number="34.3">
+<h2 data-number="34.3" class="anchored" data-anchor-id="airac-cycles"><span class="header-section-number">34.3</span> AIRAC cycles</h2>
+<p>Aeronautical data changes through internationally coordinated Aeronautical Information Regulation And Control (AIRAC) cycles. AIRAC follows a fixed 28-day rhythm, with effective dates published years in advance. This gives data users time to update flight management systems, ATC databases, procedure design tools, and charting systems before the change becomes operational.</p>
 <div id="fig-airac" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-airac-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <img src="../../images/AIRAC-cycle.jpg" class="img-fluid figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-airac-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;36.1: AIRAC cycle, found at <a href="https://www.icao.int/airnavigation/information-management/Pages/AIRAC.aspx">ICAO</a>
+Figure&nbsp;34.1: AIRAC cycle, found at <a href="https://www.icao.int/airnavigation/information-management/Pages/AIRAC.aspx">ICAO</a>
 </figcaption>
 </figure>
 </div>
-<p>The schedule of internationally agreed AIRAC effective dates can be calculated as follows:</p>
+<p>For data analysis, the AIRAC cycle is a versioning key. A trajectory, a flight plan, and a route network must be interpreted against the aeronautical data effective on the date of operation. A waypoint, procedure, airspace boundary, or route restriction may differ across cycles.</p>
 </section>
-<section id="airports-points-and-routes" class="level2" data-number="36.2">
-<h2 data-number="36.2" class="anchored" data-anchor-id="airports-points-and-routes"><span class="header-section-number">36.2</span> Airports, Points and Routes</h2>
-<p>On a macroscopic level an airport is represented by its location and code.</p>
-<p>The location is called Airport Reference Point (ARP) and the rules governing its definition are established by section 2.2 of Annex 14 in <span class="citation" data-cites="icao-convention"><a href="../appendix/references.html#ref-icao-convention" role="doc-biblioref">[2]</a></span>: it <em>shall be located near the initial or planned geometric centre of the aerodrome and shall normally remain where first established</em>.</p>
-<p>Depending on its size and importance, an airport can have an ICAO and/or IATA code assigned, for example Amsterdam’s Schiphol has ICAO code <code>EHAM</code> and IATA code <code>AMS</code>.</p>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
+<section id="notam-sup-aip-aic-and-pib" class="level2" data-number="34.4">
+<h2 data-number="34.4" class="anchored" data-anchor-id="notam-sup-aip-aic-and-pib"><span class="header-section-number">34.4</span> NOTAM, SUP AIP, AIC, and PIB</h2>
+<p>Not all aeronautical information fits the regular AIP/AIRAC publication path.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 33%">
+<col style="width: 33%">
+<col style="width: 33%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Product</th>
+<th>Role</th>
+<th>Typical use</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>NOTAM</td>
+<td>time-sensitive notice distributed by telecommunication</td>
+<td>runway closure, navigation-aid outage, temporary restricted area, obstacle, procedure unavailability</td>
+</tr>
+<tr class="even">
+<td>SUP AIP</td>
+<td>temporary information of longer duration or with extensive text/graphics</td>
+<td>major works, temporary procedures, large events, long-running airspace changes</td>
+</tr>
+<tr class="odd">
+<td>AIC</td>
+<td>explanatory or administrative circular</td>
+<td>future procedure changes, regulatory information, safety campaigns, technical transition plans</td>
+</tr>
+<tr class="even">
+<td>PIB</td>
+<td>pre-flight briefing package</td>
+<td>NOTAM selection relevant to a flight, aerodrome, FIR, route, or area</td>
+</tr>
+</tbody>
+</table>
+<p>A NOTAM is not a general news item. It is operationally scoped information that must be known by personnel concerned with flight operations. A PIB is not a separate source of truth; it is a filtered compilation of NOTAM and related briefing information for a particular use case.</p>
+<div class="callout callout-style-default callout-warning callout-titled">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>TODO
+<span class="screen-reader-only">Warning</span>NOTAM as data
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<ul>
-<li>Check nomenclature, i.e.&nbsp;<a href="https://aviation.stackexchange.com/a/80480">Significant Point</a>, …</li>
-<li>References:
-<ul>
-<li>ICAO Doc 4444</li>
-<li>Rules of the Air <a href="https://www.pilot18.com/wp-content/uploads/2017/10/Pilot18.com-ICAO-Annex-2-Rules-of-air.pdf" class="uri">https://www.pilot18.com/wp-content/uploads/2017/10/Pilot18.com-ICAO-Annex-2-Rules-of-air.pdf</a></li>
-<li><a href="https://skybrary.aero/articles/waypoint" class="uri">https://skybrary.aero/articles/waypoint</a></li>
-<li><a href="https://www.skybrary.aero/articles/ats-route" class="uri">https://www.skybrary.aero/articles/ats-route</a></li>
-<li>EUROCONTROL HMI:
-<ol type="1">
-<li>NVA Navigation Aid</li>
-<li>PWP Published Way Point</li>
-<li>ICP Internal Point</li>
-<li>GEO GEO Point</li>
-<li>RFP Reference Point</li>
-<li>RAD RADAR Point</li>
-<li>TER Terminal Point</li>
-<li>BDY Boundary Point</li>
-<li>DME Distance Measuring Equipment</li>
-<li>VOR VHF Omni-directional radio Range</li>
-<li>VOR_DMEco-located VHF Omni-directional radio Range and Distance Measuring Equipment</li>
-<li>VOR_DME_NDB co-located VHF Omni-directional radio Range, Distance Measuring Equipment and Non-Directional Beacon</li>
-<li>VORTAC co-located VHF Omni-directional radio Range and TACtical Air Navigator</li>
-<li>DVOR Doppler VHF Omni-directional radio Range</li>
-<li>DVOR_DME co-located Doppler VHF Omni-directional radio Range and Distance Measuring Equipment</li>
-<li>DVOR_DME_NDBco-located Doppler VHF Omni-directional radio Range, Distance Measuring Equipment and Non-Directional Beacon)</li>
-<li>DVORTAC co-located Doppler VHF Omni-directional radio Range and TACtical Air Navigator</li>
-<li>ILS Instrument Landing System</li>
-<li>ILS_DME co-located Instrument Landing System and Distance Measuring Equipment</li>
-<li>ILS_LLZ co-located Instrument Landing System and Localizer</li>
-<li>ILS_LLZ_DME co-located Instrument Landing System, Localizer and Distance Measuring Equipment</li>
-<li>LLZ Localizer</li>
-<li>LLZ_DME co-located Localizer and Distance Measuring Equipment</li>
-<li>L Locator</li>
-<li>LI Inner Locator</li>
-<li>LM Middle Locator</li>
-<li>LO Outer Locator</li>
-<li>L_DME co-located Locator and Distance Measuring Equipment</li>
-<li>MLS Microwave Landing System</li>
-<li>NDB Non-Directional Beacon</li>
-<li>NDB_DME co-located Non-Directional Beacon and Distance Measuring Equipment</li>
-</ol></li>
-</ul></li>
-</ul>
+<p>NOTAM text is compact, coded, and context dependent. Even when coordinates are present, interpretation may require knowing the affected aerodrome, FIR, procedure, schedule, vertical limits, and reference publication. Treat NOTAM parsing as information extraction, not as a simple table import.</p>
 </div>
 </div>
-</div>
-<p>The aviation route network is characterized by the definition of geographical points, waypoints, and segments connecting them, route segments.</p>
 </section>
-<section id="airspaces" class="level2" data-number="36.3">
-<h2 data-number="36.3" class="anchored" data-anchor-id="airspaces"><span class="header-section-number">36.3</span> Airspaces</h2>
-<div class="callout callout-style-default callout-note callout-titled">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="true" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-<span class="screen-reader-only">Note</span>TODO
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse show">
-<div class="callout-body-container callout-body">
+<section id="aeronautical-data-objects" class="level2" data-number="34.5">
+<h2 data-number="34.5" class="anchored" data-anchor-id="aeronautical-data-objects"><span class="header-section-number">34.5</span> Aeronautical data objects</h2>
+<p>Aeronautical information systems describe a large set of objects. The same objects appear in charts, flight plans, navigation databases, ATM systems, and analytical datasets.</p>
+<section id="airports-and-aerodromes" class="level3" data-number="34.5.1">
+<h3 data-number="34.5.1" class="anchored" data-anchor-id="airports-and-aerodromes"><span class="header-section-number">34.5.1</span> Airports and aerodromes</h3>
+<p>At a macroscopic level an airport or aerodrome is identified by codes and represented by an aerodrome reference point. Detailed airport infrastructure data—runways, taxiways, parking positions, surface geometry, and operational metadata—is discussed in <a href="../../chapters/data_sources/airport-infrastructure-data.html">airport and infrastructure data</a>. In aeronautical information, airports also act as anchors for procedures, NOTAM, declared distances, charts, and local rules.</p>
+</section>
+<section id="points-and-navigation-aids" class="level3" data-number="34.5.2">
+<h3 data-number="34.5.2" class="anchored" data-anchor-id="points-and-navigation-aids"><span class="header-section-number">34.5.2</span> Points and navigation aids</h3>
+<p>A published point may be a waypoint, a fix, a navigation aid, a boundary point, or another named position used for route and procedure definition. Some points correspond to physical radio navigation aids such as VOR, DME, or NDB. Others are coordinate-defined RNAV waypoints with no physical installation.</p>
+<p>Common data fields include:</p>
 <ul>
-<li>different types of airspaces
-<ul>
-<li>from EUROCONTROL CHMI:
-<ol type="a">
-<li>SECTOR ES Elementary Airspace Sector</li>
-<li>SECTOR CS Collapsed Sector</li>
-<li>AUA ATC Unit Airspace</li>
-<li>CLUSTER Airspace Cluster</li>
-<li>SECTOR CONFIGURATION Sector Configuration</li>
-<li>AUAGATC Unit Airspace Group</li>
-<li>REGION Region</li>
-<li>IR Information Region</li>
-<li>NAS National Airspace</li>
-<li>AREA Area</li>
-<li>ERSA Elementary Restricted Airspace</li>
-<li>CRSA Composed Restricted Airspace</li>
-<li>AOI Area of Interest</li>
-<li>AOP Area of Protection</li>
-<li>ERAS Elementary Regulated Airspace</li>
-<li>CRAS Composed Regulated Airspace</li>
-<li>AIRBLOCK Airblock</li>
-</ol></li>
-<li>from Skybrary: <a href="https://skybrary.aero/articles/classification-airspace" class="uri">https://skybrary.aero/articles/classification-airspace</a></li>
-</ul></li>
+<li>designator or name;</li>
+<li>point type;</li>
+<li>latitude and longitude;</li>
+<li>associated country, FIR, or aerodrome;</li>
+<li>navigation-aid frequency or channel when applicable;</li>
+<li>magnetic variation or bearing information where relevant;</li>
+<li>validity dates and AIRAC cycle.</li>
 </ul>
-</div>
-</div>
-</div>
+<p>The operational role of radio navigation aids is covered in <a href="../../chapters/background/conventional-radio-navigation.html">conventional radio navigation</a>, while RNAV/RNP concepts are introduced in <a href="../../chapters/background/satellite-navigation.html">satellite navigation</a>.</p>
+</section>
+<section id="routes-and-route-segments" class="level3" data-number="34.5.3">
+<h3 data-number="34.5.3" class="anchored" data-anchor-id="routes-and-route-segments"><span class="header-section-number">34.5.3</span> Routes and route segments</h3>
+<p>An ATS route is a published structure connecting points through route segments. As data, a route segment normally has a start point, end point, directionality, distance, track, vertical limits, restrictions, and availability conditions. Some route networks are airway-based; others support free-route operations where aircraft file direct segments between allowed points.</p>
+<p>Analysts should distinguish:</p>
+<ul>
+<li>a published route network;</li>
+<li>a filed route string in a flight plan;</li>
+<li>an accepted or regulated route after flow-management checks;</li>
+<li>the flown trajectory reconstructed from surveillance data.</li>
+</ul>
+<p>These objects are related but not interchangeable.</p>
+</section>
+<section id="airspaces" class="level3" data-number="34.5.4">
+<h3 data-number="34.5.4" class="anchored" data-anchor-id="airspaces"><span class="header-section-number">34.5.4</span> Airspaces</h3>
+<p>Airspaces are geospatial volumes with lateral boundaries, vertical limits, classification, controlling unit, activation rules, and validity. They include FIRs/UIRs, controlled airspaces, terminal areas, control zones, restricted or danger areas, military areas, sectors, and flow-management regions.</p>
+<p>The background chapter on <a href="../../chapters/background/airspace-structure.html">airspace structure</a> explains the operational meaning of FIRs, ACCs, sectors, and route structures. In data terms, the hard parts are geometry, vertical references, activation schedules, naming conventions, and versioning.</p>
+</section>
+<section id="procedures" class="level3" data-number="34.5.5">
+<h3 data-number="34.5.5" class="anchored" data-anchor-id="procedures"><span class="header-section-number">34.5.5</span> Procedures</h3>
+<p>Procedures connect aerodromes to the route network and support instrument operations:</p>
+<ul>
+<li>Standard Instrument Departure (SID) for departures;</li>
+<li>Standard Terminal Arrival (STAR) for arrivals;</li>
+<li>instrument approaches and missed approaches;</li>
+<li>holding procedures;</li>
+<li>transitions and runway-specific variants.</li>
+</ul>
+<p>A procedure is not only a polyline. It may include altitude constraints, speed constraints, fly-by/fly-over path terminators, course or heading instructions, distance conditions, procedure turns, and equipment requirements. Procedure coding in avionics databases therefore requires more structure than a chart drawing.</p>
+</section>
+</section>
+<section id="digital-exchange-formats" class="level2" data-number="34.6">
+<h2 data-number="34.6" class="anchored" data-anchor-id="digital-exchange-formats"><span class="header-section-number">34.6</span> Digital exchange formats</h2>
+<p>Two formats are especially important in digital aeronautical data workflows.</p>
+<p><strong>AIXM</strong> is a data exchange model for aeronautical information. It represents features such as airports, airspaces, routes, navaids, procedures, obstacles, and temporality. Its strength is that it can encode valid times, feature lifecycles, and complex relationships. Its complexity is also a barrier: practical use often requires domain-specific filtering and careful interpretation.</p>
+<p><strong>ARINC 424</strong> is the navigation database coding standard used to encode procedures, waypoints, navaids, airports, and routes for avionics and flight management systems. It is operationally critical because it determines what pilots can select and fly in the cockpit. For analysis, ARINC 424 data is valuable but not always publicly accessible.</p>
+<p>Other sources include eAIP tables, charting databases, national open-data portals, EUROCONTROL datasets, FAA data products, and community-maintained geospatial extracts. Each source differs in coverage, licensing, coordinate precision, and update process.</p>
+</section>
+<section id="quality-and-consistency-caveats" class="level2" data-number="34.7">
+<h2 data-number="34.7" class="anchored" data-anchor-id="quality-and-consistency-caveats"><span class="header-section-number">34.7</span> Quality and consistency caveats</h2>
+<p>Aeronautical data is authoritative, but not automatically analysis-ready:</p>
+<ul>
+<li>each object must be interpreted for the correct AIRAC cycle;</li>
+<li>coordinates may use different precision, datums, or publication conventions;</li>
+<li>vertical limits may reference flight levels, altitude, height above surface, or pressure settings;</li>
+<li>text notes can override or qualify tabular fields;</li>
+<li>temporary information may appear in NOTAM or SUP AIP rather than base AIP data;</li>
+<li>procedure geometry may differ between chart depiction, coded path terminators, and flown tracks;</li>
+<li>licensing can restrict redistribution of high-quality navigation data.</li>
+</ul>
+<p>When joining aeronautical information with trajectories or flight plans, always keep the effective date, source, cycle, and object identifiers. A route or procedure decoded without its publication context can be misleading.</p>
+</section>
+<section id="glossary" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="glossary">Glossary</h2>
 
 
 <dl>
@@ -1123,10 +1116,6 @@ Aeronautical Information Publication
 <dd>
 Aeronautical Information Regulation And Control
 </dd>
-<dt><span id="acronyms_IFR">IFR</span></dt>
-<dd>
-Instrument Flight Rules
-</dd>
 <dt><span id="acronyms_NOTAM">NOTAM</span></dt>
 <dd>
 Notice To Airmen
@@ -1135,19 +1124,15 @@ Notice To Airmen
 <dd>
 Prefilght Information Bulletin
 </dd>
-<dt><span id="acronyms_VFR">VFR</span></dt>
+<dt><span id="acronyms_SID">SID</span></dt>
 <dd>
-Visual Flight Rules
+Standard Instrument Departure
+</dd>
+<dt><span id="acronyms_STAR">STAR</span></dt>
+<dd>
+Standard Terminal Arrival
 </dd>
 </dl>
-<div id="refs" class="references csl-bib-body" data-entry-spacing="0" role="list" style="display: none">
-<div id="ref-eAIPs" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[1] </div><div class="csl-right-inline">T. Bright, <span>“Electronic AIPs by country.”</span> https://erau.libguides.com/uas/electronic-aips-country.</div>
-</div>
-<div id="ref-icao-convention" class="csl-entry" role="listitem">
-<div class="csl-left-margin">[2] </div><div class="csl-right-inline">ICAO, <em>Convention on international civil aviation</em>, 9th ed. 2006.</div>
-</div>
-</div>
 </section>
 
 </main> <!-- /main -->
@@ -1566,13 +1551,13 @@ Visual Flight Rules
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="../../chapters/data_sources/network-manager-formats.html" class="pagination-link" aria-label="🟡 NM formats">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">🟡 NM formats</span></span>
+      <a href="../../chapters/data_sources/cpdlc-data.html" class="pagination-link" aria-label="🟡 CPDLC data">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">33</span>&nbsp; <span class="chapter-title">🟡 CPDLC data</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../../chapters/data_sources/aip-notam-aic-pib.html" class="pagination-link" aria-label="🟡 AIP &amp; NOTAM">
-        <span class="nav-page-text"><span class="chapter-number">37</span>&nbsp; <span class="chapter-title">🟡 AIP &amp; NOTAM</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../../chapters/data_sources/flight-plans-intent.html" class="pagination-link" aria-label="🟡 Flight plans and intent">
+        <span class="nav-page-text"><span class="chapter-number">35</span>&nbsp; <span class="chapter-title">🟡 Flight plans and intent</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
