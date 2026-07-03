@@ -3,6 +3,8 @@ project:
   output-dir: _book
   resources:
     - data/patterns.json
+    - data/iq_frames_viz.json
+    - data/iq_downsample_compare.json
 
 execute:
   freeze: auto

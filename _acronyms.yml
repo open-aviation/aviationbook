@@ -277,6 +277,12 @@ acronyms:
       longname: Very High Frequency
     - shortname: VMC
       longname: Visual Meteorological Conditions
+    - shortname: BDS
+      longname: Comm-B Data Selector
+    - shortname: CRC
+      longname: Cyclic Redundancy Check
+    - shortname: SDR
+      longname: Software-Defined Radio
     - shortname: VOR
       longname: Very High Frequency Omnidirectional Range Station
     - shortname: WTC

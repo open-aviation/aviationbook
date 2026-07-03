@@ -1,180 +1,1456 @@
 ---
-title: ADS-B and Mode S decoding
+title: Decode ADS-B and Mode S data
 authors:
 - Xavier Olive
+- Junzi Sun
 ---
 
+ADS-B and Mode S decoding starts as follows: a receiver hears 1090 MHz pulses, turns them into bits, checks that the bits make sense, and only then obtains something aviation analysts recognise, such as an aircraft address, callsign, altitude, velocity, or selected altitude. This page follows that path from signal to field.
 
-::: {.callout-warning}
-## TODO for this page
+It complements the pages [Surveillance systems](../background/surveillance-systems.qmd), which explains why these systems exist operationally, and [Flight tracking and surveillance data](flight-tracking-surveillance.qmd), which discusses decoded trajectory datasets.
 
-This is extracted from the flight tracking chapter. It should be shortened to focus on raw-to-decoded ADS-B/Mode S concepts and then connected to the Open Aviation rs1090 notebook.
-:::
+The examples are intentionally interactive. They use a [decoding library](https://github.com/xoolive/jet1090) compiled for WebAssembly called `rs1090`. For more in depth details, refer to the online book [*The 1090 Megahertz Riddle*](https://mode-s.org/1090mhz/) [@sun1090] or to the more technical documentation of the [rs1090](https://docs.rs/rs1090/latest/rs1090/decode/index.html) library.
 
-## ADS-B
-
-\acr{ADS-B} is probably one of the most well-known source of aircraft trajectories, popularized by famous websites such as [Flightradar24](https://www.flightradar24.com) or [The OpenSky Network](https://www.opensky-network.org). It is a surveillance technology designed to allow aircraft to broadcast their flight state periodically without the need for interrogation.
-
-The word *automatic* refers to the fact that no inputs from controllers or pilots are required. The word *dependent* indicates this technology depends on information from other onboard systems, such as air data systems and navigation systems.
-
-
-:::{.callout-important}
-Messages do not contain any timestamp information. Timestamps are usually appended by the receiver of the messages, based on the reception time (and not the time of emission by the aircraft).
-:::
-
-Information broadcast in \acr{ADS-B} messages contains, in addition to a unique [24-bit transponder code](#aircraft-information), named `icao24` in examples below:
-
-- *identification information*: the *callsign* (an 8-character *non-unique* identifier of the mission or the route of the aircraft) and the wake vortex category;
-- *positional information*: latitude and longitude in degrees (encoded in \acr{CPR} format), barometric altitude (converted to ISA equivalent), and GPS altitude in feet;
-- *velocity information*: track angle in degrees, ground speed in knots, vertical rate in feet per minute;
-- *uncertainty information* around the position and the velocity of the aircraft.
-
-Positional and velocity information is computed by the aircraft based on GNSS and inertial navigation systems of the aircraft.
-
-
-:::{.callout-warning}
-There is a common confusion in aviation between three designations for angles:
-
-- the **track angle** represents the direction the aircraft is flying. It is the angle of the speed vector, ranging from 0 (North) to 360 degrees (90° for East, 270° for West);
-- the **heading angle** represents the direction the nose the aircraft is pointing at;
-- the **bearing angle** usually represents the direction of/to a static object, e.g., the bearing of a runway, or the bearing to a navigational point.
-
-
-![source: https://aviation.stackexchange.com/a/96035](../../images/ZUw30.png)
-
-:::
-
-:::{.callout-note}
-## A note about callsign identifiers
-
-A callsign is an eight-character identifier used for communication with the \acr{ATC}.
-
-General aviation commonly uses the aircraft registration (tail number) as a callsign; commercial flights use a (often unique) identifier per route, starting with three letters identifying the airline operator, `BAW` (*pronounce "speedbird"*) for British Airways, `AFR` for Air France, etc.
-
-Outside commercial aviation, the callsign commonly refers to the mission operated by an aircraft, and this can help distinguish the original intention of an aircraft used for specific purposes.
-
-For example, aircraft `F-HNAV` uses the `CALIBRA` callsign for flight inspection and \acr{VOR}/\acr{ILS} calibration operations, the `JAMMING` callsign during jamming investigation and a more regular `NAK` callsign when commuting between airfields.
-
-Similarly, test flights operated by Airbus use an `AIB` callsign; Boeing uses a `BOE` callsign; ambulance helicopters often use explicit callsigns: `SAMU` in France (stands for *Urgent Medical Aid Service*) and `LIFE` in many European countries.
-
-Australian firefighting operations use a specific callsign depending on the role of the aircraft during the operations: `BMBR` for firebombing; `SPTR` for fire spotters; `BDOG`, *bird dog*, for fire attack supervisions (often subcontracted); and `FSCN`, fire scan for remote sensing fire operations.
-:::
-
-Even though all information is not available at each timestamp, tabular data (csv) is a common format to represent trajectory data. In this example, the `icao24` code `7c4779` matches a Qantas Boeing B747 registered as `VH-OEJ`.
+<style>
+/* Quarto still emits a copy scaffold for hidden OJS source cells. Hide the
+   whole scaffold so only the rendered controls/table remain visible. */
+.code-copy-outer-scaffold:has(.sourceCode.hidden) {
+  display: none !important;
+}
+</style>
 
 ```{ojs}
 //| echo: false
-import { Flight } from "@xoolive/traffic-js"
+rs1090 = import("https://unpkg.com/rs1090-wasm@0.6.0/web/rs1090_wasm.js").then(async (module) => {
+  await module.default("https://unpkg.com/rs1090-wasm@0.6.0/web/rs1090_wasm_bg.wasm");
+  if (module.run) module.run();
+  return module;
+})
 ```
 
 ```{ojs}
 //| echo: false
-qantas747 = Flight.fromSample("qantas747")
-qantas747.table()
+exampleMessages = [
+  {
+    label: "ADS-B identification",
+    raw: "8D4840D6202CC371C32CE0576098",
+    note: "DF 17 extended squitter carrying an aircraft identification message."
+  },
+  {
+    label: "ADS-B position, even CPR",
+    raw: "8D40621D58C382D690C8AC2863A7",
+    note: "An airborne-position squitter. It needs a companion CPR frame for global decoding."
+  },
+  {
+    label: "ADS-B position, odd CPR",
+    raw: "8D40621D58C386435CC412692AD6",
+    note: "The companion airborne-position squitter from the same aircraft."
+  },
+  {
+    label: "ADS-B velocity",
+    raw: "8D485020994409940838175B284F",
+    note: "An airborne-velocity squitter."
+  },
+  {
+    label: "Comm-B BDS 4,0",
+    raw: "A8001EBCAEE57730A80106DE1344",
+    note: "A selective Mode S reply carrying selected vertical intention."
+  },
+  {
+    label: "Comm-B BDS 5,0",
+    raw: "A80006ACF9363D3BBF9CE98F1E1D",
+    note: "A selective Mode S reply carrying track and turn information."
+  },
+  {
+    label: "Comm-B BDS 6,0",
+    raw: "A80004AAA74A072BFDEFC1D5CB4F",
+    note: "A selective Mode S reply carrying heading and speed information."
+  }
+]
 ```
 
-This tabular information can easily be represented on a map, or as a regular plot for non-geographical features.
+```{ojs}
+//| echo: false
+function hexToBits(hex) {
+  return hex.split("").flatMap((char) => {
+    const value = parseInt(char, 16);
+    return [3, 2, 1, 0].map((shift) => (value >> shift) & 1);
+  });
+}
+
+function fieldRows(value, prefix = "") {
+  if (value == null) return [];
+  if (Array.isArray(value)) {
+    return value.flatMap((item, index) => fieldRows(item, `${prefix}[${index}]`));
+  }
+  if (typeof value === "object") {
+    return Object.entries(value).flatMap(([key, child]) =>
+      fieldRows(child, prefix ? `${prefix}.${key}` : key)
+    );
+  }
+  return [{ field: prefix, value }];
+}
+
+function decodeMessage(raw, reference = null) {
+  try {
+    return { ok: true, value: rs1090.decode(raw, reference) };
+  } catch (error) {
+    return { ok: false, value: { error: String(error) } };
+  }
+}
+
+function messageSummary(raw) {
+  const bits = hexToBits(raw);
+  const df = parseInt(bits.slice(0, 5).join(""), 2);
+  return {
+    bits: bits.length,
+    df,
+    firstBits: bits.slice(0, 32).join("")
+  };
+}
+
+function messageFamily(df) {
+  if (df === 0) return "Short air-air surveillance (ACAS)";
+  if (df === 4) return "Surveillance altitude reply";
+  if (df === 5) return "Surveillance identity reply";
+  if (df === 11) return "All-call reply";
+  if (df === 16) return "Long air-air surveillance (ACAS)";
+  if (df === 17) return "Extended squitter";
+  if (df === 18) return "Extended squitter / non-transponder";
+  if (df === 19) return "Military extended squitter";
+  if (df === 20) return "Comm-B altitude reply";
+  if (df === 21) return "Comm-B identity reply";
+  if (df === 24) return "Comm-D extended length message";
+  return "Reserved or uncommon Mode S format";
+}
+
+function dfDescription(df) {
+  if (df === 0) return "A short aircraft-to-aircraft reply used by ACAS/TCAS.";
+  if (df === 4) return "A short reply carrying altitude information.";
+  if (df === 5) return "A short reply carrying identity, usually the Mode A squawk.";
+  if (df === 11) return "A short all-call reply exposing the aircraft address and capability.";
+  if (df === 16) return "A long aircraft-to-aircraft ACAS/TCAS reply.";
+  if (df === 17) return "The usual ADS-B broadcast from a Mode S transponder.";
+  if (df === 18) return "An extended squitter from non-transponder or TIS-B-like sources.";
+  if (df === 19) return "A military extended-squitter format.";
+  if (df === 20) return "A Comm-B reply associated with an altitude interrogation.";
+  if (df === 21) return "A Comm-B reply associated with an identity interrogation.";
+  if (df === 24) return "An extended-length Mode S message; DF 24 is identified by its first two bits.";
+  return "Not one of the commonly used downlink formats.";
+}
+
+function modesCrc(hexWithoutParity) {
+  const generator = 0xfff409;
+  let rem = 0;
+  for (let i = 0; i < hexWithoutParity.length; i += 2) {
+    const byte = parseInt(hexWithoutParity.slice(i, i + 2), 16);
+    rem ^= byte << 16;
+    for (let bit = 0; bit < 8; bit++) {
+      rem <<= 1;
+      if (rem & 0x1000000) rem ^= generator;
+    }
+  }
+  return rem & 0xffffff;
+}
+
+function hex24(value) {
+  return (value >>> 0).toString(16).padStart(6, "0");
+}
+
+function findIcao24(decoded) {
+  const rows = fieldRows(decoded);
+  const row = rows.find((d) => /icao24$/i.test(d.field) || /icao/i.test(d.field));
+  return row ? String(row.value) : null;
+}
+
+function crcStructureSegments(raw, decoded = {}, nBits = null) {
+  const fullHex = raw.toLowerCase();
+  const bits = nBits ?? fullHex.length * 4;
+  const hex = fullHex.slice(0, bits / 4);
+  const df = messageSummary(hex).df;
+  if (df === 17 || df === 18) {
+    const crc = modesCrc(hex.slice(0, -6));
+    const parity = parseInt(hex.slice(-6), 16);
+    const xor = crc ^ parity;
+    return {
+      df, bits, family: messageFamily(df), icaoSource: "explicit address field",
+      icao24: hex.slice(2, 8),
+      crcLabel: "Parity and CRC",
+      crcHex: hex24(crc),
+      parityHex: hex24(parity),
+      xorHex: hex24(xor),
+      xorMeaning: "parity matches CRC → we have a valid message",
+      segments: [
+        {label: "DF/CA", value: hex.slice(0, 2), cls: "field-control"},
+        {label: "ICAO24", value: hex.slice(2, 8), cls: "field-icao"},
+        {label: "ME", value: hex.slice(8, 22), cls: "field-payload"},
+        {label: "PI/CRC", value: hex.slice(22), cls: "field-crc"},
+      ]
+    };
+  }
+  const parityStart = bits === 56 ? 8 : 22;
+  const crc = modesCrc(hex.slice(0, parityStart));
+  const parity = parseInt(hex.slice(parityStart), 16);
+  const xor = crc ^ parity;
+  return {
+    df, bits, family: messageFamily(df), icaoSource: "from address parity",
+    icao24: findIcao24(decoded) ?? hex24(xor),
+    crcLabel: "Address parity",
+    crcHex: hex24(crc),
+    parityHex: hex24(parity),
+    xorHex: hex24(xor),
+    xorMeaning: "recovered ICAO24 address",
+    segments: [
+      {label: "DF fields", value: hex.slice(0, 2), cls: "field-control"},
+      {label: "payload", value: hex.slice(2, parityStart), cls: "field-payload"},
+      {label: "AP", value: hex.slice(parityStart), cls: "field-crc"},
+    ]
+  };
+}
+```
+
+## The radio signal
+
+Mode S downlink messages are transmitted at 1090 MHz. At the antenna, they are not hexadecimal strings. They are pulses carried on a radio wave. A \acr{SDR} receiver captures those pulses as a stream of **I/Q samples**: pairs of in-phase and quadrature voltage measurements taken at regular intervals. The magnitude at each moment represents the signal amplitude, regardless of carrier phase.
+
+A Mode S demodulator looks at that amplitude stream. It first searches for the preamble, a known four-pulse pattern at 0, 1, 3.5, and 4.5 µs, then reads 56 or 112 bits from the pulse-position modulation that follows. In each 1 µs bit interval, energy concentrated in the first half means a 1, energy in the second half means a 0.
+
+The visualisation below shows real frames extracted from a 6 MS/s recording. Use the buttons to switch between examples. The green shaded region is the preamble (8 µs); the blue/red shaded bars show first-half and second-half energy for each bit interval — blue where energy is concentrated, red where it is low.
+
+```{ojs}
+//| echo: false
+iqFrames = fetch("../../data/iq_frames_viz.json").then(r => r.json())
+```
+
+```{ojs}
+//| echo: false
+//| code-copy: false
+iqButtonStyles = htl.html`<style>
+.iq-frame-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem;
+  margin: .25rem 0 .75rem;
+}
+.iq-frame-buttons button {
+  border: 1px solid var(--bs-border-color, #d0d7de);
+  border-radius: 999px;
+  background: var(--bs-body-bg, #fff);
+  color: var(--bs-body-color, #24292f);
+  padding: .35rem .75rem;
+  font: inherit;
+  line-height: 1.2;
+  cursor: pointer;
+}
+.iq-frame-buttons button.active {
+  background: var(--bs-primary, #2c7fb8);
+  border-color: var(--bs-primary, #2c7fb8);
+  color: #fff;
+}
+.mode-s-structure {
+  border: 1px solid var(--bs-border-color, #d0d7de);
+  border-radius: .75rem;
+  padding: .9rem 1rem;
+  margin: .7rem 0 1rem;
+  background: var(--bs-body-bg, #fff);
+}
+.mode-s-structure dl {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: .25rem .9rem;
+  margin: .5rem 0 0;
+}
+.mode-s-structure dt { font-weight: 600; }
+.mode-s-structure dd { margin: 0; }
+.mode-s-hex {
+  font-family: Inconsolata, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 1.05rem;
+  line-height: 1.9;
+  word-break: break-all;
+}
+.mode-s-hex span,
+.df-sample-hex span {
+  border-radius: .25rem;
+  padding: .12rem .18rem;
+  margin-right: .08rem;
+}
+.mode-s-hex .field-control,
+.df-sample-hex .field-control { background: #f1f3f5; color: #1f1f1f; }
+.mode-s-hex .field-altitude,
+.df-sample-hex .field-altitude { background: #e7f5ff; color: #1f1f1f; }
+.mode-s-hex .field-icao,
+.df-sample-hex .field-icao { background: #ffe082; color: #1f1f1f; }
+.mode-s-hex .field-payload,
+.df-sample-hex .field-payload { background: #e8f0fb; color: #1f1f1f; }
+.df-sample-hex .field-bds-payload { background: #d8f3dc; color: #1f1f1f; }
+.mode-s-hex .field-crc,
+.df-sample-hex .field-crc { background: #ffd6d6; color: #1f1f1f; }
+.mode-s-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem .8rem;
+  font-size: .85rem;
+  color: #555;
+  margin-top: .45rem;
+}
+.mode-s-legend span::before {
+  content: "";
+  display: inline-block;
+  width: .85rem;
+  height: .85rem;
+  border-radius: .2rem;
+  margin-right: .25rem;
+  vertical-align: -.1rem;
+}
+.mode-s-legend .legend-control::before { background: #f1f3f5; }
+.mode-s-legend .legend-altitude::before { background: #e7f5ff; }
+.mode-s-legend .legend-icao::before { background: #ffe082; }
+.mode-s-legend .legend-payload::before { background: #e8f0fb; }
+.mode-s-legend .legend-bds-payload::before { background: #d8f3dc; }
+.mode-s-legend .legend-crc::before { background: #ffd6d6; }
+.df-samples {
+  display: flex;
+  flex-direction: column;
+  gap: .55rem;
+  margin: .75rem 0 1rem;
+}
+.df-sample {
+  border: 1px solid var(--bs-border-color, #d0d7de);
+  border-radius: .65rem;
+  padding: .65rem .75rem;
+  background: var(--bs-body-bg, #fff);
+}
+.df-sample-hex {
+  font-family: Inconsolata, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 1rem;
+  word-break: break-all;
+}
+.df-sample-hex .field-control {
+  font-weight: 600;
+}
+.df-sample-meta {
+  margin-top: .3rem;
+  color: var(--bs-body-color, #24292f);
+}
+.df-sample-meta code {
+  background: var(--bs-tertiary-bg, #f8f9fa);
+  color: var(--bs-body-color, #24292f);
+}
+.df-bits {
+  font-family: Inconsolata, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+.bds-decode-grid {
+  display: grid;
+  gap: .55rem;
+  margin-top: .65rem;
+}
+.bds-decode-block {
+  border-top: 1px solid var(--bs-border-color, #d0d7de);
+  padding-top: .45rem;
+}
+.bds-decode-title {
+  font-weight: 600;
+  margin-bottom: .25rem;
+}
+.bds-decode-error {
+  background: #fff0f0;
+  color: #8a1f1f;
+  border: 1px solid #f3c2c2;
+  border-radius: .45rem;
+  padding: .45rem .6rem;
+  font-family: Inconsolata, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .9rem;
+  white-space: pre-wrap;
+}
+.df-bits .df-prefix {
+  background: #c3fae8;
+  color: #1f1f1f;
+  border-radius: .2rem;
+  padding: .05rem .12rem;
+}
+.df-format-table table,
+.adsb-tc-table table {
+  table-layout: fixed;
+  width: 100%;
+}
+.df-format-table col:first-child {
+  width: 4.5rem !important;
+}
+.df-format-table col:nth-child(2) {
+  width: 3.5rem !important;
+}
+.df-format-table col:nth-child(3) {
+  width: auto !important;
+}
+.df-format-table th:first-child,
+.df-format-table td:first-child {
+  width: 4.5rem !important;
+  white-space: nowrap;
+}
+.df-format-table th:nth-child(2),
+.df-format-table td:nth-child(2) {
+  width: 3.5rem !important;
+  white-space: nowrap;
+}
+.df-format-table th:nth-child(3),
+.df-format-table td:nth-child(3) {
+  width: auto !important;
+}
+.df-format-table tr:has(.df-row-focus) {
+  background: color-mix(in srgb, var(--bs-primary, #2c7fb8) 10%, transparent);
+  border-left: .25rem solid var(--bs-primary, #2c7fb8);
+}
+.df-row-focus,
+.tc-row-focus {
+  display: inline-block;
+  font-family: Inconsolata, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .95em;
+  font-weight: 600;
+  background: color-mix(in srgb, var(--bs-primary, #2c7fb8) 18%, transparent);
+  border-radius: .25rem;
+  padding: .05rem .28rem;
+}
+.adsb-tc-table col:first-child {
+  width: 7rem !important;
+}
+.adsb-tc-table col:nth-child(2) {
+  width: auto !important;
+}
+.adsb-tc-table th:first-child,
+.adsb-tc-table td:first-child {
+  width: 7rem !important;
+  white-space: nowrap;
+}
+.adsb-tc-table th:nth-child(2),
+.adsb-tc-table td:nth-child(2) {
+  width: auto !important;
+}
+.adsb-tc-table tr:has(.tc-row-focus) {
+  background: color-mix(in srgb, var(--bs-primary, #2c7fb8) 10%, transparent);
+  border-left: .25rem solid var(--bs-primary, #2c7fb8);
+}
+.adsb-sample-hex .field-typecode { background: #c3fae8; color: #1f1f1f; }
+.adsb-legend .legend-typecode::before { background: #c3fae8; }
+.adsb-json {
+  margin: .45rem 0 0;
+  padding: .55rem .65rem;
+  border-radius: .45rem;
+  background: var(--bs-tertiary-bg, #f8f9fa);
+  color: var(--bs-body-color, #24292f);
+  font-family: Inconsolata, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .86rem;
+  line-height: 1.35;
+  white-space: pre-wrap;
+  overflow-x: auto;
+}
+.adsb-json .json-key { color: #6f42c1; font-weight: 600; }
+.adsb-json .json-string { color: #0a7f3f; }
+.adsb-json .json-number { color: #0b63ce; }
+.adsb-json .json-boolean { color: #d63384; }
+.adsb-json .json-null { color: #6c757d; font-style: italic; }
+.df-description,
+.tc-description {
+  color: var(--bs-secondary-color, #6c757d);
+  font-size: .92em;
+}
+</style>`
+```
+
+```{ojs}
+//| echo: false
+//| code-copy: false
+iqSampleButtons = (frames, label = "Select signal sample") => {
+  let current = 0;
+  const form = htl.html`<div class="iq-frame-buttons" role="group" aria-label=${label}>
+    ${frames.map((_, i) => htl.html`<button type="button" data-index=${i}>Sample ${i + 1}</button>`)}
+  </div>`;
+  const setValue = (index, notify = true) => {
+    current = index;
+    for (const btn of form.querySelectorAll("button")) {
+      btn.classList.toggle("active", +btn.dataset.index === current);
+    }
+    if (notify) form.dispatchEvent(new Event("input", { bubbles: true }));
+  };
+  Object.defineProperty(form, "value", {
+    get: () => current,
+    set: (index) => setValue(+index, false),
+  });
+  form.addEventListener("click", (event) => {
+    const btn = event.target.closest("button");
+    if (btn) setValue(+btn.dataset.index);
+  });
+  setValue(0, false);
+  return form;
+}
+```
+
+```{ojs}
+//| echo: false
+//| code-copy: false
+viewof selectedIqIndex = iqSampleButtons(iqFrames.frames)
+```
+
+```{ojs}
+//| echo: false
+selectedIqFrame = iqFrames.frames[selectedIqIndex] ?? iqFrames.frames[0]
+```
 
 ```{ojs}
 //| echo: false
 {
-  const container = yield htl.html`<div style="height: 400px;">`;
-  const map = L.map(container, { scrollWheelZoom: false });
-  const layer = L.geoJSON(
-    qantas747.resample(d3.timeSecond.every(5)).feature()
-  ).addTo(map);
-  map.fitBounds(layer.getBounds(), { maxZoom: 7 });
-  L.tileLayer(
-    "https://{s}.basemaps.cartocdn.com/rastertiles/voyager_labels_under/{z}/{x}/{y}.png",
-    {
-      attribution:
-        "© <a href=https://www.openstreetmap.org/copyright>OpenStreetMap</a> contributors"
-    }
-  ).addTo(map);
+  const f = selectedIqFrame;
+  const SR = iqFrames.sample_rate;
+  const SPB = iqFrames.samples_per_bit;
+  const pre_off = f.preamble_offset;
+  const PREAMBLE_S = 48;
+  const toUs = s => s / SR * 1e6;
+
+  const t_preamble_end = toUs(PREAMBLE_S);
+  const t_data_start = f.data_start_us ?? t_preamble_end;
+  const t_msg_end    = t_data_start + toUs(f.n_bits * SPB);
+  const t_trail_end  = t_msg_end + toUs(pre_off);
+  const data_us = f.n_bits;
+
+  const prePts = f.preamble_samples.map((y, i) => ({x: toUs(i - pre_off), y}));
+  const dataPts = f.data_samples.map((y, i) => ({x: t_data_start + toUs(i), y}));
+  const trailPts = f.trailing_samples.map((y, i) => ({x: t_msg_end + toUs(i), y}));
+  const allPts = [...prePts, ...dataPts, ...trailPts];
+
+  const annotations = [
+    {x: t_preamble_end / 2,                     label: "preamble (8 µs)",       y: 1.01},
+    {x: (t_data_start + t_msg_end) / 2,         label: `data (${data_us} µs)`, y: 1.01},
+  ];
+
+  return Plot.plot({
+    width,
+    height: 220,
+    marginLeft: 50,
+    marginRight: 10,
+    marginTop: 28,
+    x: { label: "time (µs)", grid: true, domain: [toUs(-pre_off), t_trail_end] },
+    y: { label: "magnitude", domain: [0, 1.12] },
+    marks: [
+      Plot.rectY([{x1: toUs(-pre_off), x2: 0}],
+        {x1: "x1", x2: "x2", y2: 1.12, fill: "#f0f0f0", opacity: 0.6}),
+      Plot.rectY([{x1: 0, x2: t_preamble_end}],
+        {x1: "x1", x2: "x2", y2: 1.12, fill: "#e6f4e6", opacity: 0.7}),
+      Plot.rectY([{x1: t_data_start, x2: t_msg_end}],
+        {x1: "x1", x2: "x2", y2: 1.12, fill: "#e8f0fb", opacity: 0.5}),
+      Plot.rectY([{x1: t_msg_end, x2: t_trail_end}],
+        {x1: "x1", x2: "x2", y2: 1.12, fill: "#f0f0f0", opacity: 0.6}),
+      Plot.ruleX([0, t_preamble_end, t_data_start, t_msg_end],
+        {stroke: "#888", strokeDasharray: "3,3", strokeWidth: 1}),
+      Plot.text(annotations,
+        {x: "x", y: "y", text: "label", fontSize: 10, fill: "#444", textAnchor: "middle"}),
+      Plot.line(allPts,
+        {x: "x", y: "y", stroke: "#222", strokeWidth: 1.2}),
+    ]
+  });
 }
 ```
 
----
+```{ojs}
+//| echo: false
+htl.html`<p style="font-size:0.95em; color:#555">
+  Sample ${selectedIqIndex + 1} &nbsp;·&nbsp;
+  <code>${selectedIqFrame.hex}</code> &nbsp;·&nbsp;
+  ${selectedIqFrame.n_bits} bits
+</p>`
+```
+
+Zooming in to 0–20 µs makes the four preamble pulses and the individual bit highs and lows visible. Each bit occupies 1 µs; blue shading marks the energy-carrying half-interval for each bit.
 
 ```{ojs}
 //| echo: false
-Plot.plot({
-  marks: [
-    Plot.line(qantas747.data, {
-      x: "timestamp",
-      y: "altitude",
-      stroke: "steelblue",
-    })
-  ],
-  x: {
-    tickFormat: d3.utcFormat("%H:%M"),
-    label: "timestamp (UTC)"
-  },
-  y: {
-    label: "altitude (in feet)"
-  },
-  marginLeft: 50,
-  width,
-  height: 200,
-  grid: true
-})
+{
+  const f = selectedIqFrame;
+  const SR = iqFrames.sample_rate;
+  const SPB = iqFrames.samples_per_bit;
+  const pre_off = f.preamble_offset;
+  const PREAMBLE_S = 48;
+  const toUs = s => s / SR * 1e6;
+
+  const t_preamble_end = toUs(PREAMBLE_S);
+  const t_data_start = f.data_start_us ?? t_preamble_end;
+  const ZOOM_END = 20;  // µs
+  const n_visible_bits = Math.floor((ZOOM_END - t_data_start) / toUs(SPB));
+
+  const prePts = f.preamble_samples.map((y, i) => ({x: toUs(i - pre_off), y}));
+  const dataPts = f.data_samples.map((y, i) => ({x: t_data_start + toUs(i), y}));
+  const allPts = [...prePts, ...dataPts];
+
+  const bitRects = [];
+  for (let i = 0; i < n_visible_bits; i++) {
+    const t0 = t_data_start + i * toUs(SPB);
+    const tm = t0 + toUs(SPB / 2);
+    const t1 = t0 + toUs(SPB);
+    const bit = f.bits[i];
+    bitRects.push({x1: t0, x2: tm, half: "first",  e: f.bit_energies_first[i],  bit});
+    bitRects.push({x1: tm, x2: t1, half: "second", e: f.bit_energies_second[i], bit});
+  }
+
+  const preamble_pulses = [
+    {t: 0.0, label: "P1"}, {t: 1.0, label: "P2"},
+    {t: 3.5, label: "P3"}, {t: 4.5, label: "P4"}
+  ];
+
+  // Bit-value labels for the first visible bits
+  const bitLabels = Array.from({length: n_visible_bits}, (_, i) => ({
+    x: t_data_start + (i + 0.5) * toUs(SPB),
+    label: String(f.bits[i]),
+  }));
+
+  return Plot.plot({
+    width,
+    height: 200,
+    marginLeft: 50,
+    marginRight: 10,
+    marginTop: 12,
+    x: { label: "time (µs)", grid: true, domain: [0, ZOOM_END] },
+    y: { label: "magnitude", domain: [0, 1.05] },
+    marks: [
+      // Preamble background
+      Plot.rectY([{x1: 0, x2: t_preamble_end}],
+        {x1: "x1", x2: "x2", y2: 1.05, fill: "#e6f4e6", opacity: 0.7}),
+      // Bit half energy bars
+      Plot.rectY(bitRects.filter(d => d.half === "first"), {
+        x1: "x1", x2: "x2", y2: d => d.e * 0.9,
+        fill: d => d.bit === 1 ? "#4C78A8" : "#E45756", opacity: 0.25,
+      }),
+      Plot.rectY(bitRects.filter(d => d.half === "second"), {
+        x1: "x1", x2: "x2", y2: d => d.e * 0.9,
+        fill: d => d.bit === 0 ? "#4C78A8" : "#E45756", opacity: 0.25,
+      }),
+      // Magnitude line (zoom window only)
+      Plot.line(
+        allPts.filter(d => d.x >= 0 && d.x <= ZOOM_END),
+        {x: "x", y: "y", stroke: "#222", strokeWidth: 1.5}
+      ),
+      // Preamble pulse labels
+      Plot.text(preamble_pulses,
+        {x: d => d.t + 0.25, y: 0.99, text: "label", fontSize: 12, fill: "#2a7a2a"}),
+      // Bit boundary rules
+      Plot.ruleX(
+        Array.from({length: n_visible_bits + 1}, (_, i) => t_data_start + i * toUs(SPB)),
+        {stroke: "#bbb", strokeDasharray: "2,2", strokeWidth: 0.8}
+      ),
+      // Preamble/data boundary
+      Plot.ruleX([t_preamble_end, t_data_start],
+        {stroke: "#888", strokeDasharray: "3,3", strokeWidth: 1}),
+      // Bit value labels
+      Plot.text(bitLabels,
+        {x: "x", y: 0.99, text: "label", fontSize: 12, fill: "#333", textAnchor: "middle"}),
+    ]
+  });
+}
 ```
 
 
-:::{.callout-note}
-## What *broadcasting* means
+::: {.callout-tip}
+## Sampling rate and demodulation
 
-The letter "B" in ADS-B means *broadcast*: aircraft broadcast messages at the same rate regardless of ground equipments and infrastructure, even if no aircraft or receiver is within range. Aircraft broadcast ADS-B data even over oceans, poles, or deserted areas.
+Mode S uses 1 Mbit/s pulse-position modulation, so each bit lasts exactly 1 µs and each preamble pulse is 0.5 µs wide. A \acr{SDR} receiver must sample fast enough to distinguish those half-microsecond intervals. At 2 MS/s there are exactly two samples per bit, just enough to compare the first and second half, but the timing margin is zero and phase alignment is fragile.
 
-Recently, "Space-based ADS-B" has been implemented so that a constellation of low-altitude satellites attempts to receive and decode ADS-B messages from aircraft in the troposphere and forward positional information to ground-based stations. There have been high expectations around this technology which is expected to revolutionize traditional air traffic management over areas such as the North-Atlantic Ocean, controlled by Shannon (Ireland) and Gander (Canada) \acr{ACC}s.
+The first widely used open-source decoder, [dump1090](https://github.com/antirez/dump1090), originally used 2 MS/s for this reason: common RTL-SDR dongles cannot sample much beyond 2.4 MS/s. Later decoders made use of 2.4 MS/s to gain a small timing margin. The trade-off is that the samples no longer align neatly with half-bit boundaries, so demodulators usually test several phase alignments around each preamble candidate.
+
+At higher rates, such as 6 MS/s with receivers like Airspy, SDRplay, or HackRF, each bit spans six samples and each 0.5 µs pulse spans three. The demodulator can then compare energy in the two half-bit intervals with less timing ambiguity, while [CRC validation](#error-control-and-crc) rejects frames whose remaining weak bit decisions are inconsistent.
+
+The three panels below show the same frame magnitude from 0 to 20 µs, resampled to each rate. Coarser sampling resolves the pulse shapes less clearly, which increases the chance of flipped bits and therefore of CRC rejection.
+
+```{ojs}
+//| echo: false
+dsFrames = fetch("../../data/iq_downsample_compare.json").then(r => r.json())
+```
+
+```{ojs}
+//| echo: false
+//| code-copy: false
+viewof selectedDsIndex = Inputs.bind(
+  iqSampleButtons(dsFrames.frames, "Select sampling-rate sample"),
+  viewof selectedIqIndex
+)
+```
+
+```{ojs}
+//| echo: false
+{
+  const entry = dsFrames.frames[Math.min(selectedDsIndex, dsFrames.frames.length - 1)];
+  const ZOOM_END = 20;  // µs
+  const rateKeys = ["6M", "2.4M", "2M"];
+  const rateLabels = {"6M": "6 MS/s", "2.4M": "2.4 MS/s", "2M": "2 MS/s"};
+
+  const subplots = rateKeys.map(key => {
+    const r = entry.rates[key];
+    const SR = r.sample_rate;
+    const preUs = r.preamble_offset_us ?? (r.preamble_offset_samples / SR * 1e6);
+    const toUs = s => s / SR * 1e6;
+
+    // Build x-axis in µs relative to the exact 6 MS/s preamble start.
+    // Do not use rounded downsampled sample indices here: at 2 MS/s the
+    // preamble offset is 66.666... samples, and rounding visibly shifts the trace.
+    const pts = r.magnitude
+      .map((y, i) => ({ x: toUs(i) - preUs, y }))
+      .filter(d => d.x >= 0 && d.x <= ZOOM_END);
+
+    const dataStart = r.visual_data_start_us ?? 8;
+    const n_visible = Math.floor(ZOOM_END - dataStart);
+    const bitBounds = Array.from({ length: n_visible + 1 }, (_, i) => dataStart + i);
+    const bitHalves = [];
+    const bitLabels = [];
+    for (let i = 0; i < n_visible; i++) {
+      const e1 = r.visual_bit_energies_first?.[i] ?? r.bit_energies_first[i] ?? 0;
+      const e2 = r.visual_bit_energies_second?.[i] ?? r.bit_energies_second[i] ?? 0;
+      const bit = r.visual_bits?.[i] ?? r.bits?.[i] ?? (e1 > e2 ? 1 : 0);
+      bitHalves.push({x1: dataStart + i,       x2: dataStart + i + 0.5, e: e1, high: bit === 1});
+      bitHalves.push({x1: dataStart + i + 0.5, x2: dataStart + i + 1,   e: e2, high: bit === 0});
+      bitLabels.push({x: dataStart + i + 0.5, label: String(bit)});
+    }
+
+    const plot = Plot.plot({
+      width,
+      height: 110,
+      marginLeft: 50,
+      marginRight: 10,
+      marginTop: 6,
+      marginBottom: key === "2M" ? 30 : 6,
+      x: {
+        label: key === "2M" ? "time (µs)" : null,
+        grid: true,
+        domain: [0, ZOOM_END],
+        ticks: key === "2M" ? undefined : [],
+      },
+      y: { label: "", domain: [0, 1.05] },
+      marks: [
+        Plot.rectY([{x1: 0, x2: 8}],
+          {x1: "x1", x2: "x2", y2: 1.05, fill: "#e6f4e6", opacity: 0.6}),
+        Plot.rectY(bitHalves, {
+          x1: "x1", x2: "x2", y2: d => d.e * 0.9,
+          fill: d => d.high ? "#4C78A8" : "#E45756",
+          opacity: 0.25,
+        }),
+        Plot.ruleX([8], {stroke: "#888", strokeDasharray: "3,3", strokeWidth: 1}),
+        Plot.ruleX([dataStart], {stroke: "#777", strokeDasharray: "2,2", strokeWidth: 1}),
+        Plot.ruleX(bitBounds,
+          {stroke: "#ccc", strokeDasharray: "2,2", strokeWidth: 0.7}),
+        Plot.line(pts, {x: "x", y: "y", stroke: "#222", strokeWidth: 1.5}),
+        Plot.text(bitLabels,
+          {x: "x", y: 0.99, text: "label", fontSize: 12, fill: "#333", textAnchor: "middle"}),
+      ]
+    });
+
+    return htl.html`<div style="margin-top:.35rem">
+      <div style="font-weight:600;margin-left:50px;margin-bottom:.1rem">Sampling rate: ${rateLabels[key]}</div>
+      ${plot}
+    </div>`;
+  });
+
+  return htl.html`<div style="display:flex;flex-direction:column;gap:.2rem">${subplots}</div>`;
+}
+```
 :::
 
 
-:::{.callout-tip}
-A lot of details about the contents of ADS-B messages, Mode S data and their decoding is detailed in a different book, *The 1090 Megahertz Riddle* @sun1090.
+## Error control and CRC
+
+The last 24 bits of a Mode S frame are used for \acrfull{CRC} logic, but the exact meaning depends on the message family.
+
+- ADS-B Extended Squitter (samples 1 to 3) appends a parity/interrogator field that protects the message and includes the aircraft address in the frame.
+
+- Selective Mode S replies (samples 4 to 7) such as DF 20 and DF 21 use address parity: the parity is combined with the ICAO 24-bit aircraft address. This helps recover or verify the sender, but it does not protect the 56-bit Comm-B payload in the same self-contained way as ADS-B. This is the first reason decoded data can differ between tools: a receiver, a decoder, or a collection network may make different choices about accepting, correcting, or discarding frames.
+
+```{ojs}
+//| echo: false
+//| code-copy: false
+viewof selectedCrcIndex = Inputs.bind(
+  iqSampleButtons(iqFrames.frames, "Select CRC sample"),
+  viewof selectedIqIndex
+)
+```
+
+```{ojs}
+//| echo: false
+{
+  const f = iqFrames.frames[selectedCrcIndex] ?? iqFrames.frames[0];
+  const s = crcStructureSegments(f.hex, f.decoded, f.n_bits);
+  const segmentNodes = s.segments
+    .filter((d) => d.value && d.value.length)
+    .map((d) => htl.html`<span class=${d.cls} title=${d.label}>${d.value}</span>`);
+  const icaoText = s.icao24
+    ? htl.html`<code>${s.icao24}</code>`
+    : htl.html`<em>not recovered in this view</em>`;
+  const icaoLabel = s.icaoSource === "explicit address field"
+    ? "ICAO24"
+    : "Recovered ICAO24";
+  const xorLine = s.icaoSource === "explicit address field"
+    ? htl.html`<code>${s.crcHex}</code> ⊕ <code>${s.parityHex}</code> = <code>${s.xorHex}</code> <span style="color:#666">(${s.xorMeaning})</span>`
+    : htl.html`<code>${s.crcHex}</code> ⊕ <code>${s.parityHex}</code> = <code>${s.xorHex}</code> <span style="color:#666">(${s.xorMeaning})</span>`;
+
+  return htl.html`<div class="mode-s-structure">
+    <div class="mode-s-hex">${segmentNodes}</div>
+    <div class="mode-s-legend">
+      <span class="legend-icao">ICAO24</span>
+      <span class="legend-payload">payload</span>
+      <span class="legend-crc">CRC or address parity</span>
+    </div>
+    <dl>
+      <dt>Family</dt><dd>${s.family}</dd>
+      <!--<dt>Downlink format</dt><dd>DF ${s.df}, ${s.bits} bits</dd>-->
+      <dt>${icaoLabel}</dt><dd>${icaoText} <span style="color:#666">(${s.icaoSource})</span></dd>
+      <dt>${s.crcLabel}</dt><dd><code>${s.segments[s.segments.length - 1].value}</code></dd>
+      <dt>XOR check</dt><dd>${xorLine}</dd>
+    </dl>
+  </div>`;
+}
+```
+
+
+## Downlink formats
+
+The first five bits of every Mode S downlink message encode the **\acrfull{DF}**. This is the first dispatch key in a decoder: it tells the library which structure to apply to the rest of the frame. The commonly used Mode S downlink formats are listed below.
+
+::: {.df-format-table #tbl-results tbl-cap="Most commonly used Mode S downlink formats"}
+| \acr{DF} | Size | Message family |
+|---|---:|:---|
+| `DF 0` | 56 | Short air-air surveillance (ACAS)<br><span class="df-description">Aircraft-to-aircraft reply used by collision-avoidance systems.</span> |
+| `DF 4` | 56 | Surveillance altitude reply<br><span class="df-description">Mode S reply carrying altitude information.</span> |
+| `DF 5` | 56 | Surveillance identity reply<br><span class="df-description">Mode S reply carrying identity, usually the Mode A squawk.</span> |
+| `DF 11` | 56 | All-call reply<br><span class="df-description">Reply exposing the aircraft address and transponder capability.</span> |
+| `DF 16` | 112 | Long air-air surveillance (ACAS)<br><span class="df-description">Aircraft-to-aircraft reply used by collision-avoidance systems.</span> |
+| <span class="df-row-focus">DF 17</span> | 112 | Extended squitter (ADS-B)<br><span class="df-description">The usual ADS-B broadcast from a Mode S transponder.</span> |
+| `DF 18` | 112 | Extended squitter / non-transponder<br><span class="df-description">An ADS-B-like extended squitter from non-transponder or rebroadcast sources (many ground vehicles).</span> |
+| <span class="df-row-focus">DF 20</span> | 112 | Comm-B altitude reply<br><span class="df-description">Selective reply carrying a Comm-B payload, associated with an altitude interrogation.</span> |
+| <span class="df-row-focus">DF 21</span> | 112 | Comm-B identity reply<br><span class="df-description">Selective reply carrying a Comm-B payload, associated with an identity interrogation.</span> |
 :::
 
-## Mode S
+The demodulated samples from the radio-signal section show how little is needed for this first classification.
 
-The **\acr{SSR}**, also known as the \acr{ATCRBS}, was designed to provide air traffic controllers more information than what is provided by the primary radar. The secondary radar can be installed separately or installed on top of the primary radar. It uses a different radio frequency to actively interrogate the aircraft and receive information transmitted by the aircraft.
+The first highlighted field contains the five \acr{DF} bits; converting those bits to an integer gives the downlink format, which maps to the message family.
 
-The \acr{SSR} transmits interrogations using the 1030 MHz radio frequency and the aircraft transponder transmits replies using the 1090 MHz radio frequency. In the early design of SSR, two civilian communication protocols (Mode A and Mode C) were introduced. Mode A and Mode C respectively allow the \acr{SSR} to continuously interrogate the **identity (squawk code)** and the **altitude** of an aircraft. The **squawk code** in Mode A is a unique 4-octal digit code given by air traffic controllers to aircraft in their \acr{FIR} for identification. The altitude in Mode C refers to the barometric altitude obtained from the aircraft’s air data system.
+```{ojs}
+//| echo: false
+//| code-copy: false
+{
+  const samples = iqFrames.frames.map((frame, index) => {
+    const hex = frame.hex.slice(0, frame.n_bits / 4);
+    const summary = messageSummary(hex);
+    const structure = crcStructureSegments(frame.hex, frame.decoded, frame.n_bits);
+    const segmentNodes = structure.segments
+      .filter((d) => d.value && d.value.length)
+      .map((d) => htl.html`<span class=${d.cls} title=${d.label}>${d.value.toLowerCase()}</span>`);
+    const firstByte = hex.slice(0, 2);
+    const byteBits = hexToBits(firstByte).join("");
+    return htl.html`<div class="df-sample">
+      <div class="df-sample-hex">${segmentNodes}</div>
+      <div class="mode-s-legend">
+        <span class="legend-control">DF and control bits</span>
+        <span class="legend-icao">ICAO24 when explicit</span>
+        <span class="legend-payload">payload</span>
+        <span class="legend-crc">CRC or address parity</span>
+      </div>
+      <div class="df-sample-meta">
+        Sample ${index + 1}: <code>${firstByte}</code> → bits <span class="df-bits"><span class="df-prefix">${byteBits.slice(0, 5)}</span>${byteBits.slice(5)}</span> →
+        <code>DF ${summary.df}</code> (${summary.bits} bits): ${messageFamily(summary.df).replace("Extended squitter", "ADS-B")}
+      </div>
+    </div>`;
+  });
+  return htl.html`<div class="df-samples">${samples}</div>`;
+}
+```
 
-:::{.callout-tip}
-Some squawk codes are reserved for particular emergency situations:
+## ADS-B Extended Squitter
 
-- `7500` for hijacking situations;
-- `7600` for radio failures;
-- `7700` for general emergencies @opensky20.
+\acr{ADS-B} is the friendliest part of the decoding because it is broadcast and self-describing. Aircraft periodically transmit extended-squitter messages on 1090 MHz, usually as `DF 17` for transponder-originated messages and `DF 18` for some non-transponder devices, e.g. ground vehicles.
+
+The payload begins with a **type code** (`TC`) that identifies the content: aircraft identification, airborne position, surface position, airborne velocity, or operational status. In Mode S terminology, the ADS-B message field (`ME`) is also associated with Comm-B Data Selector-style labels: for example `BDS 0,8` for aircraft identification, `BDS 0,5` for airborne position, and `BDS 0,9` for airborne velocity.
+
+Common type-code groups are:
+
+::: {.adsb-tc-table #tbl-results tbl-cap="Most commonly used Mode S type codes for ADS-B Extended Squitter"}
+| Type code | ADS-B content |
+|---|:--|
+| <span class="tc-row-focus">TC 1–4</span> | `BDS 0,8`: Aircraft identification<br><span class="tc-description">Identification and category messages; typically callsign and emitter category.</span> |
+| `TC 5–8` | `BDS 0,6`: Surface position<br><span class="tc-description">Position messages used when the aircraft is on the ground; incl. ground movement and track angle.</span> |
+| <span class="tc-row-focus">TC 9–18</span> | `BDS 0,5`: Airborne position<br><span class="tc-description">The most common airborne-position squitters with barometric altitude and CPR latitude/longitude fragments.</span> |
+| <span class="tc-row-focus">TC 19</span> | `BDS 0,9`: Airborne velocity<br><span class="tc-description">Velocity messages with ground speed, track, and vertical rate.</span> |
+| `TC 20–22` | `BDS 0,5`: Airborne position with GNSS altitude<br><span class="tc-description">Position messages using GNSS altitude.</span> |
+| `TC 31` | `BDS 6,5`: Operational status<br><span class="tc-description">ADS-B version, integrity, capability, and status indicators.</span> |
 :::
 
-**Mode S (Mode Select Beacon System)** was designed by Lincoln Laboratory at Massachusetts Institute of Technology in the 1970s. Based on different iterations of hardware and software design in the 1980s, the implementation of Mode S in air traffic control began in the 1990s. Since then, Mode S has become one of the main sources for aircraft surveillance.
-
-The main characteristic of Mode S is its **selective interrogation**, which allows the \acr{SSR} to interrogate different information from different aircraft separately.  Unlike the limited number (4096) of unique identification codes in Mode A communication, the Mode S transponder is identified by a [24-bit transponder code](#aircraft-information), which can support up to $2^{24} =$ 6,777,216 unique addresses.
-
-:::{.callout-important}
-As Mode S consists in selective interrogation, it is strongly dependent on ground infrastructure around. Mode S messages are only sent in reply to an interrogation, therefore **no such data can be expected from an aircraft out of range of an SSR**, over the ocean, poles or deserted areas.
+::: {.callout-tip}
+Several type codes can map to the same BDS label. In that case, the type code is not just a message-family identifier: it also carries uncertainty information about the position or velocity encoded in the message.
 :::
 
-The Mode S uplink signal contains parameters that indicate which information is desired by the air traffic controller. Many \acr{DF}s are described in the Mode S protocol in order to reply to such information:
+The three demodulated ADS-B samples below correspond to the highlighted rows in the table: aircraft identification, airborne position, and airborne velocity. Each frame starts and ends with the usual Mode S envelope (`DF/CA`, aircraft address, and parity). The middle part is the ADS-B message field (`ME`), whose first five bits give the type code.
 
--  **Altitude and identity replies (DF 4/5)** are rough equivalents to Mode A/C protocols;
+```{ojs}
+//| echo: false
+//| code-copy: false
+adsbTypeCode = (hex) => parseInt(hexToBits(hex.slice(8, 10)).slice(0, 5).join(""), 2)
+```
 
--  **All-call reply (DF 11)** is the reply sent by Mode S compliant transponders to queries addressed to Mode A/C capable transponders. It contains the [24-bit transponder code](#aircraft-information), the transponder capabilities @sun20capab, and the interrogator identifier;
+```{ojs}
+//| echo: false
+//| code-copy: false
+adsbContent = (tc) => {
+  if (tc >= 1 && tc <= 4) return "aircraft identification";
+  if (tc >= 5 && tc <= 8) return "surface position";
+  if (tc >= 9 && tc <= 18) return "airborne position with barometric altitude";
+  if (tc === 19) return "airborne velocity";
+  if (tc >= 20 && tc <= 22) return "airborne position with GNSS altitude";
+  if (tc === 31) return "operational status";
+  return "reserved or uncommon ADS-B content";
+}
+```
 
--  **ACAS short and long replies (DF 0/16)**: **Airborne Collision Avoidance System (ACAS)** is a system designed to reduce the risk of mid-air collisions and near mid-air collisions between aircraft. In particular **Resolution Advisories (RA)** generate particular messages (DF16) which can be used to find about past RA alerts @opensky19.\
-   Details of the protocol are described [here](https://mode-s.org/decode/content/mode-s/4-acas.html).
+```{ojs}
+//| echo: false
+//| code-copy: false
+adsbDecodedPayload = (decoded, tc) => {
+  const payload = {...decoded};
+  if ((tc >= 9 && tc <= 18) || (tc >= 20 && tc <= 22)) {
+    delete payload.latitude;
+    delete payload.longitude;
+    if (payload.lat_cpr !== undefined) {
+      payload.cpr_lat = payload.lat_cpr;
+      delete payload.lat_cpr;
+    }
+    if (payload.lon_cpr !== undefined) {
+      payload.cpr_lon = payload.lon_cpr;
+      delete payload.lon_cpr;
+    }
+  }
+  return payload;
+}
+```
 
--  **Comm-B, with altitude and identity replies (DF 20/21)**: this protocol supports a large number of different types of messages, defined by **BDS (Comm-B Data Selector)** codes. **Mode S Enhances Surveillance (EHS)** accounts for a handful of BDS codes of particular interests:
-   - **BDS 4,0 -- Selected vertical intention**, with information about *selected altitude* in the autopilot, barometric pressure setting, and *navigation modes*;
-   - **BDS 5,0 -- Track and turn report**, with information about the *roll angle*, *true track angle rate* and *\acr{TAS}* in addition to ground speed and true track angle information also defined in \acr{ADS-B};
-   - **BDS 6,0 -- Heading and speed report**, with information about *magnetic heading* of the aircraft, *\acr{IAS}*, *barometric altitude rate* and *inertial vertical velocity* (in feet per minute)
+```{ojs}
+//| echo: false
+//| code-copy: false
+jsonBlock = (value) => {
+  const escapeHtml = (text) => text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+  const highlighted = escapeHtml(JSON.stringify(value)).replace(
+    /("(?:\\u[\da-fA-F]{4}|\\[^u]|[^\\"])*"\s*:)|("(?:\\u[\da-fA-F]{4}|\\[^u]|[^\\"])*")|\b(true|false)\b|\b(null)\b|(-?\d+(?:\.\d+)?(?:[eE][+-]?\d+)?)/g,
+    (match, key, string, bool, nil, number) => {
+      if (key) return `<span class="json-key">${key}</span>`;
+      if (string) return `<span class="json-string">${string}</span>`;
+      if (bool) return `<span class="json-boolean">${bool}</span>`;
+      if (nil) return `<span class="json-null">${nil}</span>`;
+      if (number) return `<span class="json-number">${number}</span>`;
+      return match;
+    }
+  );
+  const block = htl.html`<pre class="adsb-json"><code></code></pre>`;
+  block.querySelector("code").innerHTML = highlighted;
+  return block;
+}
+```
 
-Coupling BDS 5,0 (for the \acr{TAS}, the true track angle and the ground speed -- the two last entries are also present in ADS-B) with BDS 6,0 (for magnetic heading) and can be used to recompute the apparent wind seen by the aircraft.\
-[Magnetic declination](earth.html#magnetic-declination) must be taken into account.
+```{ojs}
+//| echo: false
+//| code-copy: false
+{
+  const adsbFrames = iqFrames.frames
+    .filter((frame) => [17, 18].includes(messageSummary(frame.hex).df))
+    .slice(0, 3);
+  const samples = adsbFrames.map((frame, index) => {
+    const hex = frame.hex.slice(0, frame.n_bits / 4).toLowerCase();
+    const decoded = decodeMessage(hex).value;
+    const tc = adsbTypeCode(hex);
+    const meFirst = hex.slice(8, 10);
+    const meBits = hexToBits(meFirst).join("");
+    const nodes = [
+      {label: "DF/CA", value: hex.slice(0, 2), cls: "field-control"},
+      {label: "ICAO24", value: hex.slice(2, 8), cls: "field-icao"},
+      {label: "TC/subtype", value: meFirst, cls: "field-typecode"},
+      {label: "ME payload", value: hex.slice(10, 22), cls: "field-payload"},
+      {label: "PI/CRC", value: hex.slice(22), cls: "field-crc"},
+    ].map((d) => htl.html`<span class=${d.cls} title=${d.label}>${d.value}</span>`);
 
-:::{.callout-tip}
-\acr{ADS-B} messages also belong to the Mode S protocol, in the **\acr{ES}** category (BDS 0,5 through to 0,9). Only \acr{ES} messages (ADS-B) are broadcast, i.e., they are not the result of \acr{SSR} interrogations.
+    return htl.html`<div class="df-sample">
+      <div class="df-sample-hex adsb-sample-hex">${nodes}</div>
+      <div class="mode-s-legend adsb-legend">
+        <span class="legend-control">DF/CA</span>
+        <span class="legend-icao">ICAO24</span>
+        <span class="legend-typecode">TC bits</span>
+        <span class="legend-payload">Rest of the ME payload</span>
+        <span class="legend-crc">CRC</span>
+      </div>
+      <div class="df-sample-meta">
+        Sample ${index + 1}: <code>${meFirst}</code> → ME bits <span class="df-bits"><span class="df-prefix">${meBits.slice(0, 5)}</span>${meBits.slice(5)}</span> →
+        <code>TC ${tc}</code>: ${adsbContent(tc)}.
+      </div>
+      ${jsonBlock(adsbDecodedPayload(decoded, tc))}
+    </div>`;
+  });
+  return htl.html`<div class="df-samples">${samples}</div>`;
+}
+```
+
+::: {.callout-caution}
+We have skipped over a few practical issues in ADS-B decoding. Two caveats are worth keeping in mind:
+
+1. Decoded fields are not always the same as the raw bits in the frame. For example, latitude and longitude are encoded as compact CPR values (`cpr_lat` and `cpr_lon`) and need additional processing before they become ordinary coordinates.
+1. Some decoded floating-point values are displayed with excessive precision. This comes from converting quantities encoded on a small number of bits into floating-point numbers. The **actual precision is much lower**, so these values can safely be rounded before practical use.
 :::
 
-![An overview of all Mode S services, excerpt from [www.mode-s.org](https://mode-s.org/decode/content/introduction.html#summary) @sun1090](../../images/mode_s_services.png)
+## Compact Position Reporting
+
+ADS-B position messages do not contain latitude and longitude as ordinary decimal coordinates. They use **Compact Position Reporting** (CPR), a grid encoding designed to fit a useful global position into a small payload. Airborne global decoding needs two recent messages from the same aircraft: one even CPR frame and one odd CPR frame. Local decoding can use a nearby reference position, such as a receiver or airport location.
+
+The intuition is that one CPR frame does not identify a single point globally. It identifies the same fractional position repeated over a grid. An even frame and an odd frame use slightly different grids; when the two are paired, only one neighbourhood is consistent with both reports.
+
+```{ojs}
+//| echo: false
+//| code-copy: false
+cprToy = ({
+  extent: 16,
+  point: {x: 9.2, y: 6.7},
+  even: {step: 4, origin: {x: 0, y: 0}, label: "even grid", color: "#2f6fbb"},
+  odd: {step: 16 / 5, origin: {x: 0, y: 0}, label: "odd grid", color: "#d97904"},
+  selected: "#238443",
+  grid: "#d8dee4"
+})
+```
+
+```{ojs}
+//| echo: false
+//| code-copy: false
+cprLines = (step, origin = 0, extent = cprToy.extent) => {
+  const values = [];
+  for (let v = origin; v <= extent + 1e-9; v += step) values.push(v);
+  for (let v = origin - step; v >= -1e-9; v -= step) values.push(v);
+  return values.filter((v) => v >= 0 && v <= extent).sort((a, b) => a - b);
+}
+```
+
+```{ojs}
+//| echo: false
+//| code-copy: false
+cprCandidates = ({step, origin}, point = cprToy.point, extent = cprToy.extent) => {
+  const mod = (value, base) => ((value % base) + base) % base;
+  const fx = mod(point.x - origin.x, step);
+  const fy = mod(point.y - origin.y, step);
+  const xs = [];
+  const ys = [];
+  for (let x = origin.x + fx; x <= extent + 1e-9; x += step) xs.push(x);
+  for (let x = origin.x + fx - step; x >= -1e-9; x -= step) xs.push(x);
+  for (let y = origin.y + fy; y <= extent + 1e-9; y += step) ys.push(y);
+  for (let y = origin.y + fy - step; y >= -1e-9; y -= step) ys.push(y);
+  return xs.flatMap((x) => ys.map((y) => ({x, y})))
+    .filter((d) => d.x >= 0 && d.x <= extent && d.y >= 0 && d.y <= extent);
+}
+```
+
+```{ojs}
+//| echo: false
+//| code-copy: false
+cprPlotBase = (marks, options = {}) => Plot.plot({
+  width: Math.min(width, 400),
+  height: Math.min(width, 400),
+  marginLeft: 48,
+  marginRight: 18,
+  marginTop: 34,
+  marginBottom: 44,
+  x: {domain: [0, cprToy.extent], label: "x cell coordinate", grid: false},
+  y: {domain: [0, cprToy.extent], label: "y cell coordinate", grid: false},
+  marks: [
+    Plot.frame({stroke: "#8c959f"}),
+    ...marks
+  ]
+})
+```
+
+The first diagram shows the encoding idea. The same position is expressed as a fractional coordinate inside an even grid cell and inside an odd grid cell. The reported CPR values are those fractions, scaled to 17-bit integers.
+
+```{ojs}
+//| echo: false
+//| code-copy: false
+{
+  const p = cprToy.point;
+  const evenLines = cprLines(cprToy.even.step, cprToy.even.origin.x);
+  const oddLines = cprLines(cprToy.odd.step, cprToy.odd.origin.x);
+  const evenY = cprLines(cprToy.even.step, cprToy.even.origin.y);
+  const oddY = cprLines(cprToy.odd.step, cprToy.odd.origin.y);
+  const evenCell = {x1: 8, x2: 12, y1: 4, y2: 8};
+  const oddCell = {x1: 6.4, x2: 9.6, y1: 6.4, y2: 9.6};
+  const arrows = [
+    {x1: evenCell.x1, y1: evenCell.y1, x2: p.x, y2: p.y, frame: "even"},
+    {x1: oddCell.x1, y1: oddCell.y1, x2: p.x, y2: p.y, frame: "odd"},
+  ];
+  return cprPlotBase([
+    Plot.dot([p], {x: "x", y: "y", r: 5.5, fill: cprToy.selected}),
+    Plot.rect([evenCell], {x1: "x1", x2: "x2", y1: "y1", y2: "y2", fill: cprToy.even.color, opacity: 0.3}),
+    Plot.rect([oddCell], {x1: "x1", x2: "x2", y1: "y1", y2: "y2", fill: cprToy.odd.color, opacity: 0.3}),
+    Plot.ruleX(evenLines, {stroke: cprToy.even.color, strokeWidth: 1.5, strokeOpacity: 0.35}),
+    Plot.ruleY(evenY, {stroke: cprToy.even.color, strokeOpacity: 0.35}),
+    Plot.ruleX(oddLines, {stroke: cprToy.odd.color, strokeWidth: 1.5, strokeOpacity: 0.35}),
+    Plot.ruleY(oddY, {stroke: cprToy.odd.color, strokeOpacity: 0.35}),
+    Plot.link(arrows, {
+      x1: "x1", y1: "y1", x2: "x2", y2: "y2",
+      stroke: (d) => d.frame === "even" ? cprToy.even.color : cprToy.odd.color,
+      strokeWidth: 2.2,
+      markerEnd: "arrow"
+    }),
+    Plot.text([
+      {x: 9.45, y: 6.95, text: "aircraft position"},
+      {x: 8.9, y: 5, text: "(x,y) in the local even frame", fill: cprToy.even.color},
+      {x: 8.3, y: 9, text: "(x,y) in the local odd frame", fill: cprToy.odd.color}
+    ], {x: "x", y: "y", text: "text", fill: "fill", fontSize: 12, textAnchor: "start"})
+  ]);
+}
+```
+
+When we want to decode a local position, one set of even (resp. odd) CPR values gives unique coordinates inside one among all the possible even (resp. odd) grid cells. The following diagram shows why one frame is ambiguous. Repeating the same fractional coordinate over the whole grid gives a family of possible positions. The even and odd families are different because their grid spacings are different. But if we overlay them, then only one neighbourhood is consistent with both frames.
+
+```{ojs}
+//| echo: false
+//| code-copy: false
+{
+  const even = cprCandidates(cprToy.even);
+  const odd = cprCandidates(cprToy.odd);
+  const p = cprToy.point;
+  return cprPlotBase([
+    Plot.dot([p], {x: "x", y: "y", r: 18, fill: cprToy.selected, opacity: 0.14}),
+    Plot.dot([p], {x: "x", y: "y", r: 6, fill: cprToy.selected}),
+    Plot.dot(even, {x: "x", y: "y", r: 4, stroke: cprToy.even.color, strokeWidth: 1.5, opacity: 0.85}),
+    Plot.dot(odd, {x: "x", y: "y", r: 4, symbol: "triangle", stroke: cprToy.odd.color, strokeWidth: 1.8, opacity: 0.85}),
+    Plot.text([{x: 9.65, y: 7.55, text: "matching position"}], {x: "x", y: "y", text: "text", fill: "#57606a", fontSize: 12, textAnchor: "start"})
+  ]);
+}
+```
+
+
+In the real airborne CPR algorithm, even latitude frames use a spacing of `360 / 60 = 6°`, and odd latitude frames use `360 / 59 ≈ 6.10°`. The formula is written over a 360° modular range, then decoded latitudes outside `[-90°, 90°]` are rejected or wrapped back into the physical latitude range. The encoded `cpr_lat` and `cpr_lon` values are 17-bit fractions, so they range from `0` to `131071`; they say where the aircraft falls inside the current latitude and longitude cell, not which global cell it is in. Longitude is similar, except that the number of longitude zones depends on latitude.
+
+Consider again the ADS-B position message used in the demodulated samples. We also need a second message from the same aircraft with a different parity. That second message we have here arrive 0.91s before the message we want to decode.
+
+```{ojs}
+//| echo: false
+//| code-copy: false
+cprExampleRaw = "8d0a008b58bf011f5055bd0d1c8b"
+```
+
+```{ojs}
+//| echo: false
+//| code-copy: false
+cprReferenceRaw = "8d0a008b58bf04a35653b2c4887d"
+```
+
+```{ojs}
+//| echo: false
+//| code-copy: false
+cprExampleDecoded = decodeMessage(cprExampleRaw).value
+```
+
+```{ojs}
+//| echo: false
+//| code-copy: false
+cprReferenceDecoded = decodeMessage(cprReferenceRaw).value
+```
+
+```{ojs}
+//| echo: false
+//| code-copy: false
+cprExampleKnown = iqFrames.frames.find((frame) => frame.hex.toLowerCase() === cprExampleRaw)?.decoded ?? {}
+```
+
+```{ojs}
+//| echo: false
+//| code-copy: false
+adsbPositionHexView = (raw, decoded, label) => {
+  const hex = raw.toLowerCase();
+  const tc = adsbTypeCode(hex);
+  const meFirst = hex.slice(8, 10);
+  const meBits = hexToBits(meFirst).join("");
+  const nodes = [
+    {label: "DF/CA", value: hex.slice(0, 2), cls: "field-control"},
+    {label: "ICAO24", value: hex.slice(2, 8), cls: "field-icao"},
+    {label: "TC/subtype", value: meFirst, cls: "field-typecode"},
+    {label: "ME payload", value: hex.slice(10, 22), cls: "field-payload"},
+    {label: "PI/CRC", value: hex.slice(22), cls: "field-crc"},
+  ].map((d) => htl.html`<span class=${d.cls} title=${d.label}>${d.value}</span>`);
+
+  return htl.html`<div class="df-sample">
+    <div class="df-sample-hex adsb-sample-hex">${nodes}</div>
+    <div class="mode-s-legend adsb-legend">
+      <span class="legend-control">DF/CA</span>
+      <span class="legend-icao">ICAO24</span>
+      <span class="legend-typecode">TC bits</span>
+      <span class="legend-payload">Rest of the ME payload</span>
+      <span class="legend-crc">CRC</span>
+    </div>
+    <div class="df-sample-meta">
+      ${label}: <code>${meFirst}</code> → ME bits <span class="df-bits"><span class="df-prefix">${meBits.slice(0, 5)}</span>${meBits.slice(5)}</span> →
+      <code>TC ${tc}</code>: ${adsbContent(tc)}.
+    </div>
+    ${jsonBlock(adsbDecodedPayload(decoded, tc))}
+  </div>`;
+}
+```
+
+```{ojs}
+//| echo: false
+//| code-copy: false
+{
+  const cards = [
+    adsbPositionHexView(cprExampleRaw, cprExampleDecoded, "Sample 2"),
+    adsbPositionHexView(cprReferenceRaw, cprReferenceDecoded, "Previous reference"),
+  ];
+  return htl.html`<div class="df-samples">${cards}</div>`;
+}
+```
+
+```{ojs}
+//| echo: false
+//| code-copy: false
+cprNL = (lat) => {
+  const absLat = Math.abs(lat);
+  if (absLat < 1e-12) return 59;
+  if (absLat >= 87) return 1;
+  const a = 1 - Math.cos(Math.PI / 30);
+  const b = Math.cos(absLat * Math.PI / 180) ** 2;
+  return Math.floor((2 * Math.PI) / Math.acos(1 - a / b));
+}
+```
+
+```{ojs}
+//| echo: false
+//| code-copy: false
+cprExampleComputation = {
+  const scale = 2 ** 17;
+  const mod = (value, base) => ((value % base) + base) % base;
+
+  const evenLat = cprExampleDecoded.cpr_lat ?? cprExampleDecoded.lat_cpr;
+  const evenLon = cprExampleDecoded.cpr_lon ?? cprExampleDecoded.lon_cpr;
+  const oddLat = cprReferenceDecoded.cpr_lat ?? cprReferenceDecoded.lat_cpr;
+  const oddLon = cprReferenceDecoded.cpr_lon ?? cprReferenceDecoded.lon_cpr;
+  const evenLatFrac = evenLat / scale;
+  const oddLatFrac = oddLat / scale;
+  const evenLonFrac = evenLon / scale;
+  const oddLonFrac = oddLon / scale;
+
+  const evenLatCell = 360 / 60;
+  const oddLatCell = 360 / 59;
+  const j = Math.floor(59 * evenLatFrac - 60 * oddLatFrac + 0.5);
+  let evenLatDecoded = evenLatCell * (mod(j, 60) + evenLatFrac);
+  let oddLatDecoded = oddLatCell * (mod(j, 59) + oddLatFrac);
+  if (evenLatDecoded >= 270) evenLatDecoded -= 360;
+  if (oddLatDecoded >= 270) oddLatDecoded -= 360;
+
+  const lonZones = cprNL(evenLatDecoded);
+  const evenLonZones = Math.max(lonZones, 1);
+  const oddLonZones = Math.max(lonZones - 1, 1);
+  const m = Math.floor(evenLonFrac * (lonZones - 1) - oddLonFrac * lonZones + 0.5);
+  let evenLonDecoded = 360 / evenLonZones * (mod(m, evenLonZones) + evenLonFrac);
+  let oddLonDecoded = 360 / oddLonZones * (mod(m, oddLonZones) + oddLonFrac);
+  if (evenLonDecoded > 180) evenLonDecoded -= 360;
+  if (oddLonDecoded > 180) oddLonDecoded -= 360;
+
+  const knownLat = cprExampleKnown.latitude;
+  const knownLon = cprExampleKnown.longitude;
+  return {
+    scale,
+    cprLat: evenLat, cprLon: evenLon,
+    refCprLat: oddLat, refCprLon: oddLon,
+    evenLatFrac, oddLatFrac, evenLonFrac, oddLonFrac,
+    knownLat, knownLon,
+    evenLatCell, oddLatCell, j,
+    latCell: evenLatCell, latIndex: mod(j, 60), latDecoded: evenLatDecoded,
+    oddLatDecoded,
+    lonZones, lonCell: 360 / evenLonZones, lonIndex: mod(m, evenLonZones), lonDecoded: evenLonDecoded,
+    oddLonDecoded, m
+  };
+}
+```
+
+The first step is to decode the latitude of the (even) message. The absolute latitude value here depends on an unknown integer $j$:
+
+$$\textrm{lat}_1 = \frac{36,776}{131,072}\cdot\frac{360^\circ}{60} + j \cdot \frac{360^\circ}{60}$$
+
+or equivalently:
+
+$$\textrm{lat}_1 = 1.683472^\circ + j \cdot 6^\circ$$
+
+For the reference (odd) message, the absolute latitude is slightly different since the aircraft is airborne, therefore moving. It writes with another unknown integer $k$:
+
+$$\textrm{lat}_2 = \frac{20,907}{131,072}\cdot\frac{360^\circ}{59} + k \cdot \frac{360^\circ}{59}$$
+
+or equivalently:
+
+$$\textrm{lat}_2 = 0.973268^\circ + k \cdot 6.101695^\circ$$
+
+Now, we need to find values for j and k for which the two latitude values are _almost_ equal, which happens for $j = 7$ and $k = 7$:
+
+$$\textrm{lat}_1 = 43.683472^\circ \qquad \textrm{and} \qquad \textrm{lat}_2 = 43.685132^\circ$$
+
+Longitude uses the same pairing idea, but the number of longitude zones depends on latitude. At this latitude, we have 43 longitude zones for the even frame and 42 for the odd frame. (The number of zones decreases when we go toward the poles.) With a similar calculation, we find the longitude-zone factor $m = 0$, and we decode:
+
+$$\textrm{lon}_1 = \frac{21,949}{131,072}\cdot\frac{360^\circ}{43} + m \cdot \frac{360^\circ}{43} = 1.401970^\circ + m \cdot 8.372093^\circ = 1.401970^\circ$$
+
+$$\textrm{lon}_2 = \frac{21,426}{131,072}\cdot\frac{360^\circ}{42} + m \cdot \frac{360^\circ}{42} = 1.401149^\circ + m \cdot 8.571429^\circ = 1.401149^\circ$$
+
+
+
+::: {.callout-note}
+## Why 17 bits are enough here
+
+A CPR latitude fraction has 17 bits, but it is not encoding latitude over the whole `[-90°, 90°]` range. It encodes a fraction inside a small cell. For an even airborne latitude frame, the cell size is `6°`, so the angular step is approximately `6 / 2^17 ≈ 0.000046°`, or **about 5 metres in latitude**.
+
+If we encoded latitude directly over `[-90°, 90°]` with the same angular step, we would need about `log2(180 / (6 / 2^17)) ≈ 21.9` bits, i.e. **22 bits**.
+
+CPR is a smart trick to compress information by accepting ambiguity in a single frame and resolving it with an odd/even pair or a nearby reference position.
+:::
+
+::: {.callout-warning}
+## Errors in CPR decoding
+
+Airborne CPR relies on pairing a recent even frame with a recent odd frame from the same aircraft. If the reference frame is stale, the aircraft may have moved far enough that the two CPR fractions no longer point to the same latitude or longitude neighbourhood. The decoded point can then fall into the wrong latitude or longitude zone: still plausible on a map, but displaced by one or more CPR cells.
+
+Surface CPR is slightly different. The ambiguity region is smaller, so a surface position usually needs external context, such as the airport area, receiver location, or another nearby reference. This is acceptable in practice because surface ADS-B is line-of-sight and low power compared with airborne reception: if a receiver sees surface positions, the aircraft is normally nearby and the local airport or receiver context is available.
+:::
+
+## BDS inference
+
+Mode S is not only ADS-B. A ground station, typically a \acr{SSR}, can selectively interrogate a transponder and request a **Comm-B** register. The aircraft replies with `DF 20` or `DF 21`; the 56-bit payload is the **MB field**. Its structure is determined by a \acr{BDS} code.
+
+For data analysis, Comm-B is attractive because it contains fields that ADS-B often lacks: selected altitude, barometric pressure setting, roll angle, true airspeed, magnetic heading, indicated airspeed, Mach number, vertical rates, wind, temperature, and hazard reports. The catch is that **the BDS code is normally in the uplink interrogation**, not in the downlink reply observed by a passive receiver.
+
+::: {.adsb-tc-table #tbl-results tbl-cap="Most commonly used BDS registers" }
+| BDS register | Comm-B content |
+|---|:--|
+| BDS 1,0 | Data link capability<br><span class="tc-description">Transponder and data-link capabilities.</span> |
+| BDS 2,0 | Aircraft identification<br><span class="tc-description">Callsign-like aircraft identification.</span> |
+| <span class="tc-row-focus">BDS 4,0</span> | Selected vertical intention<br><span class="tc-description">Selected altitude, barometric setting, vertical and navigation modes. Illustrated by Sample 4.</span> |
+| <span class="tc-row-focus">BDS 5,0</span> | Track and turn report<br><span class="tc-description">Roll, true track, ground speed, track-rate, and true airspeed. Illustrated by Sample 5.</span> |
+| <span class="tc-row-focus">BDS 6,0</span> | Heading and speed report<br><span class="tc-description">Magnetic heading, indicated airspeed, Mach number, and vertical rates. Illustrated by Sample 6.</span> |
+| BDS 4,4 | Meteorological routine air report<br><span class="tc-description">Wind, temperature, pressure, and routine meteorological fields.</span> |
+:::
+
+\acr{BDS} inference is where Comm-B decoding becomes less mechanical. Unlike ADS-B, many Comm-B replies do **not** carry the requested \acr{BDS} code in the downlink. A passive receiver only sees the 56-bit MB payload, so it must test several candidate layouts and ask which interpretation is credible.
+
+A practical inference strategy is staged:
+
+- **try the relevant \acr{BDS} decoders** on the same payload;
+- **reject candidates that violate hard structural rules**, such as fixed prefixes, status bits, or reserved bits;
+- **check physical plausibility** among the remaining candidates, for example Mach number below 1, reasonable airspeed, plausible temperature, or selected altitude within the operating envelope;
+- **use state consistency** when available: recent headings, tracks, speeds, altitudes, or ADS-B state references can help resolve ambiguous cases.
+
+You may see how a classical decoder behaves on the same examples:
+
+```{ojs}
+//| echo: false
+//| code-copy: false
+commbSampleSpec = [
+  {sample: 4, bds: "BDS 4,0", decoder: "decode_bds40", name: "Selected vertical intention"},
+  {sample: 5, bds: "BDS 5,0", decoder: "decode_bds50", name: "Track and turn report"},
+  {sample: 6, bds: "BDS 6,0", decoder: "decode_bds60", name: "Heading and speed report"},
+]
+```
+
+```{ojs}
+//| echo: false
+//| code-copy: false
+commbBdsDecoders = [
+  {bds: "BDS 1,0", decoder: "decode_bds10"},
+  {bds: "BDS 2,0", decoder: "decode_bds20"},
+  {bds: "BDS 4,0", decoder: "decode_bds40"},
+  {bds: "BDS 5,0", decoder: "decode_bds50"},
+  {bds: "BDS 6,0", decoder: "decode_bds60"},
+  {bds: "BDS 4,4", decoder: "decode_bds44"},
+]
+```
+
+```{ojs}
+//| echo: false
+//| code-copy: false
+commbDecode = (frame, decoder) => {
+  try {
+    return {ok: true, value: rs1090[decoder](frame.hex)};
+  } catch (error) {
+    return {ok: false, value: {error: String(error)}};
+  }
+}
+```
+
+```{ojs}
+//| echo: false
+//| code-copy: false
+commbDecodeBlocks = (frame) => commbBdsDecoders.map(({bds, decoder}) => {
+  const result = commbDecode(frame, decoder);
+  return {bds, decoder, ok: result.ok, value: result.value};
+})
+```
+
+```{ojs}
+//| echo: false
+//| code-copy: false
+commbDecodeBlock = ({bds, decoder, ok, value}) => htl.html`<div class="bds-decode-block">
+  <div class="bds-decode-title"><code>${bds}</code> · <code>${decoder}()</code>${ok ? "" : " · rejected"}</div>
+  ${ok ? jsonBlock(value) : htl.html`<div class="bds-decode-error">${value.error}</div>`}
+</div>`
+```
+
+```{ojs}
+//| echo: false
+//| code-copy: false
+commbHexView = (frame, spec) => {
+  const hex = frame.hex.toLowerCase().slice(0, frame.n_bits / 4);
+  const nodes = [
+    {label: "DF", value: hex.slice(0, 2), cls: "field-control"},
+    {label: "altitude/identity fields", value: hex.slice(2, 8), cls: "field-altitude"},
+    {label: "MB payload", value: hex.slice(8, 22), cls: "field-bds-payload"},
+    {label: "Address parity", value: hex.slice(22), cls: "field-crc"},
+  ].map((d) => htl.html`<span class=${d.cls} title=${d.label}>${d.value}</span>`);
+  const decoded = commbDecodeBlocks(frame);
+  return htl.html`<div class="df-sample">
+    <div class="df-sample-hex">${nodes}</div>
+    <div class="mode-s-legend">
+      <span class="legend-control">DF</span>
+      <span class="legend-altitude">altitude/identity fields</span>
+      <span class="legend-bds-payload">56-bit MB payload</span>
+      <span class="legend-crc">address parity</span>
+    </div>
+    <div class="bds-decode-grid">${decoded.map(commbDecodeBlock)}</div>
+  </div>`;
+}
+```
+
+```{ojs}
+//| echo: false
+//| code-copy: false
+viewof selectedCommbSample = {
+  const values = commbSampleSpec.map((spec) => spec.sample);
+  const form = htl.html`<div class="iq-frame-buttons" role="group" aria-label="Select Comm-B sample">
+    ${values.map((value) => htl.html`<button type="button" data-value=${value}>Sample ${value}</button>`)}
+  </div>`;
+  const setValue = (value) => {
+    form.value = value;
+    for (const button of form.querySelectorAll("button")) {
+      button.classList.toggle("active", +button.dataset.value === value);
+    }
+    form.dispatchEvent(new Event("input", { bubbles: true }));
+  };
+  form.addEventListener("click", (event) => {
+    const button = event.target.closest("button");
+    if (button) setValue(+button.dataset.value);
+  });
+  setValue(4);
+  return form;
+}
+```
+
+```{ojs}
+//| echo: false
+//| code-copy: false
+{
+  const spec = commbSampleSpec.find((item) => item.sample === selectedCommbSample) ?? commbSampleSpec[0];
+  const frame = iqFrames.frames[spec.sample - 1];
+  return htl.html`<div class="df-samples">${commbHexView(frame, spec)}</div>`;
+}
+```
+
+## Glossary {.unnumbered}
+
