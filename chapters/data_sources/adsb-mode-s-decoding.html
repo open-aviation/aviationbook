@@ -2491,7 +2491,7 @@ Caution
 <p><span class="math display">\[\textrm{lat}_2 = \frac{20,907}{131,072}\cdot\frac{360^\circ}{59} + k \cdot \frac{360^\circ}{59}\]</span></p>
 <p>or equivalently:</p>
 <p><span class="math display">\[\textrm{lat}_2 = 0.973268^\circ + k \cdot 6.101695^\circ\]</span></p>
-<p>Now, we need to find values for j and k for which the two latitude values are <em>almost</em> equal, which happens for <span class="math inline">\(j = 7\)</span> and <span class="math inline">\(k = 7\)</span>:</p>
+<p>Now, <strong>we need to find values for <span class="math inline">\(j\)</span> and <span class="math inline">\(k\)</span> for which the two latitude values are <em>almost</em> equal</strong>, which happens for <span class="math inline">\(j = 7\)</span> and <span class="math inline">\(k = 7\)</span>:</p>
 <p><span class="math display">\[\textrm{lat}_1 = 43.683472^\circ \qquad \textrm{and} \qquad \textrm{lat}_2 = 43.685132^\circ\]</span></p>
 <p>Longitude uses the same pairing idea, but the number of longitude zones depends on latitude. At this latitude, we have 43 longitude zones for the even frame and 42 for the odd frame. (The number of zones decreases when we go toward the poles.) With a similar calculation, we find the longitude-zone factor <span class="math inline">\(m = 0\)</span>, and we decode:</p>
 <p><span class="math display">\[\textrm{lon}_1 = \frac{21,949}{131,072}\cdot\frac{360^\circ}{43} + m \cdot \frac{360^\circ}{43} = 1.401970^\circ + m \cdot 8.372093^\circ = 1.401970^\circ\]</span></p>
@@ -2508,7 +2508,7 @@ Caution
 <div class="callout-body-container callout-body">
 <p>A CPR latitude fraction has 17 bits, but it is not encoding latitude over the whole <code>[-90°, 90°]</code> range. It encodes a fraction inside a small cell. For an even airborne latitude frame, the cell size is <code>6°</code>, so the angular step is approximately <code>6 / 2^17 ≈ 0.000046°</code>, or <strong>about 5 metres in latitude</strong>.</p>
 <p>If we encoded latitude directly over <code>[-90°, 90°]</code> with the same angular step, we would need about <code>log2(180 / (6 / 2^17)) ≈ 21.9</code> bits, i.e.&nbsp;<strong>22 bits</strong>.</p>
-<p>CPR is a smart trick to compress information by accepting ambiguity in a single frame and resolving it with an odd/even pair or a nearby reference position.</p>
+<p>CPR is a smart trick to compress information (22 bits worth of precision into 17 bits) by accepting ambiguity in a single frame and resolving it with an odd/even pair or a nearby reference position.</p>
 </div>
 </div>
 <div class="callout callout-style-default callout-warning callout-titled">
