@@ -1282,7 +1282,7 @@ or equivalently:
 
 $$\textrm{lat}_2 = 0.973268^\circ + k \cdot 6.101695^\circ$$
 
-Now, we need to find values for j and k for which the two latitude values are _almost_ equal, which happens for $j = 7$ and $k = 7$:
+Now, **we need to find values for $j$ and $k$ for which the two latitude values are _almost_ equal**, which happens for $j = 7$ and $k = 7$:
 
 $$\textrm{lat}_1 = 43.683472^\circ \qquad \textrm{and} \qquad \textrm{lat}_2 = 43.685132^\circ$$
 
@@ -1301,7 +1301,7 @@ A CPR latitude fraction has 17 bits, but it is not encoding latitude over the wh
 
 If we encoded latitude directly over `[-90°, 90°]` with the same angular step, we would need about `log2(180 / (6 / 2^17)) ≈ 21.9` bits, i.e. **22 bits**.
 
-CPR is a smart trick to compress information by accepting ambiguity in a single frame and resolving it with an odd/even pair or a nearby reference position.
+CPR is a smart trick to compress information (22 bits worth of precision into 17 bits) by accepting ambiguity in a single frame and resolving it with an odd/even pair or a nearby reference position.
 :::
 
 ::: {.callout-warning}
