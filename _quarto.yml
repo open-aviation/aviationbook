@@ -196,7 +196,7 @@ book:
               href: chapters/data_sources/flight-tracking-surveillance.qmd
             - text: Decode ADS-B and Mode S data
               href: chapters/data_sources/adsb-mode-s-decoding.qmd
-            - text: 🟡 Datalink and ACARS sources
+            - text: Datalink and ACARS sources
               href: chapters/data_sources/datalink-acars-message-sources.qmd
             - text: 🟡 ADS-C data
               href: chapters/data_sources/adsc-data.qmd

@@ -4,68 +4,333 @@ authors:
 - Xavier Olive
 ---
 
-ADS-B and Mode S tell us where an aircraft is and, sometimes, what its transponder can report. They do not tell us what the crew and the ground exchanged: clearances, acknowledgements, weather requests, operational events, or negotiated surveillance contracts. Those exchanges belong to aviation **datalink**.
+ADS-B and Mode S tell us where an aircraft is and, sometimes, what its transponder can report. They do not tell us what the crew and the ground exchanged: route intent, clearances through CPDLC, acknowledgements, weather requests, operational events, or negotiated surveillance contracts through ADS-C. Those exchanges belong to aviation **datalink**.
 
 This chapter is the data-source entry point for datalink messages. The aviation background page on [communication systems](../background/communication-systems.qmd) introduces voice and datalink at the operational level; here we focus on the structure of the data and on how public receivers and aggregators expose it.
 
-## What datalink adds to surveillance data
 
-Datalink complements the surveillance sources discussed in [flight tracking and surveillance data](flight-tracking-surveillance.qmd):
+```{=html}
+<style>
+.datalink-table table {
+  width: 100%;
+  table-layout: fixed;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  border-radius: .65rem;
+}
+.datalink-table col:first-child {
+  width: 12rem !important;
+}
+.datalink-table col:nth-child(2) {
+  width: auto !important;
+}
+.datalink-table th:first-child,
+.datalink-table td:first-child {
+  width: 9rem !important;
+  white-space: normal;
+  overflow-wrap: anywhere;
+  word-break: normal;
+  font-weight: 600;
+}
+.datalink-table th:nth-child(2),
+.datalink-table td:nth-child(2) {
+  width: auto !important;
+}
+.datalink-table td {
+  vertical-align: top;
+}
+.datalink-description {
+  display: block;
+  color: #555;
+  font-size: .92rem;
+  line-height: 1.35;
+  margin-top: .15rem;
+}
+.mod-bubble {
+  float: right;
+  display: inline-block;
+  margin-left: .75rem;
+  margin-bottom: .25rem;
+  padding: .12rem .55rem;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--bs-primary, #2c7fb8) 14%, transparent);
+  color: var(--bs-primary, #2c7fb8);
+  border: 1px solid color-mix(in srgb, var(--bs-primary, #2c7fb8) 32%, transparent);
+  font-family: Inconsolata, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .82rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+.acars-decode-card {
+  border: 1px solid var(--bs-border-color, #d0d7de);
+  border-radius: .75rem;
+  padding: .75rem .85rem;
+  margin: .85rem 0 1rem;
+  background: var(--bs-body-bg, #fff);
+}
+.acars-hexline,
+.acars-textline {
+  font-family: Inconsolata, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  line-height: 2.05;
+  word-break: break-word;
+}
+.acars-hexline span,
+.acars-textline span {
+  border-radius: .25rem;
+  padding: .12rem .22rem;
+  margin-right: .08rem;
+}
+.acars-payload-focus {
+  border: 2px solid var(--bs-primary, #2c7fb8);
+}
+.acars-decode-arrow {
+  margin: .35rem 0 .15rem;
+  color: var(--bs-secondary-color, #6c757d);
+  font-size: .9rem;
+}
+.acars-field-mode { background: #f1f3f5; color: #1f1f1f; }
+.acars-field-reg { background: #ffe082; color: #1f1f1f; }
+.acars-field-ack { background: #ffd8a8; color: #1f1f1f; }
+.acars-field-label { background: #c3fae8; color: #1f1f1f; }
+.acars-field-block { background: #e7f5ff; color: #1f1f1f; }
+.acars-field-control { background: #dee2e6; color: #1f1f1f; }
+.acars-field-text { background: #e8f0fb; color: #1f1f1f; }
+.acars-field-crc { background: #ffd6d6; color: #1f1f1f; }
+.acars-field-version { background: #f1f3f5; color: #1f1f1f; }
+.acars-field-kind { background: #ffd8a8; color: #1f1f1f; }
+.acars-field-station { background: #c3fae8; color: #1f1f1f; }
+.acars-field-airport { background: #ffe082; color: #1f1f1f; }
+.acars-field-lat { background: #d0ebff; color: #1f1f1f; }
+.acars-field-lon { background: #d3f9d8; color: #1f1f1f; }
+.acars-field-link { background: #e8f0fb; color: #1f1f1f; }
+.acars-field-freq { background: #e5dbff; color: #1f1f1f; }
+.acars-field-avlc { background: #d0ebff; color: #1f1f1f; }
+.acars-field-dst { background: #d0ebff; color: #1f1f1f; }
+.acars-field-src { background: #d3f9d8; color: #1f1f1f; }
+.acars-field-lcf { background: #ffd8a8; color: #1f1f1f; }
+.acars-field-prefix { background: #f1f3f5; color: #1f1f1f; }
+.acars-field-miam { background: #e5dbff; color: #1f1f1f; }
+.acars-field-decoded { background: #d3f9d8; color: #1f1f1f; }
+.acars-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem .8rem;
+  font-size: .84rem;
+  color: #555;
+  margin-top: .55rem;
+}
+.acars-legend span::before {
+  content: "";
+  display: inline-block;
+  width: .85rem;
+  height: .85rem;
+  border-radius: .2rem;
+  margin-right: .25rem;
+  vertical-align: -.1rem;
+}
+.acars-legend .legend-mode::before { background: #f1f3f5; }
+.acars-legend .legend-reg::before { background: #ffe082; }
+.acars-legend .legend-ack::before { background: #ffd8a8; }
+.acars-legend .legend-label::before { background: #c3fae8; }
+.acars-legend .legend-block::before { background: #e7f5ff; }
+.acars-legend .legend-control::before { background: #dee2e6; }
+.acars-legend .legend-text::before { background: #e8f0fb; border: 2px solid var(--bs-primary, #2c7fb8); }
+.acars-legend .legend-crc::before { background: #ffd6d6; }
+.acars-legend .legend-version::before { background: #f1f3f5; }
+.acars-legend .legend-kind::before { background: #ffd8a8; }
+.acars-legend .legend-station::before { background: #c3fae8; }
+.acars-legend .legend-airport::before { background: #ffe082; }
+.acars-legend .legend-lat::before { background: #d0ebff; }
+.acars-legend .legend-lon::before { background: #d3f9d8; }
+.acars-legend .legend-link::before { background: #e8f0fb; }
+.acars-legend .legend-freq::before { background: #e5dbff; }
+.acars-legend .legend-avlc::before { background: #d0ebff; }
+.acars-legend .legend-dst::before { background: #d0ebff; }
+.acars-legend .legend-src::before { background: #d3f9d8; }
+.acars-legend .legend-lcf::before { background: #ffd8a8; }
+.acars-legend .legend-prefix::before { background: #f1f3f5; }
+.acars-legend .legend-miam::before { background: #e5dbff; }
+.acars-legend .legend-decoded::before { background: #d3f9d8; }
+.acars-json {
+  margin-top: .35rem;
+  background: var(--bs-tertiary-bg, #f8f9fa);
+  color: var(--bs-body-color, #24292f);
+  border-radius: .55rem;
+  padding: .35rem;
+  font-family: Inconsolata, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: .9rem;
+  line-height: 1.35;
+  overflow-x: auto;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.acars-json .json-key { color: #6f42c1; font-weight: 600; }
+.acars-json .json-string { color: #0a7f3f; }
+.acars-json .json-number { color: #0b63ce; }
+.acars-json .json-boolean { color: #d63384; }
+.acars-json .json-null { color: #6c757d; font-style: italic; }
+</style>
+```
 
-- it records **communication**, such as controller clearances and pilot responses;
-- it can expose **route intent**, for example predicted waypoints or route clearances;
-- it supports **contract-based surveillance** through \acr{ADS-C};
-- it carries **airline operational messages**, including out/off/on/in events, maintenance reports, weather requests, and free text;
-- it can remain available over oceanic or remote areas through HF or satellite bearers.
+The important distinction is that datalink is not a single frequency or protocol. It is a stack:
 
-The important distinction is that datalink is not a single frequency or protocol. It is a stack: radio bearer, link-layer framing, message container, routing label, and application payload.
+- the **radio bearer** is the physical communication path, such as VHF ACARS, VDL Mode 2, HFDL, SATCOM, or Iridium;
+- the **link-layer framing** turns received symbols into frames and adds addressing, sequencing, acknowledgements, or error checks, depending on the bearer;
+- the **message container** is the common structure carried inside those frames, most often an ACARS message with registration, label, block identifier, text, and checksum fields;
+- the **routing label** selects the next decoder, for example an ACARS label such as `H1`, `B6`, `QF`, or an ARINC 622 IMI such as `ADS` or `AT1`;
+- the **application payload** is the operational content: a CPDLC clearance, an ADS-C report, an ATIS request, an OOOI event, a weather message, or an airline operational message.
 
-## Bearers
+## Radio bearers
 
 A **bearer** is the communication technology that carries the message. The same operational application may appear over different bearers depending on aircraft equipage, region, range, and service provider.
 
-| Bearer | Medium | Typical use | Notes |
-|---|---|---|---|
-| VHF ACARS | VHF data link, mainly around 129–131 MHz | airline operations, ATIS, weather, some ATS traffic | legacy, low-rate, line-of-sight |
-| \acr{VDL} Mode 2 | VHF digital data link, 136–137 MHz | \acr{CPDLC}, \acr{ADS-C}, \acr{AOC}, network management | higher capacity; carries AVLC frames |
-| \acr{HFDL} | HF radio, roughly 2–22 MHz | oceanic and remote communications | long range, propagation-dependent |
-| \acr{SATCOM} / Iridium | L-band satellite links | oceanic, polar, long-haul communication | global or near-global coverage, provider-dependent |
+::: {.datalink-table}
+| Bearer | Role in datalink data |
+|---|:--|
+| VHF ACARS | <span class="mod-bubble">MSK</span> VHF data link, mainly around 129–131 MHz.<br><span class="datalink-description">Legacy, low-rate, line-of-sight bearer used for airline operations, ATIS, weather requests, and some ATS traffic.</span> |
+| \acr{VDL}  | <span class="mod-bubble">D8PSK</span> VHF digital data link, 136–137 MHz.<br><span class="datalink-description">Higher-capacity burst link carrying AVLC frames; used for CPDLC, ADS-C, AOC, and network management.</span> |
+| \acr{HFDL} | <span class="mod-bubble">M-PSK</span> HF radio, roughly 2–22 MHz.<br><span class="datalink-description">Long-range bearer for oceanic and remote communications; propagation depends on frequency, time of day, and ionospheric conditions.</span> |
+| \acr{SATCOM} / Iridium | <span class="mod-bubble">PSK variants</span> L-band satellite links.<br><span class="datalink-description">Satellite bearers used for oceanic, polar, and long-haul communication; global or near-global depending on provider and constellation.</span> |
+:::
 
-Classic VHF \acr{ACARS} uses MSK at 2400 bps. \acr{VDL} Mode 2 uses D8PSK bursts around 136–137 MHz and can carry both ACARS-style traffic and ATN/VDL2 network traffic. HFDL and satellite links are essential context because public aggregators may expose messages received through them, even if a local receiver only monitors VHF.
+Classic VHF \acr{ACARS} uses MSK at 2400 bps. \acr{VDL} Mode 2 uses D8PSK bursts around 136–137 MHz at 10.5 kbaud, i.e. about 31.5 kbit/s before coding and framing overheads, and can carry both ACARS-style traffic and ATN/VDL2 network traffic. HFDL and satellite links are usually harder to capture locally because they require different antennas, frequency ranges, propagation conditions, and in the satellite case often more directional or specialised receiving setups.
 
 ## Receiving radio data with SDR
 
-Many open aviation data feeds begin with a software-defined radio. An \acr{SDR} digitises a slice of spectrum; software then demodulates and decodes the aviation protocol of interest. Cheap RTL-SDR dongles are common and sufficient for many VHF and 1090 MHz experiments, but they have limited bandwidth and dynamic range. Airspy, HackRF, LimeSDR, and similar devices offer different trade-offs.
+Many open aviation data feeds begin with a software-defined radio.
 
-A single receiver setup cannot receive all aviation links at once. ADS-B and Mode S use 1090 MHz; VHF ACARS is mostly around 129–131 MHz; \acr{VDL} Mode 2 uses 136–137 MHz; HFDL is in HF bands; satellite ACARS and Iridium are in L-band. Antenna placement, filtering, gain, and local radio noise often matter as much as decoder software.
+A \acr{SDR} digitises a slice of spectrum; software then demodulates and decodes the aviation protocol of interest. Cheap RTL-SDR dongles are common and sufficient for many VHF and 1090 MHz experiments, but they have limited bandwidth and dynamic range. Airspy, HackRF, LimeSDR, and similar devices offer different trade-offs.
 
-::: {.callout-note}
-## Responsible reception
+The most important take-away is that **a single receiver setup cannot receive all aviation links at once**: ADS-B and Mode S use 1090 MHz; VHF ACARS is mostly around 129–131 MHz; \acr{VDL} Mode 2 uses 136–137 MHz; HFDL is in HF bands; satellite ACARS and Iridium are in L-band. On top of that, antenna characteristics matter: length, polarization, bandwidth, gain pattern, and whether the antenna is omnidirectional or directional determine which signals are actually delivered to the receiver. Placement, filtering, gain, and local radio noise often matter as much as decoder software.
 
-Radio reception and redistribution rules vary by country. Datalink messages may include operationally sensitive or personal information. Treat raw messages carefully, aggregate when possible, and avoid publishing unnecessary identifiers or free text.
+::: {.callout-tip}
+## Why the bearers decode differently
+
+They decode differently because each bearer was designed for a different radio channel and operational constraint: legacy narrowband VHF, higher-capacity line-of-sight VHF networking, long-range HF propagation, or satellite links. The modulation is therefore not an implementation detail; it reflects the bandwidth, noise, fading, mobility, and coverage problem that the system had to solve.
+
+**Classic VHF ACARS** uses \acrfull{MSK} at 2400 bps. MSK is a form of continuous-phase frequency-shift keying: the signal changes frequency smoothly rather than jumping abruptly between unrelated phases. In practice, this makes the waveform robust and narrow enough for legacy VHF channels, while keeping receiver complexity low. A decoder follows the instantaneous frequency or phase evolution, recovers a binary bit stream, checks the ACARS framing and checksum, and then extracts fields such as mode, registration, label, block identifier, and text.
+
+**\acr{VDL} Mode 2** uses \acrfull{D8PSK}. Instead of representing bits by two frequency states, D8PSK represents information by the **change in phase** from one symbol to the next. There are eight possible phase changes, so each symbol carries three bits. This gives VDL2 much higher throughput than classic ACARS, but the receiver has more work to do: it must detect short bursts, synchronize on a training sequence, estimate timing and phase, undo interleaving and forward-error correction, and then decode the AVLC frame. Only after those steps can the payload be interpreted as ACARS, X.25/ATN, or another VDL2-carried message.
+
+**\acr{HFDL}** is also phase-modulated, but in the HF environment. It uses \acrfull{M-PSK}: depending on the selected data rate and coding mode, the waveform may use BPSK, QPSK/4-PSK, or 8-PSK-style symbol decisions. The receiver must cope with ionospheric propagation, Doppler shifts, fading, and time-varying noise before it can recover the HFDL frame and any application payload. This is why HFDL reception often looks less like decoding a clean VHF burst and more like robust HF modem work.
+
+**\acr{SATCOM} ACARS** is not one modulation either. Inmarsat AERO, Iridium, and other aeronautical satellite systems use their own physical layers, often based on \acr{PSK} variants and satellite-specific framing. A public aggregator may expose the resulting ACARS, ADS-C, or CPDLC message in a normalized way, but the RF and link-layer path that produced it can be entirely different from both VHF ACARS and VDL2.
 :::
 
-## ACARS as a message container
+::: {.callout-important}
+## Responsible reception
 
-\acr{ACARS} began as an aircraft communications addressing and reporting system, but for data analysis it is useful to view it as a common message container. A decoded ACARS frame contains fields such as aircraft registration, acknowledgement state, label, block identifier, text, and checksum.
+Unlike ADS-B, which is broadcast for anyone to receive, datalink messages are point-to-point communications between aircraft and ground stations. Reception and redistribution of these messages are subject to different legal and ethical considerations depending on your jurisdiction.
+
+Datalink traffic can contain operationally sensitive information, airline operational data, or personal information. When working with raw datalink messages:
+
+- **treat them carefully**: assume they may contain sensitive content
+- **aggregate when possible**: publish statistics or summaries rather than raw messages, avoid exposing unnecessary information
+- **check local regulations**: radio monitoring and data redistribution rules vary by country
+
+TODO add references to security papers
+:::
+
+## ACARS as a container
+
+\acr{ACARS} began as an aircraft communications addressing and reporting system, but for data analysis it is useful to view it as a common message container. A decoded \acr{POA} frame contains fields such as aircraft registration, acknowledgement state, label, block identifier, text, and checksum.
+
+We can start with this example of a decoded ACARS uplink frame from a VHF feeder:
+
+::: {.acars-decode-card}
+**ACARS frame**
+
+<div class="acars-hexline">
+<span class="acars-field-mode">32</span><span class="acars-field-reg">80 80 80 80 80 80 80</span><span class="acars-field-ack">15</span><span class="acars-field-label">d3 51</span><span class="acars-field-block">80</span><span class="acars-field-control">02</span><span class="acars-field-text">b0 32 58 d3 54 4c d3 4c 46 c2 4f b0 34 b3 b3 37 ce b0 b0 31 32 b3 45 d6 31 b3 b6 b9 37 b5 2f</span><span class="acars-field-control">83</span><span class="acars-field-crc">de 23</span><span class="acars-field-control">7f</span>
+</div>
+
+<div class="acars-legend">
+<span class="legend-mode">mode</span>
+<span class="legend-reg">registration</span>
+<span class="legend-ack">ack</span>
+<span class="legend-label">label</span>
+<span class="legend-block">block</span>
+<span class="legend-control">STX/ETX/DEL</span>
+<span class="legend-text">text</span>
+<span class="legend-crc">checksum</span>
+</div>
+:::
+
+ACARS characters are mostly 7-bit characters with parity/control bits. Normalising those bytes exposes the container:
+
+::: {.datalink-table}
+| Field | Value |
+|---|:--|
+| mode | `0x32` (`'2'`)<br><span class="datalink-description">ACARS mode or message format identifier.</span> |
+| registration | empty/padded<br><span class="datalink-description">Aircraft registration/tail when available.</span> |
+| ack | `0x15` (`NAK`)<br><span class="datalink-description">Acknowledgement character, often `!`, `ACK`, or empty depending on source.</span> |
+| label | `0x53 0x51` (`"SQ"`)<br><span class="datalink-description">Two-character application routing label. Here, it indicates a squitter message.</span> |
+| block_id | empty uplink block<br><span class="datalink-description">Sequence/block identifier; useful for multi-block messages.</span> |
+| text | `"02XSTLSLFBO04337N00123EV136975/"`<br><span class="datalink-description">Application text or structured payload carried by the ACARS frame.</span> |
+:::
+
+The label `SQ` routes the text to the squitter decoder. The second step is now application-specific: the ACARS container text is no longer parsed as a generic frame, but as an `SQ` message.
+
+
+::: {.acars-decode-card}
+**ACARS `SQ` payload**
+
+<div class="acars-textline">
+<span class="acars-field-version">02</span><span class="acars-field-kind">X</span><span class="acars-field-station">STLS</span><span class="acars-field-airport">LFBO</span><span class="acars-field-lat">04337N</span><span class="acars-field-lon">00123E</span><span class="acars-field-link">V</span><span class="acars-field-freq">136975</span><span class="acars-field-control">/</span>
+</div>
+
+<div class="acars-legend">
+<span class="legend-version">version</span>
+<span class="legend-kind">kind</span>
+<span class="legend-station">station</span>
+<span class="legend-airport">airport</span>
+<span class="legend-lat">latitude</span>
+<span class="legend-lon">longitude</span>
+<span class="legend-link">link</span>
+<span class="legend-freq">frequency</span>
+</div>
+
+```{=html}
+<pre class="acars-json"><code>{
+  <span class="json-key">"kind"</span>: <span class="json-string">"squitter"</span>,
+  <span class="json-key">"data"</span>: {
+    <span class="json-key">"version"</span>: <span class="json-number">2</span>,
+    <span class="json-key">"kind"</span>: <span class="json-string">"X"</span>,
+    <span class="json-key">"station"</span>: <span class="json-string">"STLS"</span>,
+    <span class="json-key">"airport"</span>: <span class="json-string">"LFBO"</span>,
+    <span class="json-key">"status"</span>: <span class="json-number">0</span>,
+    <span class="json-key">"latitude"</span>: <span class="json-number">43.61666666666667</span>,
+    <span class="json-key">"longitude"</span>: <span class="json-number">1.3833333333333333</span>,
+    <span class="json-key">"link"</span>: <span class="json-string">"VHF"</span>,
+    <span class="json-key">"frequency_mhz"</span>: <span class="json-number">136.975</span>
+  }
+}</code></pre>
+```
+:::
+
+The basic transformation is therefore:
 
 ```text
-mode · registration · ack · label · block_id · text · checksum
+raw POA frame → ACARS container → label-specific application payload.
 ```
 
-The two-character **label** is the first routing key. It tells a decoder whether the text should be interpreted as an ARINC 622 envelope, an ATIS request, an OOOI event, an airline operational message, a media advisory, or another payload family.
+The two-character **label** is the first routing key. It tells a decoder whether the text should be interpreted as an ARINC 622 envelope, an ATIS request, an OOOI event, an airline operational message, a media advisory, or another payload family. The `SQ` message above is only one case; other labels route the same ACARS container to different application decoders.
 
-| Label family | Common use |
-|---|---|
-| `H1`, `T1` | ARINC 622 envelopes: \acr{ADS-C}, \acr{CPDLC}, AFN, related ATS traffic |
-| `A0`, `B0` | AFN contact or logon |
-| `A9`, `B9` | ATIS delivery or request |
-| `B1` | oceanic clearance |
-| `QF`, `QQ` | \acr{OOOI} events: out, off, on, in |
-| `5Z`, `80` | airline operational control reports |
-| `SA`, `_d` | media advisory or link-state messages |
-| `MA` | MIAM file transfer |
-| `Q0` | link test or heartbeat |
+::: {.datalink-table}
+| Label | Use |
+|---|:--|
+| `SQ` | <span class="mod-bubble">used above</span> Squitter message.<br><span class="datalink-description">Ground-station broadcast/status payload; the example above advertises station `STLS`, airport `LFBO`, and VHF frequency `136.975 MHz`.</span> |
+| `H1`, `T1` | <span class="mod-bubble">in depth in ref to  ARINC 622 envelopes</span>  ARINC 622 envelope.<br><span class="datalink-description">Common carrier for \acr{ADS-C}, FANS-1/A \acr{CPDLC}, AFN, and related ATS traffic.</span> |
+| `A0`, `B0` | AFN contact or logon.<br><span class="datalink-description">Used around initial datalink contact and aircraft/facility negotiation.</span> |
+| `A9`, `B9` | ATIS delivery or request.<br><span class="datalink-description">Weather and airport information requested or delivered through ACARS.</span> |
+| `B1` | Oceanic clearance.<br><span class="datalink-description">Clearance-related traffic for oceanic or remote operations.</span> |
+| `QF`, `QQ` | \acr{OOOI} events.<br><span class="datalink-description">Out, off, on, and in timestamps used for operational milestones.</span> |
+| `5Z`, `80` | Airline operational control reports.<br><span class="datalink-description">Airline-specific operational messages such as dispatch, fuel, gate, load, or maintenance content.</span> |
+| `SA`, `_d` | Media advisory or link-state message.<br><span class="datalink-description">Service, advisory, or network-status traffic rather than an aircraft operational payload.</span> |
+| `MA` | <span class="mod-bubble">used below</span> MIAM file transfer.<br><span class="datalink-description">File-transfer style payloads; one VDL2 example below carries an ACARS container with label `MA`.</span> |
+| `Q0` | Link test or heartbeat.<br><span class="datalink-description">Connectivity check or low-content network housekeeping message.</span> |
+:::
 
 ## VDL2 and network paths
 
@@ -76,75 +341,137 @@ VDL2 burst → AVLC I-frame → ACARS prefix → ACARS frame → ARINC 622 / ACA
 VDL2 burst → AVLC I-frame → X.25 → CLNP/COTP/ULCS → ATN B1 applications
 ```
 
-The first path leads to ACARS-style payloads, including FANS-1/A \acr{CPDLC} and \acr{ADS-C}. The second path leads to ATN B1 applications, including continental CPDLC over the VDL2 network stack. The same high-level application name can therefore hide very different protocol stacks.
+The first path leads to ACARS-style payloads, including FANS-1/A \acr{CPDLC} and \acr{ADS-C}.\
+The second path leads to ATN B1 applications, including continental CPDLC over the VDL2 network stack. The same high-level application name can therefore hide very different protocol stacks.
+
+On both paths, **the first layer is AVLC**. The VDL2 frame starts with a destination address, a source address, and a one-byte Link Control Field (LCF).
+
+::: {.acars-decode-card}
+**VDL2 AVLC frame**
+
+<div class="acars-hexline">
+<span class="acars-field-dst">96 14 26 86</span><span class="acars-field-src">90 86 d8 5b</span><span class="acars-field-lcf">4c</span><span class="acars-field-prefix">ff ff 01</span><span class="acars-field-text acars-payload-focus">32 ae 46 ad 57 57 43 57 15 cd c1 32 02 d5 b3 b6 c1 34 d9 b0 b3 … fc 7f</span><span class="acars-field-crc">fd 44</span>
+</div>
+
+<div class="acars-legend">
+<span class="legend-dst">destination</span>
+<span class="legend-src">source</span>
+<span class="legend-lcf">LCF</span>
+<span class="legend-prefix">ACARS-over-AVLC prefix</span>
+<span class="legend-text">ACARS payload</span>
+<span class="legend-crc">frame check sequence</span>
+</div>
+:::
+
+
+AVLC addresses are not plain hexadecimal identifiers. Each address is encoded as four HDLC-style octets: seven address bits plus one end-address bit per byte. The decoder removes this packing, reverses the resulting 28-bit word, then splits it into a 24-bit station identifier and a 3-bit address type. For `96 14 26 86`, this gives `0xd2a3261`: the lower 24 bits are `2a3261`, and the type bits are `5`, i.e. a ground-station address. The sources similary decodes to aircraft `384dda`.
+
+The highlighted byte sequence is therefore the same kind of ACARS container as in the VHF example. We can decode it with the same field boundaries; the only important difference is that the label is now `MA`, so the text is routed to a MIAM/file-transfer decoder.
+
+::: {.acars-decode-card}
+**ACARS frame inside AVLC**
+
+<div class="acars-hexline">
+<span class="acars-field-mode">32</span><span class="acars-field-reg">ae 46 ad 57 57 43 57</span><span class="acars-field-ack">15</span><span class="acars-field-label">cd c1</span><span class="acars-field-block">32</span><span class="acars-field-control">02</span><span class="acars-field-text">d5 b3 b6 c1 34 d9 b0 b3 ... 53 b0 61 64</span><span class="acars-field-crc">fc</span><span class="acars-field-control">7f</span>
+</div>
+
+<div class="acars-legend">
+<span class="legend-mode">mode</span>
+<span class="legend-reg">registration</span>
+<span class="legend-ack">ack</span>
+<span class="legend-label">label</span>
+<span class="legend-block">block</span>
+<span class="legend-control">STX/DEL</span>
+<span class="legend-text">text</span>
+<span class="legend-crc">checksum</span>
+</div>
+:::
+
+Normalising the ACARS bytes gives the container fields:
+
+::: {.datalink-table}
+| Field | Value |
+|---|:--|
+| mode | `0x32` (`'2'`)<br><span class="datalink-description">ACARS mode or message format identifier.</span> |
+| registration | `.F-WWCW`<br><span class="datalink-description">Aircraft registration/tail carried in the ACARS container.</span> |
+| ack | `0x15` (`NAK`)<br><span class="datalink-description">Acknowledgement character.</span> |
+| label | `0xcd 0xc1` (`"MA"`)<br><span class="datalink-description">Two-character application routing label. Here, it redirects the payload to a MIAM decoder.</span> |
+| block_id | `2`<br><span class="datalink-description">Sequence/block identifier.</span> |
+| text | <code>T22!&lt;&lt;+U/k.Eo=$p%@!&#x27;s.16q1BMX8W)!&#124;Kh]&#96;#_CuDq+[b:#.2AAmG&#96;9h!##b?u?UC+_43j-9&gt;I!;H&gt;Ta&amp;)0_diTJi$i,=VP.hoe[$GGG*&lt;s*EVTG]39uIn6gf,1kS2/n,f&amp;S0ad&lt;&#x27;&lt;AhG-8re6HNo;&#96;$V&#96;U0+2a!tea5R_iWOBcfqu?]s</code><br><span class="datalink-description">Full application text carried by the ACARS frame.</span> |
+:::
+
+The `MA` text looks like random symbols, but that does not mean it is encrypted or corrupted.  For this message, `T22` means a single-transfer frame (`T`), with two padding bytes removed from the decoded body and two from the decoded header. The part before `|` is the base85-encoded MIAM CORE header; the part after `|` is the base85-encoded body.
+
+The inflated body is ordinary structured ACMS-style text:
+
+```{=html}
+<pre class="acars-json"><code>A350,000023,1,1,TB000000/REP602,40,02;H01,602,40,02,1013,00052,.F-WWCW,3,0,18,05,26,11,43,58,130/H02,XXXXXXXXX,XXXXXXXXXX,S0386,S0785,CDR01NG121/H03,IN/A01,XXXX,13,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X,X/:</code></pre>
+```
+
+The first fields identify an `A350` report. The `H01` section repeats the report id (`602`), page/block fields, aircraft registration `.F-WWCW`, source/system fields, and a timestamp-like sequence `18,05,26,11,43,58,130`. The `H02`, `H03`, and `A01` sections carry additional report data, partly redacted here with `X` placeholders in the captured payload.
+
+By contrast, the VHF example is directly a POA/ACARS frame after demodulation, while the VDL2 example must first pass through AVLC framing before the inner payload is recognised as ACARS. Then the `MA` label adds one more application-specific decoding step before the message becomes readable.
+
 
 ## ARINC 622 envelopes
 
-High-value ATS messages often appear as an ARINC 622 envelope inside the ACARS text field:
+The examples above show two simple cases: `SQ` routes to a squitter decoder, and `MA` routes to a MIAM decoder.
+
+\acr{CPDLC} and \acr{ADS-C} traffic usually add one more common wrapper: an **ARINC 622 envelope** inside the ACARS text field. This envelope carries the context shared by both applications: which ground facility is involved, which aircraft the message concerns, which application is being used, and whether the payload belongs to a session, contract, report, or control exchange.
+
+A simplified ARINC 622 message looks like this:
 
 ```text
 /ATSU.IMI.REGISTRATION payload checksum
 ```
 
-| Part | Example | Meaning |
-|---|---|---|
-| `ATSU` | `CZQX`, `EGGX`, `KZWY` | air traffic service unit or datalink facility |
-| `IMI` | `ADS`, `AT1`, `CR1`, `CC1`, `DR1` | interline message identifier; selects the application |
-| registration | `G-EZBJ`, `A7-ANR` | aircraft registration |
-| payload | binary or hex-like text | application-specific content |
-| checksum | trailing bytes | integrity check |
+or, in the layered view used throughout this chapter:
+
+```text
+bearer → link frame → ACARS container → ARINC 622 envelope → ADS-C or CPDLC payload
+```
+
+::: {.datalink-table}
+| Envelope field | Role in the story |
+|---|:--|
+| `ATSU` | `CZQX`, `EGGX`, `KZWY`, `UPGCAYA`, `SKYSWSQ`<br><span class="datalink-description">The ground endpoint: an ATS unit, datalink facility, or network address. This is often the first clue about oceanic, domestic, or airline-network context.</span> |
+| `IMI` | `ADS`, `AT1`, `CR1`, `CC1`, `DR1`, `DIS`<br><span class="datalink-description">The Interline Message Identifier. It selects the next application decoder and tells us whether we are looking at ADS-C, CPDLC, connection management, or disconnect/control traffic.</span> |
+| registration | `G-EZBJ`, `A7-ANR`, `N861NW`, `B-324P`<br><span class="datalink-description">Aircraft identifier as carried by the datalink application. It may complement or differ in formatting from Mode S, ADS-B, or airline-system identifiers.</span> |
+| payload | binary, hexadecimal, or compact text<br><span class="datalink-description">The application-specific body. ADS-C and CPDLC decode this part differently, but the surrounding envelope fields are interpreted in the same way.</span> |
+| checksum / tail | trailing characters or bytes<br><span class="datalink-description">Integrity or framing material for the envelope/application payload, depending on source and decoder.</span> |
+:::
 
 Common IMIs include:
 
+::: {.datalink-table}
 | IMI | Application |
-|---|---|
-| `ADS` | \acr{ADS-C} report, contract, or control message |
-| `AT1` | FANS-1/A \acr{CPDLC} message body |
-| `CR1` | \acr{CPDLC} connect request |
-| `CC1` | \acr{CPDLC} connect confirm |
-| `DR1` | \acr{CPDLC} disconnect request |
-| `DIS` | \acr{ADS-C} disconnect or control message |
+|---|:--|
+| `ADS` | [\acr{ADS-C} report, contract, or control message](adsc-data.qmd).<br><span class="datalink-description">The ADS-C chapter decodes the contract/report payload: position, intent, meteorology, air-reference data, and report triggers when present.</span> |
+| `AT1` | [FANS-1/A \acr{CPDLC} message body](cpdlc-data.qmd).<br><span class="datalink-description">The CPDLC chapter decodes the operational message elements: clearances, requests, reports, and responses.</span> |
+| `CR1` | \acr{CPDLC} connect request.<br><span class="datalink-description">Part of the session story: aircraft and ground establish datalink contact.</span> |
+| `CC1` | \acr{CPDLC} connect confirm.<br><span class="datalink-description">Confirms or continues the connection-management sequence.</span> |
+| `DR1` | \acr{CPDLC} disconnect request.<br><span class="datalink-description">Marks the end or transfer of a CPDLC session.</span> |
+| `DIS` | Disconnect or control message.<br><span class="datalink-description">Often useful for separating operational reports from session/control traffic.</span> |
+:::
 
-The dedicated chapters on [ADS-C data](adsc-data.qmd) and [CPDLC data](cpdlc-data.qmd) decode these application payloads in more detail.
+For example:
+
+- `/UPGCAYA.ADS.B-324P07020BCD0D010E0110014BAA` should first be read as: ground endpoint `UPGCAYA` (Ujung Pandang OAC, Indonesia), application `ADS` (ADS-C), aircraft `B-324P`, then an ADS-C payload;
+- `/NYCODYA.DIS.N861NW80FBFC` is a control/disconnect-style exchange involving `NYCODYA` (New York ARTCC) and aircraft `N861NW`.
 
 ## Public feeds and software
 
 [Airframes.io](https://docs.airframes.io/docs/intro/) aggregates ACARS-related traffic from community feeders and exposes live and historical messages. Its documentation emphasises that ACARS is an accumulation of transmission media, formats, and protocols including VDL, HFDL, SATCOM, and related systems. For researchers, Airframes is useful because it makes datalink visible beyond a local receiver footprint.
 
-The local `datalink` tool used for this book follows the same layered view. It can read supported SDR/file sources, consume Airframes.io websocket rows, decode several bearer and application formats, and emit normalized JSONL events with source, receiver, aircraft, kinematics, raw-frame, and protocol-body fields.
-
-Example standalone commands include:
-
-```bash
-# Hex-encoded ACARS frame bytes
-datalink decode acars --direction downlink '<hex>'
-
-# Hex-encoded AVLC frame including FCS
-datalink decode avlc '<hex>'
-
-# ADS-C application text payload
-datalink decode adsc '/ATSU.ADS....'
-```
-
-## Other datalink applications
-
-Not every datalink message is CPDLC or ADS-C. Airline operational control messages can include fuel, gate, load, maintenance, diversion, or dispatch information. OOOI messages timestamp gate departure, take-off, landing, and gate arrival. ATIS requests and deliveries show which weather or airport information crews request. Some messages are structured; others are airline-specific or free text.
-
-For book purposes, these applications are important as context and enrichment sources, but they do not need separate chapters. The deeper operational narrative comes from combining them with ADS-B, ADS-C, CPDLC, flight plans, and airport data.
-
-## Data caveats
+The [`datalink`](https://github.com/xoolive/datalink) tool used for this book follows the same layered view. It can read supported SDR/file sources, consume Airframes.io websocket rows, decode several bearer and application formats, and emit normalized JSONL events with source, receiver, aircraft, kinematics, raw-frame, and protocol-body fields.
 
 Datalink data is rich but uneven:
 
 - coverage depends on receiver location, bearer, propagation, and aggregation network;
 - labels and envelopes route messages, but airline-specific payloads are often undocumented;
 - public feeds may include duplicates, partial messages, or rows without a decoded payload;
-- CPDLC and ADS-C decoding require bit-level application parsers;
 - privacy and safety concerns are stronger than for simple position broadcasts.
 
 Use datalink as a complementary source: it can explain what the aircraft and ground systems communicated, but it should be interpreted with the same care as any operational communication record.
 
 ## Glossary {.unnumbered}
-
-\glsaddallunused
-\printacronyms

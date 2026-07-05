@@ -89,6 +89,8 @@ acronyms:
       longname: Demand Data Repository version 2
     - shortname: DF
       longname: Downlink Format
+    - shortname: D8PSK
+      longname: Differential 8-Phase Shift Keying
     - shortname: DME
       longname: Distance Measuring Equipment
     - shortname: DVOR
@@ -181,6 +183,10 @@ acronyms:
       longname: Multilateration
     - shortname: MON
       longname: Minimum Operational Network
+    - shortname: M-PSK
+      longname: M-ary Phase-Shift Keying
+    - shortname: MSK
+      longname: Minimum-Shift Keying
     - shortname: MTOW
       longname: Maximum TakeOff Weight
     - shortname: NAVAID
@@ -207,6 +213,10 @@ acronyms:
       longname: Pre-Departure Clearance
     - shortname: PIB
       longname: Prefilght Information Bulletin
+    - shortname: POA
+      longname: Plain Old ACARS
+    - shortname: PSK
+      longname: Phase-Shift Keying
     - shortname: PRC
       longname: Performance Review Commission
     - shortname: PSR
