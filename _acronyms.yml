@@ -49,6 +49,8 @@ acronyms:
       longname: Approach with Vertical Guidance (APV-I)
     - shortname: ARVT
       longname: ARriVal Time
+    - shortname: ASDA
+      longname: Accelerate-Stop Distance Available
     - shortname: ATC
       longname: Air Traffic Control
     - shortname: ATCRBS
@@ -105,6 +107,8 @@ acronyms:
       longname: European Centre for Medium-Range Weather Forecasts
     - shortname: ECTL
       longname: EUROCONTROL
+    - shortname: EMAS
+      longname: Engineered Materials Arrestor Systems
     - shortname: ERA5
       longname: ECMWF's fifth generation of Atmospheric Reanalysis
     - shortname: ES
@@ -171,6 +175,8 @@ acronyms:
       longname: Inertial Reference System
     - shortname: ISO
       longname: International Organization for Standardization
+    - shortname: LDA
+      longname: Landing Distance Available
     - shortname: LOC
       longname: Localizer
     - shortname: LPV
@@ -201,6 +207,8 @@ acronyms:
       longname: Notice To Airmen
       plural:
         - longname: Notices To Airmen
+    - shortname: OMGWS
+      longname: Outer Main Gear Wheel Span
     - shortname: OOOI
       longname: Out, Off, On, In
     - shortname: OSN
@@ -231,6 +239,8 @@ acronyms:
       longname: Receiver Autonomous Integrity Monitoring
     - shortname: RCP
       longname: Required Communication Performance
+    - shortname: RESA
+      longname: Runway End Safety Area
     - shortname: RLG
       longname: Ring-Laser Gyro
     - shortname: RMSE
@@ -257,6 +267,10 @@ acronyms:
       longname: Standard Terminal Arrival
     - shortname: TA
       longname: Traffic Advisory
+    - shortname: TODA
+      longname: Take-off Distance Available
+    - shortname: TORA
+      longname: Take-off Run Available
     - shortname: TACAN
       longname: TactiCal Air Navigation system
     - shortname: TAS
