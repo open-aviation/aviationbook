@@ -71,4 +71,4 @@ For example, an aerodrome with an ARC of "4F" can be used by aircraft with a ref
 
 The **landside** includes the airport components used by passengers, baggage, staff, goods, and vehicles before or after the aircraft movement itself. In the rest of this aerodrome sequence, landside infrastructure is introduced through passenger buildings, baggage handling systems, and ground access.
 
-## List of Acronyms {.unnumbered}
+## Glossary {.unnumbered}
