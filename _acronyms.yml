@@ -21,6 +21,8 @@ acronyms:
       longname: Automatic Dependent Surveillance–Light
     - shortname: ADF
       longname: Automatic Direction Finder
+    - shortname: AGNIS
+      longname: Azimuth Guidance for Nose-In Stands
     - shortname: AIC
       longname: Aeronautical Information Circular
     - shortname: AIM
@@ -45,6 +47,8 @@ acronyms:
       longname: Air Navigation Service
     - shortname: ANSP
       longname: Air Navigation Service Provider
+    - shortname: APM
+      longname: Automated People Mover
     - shortname: APVI
       longname: Approach with Vertical Guidance (APV-I)
     - shortname: ARVT
@@ -69,8 +73,12 @@ acronyms:
       longname: Air Traffic Service Unit
     - shortname: BADA
       longname: Base of Aircraft Data
+    - shortname: BHS
+      longname: Baggage Handling System
     - shortname: BR
       longname: Basic Regulation
+    - shortname: CAPEX
+      longname: Capital Expenditure
     - shortname: CAS
       longname: Calibrated Air Speed
     - shortname: CNS
@@ -91,6 +99,10 @@ acronyms:
       longname: Demand Data Repository version 2
     - shortname: DF
       longname: Downlink Format
+    - shortname: DHL
+      longname: Design Hour Load
+    - shortname: DHR
+      longname: Design Hour Rate
     - shortname: D8PSK
       longname: Differential 8-Phase Shift Keying
     - shortname: DME
@@ -107,6 +119,8 @@ acronyms:
       longname: European Centre for Medium-Range Weather Forecasts
     - shortname: ECTL
       longname: EUROCONTROL
+    - shortname: EES
+      longname: Entry/Exit System
     - shortname: EMAS
       longname: Engineered Materials Arrestor Systems
     - shortname: ERA5
@@ -179,8 +193,14 @@ acronyms:
       longname: Landing Distance Available
     - shortname: LOC
       longname: Localizer
+    - shortname: LoS
+      longname: Level of Service
     - shortname: LPV
       longname: Localizer Performance with Vertical Guidance
+    - shortname: MARS
+      longname: Multiple Aircraft Ramp System
+    - shortname: MCT
+      longname: Minimum Connecting Time
     - shortname: MET
       longname: Meteorological Services
     - shortname: ML
@@ -189,6 +209,8 @@ acronyms:
       longname: Multilateration
     - shortname: MON
       longname: Minimum Operational Network
+    - shortname: MPPA
+      longname: Million Passengers Per Annum
     - shortname: M-PSK
       longname: M-ary Phase-Shift Keying
     - shortname: MSK
@@ -213,6 +235,8 @@ acronyms:
       longname: Out, Off, On, In
     - shortname: OSN
       longname: OpenSky Network
+    - shortname: OPEX
+      longname: Operating Expenditure
     - shortname: PBC
       longname: Performance-Based Communication
     - shortname: PBN
@@ -241,6 +265,10 @@ acronyms:
       longname: Required Communication Performance
     - shortname: RESA
       longname: Runway End Safety Area
+    - shortname: RET
+      longname: Rapid Exit Taxiway
+    - shortname: ROT
+      longname: Runway Occupancy Time
     - shortname: RLG
       longname: Ring-Laser Gyro
     - shortname: RMSE
@@ -257,6 +285,8 @@ acronyms:
       longname: Satellite Communication
     - shortname: SBAS
       longname: Satellite-Based Augmentation System
+    - shortname: SBR
+      longname: Standard Busy Rate
     - shortname: SELCAL
       longname: Selective Calling
     - shortname: SID
