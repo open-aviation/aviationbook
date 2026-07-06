@@ -111,6 +111,8 @@ acronyms:
       longname: Doppler Very High Frequency Omnidirectional Range
     - shortname: EASA
       longname: European Union Aviation Safety Agency
+    - shortname: EBS
+      longname: Early Baggage Storage
     - shortname: ECEF
       longname: Earth-Centered, Earth-Fixed
     - shortname: EC
@@ -119,6 +121,8 @@ acronyms:
       longname: European Centre for Medium-Range Weather Forecasts
     - shortname: ECTL
       longname: EUROCONTROL
+    - shortname: EDS
+      longname: Explosive Detection System
     - shortname: EES
       longname: Entry/Exit System
     - shortname: EMAS
@@ -235,6 +239,8 @@ acronyms:
       longname: Out, Off, On, In
     - shortname: OSN
       longname: OpenSky Network
+    - shortname: OSR
+      longname: On-Screen Resolution
     - shortname: OPEX
       longname: Operating Expenditure
     - shortname: PBC
@@ -321,6 +327,8 @@ acronyms:
       longname: Ultra High Frequency
     - shortname: UIR
       longname: Upper Information Region
+    - shortname: ULD
+      longname: Unit Load Device
     - shortname: VDB
       longname: VHF Data Broadcast
     - shortname: VDL
