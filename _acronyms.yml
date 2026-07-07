@@ -81,6 +81,8 @@ acronyms:
       longname: Capital Expenditure
     - shortname: CAS
       longname: Calibrated Air Speed
+    - shortname: CCC
+      longname: Capacity Coverage Chart
     - shortname: CNS
       longname: Communication, Navigation, Surveillance
     - shortname: CPDLC
