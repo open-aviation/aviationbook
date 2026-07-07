@@ -71,11 +71,47 @@ It is therefore desirable to estimate not only the capacity of an individual run
 
 To construct a \acr{CCC}, the balanced operating point is first determined for each runway configuration. This corresponds to the point where arrivals and departures are approximately equally balanced (i.e. a movement mix of 50% arrivals and 50% departures). Next, historical operational data are used to determine how frequently each runway configuration is operated throughout the year. The balanced capacity associated with each configuration is then weighted by its probability of occurrence. Repeating this procedure for all runway configurations yields the \acr{CCC}.
 
-![Example of a capacity coverage chart.](../../images/illustrations/CoverageChart.png){#fig-capacity-coverage-chart width=75%}
+![Example of a capacity coverage chart.](../../images/illustrations/CoverageChart.png){#fig-capacity-coverage-chart width=100%}
 
 The horizontal axis of the \acr{CCC} represents the cumulative percentage of time for which a given runway throughput can be achieved, whereas the vertical axis indicates the corresponding hourly runway throughput. Each horizontal step corresponds to one runway configuration and its associated balanced capacity. The width of each step represents the proportion of time during which the corresponding runway configuration is operated, while the height indicates its balanced hourly throughput.
 
 \acr{CCC}s are particularly useful for long-term airport planning because they provide considerably more information than a single capacity value. They indicate not only the maximum achievable throughput, but also the proportion of time during which this throughput can be expected. Airports whose \acr{CCC}s remain nearly horizontal experience only small capacity variations throughout the year. In contrast, airports with pronounced step-like charts exhibit substantial capacity fluctuations caused by changing runway configurations or weather conditions.
+
+## Taxiway capacity
+
+Although runways are the primary capacity constraint at most airports, the taxiway system can also become a significant bottleneck. Aircraft departing from their stands and aircraft arriving after landing share often the same network of taxiways. Congestion on this network increases taxi times, fuel consumption, emissions, and ultimately reduces the efficiency of airport operations. Taxiway capacity therefore describes the ability of the airport surface network to accommodate aircraft movements while maintaining acceptable taxi times and avoiding excessive queues.
+
+Unlike runway capacity, taxiway capacity cannot easily be expressed as a single number of aircraft movements per hour. Instead, it is commonly assessed using operational performance indicators such as taxi times, queue lengths, aircraft densities, and traffic flows on individual taxiway segments. Among these measures, the **unimpeded taxi time** plays a particularly important role because it provides a reference against which observed taxi performance can be compared.
+
+The unimpeded taxi time is the time an aircraft requires to taxi between its stand and the runway under ideal operating conditions, when congestion, adverse weather, and other operational disturbances are negligible. It therefore represents the baseline taxi time that can be expected for a particular route through the airport surface network. 
+
+In reality, the observed taxi time is usually longer than the unimpeded taxi time because aircraft interact with one another while taxiing. Departing aircraft may have to wait behind slower aircraft, give way at intersections, or queue before entering the runway. Consequently, the observed taxi-out time can be regarded as the sum of three components:
+
+- the **unimpeded taxi time**, representing taxiing under free-flow conditions,
+- the **additional taxiway delay**, caused by interactions with other aircraft on the taxiway system, and
+- the **runway queue delay**, representing the waiting time before take-off. 
+
+Since the unimpeded taxi time cannot usually be observed directly, it is commonly estimated statistically. Following the approach proposed by Simaiakis and Balakrishnan (2009), the observed taxi-out time is modelled as a function of the departure queue length using a simple linear regression model. The intercept of the regression corresponds to the estimated unimpeded taxi time, while the slope indicates the average increase in taxi-out time caused by each additional aircraft waiting for departure.
+
+<!-- Unimpeded Taxi-Out Time -->
+::: {.callout-note}
+### Estimating the Unimpeded Taxi-Out Time from ADS-B Surface Trajectories
+
+The estimation procedure is illustrated in @fig-taxi-out-time using ADS-B surface trajectory data collected at Zurich Airport by Olive et al. (2025). The violin plots show the observed taxi-out times for departures from runways 16, 28, and 34 as a function of the departure queue length. The spread of each violin reflects the natural variability in taxi-out times caused by different parking positions, push-back durations, and operational conditions. A linear regression model is fitted to the observations for each runway. The intercept of the regression ($\hat{\beta}_0$) corresponds to the estimated **unimpeded taxi-out time**, while the slope ($\hat{\beta}_1$) represents the average increase in taxi-out time caused by each additional aircraft waiting in the departure queue.
+
+![Observed taxi-out times at Zurich Airport as a function of the departure queue length. The fitted regression models allow the estimation of the unimpeded taxi-out time for each departure runway. Adapted from Olive et al. (2025).](../../images/illustrations/taxi-out-time.png){#fig-taxi-out-time width=75%}
+
+| Parameter | Runway 16 | Runway 28 | Runway 34 |
+|:----------|----------:|----------:|----------:|
+| **Unimpeded taxi-out time $\hat{\beta}_0$ [min]** | **12.08** | **6.24** | **7.47** |
+| Increase per additional aircraft $\hat{\beta}_1$ [min/aircraft] | 1.03 | 2.12 | 2.34 |
+| $R^2$ | 0.199 | 0.398 | 0.302 |
+: Estimated regression coefficients for the unimpeded taxi-out time model. Adapted from Olive et al. (2025). {#tbl-unimpeded-times}
+
+The estimated unimpeded taxi-out times differ considerably between the three runways. Runway 28 exhibits the shortest unimpeded taxi-out time (approximately 6.2 min) because it is located closest to the main terminal area, whereas runway 16 requires substantially longer taxi distances, resulting in an estimated unimpeded taxi-out time of approximately 12.1 min. The regression slopes indicate that each additional aircraft in the departure queue increases the expected taxi-out time by approximately 1.0 to 2.3 minutes, depending on the departure runway.
+:::
+
+Once the unimpeded taxi time has been estimated, it can be used as a baseline for evaluating airport surface performance. The difference between the observed taxi time and the unimpeded taxi time provides a direct measure of the additional delay caused by congestion. Consequently, airports often monitor unimpeded taxi times over time and compare them with observed taxi times to identify congestion, evaluate operational changes, and assess the effectiveness of measures intended to improve the efficiency of surface operations.
 
 
 ## List of Acronyms {.unnumbered}
