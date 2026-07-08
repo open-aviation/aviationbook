@@ -27,7 +27,7 @@ At aerodromes, several different taxiway types are distinguished. These taxiway 
   An apron taxiway is part of the taxiway system located on an apron, providing a through-route across the apron but not direct access to stands (which is the function of taxilanes). At some airports, apron taxiways are designed to accommodate different aircraft codes simultaneously — for example, central portions may support larger Code E aircraft, while adjacent sections are restricted to Code C aircraft. This allows Code C aircraft to cross or pass each other, improving apron traffic flow.  
 
 * **Rapid Exit Taxiway (\acr{RET}):**
-  \acr{RET} are taxiways connected to a runway at an acute angle of 25° to 45°, designed to enable aircraft to vacate the runway at relatively high speeds after landing. Their main purpose is to minimize the average *runway occupancy time* (\acr{ROT}) of arriving aircraft, i.e., the time an aircraft remains on the runway after touchdown. Since only one aircraft can occupy a runway at a given moment, a runway's throughput (i.e., the number of aircraft movements it can handle per unit time) depends on how quickly aircraft clear the runway.
+  \acr{RET} are taxiways connected to a runway at an acute angle of 25° to 45°, designed to enable aircraft to vacate the runway at relatively high speeds after landing. Their main purpose is to minimize the average \acrfull{ROT} of arriving aircraft, i.e., the time an aircraft remains on the runway after touchdown. Since only one aircraft can occupy a runway at a given moment, a runway's throughput (i.e., the number of aircraft movements it can handle per unit time) depends on how quickly aircraft clear the runway.
 
 * **Perimeter Taxiway:**  
   A perimeter taxiway runs around the ends of runways to avoid runway crossings. They are usually built at large airports. By eliminating runway crossings, perimeter taxiways decouple runway operations (arrivals and departures) from crossing traffic, improving throughput and safety by reducing runway incursion risks. However, perimeter taxiways require significant space and are costly compared to simple runway crossings.  
@@ -38,7 +38,7 @@ At aerodromes, several different taxiway types are distinguished. These taxiway 
 * **Holding Positions / Holding Points:**  
   Holding positions are designated areas before runways where departing aircraft wait for clearance to line up. Ideally, holding positions are arranged at 90° to the runway to give pilots maximum visibility of both the runway and the approach corridor. However, angled holding positions allow departing traffic to line up more quickly, reducing occupancy times and increasing runway capacity. Parallel holding positions along the runway further allow overtaking and give controllers more flexibility in sequencing departures.  
 
-  The required distance from the runway holding position to the runway centerline depends on the aerodrome code number and runway type. On runways with CAT II/III approaches, requirements are the most stringent, as obstacle free zones (OFZ) and ILS critical/sensitive areas must be respected.  
+  The required distance from the runway holding position to the runway centerline depends on the aerodrome code number and runway type. On runways with CAT II/III approaches, requirements are the most stringent, as \acrfull{OFZ} and \acrfull{ILS} critical/sensitive areas must be respected.  
 
   The table below summarizes the prescribed distances between the runway holding position and the runway centerline. For example, on a Code 4 runway with a CAT I approach, the required distance between the holding position and the runway centerline is 90 m.  
 
@@ -63,17 +63,7 @@ $$
 
 where $g = 9.81 \,\text{m/s}^2$ is the gravitational acceleration, and $f = 0.133$ is the maximum allowable lateral load factor.
 
-
-### Dimensioning of taxiways
-
-The **minimum curve radius** $r_{\text{min}}$ of a taxiway depends on the maximum permitted taxi speed $v_{\text{max}}$:
-
-$$
-r_{\text{min}} = \frac{v_{\text{max}}^{2}}{g \cdot f}
-$$
-
-where $g = 9.81 \,\text{m/s}^2$ and $f = 0.133$.
-
+::: {.content-visible when-format="html"}
 ::: {.taxi-radius-box}
 <label for="speedSlider"><strong>Maximum taxi speed:</strong></label>
 
@@ -84,8 +74,8 @@ where $g = 9.81 \,\text{m/s}^2$ and $f = 0.133$.
 </div>
 
 <div class="radius-output">
-  Minimum curve radius:  
-  <strong><span id="radiusMeters">68.1</span> m</strong>
+  Minimum curve radius:
+  <strong><span id="radiusMeters">126.8</span> m</strong>
 </div>
 
 <svg id="taxiwaySvg" viewBox="0 0 500 320">
@@ -95,7 +85,7 @@ where $g = 9.81 \,\text{m/s}^2$ and $f = 0.133$.
   <line id="radiusLineX" stroke="#333" stroke-width="1.5" stroke-dasharray="5 5"/>
   <line id="radiusLineY" stroke="#333" stroke-width="1.5" stroke-dasharray="5 5"/>
   <circle id="radiusCenter" r="5" fill="#111"/>
-  <text id="radiusLabel" font-size="18" fill="#333"></text>
+  <text id="radiusLabel" font-size="18" fill="#333">r_min = 126.8 m</text>
 </svg>
 :::
 
@@ -135,13 +125,6 @@ where $g = 9.81 \,\text{m/s}^2$ and $f = 0.133$.
   background: white;
   border-radius: 8px;
 }
-
-.note {
-  background: #eaf4ff;
-  border-left: 4px solid #0057b8;
-  padding: 0.7rem;
-  margin-top: 1rem;
-}
 </style>
 
 <script>
@@ -169,14 +152,11 @@ function updateTaxiway() {
   speedKnots.textContent = vKt;
   radiusMeters.textContent = rMin.toFixed(1);
 
-  // Scale radius visually to fit the SVG
   const rSvg = Math.min(190, Math.max(45, rMin * 1.25));
-
   const cx = 250;
   const cy = 250;
 
   const xStart = cx - rSvg;
-  const yStart = cy;
   const xEnd = cx;
   const yEnd = cy - rSvg;
 
@@ -212,19 +192,24 @@ function updateTaxiway() {
 slider.addEventListener("input", updateTaxiway);
 updateTaxiway();
 </script>
+:::
+
+::: {.content-visible when-format="pdf"}
+![Static illustration of the minimum taxiway curve radius for $v_{\text{max}} = 25\,\text{kt}$, resulting in $r_{\text{min}} \approx 126.8\,\text{m}$.](../../images/illustrations/taxiway-radius-static.png){#fig-taxiway-radius-static width=75%}
+:::
 
 
 
-The **width** of a taxiway, together with its shoulders and strips, is specified in *CS ADR-DSN.D* (see Table @tbl-twy-dims). The required dimensions depend on the \acr{OMGWS} of the critical aircraft. For example, for a Code C aircraft (such as the A320, B737, or A220), the taxiway must have a width of 15 m, the shoulders a width of 25 m, and the strip a width of 52 m. Note that all dimensions refer to edge-to-edge measurements.  
+The **width** of a taxiway, together with its shoulders and strips, is specified in *CS ADR-DSN.D* (see @tbl-twy-dims). The required dimensions depend on the \acrfull{OMGWS} of the critical aircraft. For example, for a Code C aircraft (such as the A320, B737, or A220), the taxiway must have a width of 15 m, the shoulders a width of 25 m, and the strip a width of 52 m. Note that all dimensions refer to edge-to-edge measurements.  
 
-| Code Letter | OMGWS     | Taxiway | Shoulder       | Strip |
-|-------------|-----------|---------|----------------|-------|
-| A           | < 4.5 m   | 7.5 m   | not required   | 31 m  |
-| B           | 4.5–6 m   | 10.5 m  | not required   | 40 m  |
-| C           | 6–9 m     | 15 m    | 25 m           | 52 m  |
-| D           | 9–15 m    | 23 m    | 34 m           | 74 m  |
-| E           | 9–15 m    | 23 m    | 38 m           | 87 m  |
-| F           | 9–15 m    | 23 m    | 44 m           | 102 m |
+| Code Letter | \acr{OMGWS} | Taxiway | Shoulder       | Strip |
+|-------------|-------------|---------|----------------|-------|
+| A           | < 4.5 m     | 7.5 m   | not required   | 31 m  |
+| B           | 4.5–6 m     | 10.5 m  | not required   | 40 m  |
+| C           | 6–9 m       | 15 m    | 25 m           | 52 m  |
+| D           | 9–15 m      | 23 m    | 34 m           | 74 m  |
+| E           | 9–15 m      | 23 m    | 38 m           | 87 m  |
+| F           | 9–15 m      | 23 m    | 44 m           | 102 m |
 : Taxiway Dimensions (CS ADR-DSN.D) {#tbl-twy-dims}
 
 **Taxiway Shoulders** are mandatory on taxiways designed for critical aircraft with code letters C, D, E, and F. In these cases, both straight and curved sections of the taxiway must be provided with shoulders. The primary safety objective of a shoulder is to ensure a smooth transition between the full-strength taxiway pavement and the adjacent surface, thereby minimizing the risk of engine damage (e.g., from ingesting loose stones), preventing erosion along the pavement edge, and allowing Rescue and Fire Fighting (RFF) vehicles to operate if required. The shoulder surface must be designed to withstand the occasional passage of an aircraft wheel, although full-strength pavement (i.e., concrete) is not mandatory.  
@@ -236,7 +221,7 @@ The safety objective of the **Taxiway Strip** is to minimize hazards that may ar
 ::: {.callout-tip}
 ### Minimum taxiway separation distances required in practice
 
-Figure [fig-minSepDistTWY] provides an overview of the minimum separation distance requirements for taxiways. These requirements depend primarily on the code letter of the critical aircraft and, in cases where runways are involved, also on the aerodrome code number and the type of runway (instrument vs. non-instrument). To determine the minimum separation distances, the figure differentiates between the following five cases:
+@fig-minSepDistTWY provides an overview of the minimum separation distance requirements for taxiways. These requirements depend primarily on the code letter of the critical aircraft and, in cases where runways are involved, also on the aerodrome code number and the type of runway (instrument vs. non-instrument). To determine the minimum separation distances, the figure differentiates between the following five cases:
 
 1. *Distance between taxiway centerline and runway centerline* specifies the minimum required distance between the centerline of a runway and the centerline of a parallel taxiway. A distinction is made between instrument runways (which are subject to more stringent requirements) and non-instrument runways. In addition, the required distance depends on the aerodrome code number.  
 
@@ -259,8 +244,7 @@ For example, consider an aerodrome with code number 4, an instrument runway, and
 Markings on taxiways, runway turnpads, and stands are generally painted yellow to ensure high contrast, making them easy for flight crews to read and interpret unambiguously.
 In the following, we discuss the taxiway marking types most commonly used in practice, namely centerline markings, side stripe markings, runway holding positions, and mandatory instruction markings:
 
-* **Centerline marking** Provide pilots with continuous guidance between the runway and the stand, and vice versa.  
-They are generally painted in yellow and consist of a continuous line approximately 20 centimeter wide. At some airports, centerlines are color-coded on apron areas (e.g., apron taxiways) to improve clarity. For example, at Frankfurt Airport, color coding allows certain taxiways to be used either by one Code E/F aircraft or simultaneously by two Code C aircraft, thereby reducing potential capacity bottlenecks on apron taxiways.
+* **Centerline markings** provide pilots with continuous guidance between the runway and the stand, and vice versa. They are generally painted in yellow and consist of a continuous line approximately 20 centimeters wide. At some airports, centerlines are color-coded on apron areas (e.g., apron taxiways) to improve clarity. For example, at Frankfurt Airport, color coding allows certain taxiways to be used either by one Code E/F aircraft or simultaneously by two Code C aircraft, thereby reducing potential capacity bottlenecks on apron taxiways.
 
 * **Side Stripe Markings** indicate the boundary between the load-bearing and the non-load-bearing portions of a taxiway. In other words, they show flight crews where aircraft may safely taxi (where the pavement has sufficient strength to support the aircraft) and where they must not taxi. A side stripe marking consists of a pair of yellow lines, each line approximately 15 cm wide and separated by 15 cm. To enhance visibility and interpretation for flight crews, additional stripes are sometimes placed on the non-load-bearing side. This precaution helps prevent pilots from inadvertently taxiing onto non-load-bearing areas or over nearby surface irregularities such as channels or ditches.
 
@@ -279,7 +263,7 @@ Taxiway Lighting has the same purpose as taxiway markings, but lighting provides
 
 * **Taxiway Edge Lights** are blue lights installed along the edges of taxiways. In contrast to taxiway centerline lights, the installation of edge lights is mandatory. 
   
-  At some airports, taxiway edge lights are replaced with taxiway edge *markers*. Markers are passive light sources that reflect blue when illuminated by aircraft landing lights. The main reason for using markers is to mitigate the so-called *sea of blue effect*, which occurs when many blue lights are installed close together, making it difficult for the human eye to distinguish individual light sources [CASB, 1987].  
+  At some airports, taxiway edge lights are replaced with taxiway edge *markers*. Markers are passive light sources that reflect blue when illuminated by aircraft landing lights. The main reason for using markers is to mitigate the so-called *sea of blue effect*, which occurs when many blue lights are installed close together, making it difficult for the human eye to distinguish individual light sources @CASB_1987.  
 
 * **Stop Bar Lights & No-Entry Bar Lights** are red lights arranged in a bar formation, clearly indicating to pilots that they must not taxi beyond this line. Stop bars are installed both at runway holding positions and at critical intersections within the taxiway system where two taxiways cross.  
 
@@ -287,7 +271,7 @@ Taxiway Lighting has the same purpose as taxiway markings, but lighting provides
 
   Stop bar lights are actively controlled by air traffic control. When a flight crew receives clearance to enter or line up on the runway, the controller can deactivate the stop bar, or switch it from red to green, providing the pilots with a clear visual confirmation that they are authorized to proceed.
 
-### Signage of Taxiways
+### Signage of taxiways
 Taxiway signs are part of the *taxi guidance system* and assist pilots in safely navigating an aerodrome. Signs must be installed so that they cannot be struck by aircraft, and they are required to be *frangible*, meaning that they will collapse or break if hit, preventing structural damage to the aircraft.  
 
 A distinction is made between instruction signs and information signs. **Instruction Signs** are easily recognizable by their red background with white lettering. They are used to identify runways and holding positions, as well as to mark no-entry points where access to a runway is prohibited. If a runway entry is located at the runway end, the instruction sign shows only a single runway designation. In this case, taxiing onto the runway leads directly onto the indicated runway. If the runway entry is not at the end of the runway, the sign displays both runway designations.
@@ -349,7 +333,7 @@ Broadly, two main types of stands are distinguished: *contact stands* and *remot
 
   - *Docking Guidance Systems* automatically detect whether an approaching aircraft is aligned with the lead-in line and measure its lateral deviation. In addition, the system continuously monitors the aircraft’s distance to the designated stop point. Both pieces of information are displayed to pilots on a digital display, enabling them to taxi onto the stand independently.  
   - *Marshallers* are ground staff who guide aircraft onto stands using illuminated wands. Based on standardized hand signals, they provide pilots with clear instructions for parking.  
-  - *Azimuth Guidance for Nose-In Stands (\acr{AGNIS})* is a hybrid between a docking guidance system and a marshaller. AGNIS consists of two components: the azimuth guidance unit, which indicates whether the aircraft is aligned with the centerline, and the stop information system, which shows how far the aircraft must taxi to reach the stop point. Both systems function mechanically, using parallax and shutters that make certain display elements visible only from specific angles.  
+  - *Azimuth Guidance for Nose-In Stands (\acr{AGNIS})* is a hybrid between a docking guidance system and a marshaller. \acr{AGNIS} consists of two components: the azimuth guidance unit, which indicates whether the aircraft is aligned with the centerline, and the stop information system, which shows how far the aircraft must taxi to reach the stop point. Both systems function mechanically, using parallax and shutters that make certain display elements visible only from specific angles.  
 
   The main disadvantage of contact stands is that aircraft typically cannot depart under their own power and instead require a pushback. In this process, a tug repositions the aircraft onto the taxiway so that engines can be started. Pushback operations are complex and require experienced personnel. They also frequently block adjacent taxiways during the maneuver.  
 
@@ -368,11 +352,11 @@ The **geometric dimensions** required for aircraft stands depend on the code let
 | Code Letter | Example A/C Type | Width of Stand | Length of Stand | Clearance |
 |-------------|------------------|----------------|-----------------|-----------|
 | A           | Learjet 45       | 15 m           | 17.88 m         | 3 m       |
-| B           | CRJ9             | 24 m           | 36.3 m          | 3 m       |
+| B           | E145             | 24 m           | 36.3 m          | 3 m       |
 | C           | B727             | 36 m           | 46.7 m          | 4.5 m     |
 | D           | MD11             | 52 m           | 61 m            | 7.5 m     |
 | E           | A346             | 65 m           | 75.4 m          | 7.5 m     |
-| F           | A748             | 80 m           | 76.3 m          | 7.5 m     |
+| F           | B748             | 80 m           | 76.3 m          | 7.5 m     |
 : Stand Dimensions (CS ADR-DSN.D) {#tbl-stand-dims}
 
 In addition to wingspan, the maximum aircraft **length** is also important in determining the required size of a stand. For example, for Code C aircraft, it is recommended to base the design on the Boeing 727, implying that Code C stands should be at least 46.7 m long.  
@@ -380,4 +364,4 @@ In addition to wingspan, the maximum aircraft **length** is also important in de
 The table also specifies the required **clearance** between adjacent stands. For two adjacent Code C stands, a clearance of 4.5 m is required, while for two adjacent Code D, E, or F stands, the clearance must be at least 7.5 m.
 
 
-## List of Acronyms {.unnumbered}
+## Glossary {.unnumbered}

@@ -7,6 +7,8 @@ acronyms:
       longname: Airborne Collision Avoidance System
     - shortname: ACC
       longname: Area Control Centre
+    - shortname: A-CDM
+      longname: Airport Collaborative Decision Making
     - shortname: ADEP
       longname: Aerodrome of DEParture
     - shortname: ADES
@@ -47,6 +49,8 @@ acronyms:
       longname: Air Navigation Service
     - shortname: ANSP
       longname: Air Navigation Service Provider
+    - shortname: APAPI
+      longname: Abbreviated Precision Approach Path Indicator
     - shortname: APM
       longname: Automated People Mover
     - shortname: APVI
@@ -59,6 +63,8 @@ acronyms:
       longname: Air Traffic Control
     - shortname: ATCRBS
       longname: Air Traffic Control Radar Beacon System
+    - shortname: ATFCM
+      longname: Air Traffic Flow and Capacity Management
     - shortname: ATFM
       longname: Air Traffic Flow Management
     - shortname: ATIS
@@ -91,6 +97,8 @@ acronyms:
       longname: Correlated Position Report
     - shortname: CTFM
       longname: Current Tactical Flight Model
+    - shortname: CTOT
+      longname: Calculated TakeOff Time
     - shortname: CTR
       longname: Control Zone
     - shortname: CVOR
@@ -115,10 +123,12 @@ acronyms:
       longname: European Union Aviation Safety Agency
     - shortname: EBS
       longname: Early Baggage Storage
-    - shortname: ECEF
-      longname: Earth-Centered, Earth-Fixed
     - shortname: EC
       longname: European Commission
+    - shortname: ECDF
+      longname: Empirical Cumulative Distribtion Function
+    - shortname: ECEF
+      longname: Earth-Centered, Earth-Fixed
     - shortname: ECMWF
       longname: European Centre for Medium-Range Weather Forecasts
     - shortname: ECTL
@@ -213,6 +223,8 @@ acronyms:
       longname: Machine Learning
     - shortname: MLAT
       longname: Multilateration
+    - shortname: MLW
+      longname: Maximum Landing Weight
     - shortname: MON
       longname: Minimum Operational Network
     - shortname: MPPA
@@ -237,6 +249,12 @@ acronyms:
         - longname: Notices To Airmen
     - shortname: OMGWS
       longname: Outer Main Gear Wheel Span
+    - shortname: OFZ
+      longname: Obstacle Free Zone
+    - shortname: OLS
+      longname: Obstacle Limitation Surface
+    - shortname: OOG
+      longname: Out-Of-Gauge
     - shortname: OOOI
       longname: Out, Off, On, In
     - shortname: OSN
@@ -245,6 +263,8 @@ acronyms:
       longname: On-Screen Resolution
     - shortname: OPEX
       longname: Operating Expenditure
+    - shortname: PAPI
+      longname: Precision Approach Path Indicator
     - shortname: PBC
       longname: Performance-Based Communication
     - shortname: PBN
@@ -275,6 +295,8 @@ acronyms:
       longname: Runway End Safety Area
     - shortname: RET
       longname: Rapid Exit Taxiway
+    - shortname: RFF
+      longname: Rescue and Fire Fighting
     - shortname: ROT
       longname: Runway Occupancy Time
     - shortname: RLG

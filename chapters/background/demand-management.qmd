@@ -44,13 +44,13 @@ In all three cases, the utilization ratio increases towards one. As a result, qu
 
 ## Implications of the hockey stick curve for airport delay
 
-The hockey stick curve has important implications for the planning and operation of airports. Although a runway, security checkpoint, baggage handling system, or other airport subsystem may theoretically be capable of operating at its maximum throughput capacity, continuously operating close to this limit (i.e., close to a utilitation ratio of $\rho = 1$) is generally undesirable. 
+The hockey stick curve has important implications for the planning and operation of airports. Although a runway, security checkpoint, baggage handling system, or other airport subsystem may theoretically be capable of operating at its maximum throughput capacity, continuously operating close to this limit (i.e., close to a utilization ratio of $\rho = 1$) is generally undesirable. 
 
 At high utilization levels, even small disturbances can lead to rapidly increasing queues and delays. Such disturbances occur continuously during airport operations. Examples include aircraft arriving slightly ahead of schedule, passengers requiring additional screening time, adverse weather conditions, equipment failures, or temporary reductions in staffing levels. While these events may individually appear insignificant, their effects accumulate when the utilization ratio is already high. As a result, waiting times increase disproportionately and queues may continue to grow long after the original disturbance has disappeared.
 
 For airports, this behaviour has several important consequences. Increased waiting times at one subsystem often propagate throughout the airport because most operational processes are interconnected. For example, long departure queues may delay aircraft push-back, which in turn increases stand occupancy and can delay arriving aircraft waiting for a parking position. Similarly, congestion at security screening may delay passengers reaching their departure gates, potentially delaying the boarding process and the subsequent aircraft departure.
 
-The hockey stick curve therefore explains why airports are generally not designed or operated at their theoretical maximum throughput capacity. Instead, airport operators intentionally maintain a certain amount of spare capacity to absorb the inevitable fluctuations in demand and service rates that occur during normal operations. This is reflected in the distinction between the **maximum throughput capacity**, which represents the theoretical limit of the system, and the **practical** or **declared capacity**, which incorporates acceptable levels of delay and operational robustness (see Section on [Airport Capacity](airport-capacity.qmd).).
+The hockey stick curve therefore explains why airports are generally not designed or operated at their theoretical maximum throughput capacity. Instead, airport operators intentionally maintain a certain amount of spare capacity to absorb the inevitable fluctuations in demand and service rates that occur during normal operations. This is reflected in the distinction between the **maximum throughput capacity**, which represents the theoretical limit of the system, and the **practical** or **declared capacity**, which incorporates acceptable levels of delay and operational robustness (see Section on [Airport Capacity](airport-capacity.qmd)).
 
 Maintaining spare capacity, however, is only one part of the solution. During peak periods, demand may still exceed the available capacity. In such situations, airports seek to manage demand in a way that minimizes delays and preserves stable operations. The methods used to achieve this objective are collectively referred to as **demand management** and are discussed in the following section.
 
@@ -64,11 +64,12 @@ Depending on the planning horizon and the underlying cause of the capacity const
 
  * **Administrative demand management:** At permanently capacity-constrained airports, the number of scheduled aircraft movements is limited through airport slots. Airlines may only operate flights for which a slot has been allocated, ensuring that scheduled demand remains compatible with the airport's declared capacity. Schedule coordination is therefore the primary administrative tool for balancing demand and capacity.
 
- * **Operational demand management:** Temporary reductions in airport or airspace capacity are often managed through Air Traffic Flow and Capacity Management (ATFCM) measures. In Europe, this is typically achieved by introducing an ATFM regulation, whereby the EUROCONTROL Network Manager assigns Calculated Take-Off Times (CTOTs) to affected flights. Delaying aircraft at their departure airport rather than allowing them to queue in the air reduces fuel consumption, emissions, and controller workload while maintaining a safe and orderly traffic flow.
+ * **Operational demand management:** Temporary reductions in airport or airspace capacity are often managed through \acrfull{ATFCM} measures. In Europe, this is typically achieved by introducing an \acr{ATFM} regulation, whereby the \acr{EUROCONTROL} Network Manager assigns \acrfull{CTOT} to affected flights. Delaying aircraft at their departure airport rather than allowing them to queue in the air reduces fuel consumption, emissions, and controller workload while maintaining a safe and orderly traffic flow.
 
  * **Economic demand management:** Airports may influence airline behaviour through differentiated airport charges. Higher landing fees during peak periods and lower charges during off-peak periods encourage airlines to redistribute flights more evenly throughout the day, thereby reducing congestion during the busiest periods.
 
 In practice, major airports rarely rely on only one type of demand management measure. Instead, they combine administrative, operational, and economic approaches to ensure that traffic demand remains compatible with the declared airport capacity while maintaining an acceptable level of service for airlines and passengers.
 
-
-## List of Acronyms {.unnumbered}
+<!--
+## Glossary {.unnumbered}
+-->

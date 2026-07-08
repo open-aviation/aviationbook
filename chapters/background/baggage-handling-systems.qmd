@@ -3,7 +3,7 @@ title: Baggage handling systems
 author: Manuel Waltert
 ---
 
-A **(\acr{BHS})** is the integrated set of manual and automated equipment used to transport, screen, sort, store, and route checked baggage within an airport. It connects passenger-facing facilities, such as check-in, bag drop, and baggage reclaim, with airside processes such as aircraft loading, aircraft unloading, transfer baggage handling, and baggage make-up. The \acr{BHS} therefore forms a critical interface between passenger building operations, aviation security, apron operations, and aircraft turnaround, ensuring that checked baggage is transported efficiently between passenger processing areas, aircraft stands, transfer connections, and baggage reclaim.
+A **\acrfull{BHS}** is the integrated set of manual and automated equipment used to transport, screen, sort, store, and route checked baggage within an airport. It connects passenger-facing facilities, such as check-in, bag drop, and baggage reclaim, with airside processes such as aircraft loading, aircraft unloading, transfer baggage handling, and baggage make-up. The \acr{BHS} therefore forms a critical interface between passenger building operations, aviation security, apron operations, and aircraft turnaround, ensuring that checked baggage is transported efficiently between passenger processing areas, aircraft stands, transfer connections, and baggage reclaim.
 
 The main purpose of a \acr{BHS} is to ensure that every checked bag reaches the correct aircraft, or the correct reclaim belt, safely and within the required time. This sounds simple, but in practice it is a demanding operational task. Bags enter the system at different times, they belong to different flights, they may need to be security screened, they may need to be stored temporarily, and they must eventually be delivered to the correct make-up position, baggage cart, unit load device, or reclaim belt. A disruption in the \acr{BHS} can delay aircraft departures, increase the number of mishandled bags, and reduce the quality of the passenger experience.
 
@@ -80,4 +80,4 @@ Large and complex passenger buildings often use multi-level baggage systems. Che
 
 The \acr{BHS} is therefore not a secondary technical system that can be added after the passenger building has been designed. It is a key driver of the passenger building layout. Its space requirements, structural loads, conveyor routes, maintenance access, and operational interfaces must be considered from the earliest planning stages.
 
-## List of Acronyms {.unnumbered}
+## Glossary {.unnumbered}

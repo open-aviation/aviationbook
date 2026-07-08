@@ -19,6 +19,9 @@ Many airports use collaborative decision making to share milestones between airl
 
 ## Data relevance
 
-Airport operations data include A-CDM milestones, stand allocation, turnaround events, runway configuration, surface movement tracks, passenger counts, baggage events, resource rosters, and delay causes.
+Airport operations data include \acr{A-CDM} milestones, stand allocation, turnaround events, runway configuration, surface movement tracks, passenger counts, baggage events, resource rosters, and delay causes.
 
-## List of Acronyms {.unnumbered}
+
+<!--
+## Glossary {.unnumbered}
+-->

@@ -31,7 +31,7 @@ The design of passenger buildings is therefore not only a matter of architectura
 ### Required building space
 Passenger buildings are space-intensive because they must accommodate passenger flows, baggage flows, processing facilities, waiting areas, retail areas, offices, technical rooms, and building services. For early planning stages, two rough estimation approaches are commonly used.
 
-First, the required building area can be estimated from the **design hour load** (\acr{DHL}). The \acr{DHL} describes the number of passengers expected during a representative busy design hour. It should not be confused with the absolute maximum demand, because designing for the absolute maximum would lead to excessive infrastructure that is unused for most of the year. Table @tbl-terminal-space-dhl provides indicative space requirements as a function of the terminal type.
+First, the required building area can be estimated from the **design hour load** (\acr{DHL}). The \acr{DHL} describes the number of passengers expected during a representative busy design hour. It should not be confused with the absolute maximum demand, because designing for the absolute maximum would lead to excessive infrastructure that is unused for most of the year. @tbl-terminal-space-dhl provides indicative space requirements as a function of the terminal type.
 
 | Type of passenger building            | Approximate space requirement         |
 |:--------------------------------------|--------------------------------------:|
@@ -66,7 +66,7 @@ Passenger buildings must satisfy the requirements of several stakeholder groups.
 
 Passenger buildings must also support the separation of **domestic**, **international**, **Schengen**, and **Non-Schengen** passengers where required. In the Schengen context, Schengen passengers can usually travel without systematic border control, whereas Non-Schengen passengers must pass immigration or emigration. The building must therefore prevent passenger groups with different border-control status from mixing. This often requires duplicated corridors, lounges, retail areas, and gate areas, which increases both cost and operational complexity.
 
-**Transfer passengers** create additional requirements. For a hub airport, the building must enable short and reliable connections between flights. The minimum connecting time (\acr{MCT} represents the shortest connection time that an airport and its airline partners can offer for a given transfer type. A short \acr{MCT} increases the number of possible connections in a banked hub operation and therefore improves the attractiveness of the airport for transfer traffic. However, short \acr{MCT} values require compact layouts, short walking distances, efficient security and border-control processes, and fast baggage transfer systems.
+**Transfer passengers** create additional requirements. For a hub airport, the building must enable short and reliable connections between flights. The \acrfull{MCT} represents the shortest connection time that an airport and its airline partners can offer for a given transfer type. A short \acr{MCT} increases the number of possible connections in a banked hub operation and therefore improves the attractiveness of the airport for transfer traffic. However, short \acr{MCT} values require compact layouts, short walking distances, efficient security and border-control processes, and fast baggage transfer systems.
 
 | Origin        | Destination   | Typical minimum connecting time   |
 |---------------|---------------|----------------------------------:|
@@ -124,7 +124,7 @@ The main disadvantage is passenger service quality. Many passengers perceive bus
 Most real passenger buildings are **hybrid configurations**. They combine elements of simple, linear, pier, satellite, and transporter concepts. Hybrid layouts often result from airport growth over several decades. As demand changes and new constraints appear, airports extend existing facilities, add new docks, build remote stands, or connect satellite buildings. Hybrid concepts can be highly flexible, but they may also create complex passenger routes and operational interfaces.
 
 ### Frontage length
-The **frontage length** of a dock determines how many contact stands can be arranged along the building. The required length depends on the aircraft code letter and the clearance required between adjacent stands. Table @tbl-stand-frontage summarises typical stand widths and clearances.
+The **frontage length** of a dock determines how many contact stands can be arranged along the building. The required length depends on the aircraft code letter and the clearance required between adjacent stands. @tbl-stand-frontage summarises typical stand widths and clearances.
 
 | Code Letter | Width of stand | Clearance between stands |
 |:-----------:|---------------:|-------------------------:|
@@ -185,7 +185,7 @@ A well-designed departure concourse reduces passenger stress by providing good v
 #### Check-in and baggage drop
 At **check-in** and **baggage drop**, departing passengers receive or confirm their boarding pass, check travel documents where required, print baggage tags, and inject checked baggage into the baggage handling system (\acr{BHS}). Traditional check-in counters, where staff perform the entire process, have increasingly been replaced by self-service kiosks and automated baggage drop facilities. This development increases productivity and can reduce congestion, but it also changes the space and technology requirements of the check-in hall.
 
-The check-in process typically includes passenger identification, baggage weighing, overweight baggage payment, baggage tag printing, baggage tagging, boarding pass issuing, and baggage injection into the \acr{BHS}. Oversized baggage, such as skis, bicycles, or strollers, is usually handled at an out-of-gauge (OOG) counter. Since passengers at check-in often carry multiple bags, generous queuing and circulation areas are required.
+The check-in process typically includes passenger identification, baggage weighing, overweight baggage payment, baggage tag printing, baggage tagging, boarding pass issuing, and baggage injection into the \acr{BHS}. Oversized baggage, such as skis, bicycles, or strollers, is usually handled at an \acrfull{OOG} counter. Since passengers at check-in often carry multiple bags, generous queuing and circulation areas are required.
 
 Three common check-in layouts are used in practice:
 
@@ -205,7 +205,7 @@ Security screening may be designed as a **centralised** or **decentralised** fac
 
 ![Generic security screening process](../../images/illustrations/SIKO_Process.png){#fig-siko-processes width=100%}
 
-As illustrated in Figure @fig-siko-processes, a generic security screening process consists of the following steps:
+As illustrated in @fig-siko-processes, a generic security screening process consists of the following steps:
 
 1. passenger preparation and queueing,
 2. divesting, where passengers place baggage, jackets, laptops, liquids, and other items on trays,
@@ -249,7 +249,7 @@ Arriving international passengers who enter the country pass through **immigrati
 #### Baggage reclaim
 After immigration, arriving passengers proceed to **baggage reclaim**, where they collect checked baggage. In Europe, transfer passengers usually do not need to reclaim baggage when transferring between flights, provided the baggage is through-checked. In some countries, such as the United States, international transfer passengers may be required to collect and recheck their baggage.
 
-Baggage reclaim halls require considerable space because baggage belts are long and passengers need space to wait, circulate, and use baggage trolleys. As a rule of thumb, a narrow-body aircraft requires approximately 40 m of baggage belt frontage, while a wide-body aircraft may require approximately 70 m. In addition to standard belts, airports must provide OOG reclaim facilities for items such as bicycles, skis, strollers, or other bulky baggage.
+Baggage reclaim halls require considerable space because baggage belts are long and passengers need space to wait, circulate, and use baggage trolleys. As a rule of thumb, a narrow-body aircraft requires approximately 40 m of baggage belt frontage, while a wide-body aircraft may require approximately 70 m. In addition to standard belts, airports must provide \acr{OOG} reclaim facilities for items such as bicycles, skis, strollers, or other bulky baggage.
 
 Typical baggage reclaim facilities include closed-loop carousels, linear belts, L-shaped belts, T-shaped belts, U-shaped belts, and free roller conveyors. Additional facilities often include lost baggage offices, toilets, trolley parking, seating, onward travel information, customs access, and sometimes concessions.
 
@@ -290,7 +290,7 @@ For this reason, facilities are usually dimensioned for the **design hour load**
 
 Three approaches can be used to determine the \acr{DHL}: (i) the **approximation method**,  (ii) the **\acr{SBR}** method, and  (iii) the **\acr{DHR}** method.
 
-The **approximation method** estimates the \acr{DHL} directly from the annual passenger demand,  as shown in Table @tbl-dhl-approximation. The annual traffic volume is translated into a corresponding design hour load using an empirical look-up table. The method is straightforward to apply and requires only the annual passenger volume. However, because it is based on empirical observations from existing airports, it does not account for local conditions such as the temporal distribution of demand or the presence and intensity of peak periods.
+The **approximation method** estimates the \acr{DHL} directly from the annual passenger demand,  as shown in @tbl-dhl-approximation. The annual traffic volume is translated into a corresponding design hour load using an empirical look-up table. The method is straightforward to apply and requires only the annual passenger volume. However, because it is based on empirical observations from existing airports, it does not account for local conditions such as the temporal distribution of demand or the presence and intensity of peak periods.
 
 
 | Annual passenger demand | Approximate \acr{DHL} as share of annual passengers |
@@ -311,19 +311,19 @@ $$
 :::
 
 
-The **\acr{SBR})** method requires hourly passenger demand observations covering an entire year. The hourly demand values are sorted in descending order, and the \acr{DHL} is defined as the demand during the 20th, 30th, or 40th busiest hour of the year. The selected rank depends on local operational preferences and demand characteristics. Airports with pronounced peak demand often choose values closer to the 20th busiest hour, whereas airports with more evenly distributed demand, such as large hub airports, frequently adopt values closer to the 40th busiest hour. For example, Zurich Airport uses the 20th busiest hour, while Amsterdam Schiphol Airport uses the 40th busiest hour. 
+The **\acr{SBR}** method requires hourly passenger demand observations covering an entire year. The hourly demand values are sorted in descending order, and the \acr{DHL} is defined as the demand during the 20th, 30th, or 40th busiest hour of the year. The selected rank depends on local operational preferences and demand characteristics. Airports with pronounced peak demand often choose values closer to the 20th busiest hour, whereas airports with more evenly distributed demand, such as large hub airports, frequently adopt values closer to the 40th busiest hour. For example, Zurich Airport uses the 20th busiest hour, while Amsterdam Schiphol Airport uses the 40th busiest hour. 
 
-Figure @fig-sbr illustrates the procedure. The left-hand side shows the observed hourly passenger demand over one year. On the right-hand side, the same observations are sorted from the busiest to the least busy hour. The \acr{SBR} is then obtained by selecting the passenger demand corresponding to the chosen ranked hour (e.g., the 20th, 30th, or 40th busiest hour).
+@fig-sbr illustrates the procedure. The left-hand side shows the observed hourly passenger demand over one year. On the right-hand side, the same observations are sorted from the busiest to the least busy hour. The \acr{SBR} is then obtained by selecting the passenger demand corresponding to the chosen ranked hour (e.g., the 20th, 30th, or 40th busiest hour).
 
 ![Standard busy rate (\acr{SBR})](../../images/illustrations/SBR_example.png){#fig-sbr width=100%}
 
 
-The **\acr{DHR})** method also uses hourly passenger-flow data. Instead of ranking the observations, planners calculate the empirical cumulative distribution function (ECDF) of the hourly demand. The \acr{DHL} is then defined as the hourly demand corresponding to a selected cumulative probability, typically 97% or 99%. Airports with highly peaked demand generally choose higher percentiles, whereas airports with more evenly distributed demand often use lower percentiles.
+The **\acr{DHR}** method also uses hourly passenger-flow data. Instead of ranking the observations, planners calculate the \acrfull{ECDF} of the hourly demand. The \acr{DHL} is then defined as the hourly demand corresponding to a selected cumulative probability, typically 97% or 99%. Airports with highly peaked demand generally choose higher percentiles, whereas airports with more evenly distributed demand often use lower percentiles.
 
-Figure @fig-dhr illustrates this concept. The left-hand side shows the observed hourly passenger demand over one year. The right-hand side presents the corresponding ECDF. The selected percentile (e.g., 97% or 99%) determines the passenger demand adopted as the design hour load.
+@fig-dhr illustrates this concept. The left-hand side shows the observed hourly passenger demand over one year. The right-hand side presents the corresponding ECDF. The selected percentile (e.g., 97% or 99%) determines the passenger demand adopted as the design hour load.
 
 ![Design hour rate (\acr{DHR})](../../images/illustrations/DHR_example.png){#fig-dhr width=100%}
 
 
 
-## List of Acronyms {.unnumbered}
+## Glossary {.unnumbered}
