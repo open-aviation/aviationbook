@@ -25,7 +25,7 @@ In practice, airports are rarely operated at their maximum throughput capacity. 
 
 The maximum throughput capacity introduced above is often expressed as a single value, for example 50 aircraft movements per hour. While this is sufficient for runways used exclusively for arrivals or departures, it is inadequate for mixed-mode operations, where arrivals and departures compete for access to the same runway. In such cases, the achievable throughput depends not only on the total number of movements, but also on the proportion of arrivals and departures.
 
-To overcome this limitation, Gilbo (2002) proposed describing runway capacity not as a single value but as the set of all feasible arrival–departure combinations that a runway system can sustain over a given period. Graphically, this set is represented by the **capacity envelope**.
+To overcome this limitation, Gilbo @gilbo1993airport proposed describing runway capacity not as a single value but as the set of all feasible arrival–departure combinations that a runway system can sustain over a given period. Graphically, this set is represented by the **capacity envelope**.
 
 The horizontal axis of a capacity envelope represents the number of arrivals per hour, while the vertical axis represents the number of departures per hour. Every point inside the envelope corresponds to a feasible operating condition, whereas combinations outside the envelope cannot be sustained by the runway system. The envelope itself forms the **Pareto frontier**, indicating the maximum achievable departure rate for every arrival rate, and vice versa, under a given runway configuration.
 
@@ -47,7 +47,7 @@ In practice, a separate capacity envelope exists for every combination of runway
 ::: {.callout-note}
 ### Estimation of Capacity Envelope using Opensky Network Trajectory Data
 
-A capacity envelope can be estimated empirically from historical arrival and departure counts, as documented by Gilbo (2002). 
+A capacity envelope can be estimated empirically from historical arrival and departure counts, as documented by Gilbo @gilbo1993airport. 
 
 The estimation begins with historical arrival and departure flight lists for the airport of interest, ideally covering at least one full year. The data are then aggregated into fixed time intervals, for example one-hour intervals. For each interval, the number of arrivals and departures is counted. Each interval therefore becomes one point in the arrival-departure plane, with arrivals on the horizontal axis and departures on the vertical axis.
 
@@ -91,22 +91,22 @@ In reality, the observed taxi time is usually longer than the unimpeded taxi tim
 - the **additional taxiway delay**, caused by interactions with other aircraft on the taxiway system, and
 - the **runway queue delay**, representing the waiting time before take-off. 
 
-Since the unimpeded taxi time cannot usually be observed directly, it is commonly estimated statistically. Following the approach proposed by Simaiakis and Balakrishnan (2009), the observed taxi-out time is modelled as a function of the departure queue length using a simple linear regression model. The intercept of the regression corresponds to the estimated unimpeded taxi time, while the slope indicates the average increase in taxi-out time caused by each additional aircraft waiting for departure.
+Since the unimpeded taxi time cannot usually be observed directly, it is commonly estimated statistically. Following the approach proposed by Simaiakis and Balakrishnan @Simaiakis_Balakrishnan_2009, the observed taxi-out time is modelled as a function of the departure queue length using a simple linear regression model. The intercept of the regression corresponds to the estimated unimpeded taxi time, while the slope indicates the average increase in taxi-out time caused by each additional aircraft waiting for departure.
 
 <!-- Unimpeded Taxi-Out Time -->
 ::: {.callout-note}
 ### Estimating the Unimpeded Taxi-Out Time from ADS-B Surface Trajectories
 
-The estimation procedure is illustrated in @fig-taxi-out-time using ADS-B surface trajectory data collected at Zurich Airport by Olive et al. (2025). The violin plots show the observed taxi-out times for departures from runways 16, 28, and 34 as a function of the departure queue length. The spread of each violin reflects the natural variability in taxi-out times caused by different parking positions, push-back durations, and operational conditions. A linear regression model is fitted to the observations for each runway. The intercept of the regression ($\hat{\beta}_0$) corresponds to the estimated **unimpeded taxi-out time**, while the slope ($\hat{\beta}_1$) represents the average increase in taxi-out time caused by each additional aircraft waiting in the departure queue.
+The estimation procedure is illustrated in @fig-taxi-out-time using ADS-B surface trajectory data collected at Zurich Airport by Olive et al. @olive2025assessing. The violin plots show the observed taxi-out times for departures from runways 16, 28, and 34 as a function of the departure queue length. The spread of each violin reflects the natural variability in taxi-out times caused by different parking positions, push-back durations, and operational conditions. A linear regression model is fitted to the observations for each runway. The intercept of the regression ($\hat{\beta}_0$) corresponds to the estimated **unimpeded taxi-out time**, while the slope ($\hat{\beta}_1$) represents the average increase in taxi-out time caused by each additional aircraft waiting in the departure queue.
 
-![Observed taxi-out times at Zurich Airport as a function of the departure queue length. The fitted regression models allow the estimation of the unimpeded taxi-out time for each departure runway. Adapted from Olive et al. (2025).](../../images/illustrations/taxi-out-time.png){#fig-taxi-out-time width=75%}
+![Observed taxi-out times at Zurich Airport as a function of the departure queue length. The fitted regression models allow the estimation of the unimpeded taxi-out time for each departure runway. Adapted from Olive et al. @olive2025assessing.](../../images/illustrations/taxi-out-time.png){#fig-taxi-out-time width=75%}
 
 | Parameter | Runway 16 | Runway 28 | Runway 34 |
 |:----------|----------:|----------:|----------:|
 | **Unimpeded taxi-out time $\hat{\beta}_0$ [min]** | **12.08** | **6.24** | **7.47** |
 | Increase per additional aircraft $\hat{\beta}_1$ [min/aircraft] | 1.03 | 2.12 | 2.34 |
 | $R^2$ | 0.199 | 0.398 | 0.302 |
-: Estimated regression coefficients for the unimpeded taxi-out time model. Adapted from Olive et al. (2025). {#tbl-unimpeded-times}
+: Estimated regression coefficients for the unimpeded taxi-out time model. Adapted from Olive et al. @olive2025assessing. {#tbl-unimpeded-times}
 
 The estimated unimpeded taxi-out times differ considerably between the three runways. Runway 28 exhibits the shortest unimpeded taxi-out time (approximately 6.2 min) because it is located closest to the main terminal area, whereas runway 16 requires substantially longer taxi distances, resulting in an estimated unimpeded taxi-out time of approximately 12.1 min. The regression slopes indicate that each additional aircraft in the departure queue increases the expected taxi-out time by approximately 1.0 to 2.3 minutes, depending on the departure runway.
 :::

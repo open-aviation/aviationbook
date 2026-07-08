@@ -13,18 +13,18 @@ Air traffic management relies on three technical pillars usually grouped under t
 - **Navigation** lets aircraft determine where they are and follow an intended path.
 - **Surveillance** lets air traffic services know where aircraft are, identify them, and maintain a shared traffic picture.
 
-CNS is often described as the technical backbone of modern air traffic management. It is mostly invisible to passengers, but every controlled flight depends on it: pilots need communication channels to receive clearances, navigation infrastructure to fly the intended route, and surveillance systems so that controllers can maintain separation.
+\acr{CNS} is often described as the technical backbone of modern air traffic management. It is mostly invisible to passengers, but every controlled flight depends on it: pilots need communication channels to receive clearances, navigation infrastructure to fly the intended route, and surveillance systems so that controllers can maintain separation.
 
-The three domains are operationally inseparable. A controller can only issue instructions if there is a communication channel; navigation determines whether an aircraft can fly the cleared route or procedure; surveillance determines how the controller sees aircraft and applies separation. The available CNS infrastructure therefore shapes the airspace structure, the procedures that can be published, and the separation minima that can be safely applied.
+The three domains are operationally inseparable. A controller can only issue instructions if there is a communication channel; navigation determines whether an aircraft can fly the cleared route or procedure; surveillance determines how the controller sees aircraft and applies separation. The available \acr{CNS} infrastructure therefore shapes the airspace structure, the procedures that can be published, and the separation minima that can be safely applied.
 
-CNS also determines how much traffic an airspace can handle. Congested voice frequencies limit the number of sectors that can be opened; insufficient navigation redundancy can constrain routing during \acr{GNSS} outages; surveillance coverage and performance influence the separation minima that can be used. For this reason, CNS is not only an equipment topic. It is also a network-performance topic, involving capacity, resilience, interoperability, spectrum management, and cost.
+\acr{CNS} also determines how much traffic an airspace can handle. Congested voice frequencies limit the number of sectors that can be opened; insufficient navigation redundancy can constrain routing during \acr{GNSS} outages; surveillance coverage and performance influence the separation minima that can be used. For this reason, \acr{CNS} is not only an equipment topic. It is also a network-performance topic, involving capacity, resilience, interoperability, spectrum management, and cost.
 
 This page is a map of the topic. The detailed systems are described in the following pages:
 
-- [Communication systems](communication-systems.qmd) covers voice radio, HF/VHF communication, SELCAL, ACARS, CPDLC, FANS, and performance-based communication.
+- [Communication systems](communication-systems.qmd) covers voice radio, \acr{HR}/\acr{VHR} communication, \acr{SELCAL}, \acr{ACARS}, \acr{CPDLC}, FANS, and performance-based communication.
 - [Radio navigation](conventional-radio-navigation.qmd) introduces heading, track, bearing, course, radial, and true versus magnetic references, then covers NDB, VOR, DME, ILS, and other ground-based navigation aids.
-- [Satellite navigation](satellite-navigation.qmd) covers inertial navigation, GNSS, augmentation, integrity, RNAV/RNP, and performance-based navigation.
-- [Surveillance systems](surveillance-systems.qmd) covers primary radar, secondary radar, Mode S, ADS-B, ADS-C, and multilateration.
+- [Satellite navigation](satellite-navigation.qmd) covers inertial navigation, \acr{GNSS}, augmentation, integrity, RNAV/RNP, and performance-based navigation.
+- [Surveillance systems](surveillance-systems.qmd) covers primary radar, secondary radar, Mode S, \acr{ADS-B}, \acr{ADS-C}, and multilateration.
 
 ::: {.callout-warning}
 ## TODO for this page
@@ -36,26 +36,26 @@ In the text below, add links to other pages.
 
 **Communication** provides the information highway between pilots, controllers, airline operations, and automated systems. In continental airspace, tactical control still relies heavily on \acr{VHF} voice. Oceanic and remote operations may require \acr{HF}, \acr{SATCOM}, or datalink. Digital communication, especially \acr{CPDLC}, supplements voice by reducing frequency congestion and making non-urgent clearances more structured.
 
-**Navigation** provides the means for aircraft to know where they are and to follow a desired path laterally, vertically, longitudinally, and sometimes temporally. Conventional aids such as \acr{VOR}, \acr{DME}, and \acr{ILS} remain important, particularly as backups and for approach operations. Satellite navigation and \acr{PBN} enable more flexible route design, curved procedures, and better use of constrained airspace, but they also raise resilience questions when \acr{GNSS} is degraded or unavailable.
+**Navigation** provides the means for aircraft to know where they are and to follow a desired path laterally, vertically, longitudinally, and sometimes temporally. [Conventional navigation aids](conventional-radio-navigation.qmd) such as \acr{VOR}, \acr{DME}, and \acr{ILS} remain important, particularly as backups and for approach operations. [Satellite navigation](satellite-navigation.qmd) and \acr{PBN} enable more flexible route design, curved procedures, and better use of constrained airspace, but they also raise resilience questions when \acr{GNSS} is degraded or unavailable.
 
 **Surveillance** provides the traffic picture: who is where, at what altitude, and moving in which direction. Primary radar can detect non-cooperative targets, while secondary radar, Mode S, \acr{ADS-B}, \acr{ADS-C}, and multilateration provide richer cooperative surveillance. Modern surveillance is layered because no single system is sufficient in all environments.
 
 ## Technical challenges
 
-CNS infrastructure must be resilient because failures can have network-wide consequences. A local radio outage, a degraded navigation aid, excessive 1030/1090 MHz interrogation load, a datalink performance problem, or a \acr{GNSS} interference event can all affect capacity and predictability. Monitoring the performance of CNS infrastructure is therefore part of operational safety, not just maintenance.
+\acr{CNS} infrastructure must be resilient because failures can have network-wide consequences. A local radio outage, a degraded navigation aid, excessive 1030/1090 MHz interrogation load, a datalink performance problem, or a \acr{GNSS} interference event can all affect capacity and predictability. Monitoring the performance of \acr{CNS} infrastructure is therefore part of operational safety, not just maintenance.
 
-Interoperability is equally important. Aircraft cross national borders and airspace sectors continuously, so CNS systems must work across service providers, aircraft fleets, and regulatory environments. This is why standardisation and coordinated deployment matter for systems such as 8.33 kHz voice channel spacing, \acr{VDL} Mode 2, \acr{CPDLC}, Mode S, \acr{ADS-B}, \acr{PBN}, and \acr{DME}/DME fallback navigation.
+Interoperability is equally important. Aircraft cross national borders and airspace sectors continuously, so \acr{CNS} systems must work across service providers, aircraft fleets, and regulatory environments. This is why standardisation and coordinated deployment matter for systems such as 8.33 kHz voice channel spacing, \acr{VDL} Mode 2, \acr{CPDLC}, Mode S, \acr{ADS-B}, \acr{PBN}, and \acr{DME}/DME fallback navigation.
 
-Finally, CNS depends on scarce radio spectrum. Voice communication, navigation aids, datalink, secondary surveillance, \acr{ADS-B}, and collision-avoidance systems all use protected frequency bands. Frequency congestion and radio-frequency interference can therefore become operational constraints. Future CNS evolution is as much about managing this shared spectrum efficiently as it is about installing new equipment.
+Finally, \acr{CNS} depends on scarce radio spectrum. Voice communication, navigation aids, datalink, secondary surveillance, \acr{ADS-B}, and collision-avoidance systems all use protected frequency bands. Frequency congestion and radio-frequency interference can therefore become operational constraints. Future \acr{CNS} evolution is as much about managing this shared spectrum efficiently as it is about installing new equipment.
 
 ## Evolution of CNS
 
-The long-term trend is toward a more digital, performance-based, and integrated CNS environment. Communication is moving from voice-only operations toward voice plus datalink. Navigation is moving from fixed ground-station routes toward \acr{PBN} supported by satellite and resilient terrestrial infrastructure. Surveillance is moving from radar-only coverage toward a combination of radar, multilateration, ground-based \acr{ADS-B}, and space-based surveillance.
+The long-term trend is toward a more digital, performance-based, and integrated \acr{CNS} environment. Communication is moving from voice-only operations toward voice plus datalink. Navigation is moving from fixed ground-station routes toward \acr{PBN} supported by satellite and resilient terrestrial infrastructure. Surveillance is moving from radar-only coverage toward a combination of radar, multilateration, ground-based \acr{ADS-B}, and space-based surveillance.
 
 This evolution supports concepts such as trajectory-based operations, improved arrival and departure management, better oceanic surveillance, and more efficient route design. It also creates new dependencies: cybersecurity, data integrity, spectrum protection, and resilience against satellite-navigation disruption become central operational concerns.
 
 ## Data opportunities
 
-CNS systems are also major sources of aviation data. Communication systems generate operational messages and datalink logs. Navigation systems define routes, procedures, waypoints, and performance requirements. Surveillance systems produce tracks, positions, velocities, identifiers, and status information. Later chapters on flight tracking, Mode S, ADS-B, ACARS, CPDLC, and aeronautical information build directly on these foundations.
+\acr{CNS} systems are also major sources of aviation data. Communication systems generate operational messages and datalink logs. Navigation systems define routes, procedures, waypoints, and performance requirements. Surveillance systems produce tracks, positions, velocities, identifiers, and status information. Later chapters on flight tracking, Mode S, \acr{ADS-B}, \acr{ACARS}, \acr{CPDLC}, and aeronautical information build directly on these foundations.
 
 ## Glossary {.unnumbered}

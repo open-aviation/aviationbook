@@ -9,7 +9,7 @@ Taxiways are built to ensure the safe and efficient movement of aircraft on the 
 
 Wherever possible, taxiways should be straight. If curves are necessary, they must have radii that aircraft can realistically follow, with additional pavement areas (*fillets*) provided to accommodate the main landing gear. Equally important is a simple and intuitive layout that enables clear taxi routes, prevents pilot confusion, and ensures air traffic control instructions remain straightforward.  
 
-Taxiways must also be designed with expandability in mind. Systems should allow for later extensions without major reconstruction, supporting phased airport growth. For instance, from an initial layout for 20,000–30,000 annual movements to one accommodating 150,000–250,000 movements.  
+Taxiways must also be designed with expandability in mind. Systems should allow for later extensions without major reconstruction, supporting phased airport growth. For instance, from an initial layout for 20000–30000 annual movements to one accommodating 150000–250000 movements.  
 
 Sustainability is another key principle: taxi routes should be as short as possible to reduce fuel consumption and environmental impact.  
 
@@ -250,7 +250,7 @@ Figure [fig-minSepDistTWY] provides an overview of the minimum separation distan
 
 ![Minimum Separation Distance Requirements for Taxiways. The distances are given in meters. From CS ADR-DSN.D.260.](../../images/illustrations/CS_ADR-DSN_D_260.png){#fig-minSepDistTWY}
 
-As an example, consider an aerodrome with code number 4, an instrument runway, and a critical aircraft of category E. In this case, the minimum required separation between the runway and taxiway centerlines is 172.5 m. Similarly, for two parallel taxiways designed for Code C aircraft, the minimum required centerline-to-centerline separation is 44 m. If these requirements cannot be met in practice, reclassification may be necessary. 
+For example, consider an aerodrome with code number 4, an instrument runway, and a critical aircraft of category E. In this case, the minimum required separation between the runway and taxiway centerlines is 172.5 m. Similarly, for two parallel taxiways designed for Code C aircraft, the minimum required centerline-to-centerline separation is 44 m. If these requirements cannot be met in practice, reclassification may be necessary. 
 
 :::
 
