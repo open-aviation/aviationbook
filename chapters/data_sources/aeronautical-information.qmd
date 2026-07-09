@@ -69,7 +69,7 @@ Aeronautical information systems describe a large set of objects. The same objec
 
 ### Airports and aerodromes
 
-At a macroscopic level an airport or aerodrome is identified by codes and represented by an aerodrome reference point. Detailed airport infrastructure data—runways, taxiways, parking positions, surface geometry, and operational metadata—is discussed in [airport and infrastructure data](airport-infrastructure-data.qmd). In aeronautical information, airports also act as anchors for procedures, NOTAM, declared distances, charts, and local rules.
+At a macroscopic level an airport or aerodrome is identified by codes and represented by an \acr{ARP}. Detailed airport infrastructure data—runways, taxiways, parking positions, surface geometry, and operational metadata—is discussed in [airport and infrastructure data](airport-infrastructure-data.qmd). In aeronautical information, airports also act as anchors for procedures, NOTAM, declared distances, charts, and local rules.
 
 ### Points and navigation aids
 

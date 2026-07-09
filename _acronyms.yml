@@ -55,6 +55,8 @@ acronyms:
       longname: Automated People Mover
     - shortname: APVI
       longname: Approach with Vertical Guidance (APV-I)
+    - shortname: ARP
+      longname: Aerodrome Reference Point
     - shortname: ARVT
       longname: ARriVal Time
     - shortname: ASDA
