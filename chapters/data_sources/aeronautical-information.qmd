@@ -73,7 +73,7 @@ At a macroscopic level an airport or aerodrome is identified by codes and repres
 
 ### Points and navigation aids
 
-A published point may be a waypoint, a fix, a navigation aid, a boundary point, or another named position used for route and procedure definition. Some points correspond to physical radio navigation aids such as VOR, DME, or NDB. Others are coordinate-defined RNAV waypoints with no physical installation.
+A published point may be a waypoint, a fix, a navigation aid, a boundary point, or another named position used for route and procedure definition. Some points correspond to physical radio navigation aids such as \acr{VOR}, \acr{DME}, or \acr{NDB}. Others are coordinate-defined \acr{RNAV} waypoints with no physical installation.
 
 Common data fields include:
 
