@@ -46,7 +46,7 @@ For data analysis, the \acr{AIRAC} cycle is a versioning key. A trajectory, a fl
 
 ## NOTAM, SUP AIP, AIC, and PIB
 
-Not all aeronautical information fits the regular AIP/AIRAC publication path.
+Not all aeronautical information fits the regular \acr{AIP}/\acr{AIRAC} publication path.
 
 | Product | Role | Typical use |
 |---|---|---|
@@ -60,7 +60,7 @@ A \acr{NOTAM} is not a general news item. It is operationally scoped information
 ::: {.callout-warning}
 ## NOTAM as data
 
-\acr{NOTAM} text is compact, coded, and context dependent. Even when coordinates are present, interpretation may require knowing the affected aerodrome, FIR, procedure, schedule, vertical limits, and reference publication. Treat \acr{NOTAM} parsing as information extraction, not as a simple table import.
+\acr{NOTAM} text is compact, coded, and context dependent. Even when coordinates are present, interpretation may require knowing the affected aerodrome, \acr{FIR}, procedure, schedule, vertical limits, and reference publication. Treat \acr{NOTAM} parsing as information extraction, not as a simple table import.
 :::
 
 ## Aeronautical data objects
