@@ -85,6 +85,8 @@ acronyms:
       longname: Baggage Handling System
     - shortname: BR
       longname: Basic Regulation
+    - shortname: BDS
+      longname: Comm-B Data Selector
     - shortname: CAPEX
       longname: Capital Expenditure
     - shortname: CAS
@@ -97,6 +99,8 @@ acronyms:
       longname: Controller–Pilot Data Link Communication
     - shortname: CPR
       longname: Correlated Position Report
+    - shortname: CRC
+      longname: Cyclic Redundancy Check
     - shortname: CTFM
       longname: Current Tactical Flight Model
     - shortname: CTOT
@@ -319,6 +323,8 @@ acronyms:
       longname: Satellite-Based Augmentation System
     - shortname: SBR
       longname: Standard Busy Rate
+    - shortname: SDR
+      longname: Software-Defined Radio
     - shortname: SELCAL
       longname: Selective Calling
     - shortname: SID
@@ -365,12 +371,6 @@ acronyms:
       longname: Very High Frequency
     - shortname: VMC
       longname: Visual Meteorological Conditions
-    - shortname: BDS
-      longname: Comm-B Data Selector
-    - shortname: CRC
-      longname: Cyclic Redundancy Check
-    - shortname: SDR
-      longname: Software-Defined Radio
     - shortname: VOR
       longname: Very High Frequency Omnidirectional Range Station
     - shortname: WTC
