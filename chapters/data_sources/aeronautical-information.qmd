@@ -11,15 +11,15 @@ This chapter treats aeronautical information as a **data source**. The operation
 
 ## From AIS to AIM
 
-\acrfull{AIM} covers the collection, validation, publication, exchange, and dissemination of aeronautical data. It evolved from paper-oriented aeronautical information services toward digital, machine-readable data management. The goal is not only to publish information for pilots, but also to feed navigation databases, flight planning systems, air traffic management systems, airport systems, and research datasets.
+\acr{AIM} covers the collection, validation, publication, exchange, and dissemination of aeronautical data. It evolved from paper-oriented aeronautical information services toward digital, machine-readable data management. The goal is not only to publish information for pilots, but also to feed navigation databases, flight planning systems, air traffic management systems, airport systems, and research datasets.
 
 Typical AIM products include:
 
-- \acrfull{AIP};
+- \acr{AIP};
 - AIP supplements and amendments;
-- \acrfull{NOTAM};
-- \acrfull{PIB};
-- \acrfull{AIC};
+- \acr{NOTAM};
+- \acr{PIB};
+- \acr{AIC};
 - digital datasets such as AIXM packages, obstacle data, terrain data, procedure coding, and chart data.
 
 For analysis, the main difficulty is that these sources mix stable, cyclically updated, and temporary information. A runway threshold, a restricted area, a route segment, and a temporary closure do not have the same lifetime or reliability profile.
@@ -38,9 +38,9 @@ AIPs are often available online as eAIP documents. They are human-readable and i
 
 ## AIRAC cycles
 
-Aeronautical data changes through internationally coordinated \acrfull{AIRAC} cycles. AIRAC follows a fixed 28-day rhythm, with effective dates published years in advance. This gives data users time to update flight management systems, ATC databases, procedure design tools, and charting systems before the change becomes operational.
+Aeronautical data changes through internationally coordinated \acr{AIRAC} cycles. AIRAC follows a fixed 28-day rhythm, with effective dates globally occurring on predetermined dates. This gives data users time to update flight management systems, ATC databases, procedure design tools, and charting systems before the change becomes operational.
 
-![AIRAC cycle, found at [ICAO](https://www.icao.int/airnavigation/information-management/Pages/AIRAC.aspx)](../../images/AIRAC-cycle.jpg){#fig-airac}
+![AIRAC cycle, found at [ICAO](https://www.icao.int/airnavigation/airac)](../../images/AIRAC-cycle.jpg){#fig-airac}
 
 For data analysis, the AIRAC cycle is a versioning key. A trajectory, a flight plan, and a route network must be interpreted against the aeronautical data effective on the date of operation. A waypoint, procedure, airspace boundary, or route restriction may differ across cycles.
 
