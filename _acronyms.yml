@@ -23,6 +23,8 @@ acronyms:
       longname: Automatic Dependent Surveillance–Light
     - shortname: ADF
       longname: Automatic Direction Finder
+    - shortname: AFIS
+      longname: Aerodrome Flight Information Service
     - shortname: AGNIS
       longname: Azimuth Guidance for Nose-In Stands
     - shortname: AIC
@@ -35,8 +37,10 @@ acronyms:
       longname: Aeronautical Information Regulation And Control
     - shortname: AIREP
       longname: Air Report
-    - shortname: AFIS
-      longname: Aerodrome Flight Information Service
+    - shortname: AIS
+      longname: Aeronautical Information Service
+    - shortname: AIXM
+      longname: Aeronautical Information eXchange Model
     - shortname: AO
       longname: Aircraft Operator
     - shortname: AOC
@@ -55,6 +59,8 @@ acronyms:
       longname: Automated People Mover
     - shortname: APVI
       longname: Approach with Vertical Guidance (APV-I)
+    - shortname: ARINC
+      longname: Aeronautical Radio, Incorporated
     - shortname: ARP
       longname: Aerodrome Reference Point
     - shortname: ARVT

@@ -13,20 +13,20 @@ This chapter treats aeronautical information as a **data source**. The operation
 
 \acr{AIM} covers the collection, validation, publication, exchange, and dissemination of aeronautical data. It evolved from paper-oriented aeronautical information services toward digital, machine-readable data management. The goal is not only to publish information for pilots, but also to feed navigation databases, flight planning systems, air traffic management systems, airport systems, and research datasets.
 
-Typical AIM products include:
+Typical \acr{AIM} products include:
 
 - \acr{AIP};
 - AIP supplements and amendments;
 - \acr{NOTAM};
 - \acr{PIB};
 - \acr{AIC};
-- digital datasets such as AIXM packages, obstacle data, terrain data, procedure coding, and chart data.
+- digital datasets such as \acr{AIXM} packages, obstacle data, terrain data, procedure coding, and chart data.
 
 For analysis, the main difficulty is that these sources mix stable, cyclically updated, and temporary information. A runway threshold, a restricted area, a route segment, and a temporary closure do not have the same lifetime or reliability profile.
 
 ## AIP structure
 
-An \acr{AIP} contains aeronautical information of lasting character essential to air navigation. AIPs are issued by states or by authorities acting on behalf of states, often the national ANSP or AIS provider. The high-level ICAO structure is standardized into three parts:
+An \acr{AIP} contains aeronautical information of lasting character essential to air navigation. AIPs are issued by states or by authorities acting on behalf of states, often the national \acr{ANSP} or \acr{AIS} provider. The high-level \acr{ICAO} structure is standardized into three parts:
 
 | Part | Scope | Examples of data |
 |---|---|---|
@@ -34,15 +34,15 @@ An \acr{AIP} contains aeronautical information of lasting character essential to
 | ENR | en-route information | airspace structure, ATS routes, navigation aids, restricted areas, radio navigation services, en-route charts |
 | AD | aerodromes and heliports | aerodrome data, runways, lighting, declared distances, procedures, charts, obstacles, local rules |
 
-AIPs are often available online as eAIP documents. They are human-readable and increasingly structured, but not always easy to process automatically. Tables, charts, textual notes, and PDF procedures may encode information that is difficult to convert into clean geospatial data.
+\acrs{AIP}s are often available online as eAIP documents. They are human-readable and increasingly structured, but not always easy to process automatically. Tables, charts, textual notes, and PDF procedures may encode information that is difficult to convert into clean geospatial data.
 
 ## AIRAC cycles
 
-Aeronautical data changes through internationally coordinated \acr{AIRAC} cycles. AIRAC follows a fixed 28-day rhythm, with effective dates globally occurring on predetermined dates. This gives data users time to update flight management systems, ATC databases, procedure design tools, and charting systems before the change becomes operational.
+Aeronautical data changes through internationally coordinated \acr{AIRAC} cycles. \acr{AIRAC} follows a fixed 28-day rhythm, with effective dates globally occurring on predetermined dates. This gives data users time to update flight management systems, ATC databases, procedure design tools, and charting systems before the change becomes operational.
 
 ![AIRAC cycle, found at [ICAO](https://www.icao.int/airnavigation/airac)](../../images/AIRAC-cycle.jpg){#fig-airac}
 
-For data analysis, the AIRAC cycle is a versioning key. A trajectory, a flight plan, and a route network must be interpreted against the aeronautical data effective on the date of operation. A waypoint, procedure, airspace boundary, or route restriction may differ across cycles.
+For data analysis, the \acr{AIRAC} cycle is a versioning key. A trajectory, a flight plan, and a route network must be interpreted against the aeronautical data effective on the date of operation. A waypoint, procedure, airspace boundary, or route restriction may differ across cycles.
 
 ## NOTAM, SUP AIP, AIC, and PIB
 
@@ -51,25 +51,25 @@ Not all aeronautical information fits the regular AIP/AIRAC publication path.
 | Product | Role | Typical use |
 |---|---|---|
 | \acr{NOTAM} | time-sensitive notice distributed by telecommunication | runway closure, navigation-aid outage, temporary restricted area, obstacle, procedure unavailability |
-| SUP AIP | temporary information of longer duration or with extensive text/graphics | major works, temporary procedures, large events, long-running airspace changes |
+| SUP \acr{AIP} | temporary information of longer duration or with extensive text/graphics | major works, temporary procedures, large events, long-running airspace changes |
 | \acr{AIC} | explanatory or administrative circular | future procedure changes, regulatory information, safety campaigns, technical transition plans |
-| \acr{PIB} | pre-flight briefing package | NOTAM selection relevant to a flight, aerodrome, FIR, route, or area |
+| \acr{PIB} | pre-flight briefing package | \acr{NOTAM} selection relevant to a flight, aerodrome, \acr{FIR}, route, or area |
 
-A NOTAM is not a general news item. It is operationally scoped information that must be known by personnel concerned with flight operations. A PIB is not a separate source of truth; it is a filtered compilation of NOTAM and related briefing information for a particular use case.
+A \acr{NOTAM} is not a general news item. It is operationally scoped information that must be known by personnel concerned with flight operations. A \acr{PIB} is not a separate source of truth; it is a filtered compilation of \acr{NOTAM} and related briefing information for a particular use case.
 
 ::: {.callout-warning}
 ## NOTAM as data
 
-NOTAM text is compact, coded, and context dependent. Even when coordinates are present, interpretation may require knowing the affected aerodrome, FIR, procedure, schedule, vertical limits, and reference publication. Treat NOTAM parsing as information extraction, not as a simple table import.
+\acr{NOTAM} text is compact, coded, and context dependent. Even when coordinates are present, interpretation may require knowing the affected aerodrome, FIR, procedure, schedule, vertical limits, and reference publication. Treat \acr{NOTAM} parsing as information extraction, not as a simple table import.
 :::
 
 ## Aeronautical data objects
 
-Aeronautical information systems describe a large set of objects. The same objects appear in charts, flight plans, navigation databases, ATM systems, and analytical datasets.
+Aeronautical information systems describe a large set of objects. The same objects appear in charts, flight plans, navigation databases, \acr{ATM} systems, and analytical datasets.
 
 ### Airports and aerodromes
 
-At a macroscopic level an airport or aerodrome is identified by codes and represented by an \acr{ARP}. Detailed airport infrastructure data—runways, taxiways, parking positions, surface geometry, and operational metadata—is discussed in [airport and infrastructure data](airport-infrastructure-data.qmd). In aeronautical information, airports also act as anchors for procedures, NOTAM, declared distances, charts, and local rules.
+At a macroscopic level an airport or aerodrome is identified by codes and represented by an \acr{ARP}. Detailed airport infrastructure data—runways, taxiways, parking positions, surface geometry, and operational metadata—is discussed in [airport and infrastructure data](airport-infrastructure-data.qmd). In aeronautical information, airports also act as anchors for procedures, \acr{NOTAM}, declared distances, charts, and local rules.
 
 ### Points and navigation aids
 
@@ -80,16 +80,16 @@ Common data fields include:
 - designator or name;
 - point type;
 - latitude and longitude;
-- associated country, FIR, or aerodrome;
+- associated country, \acr{FIR}, or aerodrome;
 - navigation-aid frequency or channel when applicable;
 - magnetic variation or bearing information where relevant;
-- validity dates and AIRAC cycle.
+- validity dates and \acr{AIRAC} cycle.
 
-The operational role of radio navigation aids is covered in [conventional radio navigation](../background/conventional-radio-navigation.qmd), while RNAV/RNP concepts are introduced in [satellite navigation](../background/satellite-navigation.qmd).
+The operational role of radio navigation aids is covered in [conventional radio navigation](../background/conventional-radio-navigation.qmd), while \acr{RNAV}/\acr{RNP} concepts are introduced in [satellite navigation](../background/satellite-navigation.qmd).
 
 ### Routes and route segments
 
-An ATS route is a published structure connecting points through route segments. As data, a route segment normally has a start point, end point, directionality, distance, track, vertical limits, restrictions, and availability conditions. Some route networks are airway-based; others support free-route operations where aircraft file direct segments between allowed points.
+An \acr{ATS} route is a published structure connecting points through route segments. As data, a route segment normally has a start point, end point, directionality, distance, track, vertical limits, restrictions, and availability conditions. Some route networks are airway-based; others support free-route operations where aircraft file direct segments between allowed points.
 
 Analysts should distinguish:
 
@@ -102,9 +102,9 @@ These objects are related but not interchangeable.
 
 ### Airspaces
 
-Airspaces are geospatial volumes with lateral boundaries, vertical limits, classification, controlling unit, activation rules, and validity. They include FIRs/UIRs, controlled airspaces, terminal areas, control zones, restricted or danger areas, military areas, sectors, and flow-management regions.
+Airspaces are geospatial volumes with lateral boundaries, vertical limits, classification, controlling unit, activation rules, and validity. They include \acrs{FIR}s/\acrs{UIR}s, controlled airspaces, terminal areas, control zones, restricted or danger areas, military areas, sectors, and flow-management regions.
 
-The background chapter on [airspace structure](../background/airspace-structure.qmd) explains the operational meaning of FIRs, ACCs, sectors, and route structures. In data terms, the hard parts are geometry, vertical references, activation schedules, naming conventions, and versioning.
+The background chapter on [airspace structure](../background/airspace-structure.qmd) explains the operational meaning of \acrs{FIR}s, \acrs{ACC}s, sectors, and route structures. In data terms, the hard parts are geometry, vertical references, activation schedules, naming conventions, and versioning.
 
 ### Procedures
 
@@ -124,19 +124,19 @@ Two formats are especially important in digital aeronautical data workflows.
 
 **AIXM** is a data exchange model for aeronautical information. It represents features such as airports, airspaces, routes, navaids, procedures, obstacles, and temporality. Its strength is that it can encode valid times, feature lifecycles, and complex relationships. Its complexity is also a barrier: practical use often requires domain-specific filtering and careful interpretation.
 
-**ARINC 424** is the navigation database coding standard used to encode procedures, waypoints, navaids, airports, and routes for avionics and flight management systems. It is operationally critical because it determines what pilots can select and fly in the cockpit. For analysis, ARINC 424 data is valuable but not always publicly accessible.
+**ARINC 424** is the navigation database coding standard used to encode procedures, waypoints, navaids, airports, and routes for avionics and flight management systems. It is operationally critical because it determines what pilots can select and fly in the cockpit. For analysis, \acr{ARINC} 424 data is valuable but not always publicly accessible.
 
-Other sources include eAIP tables, charting databases, national open-data portals, EUROCONTROL datasets, FAA data products, and community-maintained geospatial extracts. Each source differs in coverage, licensing, coordinate precision, and update process.
+Other sources include eAIP tables, charting databases, national open-data portals, EUROCONTROL datasets, \acr{FAA} data products, and community-maintained geospatial extracts. Each source differs in coverage, licensing, coordinate precision, and update process.
 
 ## Quality and consistency caveats
 
 Aeronautical data is authoritative, but not automatically analysis-ready:
 
-- each object must be interpreted for the correct AIRAC cycle;
+- each object must be interpreted for the correct \acr{AIRAC} cycle;
 - coordinates may use different precision, datums, or publication conventions;
 - vertical limits may reference flight levels, altitude, height above surface, or pressure settings;
 - text notes can override or qualify tabular fields;
-- temporary information may appear in NOTAM or SUP AIP rather than base AIP data;
+- temporary information may appear in \acr{NOTAM} or SUP \acr{AIP} rather than base \acr{AIP} data;
 - procedure geometry may differ between chart depiction, coded path terminators, and flown tracks;
 - licensing can restrict redistribution of high-quality navigation data.
 
