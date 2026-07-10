@@ -53,7 +53,7 @@ ASTERIX is a family of category-specific formats rather than a single trajectory
 
 ### Crowdsourced and open receiver networks
 
-[\acrfull{ADS-B}](../background/surveillance-systems.qmd#ads-b) and Mode S data are widely collected by networks of ground receivers. Public websites such as [Flightradar24](https://www.flightradar24.com), [FlightAware](https://flightaware.com) aggregate messages from distributed receivers and produce aircraft state vectors or flight tracks. Access ranges from open research datasets to commercial APIs; licensing, privacy filtering, and redistribution rules differ by provider. [The OpenSky Network](https://opensky-network.org) provide an open access to historical data for academics, limited to research usage.
+[\acr{ADS-B}](../background/surveillance-systems.qmd#ads-b) and Mode S data are widely collected by networks of ground receivers. Public websites such as [Flightradar24](https://www.flightradar24.com), [FlightAware](https://flightaware.com) aggregate messages from distributed receivers and produce aircraft state vectors or flight tracks. Access ranges from open research datasets to commercial APIs; licensing, privacy filtering, and redistribution rules differ by provider. [The OpenSky Network](https://opensky-network.org) provide an open access to historical data for academics, limited to research usage.
 
 ADS-B is especially important because aircraft broadcast their own position, altitude, velocity, and identification without being interrogated. Mode S replies and Comm-B messages may add identity, altitude, aircraft parameters, or intent-related fields when interrogated by compatible ground infrastructure. Raw decoding details belong in [Decode ADS-B and Mode S data](adsb-mode-s-decoding.qmd).
 
@@ -61,7 +61,7 @@ Ground receiver coverage is dense in many populated regions and sparse over ocea
 
 ### Contract-based surveillance and datalink sources
 
-[\acrfull{ADS-C}](../background/surveillance-systems.qmd#ads-c) can also provide trajectory data, especially in oceanic and remote airspace. Unlike ADS-B, it is not an open broadcast. It is based on a contract between an aircraft and an \acr{ATSU} specifying what information should be sent and under which conditions.
+[\acr{ADS-C}](../background/surveillance-systems.qmd#ads-c) can also provide trajectory data, especially in oceanic and remote airspace. Unlike ADS-B, it is not an open broadcast. It is based on a contract between an aircraft and an \acr{ATSU} specifying what information should be sent and under which conditions.
 
 For flight tracking, ADS-C reports are valuable because they may include not only a position but also route intent, meteorological information, and air-reference data. These messages have traditionally been available mainly to operational stakeholders, but ADS-C data have also started to appear in research-oriented feeds, including the OpenSky Network. The detailed data model and decoded examples are covered in [ADS-C data](adsc-data.qmd). Datalink context is introduced in [Datalink and ACARS message sources](datalink-acars-message-sources.qmd).
 

@@ -27,7 +27,7 @@ At aerodromes, several different taxiway types are distinguished. These taxiway 
   An apron taxiway is part of the taxiway system located on an apron, providing a through-route across the apron but not direct access to stands (which is the function of taxilanes). At some airports, apron taxiways are designed to accommodate different aircraft codes simultaneously — for example, central portions may support larger Code E aircraft, while adjacent sections are restricted to Code C aircraft. This allows Code C aircraft to cross or pass each other, improving apron traffic flow.  
 
 * **Rapid Exit Taxiway (\acr{RET}):**
-  \acr{RET} are taxiways connected to a runway at an acute angle of 25° to 45°, designed to enable aircraft to vacate the runway at relatively high speeds after landing. Their main purpose is to minimize the average \acrfull{ROT} of arriving aircraft, i.e., the time an aircraft remains on the runway after touchdown. Since only one aircraft can occupy a runway at a given moment, a runway's throughput (i.e., the number of aircraft movements it can handle per unit time) depends on how quickly aircraft clear the runway.
+  \acr{RET} are taxiways connected to a runway at an acute angle of 25° to 45°, designed to enable aircraft to vacate the runway at relatively high speeds after landing. Their main purpose is to minimize the average \acr{ROT} of arriving aircraft, i.e., the time an aircraft remains on the runway after touchdown. Since only one aircraft can occupy a runway at a given moment, a runway's throughput (i.e., the number of aircraft movements it can handle per unit time) depends on how quickly aircraft clear the runway.
 
 * **Perimeter Taxiway:**  
   A perimeter taxiway runs around the ends of runways to avoid runway crossings. They are usually built at large airports. By eliminating runway crossings, perimeter taxiways decouple runway operations (arrivals and departures) from crossing traffic, improving throughput and safety by reducing runway incursion risks. However, perimeter taxiways require significant space and are costly compared to simple runway crossings.  
@@ -38,7 +38,7 @@ At aerodromes, several different taxiway types are distinguished. These taxiway 
 * **Holding Positions / Holding Points:**  
   Holding positions are designated areas before runways where departing aircraft wait for clearance to line up. Ideally, holding positions are arranged at 90° to the runway to give pilots maximum visibility of both the runway and the approach corridor. However, angled holding positions allow departing traffic to line up more quickly, reducing occupancy times and increasing runway capacity. Parallel holding positions along the runway further allow overtaking and give controllers more flexibility in sequencing departures.  
 
-  The required distance from the runway holding position to the runway centerline depends on the aerodrome code number and runway type. On runways with CAT II/III approaches, requirements are the most stringent, as \acrfull{OFZ} and \acrfull{ILS} critical/sensitive areas must be respected.  
+  The required distance from the runway holding position to the runway centerline depends on the aerodrome code number and runway type. On runways with CAT II/III approaches, requirements are the most stringent, as \acr{OFZ} and \acr{ILS} critical/sensitive areas must be respected.  
 
   The table below summarizes the prescribed distances between the runway holding position and the runway centerline. For example, on a Code 4 runway with a CAT I approach, the required distance between the holding position and the runway centerline is 90 m.  
 
@@ -200,7 +200,7 @@ updateTaxiway();
 
 
 
-The **width** of a taxiway, together with its shoulders and strips, is specified in *CS ADR-DSN.D* (see @tbl-twy-dims). The required dimensions depend on the \acrfull{OMGWS} of the critical aircraft. For example, for a Code C aircraft (such as the A320, B737, or A220), the taxiway must have a width of 15 m, the shoulders a width of 25 m, and the strip a width of 52 m. Note that all dimensions refer to edge-to-edge measurements.  
+The **width** of a taxiway, together with its shoulders and strips, is specified in *CS ADR-DSN.D* (see @tbl-twy-dims). The required dimensions depend on the \acr{OMGWS} of the critical aircraft. For example, for a Code C aircraft (such as the A320, B737, or A220), the taxiway must have a width of 15 m, the shoulders a width of 25 m, and the strip a width of 52 m. Note that all dimensions refer to edge-to-edge measurements.  
 
 | Code Letter | \acr{OMGWS} | Taxiway | Shoulder       | Strip |
 |-------------|-------------|---------|----------------|-------|

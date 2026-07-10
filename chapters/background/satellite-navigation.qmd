@@ -9,11 +9,11 @@ Modern navigation combines onboard sensors, satellite positioning, augmentation 
 
 ## Inertial Navigation (INS/IRS)
 
-\acrfull{INS} and \acrfull{IRS} provide a self-contained estimate of **attitude, velocity, and position**. Unlike radio or satellite navigation, they do not depend on external signals: the aircraft measures its own accelerations and angular rates, then integrates them over time. This makes inertial navigation especially valuable as a continuous, jamming-resistant reference.
+\acr{INS} and \acr{IRS} provide a self-contained estimate of **attitude, velocity, and position**. Unlike radio or satellite navigation, they do not depend on external signals: the aircraft measures its own accelerations and angular rates, then integrates them over time. This makes inertial navigation especially valuable as a continuous, jamming-resistant reference.
 
-Each unit contains three accelerometers and three gyroscopes. After an initial ground alignment, the system knows the local vertical, true north, and starting position. In flight, it maintains attitude and derives velocity and position by transforming measured accelerations into an Earth reference frame. Modern systems are usually **strapdown** designs, with sensors fixed to the airframe, and use high-stability technologies such as \acrfull{RLG} or \acrfull{FOG}.
+Each unit contains three accelerometers and three gyroscopes. After an initial ground alignment, the system knows the local vertical, true north, and starting position. In flight, it maintains attitude and derives velocity and position by transforming measured accelerations into an Earth reference frame. Modern systems are usually **strapdown** designs, with sensors fixed to the airframe, and use high-stability technologies such as \acr{RLG} or \acr{FOG}.
 
-The main limitation is **drift**. Very small sensor errors accumulate over time, so the position estimate slowly degrades even though attitude remains very accurate. For this reason, inertial navigation is normally blended in the \acrfull{FMS} with external updates from \acr{GNSS}, DME/DME, or VOR/DME. The avionics compare the resulting \acrfull{ANP} with the required navigation performance for the procedure and alert the crew if the solution is no longer good enough.
+The main limitation is **drift**. Very small sensor errors accumulate over time, so the position estimate slowly degrades even though attitude remains very accurate. For this reason, inertial navigation is normally blended in the \acr{FMS} with external updates from \acr{GNSS}, DME/DME, or VOR/DME. The avionics compare the resulting \acr{ANP} with the required navigation performance for the procedure and alert the crew if the solution is no longer good enough.
 
 ::: {.callout-tip}
 ### Inertial navigation in practice
@@ -23,7 +23,7 @@ The \acr{IRS} is not usually the most accurate long-term position sensor, but it
 
 ## Global Navigation Satellite System (GNSS)
 
-The \acrfull{GNSS} is the collective term for satellite navigation constellations such as \acrfull{GPS}, Galileo, GLONASS, and BeiDou. It has become the main positioning source for modern aviation and is central to \acrfull{PBN}, \acr{RNAV}, and \acrfull{RNP} operations.
+The \acr{GNSS} is the collective term for satellite navigation constellations such as \acr{GPS}, Galileo, GLONASS, and BeiDou. It has become the main positioning source for modern aviation and is central to \acr{PBN}, \acr{RNAV}, and \acr{RNP} operations.
 
 ### Principle of operation
 
@@ -40,14 +40,14 @@ On their own, core \acr{GNSS} constellations typically provide position accuracy
 ::: {.callout-note}
 ### GNSS augmentation
 
-Augmentation systems improve the accuracy and integrity of \acr{GNSS}. \acrfull{SBAS}, such as **EGNOS** in Europe and **WAAS** in the United States, broadcasts wide-area corrections and integrity information from geostationary satellites. This enables approach procedures with vertical guidance, including \acr{LPV} minima, without installing equipment at each airport. [\acrfull{GBAS}](conventional-radio-navigation.qmd#gbas-landing-system-gls) is the local airport-based alternative, which provides very accurate corrections for precision approaches.
+Augmentation systems improve the accuracy and integrity of \acr{GNSS}. \acr{SBAS}, such as **EGNOS** in Europe and **WAAS** in the United States, broadcasts wide-area corrections and integrity information from geostationary satellites. This enables approach procedures with vertical guidance, including \acr{LPV} minima, without installing equipment at each airport. [\acr{GBAS}](conventional-radio-navigation.qmd#gbas-landing-system-gls) is the local airport-based alternative, which provides very accurate corrections for precision approaches.
 :::
 
 ### Operational use and limitations
 
 \acr{GNSS} supports direct routing, flexible procedures, curved approaches, and modern \acr{RNP} operations. It reduces dependence on ground beacons and allows routes and waypoints to be defined by coordinates rather than by the physical location of navigation aids.
 
-Its main weakness is signal vulnerability. \acr{GNSS} signals are very weak at the Earth’s surface and can be affected by interference, jamming, spoofing, poor satellite geometry, or temporary outages. For this reason, aircraft combine \acr{GNSS} with integrity monitoring such as \acrfull{RAIM}, inertial sensors, and backup infrastructure such as \acr{VOR}/\acr{DME} or \acr{ILS}.
+Its main weakness is signal vulnerability. \acr{GNSS} signals are very weak at the Earth’s surface and can be affected by interference, jamming, spoofing, poor satellite geometry, or temporary outages. For this reason, aircraft combine \acr{GNSS} with integrity monitoring such as \acr{RAIM}, inertial sensors, and backup infrastructure such as \acr{VOR}/\acr{DME} or \acr{ILS}.
 
 ::: {.callout-tip}
 ### Jamming and spoofing

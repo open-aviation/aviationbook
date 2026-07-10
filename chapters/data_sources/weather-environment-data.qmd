@@ -61,7 +61,7 @@ Typical analysis questions include:
 
 Numerical weather prediction and reanalysis datasets provide gridded atmospheric fields. Common variables include wind components, temperature, pressure, humidity, geopotential height, cloud variables, precipitation, radiation, and turbulence-related diagnostics.
 
-\acrfull{ERA5} is widely used in research because it provides global historical reanalysis with consistent coverage over decades. Other operational forecast products may have higher temporal resolution, lower latency, or better suitability for real-time applications.
+\acr{ERA5} is widely used in research because it provides global historical reanalysis with consistent coverage over decades. Other operational forecast products may have higher temporal resolution, lower latency, or better suitability for real-time applications.
 
 For trajectory enrichment, gridded data is usually interpolated in four dimensions: latitude, longitude, altitude or pressure level, and time. This makes it possible to attach wind, temperature, or humidity to each trajectory point.
 

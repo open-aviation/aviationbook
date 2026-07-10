@@ -752,7 +752,7 @@ viewof selectedDsIndex = Inputs.bind(
 
 ## Error control and CRC
 
-The last 24 bits of a Mode S frame are used for \acrfull{CRC} logic, but the exact meaning depends on the message family.
+The last 24 bits of a Mode S frame are used for \acr{CRC} logic, but the exact meaning depends on the message family.
 
 - ADS-B Extended Squitter (samples 1 to 3) appends a parity/interrogator field that protects the message and includes the aircraft address in the frame.
 
@@ -806,7 +806,7 @@ viewof selectedCrcIndex = Inputs.bind(
 
 ## Downlink formats
 
-The first five bits of every Mode S downlink message encode the **\acrfull{DF}**. This is the first dispatch key in a decoder: it tells the library which structure to apply to the rest of the frame. The commonly used Mode S downlink formats are listed below.
+The first five bits of every Mode S downlink message encode the **\acr{DF}**. This is the first dispatch key in a decoder: it tells the library which structure to apply to the rest of the frame. The commonly used Mode S downlink formats are listed below.
 
 ::: {.df-format-table #tbl-results tbl-cap="Most commonly used Mode S downlink formats"}
 | \acr{DF} | Size | Message family |
@@ -1453,4 +1453,3 @@ viewof selectedCommbSample = {
 ```
 
 ## Glossary {.unnumbered}
-

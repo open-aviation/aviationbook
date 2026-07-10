@@ -64,7 +64,7 @@ This is why systems such as EUROCONTROL's Network Manager maintain trajectory mo
 
 ## Network Manager context
 
-EUROCONTROL's \acrfull{NM} supports flight-plan validation, demand prediction, capacity balancing, and flow management in the European network. Aircraft operators filing IFR flights in the NM area submit flight-plan information that is checked against route availability, restrictions, sector capacities, and other operational constraints.
+EUROCONTROL's \acr{NM} supports flight-plan validation, demand prediction, capacity balancing, and flow management in the European network. Aircraft operators filing IFR flights in the NM area submit flight-plan information that is checked against route availability, restrictions, sector capacities, and other operational constraints.
 
 The result is a set of trajectory and demand data products used by ANSPs, airports, aircraft operators, researchers, and tools such as NEST. Access may be operational, institutional, or subject to EUROCONTROL data-sharing conditions.
 

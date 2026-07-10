@@ -24,7 +24,7 @@ A useful distinction is between **regulation** and **service provision**.
 
 The **Civil Aviation Authority** or national regulator defines and enforces safety requirements, certifies organisations and personnel, oversees compliance, and implements international standards in national law. The regulator should be institutionally distinct from the operator it supervises, even if both ultimately belong to the same state system.
 
-The **\acrfull{ANSP}** delivers operational services: air traffic control, communications, navigation aids, surveillance infrastructure, aeronautical information, and sometimes aviation meteorology. Depending on the country, an \acr{ANSP} may be a government department, a state-owned company, a public-private partnership, or a corporatised public entity.
+The **\acr{ANSP}** delivers operational services: air traffic control, communications, navigation aids, surveillance infrastructure, aeronautical information, and sometimes aviation meteorology. Depending on the country, an \acr{ANSP} may be a government department, a state-owned company, a public-private partnership, or a corporatised public entity.
 
 ::: {.callout-tip}
 ### Different ANSP models in Europe

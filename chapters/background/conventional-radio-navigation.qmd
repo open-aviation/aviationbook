@@ -33,30 +33,30 @@ Radials can be especially confusing because they describe the aircraft position 
 
 ## Non-Directional Beacon (NDB)
 
-The \acrfull{NDB} is a ground-based transmitter that radiates a simple, omnidirectional signal in the low and medium frequency bands, typically between **190 and 535 kHz**. In some regions, operation extends to higher frequencies, but the majority of aeronautical \acr{NDB} are confined to this internationally allocated band. \acr{NDB} are channelized at 1 or 2 kHz intervals, and each beacon is identified by a short Morse code identifier transmitted in the **400–1020 Hz audio band**.
+The \acr{NDB} is a ground-based transmitter that radiates a simple, omnidirectional signal in the low and medium frequency bands, typically between **190 and 535 kHz**. In some regions, operation extends to higher frequencies, but the majority of aeronautical \acr{NDB} are confined to this internationally allocated band. \acr{NDB} are channelized at 1 or 2 kHz intervals, and each beacon is identified by a short Morse code identifier transmitted in the **400–1020 Hz audio band**.
 
-An \acr{NDB} works in conjunction with the aircraft’s \acrfull{ADF}. The \acr{ADF} needle points toward the beacon, giving the pilot a bearing relative to the aircraft’s heading. When combined with the aircraft’s magnetic compass, this provides a magnetic bearing to or from the station. Because the system only provides a direction, without distance, pilots often use \acr{NDB} in combination with other navigation aids or time–distance calculations.
+An \acr{NDB} works in conjunction with the aircraft’s \acr{ADF}. The \acr{ADF} needle points toward the beacon, giving the pilot a bearing relative to the aircraft’s heading. When combined with the aircraft’s magnetic compass, this provides a magnetic bearing to or from the station. Because the system only provides a direction, without distance, pilots often use \acr{NDB} in combination with other navigation aids or time–distance calculations.
 
 The system is technically straightforward, based on the physical properties of a loop antenna, but subject to a number of errors. These include **night effect**, caused by ionospheric reflections after sunset; **coastal refraction**, where signals bend as they cross shorelines; and **terrain or structural interference**, which can distort the bearing. Lightning and precipitation static can also disturb reception. Under good conditions the expected accuracy is **about ±5°**, but actual errors can be considerably greater.
 
 Coverage depends strongly on transmitter power and the conductivity of the ground or sea path. Locator \acr{NDB} (L) near airports typically have a range of 15–25 nautical miles, while larger en-route \acr{NDB} can reach 50 nautical miles or more.
 
-For decades \acr{NDB} were widely used for en-route navigation, non-precision approaches, and as locator beacons associated with the [\acrfull{ILS}](#instrument-landing-system-ils). In most operational environments, however, \acr{NDB} are regarded as a legacy aid in the process of being phased out.
+For decades \acr{NDB} were widely used for en-route navigation, non-precision approaches, and as locator beacons associated with the [\acr{ILS}](#instrument-landing-system-ils). In most operational environments, however, \acr{NDB} are regarded as a legacy aid in the process of being phased out.
 
 
 ## VHF Omnidirectional Range (VOR)
 
-The \acrfull{VOR} is a ground-based azimuth navigation aid that gives an aircraft its magnetic bearing from a station. It became one of the foundations of conventional airways, terminal procedures, and non-precision approaches after the Second World War.
+The \acr{VOR} is a ground-based azimuth navigation aid that gives an aircraft its magnetic bearing from a station. It became one of the foundations of conventional airways, terminal procedures, and non-precision approaches after the Second World War.
 
 \acr{VOR} operates between **108.0 and 117.95 MHz**, with part of the lower band shared with [\acr{ILS}](#instrument-landing-system-ils) localizers. Each station transmits a reference signal and a variable signal; the phase difference between them encodes the radial on which the aircraft lies. The station also transmits a short Morse-code identifier, normally repeated at regular intervals.
 
 Because \acr{VOR} is a \acr{VHF} line-of-sight system, coverage depends on altitude and terrain. At cruising altitude a station may be usable out to around 200 nautical miles, but local siting matters. Reflections from terrain, buildings, or wind turbines can introduce multipath errors, and directly overhead the station there is a cone of silence where no reliable bearing is available.
 
-Two main designs are used. A \acrfull{CVOR} produces the variable signal with a rotating directional pattern, while a \acrfull{DVOR} synthesises the rotation electronically with a circular antenna array. \acr{DVOR} is less sensitive to site-dependent errors and generally gives more stable bearing information.
+Two main designs are used. A \acr{CVOR} produces the variable signal with a rotating directional pattern, while a \acr{DVOR} synthesises the rotation electronically with a circular antenna array. \acr{DVOR} is less sensitive to site-dependent errors and generally gives more stable bearing information.
 
-Operationally, a single \acr{VOR} radial provides lateral guidance. Combined with [\acrfull{DME}](#distance-measuring-equipment-dme), a VOR/DME site gives both azimuth and slant-range distance; two radials from different stations can also be used to fix position. This made \acr{VOR} central to airways, \acr{SID}, \acr{STAR}, and many non-precision approaches.
+Operationally, a single \acr{VOR} radial provides lateral guidance. Combined with [\acr{DME}](#distance-measuring-equipment-dme), a VOR/DME site gives both azimuth and slant-range distance; two radials from different stations can also be used to fix position. This made \acr{VOR} central to airways, \acr{SID}, \acr{STAR}, and many non-precision approaches.
 
-The standard total system accuracy is about **±4°**, adequate for conventional navigation but not for modern \acr{RNP} specifications. As aviation moves toward \acr{GNSS}-based \acr{PBN}, many states are reducing their VOR networks while preserving a \acrfull{MON} as a backup in case of satellite-navigation outages.
+The standard total system accuracy is about **±4°**, adequate for conventional navigation but not for modern \acr{RNP} specifications. As aviation moves toward \acr{GNSS}-based \acr{PBN}, many states are reducing their VOR networks while preserving a \acr{MON} as a backup in case of satellite-navigation outages.
 
 ::: {.callout-tip}
 ### TODO
@@ -68,7 +68,7 @@ The standard total system accuracy is about **±4°**, adequate for conventional
 
 ## Distance Measuring Equipment (DME)
 
-\acrfull{DME} is a ground-based aid that gives the aircraft its distance from a station. It operates in the \acrfull{UHF} band between **960 and 1215 MHz** and is usually paired with a \acr{VOR} or an [\acr{ILS}](#instrument-landing-system-ils). In a paired installation, selecting the \acr{VOR} or localizer frequency also selects the associated \acr{DME} channel.
+\acr{DME} is a ground-based aid that gives the aircraft its distance from a station. It operates in the \acr{UHF} band between **960 and 1215 MHz** and is usually paired with a \acr{VOR} or an [\acr{ILS}](#instrument-landing-system-ils). In a paired installation, selecting the \acr{VOR} or localizer frequency also selects the associated \acr{DME} channel.
 
 The system uses an **interrogator–transponder** principle. The aircraft sends coded pulse pairs to the ground station; the station replies after a fixed delay; and the airborne equipment computes distance from the round-trip travel time. \acr{DME} channels use different pulse-pair spacings, commonly 12 microseconds for X channels and 36 microseconds for Y channels.
 
@@ -98,17 +98,17 @@ As many \acr{VOR} stations are slowly decommissioned, conventional navigation is
 
 ## Instrument Landing System (ILS)
 
-The \acrfull{ILS} is the most widely used precision approach aid in aviation. It provides both lateral and vertical guidance to enable safe landings in conditions of reduced visibility. An \acr{ILS} consists of three main components:
+The \acr{ILS} is the most widely used precision approach aid in aviation. It provides both lateral and vertical guidance to enable safe landings in conditions of reduced visibility. An \acr{ILS} consists of three main components:
 
-- the **\acrfull{LOC}** for lateral guidance,
-- the **\acrfull{GS}** for vertical guidance, and, historically,
+- the **\acr{LOC}** for lateral guidance,
+- the **\acr{GS}** for vertical guidance, and, historically,
 - **marker beacons** for range information.
 
 The \acr{LOC} operates in the frequency band between **108.10 and 111.95 MHz**, using only odd 100 kHz channels to avoid interference with the \acr{VOR}. It provides lateral guidance by transmitting two overlapping lobes with 90 Hz and 150 Hz modulation. The aircraft determines whether it is left or right of the runway centerline by comparing these signals. Coverage typically extends 25 NM within ±10° of the centerline and 17 NM within ±35°.
 
 The \acr{GS} operates between **329 and 335 MHz**, automatically paired with the tuned \acr{LOC} frequency. It provides vertical guidance by transmitting overlapping signals above and below the desired glide path. The standard descent angle is about 3°, with coverage extending 10 NM up to 1.75° above and 0.45° below the nominal path.
 
-In the past, **marker beacons** operating at 75 MHz provided range information along the approach path (outer, middle, and inner markers). Today, many of these have been decommissioned and replaced by \acrfull{DME}, which gives more flexible and accurate distance information.
+In the past, **marker beacons** operating at 75 MHz provided range information along the approach path (outer, middle, and inner markers). Today, many of these have been decommissioned and replaced by \acr{DME}, which gives more flexible and accurate distance information.
 
 \acr{ILS} performance is defined in terms of **categories**, which correspond to different minima:
 
@@ -135,7 +135,7 @@ The system has clear advantages: it is a mature, proven technology, certified wo
 **Implication for aviation**: Airports must protect \acr{ILS} installations with strict ground movement procedures. Pilots may be instructed to hold short of critical areas to ensure the integrity of guidance for arriving traffic.
 :::
 
-Although the \acr{ILS} remains the global standard for precision approaches, future developments are moving toward satellite-based landing systems. [\acrfull{GBAS}](#gbas-landing-system-gls) and \acrfull{GLS} offer the potential for flexible, high-precision approaches without the need for dedicated \acr{ILS} installations at each runway end. Nevertheless, the \acr{ILS} is expected to remain in service for the foreseeable future, especially at major airports where high traffic density demands robust precision guidance.
+Although the \acr{ILS} remains the global standard for precision approaches, future developments are moving toward satellite-based landing systems. [\acr{GBAS}](#gbas-landing-system-gls) and \acr{GLS} offer the potential for flexible, high-precision approaches without the need for dedicated \acr{ILS} installations at each runway end. Nevertheless, the \acr{ILS} is expected to remain in service for the foreseeable future, especially at major airports where high traffic density demands robust precision guidance.
 
 ::: {.callout-note}
 ### From ILS beams to satellite-based approaches
@@ -145,11 +145,11 @@ The same transition is visible for precision approaches. \acr{ILS} gives excelle
 
 ## Precision approach systems
 
-Precision approach systems provide coupled lateral and vertical guidance to touchdown, supporting low-visibility operations. Historically, this role has been fulfilled by the \acrfull{ILS}. Modern alternatives use satellite navigation with local or wide-area augmentation to deliver equivalent performance at lower infrastructure cost and with more flexible procedure design. In this section we discuss the \acr{ILS}, the \acr{GBAS}-based landing system (\acr{GLS}), and the microwave landing system (MLS). For the \acr{GLS} and the [MLS](#microwave-landing-system-mls), we highlight how they compare with \acr{ILS}.
+Precision approach systems provide coupled lateral and vertical guidance to touchdown, supporting low-visibility operations. Historically, this role has been fulfilled by the \acr{ILS}. Modern alternatives use satellite navigation with local or wide-area augmentation to deliver equivalent performance at lower infrastructure cost and with more flexible procedure design. In this section we discuss the \acr{ILS}, the \acr{GBAS}-based landing system (\acr{GLS}), and the microwave landing system (MLS). For the \acr{GLS} and the [MLS](#microwave-landing-system-mls), we highlight how they compare with \acr{ILS}.
 
 
 ### GBAS Landing System (GLS)
-The \acrfull{GLS} represents the satellite-based successor to the \acr{ILS}. At its core is the \acr{GBAS}, an installation at the airport that continuously monitors \acr{GNSS} signals using a precisely surveyed antenna array. From these measurements, \acr{GBAS} calculates real-time corrections and transmits them to aircraft via a \acr{VDB}. The flight management system applies these corrections to the onboard \acr{GNSS} position and generates precision approach guidance that is equivalent to that of the \acr{ILS}.
+The \acr{GLS} represents the satellite-based successor to the \acr{ILS}. At its core is the \acr{GBAS}, an installation at the airport that continuously monitors \acr{GNSS} signals using a precisely surveyed antenna array. From these measurements, \acr{GBAS} calculates real-time corrections and transmits them to aircraft via a \acr{VDB}. The flight management system applies these corrections to the onboard \acr{GNSS} position and generates precision approach guidance that is equivalent to that of the \acr{ILS}.
 
 A single \acr{GBAS} installation can support a large number of approach procedures to multiple runway ends, a major advantage over \acr{ILS}, which requires separate installations for each direction. This allows airports to design flexible approach paths, including curved or offset trajectories, to mitigate noise or terrain constraints. \acr{GLS} procedures appear in the cockpit as selectable approaches, much like an \acr{ILS}, but they are flown using the corrected \acr{GNSS} position rather than a localizer and glide slope beam.
 

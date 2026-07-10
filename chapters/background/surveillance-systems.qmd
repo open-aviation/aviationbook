@@ -15,7 +15,7 @@ The basic idea of radar is to use radio waves to detect objects at a distance. T
 
 <!-- ![Radar coverage over the British Isles during WW2](../../images/radar_coverage.png){#fig-radar-ww2 width=40%} -->
 
-In civil aviation, **\acrfull{PSR}** is the non-cooperative form of radar surveillance. The ground antenna transmits short, high-power pulses, usually in the **S-band or L-band**, and listens for the small fraction of energy reflected by aircraft. The time between transmission and echo gives the **range**, while the rotating antenna gives the **azimuth** of the target.
+In civil aviation, **\acr{PSR}** is the non-cooperative form of radar surveillance. The ground antenna transmits short, high-power pulses, usually in the **S-band or L-band**, and listens for the small fraction of energy reflected by aircraft. The time between transmission and echo gives the **range**, while the rotating antenna gives the **azimuth** of the target.
 
 Because \acr{PSR} relies only on reflected energy, it can detect aircraft without requiring any working equipment on board. This makes it valuable as a safety net when a transponder fails, is switched off, or when an unknown target enters controlled airspace.
 
@@ -23,7 +23,7 @@ Its performance depends on transmitted power, wavelength, antenna design, target
 
 ## Secondary Surveillance Radar
 
-**\acrfull{SSR}** is the cooperative counterpart to \acr{PSR}. Instead of listening for a weak reflection from the aircraft skin, the ground station interrogates the aircraft transponder on **1030 MHz**, and the transponder replies on **1090 MHz**. This active reply is stronger and easier to process, giving controllers a more reliable surveillance picture in controlled airspace.
+**\acr{SSR}** is the cooperative counterpart to \acr{PSR}. Instead of listening for a weak reflection from the aircraft skin, the ground station interrogates the aircraft transponder on **1030 MHz**, and the transponder replies on **1090 MHz**. This active reply is stronger and easier to process, giving controllers a more reliable surveillance picture in controlled airspace.
 
 The information depends on the transponder mode. **Mode A** returns the four-digit *squawk code* assigned by air traffic control. **Mode C** adds pressure altitude, allowing the controller display to show the aircraft in three dimensions. These modes made \acr{SSR} the basis of cooperative radar surveillance, but they also have limits: the code space is small, replies can overlap in dense traffic, and the system depends on a functioning transponder.
 
@@ -31,11 +31,11 @@ The information depends on the transponder mode. **Mode A** returns the four-dig
 
 **Mode S** extends \acr{SSR} by making interrogations selective. Each aircraft has a globally unique 24-bit \acr{ICAO} address, so a ground station can address one aircraft rather than asking every transponder in range to reply. This reduces garbling, limits unnecessary replies, and improves performance in busy airspace.
 
-Mode S also supports richer data exchange. In addition to identity and altitude, it can carry aircraft parameters used by air traffic control and collision-avoidance systems such as \acr{TCAS}. Its unsolicited broadcasts, known as **squitters**, are especially important: extended squitters provide the technical basis for \acrfull{ADS-B}. In this sense, Mode S is both an improved form of secondary radar and a bridge toward broadcast-based surveillance.
+Mode S also supports richer data exchange. In addition to identity and altitude, it can carry aircraft parameters used by air traffic control and collision-avoidance systems such as \acr{TCAS}. Its unsolicited broadcasts, known as **squitters**, are especially important: extended squitters provide the technical basis for \acr{ADS-B}. In this sense, Mode S is both an improved form of secondary radar and a bridge toward broadcast-based surveillance.
 
 ## ADS-B
 
-A more recent development is **\acrfull{ADS-B}**. Unlike \acr{PSR} or \acr{SSR}, \acr{ADS-B} does not rely on ground radar interrogations. Instead, the aircraft automatically broadcasts its own position, identification, altitude, and velocity, typically twice per second. The position is determined by the onboard GNSS receiver, making the system highly accurate.
+A more recent development is **\acr{ADS-B}**. Unlike \acr{PSR} or \acr{SSR}, \acr{ADS-B} does not rely on ground radar interrogations. Instead, the aircraft automatically broadcasts its own position, identification, altitude, and velocity, typically twice per second. The position is determined by the onboard GNSS receiver, making the system highly accurate.
 
 The name itself summarizes its features: it is **automatic**, requiring no input from pilot or controller; it is **dependent**, as it relies on [satellite navigation data](satellite-navigation.qmd); it provides **surveillance** by delivering a continuous stream of situational information; and it is a **broadcast**, with data openly transmitted for reception by any suitably equipped ground station or aircraft.
 
@@ -45,7 +45,7 @@ Two service levels are distinguished. **\acr{ADS-B} Out** refers to the transmis
 
 ## ADS-C
 
-**\acrfull{ADS-C}** is closely related to \acr{ADS-B} but follows a different operational concept. Instead of broadcasting continuously, \acr{ADS-C} is based on an agreement, or contract, between the aircraft and an air traffic control unit. Through this contract, the aircraft is required to transmit position and other data at predefined intervals, upon request, or when certain events occur.
+**\acr{ADS-C}** is closely related to \acr{ADS-B} but follows a different operational concept. Instead of broadcasting continuously, \acr{ADS-C} is based on an agreement, or contract, between the aircraft and an air traffic control unit. Through this contract, the aircraft is required to transmit position and other data at predefined intervals, upon request, or when certain events occur.
 
 There are three main contract types. A **periodic contract** sends reports at regular time intervals, often every five minutes, which has largely replaced traditional HF voice position reports in oceanic airspace. A **demand contract** allows ATC to request specific data outside the periodic cycle. Finally, an **event contract** automatically generates a message when predefined conditions are met, such as a level deviation, waypoint crossing, or unexpected climb or descent.
 
@@ -53,7 +53,7 @@ There are three main contract types. A **periodic contract** sends reports at re
 
 ## Multilateration (MLAT)
 
-A complementary cooperative technology used in both en-route and airport environments is **\acrfull{MLAT}**. This system determines an aircraft’s position by measuring the difference in the time of arrival of a transponder signal at multiple ground stations. The signals used can be standard \acr{SSR} replies or \acr{ADS-B} transmissions, meaning that no additional airborne equipment is required beyond a conventional transponder.
+A complementary cooperative technology used in both en-route and airport environments is **\acr{MLAT}**. This system determines an aircraft’s position by measuring the difference in the time of arrival of a transponder signal at multiple ground stations. The signals used can be standard \acr{SSR} replies or \acr{ADS-B} transmissions, meaning that no additional airborne equipment is required beyond a conventional transponder.
 
 By combining the timing information from several receivers, the aircraft’s location can be triangulated with high precision. Multilateration has proven particularly effective for **surface movement surveillance** at airports, where it can track aircraft and vehicles on runways and taxiways with greater accuracy than radar. It also serves as a cost-effective alternative or complement to traditional radar in terminal areas and can enhance redundancy in the wider surveillance network.
 

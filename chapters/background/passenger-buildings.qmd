@@ -66,7 +66,7 @@ Passenger buildings must satisfy the requirements of several stakeholder groups.
 
 Passenger buildings must also support the separation of **domestic**, **international**, **Schengen**, and **Non-Schengen** passengers where required. In the Schengen context, Schengen passengers can usually travel without systematic border control, whereas Non-Schengen passengers must pass immigration or emigration. The building must therefore prevent passenger groups with different border-control status from mixing. This often requires duplicated corridors, lounges, retail areas, and gate areas, which increases both cost and operational complexity.
 
-**Transfer passengers** create additional requirements. For a hub airport, the building must enable short and reliable connections between flights. The \acrfull{MCT} represents the shortest connection time that an airport and its airline partners can offer for a given transfer type. A short \acr{MCT} increases the number of possible connections in a banked hub operation and therefore improves the attractiveness of the airport for transfer traffic. However, short \acr{MCT} values require compact layouts, short walking distances, efficient security and border-control processes, and fast baggage transfer systems.
+**Transfer passengers** create additional requirements. For a hub airport, the building must enable short and reliable connections between flights. The \acr{MCT} represents the shortest connection time that an airport and its airline partners can offer for a given transfer type. A short \acr{MCT} increases the number of possible connections in a banked hub operation and therefore improves the attractiveness of the airport for transfer traffic. However, short \acr{MCT} values require compact layouts, short walking distances, efficient security and border-control processes, and fast baggage transfer systems.
 
 | Origin        | Destination   | Typical minimum connecting time   |
 |---------------|---------------|----------------------------------:|
@@ -185,7 +185,7 @@ A well-designed departure concourse reduces passenger stress by providing good v
 #### Check-in and baggage drop
 At **check-in** and **baggage drop**, departing passengers receive or confirm their boarding pass, check travel documents where required, print baggage tags, and inject checked baggage into the baggage handling system (\acr{BHS}). Traditional check-in counters, where staff perform the entire process, have increasingly been replaced by self-service kiosks and automated baggage drop facilities. This development increases productivity and can reduce congestion, but it also changes the space and technology requirements of the check-in hall.
 
-The check-in process typically includes passenger identification, baggage weighing, overweight baggage payment, baggage tag printing, baggage tagging, boarding pass issuing, and baggage injection into the \acr{BHS}. Oversized baggage, such as skis, bicycles, or strollers, is usually handled at an \acrfull{OOG} counter. Since passengers at check-in often carry multiple bags, generous queuing and circulation areas are required.
+The check-in process typically includes passenger identification, baggage weighing, overweight baggage payment, baggage tag printing, baggage tagging, boarding pass issuing, and baggage injection into the \acr{BHS}. Oversized baggage, such as skis, bicycles, or strollers, is usually handled at an \acr{OOG} counter. Since passengers at check-in often carry multiple bags, generous queuing and circulation areas are required.
 
 Three common check-in layouts are used in practice:
 
@@ -318,7 +318,7 @@ The **\acr{SBR}** method requires hourly passenger demand observations covering 
 ![Standard busy rate (\acr{SBR})](../../images/illustrations/SBR_example.png){#fig-sbr width=100%}
 
 
-The **\acr{DHR}** method also uses hourly passenger-flow data. Instead of ranking the observations, planners calculate the \acrfull{ECDF} of the hourly demand. The \acr{DHL} is then defined as the hourly demand corresponding to a selected cumulative probability, typically 97% or 99%. Airports with highly peaked demand generally choose higher percentiles, whereas airports with more evenly distributed demand often use lower percentiles.
+The **\acr{DHR}** method also uses hourly passenger-flow data. Instead of ranking the observations, planners calculate the \acr{ECDF} of the hourly demand. The \acr{DHL} is then defined as the hourly demand corresponding to a selected cumulative probability, typically 97% or 99%. Airports with highly peaked demand generally choose higher percentiles, whereas airports with more evenly distributed demand often use lower percentiles.
 
 @fig-dhr illustrates this concept. The left-hand side shows the observed hourly passenger demand over one year. The right-hand side presents the corresponding ECDF. The selected percentile (e.g., 97% or 99%) determines the passenger demand adopted as the design hour load.
 
