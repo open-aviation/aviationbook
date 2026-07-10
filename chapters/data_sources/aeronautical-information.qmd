@@ -26,19 +26,19 @@ For analysis, the main difficulty is that these sources mix stable, cyclically u
 
 ## AIP structure
 
-An \acr{AIP} contains aeronautical information of lasting character essential to air navigation. AIPs are issued by states or by authorities acting on behalf of states, often the national \acr{ANSP} or \acr{AIS} provider. The high-level \acr{ICAO} structure is standardized into three parts:
+An \acr{AIP} contains aeronautical information of lasting character essential to air navigation. \acrs{AIP} are issued by states or by authorities acting on behalf of states, often the national \acr{ANSP} or \acr{AIS} provider. The high-level \acr{ICAO} structure is standardized into three parts:
 
 | Part | Scope | Examples of data |
 |---|---|---|
 | GEN | general information | responsible authorities, units of measure, abbreviations, time systems, charges, national procedures |
-| ENR | en-route information | airspace structure, ATS routes, navigation aids, restricted areas, radio navigation services, en-route charts |
+| ENR | en-route information | airspace structure, \acr{ATS} routes, navigation aids, restricted areas, radio navigation services, en-route charts |
 | AD | aerodromes and heliports | aerodrome data, runways, lighting, declared distances, procedures, charts, obstacles, local rules |
 
 \acrs{AIP}s are often available online as eAIP documents. They are human-readable and increasingly structured, but not always easy to process automatically. Tables, charts, textual notes, and PDF procedures may encode information that is difficult to convert into clean geospatial data.
 
 ## AIRAC cycles
 
-Aeronautical data changes through internationally coordinated \acr{AIRAC} cycles. \acr{AIRAC} follows a fixed 28-day rhythm, with effective dates globally occurring on predetermined dates. This gives data users time to update flight management systems, ATC databases, procedure design tools, and charting systems before the change becomes operational.
+Aeronautical data changes through internationally coordinated \acr{AIRAC} cycles. \acr{AIRAC} follows a fixed 28-day rhythm, with effective dates globally occurring on predetermined dates. This gives data users time to update \acrs{FMS}, \acr{ATC} databases, procedure design tools, and charting systems before the change becomes operational.
 
 ![AIRAC cycle, found at [ICAO](https://www.icao.int/airnavigation/airac)](../../images/AIRAC-cycle.jpg){#fig-airac}
 
