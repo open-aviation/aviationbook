@@ -258,7 +258,8 @@ acronyms:
     - shortname: NOTAM
       longname: Notice To Airmen
       plural:
-    - longname: Notices To Airmen
+        shortname: NOTAMs
+        longname: Notices To Airmen
     - shortname: OMGWS
       longname: Outer Main Gear Wheel Span
     - shortname: OFZ
