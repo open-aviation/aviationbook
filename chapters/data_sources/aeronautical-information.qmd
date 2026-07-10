@@ -44,6 +44,50 @@ Aeronautical data changes through internationally coordinated \acr{AIRAC} cycles
 
 For data analysis, the \acr{AIRAC} cycle is a versioning key. A trajectory, a flight plan, and a route network must be interpreted against the aeronautical data effective on the date of operation. A waypoint, procedure, airspace boundary, or route restriction may differ across cycles.
 
+The changes to the following information are distributed under the \acr{AIRAC} cycle regime [@ICAO_Annex_15]:
+
+a. limits (horizontal and vertical), regulations and procedures applicable to:
+  1. flight information regions;
+  2. control areas;
+  3. control zones;
+  4. advisory areas;
+  5. air traffic services (ATS) routes;
+  6. permanent danger, prohibited and restricted areas (including type and periods of activity when known) and air defence identification zones (ADIZ);
+  7. permanent areas or routes or portions thereof where the possibility of interception exists;
+b. positions, frequencies, call signs, identifiers, known irregularities and maintenance periods of radio navigation aids, and communication and surveillance facilities;
+c. holding and approach procedures, arrival and departure procedures, noise abatement procedures and any other pertinent ATS procedures;
+d. transition levels, transition altitudes and minimum sector altitudes;
+e. meteorological facilities (including broadcasts) and procedures;
+f. runways and stopways;
+g. taxiways and aprons;
+h. aerodrome ground operating procedures (including low visibility procedures);
+i. approach and runway lighting;
+j. aerodrome operating minima if published by a State
+
+@fig-airac depicts two scenarios, one for major updates and the other for normal updates.
+Normal updates are those concerning existing entries such as
+
+a. position, height and lighting of navigational obstacles;
+b. hours of service of aerodromes, facilities and services;
+c. customs, immigration and health services;
+d. temporary danger, prohibited and restricted areas and navigational hazards, military exercises and mass movements of aircraft; and
+e. temporary areas or routes or portions thereof where the possibility of interception exists.
+
+In this case publication of information starts at least 42 days before the effective date, with 14 days of
+distribution so as to reach recipients at least 28 days in advance of the effective date.
+
+Major updates are for example
+
+a. new aerodromes for international instrument flight rules (IFR) operations;
+b. new runways for IFR operations at international aerodromes;
+c. design and structure of the ATS route network;
+d. design and structure of a set of terminal procedures (including change of procedure bearings due to magnetic variation change);
+e. change to information following the \acr{AIRAC} regime if the entire State or any significant portion thereof is affected or if cross-border coordination is required.
+
+In these circumstances publication of information starts at least 70 days before the effective date, with 14 days of
+distribution so as to reach recipients at least 56 days in advance of the effective date.
+
+
 ## NOTAM, SUP AIP, AIC, and PIB
 
 Not all aeronautical information fits the regular \acr{AIP}/\acr{AIRAC} publication path.
