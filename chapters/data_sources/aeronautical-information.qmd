@@ -99,7 +99,7 @@ Not all aeronautical information fits the regular \acr{AIP}/\acr{AIRAC} publicat
 | \acr{AIC} | explanatory or administrative circular | future procedure changes, regulatory information, safety campaigns, technical transition plans |
 | \acr{PIB} | pre-flight briefing package | \acr{NOTAM} selection relevant to a flight, aerodrome, \acr{FIR}, route, or area |
 
-A \acr{NOTAM} is not a general news item. It is operationally scoped information that must be known by personnel concerned with flight operations. A \acr{PIB} is not a separate source of truth; it is a filtered compilation of \acr{NOTAM} and related briefing information for a particular use case.
+A \acr{NOTAM} is not a general news item. It is operationally scoped information that must be known by personnel concerned with flight operations. A \acr{PIB} is not a separate source of truth; it is a filtered compilation of \acrs{NOTAM} and related briefing information for a particular use case.
 
 ::: {.callout-warning}
 ## NOTAM as data
@@ -113,7 +113,7 @@ Aeronautical information systems describe a large set of objects. The same objec
 
 ### Airports and aerodromes
 
-At a macroscopic level an airport or aerodrome is identified by codes and represented by an \acr{ARP}. Detailed airport infrastructure data—runways, taxiways, parking positions, surface geometry, and operational metadata—is discussed in [airport and infrastructure data](airport-infrastructure-data.qmd). In aeronautical information, airports also act as anchors for procedures, \acr{NOTAM}, declared distances, charts, and local rules.
+At a macroscopic level an airport or aerodrome is identified by codes and represented by an \acr{ARP}. Detailed airport infrastructure data—runways, taxiways, parking positions, surface geometry, and operational metadata—is discussed in [airport and infrastructure data](airport-infrastructure-data.qmd). In aeronautical information, airports also act as anchors for procedures, \acrs{NOTAM}, declared distances, charts, and local rules.
 
 ### Points and navigation aids
 
