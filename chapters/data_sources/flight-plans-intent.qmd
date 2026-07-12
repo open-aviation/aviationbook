@@ -69,7 +69,7 @@ The result is a set of trajectory and demand data products used by \acrs{ANSP}, 
 
 ## \acr{NM} trajectory models
 
-Network Manager trajectory products distinguish several flight trajectory models. The names below are commonly encountered in the context of \acr{DDR2} [@nm-ddr2].  
+\acr{NM} trajectory products distinguish several flight trajectory models. The names below are commonly encountered in the context of \acr{DDR2} [@nm-ddr2].  
 These models are used by \acr{NM} systems to calculate the number of flights in the different airspaces of interest.
 Surveillance-level accuracy in not required; for example \acr{CTFM} trajectories take into account real-time feedback from surveillance systems (typically a fusion of radar and \acr{ADS-B}) with a frequesncy of one sample every 30 seconds.
 
@@ -96,12 +96,13 @@ Model 2, or **\acr{RTFM}**, reflects the trajectory after regulation. A regulati
 
 Model 3, or **\acr{CTFM}**, updates the trajectory during operation. It may incorporate \acrs{CPR}, radar-derived data, \acr{ADS-B} reports, and other updates when the aircraft deviates from earlier models.
 
-\acr{CTFM} is closer to the flown trajectory than \acr{FTFM} or \acr{RTFM}, but it is still a model maintained by a network system. It should not be treated as identical to raw surveillance data. In fact \acr{CTFM} deviates from \acr{FTFM} (or \acr{RTFM} in case of regulation) only if surveillance feedback shows any of the following deviations [@nm-atfcm-manual, section 12.3]:
+\acr{CTFM} is closer to the flown trajectory than \acr{FTFM} or \acr{RTFM}, but it is still a model maintained by a network system. It should not be treated as identical to raw surveillance data.  
+\acr{CTFM} deviates from \acr{FTFM} (or \acr{RTFM} in case of regulation) only if surveillance feedback shows any of the following deviations [@nm-atfcm-manual, section 12.3]:
 
 * 1 minute in time
-* more than 400 feet for en-route or more than 1000 feet for climb/descent phases
-* more than 10 nautical miles laterally
-* diversion from information from \acrs{CPR}
+* more than $400~\mathrm{ft}$ for en-route or more than $1000~\mathrm{ft}$ for climb/descent phases
+* more than $10~\mathrm{nm}$ laterally
+* diversion to a different aerodrom than the planned \acr{ADES} as per information from \acrs{CPR}
 
 
 

@@ -10,7 +10,7 @@ Air navigation is organised through a chain of responsibilities. International r
 
 ## State responsibility and airspace sovereignty
 
-The legal foundation is the [Chicago Convention on International Civil Aviation](https://www.icao.int/publications/Documents/7300_cons.pdf) of 1944. Its first article states that every state has “complete and exclusive sovereignty over the airspace above its territory”. This sovereign airspace extends over the state's land territory and territorial waters, generally up to 12 nautical miles from the coastline under the [United Nations Convention on the Law of the Sea](https://www.un.org/Depts/los/convention_agreements/texts/unclos/unclos_e.pdf).
+The legal foundation is the [Chicago Convention on International Civil Aviation](https://www.icao.int/publications/Documents/7300_cons.pdf) of 1944. Its first article states that every state has “complete and exclusive sovereignty over the airspace above its territory”. This sovereign airspace extends over the state's land territory and territorial waters, generally up to $12~\mathrm{nm}$ from the coastline under the [United Nations Convention on the Law of the Sea](https://www.un.org/Depts/los/convention_agreements/texts/unclos/unclos_e.pdf).
 
 ![Legal Boundaries of the Oceans and Airspace, from Chapter 2 in [@LawSeaPolicy2017].](../../images/MaritimeZoneSchematic-1.png){#fig-coastline}
 

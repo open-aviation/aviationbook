@@ -39,7 +39,7 @@ An \acr{NDB} works in conjunction with the aircraft’s \acr{ADF}. The \acr{ADF}
 
 The system is technically straightforward, based on the physical properties of a loop antenna, but subject to a number of errors. These include **night effect**, caused by ionospheric reflections after sunset; **coastal refraction**, where signals bend as they cross shorelines; and **terrain or structural interference**, which can distort the bearing. Lightning and precipitation static can also disturb reception. Under good conditions the expected accuracy is **about ±5°**, but actual errors can be considerably greater.
 
-Coverage depends strongly on transmitter power and the conductivity of the ground or sea path. Locator \acr{NDB} (L) near airports typically have a range of 15–25 nautical miles, while larger en-route \acr{NDB} can reach 50 nautical miles or more.
+Coverage depends strongly on transmitter power and the conductivity of the ground or sea path. Locator \acr{NDB} (L) near airports typically have a range of $15–-25~\mathrm{nm}$, while larger en-route \acr{NDB} can reach $50~\mathrm{nm}$ or more.
 
 For decades \acr{NDB} were widely used for en-route navigation, non-precision approaches, and as locator beacons associated with the [\acr{ILS}](#instrument-landing-system-ils). In most operational environments, however, \acr{NDB} are regarded as a legacy aid in the process of being phased out.
 
@@ -50,7 +50,7 @@ The \acr{VOR} is a ground-based azimuth navigation aid that gives an aircraft it
 
 \acr{VOR} operates between **108.0 and 117.95 MHz**, with part of the lower band shared with [\acr{ILS}](#instrument-landing-system-ils) localizers. Each station transmits a reference signal and a variable signal; the phase difference between them encodes the radial on which the aircraft lies. The station also transmits a short Morse-code identifier, normally repeated at regular intervals.
 
-Because \acr{VOR} is a \acr{VHF} line-of-sight system, coverage depends on altitude and terrain. At cruising altitude a station may be usable out to around 200 nautical miles, but local siting matters. Reflections from terrain, buildings, or wind turbines can introduce multipath errors, and directly overhead the station there is a cone of silence where no reliable bearing is available.
+Because \acr{VOR} is a \acr{VHF} line-of-sight system, coverage depends on altitude and terrain. At cruising altitude a station may be usable out to around $200~\mathrm{nm}$, but local siting matters. Reflections from terrain, buildings, or wind turbines can introduce multipath errors, and directly overhead the station there is a cone of silence where no reliable bearing is available.
 
 Two main designs are used. A \acr{CVOR} produces the variable signal with a rotating directional pattern, while a \acr{DVOR} synthesises the rotation electronically with a circular antenna array. \acr{DVOR} is less sensitive to site-dependent errors and generally gives more stable bearing information.
 

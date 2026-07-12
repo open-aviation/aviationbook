@@ -173,6 +173,8 @@ acronyms:
       longname: Flight Information Service
     - shortname: FISO
       longname: Flight Information Service Officer
+    - shortname: FL
+      longname: Flight Level
     - shortname: FMS
       longname: Flight Management System
     - shortname: FOQA
