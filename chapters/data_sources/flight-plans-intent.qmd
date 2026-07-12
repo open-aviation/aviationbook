@@ -96,7 +96,7 @@ Model 2, or **\acr{RTFM}**, reflects the trajectory after regulation. A regulati
 
 Model 3, or **\acr{CTFM}**, updates the trajectory during operation. It may incorporate \acrs{CPR}, radar-derived data, \acr{ADS-B} reports, and other updates when the aircraft deviates from earlier models.
 
-\acr{CTFM} is closer to the flown trajectory than \acr{FTFM} or \acr{RTFM}, but it is still a model maintained by a network system. It should not be treated as identical to raw surveillance data. In fact \acr{CTFM} deviates from \acr{FTFM} (or \acr{RTFM} in case of regulation) only if surveillance feedback shows any of the following deviations [section 12.3 Correlated Position Reports (CPRs) @nm-atfcm-manual]:
+\acr{CTFM} is closer to the flown trajectory than \acr{FTFM} or \acr{RTFM}, but it is still a model maintained by a network system. It should not be treated as identical to raw surveillance data. In fact \acr{CTFM} deviates from \acr{FTFM} (or \acr{RTFM} in case of regulation) only if surveillance feedback shows any of the following deviations [@nm-atfcm-manual, section 12.3]:
 
 * 1 minute in time
 * more than 400 feet for en-route or more than 1000 feet for climb/descent phases
