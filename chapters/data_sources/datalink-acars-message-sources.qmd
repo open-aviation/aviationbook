@@ -321,7 +321,7 @@ The two-character **label** is the first routing key. It tells a decoder whether
 | Label | Use |
 |---|:--|
 | `SQ` | <span class="mod-bubble">used above</span> Squitter message.<br><span class="datalink-description">Ground-station broadcast/status payload; the example above advertises station `STLS`, airport `LFBO`, and VHF frequency `136.975 MHz`.</span> |
-| `H1`, `T1` | <span class="mod-bubble">in depth in ref to  ARINC 622 envelopes</span>  ARINC 622 envelope.<br><span class="datalink-description">Common carrier for \acr{ADS-C}, FANS-1/A \acr{CPDLC}, AFN, and related ATS traffic.</span> |
+| `H1`, `T1` | <span class="mod-bubble">in depth in [ARINC 622 envelopes](#arinc-622-envelopes)</span>  ARINC 622 envelope.<br><span class="datalink-description">Common carrier for \acr{ADS-C}, FANS-1/A \acr{CPDLC}, AFN, and related ATS traffic.</span> |
 | `A0`, `B0` | AFN contact or logon.<br><span class="datalink-description">Used around initial datalink contact and aircraft/facility negotiation.</span> |
 | `A9`, `B9` | ATIS delivery or request.<br><span class="datalink-description">Weather and airport information requested or delivered through ACARS.</span> |
 | `B1` | Oceanic clearance.<br><span class="datalink-description">Clearance-related traffic for oceanic or remote operations.</span> |
