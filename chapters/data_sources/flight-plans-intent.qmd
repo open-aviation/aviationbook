@@ -14,17 +14,17 @@ There is rarely a single definitive “planned trajectory”. Analysts often nee
 
 | Layer | Meaning | Typical source |
 |---|---|---|
-| filed intent | what the aircraft operator files before departure | ICAO FPL, airline systems, IFPS/NM data |
-| accepted or regulated intent | what the network/flow system accepts after validation and restrictions | Network Manager systems, ATFM messages |
-| tactical intent | clearances and amendments during operation | CPDLC, voice-derived records, controller systems |
-| computed trajectory | trajectory model derived from flight plan, performance, restrictions, and environment | NM trajectory models, planning systems |
-| flown trajectory | what surveillance or ADS-C reports show actually happened | ADS-B, radar, ADS-C, MLAT |
+| filed intent | what the aircraft operator files before departure | \acr{ICAO} \acr{FP}, airline systems, \acr{IFPS}/\acr{NM} data |
+| accepted or regulated intent | what the network/flow system accepts after validation and restrictions | \acr{NM} systems, \acr{ATFM} messages |
+| tactical intent | clearances and amendments during operation | \acr{CPDLC}, voice-derived records, controller systems |
+| computed trajectory | trajectory model derived from flight plan, performance, restrictions, and environment | \acr{NM} trajectory models, planning systems |
+| flown trajectory | what surveillance or \acr{ADS-C} reports show actually happened | \acr{ADS-B}, radar, \acr{ADS-C}, \acr{MLAT} |
 
 A good analysis keeps these layers separate. A filed route string is not a trajectory; a modeled trajectory is not surveillance truth; a flown trajectory does not reveal the original clearance unless joined with communication or flight-plan data.
 
 ## Flight-plan content
 
-An ICAO flight plan contains structured fields for flight identification, rules, type of flight, aircraft type, wake turbulence category, equipment, departure aerodrome, departure time, cruising speed, level, route, destination, alternate aerodromes, endurance, persons on board, and other operational information.
+An \acr{ICAO} flight plan contains structured fields for flight identification, rules, type of flight, aircraft type, wake turbulence category, equipment, departure aerodrome, departure time, cruising speed, level, route, destination, alternate aerodromes, endurance, persons on board, and other operational information.
 
 For trajectory analysis, the most important fields are usually:
 
@@ -37,7 +37,7 @@ For trajectory analysis, the most important fields are usually:
 - equipment and capability indicators;
 - alternates and remarks when relevant.
 
-The route field is a compact textual representation of intent. It may combine procedure names, waypoints, ATS routes, direct segments, speed/level changes, and special indicators. It must be interpreted against the aeronautical information cycle effective for the flight date.
+The route field is a compact textual representation of intent. It may combine procedure names, waypoints, \acr{ATS} routes, direct segments, speed/level changes, and special indicators. It must be interpreted against the aeronautical information cycle effective for the flight date.
 
 Example route fragment:
 
@@ -59,21 +59,21 @@ A route string can be expanded into a sequence of published points and segments,
 - airport and runway assumptions;
 - flow-management measures.
 
-This is why systems such as EUROCONTROL's Network Manager maintain trajectory models rather than only storing the submitted flight plan. The model is updated as new information becomes available.
+This is why systems such as EUROCONTROL's \acr{NM} maintain trajectory models rather than only storing the submitted flight plan. The model is updated as new information becomes available.
 
 ## Network Manager context
 
-EUROCONTROL's \acr{NM} supports flight-plan validation, demand prediction, capacity balancing, and flow management in the European network. Aircraft operators filing IFR flights in the NM area submit flight-plan information that is checked against route availability, restrictions, sector capacities, and other operational constraints.
+EUROCONTROL's \acr{NM} supports flight-plan validation, demand prediction, capacity balancing, and flow management in the European network. Aircraft operators filing \acr{IFR} flights in the \acr{NM} area submit flight-plan information that is checked against route availability, restrictions, sector capacities, and other operational constraints.
 
-The result is a set of trajectory and demand data products used by ANSPs, airports, aircraft operators, researchers, and tools such as NEST. Access may be operational, institutional, or subject to EUROCONTROL data-sharing conditions.
+The result is a set of trajectory and demand data products used by \acrs{ANSP}, airports, aircraft operators, researchers, and tools such as \acr{NEST} [@nm-nest]. Access may be operational, institutional, or subject to EUROCONTROL data-sharing conditions.
 
-## NM trajectory models
+## \acr{NM} trajectory models
 
-Network Manager trajectory products distinguish several flight trajectory models. The names below are commonly encountered in DDR2/NM contexts.
+Network Manager trajectory products distinguish several flight trajectory models. The names below are commonly encountered in \acr{DDR2}/\acr{NM} contexts [@nm-ddr2].
 
 ### Model 1: FTFM
 
-Model 1, or **Filed Tactical Flight Model** (FTFM), is the trajectory model initially created from the filed flight plan and subsequent pre-tactical updates. It translates the route, especially the route field, into a point and airspace profile.
+Model 1, or **\acr{FTFM}**, is the trajectory model initially created from the filed flight plan and subsequent pre-tactical updates. It translates the route, especially the route field, into a point and airspace profile.
 
 The model can include:
 
@@ -84,17 +84,17 @@ The model can include:
 - aircraft type and performance assumptions;
 - route restrictions, including the Route Availability Document (RAD).
 
-FTFM is therefore a computed intent trajectory: it is more structured than the filed route string, but it is still a plan.
+\acr{FTFM} is therefore a computed intent trajectory: it is more structured than the filed route string, but it is still a plan.
 
 ### Model 2: RTFM
 
-Model 2, or **Regulated Tactical Flight Model** (RTFM), reflects the trajectory after regulation. A regulation may impose delay or require a rerouting to balance demand and capacity. The update can be more than a simple time shift because route availability, airspace restrictions, or sector configurations may differ in the new time window.
+Model 2, or **\acr{RTFM}**, reflects the trajectory after regulation. A regulation may impose delay or require a rerouting to balance demand and capacity. The update can be more than a simple time shift because route availability, airspace restrictions, or sector configurations may differ in the new time window.
 
 ### Model 3: CTFM
 
-Model 3, or **Current Tactical Flight Model** (CTFM), updates the trajectory during operation. It may incorporate correlated position reports, radar-derived data, ADS-B reports, and other updates when the aircraft deviates from earlier models.
+Model 3, or **\acr{CTFM}**, updates the trajectory during operation. It may incorporate correlated position reports, radar-derived data, \acr{ADS-B} reports, and other updates when the aircraft deviates from earlier models.
 
-CTFM is closer to the flown trajectory than FTFM or RTFM, but it is still a model maintained by a network system. It should not be treated as identical to raw surveillance data.
+\acr{CTFM} is closer to the flown trajectory than \acr{FTFM} or acr{RTFM}, but it is still a model maintained by a network system. It should not be treated as identical to raw surveillance data.
 
 ## SO6 segment files
 
@@ -112,7 +112,7 @@ SO6 is useful for airspace-demand and route-usage analysis because each segment 
 
 ## ALL_FT+
 
-ALL_FT+ is a large Network Manager archive format available through DDR2. Files are typically named by date, for example `yyyyMMdd.ALL_FT+`, and may contain hundreds of columns depending on version. It is best understood as an internal operational archive exposed for analysis rather than as a clean public data model.
+ALL_FT+ is a large Network Manager archive format available through \acr{DDR2}. Files are typically named by date, for example `yyyyMMdd.ALL_FT+`, and may contain hundreds of columns depending on version. It is best understood as an internal operational archive exposed for analysis rather than as a clean public data model.
 
 Typical information includes:
 
@@ -130,7 +130,7 @@ The richness is attractive, but documentation and metadata can be sparse. Analys
 
 ## DDR2 demand files
 
-EUROCONTROL's Demand Data Repository (DDR2) provides historical demand datasets for selected periods and areas. A common demand file, often referred to as `exp2`, contains one row per flight with fields such as departure time, origin and destination aerodromes, unique flight identifier, callsign, aircraft type, and requested flight level.
+EUROCONTROL's \acr{DDR2} provides historical demand datasets for selected periods and areas. A common demand file, often referred to as `exp2`, contains one row per flight with fields such as departure time, origin and destination aerodromes, unique flight identifier, callsign, aircraft type, and requested flight level.
 
 Such files are useful for aggregate demand studies, sector-load estimation, traffic-flow analysis, and comparisons between planned and flown traffic. They usually need to be joined with aeronautical information, sector definitions, and surveillance trajectories to answer detailed operational questions.
 
@@ -147,19 +147,19 @@ Planned and flown trajectories differ for several reasons:
 - holding, vectoring, or sequencing near arrival;
 - aircraft performance and wind differences.
 
-A robust analysis should name which comparison is being made: filed route versus flown path, FTFM versus ADS-B, RTFM versus CTFM, or NM demand versus actual traffic. Each comparison answers a different question.
+A robust analysis should name which comparison is being made: filed route versus flown path, \acr{FTFM} versus \acr{ADS-B}, \acr{RTFM} versus \acr{CTFM}, or \acr{NM} demand versus actual traffic. Each comparison answers a different question.
 
 ::: {.callout-tip}
 ## Useful joins
 
-Flight-plan and NM data become more useful when joined with other sources: ADS-B or radar trajectories for actual movement, ADS-C for oceanic position and intent, CPDLC for clearances, AIRAC-cycle aeronautical data for route expansion, and weather data for rerouting or performance analysis.
+Flight-plan and \acr{NM} data become more useful when joined with other sources: \acr{ADS-B} or radar trajectories for actual movement, \acr{ADS-C} for oceanic position and intent, \acr{CPDLC} for clearances, AIRAC-cycle aeronautical data for route expansion, and weather data for rerouting or performance analysis.
 :::
 
 ## Access and quality caveats
 
-Flight-plan and NM trajectory data are operational data. Access is often restricted, licensed, or subject to aggregation rules. Even when available, the data requires careful handling:
+Flight-plan and \acr{NM} trajectory data are operational data. Access is often restricted, licensed, or subject to aggregation rules. Even when available, the data requires careful handling:
 
-- route strings depend on the correct AIRAC cycle;
+- route strings depend on the correct \acr{AIRAC} cycle;
 - identifiers can change between filing, operation, and surveillance;
 - timestamps may represent planned, calculated, regulated, or observed times;
 - modeled trajectories depend on assumptions not always visible in the file;
