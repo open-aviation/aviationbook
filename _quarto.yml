@@ -174,15 +174,15 @@ book:
               href: chapters/background/runways.qmd
             - text: Taxiways & stands
               href: chapters/background/taxiways-aprons-stands.qmd
-            - text: 🔴 Passenger buildings
+            - text: Passenger buildings
               href: chapters/background/passenger-buildings.qmd
-            - text: 🔴 Baggage handling
+            - text: Baggage handling
               href: chapters/background/baggage-handling-systems.qmd
-            - text: 🔴 Ground access
+            - text: Ground access
               href: chapters/background/aerodrome-ground-access.qmd
-            - text: 🔴 Airport capacity
+            - text: Airport capacity
               href: chapters/background/airport-capacity.qmd
-            - text: 🔴 Demand management
+            - text: Demand management
               href: chapters/background/demand-management.qmd
             - text: 🔴 Airport operations
               href: chapters/background/airport-operations.qmd
