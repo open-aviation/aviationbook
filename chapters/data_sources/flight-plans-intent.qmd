@@ -69,7 +69,9 @@ The result is a set of trajectory and demand data products used by \acrs{ANSP}, 
 
 ## \acr{NM} trajectory models
 
-Network Manager trajectory products distinguish several flight trajectory models. The names below are commonly encountered in \acr{DDR2}/\acr{NM} contexts [@nm-ddr2].
+Network Manager trajectory products distinguish several flight trajectory models. The names below are commonly encountered in the context of \acr{DDR2} [@nm-ddr2].  
+These models are used by \acr{NM} systems to calculate the number of flights in the different airspaces of interest.
+Surveillance-level accuracy in not required; for example \acr{CTFM} trajectories take into account real-time feedback from surveillance systems (typically a fusion of radar and \acr{ADS-B}) with a frequesncy of one sample every 30 seconds.
 
 ### Model 1: FTFM
 
@@ -82,7 +84,7 @@ The model can include:
 - estimated times;
 - requested or computed levels;
 - aircraft type and performance assumptions;
-- route restrictions, including the Route Availability Document (RAD).
+- route restrictions, including the \acr{RAD}.
 
 \acr{FTFM} is therefore a computed intent trajectory: it is more structured than the filed route string, but it is still a plan.
 
@@ -92,9 +94,16 @@ Model 2, or **\acr{RTFM}**, reflects the trajectory after regulation. A regulati
 
 ### Model 3: CTFM
 
-Model 3, or **\acr{CTFM}**, updates the trajectory during operation. It may incorporate correlated position reports, radar-derived data, \acr{ADS-B} reports, and other updates when the aircraft deviates from earlier models.
+Model 3, or **\acr{CTFM}**, updates the trajectory during operation. It may incorporate \acrs{CPR}, radar-derived data, \acr{ADS-B} reports, and other updates when the aircraft deviates from earlier models.
 
-\acr{CTFM} is closer to the flown trajectory than \acr{FTFM} or acr{RTFM}, but it is still a model maintained by a network system. It should not be treated as identical to raw surveillance data.
+\acr{CTFM} is closer to the flown trajectory than \acr{FTFM} or \acr{RTFM}, but it is still a model maintained by a network system. It should not be treated as identical to raw surveillance data. In fact \acr{CTFM} deviates from \acr{FTFM} (or \acr{RTFM} in case of regulation) only if surveillance feedback shows any of the following deviations [section 12.3 Correlated Position Reports (CPRs) @nm-atfcm-manual]:
+
+* 1 minute in time
+* more than 400 feet for en-route or more than 1000 feet for climb/descent phases
+* more than 10 nautical miles laterally
+* diversion from information from \acrs{CPR}
+
+
 
 ## SO6 segment files
 
