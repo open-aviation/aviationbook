@@ -2,7 +2,6 @@
 title: Flight plans, intent, and Network Manager trajectories
 authors:
 - Enrico Spinielli
-- Xavier Olive
 ---
 
 A flight plan is a declaration of intent: where an aircraft is expected to depart, where it is expected to arrive, which route it requests, which level it requests, and which aircraft and equipment will be used. It is not the same as the flown trajectory. Between filing and landing, the route may be amended by flow-management measures, controller clearances, weather deviations, or tactical decisions.

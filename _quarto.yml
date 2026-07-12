@@ -202,9 +202,9 @@ book:
               href: chapters/data_sources/adsc-data.qmd
             - text: 🟡 CPDLC data
               href: chapters/data_sources/cpdlc-data.qmd
-            - text: 🟡 Aeronautical information
+            - text: Aeronautical information
               href: chapters/data_sources/aeronautical-information.qmd
-            - text: 🟡 Flight plans and intent
+            - text: Flight plans and intent
               href: chapters/data_sources/flight-plans-intent.qmd
             - text: 🟡 Weather and environmental data
               href: chapters/data_sources/weather-environment-data.qmd

@@ -2,7 +2,6 @@
 title: Aeronautical information and data objects
 authors:
 - Enrico Spinielli
-- Xavier Olive
 ---
 
 Aeronautical information is the authoritative description of the environment in which flights are planned and conducted. It includes publications, updates, coordinates, procedures, airspace boundaries, airport data, navigation aids, and many other objects that must remain consistent across flight planning systems, avionics, charts, and air traffic management tools.
