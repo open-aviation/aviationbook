@@ -195,9 +195,9 @@ There are various different \acr{OLS} types, each of which has a specific functi
 * The **transitional surface** defines the limits of the area available along the runway for buildings, structures, or natural obstacles (*CS ADR-DSN.H.430*). The transitional surface lies between the approach and take-off climb surfaces along the runway strip.
 
 #### Obstacle free zones (OFZ)
-\acr{OFZ} are only required on runways with Category II and III (CAT II/III) approaches. As these approaches place higher demands on safety levels and navigation accuracy, \acr{OFZ}s are used to (i) impose higher obstacle clearance requirements, and (ii) to protect aircraft not only from fixed obstacles but also from mobile ones, e.g., aircraft taxiing on the ground at an airport.  
+\acrs{OFZ} are only required on runways with Category II and III (CAT II/III) approaches. As these approaches place higher demands on safety levels and navigation accuracy, \acrs{OFZ} are used to (i) impose higher obstacle clearance requirements, and (ii) to protect aircraft not only from fixed obstacles but also from mobile ones, e.g., aircraft taxiing on the ground at an airport.  
 
-For example, \acr{OFZ}s ensure that aircraft taxiing on the ground cannot enter the critical and sensitive areas of the instrument landing system, which can lead to a degradation of signal quality and thus a reduction in navigation accuracy.  
+For example, \acrs{OFZ} ensure that aircraft taxiing on the ground cannot enter the critical and sensitive areas of the instrument landing system, which can lead to a degradation of signal quality and thus a reduction in navigation accuracy.  
 
 In practice, the following three different \acr{OFZ} types are used:  
 

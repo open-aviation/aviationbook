@@ -75,7 +75,7 @@ To construct a \acr{CCC}, the balanced operating point is first determined for e
 
 The horizontal axis of the \acr{CCC} represents the cumulative percentage of time for which a given runway throughput can be achieved, whereas the vertical axis indicates the corresponding hourly runway throughput. Each horizontal step corresponds to one runway configuration and its associated balanced capacity. The width of each step represents the proportion of time during which the corresponding runway configuration is operated, while the height indicates its balanced hourly throughput.
 
-\acr{CCC}s are particularly useful for long-term airport planning because they provide considerably more information than a single capacity value. They indicate not only the maximum achievable throughput, but also the proportion of time during which this throughput can be expected. Airports whose \acr{CCC}s remain nearly horizontal experience only small capacity variations throughout the year. In contrast, airports with pronounced step-like charts exhibit substantial capacity fluctuations caused by changing runway configurations or weather conditions.
+\acrs{CCC} are particularly useful for long-term airport planning because they provide considerably more information than a single capacity value. They indicate not only the maximum achievable throughput, but also the proportion of time during which this throughput can be expected. Airports whose \acr{CCC} remain nearly horizontal experience only small capacity variations throughout the year. In contrast, airports with pronounced step-like charts exhibit substantial capacity fluctuations caused by changing runway configurations or weather conditions.
 
 ## Taxiway capacity
 

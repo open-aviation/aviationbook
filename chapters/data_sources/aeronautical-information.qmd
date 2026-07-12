@@ -33,7 +33,7 @@ An \acr{AIP} contains aeronautical information of lasting character essential to
 | ENR | en-route information | airspace structure, \acr{ATS} routes, navigation aids, restricted areas, radio navigation services, en-route charts |
 | AD | aerodromes and heliports | aerodrome data, runways, lighting, declared distances, procedures, charts, obstacles, local rules |
 
-\acrs{AIP}s are often available online as eAIP documents [@eAIPs]. They are human-readable and increasingly structured, but not always easy to process automatically. Tables, charts, textual notes, and PDF procedures may encode information that is difficult to convert into clean geospatial data.
+\acrs{AIP} are often available online as eAIP documents [@eAIPs]. They are human-readable and increasingly structured, but not always easy to process automatically. Tables, charts, textual notes, and PDF procedures may encode information that is difficult to convert into clean geospatial data.
 
 ## AIRAC cycles
 
@@ -145,9 +145,9 @@ These objects are related but not interchangeable.
 
 ### Airspaces
 
-Airspaces are geospatial volumes with lateral boundaries, vertical limits, classification, controlling unit, activation rules, and validity. They include \acrs{FIR}s/\acrs{UIR}s, controlled airspaces, terminal areas, control zones, restricted or danger areas, military areas, sectors, and flow-management regions.
+Airspaces are geospatial volumes with lateral boundaries, vertical limits, classification, controlling unit, activation rules, and validity. They include \acrs{FIR}/\acrs{UIR}, controlled airspaces, terminal areas, control zones, restricted or danger areas, military areas, sectors, and flow-management regions.
 
-The background chapter on [airspace structure](../background/airspace-structure.qmd) explains the operational meaning of \acrs{FIR}s, \acrs{ACC}s, sectors, and route structures. In data terms, the hard parts are geometry, vertical references, activation schedules, naming conventions, and versioning.
+The background chapter on [airspace structure](../background/airspace-structure.qmd) explains the operational meaning of \acrs{FIR}, \acrs{ACC}, sectors, and route structures. In data terms, the hard parts are geometry, vertical references, activation schedules, naming conventions, and versioning.
 
 ### Procedures
 

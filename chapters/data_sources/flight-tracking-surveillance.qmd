@@ -41,7 +41,7 @@ Air navigation service providers build surveillance tracks from systems such as 
 A typical radar or fused surveillance track contains an identifier, timestamps, position, altitude, ground speed, vertical speed, and track angle. Kalman filters and other tracking algorithms may smooth positions and compute derivatives.
 
 ::: {.callout-important}
-\acr{ANSP}s own the data produced by the surveillance installations they operate. Systematic access to radar or fused surveillance trajectories is therefore difficult, and international flights may require agreements with several providers.
+\acrs{ANSP} own the data produced by the surveillance installations they operate. Systematic access to radar or fused surveillance trajectories is therefore difficult, and international flights may require agreements with several providers.
 :::
 
 Radar and fused tracks have excellent operational value, but they are rarely available as open data. When available, they may be provided in operational exchange formats such as ASTERIX, in post-processed archives, or through research agreements. Access conditions should be checked early: these records are operational data, receiver and sensor locations may be sensitive, and redistribution is often restricted.

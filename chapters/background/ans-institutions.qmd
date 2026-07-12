@@ -57,7 +57,7 @@ Civil aviation is international by design, so national responsibility is embedde
 
 In Europe, **EASA** develops and oversees common safety rules for the European aviation system, including certification, operational rules, and safety oversight frameworks. National aviation authorities remain responsible for many implementation and supervisory tasks within their states.
 
-**EUROCONTROL** supports pan-European air traffic management. Its Network Manager function coordinates capacity, traffic flows, route availability, and network performance across many states and \acr{ANSP}s. This role is especially important because traffic flows do not stop at national borders, while capacity constraints in one area can affect the whole network.
+**EUROCONTROL** supports pan-European air traffic management. Its Network Manager function coordinates capacity, traffic flows, route availability, and network performance across many states and \acrs{ANSP}. This role is especially important because traffic flows do not stop at national borders, while capacity constraints in one area can affect the whole network.
 
 Military authorities are also part of the institutional landscape. Many states reserve or activate airspace for military training, defence, or special operations. Civil-military coordination, including flexible use of airspace, is therefore a core part of airspace management.
 
