@@ -209,6 +209,8 @@ acronyms:
       longname: Initial Flight Plan Processing System
     - shortname: IFR
       longname: Instrument Flight Rules
+    - shortname: IGRF
+      longname: International Geomagnetic Reference Field
     - shortname: ILS
       longname: Instrument Landing System
     - shortname: IMC
