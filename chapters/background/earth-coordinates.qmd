@@ -519,4 +519,6 @@ $$
 $$ {#eq-parallel_radius}
 
 
+The [navigation geometry](navigation-geometry.qmd) page builds on these Earth and coordinate models to describe directions, routes, and distances between positions.
+
 ## Glossary {.unnumbered}
