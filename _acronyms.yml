@@ -255,6 +255,10 @@ acronyms:
       longname: Maximum TakeOff Weight
     - shortname: NAVAID
       longname: NAVigational AID
+    - shortname: NCEI
+      longname: National Centers for Environmental Information
+    - shortname: NOAA
+      longname: National Oceanic and Atmospheric Administration
     - shortname: NDB
       longname: Non-Directional Beacon
     - shortname: NED
