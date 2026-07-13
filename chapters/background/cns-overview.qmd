@@ -22,7 +22,7 @@ The three domains are operationally inseparable. A controller can only issue ins
 This page is a map of the topic. The detailed systems are described in the following pages:
 
 - [Communication systems](communication-systems.qmd) covers voice radio, \acr{HF}/\acr{VHF} communication, \acr{SELCAL}, \acr{ACARS}, \acr{CPDLC}, \acr{FANS}, and performance-based communication.
-- [Radio navigation](conventional-radio-navigation.qmd) introduces heading, track, bearing, course, radial, and true versus magnetic references, then covers NDB, VOR, DME, ILS, and other ground-based navigation aids.
+- [Navigation geometry](navigation-geometry.qmd) introduces heading, track, bearing, course, radial, and true versus magnetic references. [Radio navigation](conventional-radio-navigation.qmd) then covers NDB, VOR, DME, ILS, and other ground-based navigation aids.
 - [Satellite navigation](satellite-navigation.qmd) covers inertial navigation, \acr{GNSS}, augmentation, integrity, RNAV/RNP, and performance-based navigation.
 - [Surveillance systems](surveillance-systems.qmd) covers primary radar, secondary radar, Mode S, \acr{ADS-B}, \acr{ADS-C}, and multilateration.
 

@@ -15,7 +15,7 @@ This page focuses on data sources: what they contain, how they are accessed, and
 
 ## What is a trajectory dataset?
 
-A trajectory is a mathematical abstraction used to describe the evolution of a moving object with a finite list of parameters. In aviation, the usual state vector includes latitude, longitude, altitude, and timestamp, often completed with first derivatives such as ground speed, track angle, and vertical rate. Depending on the application, additional variables may be required: [aircraft performance models](aircraft-performance.qmd), for example, may use pitch, roll, yaw, true airspeed, indicated airspeed, Mach number, or aircraft mass estimates.
+A trajectory is a mathematical abstraction used to describe the evolution of a moving object with a finite list of parameters. In aviation, the usual state vector includes latitude, longitude, altitude, and timestamp, often completed with first derivatives such as ground speed, track angle, and vertical rate. Track is a direction over the ground; its north reference and derivation should be checked as explained in [navigation geometry](../background/navigation-geometry.qmd). Depending on the application, additional variables may be required: [aircraft performance models](aircraft-performance.qmd), for example, may use pitch, roll, yaw, true airspeed, indicated airspeed, Mach number, or aircraft mass estimates.
 
 We usually distinguish three levels of data:
 

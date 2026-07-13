@@ -257,9 +257,7 @@ This coarse representation is nevertheless useful. Airport reference points are 
 
 The limitation is that a single point cannot describe how an airport is used operationally. Runway assignment, taxi distance, stand allocation, surface movement, runway occupancy, and local constraints require more detailed infrastructure layers. For trajectory analysis, airport reference points are therefore usually the first enrichment layer: a flight with origin `EHAM` and destination `LFPG` can be joined to airport names, coordinates, countries, and approximate distances before more detailed runway or taxiway information is considered.
 
-::: {.callout-warning}
-TODO define great circle distance in the background section
-:::
+For the definition and calculation of this distance, see [navigation geometry](../background/navigation-geometry.qmd#geodesics-routes-and-distance).
 
 ## Runway data
 

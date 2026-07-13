@@ -5,6 +5,7 @@ project:
     - data/patterns.json
     - data/iq_frames_viz.json
     - data/iq_downsample_compare.json
+    - data/noaa-north-magnetic-pole.xy
 
 execute:
   freeze: auto
@@ -33,6 +34,7 @@ book:
         - chapters/background/atmosphere-altimetry.qmd
         - chapters/background/weather-flight-conditions.qmd
         - chapters/background/earth-coordinates.qmd
+        - chapters/background/navigation-geometry.qmd
         - chapters/background/ans-institutions.qmd
         - chapters/background/cns-overview.qmd
         - chapters/background/communication-systems.qmd
@@ -152,6 +154,8 @@ book:
               href: chapters/background/weather-flight-conditions.qmd
             - text: Earth models
               href: chapters/background/earth-coordinates.qmd
+            - text: Navigation geometry
+              href: chapters/background/navigation-geometry.qmd
             - text: Air navigation services
               href: chapters/background/ans-institutions.qmd
             - text: CNS overview

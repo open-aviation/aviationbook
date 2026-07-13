@@ -17,5 +17,5 @@ Planned scope:
 - knots and metres per second;
 - flight levels;
 - barometric and geometric altitude;
-- true and magnetic headings;
+- true and magnetic headings (building on [navigation geometry](../background/navigation-geometry.qmd#navigation-angles-and-reference-directions));
 - unit-aware data pipelines.

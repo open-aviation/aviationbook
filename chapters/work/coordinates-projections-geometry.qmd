@@ -8,6 +8,8 @@ This page has been copied or moved into the experimental `new/` architecture. Re
 
 # Processing geometric and geographical data
 
+This page will develop the data-work practices behind the introductory discussion of [map projections](../background/navigation-geometry.qmd#map-projections): coordinate reference systems, explicit transformations, and geometry operations at local and global scales.
+
 ::: {.callout-tip}
 Author: ?
 :::

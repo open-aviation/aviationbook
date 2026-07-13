@@ -1,0 +1,1082 @@
+---
+title: Navigation geometry
+authors:
+  - Xavier Olive
+---
+
+
+<style>
+/* Quarto still emits a copy scaffold for hidden OJS source cells. Hide the
+   whole scaffold so only the rendered controls/table remain visible. */
+.code-copy-outer-scaffold:has(.sourceCode.hidden) {
+  display: none !important;
+}
+figure > figcaption.quarto-float-caption-bottom {
+  margin-top: 0.5em;
+}
+.route-example-buttons {
+  margin-bottom: 1rem;
+}
+.route-input-fields .form-control {
+  font-size: 0.9em;
+}
+.route-input-hint {
+  color: var(--bs-secondary-color, #6c757d);
+  font-size: 0.8em;
+  margin-left: 0.5rem;
+}
+.route-results-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 0.75rem;
+}
+.route-result-panel {
+  border-left: 3px solid var(--bs-border-color, #dee2e6);
+  padding-left: 0.8rem;
+}
+@media (max-width: 600px) {
+  .route-results-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+
+Geometry in aviation navigation is based on [the Earth's shape](earth-coordinates.qmd) and conventions for measuring angles and distances. This page defines the terms used in the following chapters on navigation systems and trajectory data.
+
+## Where is the North Pole?
+
+**True north** is the direction to the geographic North Pole: the fixed point at 90° N where meridians converge and the Earth's rotation axis meets the surface. It is the reference for geographic coordinates and geodesic
+calculations.
+
+**Magnetic north** is different. The north magnetic pole is the point where the Earth's magnetic field is vertical, and it moves as the field changes. A compass aligns with the local magnetic field; it does not simply point along a straight line to a fixed pole. The angular difference between true north and magnetic north at a particular place and date is **magnetic variation** (or declination).  It must therefore be time- and location-specific when converting between true and magnetic directions.
+
+The north magnetic pole was first located in the Canadian Arctic in 1831. It has since crossed the Arctic toward Siberia, with its rate of movement increasing markedly in recent decades. The [NOAA NCEI pole dataset](https://www.ngdc.noaa.gov/geomag/data/poles/NP.xy) provides annual IGRF-derived north magnetic-pole locations from 1590 to 2025. Positions in 1831 and later survey positions are experimental determinations of the dip pole while older positions beginning in 1590 are modelled locations.
+
+```{ojs}
+//| echo: false
+magneticPoleData = fetch("../../data/noaa-north-magnetic-pole.xy")
+  .then((response) => {
+    if (!response.ok) throw new Error("Local NOAA pole data could not be loaded.");
+    return response.text();
+  })
+  .then((text) => text.trim().split(/\n+/).map((line) => {
+    const [longitude, latitude, year] = line.trim().split(/\s+/).map(Number);
+    return { year, latitude, longitude: longitude > 180 ? longitude - 360 : longitude };
+  }).filter((position) => Number.isFinite(position.year) && Number.isFinite(position.latitude) && Number.isFinite(position.longitude)))
+```
+
+```{ojs}
+//| echo: false
+magneticPoleHistory = {
+  const selectedYears = new Set([1590, 1600, 1632, 1700, 1730, 1800, 1831, 1904, 1948, 1962, 1973, 1984, 1994, 2001, 2007, 2017, 2024]);
+  return magneticPoleData.filter((position) => selectedYears.has(position.year));
+}
+```
+
+::: {#fig-magnetic-north-pole fig-cap="Position of the Magnetic North Pole throughout history and its current trajectory"}
+
+```{ojs}
+//| echo: false
+{
+  const modelledHistory = magneticPoleHistory.filter((position) => position.year < 1831);
+  const observedHistory = magneticPoleHistory.filter((position) => position.year >= 1831);
+  const modelledLineHistory = magneticPoleData.filter((position) => position.year < 1831);
+  const observedLineHistory = magneticPoleData.filter((position) => position.year >= 1831);
+  const featureCollection = (history) => ({
+    type: "FeatureCollection",
+    features: history.map((position) => ({
+      type: "Feature",
+      properties: { title: `${position.year}: ${position.latitude.toFixed(1)}° N, ${Math.abs(position.longitude).toFixed(1)}° ${position.longitude < 0 ? "W" : "E"}` },
+      geometry: { type: "Point", coordinates: [position.longitude, position.latitude] }
+    }))
+  });
+  const line = (history) => ({
+    type: "LineString",
+    coordinates: history.map((position) => [position.longitude, position.latitude])
+  });
+  const modelledPositions = featureCollection(modelledHistory);
+  const observedPositions = featureCollection(observedHistory);
+  const modelledPath = line(modelledLineHistory);
+  const observedPath = line(observedLineHistory);
+  const lastModelledPosition = modelledLineHistory[modelledLineHistory.length - 1];
+  const firstObservedPosition = observedLineHistory[0];
+  const transitionPath = lastModelledPosition && firstObservedPosition
+    ? line([lastModelledPosition, firstObservedPosition])
+    : { type: "LineString", coordinates: [] };
+  const tableauBlue = d3.schemeTableau10[0];
+  const geographicPole = {
+    type: "Feature",
+    properties: { title: "Geographic North Pole: 90° N" },
+    geometry: { type: "Point", coordinates: [0, 90] }
+  };
+  const arcticCircle = d3.geoCircle().center([0, 90]).radius(23.4366)();
+  const graticule = d3.geoGraticule().step([30, 10])();
+  const plotWidth = Math.min(width, 700);
+  const plotHeight = 430;
+  const arcticCircleRadius = 23.4366 * Math.PI / 180;
+  const polarProjection = d3.geoAzimuthalEquidistant()
+    .rotate([0, -90])
+    .scale((plotWidth / 2 - 18) / arcticCircleRadius)
+    .translate([plotWidth / 2, plotHeight / 2]);
+  const plot = Plot.plot({
+    width: plotWidth,
+    height: plotHeight,
+    projection: polarProjection,
+    marks: [
+      Plot.geo({ type: "Sphere" }, { fill: "#eaf3f8", stroke: "#6c8ba0" }),
+      Plot.geo(countries50m, { fill: "#f8f8f3", stroke: "#9ba9aa", strokeWidth: 0.4 }),
+      Plot.geo(graticule, { stroke: "#b8c8d1", strokeWidth: 0.6 }),
+      Plot.geo(arcticCircle, { stroke: "#6c8ba0", strokeWidth: 1.2, strokeDasharray: "4,3" }),
+      Plot.geo(modelledPath, { stroke: "#6c8ba0", strokeWidth: 1.2, strokeDasharray: "3,3" }),
+      Plot.geo(transitionPath, { stroke: "#6c8ba0", strokeWidth: 1.2, strokeDasharray: "3,3" }),
+      Plot.geo(observedPath, { stroke: tableauBlue, strokeWidth: 3 }),
+      Plot.geo(modelledPositions, { fill: "#6c8ba0", stroke: "white", strokeWidth: 0.8, r: 3.5, title: (feature) => feature.properties.title }),
+      Plot.geo(observedPositions, { fill: tableauBlue, stroke: "white", strokeWidth: 1, r: 4, title: (feature) => feature.properties.title }),
+      Plot.geo(geographicPole, { fill: "#dc3545", stroke: "white", strokeWidth: 1, r: 6, title: (feature) => feature.properties.title })
+    ]
+  });
+  const addLabel = (text, coordinates, dx = 6, dy = -6, fill = "#1f2933") => {
+    const [x, y] = polarProjection(coordinates);
+    const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    label.setAttribute("x", x + dx);
+    label.setAttribute("y", y + dy);
+    label.setAttribute("fill", fill);
+    label.setAttribute("font-size", "11");
+    label.setAttribute("font-weight", "600");
+    label.setAttribute("paint-order", "stroke");
+    label.setAttribute("stroke", "white");
+    label.setAttribute("stroke-width", "3");
+    label.setAttribute("stroke-linejoin", "round");
+    label.textContent = text;
+    plot.appendChild(label);
+  };
+  const placedLabels = [];
+  const overlaps = (a, b) => a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
+  magneticPoleHistory.forEach((position) => {
+    const [x, y] = polarProjection([position.longitude, position.latitude]);
+    const text = String(position.year);
+    const labelWidth = text.length * 7 + 2;
+    const candidates = [[8, -8], [8, 14], [-labelWidth - 8, -8], [-labelWidth - 8, 14], [8, -22], [-labelWidth - 8, -22], [18, 26], [-labelWidth - 18, 26]];
+    const placement = candidates.map(([dx, dy]) => ({
+      dx, dy,
+      left: x + dx - 1,
+      right: x + dx + labelWidth + 1,
+      top: y + dy - 11,
+      bottom: y + dy + 3
+    })).find((candidate) =>
+      candidate.left >= 0 && candidate.right <= plotWidth && candidate.top >= 0 && candidate.bottom <= plotHeight
+      && !placedLabels.some((placed) => overlaps(candidate, placed))
+    ) ?? { dx: 8, dy: -8, left: x + 7, right: x + labelWidth + 9, top: y - 19, bottom: y - 5 };
+    placedLabels.push(placement);
+    addLabel(text, [position.longitude, position.latitude], placement.dx, placement.dy, position.year < 1831 ? "#6c8ba0" : tableauBlue);
+  });
+  addLabel("Geographic North Pole", [0, 90], 8, 16, "#dc3545");
+  addLabel("Arctic Circle (66°33′ N)", [-60, 66.5634], 8, -6, "#506a7b");
+  return plot;
+}
+```
+
+:::
+
+**True north** is the natural reference for GPS/GNSS positions: latitude and
+longitude are expressed in an Earth-fixed geodetic reference system, and a
+bearing calculated from successive WGS-84 positions is true. **Magnetic north**
+remains operationally important because a magnetic compass aligns with the
+local field, and many legacy procedures, navigation aids, charts, and runway
+designators use magnetic directions.
+
+In 2024, the north magnetic pole is located at approximately 86.5° N, 164.0° E, which is about 450 km south of the geographic North Pole.
+
+**Magnetic declination** (also called variation) is the signed horizontal angle
+from true north to magnetic north at a particular position, altitude, and date.
+A positive, easterly declination means magnetic north lies east of true north;
+in the usual convention, add it to a magnetic direction to obtain the
+corresponding true direction, and subtract it to obtain the magnetic direction.
+The value changes both geographically and over time, so it must be taken from
+the appropriate model epoch rather than treated as a permanent local constant.
+
+In 2024, the declination in Western Europe is 2° east, meaning that a compass would point 2° east of true north.
+
+::: {.callout-warning}
+### Flying in northern Canada and polar airspace
+
+Northern flying is not defined by one universal “polar qualification”. The
+required approval, crew training, and equipment depend on the route, altitude,
+airspace, aircraft, and type of operation. Simply entering Canada's Northern
+Domestic Airspace (NDA), for example, is not the same as conducting an airline
+polar operation north of 78°.
+
+The [Transport Canada Aeronautical Information Manual, RAC 2.2.1](https://tc.canada.ca/sites/default/files/2025-03/aim-2025-1_rac-e.pdf)
+warns that the magnetic North Pole lies near the centre of the NDA and compass
+indications may be erratic. Canadian procedures therefore publish runway
+headings in **true degrees** and use **true track** to select cruising altitude
+in the NDA. Pilots and navigation systems must be able to operate with that
+true-reference convention. More restrictive airspace may add qualifications:
+for example, parts of the Northern and Arctic Control Areas between FL 330 and
+FL 410 are Canadian Minimum Navigation Performance Specification (CMNPS)
+airspace, for which the aircraft and operator must meet the applicable
+navigation-performance and authorization requirements.
+
+:::
+
+## Navigation angles
+
+Several angular terms are used together in aviation, but they do not describe the same thing. We use @fig-wind-triangle to illustrate the relationships between the angles and speeds that are relevant for navigation.
+
+```{ojs}
+//| echo: false
+magneticVariationControl = {
+  const input = document.createElement("input");
+  input.type = "hidden";
+  input.value = 10;
+  return input;
+}
+```
+
+```{ojs}
+//| echo: false
+viewof magneticVariation = magneticVariationControl
+```
+
+```{ojs}
+//| echo: false
+airVectorControl = {
+  const control = document.createElement("div");
+  control.value = { airDirection: 60.37, tas: 280 };
+  return control;
+}
+```
+
+```{ojs}
+//| echo: false
+viewof airVector = airVectorControl
+```
+
+```{ojs}
+//| echo: false
+sideslipControl = {
+  const control = document.createElement("div");
+  control.value = 5;
+  return control;
+}
+```
+
+```{ojs}
+//| echo: false
+viewof sideslip = sideslipControl
+```
+
+```{ojs}
+//| echo: false
+windVectorControl = {
+  const control = document.createElement("div");
+  control.value = { windFrom: 352.17, windSpeed: 100 };
+  return control;
+}
+```
+
+```{ojs}
+//| echo: false
+viewof windVector = windVectorControl
+```
+
+::: {#fig-wind-triangle fig-cap="Relationship between navigation angles and aircraft speeds."}
+
+```{ojs}
+//| echo: false
+{
+  const { windFrom, windSpeed } = windVector;
+  const variation = Number(magneticVariation);
+  const { airDirection, tas } = airVector;
+  const rad = (degrees) => degrees * Math.PI / 180;
+  const normalise = (degrees) => (degrees % 360 + 360) % 360;
+  const signedDifference = (to, from) => ((to - from + 540) % 360) - 180;
+  const vector = (speed, direction) => ({
+    east: speed * Math.sin(rad(direction)),
+    north: speed * Math.cos(rad(direction))
+  });
+  const wind = vector(windSpeed, normalise(windFrom + 180));
+  const magneticNorth = normalise(variation);
+  const headingTrue = normalise(airDirection - Number(sideslip));
+  const headingMagnetic = normalise(headingTrue - variation);
+  const air = vector(tas, airDirection);
+  const ground = { east: air.east + wind.east, north: air.north + wind.north };
+  const groundSpeed = Math.hypot(ground.east, ground.north);
+  const desiredTrack = normalise(Math.atan2(ground.east, ground.north) * 180 / Math.PI);
+  const drift = signedDifference(desiredTrack, airDirection);
+  const correction = signedDifference(headingTrue, desiredTrack);
+  const possible = true;
+
+  const W = 700, H = 400, origin = { x: 275, y: 250 };
+  const scale = 0.7;
+  const point = ({ east, north }) => ({ x: origin.x + east * scale, y: origin.y - north * scale });
+  const airEnd = point(air), groundEnd = point(ground);
+  const polarPoint = (radius, angle) => ({
+    x: origin.x + radius * Math.sin(rad(angle)),
+    y: origin.y - radius * Math.cos(rad(angle))
+  });
+  const arc = (from, to, radius) => {
+    const delta = signedDifference(to, from);
+    const steps = Math.max(5, Math.ceil(Math.abs(delta) / 4));
+    return d3.range(steps + 1).map((i) => {
+      const p = polarPoint(radius, from + delta * i / steps);
+      return `${i ? "L" : "M"}${p.x.toFixed(1)},${p.y.toFixed(1)}`;
+    }).join(" ");
+  };
+  const labelPoint = (from, to, radius) => polarPoint(radius, from + signedDifference(to, from) / 2);
+  const variationLabel = labelPoint(0, magneticNorth, 85);
+  const psiLabel = labelPoint(magneticNorth, headingTrue, 72);
+  const betaLabel = labelPoint(headingTrue, airDirection, 154);
+  const driftLabel = labelPoint(airDirection, desiredTrack, 140);
+  const trackLabel = labelPoint(0, desiredTrack, 176);
+  const midpoint = (a, b, offsetX = 0, offsetY = 0) => ({
+    x: (a.x + b.x) / 2 + offsetX, y: (a.y + b.y) / 2 + offsetY
+  });
+  const tasLabel = { x: airEnd.x - 12, y: airEnd.y - 15 };
+  const gsLabel = { x: groundEnd.x + 12, y: groundEnd.y + 18 };
+  const windLabel = midpoint(airEnd, groundEnd, 20);
+  const aircraftTransform = `translate(${origin.x} ${origin.y}) rotate(${headingTrue})`;
+
+  const figure = htl.html`<figure id="fig-wind-triangle" style="margin-inline:0">
+    <svg viewBox="0 0 ${W} ${H}" role="img"
+      aria-label="Aircraft-centred wind triangle showing heading, sideslip, drift, true airspeed, wind, and ground speed"
+      style="width:100%;max-width:700px;height:auto;background:var(--bs-body-bg,#fff)">
+      <defs>
+        <marker id="arrow-blue" viewBox="-2 -7 13 14" refX="9" refY="0" markerWidth="14" markerHeight="14" orient="auto" markerUnits="userSpaceOnUse"><path d="M1,-5 L9,0 L1,5" fill="none" stroke="#2878b5" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"></path></marker>
+        <marker id="arrow-red" viewBox="-2 -7 13 14" refX="9" refY="0" markerWidth="14" markerHeight="14" orient="auto" markerUnits="userSpaceOnUse"><path d="M1,-5 L9,0 L1,5" fill="none" stroke="#e08214" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"></path></marker>
+        <marker id="arrow-black" viewBox="-2 -7 13 14" refX="9" refY="0" markerWidth="14" markerHeight="14" orient="auto" markerUnits="userSpaceOnUse"><path d="M1,-5 L9,0 L1,5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"></path></marker>
+        <marker id="arrow-green" viewBox="-2 -7 13 14" refX="9" refY="0" markerWidth="14" markerHeight="14" orient="auto" markerUnits="userSpaceOnUse"><path d="M1,-5 L9,0 L1,5" fill="none" stroke="#2a9d8f" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"></path></marker>
+        <marker id="angle-green" viewBox="-2 -6 12 12" refX="8" refY="0" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M1,-4 L8,0 L1,4" fill="none" stroke="#2a9d8f" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></marker>
+        <marker id="angle-black" viewBox="-2 -6 12 12" refX="8" refY="0" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M1,-4 L8,0 L1,4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></marker>
+        <marker id="angle-purple" viewBox="-2 -6 12 12" refX="8" refY="0" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M1,-4 L8,0 L1,4" fill="none" stroke="#7b4ab5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></marker>
+        <marker id="angle-drift" viewBox="-2 -6 12 12" refX="8" refY="0" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M1,-4 L8,0 L1,4" fill="none" stroke="#d62728" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></marker>
+        <marker id="angle-track" viewBox="-2 -6 12 12" refX="8" refY="0" markerWidth="9" markerHeight="9" orient="auto" markerUnits="userSpaceOnUse"><path d="M1,-4 L8,0 L1,4" fill="none" stroke="#e08214" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></marker>
+      </defs>
+
+      <line x1="${origin.x}" y1="${polarPoint(150, 180).y}" x2="${polarPoint(225, 0).x}" y2="${polarPoint(225, 0).y}" stroke="currentColor" stroke-width="1.5" opacity="0.55" marker-end="url(#arrow-black)"></line>
+      <text x="${polarPoint(238, 0).x}" y="${polarPoint(238, 0).y}" text-anchor="middle" fill="currentColor" font-weight="600">true north</text>
+      <line x1="${origin.x}" y1="${origin.y}" x2="${polarPoint(225, magneticNorth).x}" y2="${polarPoint(225, magneticNorth).y}" stroke="#2a9d8f" stroke-width="1.5" stroke-dasharray="4,5" marker-end="url(#arrow-green)" pointer-events="none"></line>
+      <text x="${polarPoint(238, magneticNorth).x}" y="${polarPoint(238, magneticNorth).y}" text-anchor="start" fill="#2a9d8f" font-weight="600" pointer-events="none">magnetic north</text>
+      <line x1="35" y1="${origin.y}" x2="610" y2="${origin.y}" stroke="currentColor" stroke-width="1" opacity="0.18"></line>
+
+      <line x1="${origin.x}" y1="${origin.y}" x2="${airEnd.x}" y2="${airEnd.y}" stroke="#2878b5" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow-blue)"></line>
+      <line x1="${origin.x}" y1="${origin.y}" x2="${groundEnd.x}" y2="${groundEnd.y}" stroke="#e08214" stroke-width="4" stroke-linecap="round" marker-end="url(#arrow-red)"></line>
+      <line x1="${airEnd.x}" y1="${airEnd.y}" x2="${groundEnd.x}" y2="${groundEnd.y}" stroke="currentColor" stroke-width="3" stroke-linecap="round" marker-end="url(#arrow-black)"></line>
+
+      <line x1="${origin.x}" y1="${origin.y}" x2="${polarPoint(225, headingTrue).x}" y2="${polarPoint(225, headingTrue).y}" stroke="currentColor" stroke-width="1.5" stroke-dasharray="7,6" opacity="0.8"></line>
+      <path d="${arc(0, magneticNorth, 80)}" fill="none" stroke="#2a9d8f" stroke-width="2.5" marker-end="url(#angle-green)"></path>
+      <path d="${arc(magneticNorth, headingTrue, 62)}" fill="none" stroke="currentColor" stroke-width="2" marker-end="url(#angle-black)"></path>
+      <path d="${arc(headingTrue, airDirection, 144)}" fill="none" stroke="#7b4ab5" stroke-width="2.5" marker-end="url(#angle-purple)"></path>
+      <path d="${arc(airDirection, desiredTrack, 130)}" fill="none" stroke="#d62728" stroke-width="2.5" marker-end="url(#angle-drift)"></path>
+      <path d="${arc(0, desiredTrack, 166)}" fill="none" stroke="#e08214" stroke-width="2" stroke-dasharray="3,4" marker-end="url(#angle-track)"></path>
+
+      <text x="${variationLabel.x}" y="${variationLabel.y}" fill="#2a9d8f" font-size="15" text-anchor="middle" font-weight="600">D</text>
+      <text x="${psiLabel.x}" y="${psiLabel.y}" fill="currentColor" font-size="17" font-style="italic">ψ<tspan font-size="11" baseline-shift="sub">M</tspan></text>
+      <text x="${betaLabel.x}" y="${betaLabel.y}" fill="#7b4ab5" font-size="17" font-weight="600">β</text>
+      <text x="${driftLabel.x}" y="${driftLabel.y}" fill="#d62728" font-size="17" font-weight="600">δ</text>
+      <text x="${trackLabel.x}" y="${trackLabel.y}" fill="#e08214" font-size="17" font-weight="600">χ<tspan font-size="11" baseline-shift="sub">T</tspan></text>
+      <text x="${tasLabel.x}" y="${tasLabel.y}" fill="#2878b5" font-weight="600" text-anchor="start">true air speed ${tas} kt</text>
+      <text x="${gsLabel.x}" y="${gsLabel.y}" fill="#e08214" font-weight="600" text-anchor="start">ground speed ${groundSpeed.toFixed(0)} kt</text>
+      <text x="${windLabel.x}" y="${windLabel.y}" fill="currentColor" font-weight="600">wind ${windSpeed} kt</text>
+
+      <g transform="${aircraftTransform}" fill="currentColor">
+        <g transform="scale(0.7) translate(-550 -285)">
+          <path d="M565.5,234h-31.1c-0.7,0-1.2-0.5-1.2-1.2V230c0-3.7,3-6.7,6.7-6.7h20.2c3.7,0,6.7,3,6.7,6.7v2.8C566.7,233.4,566.2,234,565.5,234z M535.6,231.6h28.7V230c0-2.4-1.9-4.3-4.3-4.3h-20.2c-2.4,0-4.3,1.9-4.3,4.3V231.6z"></path>
+          <path d="M556.6,225.7h-13.2c-0.4,0-0.8-0.2-1-0.5c-0.2-0.3-0.3-0.8-0.1-1.1l4-9c0.7-1.5,2.1-2.4,3.7-2.4c1.6,0,3,0.9,3.7,2.4l4,9c0.2,0.4,0.1,0.8-0.1,1.1C557.4,225.5,557,225.7,556.6,225.7z M545.2,223.4h9.6l-3.3-7.4c-0.3-0.6-0.8-1-1.5-1c-0.7,0-1.2,0.4-1.5,1L545.2,223.4z"></path>
+          <rect x="515.5" y="218" width="30.2" height="2.4"></rect>
+          <rect x="554.3" y="218" width="30.2" height="2.4"></rect>
+          <path d="M552.3,288.1h-4.6c-4.9,0-8.8-4-8.8-8.8v-16.8c0-4.9,4-8.8,8.8-8.8h4.6c4.9,0,8.8,4,8.8,8.8v16.8C561.1,284.2,557.2,288.1,552.3,288.1z M547.7,256c-3.6,0-6.5,2.9-6.5,6.5v16.8c0,3.6,2.9,6.5,6.5,6.5h4.6c3.6,0,6.5-2.9,6.5-6.5v-16.8c0-3.6-2.9-6.5-6.5-6.5H547.7z"></path>
+          <rect x="540" y="264.4" width="19.9" height="2.4"></rect>
+          <rect x="540" y="274.8" width="19.9" height="2.4"></rect>
+          <path d="M550,356.9c-2.2,0-4-1.8-4-4v-28.6c0-2.2,1.8-4,4-4c2.2,0,4,1.8,4,4v28.6C554,355.1,552.2,356.9,550,356.9z M550,322.7c-0.9,0-1.6,0.7-1.6,1.6v28.6c0,0.9,0.7,1.6,1.6,1.6c0.9,0,1.6-0.7,1.6-1.6v-28.6C551.6,323.4,550.9,322.7,550,322.7z"></path>
+          <path d="M586,346.2h-33.2c-0.7,0-1.2-0.5-1.2-1.2v-17c0-0.3,0.1-0.7,0.4-0.9c0.3-0.2,0.6-0.3,0.9-0.3l29.9,3.7c2.4,0.3,4.3,2.4,4.3,4.9v9.5C587.2,345.7,586.6,346.2,586,346.2z M554,343.8h30.8v-8.4c0-1.3-1-2.4-2.2-2.5l-28.6-3.6V343.8z"></path>
+          <path d="M547.2,346.2H514c-0.7,0-1.2-0.5-1.2-1.2v-9.5c0-2.5,1.8-4.6,4.3-4.9l29.9-3.7c0.3,0,0.7,0.1,0.9,0.3c0.3,0.2,0.4,0.5,0.4,0.9v17C548.4,345.7,547.8,346.2,547.2,346.2z M515.2,343.8H546v-14.4l-28.6,3.6c-1.3,0.2-2.2,1.2-2.2,2.5V343.8z"></path>
+          <path d="M555.1,349.1h-2.3c-0.7,0-1.2-0.5-1.2-1.2V345c0-0.7,0.5-1.2,1.2-1.2h2.8c0.3,0,0.7,0.2,0.9,0.4c0.2,0.3,0.3,0.6,0.3,1l-0.5,2.9C556.2,348.6,555.7,349.1,555.1,349.1z M554,346.7h0.2l0.1-0.5H554V346.7z"></path>
+          <path d="M558.5,329.9l-5.7-0.7c-0.6-0.1-1-0.6-1-1.2v-3.7c0-0.9-0.7-1.6-1.6-1.6c-0.9,0-1.6,0.7-1.6,1.6v3.7c0,0.6-0.4,1.1-1,1.2l-5.7,0.7c-0.6,0.1-1.2-0.3-1.3-1l-7.1-40.9V230c0-3.7,3-6.7,6.7-6.7h20.2c3.7,0,6.7,3,6.7,6.7v57.8l-7.1,40.9C559.5,329.5,559,329.9,558.5,329.9z M535.6,287.7l6.9,39.7l3.5-0.4v-2.7c0-2.2,1.8-4,4-4c2.2,0,4,1.8,4,4v2.7l3.5,0.4l6.9-39.7V230c0-2.4-1.9-4.3-4.3-4.3h-20.2c-2.4,0-4.3,1.9-4.3,4.3V287.7z"></path>
+          <path d="M547.2,349.1h-2.3c-0.6,0-1.1-0.4-1.2-1l-0.5-2.9c-0.1-0.3,0-0.7,0.3-1c0.2-0.3,0.6-0.4,0.9-0.4h2.8c0.7,0,1.2,0.5,1.2,1.2v2.9C548.4,348.5,547.8,349.1,547.2,349.1z M545.8,346.7h0.2v-0.5h-0.3L545.8,346.7z"></path>
+          <path d="M647.4,281.4h-81.8c-0.7,0-1.2-0.5-1.2-1.2v-31.5c0-0.3,0.1-0.6,0.4-0.9c0.2-0.2,0.6-0.3,0.9-0.3l68.3,5.2c8.2,0.6,14.6,7.5,14.6,15.8v11.7C648.6,280.8,648,281.4,647.4,281.4z M566.7,279h79.5v-10.5c0-7-5.5-12.9-12.4-13.4l-67-5.1V279z"></path>
+          <path d="M534.4,281.4h-81.8c-0.7,0-1.2-0.5-1.2-1.2v-11.7c0-8.2,6.4-15.2,14.6-15.8l68.3-5.2c0.3,0,0.7,0.1,0.9,0.3c0.2,0.2,0.4,0.5,0.4,0.9v31.5C535.6,280.8,535.1,281.4,534.4,281.4z M453.8,279h79.5v-29l-67,5.1c-7,0.5-12.4,6.4-12.4,13.4V279z"></path>
+          <rect x="565.5" y="274.2" width="72.3" height="1.8"></rect>
+          <rect x="462.1" y="274.2" width="72.3" height="1.8"></rect>
+        </g>
+      </g>
+      <circle cx="${origin.x}" cy="${origin.y}" r="3.5" fill="currentColor"></circle>
+
+      <!-- Interactive handles are last so they remain above every plotted element. -->
+      <line class="magnetic-drag-target" x1="${origin.x}" y1="${origin.y}" x2="${polarPoint(225, magneticNorth).x}" y2="${polarPoint(225, magneticNorth).y}" stroke="transparent" stroke-width="18" style="cursor:grab"></line>
+      <circle cx="${polarPoint(225, magneticNorth).x}" cy="${polarPoint(225, magneticNorth).y}" r="6.5" fill="#d62728" pointer-events="none"></circle>
+      <circle class="magnetic-drag-target" cx="${polarPoint(225, magneticNorth).x}" cy="${polarPoint(225, magneticNorth).y}" r="4" fill="#d62728" stroke="var(--bs-body-bg,#fff)" stroke-width="3" style="cursor:grab"></circle>
+      <circle class="air-vector-drag-target" cx="${airEnd.x}" cy="${airEnd.y}" r="12" fill="transparent" style="cursor:grab"></circle>
+      <circle cx="${airEnd.x}" cy="${airEnd.y}" r="6.5" fill="#d62728" pointer-events="none"></circle>
+      <circle class="air-vector-drag-target" cx="${airEnd.x}" cy="${airEnd.y}" r="4" fill="#d62728" stroke="var(--bs-body-bg,#fff)" stroke-width="3" style="cursor:grab"></circle>
+      <circle class="wind-drag-target" cx="${groundEnd.x}" cy="${groundEnd.y}" r="12" fill="transparent" style="cursor:grab"></circle>
+      <circle cx="${groundEnd.x}" cy="${groundEnd.y}" r="6.5" fill="#d62728" pointer-events="none"></circle>
+      <circle class="wind-drag-target" cx="${groundEnd.x}" cy="${groundEnd.y}" r="4" fill="#d62728" stroke="var(--bs-body-bg,#fff)" stroke-width="3" style="cursor:grab"></circle>
+      <circle class="nose-drag-target" cx="${polarPoint(52, headingTrue).x}" cy="${polarPoint(52, headingTrue).y}" r="12" fill="transparent" style="cursor:grab"></circle>
+      <circle cx="${polarPoint(52, headingTrue).x}" cy="${polarPoint(52, headingTrue).y}" r="6.5" fill="#d62728" pointer-events="none"></circle>
+      <circle class="nose-drag-target" cx="${polarPoint(52, headingTrue).x}" cy="${polarPoint(52, headingTrue).y}" r="4" fill="#d62728" stroke="var(--bs-body-bg,#fff)" stroke-width="3" style="cursor:grab"></circle>
+    </svg>
+    ${possible ? "" : htl.html`<p class="text-danger"><strong>No solution:</strong> the crosswind exceeds TAS.</p>`}
+  </figure>`;
+
+  const svg = figure.querySelector("svg");
+  const updateVariation = (event) => {
+    const activeSvg = document.querySelector("#fig-wind-triangle svg") ?? svg;
+    const rect = activeSvg.getBoundingClientRect();
+    const x = (event.clientX - rect.left) * W / rect.width;
+    const y = (event.clientY - rect.top) * H / rect.height;
+    const angle = signedDifference(normalise(Math.atan2(x - origin.x, origin.y - y) * 180 / Math.PI), 0);
+    magneticVariationControl.value = Math.max(-30, Math.min(30, Math.round(angle)));
+    magneticVariationControl.dispatchEvent(new Event("input", { bubbles: true }));
+  };
+  const stopDragging = () => {
+    window.removeEventListener("pointermove", updateVariation);
+    window.removeEventListener("pointerup", stopDragging);
+  };
+  for (const target of figure.querySelectorAll(".magnetic-drag-target")) {
+    target.addEventListener("pointerdown", (event) => {
+      event.preventDefault();
+      updateVariation(event);
+      window.addEventListener("pointermove", updateVariation);
+      window.addEventListener("pointerup", stopDragging, { once: true });
+    });
+  }
+
+  const updateAirVector = (event) => {
+    const activeSvg = document.querySelector("#fig-wind-triangle svg") ?? svg;
+    const rect = activeSvg.getBoundingClientRect();
+    const x = (event.clientX - rect.left) * W / rect.width;
+    const y = (event.clientY - rect.top) * H / rect.height;
+    const east = x - origin.x;
+    const north = origin.y - y;
+    const airDirectionFromPointer = normalise(Math.atan2(east, north) * 180 / Math.PI);
+    airVectorControl.value = {
+      airDirection: airDirectionFromPointer,
+      tas: Math.max(100, Math.min(400, Math.round(Math.hypot(east, north) / scale / 5) * 5))
+    };
+    airVectorControl.dispatchEvent(new Event("input", { bubbles: true }));
+  };
+  const stopAirVectorDragging = () => {
+    window.removeEventListener("pointermove", updateAirVector);
+    window.removeEventListener("pointerup", stopAirVectorDragging);
+  };
+  for (const target of figure.querySelectorAll(".air-vector-drag-target")) {
+    target.addEventListener("pointerdown", (event) => {
+      event.preventDefault();
+      updateAirVector(event);
+      window.addEventListener("pointermove", updateAirVector);
+      window.addEventListener("pointerup", stopAirVectorDragging, { once: true });
+    });
+  }
+
+  const updateSideslip = (event) => {
+    const activeSvg = document.querySelector("#fig-wind-triangle svg") ?? svg;
+    const rect = activeSvg.getBoundingClientRect();
+    const x = (event.clientX - rect.left) * W / rect.width;
+    const y = (event.clientY - rect.top) * H / rect.height;
+    const noseDirection = normalise(Math.atan2(x - origin.x, origin.y - y) * 180 / Math.PI);
+    const beta = signedDifference(airVectorControl.value.airDirection, noseDirection);
+    sideslipControl.value = Math.max(-10, Math.min(10, Math.round(beta * 2) / 2));
+    sideslipControl.dispatchEvent(new Event("input", { bubbles: true }));
+  };
+  const stopSideslipDragging = () => {
+    window.removeEventListener("pointermove", updateSideslip);
+    window.removeEventListener("pointerup", stopSideslipDragging);
+  };
+  for (const target of figure.querySelectorAll(".nose-drag-target")) {
+    target.addEventListener("pointerdown", (event) => {
+      event.preventDefault();
+      updateSideslip(event);
+      window.addEventListener("pointermove", updateSideslip);
+      window.addEventListener("pointerup", stopSideslipDragging, { once: true });
+    });
+  }
+
+  const updateWind = (event) => {
+    const activeSvg = document.querySelector("#fig-wind-triangle svg") ?? svg;
+    const rect = activeSvg.getBoundingClientRect();
+    const x = (event.clientX - rect.left) * W / rect.width;
+    const y = (event.clientY - rect.top) * H / rect.height;
+    const east = x - airEnd.x;
+    const north = airEnd.y - y;
+    const windTo = normalise(Math.atan2(east, north) * 180 / Math.PI);
+    windVectorControl.value = {
+      windFrom: normalise(windTo + 180),
+      windSpeed: Math.max(0, Math.min(200, Math.round(Math.hypot(east, north) / scale / 5) * 5))
+    };
+    windVectorControl.dispatchEvent(new Event("input", { bubbles: true }));
+  };
+  const stopWindDragging = () => {
+    window.removeEventListener("pointermove", updateWind);
+    window.removeEventListener("pointerup", stopWindDragging);
+  };
+  for (const target of figure.querySelectorAll(".wind-drag-target")) {
+    target.addEventListener("pointerdown", (event) => {
+      event.preventDefault();
+      updateWind(event);
+      window.addEventListener("pointermove", updateWind);
+      window.addEventListener("pointerup", stopWindDragging, { once: true });
+    });
+  }
+  return figure;
+}
+```
+
+:::
+
+In the figure, you may use the <span style="display:inline-block;width:13px;height:13px;margin:0 0.2em;vertical-align:-1px;box-sizing:border-box;border:3px solid white;border-radius:50%;background:#d62728;outline:1px solid #d62728;"></span> handles to change the values.
+
+```{ojs}
+//| echo: false
+navigationValues = {
+  const { windFrom, windSpeed } = windVector;
+  const variation = Number(magneticVariation);
+  const { airDirection, tas } = airVector;
+  const beta = Number(sideslip);
+  const rad = (degrees) => degrees * Math.PI / 180;
+  const normalise = (degrees) => (degrees % 360 + 360) % 360;
+  const signedDifference = (to, from) => ((to - from + 540) % 360) - 180;
+  const vector = (speed, direction) => ({
+    east: speed * Math.sin(rad(direction)),
+    north: speed * Math.cos(rad(direction))
+  });
+  const headingTrue = normalise(airDirection - beta);
+  const headingMagnetic = normalise(headingTrue - variation);
+  const windTo = normalise(windFrom + 180);
+  const air = vector(tas, airDirection);
+  const wind = vector(windSpeed, windTo);
+  const ground = { east: air.east + wind.east, north: air.north + wind.north };
+  const groundSpeed = Math.hypot(ground.east, ground.north);
+  const trackTrue = normalise(Math.atan2(ground.east, ground.north) * 180 / Math.PI);
+  const drift = signedDifference(trackTrue, airDirection);
+  const windAngle = Math.abs(signedDifference(windTo, airDirection));
+  const variationText = variation >= 0
+    ? `${variation.toFixed(0)}° E`
+    : `${Math.abs(variation).toFixed(0)}° W`;
+  return {
+    windFrom, windSpeed, variation, variationText, beta, tas, airDirection,
+    headingTrue, headingMagnetic, groundSpeed, trackTrue, drift, windAngle
+  };
+}
+```
+
+```{ojs}
+//| echo: false
+navigationInlineValues = {
+  const v = navigationValues;
+  const values = {
+    headingMagnetic: v.headingMagnetic.toFixed(1),
+    variation: v.variationText,
+    headingTrue: v.headingTrue.toFixed(1),
+    tas: v.tas.toFixed(0),
+    airDirection: v.airDirection.toFixed(1),
+    windFrom: v.windFrom.toFixed(1),
+    windSpeed: v.windSpeed.toFixed(0),
+    groundSpeed: v.groundSpeed.toFixed(0),
+    trackTrue: v.trackTrue.toFixed(1),
+    drift: v.drift.toFixed(1),
+    beta: v.beta.toFixed(1)
+  };
+  const update = () => {
+    for (const element of document.querySelectorAll("[data-navigation-value]")) {
+      element.textContent = values[element.dataset.navigationValue] ?? "";
+    }
+  };
+  update();
+  requestAnimationFrame(update);
+  //return htl.html`<span hidden></span>`;
+}
+```
+
+The aircraft's **magnetic heading** ψ<sub>M</sub> is the direction of its
+longitudinal axis measured clockwise from magnetic north. In the current
+configuration, it is <span data-navigation-value="headingMagnetic"></span>°.
+
+The magnetic declination D is introduced in previous section and set to <span data-navigation-value="variation"></span> here.
+
+The **true airspeed** (TAS) is the aircraft's speed relative to the surrounding
+air mass; **ground speed** (GS) is its speed relative to the Earth. Their vector
+relationship is
+
+$$
+\overrightarrow{V_\mathsf{GS}} =
+\overrightarrow{V_\mathsf{TAS}} +
+\overrightarrow{V_\mathsf{wind}}.
+$$
+
+Here, the TAS is <span data-navigation-value="tas"></span> kt along the true direction D + ψ<sub>M</sub> + β = <span data-navigation-value="airDirection"></span>°. The exaggerated **sideslip** β is <span data-navigation-value="beta"></span>° separates the aircraft's longitudinal axis from the TAS vector. During normal coordinated flight, β is close to zero and the two directions nearly coincide.
+
+The **wind** comes from direction <span data-navigation-value="windFrom"></span>° (relative to true north) at <span data-navigation-value="windSpeed"></span> kt. Their sum gives a **ground speed** of <span data-navigation-value="groundSpeed"></span> kt and a **true track angle** χ<sub>T</sub> of <span data-navigation-value="trackTrue"></span>°.
+
+The **drift angle δ** is the signed angle from the TAS vector to the ground-speed vector. We have δ = χ<sub>T</sub> - ψ<sub>M</sub> - β - D = <span data-navigation-value="drift"></span>°. Positive values represent a clockwise displacement and negative values an anticlockwise displacement.
+
+The cosine law gives the relationship between the three sides of the triangle:
+
+$$
+\mathsf{wind}^2 = \mathsf{TAS}^2 + \mathsf{GS}^2
+- 2\,\mathsf{TAS}\,\mathsf{GS}\cos δ.
+$$
+
+
+More navigation terms describe other directional relationships:
+
+- the **course** angle is the intended direction of a route segment, often towards the
+  next waypoint;
+- the **bearing** is the direction from one position to another. It must say
+  whether it is a bearing *to* or *from* the reference point;
+- the **relative bearing** is measured from the aircraft heading rather than from
+  north; and
+- a **radial** is the magnetic bearing *from* a [navigation aid](conventional-radio-navigation.qmd), particularly a VOR or TACAN, to the aircraft. Itl describes a position relative to its station, not the direction in which the aircraft is flying. An aircraft on the 140 radial of a station is southeast of the station; when flying inbound without wind, its approximate magnetic course is 320°.
+
+## Geodesics and distances
+
+A **geodesic** is the shortest path between two points on the chosen Earth surface. On a sphere it is a **great-circle arc**, i.e. an arc of a circle going through both points and whose center coincides with the center of the sphere.
+
+In geodesics, spherical Earth models are very useful to give a clear intuitive understanding of the geometry. However, the Earth is not a perfect sphere, but an oblate ellipsoid. The WGS-84 ellipsoid is the standard reference for aviation and navigation. Geodesics on an ellipsoid are more complex than great circles, but they provide more accurate distances and bearings for real-world navigation.
+
+For a spherical Earth of radius $R$, let $(\phi_1, \lambda_1)$ and $(\phi_2, \lambda_2)$ be the latitude and longitude of two positions, expressed in radians. The **haversine formula** is numerically stable for both short and long routes:
+
+$$
+\begin{aligned}
+a &= \sin^2\left(\frac{\phi_2 - \phi_1}{2}\right) +
+     \cos\phi_1\cos\phi_2\sin^2\left(\frac{\lambda_2 - \lambda_1}{2}\right), \\
+d &= 2R\operatorname{atan2}\left(\sqrt{a}, \sqrt{1-a}\right)
+\end{aligned}
+$$
+
+::: {.callout-tip}
+### Haversine or haversine?
+
+The **haversine function** is defined as $\operatorname{hav}(\theta) = \dfrac{1 - \cos(\theta)}{2} = \sin^2\left(\dfrac{\theta}{2}\right)$
+
+The name comes from "half" and "versine," where the versine of an angle is $1 - \cos(\theta)$. The word "haversine" has been introduced in the 19th century and is now widely used in navigation and geodesy. It is not the name of a person, as the capitalization might suggest.
+:::
+
+Here, $d$ is the great-circle distance. The initial true bearing follows from
+
+$$
+\theta = \operatorname{atan2}\left(
+  \sin\left(\lambda_2 - \lambda_1\right)\cos\phi_2,
+  \cos\phi_1\sin\phi_2 - \sin\phi_1\cos\phi_2\cos\left(\lambda_2 - \lambda_1\right)
+\right)
+$$
+
+In practice, these equations are already error-prone, and the formulae for ellipsoidal geodesics are more complex. External libraries are very well justified as they provide accurate implementations.
+
+We usually consider two geodesic problems:
+
+- The **inverse geodesic problem** takes two positions and returns their distance, initial bearing, and final bearing.
+
+- The **forward geodesic problem** starts from a position, an initial bearing, and a distance, then returns the destination and final bearing. The initial and final bearings usually differ on a long route because
+a geodesic does not keep a constant direction relative to north.
+
+::: {.callout-tip}
+### Rhumb lines
+
+Historically, navigation often used **rhumb lines** (or loxodromes) instead of geodesics. A rhumb line keeps a constant bearing and appears straight on a Mercator map, but it is generally not the shortest route. It is useful for interpreting some chart geometry, not as the default distance calculation for a trajectory or an airport pair.
+
+:::
+
+```{ojs}
+//| echo: false
+viewof routeInput = {
+  const from = htl.html`<input class="form-control" type="text" value="Rome" aria-label="From">`;
+  const to = htl.html`<input class="form-control" type="text" value="Vancouver" aria-label="To">`;
+  const examples = [
+    ["Paris to New York", "Paris", "New York"],
+    ["London to Sydney", "London", "Sydney"],
+    ["Tokyo to Miami", "Tokyo", "Miami"],
+    ["Rio de Janeiro to Stockholm", "Rio de Janeiro", "Stockholm"]
+  ];
+  const control = htl.html`<div class="mb-3 route-input-fields">
+    <div class="d-flex flex-wrap gap-2 route-example-buttons">
+      ${examples.map(([label, origin, destination]) => {
+        const button = htl.html`<button class="btn btn-outline-secondary btn-sm" type="button">${label}</button>`;
+        button.onclick = () => {
+          from.value = origin;
+          to.value = destination;
+          update();
+        };
+        return button;
+      })}
+    </div>
+    <div class="d-flex align-items-baseline mb-1">
+      <small class="route-input-hint">Enter major city or coordinates</small>
+    </div>
+    <div class="row g-2 mb-2">
+      <label class="col-sm-6">${from}<small class="d-block text-muted mt-1" data-route-coordinate="from">&nbsp;</small></label>
+      <label class="col-sm-6">${to}<small class="d-block text-muted mt-1" data-route-coordinate="to">&nbsp;</small></label>
+    </div>
+    <small class="d-block text-danger" data-route-coordinate-error></small>
+  </div>`;
+  const update = () => {
+    control.value = { from: from.value, to: to.value };
+    control.dispatchEvent(new Event("input", { bubbles: true }));
+  };
+  from.addEventListener("input", update);
+  to.addEventListener("input", update);
+  update();
+  return control;
+}
+```
+
+```{ojs}
+//| echo: false
+routeAirportsCsv = fetch("https://raw.githubusercontent.com/davidmegginson/ourairports-data/main/airports.csv")
+  .then((response) => response.text())
+```
+
+```{ojs}
+//| echo: false
+routeAirports = d3.csvParse(routeAirportsCsv)
+  .filter((airport) => Number.isFinite(Number(airport.latitude_deg)) && Number.isFinite(Number(airport.longitude_deg)))
+  .map((airport) => ({
+    name: airport.name,
+    municipality: airport.municipality,
+    type: airport.type,
+    iata: airport.iata_code,
+    icao: airport.gps_code || airport.ident,
+    latitude: Number(airport.latitude_deg),
+    longitude: Number(airport.longitude_deg)
+  }))
+```
+
+```{ojs}
+//| echo: false
+parseCoordinatePair = (value) => {
+  const text = String(value ?? "").trim();
+  const decimal = text.match(/^\s*([+-]?\d+(?:[.,]\d+)?)\s*(?:,|\s+)\s*([+-]?\d+(?:[.,]\d+)?)\s*$/);
+  if (decimal) {
+    const latitude = Number(decimal[1].replace(",", "."));
+    const longitude = Number(decimal[2].replace(",", "."));
+    if (Math.abs(latitude) <= 90 && Math.abs(longitude) <= 180) return { latitude, longitude };
+    return { error: "Latitude must be between −90° and 90°, longitude between −180° and 180°." };
+  }
+  const number = "([0-9]+(?:[.,][0-9]+)?)";
+  const dms = text.match(new RegExp(
+    `^\\s*${number}\\s*°\\s*(?:${number}\\s*['′]\\s*)?(?:${number}\\s*[\"″]\\s*)?([NS])\\s*[,;\\s]+${number}\\s*°\\s*(?:${number}\\s*['′]\\s*)?(?:${number}\\s*[\"″]\\s*)?([EW])\\s*$`, "i"
+  ));
+  if (!dms) return null;
+  const valueFromDms = (degrees, minutes, seconds, hemisphere) => {
+    const magnitude = Number(degrees.replace(",", "."))
+      + Number((minutes ?? "0").replace(",", ".")) / 60
+      + Number((seconds ?? "0").replace(",", ".")) / 3600;
+    return /[SW]/i.test(hemisphere) ? -magnitude : magnitude;
+  };
+  const latitude = valueFromDms(dms[1], dms[2], dms[3], dms[4]);
+  const longitude = valueFromDms(dms[5], dms[6], dms[7], dms[8]);
+  if (Math.abs(latitude) <= 90 && Math.abs(longitude) <= 180) return { latitude, longitude };
+  return { error: "Latitude must be between −90° and 90°, longitude between −180° and 180°." };
+}
+```
+
+```{ojs}
+//| echo: false
+resolveRouteInput = (value) => {
+  const coordinates = parseCoordinatePair(value);
+  if (coordinates?.error) return coordinates;
+  if (coordinates) return {
+    name: `${coordinates.latitude.toFixed(4)}°, ${coordinates.longitude.toFixed(4)}°`,
+    coordinates: [coordinates.longitude, coordinates.latitude]
+  };
+  const normalise = (text) => String(text ?? "")
+    .normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase();
+  const query = normalise(value).trim();
+  const terms = query.split(/\s+/).filter(Boolean);
+  if (!terms.length) return { error: "Enter an airport code, name, city, or coordinate pair." };
+  const typePriority = new Map([["large_airport", 0], ["medium_airport", 1], ["small_airport", 2], ["heliport", 3], ["seaplane_base", 4], ["closed", 5]]);
+  const candidates = routeAirports
+    .map((airport) => {
+      const codes = [airport.iata, airport.icao].map(normalise);
+      const name = normalise(airport.name);
+      const municipality = normalise(airport.municipality);
+      const exactCode = codes.includes(query);
+      const matches = exactCode || terms.every((term) => `${name} ${municipality}`.includes(term));
+      if (!matches) return null;
+      const score = exactCode ? 0 : name === query ? 1 : municipality === query ? 2 : 3;
+      return { airport, score };
+    })
+    .filter(Boolean)
+    .sort((a, b) =>
+      d3.ascending(typePriority.get(a.airport.type) ?? 99, typePriority.get(b.airport.type) ?? 99)
+      || d3.ascending(a.score, b.score)
+      || d3.ascending(a.airport.name, b.airport.name)
+    );
+  const match = candidates[0]?.airport;
+  if (!match) return { error: `No airport found for “${value}”.` };
+  return {
+    name: `${match.name} (${match.iata || "—"}/${match.icao || "—"}; ${match.type.replace("_", " ")})`,
+    coordinates: [match.longitude, match.latitude]
+  };
+}
+```
+
+```{ojs}
+//| echo: false
+routeCalculator = {
+  const from = resolveRouteInput(routeInput.from);
+  const to = resolveRouteInput(routeInput.to);
+  const error = from.error || to.error;
+  if (error) return { error };
+  return {
+    from: from.coordinates,
+    to: to.coordinates
+  };
+}
+```
+
+```{ojs}
+//| echo: false
+{
+  const formatCoordinates = ([longitude, latitude]) =>
+    `${latitude.toFixed(4)}°, ${longitude.toFixed(4)}°`;
+  const update = () => {
+    const fromOutput = document.querySelector('[data-route-coordinate="from"]');
+    const toOutput = document.querySelector('[data-route-coordinate="to"]');
+    const errorOutput = document.querySelector("[data-route-coordinate-error]");
+    if (routeCalculator.error) {
+      if (fromOutput) fromOutput.innerHTML = "&nbsp;";
+      if (toOutput) toOutput.innerHTML = "&nbsp;";
+      if (errorOutput) errorOutput.textContent = `Location error: ${routeCalculator.error}`;
+      return;
+    }
+    if (fromOutput) fromOutput.textContent = formatCoordinates(routeCalculator.from);
+    if (toOutput) toOutput.textContent = formatCoordinates(routeCalculator.to);
+    if (errorOutput) errorOutput.textContent = "";
+  };
+  update();
+  requestAnimationFrame(update);
+  return htl.html`<span hidden></span>`;
+}
+```
+
+```{ojs}
+//| echo: false
+topojson = require("topojson-client@3")
+```
+
+```{ojs}
+//| echo: false
+countries = fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json")
+  .then((response) => response.json())
+  .then((atlas) => topojson.feature(atlas, atlas.objects.countries))
+```
+
+```{ojs}
+//| echo: false
+countries50m = fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-50m.json")
+  .then((response) => response.json())
+  .then((atlas) => topojson.feature(atlas, atlas.objects.countries))
+```
+
+```{ojs}
+//| echo: false
+geographiclib = require("geographiclib-geodesic@2.2.0")
+```
+
+```{ojs}
+//| echo: false
+{
+  if (routeCalculator.error) return htl.html`<p class="text-danger"><strong>Location error:</strong> ${routeCalculator.error}</p>`;
+  const { from, to } = routeCalculator;
+  const [lon1, lat1] = from;
+  const [lon2, lat2] = to;
+  const radians = Math.PI / 180;
+  const centralAngle = Math.acos(Math.min(1, Math.max(-1,
+    Math.sin(lat1 * radians) * Math.sin(lat2 * radians) +
+    Math.cos(lat1 * radians) * Math.cos(lat2 * radians) * Math.cos((lon2 - lon1) * radians)
+  )));
+  const sphericalKm = 6371.009 * centralAngle;
+  const wgs84 = geographiclib.Geodesic.WGS84.Inverse(lat1, lon1, lat2, lon2);
+  const wgs84Km = wgs84.s12 / 1000;
+  const distanceDifferenceKm = wgs84Km - sphericalKm;
+  const distanceDifferenceText = Math.abs(distanceDifferenceKm) < 0.05
+    ? "(almost identical)"
+    : `(${Math.abs(distanceDifferenceKm).toLocaleString(undefined, { maximumFractionDigits: 1 })} km ${distanceDifferenceKm > 0 ? "longer" : "shorter"})`;
+  const initialBearing = (wgs84.azi1 + 360) % 360;
+  const finalBearing = (wgs84.azi2 + 360) % 360;
+  const coordinateLabel = ([longitude, latitude]) => `${latitude.toFixed(4)}°, ${longitude.toFixed(4)}°`;
+  const sphericalBearing = ([longitude1, latitude1], [longitude2, latitude2]) => {
+    const phi1 = latitude1 * radians;
+    const phi2 = latitude2 * radians;
+    const deltaLambda = (longitude2 - longitude1) * radians;
+    return (Math.atan2(
+      Math.sin(deltaLambda) * Math.cos(phi2),
+      Math.cos(phi1) * Math.sin(phi2) - Math.sin(phi1) * Math.cos(phi2) * Math.cos(deltaLambda)
+    ) / radians + 360) % 360;
+  };
+  const sphericalInterpolator = d3.geoInterpolate(from, to);
+  const intermediateCoordinates = [0.25, 0.5, 0.75].map((fraction) => {
+    const coordinates = sphericalInterpolator(fraction);
+    return {
+      fraction,
+      coordinates,
+      bearing: sphericalBearing(coordinates, to)
+    };
+  });
+  const intermediatePoints = {
+    type: "FeatureCollection",
+    features: intermediateCoordinates.map(({ fraction, coordinates }) => ({
+      type: "Feature",
+      properties: { label: `${Math.round(fraction * 100)}% · ${coordinateLabel(coordinates)}` },
+      geometry: { type: "Point", coordinates }
+    }))
+  };
+  const arrowLength = Math.max(wgs84.s12 * 0.15, 15000);
+  const rhumbDestination = ([longitude, latitude], bearing, distance) => {
+    const earthRadius = 6371009;
+    const delta = distance / earthRadius;
+    const theta = bearing * radians;
+    const phi1 = latitude * radians;
+    const lambda1 = longitude * radians;
+    const phi2 = phi1 + delta * Math.cos(theta);
+    const deltaPsi = Math.log(
+      Math.tan(Math.PI / 4 + phi2 / 2) /
+      Math.tan(Math.PI / 4 + phi1 / 2)
+    );
+    const q = Math.abs(deltaPsi) > 1e-12
+      ? (phi2 - phi1) / deltaPsi
+      : Math.cos(phi1);
+    const lambda2 = lambda1 + delta * Math.sin(theta) / q;
+    return [((lambda2 / radians + 540) % 360) - 180, phi2 / radians];
+  };
+  const bearingArrowAt = (coordinates, bearing) => ({
+    type: "LineString",
+    coordinates: Array.from({ length: 9 }, (_, index) =>
+      rhumbDestination(coordinates, bearing, arrowLength * index / 8)
+    )
+  });
+  const bearingLocations = [
+    { coordinates: from, bearing: initialBearing },
+    ...intermediateCoordinates,
+    { coordinates: to, bearing: finalBearing }
+  ];
+  const bearingArrows = bearingLocations.map(({ coordinates, bearing }) =>
+    bearingArrowAt(coordinates, bearing)
+  );
+  const outlines = wgs84Km < 1000 ? countries50m : countries;
+  const outlineResolution = wgs84Km < 1000 ? "50 m" : "110 m";
+  const route = {
+    type: "LineString",
+    coordinates: Array.from({ length: 101 }, (_, index) =>
+      sphericalInterpolator(index / 100)
+    )
+  };
+  const points = {
+    type: "FeatureCollection",
+    features: [
+      { type: "Feature", properties: { label: `From · ${coordinateLabel(from)}` }, geometry: { type: "Point", coordinates: from } },
+      { type: "Feature", properties: { label: `To · ${coordinateLabel(to)}` }, geometry: { type: "Point", coordinates: to } }
+    ]
+  };
+  const [midpointLongitude, midpointLatitude] = intermediateCoordinates[1].coordinates;
+  const map = (projection) => {
+    const chart = Plot.plot({
+      width: Math.min(420, Math.max(300, width / 2 - 18)),
+      height: 300,
+      projection: { ...projection, domain: route, inset: 32 },
+      marks: [
+        Plot.geo({ type: "Sphere" }, { fill: "#eaf3f8", stroke: "#6c8ba0" }),
+        Plot.geo(d3.geoGraticule10(), {
+          stroke: "#6c8ba0",
+          strokeOpacity: 0.3,
+          strokeWidth: 0.55
+        }),
+        Plot.geo(outlines, { fill: "#f8f8f3", stroke: "#9ba9aa", strokeWidth: 0.4 }),
+        Plot.geo(route, { stroke: "#d95f02", strokeWidth: 2.5 }),
+        ...bearingArrows.map((arrow) => Plot.geo(arrow, {
+          stroke: "#198754",
+          strokeWidth: 3.2,
+          strokeLinecap: "round",
+          strokeLinejoin: "round"
+        })),
+        Plot.geo(intermediatePoints, { fill: "#6f42c1", stroke: "white", strokeWidth: 0.8, r: 3.5, title: (feature) => feature.properties.label }),
+        Plot.geo(points, { fill: "#1b6ca8", stroke: "white", strokeWidth: 1, r: 5, title: (feature) => feature.properties.label })
+      ]
+    });
+    const markerId = `map-bearing-arrow-${projection.type}`;
+    const defs = htl.svg`<defs>
+      <marker id="${markerId}" viewBox="-2 -7 13 14" refX="9" refY="0"
+        markerWidth="14" markerHeight="14" orient="auto" markerUnits="userSpaceOnUse">
+        <path d="M1,-5 L9,0 L1,5" fill="none" stroke="#198754" stroke-width="2.6"
+          stroke-linecap="round" stroke-linejoin="round"></path>
+      </marker>
+    </defs>`;
+    for (const element of chart.querySelectorAll('[stroke="#198754"]')) {
+      if (element.tagName.toLowerCase() === "path") element.setAttribute("marker-end", `url(#${markerId})`);
+      for (const path of element.querySelectorAll?.("path") ?? []) {
+        path.setAttribute("marker-end", `url(#${markerId})`);
+      }
+    }
+    chart.prepend(defs);
+    return htl.html`<div style="flex: 1 1 360px; min-width: 0;">${chart}</div>`;
+  };
+  return htl.html`<div>
+    <div style="display: flex; flex-wrap: wrap; gap: 1rem;">
+      ${map( { type: "mercator", rotate: [-midpointLongitude, 0] })}
+      ${map( { type: "orthographic", rotate: [-midpointLongitude, -midpointLatitude] })}
+    </div>
+    <div class="route-results-grid">
+      <section class="route-result-panel">
+        <dl class="mb-2">
+          <dt>Spherical great-circle</dt>
+          <dd>${sphericalKm.toLocaleString(undefined, { maximumFractionDigits: 1 })} km · ${(sphericalKm / 1.852).toLocaleString(undefined, { maximumFractionDigits: 1 })} nm</dd>
+          <dt>WGS-84 geodesic</dt>
+          <dd>${wgs84Km.toLocaleString(undefined, { maximumFractionDigits: 1 })} km · ${(wgs84Km / 1.852).toLocaleString(undefined, { maximumFractionDigits: 1 })} nm ${distanceDifferenceText}</dd>
+        </dl>
+      </section>
+      <section class="route-result-panel">
+        <dl class="mb-0">
+          <dt>Initial true bearing (WGS-84)</dt>
+          <dd>${initialBearing.toFixed(1)}°</dd>
+          <dt>Final true bearing (WGS-84)</dt>
+          <dd>${finalBearing.toFixed(1)}°</dd>
+        </dl>
+      </section>
+    </div>
+  </div>`;
+}
+```
+
+In this figure, the route calculator shows the great-circle route between two locations on the Earth. The WGS-84 geodesic distance is slightly longer than the spherical great-circle distance due to the ellipsoidal shape of the Earth. The initial and final bearings indicate the direction to follow at the start and end of the route, respectively.
+
+What is the most striking here is that the [**projection** of the map](../work/coordinates-projections-geometry.qmd) can significantly affect the visual representation of the route. The Mercator projection (left), commonly used in web maps, distorts areas and distances, especially near the poles, while the orthographic projection provides a more realistic view of the Earth as seen from space, preserving the relative positions of the locations along the route.
+
+However the constant bearing rhumb lines (green arrows) drawn from the initial, intermediate, and final points of the route illustrate how the direction changes along the geodesic, but appear straight with the Mercator map. This is a crucial consideration for navigation, as following a constant bearing, which has been convenient in the Middle Ages when compasses were the primary navigation tool, does not yield the shortest path between two points on the Earth's surface.
+
+
+
+## Caveats for trajectory calculations
+
+- **Irregular timestamps and sampling:** segment distance is geometric, but
+  speed requires division by elapsed time. Unequal intervals, duplicated
+  timestamps, long gaps, and interpolation can therefore bias speed and make
+  successive track estimates difficult to compare.
+- **Short and noisy segments:** when two positions are very close, ordinary
+  position uncertainty can be similar to the displacement. The resulting
+  bearing may swing sharply even when the aircraft flies straight. Apply a
+  minimum displacement or time interval, or estimate direction over a wider
+  window appropriate to the data accuracy and sampling rate.
+- **Calculated versus reported track:** a bearing between two samples is a
+  chord-based local estimate. A reported track may be measured onboard,
+  filtered by a surveillance system, rounded, or calculated over another time
+  window. They should not be treated as interchangeable without checking the
+  source definition.
+- **Circular angles:** $359°$ and $1°$ differ by $2°$, not $358°$. Differences,
+  smoothing, interpolation, and averages must use circular arithmetic rather
+  than ordinary linear arithmetic.
+- **The antimeridian:** longitude jumps from $+180°$ to $-180°$. Subtracting
+  longitudes directly can create a false near-global segment; normalise the
+  longitude difference or use a geodesic routine that handles the wrap.
+- **Polar regions:** longitude becomes ill-conditioned as meridians converge,
+  and heading or bearing can change rapidly near a pole. Avoid planar
+  longitude/latitude approximations there and interpret directions with the
+  relevant local reference frame.
+- **Missing and implausible positions:** do not bridge a long data gap or an
+  impossible position jump as though it were an observed flown segment. Split,
+  flag, or interpolate only under an explicit trajectory-processing rule.
+- **Projected coordinates:** Euclidean distance and angle are meaningful only
+  in a suitable projected CRS and within its useful area. For long or global
+  segments, calculate on the reference Earth rather than from screen or map
+  coordinates.

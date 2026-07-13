@@ -7,30 +7,6 @@ authors:
 
 Conventional radio navigation relies on ground stations and airborne receivers. These systems shaped the structure of airways, terminal procedures, and instrument approaches for decades. Many are now being rationalised as [satellite navigation](satellite-navigation.qmd) becomes dominant, but they remain important as operational references, approach aids, and backups to \acr{GNSS}.
 
-
-## Navigation angles and reference directions
-
-Before describing the radio aids themselves, it is useful to clarify a few angular navigation terms that are often used together:
-
-- the **heading** angle is where the nose of the aircraft points:\
-  the direction of the aircraft longitudinal axis, usually expressed in degrees from north.
-- the **track** angle is where the aircraft actually goes over the ground:\
-  the projection of its path on the Earth or on a map.
-- the **bearing** angle is the direction between two points.\
-  It may be a bearing *to* a point, a bearing *from* a point, or a relative bearing measured from the aircraft heading.
-- the **course** angle is the desired direction of flight for a route segment,\
-  often the intended bearing to the next waypoint.
-- the **radial** angle is a station-centred concept:\
-  the magnetic bearing *from* a radio navigation aid, especially a [VOR](#vhf-omnidirectional-range-vor) or TACAN, to the aircraft.
-
-Heading, track, bearing, course, and radial must all be interpreted with respect to a north reference. Depending on context, this may be **true north** or **magnetic north**. In aviation, magnetic references remain common because the magnetic compass is a fundamental fallback instrument and because many conventional radio navigation procedures are defined with magnetic bearings.
-
-![source: https://aviation.stackexchange.com/a/96035](../../images/ZUw30.png)
-
-Wind explains why heading and track are not necessarily the same. If there is no wind, an aircraft heading west also tracks west over the ground. With a crosswind, the pilot must point the nose slightly into the wind to maintain the desired ground track. The heading then differs from the track by the drift correction angle.
-
-Radials can be especially confusing because they describe the aircraft position relative to a navigation aid, not necessarily the direction in which the aircraft is flying. An aircraft may be established on a given radial while flying either outbound from the station or inbound toward it. For example, an aircraft flying toward a [VOR](#vhf-omnidirectional-range-vor) on the 140 radial would have an approximate magnetic course of 320 degrees when tracking inbound without wind.
-
 ## Non-Directional Beacon (NDB)
 
 The \acr{NDB} is a ground-based transmitter that radiates a simple, omnidirectional signal in the low and medium frequency bands, typically between **190 and 535 kHz**. In some regions, operation extends to higher frequencies, but the majority of aeronautical \acr{NDB} are confined to this internationally allocated band. \acr{NDB} are channelized at 1 or 2 kHz intervals, and each beacon is identified by a short Morse code identifier transmitted in the **400–1020 Hz audio band**.
