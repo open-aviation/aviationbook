@@ -161,10 +161,10 @@ import { curvedText } from "@jwolondon/curved-text-mark"
         paintOrder: "stroke",
         strokeWidth: 3,
         path: [
-          [-80, 66.56408333 + 0.3],
-          [-70, 66.56408333 + 0.3],
-          [-60, 66.56408333 + 0.3],
-          [-50, 66.56408333 + 0.3]
+          [53, 66.56408333 + 0.3],
+          [63, 66.56408333 + 0.3],
+          [73, 66.56408333 + 0.3],
+          [83, 66.56408333 + 0.3]
         ]
       }),
       // curvedText("Greenland (DK)", {
@@ -182,19 +182,19 @@ import { curvedText } from "@jwolondon/curved-text-mark"
       //     [-20, 78],
       //   ]
       // }),
-      curvedText("Svalbard (NO)", {
-        fill: "#506a7b",
-        stroke: "white",
-        fontSize: 11,
-        fontWeight: 600,
-        paintOrder: "stroke",
-        strokeWidth: 3,
-        path: [
-          [4, 78],
-          [16, 78],
-          [34, 78],
-        ]
-      }),
+      // curvedText("Svalbard (NO)", {
+      //   fill: "#506a7b",
+      //   stroke: "white",
+      //   fontSize: 11,
+      //   fontWeight: 600,
+      //   paintOrder: "stroke",
+      //   strokeWidth: 3,
+      //   path: [
+      //     [4, 78],
+      //     [16, 78],
+      //     [34, 78],
+      //   ]
+      // }),
       // curvedText("Russia", {
       //   fill: "#506a7b",
       //   stroke: "white",
@@ -233,6 +233,9 @@ import { curvedText } from "@jwolondon/curved-text-mark"
   addLabel("GREENLAND", [-41, 75], 8, -6, "#506a7b", 20);
   addLabel("(DENMARK)", [-38, 74], 8, -6, "#506a7b", 15);
   addLabel("RUSSIA", [90.5, 73], 8, -6, "#506a7b", 20);
+  addLabel("Svalbard", [8.6, 76.5], 8, -6, "#506a7b", 15);
+  addLabel("(NORWAY)", [8.6, 75.5], 8, -6, "#506a7b", 11);
+  addLabel("CANADA", [-85.6, 70.9], 8, -6, "#506a7b", 20);
 
   // Tooltip for modelledPath and observedPath
   const tooltip = document.createElementNS("http://www.w3.org/2000/svg", "text");
