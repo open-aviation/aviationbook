@@ -95,6 +95,8 @@ magneticPoleHistory = {
 
 ```{ojs}
 //| echo: false
+import { curvedText } from "@jwolondon/curved-text-mark"
+
 {
   const modelledHistory = magneticPoleHistory.filter((position) => position.year < 1831);
   const observedHistory = magneticPoleHistory.filter((position) => position.year >= 1831);
@@ -150,7 +152,20 @@ magneticPoleHistory = {
       Plot.geo(observedPath, { stroke: tableauBlue, strokeWidth: 3 }),
       Plot.geo(modelledPositions, { fill: "#6c8ba0", stroke: "white", strokeWidth: 0.8, r: 3.5, title: (feature) => feature.properties.title }),
       Plot.geo(observedPositions, { fill: tableauBlue, stroke: "white", strokeWidth: 1, r: 4, title: (feature) => feature.properties.title }),
-      Plot.geo(geographicPole, { fill: "#dc3545", stroke: "white", strokeWidth: 1, r: 6, title: (feature) => feature.properties.title })
+      Plot.geo(geographicPole, { fill: "#dc3545", stroke: "white", strokeWidth: 1, r: 6, title: (feature) => feature.properties.title }),
+        curvedText("Arctic Circle (66°33′ N)", {
+    fill: "#506a7b",
+    stroke: "white",
+    fontSize: 11,
+    fontWeight: 600,
+    path: [
+      [-80, 66.56408333 + 0.3],
+      [-70, 66.56408333 + 0.3],
+      [-60, 66.56408333 + 0.3],
+      [-50, 66.56408333 + 0.3]
+    ]
+  }),
+
     ]
   });
   const addLabel = (text, coordinates, dx = 6, dy = -6, fill = "#1f2933") => {
@@ -172,7 +187,7 @@ magneticPoleHistory = {
     addLabel(String(year), [lon, lat], dx, dy, year < 1831 ? "#6c8ba0" : tableauBlue);
   });
   addLabel("Geographic North Pole", [0, 90], 8, 16, "#dc3545");
-  addLabel("Arctic Circle (66°33′ N)", [-60, 66.5634], 8, -6, "#506a7b");
+  // addLabel("Arctic Circle (66°33′ N)", [-60, 66.5634], 8, -6, "#506a7b");
 
   // Tooltip for modelledPath and observedPath
   const tooltip = document.createElementNS("http://www.w3.org/2000/svg", "text");
@@ -192,6 +207,7 @@ magneticPoleHistory = {
     ...observedPath.coordinates.map((c) => ({ ...c, coords: c }))
   ];
 
+  // plot mouse position lat/lon as tooltip
   plot.addEventListener("pointermove", (event) => {
     const rect = plot.getBoundingClientRect();
     const svgX = (event.clientX - rect.left) * plotWidth / rect.width;
@@ -214,7 +230,7 @@ magneticPoleHistory = {
   plot.addEventListener("pointerleave", () => {
     tooltip.style.display = "none";
   });
-
+  // log mouse position lat/lon on click on the browser console
   plot.addEventListener("click", (event) => {
     const rect = plot.getBoundingClientRect();
     const svgX = (event.clientX - rect.left) * plotWidth / rect.width;
