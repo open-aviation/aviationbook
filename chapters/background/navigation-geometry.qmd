@@ -91,7 +91,7 @@ magneticPoleHistory = {
 }
 ```
 
-::: {#fig-magnetic-north-pole fig-cap="Position of the Magnetic North Pole throughout history and its current trajectory"}
+::: {#fig-magnetic-north-pole fig-cap="Position of the Magnetic North Pole throughout history (dashed line) and its current observed trajectory"}
 
 ```{ojs}
 //| echo: false
@@ -153,20 +153,62 @@ import { curvedText } from "@jwolondon/curved-text-mark"
       Plot.geo(modelledPositions, { fill: "#6c8ba0", stroke: "white", strokeWidth: 0.8, r: 3.5, title: (feature) => feature.properties.title }),
       Plot.geo(observedPositions, { fill: tableauBlue, stroke: "white", strokeWidth: 1, r: 4, title: (feature) => feature.properties.title }),
       Plot.geo(geographicPole, { fill: "#dc3545", stroke: "white", strokeWidth: 1, r: 6, title: (feature) => feature.properties.title }),
-        curvedText("Arctic Circle (66°33′ N)", {
-    fill: "#506a7b",
-    stroke: "white",
-    fontSize: 11,
-    fontWeight: 600,
-    path: [
-      [-80, 66.56408333 + 0.3],
-      [-70, 66.56408333 + 0.3],
-      [-60, 66.56408333 + 0.3],
-      [-50, 66.56408333 + 0.3]
-    ]
-  }),
-
-    ]
+      curvedText("Arctic Circle (66°33′ N)", {
+        fill: "#506a7b",
+        stroke: "white",
+        fontSize: 11,
+        fontWeight: 600,
+        paintOrder: "stroke",
+        strokeWidth: 3,
+        path: [
+          [-80, 66.56408333 + 0.3],
+          [-70, 66.56408333 + 0.3],
+          [-60, 66.56408333 + 0.3],
+          [-50, 66.56408333 + 0.3]
+        ]
+      }),
+      curvedText("Greenland (DK)", {
+        fill: "#506a7b",
+        stroke: "white",
+        fontSize: 11,
+        fontWeight: 600,
+        paintOrder: "stroke",
+        strokeWidth: 3,
+        path: [
+          [-58, 78],
+          [-50, 78],
+          [-40, 78],
+          [-30, 78],
+          [-20, 78],
+        ]
+      }),
+      curvedText("Svalbard (NO)", {
+        fill: "#506a7b",
+        stroke: "white",
+        fontSize: 11,
+        fontWeight: 600,
+        paintOrder: "stroke",
+        strokeWidth: 3,
+        path: [
+          [4, 78],
+          [16, 78],
+          [34, 78],
+        ]
+      }),
+      curvedText("Russia", {
+        fill: "#506a7b",
+        stroke: "white",
+        fontSize: 11,
+        fontWeight: 600,
+        paintOrder: "stroke",
+        strokeWidth: 3,
+        path: [
+          [79, 72],
+          [89, 72],
+          [99, 72],
+        ]
+      }),
+    ],
   });
   const addLabel = (text, coordinates, dx = 6, dy = -6, fill = "#1f2933") => {
     const [x, y] = polarProjection(coordinates);
