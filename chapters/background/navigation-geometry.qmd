@@ -255,29 +255,29 @@ import { curvedText } from "@jwolondon/curved-text-mark"
     ...observedPath.coordinates.map((c) => ({ ...c, coords: c }))
   ];
 
-  // helper: plot mouse position lat/lon as tooltip
-  plot.addEventListener("pointermove", (event) => {
-    const rect = plot.getBoundingClientRect();
-    const svgX = (event.clientX - rect.left) * plotWidth / rect.width;
-    const svgY = (event.clientY - rect.top) * plotHeight / rect.height;
-    const geo = polarProjection.invert([svgX, svgY]);
-    if (!geo) { tooltip.style.display = "none"; return; }
-    const [lon, lat] = geo;
-    // Only show tooltip if cursor is within the polar plot area (lat > 50°)
-    if (lat < 50) { tooltip.style.display = "none"; return; }
-    tooltip.textContent = `${lat.toFixed(4)}°, ${lon.toFixed(4)}°`;
-    const pad = 6;
-    const tx = svgX + pad + 2;
-    const ty = svgY - pad;
-    tooltip.setAttribute("x", tx);
-    tooltip.setAttribute("y", ty);
-    tooltip.setAttribute("fill", "#1f2933");
-    tooltip.style.display = "";
-  });
+  // // helper: plot mouse position lat/lon as tooltip
+  // plot.addEventListener("pointermove", (event) => {
+  //   const rect = plot.getBoundingClientRect();
+  //   const svgX = (event.clientX - rect.left) * plotWidth / rect.width;
+  //   const svgY = (event.clientY - rect.top) * plotHeight / rect.height;
+  //   const geo = polarProjection.invert([svgX, svgY]);
+  //   if (!geo) { tooltip.style.display = "none"; return; }
+  //   const [lon, lat] = geo;
+  //   // Only show tooltip if cursor is within the polar plot area (lat > 50°)
+  //   if (lat < 50) { tooltip.style.display = "none"; return; }
+  //   tooltip.textContent = `${lat.toFixed(4)}°, ${lon.toFixed(4)}°`;
+  //   const pad = 6;
+  //   const tx = svgX + pad + 2;
+  //   const ty = svgY - pad;
+  //   tooltip.setAttribute("x", tx);
+  //   tooltip.setAttribute("y", ty);
+  //   tooltip.setAttribute("fill", "#1f2933");
+  //   tooltip.style.display = "";
+  // });
 
-  plot.addEventListener("pointerleave", () => {
-    tooltip.style.display = "none";
-  });
+  // plot.addEventListener("pointerleave", () => {
+  //   tooltip.style.display = "none";
+  // });
   // // helper: log mouse position lat/lon on click on the browser console
   // plot.addEventListener("click", (event) => {
   //   const rect = plot.getBoundingClientRect();
