@@ -561,7 +561,7 @@ viewof windVector = windVectorControl
     const airDirectionFromPointer = normalise(Math.atan2(east, north) * 180 / Math.PI);
     airVectorControl.value = {
       airDirection: airDirectionFromPointer,
-      tas: Math.max(100, Math.min(400, Math.round(Math.hypot(east, north) / scale / 5) * 5))
+      tas: Math.max(250, Math.min(400, Math.round(Math.hypot(east, north) / scale / 5) * 5))
     };
     airVectorControl.dispatchEvent(new Event("input", { bubbles: true }));
   };
@@ -782,7 +782,7 @@ a geodesic does not keep a constant direction relative to north.
 ::: {.callout-tip}
 ### Rhumb lines
 
-Historically, navigation often used **rhumb lines** (or loxodromes) instead of geodesics. A rhumb line keeps a constant bearing and appears straight on a Mercator map, but it is generally not the shortest route. It is useful for interpreting some chart geometry, not as the default distance calculation for a trajectory or an airport pair.
+Historically, navigation often used **rhumb lines** (or loxodromes) instead of geodesics. A rhumb line keeps a constant bearing and **appears straight on a Mercator map**, but it is generally not the shortest route. It is useful for interpreting some chart geometry, not as the default distance calculation for a trajectory or an airport pair.
 
 :::
 
