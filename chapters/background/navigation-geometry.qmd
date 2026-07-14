@@ -68,8 +68,25 @@ magneticPoleData = fetch("../../data/noaa-north-magnetic-pole.xy")
 
 ```{ojs}
 //| echo: false
+poleLabelPositions = [
+  { year: 1590, lat: 73.7207, lon: -110.1833, dx: -14, dy: 0 },
+  { year: 1650, lat: 77.3310, lon: -111.0860, dx: 10, dy: 0 },
+  { year: 1740, lat: 73.413, lon: -114.635, dx: -8, dy: -6 },
+  { year: 1790, lat: 72.127, lon: -103.749, dx: -18, dy: 0 },
+  { year: 1850, lat: 69.271, lon: -96.785,  dx: -9, dy: -6 },
+  { year: 1900, lat: 70.460, lon: -96.186,  dx: -8, dy: 14 },
+  { year: 1925, lat: 71.786, lon: -97.993,  dx: 8, dy: 14 },
+  { year: 1950, lat: 74.638, lon: -100.859, dx: -8, dy: -6 },
+  { year: 1975, lat: 76.153, lon: -100.638, dx: 2, dy: 13 },
+  { year: 1985, lat: 77.398, lon: -102.609, dx: 1, dy: -6 },
+  { year: 1995, lat: 79.043, lon: -105.290, dx: 8, dy: 13 },
+  { year: 2005, lat: 83.186, lon: -118.218, dx: 8, dy: -8 },
+  { year: 2015, lat: 86.305, lon: -160.341, dx: 8, dy: -8 },
+  { year: 2025, lat: 85.778, lon:  138.057, dx: 8, dy: -8 },
+];
+
 magneticPoleHistory = {
-  const selectedYears = new Set([1590, 1600, 1632, 1700, 1730, 1800, 1831, 1904, 1948, 1962, 1973, 1984, 1994, 2001, 2007, 2017, 2024]);
+  const selectedYears = new Set(poleLabelPositions.map((p) => p.year));
   return magneticPoleData.filter((position) => selectedYears.has(position.year));
 }
 ```
@@ -151,28 +168,61 @@ magneticPoleHistory = {
     label.textContent = text;
     plot.appendChild(label);
   };
-  const placedLabels = [];
-  const overlaps = (a, b) => a.left < b.right && a.right > b.left && a.top < b.bottom && a.bottom > b.top;
-  magneticPoleHistory.forEach((position) => {
-    const [x, y] = polarProjection([position.longitude, position.latitude]);
-    const text = String(position.year);
-    const labelWidth = text.length * 7 + 2;
-    const candidates = [[8, -8], [8, 14], [-labelWidth - 8, -8], [-labelWidth - 8, 14], [8, -22], [-labelWidth - 8, -22], [18, 26], [-labelWidth - 18, 26]];
-    const placement = candidates.map(([dx, dy]) => ({
-      dx, dy,
-      left: x + dx - 1,
-      right: x + dx + labelWidth + 1,
-      top: y + dy - 11,
-      bottom: y + dy + 3
-    })).find((candidate) =>
-      candidate.left >= 0 && candidate.right <= plotWidth && candidate.top >= 0 && candidate.bottom <= plotHeight
-      && !placedLabels.some((placed) => overlaps(candidate, placed))
-    ) ?? { dx: 8, dy: -8, left: x + 7, right: x + labelWidth + 9, top: y - 19, bottom: y - 5 };
-    placedLabels.push(placement);
-    addLabel(text, [position.longitude, position.latitude], placement.dx, placement.dy, position.year < 1831 ? "#6c8ba0" : tableauBlue);
+  poleLabelPositions.forEach(({ year, lat, lon, dx, dy }) => {
+    addLabel(String(year), [lon, lat], dx, dy, year < 1831 ? "#6c8ba0" : tableauBlue);
   });
   addLabel("Geographic North Pole", [0, 90], 8, 16, "#dc3545");
   addLabel("Arctic Circle (66°33′ N)", [-60, 66.5634], 8, -6, "#506a7b");
+
+  // Tooltip for modelledPath and observedPath
+  const tooltip = document.createElementNS("http://www.w3.org/2000/svg", "text");
+  tooltip.setAttribute("font-size", "12");
+  tooltip.setAttribute("font-weight", "600");
+  tooltip.setAttribute("paint-order", "stroke");
+  tooltip.setAttribute("stroke", "white");
+  tooltip.setAttribute("stroke-width", "3");
+  tooltip.setAttribute("stroke-linejoin", "round");
+  tooltip.setAttribute("pointer-events", "none");
+  tooltip.style.display = "none";
+  plot.appendChild(tooltip);
+
+  // Collect all coordinates from both paths for proximity testing
+  const allPathCoords = [
+    ...modelledPath.coordinates.map((c) => ({ ...c, coords: c })),
+    ...observedPath.coordinates.map((c) => ({ ...c, coords: c }))
+  ];
+
+  plot.addEventListener("pointermove", (event) => {
+    const rect = plot.getBoundingClientRect();
+    const svgX = (event.clientX - rect.left) * plotWidth / rect.width;
+    const svgY = (event.clientY - rect.top) * plotHeight / rect.height;
+    const geo = polarProjection.invert([svgX, svgY]);
+    if (!geo) { tooltip.style.display = "none"; return; }
+    const [lon, lat] = geo;
+    // Only show tooltip if cursor is within the polar plot area (lat > 50°)
+    if (lat < 50) { tooltip.style.display = "none"; return; }
+    tooltip.textContent = `${lat.toFixed(4)}°, ${lon.toFixed(4)}°`;
+    const pad = 6;
+    const tx = svgX + pad + 2;
+    const ty = svgY - pad;
+    tooltip.setAttribute("x", tx);
+    tooltip.setAttribute("y", ty);
+    tooltip.setAttribute("fill", "#1f2933");
+    tooltip.style.display = "";
+  });
+
+  plot.addEventListener("pointerleave", () => {
+    tooltip.style.display = "none";
+  });
+
+  plot.addEventListener("click", (event) => {
+    const rect = plot.getBoundingClientRect();
+    const svgX = (event.clientX - rect.left) * plotWidth / rect.width;
+    const svgY = (event.clientY - rect.top) * plotHeight / rect.height;
+    const geo = polarProjection.invert([svgX, svgY]);
+    if (geo) console.log(geo[1].toFixed(4), geo[0].toFixed(4));
+  });
+
   return plot;
 }
 ```
