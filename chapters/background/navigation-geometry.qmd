@@ -167,21 +167,21 @@ import { curvedText } from "@jwolondon/curved-text-mark"
           [-50, 66.56408333 + 0.3]
         ]
       }),
-      curvedText("Greenland (DK)", {
-        fill: "#506a7b",
-        stroke: "white",
-        fontSize: 11,
-        fontWeight: 600,
-        paintOrder: "stroke",
-        strokeWidth: 3,
-        path: [
-          [-58, 78],
-          [-50, 78],
-          [-40, 78],
-          [-30, 78],
-          [-20, 78],
-        ]
-      }),
+      // curvedText("Greenland (DK)", {
+      //   fill: "#506a7b",
+      //   stroke: "white",
+      //   fontSize: 11,
+      //   fontWeight: 600,
+      //   paintOrder: "stroke",
+      //   strokeWidth: 3,
+      //   path: [
+      //     [-58, 78],
+      //     [-50, 78],
+      //     [-40, 78],
+      //     [-30, 78],
+      //     [-20, 78],
+      //   ]
+      // }),
       curvedText("Svalbard (NO)", {
         fill: "#506a7b",
         stroke: "white",
@@ -210,13 +210,13 @@ import { curvedText } from "@jwolondon/curved-text-mark"
       }),
     ],
   });
-  const addLabel = (text, coordinates, dx = 6, dy = -6, fill = "#1f2933") => {
+  const addLabel = (text, coordinates, dx = 6, dy = -6, fill = "#1f2933", fontSize = 11) => {
     const [x, y] = polarProjection(coordinates);
     const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
     label.setAttribute("x", x + dx);
     label.setAttribute("y", y + dy);
     label.setAttribute("fill", fill);
-    label.setAttribute("font-size", "11");
+    label.setAttribute("font-size", fontSize);
     label.setAttribute("font-weight", "600");
     label.setAttribute("paint-order", "stroke");
     label.setAttribute("stroke", "white");
@@ -228,8 +228,10 @@ import { curvedText } from "@jwolondon/curved-text-mark"
   poleLabelPositions.forEach(({ year, lat, lon, dx, dy }) => {
     addLabel(String(year), [lon, lat], dx, dy, year < 1831 ? "#6c8ba0" : tableauBlue);
   });
-  addLabel("Geographic North Pole", [0, 90], 8, 16, "#dc3545");
+  addLabel("Geographic\nNorth Pole", [0, 90], 8, 16, "#dc3545");
   // addLabel("Arctic Circle (66°33′ N)", [-60, 66.5634], 8, -6, "#506a7b");
+  addLabel("GREENLAND", [-41, 75], 8, -6, "#506a7b", 20);
+  addLabel("(DENMARK)", [-38, 74], 8, -6, "#506a7b", 15);
 
   // Tooltip for modelledPath and observedPath
   const tooltip = document.createElementNS("http://www.w3.org/2000/svg", "text");
@@ -249,7 +251,7 @@ import { curvedText } from "@jwolondon/curved-text-mark"
     ...observedPath.coordinates.map((c) => ({ ...c, coords: c }))
   ];
 
-  // plot mouse position lat/lon as tooltip
+  // helper: plot mouse position lat/lon as tooltip
   plot.addEventListener("pointermove", (event) => {
     const rect = plot.getBoundingClientRect();
     const svgX = (event.clientX - rect.left) * plotWidth / rect.width;
@@ -272,14 +274,14 @@ import { curvedText } from "@jwolondon/curved-text-mark"
   plot.addEventListener("pointerleave", () => {
     tooltip.style.display = "none";
   });
-  // log mouse position lat/lon on click on the browser console
-  plot.addEventListener("click", (event) => {
-    const rect = plot.getBoundingClientRect();
-    const svgX = (event.clientX - rect.left) * plotWidth / rect.width;
-    const svgY = (event.clientY - rect.top) * plotHeight / rect.height;
-    const geo = polarProjection.invert([svgX, svgY]);
-    if (geo) console.log(geo[1].toFixed(4), geo[0].toFixed(4));
-  });
+  // // helper: log mouse position lat/lon on click on the browser console
+  // plot.addEventListener("click", (event) => {
+  //   const rect = plot.getBoundingClientRect();
+  //   const svgX = (event.clientX - rect.left) * plotWidth / rect.width;
+  //   const svgY = (event.clientY - rect.top) * plotHeight / rect.height;
+  //   const geo = polarProjection.invert([svgX, svgY]);
+  //   if (geo) console.log(geo[1].toFixed(4), geo[0].toFixed(4));
+  // });
 
   return plot;
 }
