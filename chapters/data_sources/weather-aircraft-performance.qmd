@@ -1,0 +1,75 @@
+---
+title: Weather and aircraft performance
+authors:
+- Richard Alligier
+---
+
+
+::: {.callout-warning}
+## TODO for this page
+Work In progress
+:::
+
+## Impact of the Weather on Aircraft Performance
+
+### Altitude and Geopotential Pressure Altitude
+
+### Temperature
+
+### Wind, and Wind Gradient
+
+
+## Total Energy Model
+
+In air traffic management, the point-mass dynamic model is commonly formulated using the total energy approach. This model describes the aircraft's motion through a set of differential equations that account for both translational motion and energy changes.
+
+### Four-Degrees-of-Freedom Equations
+
+Under ISA conditions and wind $W$, the aircraft motion is described by:
+
+$$\frac{dx}{dt} = V \cos(\psi) \cos(\gamma) + W_x$$ {#eq-dx}
+
+$$\frac{dy}{dt} = V \sin(\psi) \cos(\gamma) + W_y$$ {#eq-dy}
+
+$$\frac{dh}{dt} = V \sin(\gamma) + W_z$$ {#eq-dh}
+
+$$\frac{dV}{dt} = \frac{T - D}{m} - g \sin(\gamma) + TODO WIND +TODO TEMPERATURE$$ {#eq-dv}
+
+$$\frac{d\psi}{dt} = \frac{g \tan(\phi)}{V \cos(\gamma)} + TODO WIND +TODO TEMPERATURE$$ {#eq-dpsi}
+
+$$\frac{dm}{dt} = -f_{fuel}(T, h)$$ {#eq-dm}
+
+Where:
+
+- $V$: True airspeed [m/s]
+- $W$: Wind [m/s]
+- $\psi$: Heading angle [rad]
+- $\gamma$: Flight path angle [rad]
+- $\phi$: Bank angle [rad]
+- $T$: Thrust [N]
+- $D$: Drag [N]
+- $m$: Aircraft mass [kg]
+- $g$: Gravitational acceleration [m/s²]
+- $h$: Altitude [m]
+- $f_{fuel}$: Fuel flow function [kg/s]
+
+### Total Energy Equation
+
+The total energy model relates the net force (thrust minus drag) to changes in kinetic and potential energy:
+
+$$T - D = mg\sin(\gamma) + m\frac{dV}{dt} + TODO WIND POWER$$ {#eq-energy}
+
+This equation expresses the conservation of energy: the net force produced by the aircraft's engines (after overcoming drag) is used to climb against gravity and to accelerate. This formulation is particularly useful for trajectory-based studies such as optimization and fuel estimation, as it directly links the aircraft's energy state to its performance capabilities.
+
+
+
+## Weather and Mass Estimation
+
+Mass that uses the 4D trajectory as input should take into account wind gradient. This covers **Performance-based estimation** and **Machine learning approaches**.
+
+## Weather and Trajectory Computation
+Differential equation to solve
+
+
+
+

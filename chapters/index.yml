@@ -76,8 +76,8 @@
       href: data_sources/weather-environment-data.html
     - text: Aircraft performance data
       href: data_sources/aircraft-performance.html
-    - text: Operational performance data
-      href: data_sources/operational-performance-data.html
+    - text: Wind and aircraft performance data
+      href: data_sources/wind-aircraft-data.html
     - text: Safety, occurrence, and risk data
       href: data_sources/safety-occurrence-risk-data.html
     - text: Human factors and operational decision-making data
