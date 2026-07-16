@@ -1,7 +1,14 @@
 /*-- scss:rules --*/
+/* On mobile the header (navbar + secondary nav) is fixed/sticky, so the
+   secondary nav and the slide-in sidebar need an opaque background or body
+   text bleeds through as it scrolls behind them. Quarto's own CSS tries to
+   use --lt-color-background-light, but that custom property is never defined
+   in this Quarto build, so it resolves to nothing (transparent). Use the
+   flatly light surface (--bs-light, #ecf0f1) instead, which is actually
+   defined, is opaque, and matches the navbar above it. */
 @media (max-width: 991.98px) {
   nav.quarto-secondary-nav,
   #quarto-sidebar {
-    background-color: var(--lt-color-background-light);
+    background-color: var(--bs-light, #ecf0f1);
   }
 }
