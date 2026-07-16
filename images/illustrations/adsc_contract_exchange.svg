@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 640" role="img" aria-labelledby="title desc">
+  <title id="title">ADS-C contract message exchange</title>
+  <desc id="desc">Sequence diagram between a ground air traffic service unit and an aircraft. The ground sends a numbered contract request, the aircraft acknowledges or rejects it, contract-driven reports flow to the ground, and the ground can modify or cancel the contract.</desc>
+  <defs>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;display=swap");
+      .head{font:700 24px "IBM Plex Sans",sans-serif;fill:#1f2d3d;}
+      .label{font:700 18px "IBM Plex Sans",sans-serif;fill:#1f2d3d;}
+      .small{font:16px "IBM Plex Sans",sans-serif;fill:#34495e;}
+      .tiny{font:14px "IBM Plex Sans",sans-serif;fill:#52616f;}
+      .ground{fill:#d0ebff;stroke:#1c7ed6;stroke-width:2.5;}
+      .aircraft{fill:#fff3bf;stroke:#f08c00;stroke-width:2.5;}
+      .message{fill:#fff;stroke:#8aa0b4;stroke-width:1.5;}
+      .report{fill:#fff8e1;stroke:#e67700;stroke-width:1.5;}
+      .uplink{stroke:#1c7ed6;stroke-width:4;stroke-linecap:round;fill:none;marker-end:url(#arrow-blue);}
+      .downlink{stroke:#e67700;stroke-width:4;stroke-linecap:round;fill:none;marker-end:url(#arrow-orange);}
+      .lifeL{stroke:#91c6f2;stroke-width:3;stroke-dasharray:9 9;}
+      .lifeR{stroke:#ffd27a;stroke-width:3;stroke-dasharray:9 9;}
+    </style>
+    <marker id="arrow-blue" markerWidth="13" markerHeight="13" refX="11" refY="6.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M1,1 L12,6.5 L1,12" fill="none" stroke="#1c7ed6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="13" markerHeight="13" refX="11" refY="6.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M1,1 L12,6.5 L1,12" fill="none" stroke="#e67700" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <rect x="80" y="48" width="280" height="76" rx="14" class="ground"/>
+  <text x="220" y="81" text-anchor="middle" class="head">Ground ATSU</text>
+  <text x="220" y="107" text-anchor="middle" class="small">contract authority</text>
+
+  <rect x="740" y="48" width="280" height="76" rx="14" class="aircraft"/>
+  <text x="880" y="81" text-anchor="middle" class="head">Aircraft</text>
+  <text x="880" y="107" text-anchor="middle" class="small">onboard application</text>
+
+  <line x1="220" y1="136" x2="220" y2="600" class="lifeL"/>
+  <line x1="880" y1="136" x2="880" y2="600" class="lifeR"/>
+
+  <!-- contract request -->
+  <path d="M235 180 H865" class="uplink"/>
+  <rect x="350" y="146" width="400" height="62" rx="10" class="message"/>
+  <text x="550" y="171" text-anchor="middle" class="label">Contract request #n</text>
+  <text x="550" y="194" text-anchor="middle" class="small">periodic · event · demand · emergency</text>
+
+  <!-- response -->
+  <path d="M865 285 H235" class="downlink"/>
+  <rect x="350" y="240" width="400" height="78" rx="10" class="report"/>
+  <text x="550" y="266" text-anchor="middle" class="label">Response for contract #n</text>
+  <text x="550" y="290" text-anchor="middle" class="small">ACK and requested report</text>
+  <text x="550" y="311" text-anchor="middle" class="tiny">or NACK · non-compliance notification</text>
+
+  <!-- reports -->
+  <path d="M865 390 H235" class="downlink"/>
+  <rect x="350" y="347" width="400" height="76" rx="10" class="report"/>
+  <text x="550" y="373" text-anchor="middle" class="label">Contract-driven reports</text>
+  <text x="550" y="397" text-anchor="middle" class="small">basic report + requested optional groups</text>
+  <text x="550" y="417" text-anchor="middle" class="tiny">sent at the interval or when an event triggers</text>
+
+  <!-- modify -->
+  <path d="M235 480 H865" class="uplink"/>
+  <rect x="350" y="450" width="400" height="57" rx="10" class="message"/>
+  <text x="550" y="475" text-anchor="middle" class="label">Replace or modify contract #n</text>
+  <text x="550" y="497" text-anchor="middle" class="tiny">new cadence, groups, or event thresholds</text>
+
+  <!-- cancel -->
+  <path d="M235 560 H865" class="uplink"/>
+  <rect x="350" y="532" width="400" height="53" rx="10" class="message"/>
+  <text x="550" y="556" text-anchor="middle" class="label">Cancel contract #n or all</text>
+  <text x="550" y="577" text-anchor="middle" class="tiny">ends the corresponding reporting obligation</text>
+
+</svg>

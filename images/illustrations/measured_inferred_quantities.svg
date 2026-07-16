@@ -3,9 +3,10 @@
   <desc id="desc">Two-column diagram showing basic physical quantities directly sensed by aircraft instruments and operational quantities inferred from them.</desc>
   <defs>
     <style>
-      .head{font:700 24px sans-serif;fill:#1f2d3d;}
-      .label{font:700 18px sans-serif;fill:#1f2d3d;}
-      .small{font:16px sans-serif;fill:#34495e;}
+      @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;display=swap");
+      .head{font:700 24px "IBM Plex Sans",sans-serif;fill:#1f2d3d;}
+      .label{font:700 18px "IBM Plex Sans",sans-serif;fill:#1f2d3d;}
+      .small{font:16px "IBM Plex Sans",sans-serif;fill:#34495e;}
       .measured{fill:#d0ebff;stroke:#1c7ed6;stroke-width:2.5;rx:14;}
       .inferred{fill:#fff3bf;stroke:#f08c00;stroke-width:2.5;rx:14;}
       .groupL{fill:#f8fbff;stroke:#91c6f2;stroke-width:2;rx:18;}

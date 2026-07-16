@@ -3,10 +3,11 @@
   <desc id="desc">Simplified top and side view showing common locations for pitot probes, static ports, angle-of-attack vanes, inertial sensors, GNSS antennas, transponder and TCAS antennas, weather radar, and radio altimeter antennas.</desc>
   <defs>
     <style>
+      @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;display=swap");
       .aircraft{fill:#eef3f8;stroke:#52616f;stroke-width:3;}
       .wing{fill:#dce8f3;stroke:#52616f;stroke-width:3;}
-      .label{font: 18px sans-serif; fill:#243447;}
-      .small{font: 15px sans-serif; fill:#243447;}
+      .label{font:18px "IBM Plex Sans",sans-serif;fill:#243447;}
+      .small{font:15px "IBM Plex Sans",sans-serif;fill:#243447;}
       .call{fill:#fff;stroke:#8aa0b4;stroke-width:1.5;rx:8;}
       .line{stroke:#475866;stroke-width:2;fill:none;marker-end:url(#arrow);}
       .sensor{fill:#ffcc80;stroke:#e67700;stroke-width:2;}

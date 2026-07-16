@@ -3,12 +3,13 @@
   <desc id="desc">Simplified diagram of total pressure entering a pitot probe, static pressure sensed by static ports, and dynamic pressure computed as their difference.</desc>
   <defs>
     <style>
+      @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;display=swap");
       .body{fill:#eef3f8;stroke:#52616f;stroke-width:3;}
       .probe{fill:#dee2e6;stroke:#495057;stroke-width:3;}
       .port{fill:#ffd43b;stroke:#f08c00;stroke-width:3;}
       .box{fill:#fff;stroke:#8aa0b4;stroke-width:2;rx:10;}
-      .label{font: 19px sans-serif; fill:#243447;}
-      .small{font: 16px sans-serif; fill:#243447;}
+      .label{font:19px "IBM Plex Sans",sans-serif;fill:#243447;}
+      .small{font:16px "IBM Plex Sans",sans-serif;fill:#243447;}
       .flow{stroke:#1c7ed6;stroke-width:4;fill:none;marker-end:url(#arrowBlue);}
       .line{stroke:#475866;stroke-width:2;fill:none;marker-end:url(#arrow);}
     </style>
