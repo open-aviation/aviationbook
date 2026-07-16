@@ -229,7 +229,7 @@ import { curvedText } from "@jwolondon/curved-text-mark"
   poleLabelPositions.forEach(({ year, lat, lon, dx, dy }) => {
     addLabel(String(year), [lon, lat], dx, dy, year < 1831 ? "#6c8ba0" : tableauBlue);
   });
-  addLabel("Geographic\nNorth Pole", [0, 90], 8, 20, "#dc3545");
+  addLabel("Geographic\nNorth Pole", [0, 90], 0, 25, "#dc3545");
   // addLabel("Arctic Circle (66°33′ N)", [-60, 66.5634], 8, -6, "#506a7b");
   addLabel("Greenland", [-41, 75], 8, -6, "#506a7b", 15);
   addLabel("(Denmark)", [-38, 74], 8, -6, "#506a7b", 11);
