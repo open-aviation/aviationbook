@@ -106,6 +106,8 @@ book:
         - chapters/case_studies/firefighting-aircraft.qmd
         - chapters/case_studies/weather-impact.qmd
         - chapters/case_studies/runway-safety-occurrence.qmd
+        - chapters/case_studies/flight-inspections.qmd
+        - chapters/case_studies/decode-vor.qmd
     - part: "Sharing reproducible aviation research"
       chapters:
         - chapters/sharing/reproducible-research.qmd
@@ -288,6 +290,10 @@ book:
               href: chapters/case_studies/weather-impact.qmd
             - text: 🔴 Runway occurrence
               href: chapters/case_studies/runway-safety-occurrence.qmd
+            - text: 🟠 Flight inspections
+              href: chapters/case_studies/flight-inspections.qmd
+            - text: 🟠 Decode VOR signals
+              href: chapters/case_studies/decode-vor.qmd
         - section: Sharing
           contents:
             - text: 🟠 Reproducibility

@@ -4,7 +4,6 @@ authors:
 - Xavier Olive
 ---
 
-
 Conventional radio navigation relies on ground stations and airborne receivers. These systems shaped the structure of airways, terminal procedures, and instrument approaches for decades. Many are now being rationalised as [satellite navigation](satellite-navigation.qmd) becomes dominant, but they remain important as operational references, approach aids, and backups to \acr{GNSS}.
 
 ## Non-Directional Beacon (NDB)
@@ -34,12 +33,15 @@ Operationally, a single \acr{VOR} radial provides lateral guidance. Combined wit
 
 The standard total system accuracy is about **±4°**, adequate for conventional navigation but not for modern \acr{RNP} specifications. As aviation moves toward \acr{GNSS}-based \acr{PBN}, many states are reducing their VOR networks while preserving a \acr{MON} as a backup in case of satellite-navigation outages.
 
-::: {.callout-tip}
-### TODO
+![VOR ground station at Zürich Airport (ZUE)](../../images/photos/vor_zue.webp){#fig-vor-zue width=600px}
 
-- add a link to a page explaining flight inspecitons
-- add picture of VOR ground station
-- link to decoding with SDR ? (rather easy)
+
+::: {.callout-tip}
+### See also
+
+- [Flight inspections](../case_studies/flight-inspections.qmd) for how VOR and other navigation aids are checked in practice
+- [Decode VOR signals](../case_studies/decode-vor.qmd) for a simple example of how to receive and decode VOR signals with a software-defined radio
+
 :::
 
 ## Distance Measuring Equipment (DME)
@@ -66,12 +68,6 @@ Operationally, \acr{DME} adds range information to otherwise angular aids. VOR/\
 As many \acr{VOR} stations are slowly decommissioned, conventional navigation is shifting from station-centred angular guidance toward distance-based positioning. In a **DME/DME** solution, the aircraft measures its range from two or more \acr{DME} stations with known coordinates. The intersection of these distance circles gives the aircraft position, much like a two-dimensional form of trilateration. Modern flight management systems can use this automatically as an area-navigation sensor, either as a complement to \acr{GNSS} or as a fallback when satellite navigation is unavailable.
 :::
 
-::: {.callout-tip}
-### TODO
-
-- add some drawing for geometry?
-:::
-
 ## Instrument Landing System (ILS)
 
 The \acr{ILS} is the most widely used precision approach aid in aviation. It provides both lateral and vertical guidance to enable safe landings in conditions of reduced visibility. An \acr{ILS} consists of three main components:
@@ -82,7 +78,11 @@ The \acr{ILS} is the most widely used precision approach aid in aviation. It pro
 
 The \acr{LOC} operates in the frequency band between **108.10 and 111.95 MHz**, using only odd 100 kHz channels to avoid interference with the \acr{VOR}. It provides lateral guidance by transmitting two overlapping lobes with 90 Hz and 150 Hz modulation. The aircraft determines whether it is left or right of the runway centerline by comparing these signals. Coverage typically extends 25 NM within ±10° of the centerline and 17 NM within ±35°.
 
+![ILS localizer at Frankfurt Airport (FRA)](../../images/photos/ils_loc_fra25r.webp){#fig-ils-fra width=600px}
+
 The \acr{GS} operates between **329 and 335 MHz**, automatically paired with the tuned \acr{LOC} frequency. It provides vertical guidance by transmitting overlapping signals above and below the desired glide path. The standard descent angle is about 3°, with coverage extending 10 NM up to 1.75° above and 0.45° below the nominal path.
+
+![ILS glide slope at Toulouse Airport (TLS)](../../images/photos/ils_gs_tls32l.webp){#fig-ils-tls width=500px}
 
 In the past, **marker beacons** operating at 75 MHz provided range information along the approach path (outer, middle, and inner markers). Today, many of these have been decommissioned and replaced by \acr{DME}, which gives more flexible and accurate distance information.
 
