@@ -131,3 +131,80 @@ h4 {
   content: "\A";
   white-space: pre;
 }
+
+/* Shared layered-message diagrams used by the ACARS, ADS-C, and CPDLC pages. */
+.acars-decode-card {
+  border: 1px solid var(--bs-border-color, #d0d7de);
+  border-radius: 0.75rem;
+  padding: 0.75rem 0.85rem;
+  margin: 0.85rem 0 1rem;
+  background: var(--bs-body-bg, #fff);
+}
+
+.acars-hexline,
+.acars-textline {
+  font-family: Inconsolata, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  line-height: 2.05;
+  overflow-wrap: anywhere;
+}
+
+.acars-hexline span,
+.acars-textline span {
+  border-radius: 0.25rem;
+  padding: 0.12rem 0.22rem;
+  margin-right: 0.08rem;
+}
+
+.acars-field-control { background: #dee2e6; color: #1f1f1f; }
+.acars-field-station { background: #c3fae8; color: #1f1f1f; }
+.acars-field-kind { background: #ffd8a8; color: #1f1f1f; }
+.acars-field-reg { background: #ffe082; color: #1f1f1f; }
+.acars-field-text { background: #e8f0fb; color: #1f1f1f; }
+.acars-field-crc { background: #ffd6d6; color: #1f1f1f; }
+.adsc-field-tag { background: #c3fae8; color: #1f1f1f; }
+.adsc-field-basic { background: #d0ebff; color: #1f1f1f; }
+.adsc-field-intent { background: #e5dbff; color: #1f1f1f; }
+
+.acars-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.8rem;
+  font-size: 0.84rem;
+  color: var(--bs-secondary-color, #555);
+  margin-top: 0.55rem;
+}
+
+.acars-legend span::before {
+  content: "";
+  display: inline-block;
+  width: 0.85rem;
+  height: 0.85rem;
+  border-radius: 0.2rem;
+  margin-right: 0.25rem;
+  vertical-align: -0.1rem;
+}
+
+.acars-legend .legend-control::before { background: #dee2e6; }
+.acars-legend .legend-station::before { background: #c3fae8; }
+.acars-legend .legend-kind::before { background: #ffd8a8; }
+.acars-legend .legend-reg::before { background: #ffe082; }
+.acars-legend .legend-text::before { background: #e8f0fb; }
+.acars-legend .legend-crc::before { background: #ffd6d6; }
+.acars-legend .legend-adsc-tag::before { background: #c3fae8; }
+.acars-legend .legend-adsc-basic::before { background: #d0ebff; }
+.acars-legend .legend-adsc-intent::before { background: #e5dbff; }
+
+/* Quarto emits a copy scaffold for hidden OJS source cells. Keep only the
+   rendered WASM controls and results visible. */
+.code-copy-outer-scaffold:has(.sourceCode.hidden) {
+  display: none !important;
+}
+
+.datalink-wasm-json {
+  max-height: 36rem;
+  overflow: auto;
+}
+
+.datalink-wasm-error {
+  color: var(--bs-danger, #dc3545);
+}

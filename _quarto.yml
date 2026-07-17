@@ -6,6 +6,8 @@ project:
     - data/iq_frames_viz.json
     - data/iq_downsample_compare.json
     - data/noaa-north-magnetic-pole.xy
+    - media/wasm/datalink-wasm/datalink_wasm.js
+    - media/wasm/datalink-wasm/datalink_wasm_bg.wasm
 
 execute:
   freeze: auto
@@ -202,7 +204,7 @@ book:
               href: chapters/data_sources/adsb-mode-s-decoding.qmd
             - text: Datalink and ACARS sources
               href: chapters/data_sources/datalink-acars-message-sources.qmd
-            - text: 🟡 ADS-C data
+            - text: ADS-C contracts and reports
               href: chapters/data_sources/adsc-data.qmd
             - text: 🟡 CPDLC data
               href: chapters/data_sources/cpdlc-data.qmd

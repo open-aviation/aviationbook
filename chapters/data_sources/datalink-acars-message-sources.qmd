@@ -8,6 +8,25 @@ ADS-B and Mode S tell us where an aircraft is and, sometimes, what its transpond
 
 This chapter is the data-source entry point for datalink messages. The aviation background page on [communication systems](../background/communication-systems.qmd) introduces voice and datalink at the operational level; here we focus on the structure of the data and on how public receivers and aggregators expose it.
 
+```{ojs}
+//| echo: false
+//| code-copy: false
+datalinkWasm = import(new URL("../../media/wasm/datalink-wasm/datalink_wasm.js", document.baseURI).href).then(async (module) => {
+  await module.default({ module_or_path: new URL("../../media/wasm/datalink-wasm/datalink_wasm_bg.wasm", document.baseURI).href });
+  if (module.run) module.run();
+  return module;
+})
+
+function decodeAcars(raw, direction) {
+  try {
+    return { ok: true, value: datalinkWasm.decode_acars(raw, direction) };
+  } catch (error) {
+    return { ok: false, error: String(error?.message ?? error) };
+  }
+}
+
+datalinkJsonBlock = (value) => htl.html`<pre class="acars-json datalink-wasm-json"><code>${JSON.stringify(value, null, 2)}</code></pre>`
+```
 
 ```{=html}
 <style>
@@ -256,6 +275,37 @@ We can start with this example of a decoded ACARS uplink frame from a VHF feeder
 <span class="legend-crc">checksum</span>
 </div>
 :::
+
+The local WebAssembly decoder accepts the same binary frame as a hexadecimal string. Edit it below to inspect how parity-normalised ACARS fields and the label-routed application payload change together.
+
+```{ojs}
+//| echo: false
+//| code-copy: false
+viewof acarsFrameHex = {
+  const control = Inputs.text({
+    label: "Binary ACARS frame (hex, uplink)",
+    value: "328080808080808015d3518002b03258d3544cd34c46c24fb034b3b337ceb0b03132b345d631b3b6b937b52f83de237f"
+  });
+  control.style.width = "100%";
+  const input = control.querySelector("input");
+  if (input) input.style.width = "100%";
+  return control;
+}
+```
+
+```{ojs}
+//| echo: false
+//| code-copy: false
+acarsDecoded = decodeAcars(acarsFrameHex, "uplink")
+```
+
+```{ojs}
+//| echo: false
+//| code-copy: false
+acarsDecoded.ok
+  ? datalinkJsonBlock(acarsDecoded.value)
+  : htl.html`<pre class="acars-json datalink-wasm-error"><code>${acarsDecoded.error}</code></pre>`
+```
 
 ACARS characters are mostly 7-bit characters with parity/control bits. Normalising those bytes exposes the container:
 
