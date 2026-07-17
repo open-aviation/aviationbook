@@ -276,37 +276,6 @@ We can start with this example of a decoded ACARS uplink frame from a VHF feeder
 </div>
 :::
 
-The local WebAssembly decoder accepts the same binary frame as a hexadecimal string. Edit it below to inspect how parity-normalised ACARS fields and the label-routed application payload change together.
-
-```{ojs}
-//| echo: false
-//| code-copy: false
-viewof acarsFrameHex = {
-  const control = Inputs.text({
-    label: "Binary ACARS frame (hex, uplink)",
-    value: "328080808080808015d3518002b03258d3544cd34c46c24fb034b3b337ceb0b03132b345d631b3b6b937b52f83de237f"
-  });
-  control.style.width = "100%";
-  const input = control.querySelector("input");
-  if (input) input.style.width = "100%";
-  return control;
-}
-```
-
-```{ojs}
-//| echo: false
-//| code-copy: false
-acarsDecoded = decodeAcars(acarsFrameHex, "uplink")
-```
-
-```{ojs}
-//| echo: false
-//| code-copy: false
-acarsDecoded.ok
-  ? datalinkJsonBlock(acarsDecoded.value)
-  : htl.html`<pre class="acars-json datalink-wasm-error"><code>${acarsDecoded.error}</code></pre>`
-```
-
 ACARS characters are mostly 7-bit characters with parity/control bits. Normalising those bytes exposes the container:
 
 ::: {.datalink-table}
