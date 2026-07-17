@@ -33,7 +33,7 @@ Operationally, a single \acr{VOR} radial provides lateral guidance. Combined wit
 
 The standard total system accuracy is about **±4°**, adequate for conventional navigation but not for modern \acr{RNP} specifications. As aviation moves toward \acr{GNSS}-based \acr{PBN}, many states are reducing their VOR networks while preserving a \acr{MON} as a backup in case of satellite-navigation outages.
 
-![VOR ground station at Zürich Airport (ZUE)](../../images/photos/vor_zue.webp){#fig-vor-zue width=600px}
+![VOR ground station at Zurich Airport (ZUE)](../../images/photos/vor_zue.webp){#fig-vor-zue width=600px}
 
 
 ::: {.callout-tip}
@@ -83,6 +83,8 @@ The \acr{LOC} operates in the frequency band between **108.10 and 111.95 MHz**, 
 The \acr{GS} operates between **329 and 335 MHz**, automatically paired with the tuned \acr{LOC} frequency. It provides vertical guidance by transmitting overlapping signals above and below the desired glide path. The standard descent angle is about 3°, with coverage extending 10 NM up to 1.75° above and 0.45° below the nominal path.
 
 ![ILS glide slope at Toulouse Airport (TLS)](../../images/photos/ils_gs_tls32l.webp){#fig-ils-tls width=500px}
+
+<!--![ILS glide slope at Amsterdam Airport (AMS)](../../images/photos/ils_gs_ams18r.jpg){#fig-ils-ams width=600px}-->
 
 In the past, **marker beacons** operating at 75 MHz provided range information along the approach path (outer, middle, and inner markers). Today, many of these have been decommissioned and replaced by \acr{DME}, which gives more flexible and accurate distance information.
 
