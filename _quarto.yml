@@ -362,6 +362,8 @@ format:
       - media/css/style.css
       - media/css/box.css
       - sidebar-compact.css
+    template-partials:
+      - media/html/title-metadata.html
     grid:
       sidebar-width: 310px
       body-width: 880px
@@ -372,6 +374,7 @@ format:
     cite-method: citeproc
 
 filters:
+  - media/lua/reviewers.lua
   - acronyms
 
 acronyms:

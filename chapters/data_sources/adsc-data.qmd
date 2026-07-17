@@ -2,6 +2,8 @@
 title: ADS-C contracts and reports
 authors:
 - Xavier Olive
+reviewers:
+- Reviewer 1
 ---
 
 **\acr{ADS-C}** is surveillance by agreement. An aircraft does not broadcast the same report to every receiver in range. Instead, an \acr{ATSU} establishes a contract with the aircraft over datalink. That contract determines when the aircraft reports and which groups of information it includes.
