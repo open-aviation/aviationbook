@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 640" role="img" aria-labelledby="title desc">
+  <title id="title">FANS-1/A CPDLC session lifecycle</title>
+  <desc id="desc">Sequence diagram between a ground air traffic service unit and an aircraft. The aircraft requests a connection, the ground confirms it, bidirectional AT1 messages carry the controller-pilot dialogue, and the aircraft can request disconnection.</desc>
+  <defs>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;600;700&amp;display=swap");
+      .head{font:700 24px "IBM Plex Sans",sans-serif;fill:#1f2d3d;}
+      .label{font:700 18px "IBM Plex Sans",sans-serif;fill:#1f2d3d;}
+      .small{font:16px "IBM Plex Sans",sans-serif;fill:#34495e;}
+      .tiny{font:14px "IBM Plex Sans",sans-serif;fill:#52616f;}
+      .code{font:700 16px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;fill:#1f2d3d;}
+      .ground{fill:#d0ebff;stroke:#1c7ed6;stroke-width:2.5;}
+      .aircraft{fill:#fff3bf;stroke:#f08c00;stroke-width:2.5;}
+      .message{fill:#fff;stroke:#8aa0b4;stroke-width:1.5;}
+      .report{fill:#fff8e1;stroke:#e67700;stroke-width:1.5;}
+      .uplink{stroke:#1c7ed6;stroke-width:4;stroke-linecap:round;fill:none;marker-end:url(#arrow-blue);}
+      .downlink{stroke:#e67700;stroke-width:4;stroke-linecap:round;fill:none;marker-end:url(#arrow-orange);}
+      .lifeL{stroke:#91c6f2;stroke-width:3;stroke-dasharray:9 9;}
+      .lifeR{stroke:#ffd27a;stroke-width:3;stroke-dasharray:9 9;}
+    </style>
+    <marker id="arrow-blue" markerWidth="13" markerHeight="13" refX="11" refY="6.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M1,1 L12,6.5 L1,12" fill="none" stroke="#1c7ed6" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+    <marker id="arrow-orange" markerWidth="13" markerHeight="13" refX="11" refY="6.5" orient="auto" markerUnits="userSpaceOnUse">
+      <path d="M1,1 L12,6.5 L1,12" fill="none" stroke="#e67700" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+    </marker>
+  </defs>
+
+  <rect x="80" y="48" width="280" height="76" rx="14" class="ground"/>
+  <text x="220" y="81" text-anchor="middle" class="head">Ground ATSU</text>
+  <text x="220" y="107" text-anchor="middle" class="small">controller application</text>
+
+  <rect x="740" y="48" width="280" height="76" rx="14" class="aircraft"/>
+  <text x="880" y="81" text-anchor="middle" class="head">Aircraft</text>
+  <text x="880" y="107" text-anchor="middle" class="small">flight deck application</text>
+
+  <line x1="220" y1="136" x2="220" y2="600" class="lifeL"/>
+  <line x1="880" y1="136" x2="880" y2="600" class="lifeR"/>
+
+  <!-- connect request -->
+  <path d="M865 185 H235" class="downlink"/>
+  <rect x="350" y="150" width="400" height="66" rx="10" class="report"/>
+  <text x="550" y="176" text-anchor="middle" class="label">Connection request</text>
+  <text x="550" y="200" text-anchor="middle" class="small"><tspan class="code">CR1</tspan> · aircraft requests an ATSU connection</text>
+
+  <!-- connect confirm -->
+  <path d="M235 290 H865" class="uplink"/>
+  <rect x="350" y="252" width="400" height="70" rx="10" class="message"/>
+  <text x="550" y="279" text-anchor="middle" class="label">Connection confirmation</text>
+  <text x="550" y="303" text-anchor="middle" class="small"><tspan class="code">CC1</tspan> · ground accepts and establishes the session</text>
+
+  <!-- dialogue -->
+  <path d="M235 390 H865" class="uplink"/>
+  <path d="M865 427 H235" class="downlink"/>
+  <rect x="330" y="350" width="440" height="112" rx="10" class="message"/>
+  <text x="550" y="378" text-anchor="middle" class="label">Controller-pilot dialogue</text>
+  <text x="550" y="405" text-anchor="middle" class="small"><tspan class="code">AT1</tspan> · uplink and downlink message elements</text>
+  <text x="550" y="433" text-anchor="middle" class="tiny">clearances · requests · acknowledgements · reports</text>
+  <text x="550" y="454" text-anchor="middle" class="tiny">responses carry references to earlier messages</text>
+
+  <!-- disconnect request -->
+  <path d="M865 545 H235" class="downlink"/>
+  <rect x="350" y="510" width="400" height="66" rx="10" class="report"/>
+  <text x="550" y="536" text-anchor="middle" class="label">Disconnect request</text>
+  <text x="550" y="560" text-anchor="middle" class="small"><tspan class="code">DR1</tspan> · aircraft ends the active connection</text>
+</svg>

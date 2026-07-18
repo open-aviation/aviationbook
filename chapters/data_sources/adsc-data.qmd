@@ -13,19 +13,10 @@ Like \acr{ADS-B}, ADS-C is **automatic** because the reports do not have to be c
 ```{ojs}
 //| echo: false
 //| code-copy: false
-datalinkWasm = import(new URL("../../media/wasm/datalink-wasm/datalink_wasm.js", document.baseURI).href).then(async (module) => {
-  await module.default({ module_or_path: new URL("../../media/wasm/datalink-wasm/datalink_wasm_bg.wasm", document.baseURI).href });
-  if (module.run) module.run();
-  return module;
-})
+datalink = import(new URL("../../media/js/datalink-ojs.js", document.baseURI).href)
+  .then((module) => module.makeDatalinkHelpers({ htl, Inputs }))
 
-function decodeArinc622(raw, direction) {
-  try {
-    return { ok: true, value: datalinkWasm.decode_arinc622(raw, direction) };
-  } catch (error) {
-    return { ok: false, error: String(error?.message ?? error) };
-  }
-}
+decodeArinc622 = datalink.decodeArinc622
 
 function adscHumanLabel(key) {
   const labels = {
@@ -347,12 +338,8 @@ function adscSvgBlock(value, direction = "uplink") {
 }
 
 function adscDirectionError(error, direction = "uplink") {
-  const detail = String(error ?? "Unknown decoder error").replace(/^Error:\s*/, "");
   const directionLabel = direction === "downlink" ? "downlink" : "uplink";
-  return htl.html`<div role="alert" style="border:1px solid var(--bs-danger, #dc3545); border-left-width:4px; border-radius:.55rem; padding:.8rem 1rem; background:color-mix(in srgb, var(--bs-danger, #dc3545) 8%, var(--bs-body-bg, #fff)); color:var(--bs-body-color, #212529)">
-    <strong style="display:block; margin-bottom:.2rem">Could not decode this as an ADS-C ${directionLabel}.</strong>
-    <span style="font-family:ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size:.84em">${detail}</span>
-  </div>`;
+  return datalink.errorBlock(error, { application: "ADS-C", direction: directionLabel });
 }
 
 adscUplinkError = (error) => adscDirectionError(error, "uplink")
@@ -387,7 +374,6 @@ Similar messages can be sent from the ground and from the aircraft. The ground s
 
 Ground-to-air messages establish, change, or cancel contracts, while air-to-ground messages acknowledge those requests and return surveillance reports.
 
-
 ![ADS-C contract requests, responses, reports, modifications, and cancellation](../../images/illustrations/adsc_contract_exchange.svg){#fig-adsc-contract-exchange}
 
 ## Contract requests
@@ -403,64 +389,6 @@ Four operational categories are commonly distinguished:
 A contract has a number so that requests, acknowledgements, and cancellations can be associated. The aircraft can accept a request, reject it, or indicate that it cannot supply particular report groups or parameters. Ground systems can cancel one contract or all active contracts, and emergency reporting has its own cancellation indication.
 
 The following uplink messages are examples of contract requests, that are interactively decoded below. *You may also copy and paste your own ARINC 622 envelope into the input field to see how it is interpreted.*
-
-
-```{ojs}
-//| echo: false
-//| code-copy: false
-adscSampleButtonStyles = htl.html`<style>
-.adsc-sample-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .45rem;
-  margin: .25rem 0 .75rem;
-}
-.adsc-sample-buttons button {
-  border: 1px solid var(--bs-border-color, #d0d7de);
-  border-radius: 999px;
-  background: var(--bs-body-bg, #fff);
-  color: var(--bs-body-color, #24292f);
-  padding: .35rem .75rem;
-  font: inherit;
-  line-height: 1.2;
-  cursor: pointer;
-}
-.adsc-sample-buttons button.active {
-  background: var(--bs-primary, #2c7fb8);
-  border-color: var(--bs-primary, #2c7fb8);
-  color: #fff;
-}
-.adsc-envelope-input {
-  display: block;
-  width: 100%;
-  margin: .3rem 0 1.25rem;
-}
-.adsc-envelope-input input {
-  box-sizing: border-box;
-  width: 100%;
-  border: 1px solid var(--bs-border-color, #d0d7de);
-  border-radius: .65rem;
-  background: var(--bs-body-bg, #fff);
-  color: var(--bs-body-color, #24292f);
-  padding: .7rem .85rem;
-  font: .92rem/1.35 Inconsolata, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  transition: border-color .15s ease, box-shadow .15s ease;
-  margin-bottom: .5rem;
-}
-.adsc-envelope-input input:hover {
-  border-color: color-mix(in srgb, var(--bs-primary, #2c7fb8) 55%, var(--bs-border-color, #d0d7de));
-}
-.adsc-envelope-input input:focus {
-  outline: 0;
-  border-color: color-mix(in srgb, var(--bs-primary, #2c7fb8) 55%, var(--bs-border-color, #d0d7de));
-}
-.adsc-sample-note {
-  margin: -.15rem 0 .7rem;
-  color: var(--bs-secondary-color, #68717d);
-  font-size: .9em;
-}
-</style>`
-```
 
 ```{ojs}
 //| echo: false
@@ -478,29 +406,8 @@ adscSamples = [
 ```{ojs}
 //| echo: false
 //| code-copy: false
-adscSampleButtons = (samples, label = "Select ADS-C uplink sample") => {
-  let current = 0;
-  const form = htl.html`<div class="adsc-sample-buttons" role="group" aria-label=${label}>
-    ${samples.map((_, index) => htl.html`<button type="button" data-index=${index}>Sample ${index + 1}</button>`)}
-  </div>`;
-  const setValue = (index, notify = true) => {
-    current = index;
-    for (const button of form.querySelectorAll("button")) {
-      button.classList.toggle("active", +button.dataset.index === current);
-    }
-    if (notify) form.dispatchEvent(new Event("input", { bubbles: true }));
-  };
-  Object.defineProperty(form, "value", {
-    get: () => current,
-    set: (index) => setValue(+index, false)
-  });
-  form.addEventListener("click", (event) => {
-    const button = event.target.closest("button");
-    if (button) setValue(+button.dataset.index);
-  });
-  setValue(0, false);
-  return form;
-}
+adscSampleButtons = (samples, label = "Select ADS-C uplink sample") =>
+  datalink.sampleButtons(samples, label)
 ```
 
 ```{ojs}
@@ -518,18 +425,10 @@ selectedAdscSample = adscSamples[selectedAdscSampleIndex] ?? adscSamples[0]
 ```{ojs}
 //| echo: false
 //| code-copy: false
-viewof adscEnvelope = {
-  const control = Inputs.text({ value: selectedAdscSample });
-  control.classList.add("adsc-envelope-input");
-  control.style.width = "100%";
-  const input = control.querySelector("input");
-  if (input) {
-    input.style.width = "100%";
-    input.setAttribute("aria-label", "ADS-C uplink ARINC 622 envelope");
-    input.setAttribute("spellcheck", "false");
-  }
-  return control;
-}
+viewof adscEnvelope = datalink.envelopeInput({
+  value: selectedAdscSample,
+  ariaLabel: "ADS-C uplink ARINC 622 envelope"
+})
 ```
 
 ```{ojs}
@@ -557,7 +456,6 @@ Before surveillance groups appear, the aircraft may answer a contract request or
 
 These responses are operational data in their own right. A missing group following a non-compliance notification, for example, is an explicitly reported limitation rather than ordinary missing data.
 
-
 After any contract response, the remainder of an ADS-C downlink is a sequence of report groups. A message may contain one group, but several are often combined, and the ones that recur depend on what the contract requested.
 
 The **basic report** is the heart of ADS-C surveillance: latitude, longitude, altitude, a time stamp expressed as seconds past the current hour, navigation-redundancy status, a position-accuracy code, and a TCAS health bit. It is the group most contracts expect on every periodic report, and the same packed state reappears, with a different leading tag, whenever an event triggers transmission.
@@ -570,11 +468,9 @@ Alongside the basic state, a report commonly carries identity and intent:
 
 The time in a basic or event report is expressed as seconds past the current hour, not as a complete timestamp. It must be anchored using surrounding message metadata. Event reports reuse the basic-report state but retain the event type that caused transmission.
 
-
 The following downlink sample messages are examples of contract reports collected from the [OpenSky ADS-C dataset](https://doi.org/10.5281/zenodo.14659997), that are interactively decoded below. *You may also copy and paste your own ARINC 622 envelope into the input field to see how it is interpreted.*
 
 The samples cover contract responses, ordinary and emergency surveillance, identity, route intent, projections, motion, meteorology, and an event report. In practice, basic reports and predicted routes are common, whereas emergency and lateral-deviation reports are rare
-
 
 ```{ojs}
 //| echo: false
@@ -639,18 +535,10 @@ htl.html`<p class="adsc-sample-note"><strong>Sample ${selectedAdscReportIndex + 
 ```{ojs}
 //| echo: false
 //| code-copy: false
-viewof adscReportEnvelope = {
-  const control = Inputs.text({ value: selectedAdscReportSample.raw });
-  control.classList.add("adsc-envelope-input");
-  control.style.width = "100%";
-  const input = control.querySelector("input");
-  if (input) {
-    input.style.width = "100%";
-    input.setAttribute("aria-label", "ADS-C downlink ARINC 622 envelope");
-    input.setAttribute("spellcheck", "false");
-  }
-  return control;
-}
+viewof adscReportEnvelope = datalink.envelopeInput({
+  value: selectedAdscReportSample.raw,
+  ariaLabel: "ADS-C downlink ARINC 622 envelope"
+})
 ```
 
 ```{ojs}
@@ -670,7 +558,6 @@ adscReportDecoded.ok
 ## Sources of data
 
 The OpenSky dataset used above came from Classic Aero traffic relayed through geostationary **Inmarsat satellites**. Aircraft transmit to a satellite in L-band, and the satellite-to-ground downlink can then be observed in C-band. A suitably located and pointed satellite station can therefore observe aircraft across a large satellite footprint, rather than only those near a local VHF or ADS-B receiver.
-
 
 ```{ojs}
 //| echo: false
@@ -735,11 +622,9 @@ countries = fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.jso
 
 :::
 
-
 ADS-C can also be carried through the **Iridium satellite network**. Unlike Inmarsat's geostationary satellites, Iridium's low-Earth-orbit satellites move continuously and provide polar coverage. Iridium is therefore an important alternative bearer for high-latitude and oceanic communications.
 
 Finally, ADS-C may also be observed on HF and VDL2 channels, or through aggregators such as [airframes.io](https://airframes.io). These sources contain more reports over continental areas, including near airports. Because those areas are generally well covered by ADS-B, ADS-C is often a lower priority there.
-
 
 ## Uses and limitations
 

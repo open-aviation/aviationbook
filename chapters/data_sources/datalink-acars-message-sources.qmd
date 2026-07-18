@@ -11,185 +11,11 @@ This chapter is the data-source entry point for datalink messages. The aviation 
 ```{ojs}
 //| echo: false
 //| code-copy: false
-datalinkWasm = import(new URL("../../media/wasm/datalink-wasm/datalink_wasm.js", document.baseURI).href).then(async (module) => {
-  await module.default({ module_or_path: new URL("../../media/wasm/datalink-wasm/datalink_wasm_bg.wasm", document.baseURI).href });
-  if (module.run) module.run();
-  return module;
-})
+datalink = import(new URL("../../media/js/datalink-ojs.js", document.baseURI).href)
+  .then((module) => module.makeDatalinkHelpers({ htl, Inputs }))
 
-function decodeAcars(raw, direction) {
-  try {
-    return { ok: true, value: datalinkWasm.decode_acars(raw, direction) };
-  } catch (error) {
-    return { ok: false, error: String(error?.message ?? error) };
-  }
-}
-
-datalinkJsonBlock = (value) => htl.html`<pre class="acars-json datalink-wasm-json"><code>${JSON.stringify(value, null, 2)}</code></pre>`
-```
-
-```{=html}
-<style>
-.datalink-table table {
-  width: 100%;
-  table-layout: fixed;
-  border-collapse: separate;
-  border-spacing: 0;
-  overflow: hidden;
-  border-radius: .65rem;
-}
-.datalink-table col:first-child {
-  width: 12rem !important;
-}
-.datalink-table col:nth-child(2) {
-  width: auto !important;
-}
-.datalink-table th:first-child,
-.datalink-table td:first-child {
-  width: 9rem !important;
-  white-space: normal;
-  overflow-wrap: anywhere;
-  word-break: normal;
-  font-weight: 600;
-}
-.datalink-table th:nth-child(2),
-.datalink-table td:nth-child(2) {
-  width: auto !important;
-}
-.datalink-table td {
-  vertical-align: top;
-}
-.datalink-description {
-  display: block;
-  color: #555;
-  font-size: .92rem;
-  line-height: 1.35;
-  margin-top: .15rem;
-}
-.mod-bubble {
-  float: right;
-  display: inline-block;
-  margin-left: .75rem;
-  margin-bottom: .25rem;
-  padding: .12rem .55rem;
-  border-radius: 999px;
-  background: color-mix(in srgb, var(--bs-primary, #2c7fb8) 14%, transparent);
-  color: var(--bs-primary, #2c7fb8);
-  border: 1px solid color-mix(in srgb, var(--bs-primary, #2c7fb8) 32%, transparent);
-  font-family: Inconsolata, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: .82rem;
-  font-weight: 700;
-  white-space: nowrap;
-}
-.acars-decode-card {
-  border: 1px solid var(--bs-border-color, #d0d7de);
-  border-radius: .75rem;
-  padding: .75rem .85rem;
-  margin: .85rem 0 1rem;
-  background: var(--bs-body-bg, #fff);
-}
-.acars-hexline,
-.acars-textline {
-  font-family: Inconsolata, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  line-height: 2.05;
-  word-break: break-word;
-}
-.acars-hexline span,
-.acars-textline span {
-  border-radius: .25rem;
-  padding: .12rem .22rem;
-  margin-right: .08rem;
-}
-.acars-payload-focus {
-  border: 2px solid var(--bs-primary, #2c7fb8);
-}
-.acars-decode-arrow {
-  margin: .35rem 0 .15rem;
-  color: var(--bs-secondary-color, #6c757d);
-  font-size: .9rem;
-}
-.acars-field-mode { background: #f1f3f5; color: #1f1f1f; }
-.acars-field-reg { background: #ffe082; color: #1f1f1f; }
-.acars-field-ack { background: #ffd8a8; color: #1f1f1f; }
-.acars-field-label { background: #c3fae8; color: #1f1f1f; }
-.acars-field-block { background: #e7f5ff; color: #1f1f1f; }
-.acars-field-control { background: #dee2e6; color: #1f1f1f; }
-.acars-field-text { background: #e8f0fb; color: #1f1f1f; }
-.acars-field-crc { background: #ffd6d6; color: #1f1f1f; }
-.acars-field-version { background: #f1f3f5; color: #1f1f1f; }
-.acars-field-kind { background: #ffd8a8; color: #1f1f1f; }
-.acars-field-station { background: #c3fae8; color: #1f1f1f; }
-.acars-field-airport { background: #ffe082; color: #1f1f1f; }
-.acars-field-lat { background: #d0ebff; color: #1f1f1f; }
-.acars-field-lon { background: #d3f9d8; color: #1f1f1f; }
-.acars-field-link { background: #e8f0fb; color: #1f1f1f; }
-.acars-field-freq { background: #e5dbff; color: #1f1f1f; }
-.acars-field-avlc { background: #d0ebff; color: #1f1f1f; }
-.acars-field-dst { background: #d0ebff; color: #1f1f1f; }
-.acars-field-src { background: #d3f9d8; color: #1f1f1f; }
-.acars-field-lcf { background: #ffd8a8; color: #1f1f1f; }
-.acars-field-prefix { background: #f1f3f5; color: #1f1f1f; }
-.acars-field-miam { background: #e5dbff; color: #1f1f1f; }
-.acars-field-decoded { background: #d3f9d8; color: #1f1f1f; }
-.acars-legend {
-  display: flex;
-  flex-wrap: wrap;
-  gap: .35rem .8rem;
-  font-size: .84rem;
-  color: #555;
-  margin-top: .55rem;
-}
-.acars-legend span::before {
-  content: "";
-  display: inline-block;
-  width: .85rem;
-  height: .85rem;
-  border-radius: .2rem;
-  margin-right: .25rem;
-  vertical-align: -.1rem;
-}
-.acars-legend .legend-mode::before { background: #f1f3f5; }
-.acars-legend .legend-reg::before { background: #ffe082; }
-.acars-legend .legend-ack::before { background: #ffd8a8; }
-.acars-legend .legend-label::before { background: #c3fae8; }
-.acars-legend .legend-block::before { background: #e7f5ff; }
-.acars-legend .legend-control::before { background: #dee2e6; }
-.acars-legend .legend-text::before { background: #e8f0fb; border: 2px solid var(--bs-primary, #2c7fb8); }
-.acars-legend .legend-crc::before { background: #ffd6d6; }
-.acars-legend .legend-version::before { background: #f1f3f5; }
-.acars-legend .legend-kind::before { background: #ffd8a8; }
-.acars-legend .legend-station::before { background: #c3fae8; }
-.acars-legend .legend-airport::before { background: #ffe082; }
-.acars-legend .legend-lat::before { background: #d0ebff; }
-.acars-legend .legend-lon::before { background: #d3f9d8; }
-.acars-legend .legend-link::before { background: #e8f0fb; }
-.acars-legend .legend-freq::before { background: #e5dbff; }
-.acars-legend .legend-avlc::before { background: #d0ebff; }
-.acars-legend .legend-dst::before { background: #d0ebff; }
-.acars-legend .legend-src::before { background: #d3f9d8; }
-.acars-legend .legend-lcf::before { background: #ffd8a8; }
-.acars-legend .legend-prefix::before { background: #f1f3f5; }
-.acars-legend .legend-miam::before { background: #e5dbff; }
-.acars-legend .legend-decoded::before { background: #d3f9d8; }
-.acars-json {
-  margin-top: .35rem;
-  background: var(--bs-tertiary-bg, #f8f9fa);
-  color: var(--bs-body-color, #24292f);
-  border-radius: .55rem;
-  padding: .35rem;
-  font-family: Inconsolata, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-  font-size: .9rem;
-  line-height: 1.35;
-  overflow-x: auto;
-  white-space: pre-wrap;
-  overflow-wrap: anywhere;
-}
-.acars-json .json-key { color: #6f42c1; font-weight: 600; }
-.acars-json .json-string { color: #0a7f3f; }
-.acars-json .json-number { color: #0b63ce; }
-.acars-json .json-boolean { color: #d63384; }
-.acars-json .json-null { color: #6c757d; font-style: italic; }
-</style>
+decodeAcars = datalink.decodeAcars
+datalinkJsonBlock = datalink.jsonBlock
 ```
 
 The important distinction is that datalink is not a single frequency or protocol. It is a stack:
@@ -291,7 +117,6 @@ ACARS characters are mostly 7-bit characters with parity/control bits. Normalisi
 
 The label `SQ` routes the text to the squitter decoder. The second step is now application-specific: the ACARS container text is no longer parsed as a generic frame, but as an `SQ` message.
 
-
 ::: {.acars-decode-card}
 **ACARS `SQ` payload**
 
@@ -382,7 +207,6 @@ On both paths, **the first layer is AVLC**. The VDL2 frame starts with a destina
 </div>
 :::
 
-
 AVLC addresses are not plain hexadecimal identifiers. Each address is encoded as four HDLC-style octets: seven address bits plus one end-address bit per byte. The decoder removes this packing, reverses the resulting 28-bit word, then splits it into a 24-bit station identifier and a 3-bit address type. For `96 14 26 86`, this gives `0xd2a3261`: the lower 24 bits are `2a3261`, and the type bits are `5`, i.e. a ground-station address. The sources similary decodes to aircraft `384dda`.
 
 The highlighted byte sequence is therefore the same kind of ACARS container as in the VHF example. We can decode it with the same field boundaries; the only important difference is that the label is now `MA`, so the text is routed to a MIAM/file-transfer decoder.
@@ -430,7 +254,6 @@ The inflated body is ordinary structured ACMS-style text:
 The first fields identify an `A350` report. The `H01` section repeats the report id (`602`), page/block fields, aircraft registration `.F-WWCW`, source/system fields, and a timestamp-like sequence `18,05,26,11,43,58,130`. The `H02`, `H03`, and `A01` sections carry additional report data, partly redacted here with `X` placeholders in the captured payload.
 
 By contrast, the VHF example is directly a POA/ACARS frame after demodulation, while the VDL2 example must first pass through AVLC framing before the inner payload is recognised as ACARS. Then the `MA` label adds one more application-specific decoding step before the message becomes readable.
-
 
 ## ARINC 622 envelopes
 

@@ -6,6 +6,9 @@ project:
     - data/iq_frames_viz.json
     - data/iq_downsample_compare.json
     - data/noaa-north-magnetic-pole.xy
+    - data/cpdlc_fans.json
+    - data/cpdlc_atn.json
+    - media/js/datalink-ojs.js
     - media/wasm/datalink-wasm/datalink_wasm.js
     - media/wasm/datalink-wasm/datalink_wasm_bg.wasm
 
@@ -208,7 +211,7 @@ book:
               href: chapters/data_sources/datalink-acars-message-sources.qmd
             - text: ADS-C contracts and reports
               href: chapters/data_sources/adsc-data.qmd
-            - text: 🟡 CPDLC data
+            - text: CPDLC communications
               href: chapters/data_sources/cpdlc-data.qmd
             - text: Aeronautical information
               href: chapters/data_sources/aeronautical-information.qmd
@@ -366,6 +369,7 @@ format:
     code-copy: true
     css:
       - media/css/style.css
+      - media/css/datalink.css
       - media/css/box.css
       - sidebar-compact.css
     template-partials:
