@@ -3,7 +3,7 @@ title: ADS-C contracts and reports
 authors:
 - Xavier Olive
 reviewers:
-- Reviewer 1
+- Martin Strohmeier
 ---
 
 **\acr{ADS-C}** is surveillance by agreement. An aircraft does not broadcast the same report to every receiver in range. Instead, an \acr{ATSU} establishes a contract with the aircraft over datalink. That contract determines when the aircraft reports and which groups of information it includes.
@@ -557,7 +557,7 @@ adscReportDecoded.ok
 
 ## Sources of data
 
-The OpenSky dataset used above came from Classic Aero traffic relayed through geostationary **Inmarsat satellites**. Aircraft transmit to a satellite in L-band, and the satellite-to-ground downlink can then be observed in C-band. A suitably located and pointed satellite station can therefore observe aircraft across a large satellite footprint, rather than only those near a local VHF or ADS-B receiver.
+The OpenSky dataset used above came from Classic Aero traffic relayed through geostationary **Inmarsat satellites**. Aircraft transmit to a satellite in L-band, and the satellite-to-ground downlink can then be observed in C-band. A suitably located and pointed satellite station can therefore observe aircraft across a large satellite footprint, rather than only those near a local VHF or ADS-B receiver. OpenSky's Trino database offers [global ADS-C positions](https://openskynetwork.github.io/opensky-api/trino.html#ads-c-state-vectors-readsb-adsc-sv) but no further ADS-C content.
 
 ```{ojs}
 //| echo: false
@@ -624,7 +624,9 @@ countries = fetch("https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.jso
 
 ADS-C can also be carried through the **Iridium satellite network**. Unlike Inmarsat's geostationary satellites, Iridium's low-Earth-orbit satellites move continuously and provide polar coverage. Iridium is therefore an important alternative bearer for high-latitude and oceanic communications.
 
-Finally, ADS-C may also be observed on HF and VDL2 channels, or through aggregators such as [airframes.io](https://airframes.io). These sources contain more reports over continental areas, including near airports. Because those areas are generally well covered by ADS-B, ADS-C is often a lower priority there.
+Finally, ADS-C may also be observed on HF and VDL2 channels, or through aggregators such as [airframes.io](https://airframes.io) and [thebaldgeek's pages](https://tbgmap.airframes.io/). These sources contain more reports over continental areas, including near airports. Because those areas are generally well covered by ADS-B, ADS-C is often a lower priority there.
+
+The most comprehensive tutorials for receiving satellite and non-ADS-B data can be found here: [thebaldgeek.github.io](https://thebaldgeek.github.io)
 
 ## Uses and limitations
 
