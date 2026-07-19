@@ -1,11 +1,14 @@
-const wasmModulePromise = import(new URL("../wasm/datalink-wasm/datalink_wasm.js", import.meta.url).href)
-  .then(async (module) => {
-    await module.default({
-      module_or_path: new URL("../wasm/datalink-wasm/datalink_wasm_bg.wasm", import.meta.url).href
-    });
-    if (module.run) module.run();
-    return module;
-  });
+const wasmModulePromise =
+  import("https://unpkg.com/datalink-wasm@0.3.0/web/datalink_wasm.js").then(
+    async (module) => {
+      await module.default({
+        wasm_module_path:
+          "https://unpkg.com/datalink-wasm@0.3.0/web/datalink_wasm_bg.wasm",
+      });
+      if (module.run) module.run();
+      return module;
+    },
+  );
 
 function safeDecode(decode) {
   return (raw, direction) => {
@@ -21,10 +24,17 @@ export async function makeDatalinkHelpers({ htl, Inputs } = {}) {
   if (!htl) throw new Error("makeDatalinkHelpers requires the OJS htl object");
   const wasm = await wasmModulePromise;
 
-  const jsonBlock = (value) => htl.html`<pre class="acars-json datalink-wasm-json"><code>${JSON.stringify(value, null, 2)}</code></pre>`;
+  const jsonBlock = (value) =>
+    htl.html`<pre class="acars-json datalink-wasm-json"><code>${JSON.stringify(value, null, 2)}</code></pre>`;
 
-  const errorBlock = (error, { application = "datalink message", direction = "" } = {}) => {
-    const detail = String(error ?? "Unknown decoder error").replace(/^Error:\s*/, "");
+  const errorBlock = (
+    error,
+    { application = "datalink message", direction = "" } = {},
+  ) => {
+    const detail = String(error ?? "Unknown decoder error").replace(
+      /^Error:\s*/,
+      "",
+    );
     const directionText = direction ? ` ${direction}` : "";
     const article = /^[AEFHILMNORSX]/i.test(application) ? "an" : "a";
     return htl.html`<div role="alert" class="datalink-wasm-error-block">
@@ -33,10 +43,15 @@ export async function makeDatalinkHelpers({ htl, Inputs } = {}) {
     </div>`;
   };
 
-  const sampleButtons = (samples, label, {
-    className = "datalink-sample-buttons",
-    buttonLabel = (sample, index) => sample?.short ?? sample?.label ?? `Sample ${index + 1}`
-  } = {}) => {
+  const sampleButtons = (
+    samples,
+    label,
+    {
+      className = "datalink-sample-buttons",
+      buttonLabel = (sample, index) =>
+        sample?.short ?? sample?.label ?? `Sample ${index + 1}`,
+    } = {},
+  ) => {
     let current = 0;
     const form = htl.html`<div class=${className} role="group" aria-label=${label}>
       ${samples.map((sample, index) => htl.html`<button type="button" data-index=${index}>${buttonLabel(sample, index)}</button>`)}
@@ -50,7 +65,7 @@ export async function makeDatalinkHelpers({ htl, Inputs } = {}) {
     };
     Object.defineProperty(form, "value", {
       get: () => current,
-      set: (index) => setValue(+index, false)
+      set: (index) => setValue(+index, false),
     });
     form.addEventListener("click", (event) => {
       const button = event.target.closest("button");
@@ -60,8 +75,13 @@ export async function makeDatalinkHelpers({ htl, Inputs } = {}) {
     return form;
   };
 
-  const envelopeInput = ({ value, ariaLabel, className = "datalink-envelope-input" } = {}) => {
-    if (!Inputs) throw new Error("envelopeInput requires the OJS Inputs object");
+  const envelopeInput = ({
+    value,
+    ariaLabel,
+    className = "datalink-envelope-input",
+  } = {}) => {
+    if (!Inputs)
+      throw new Error("envelopeInput requires the OJS Inputs object");
     const control = Inputs.text({ value });
     control.classList.add(className);
     control.style.width = "100%";
@@ -76,11 +96,15 @@ export async function makeDatalinkHelpers({ htl, Inputs } = {}) {
 
   return {
     wasm,
-    decodeAcars: safeDecode((raw, direction) => wasm.decode_acars(raw, direction)),
-    decodeArinc622: safeDecode((raw, direction) => wasm.decode_arinc622(raw, direction)),
+    decodeAcars: safeDecode((raw, direction) =>
+      wasm.decode_acars(raw, direction),
+    ),
+    decodeArinc622: safeDecode((raw, direction) =>
+      wasm.decode_arinc622(raw, direction),
+    ),
     jsonBlock,
     errorBlock,
     sampleButtons,
-    envelopeInput
+    envelopeInput,
   };
 }

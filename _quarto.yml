@@ -9,8 +9,6 @@ project:
     - data/cpdlc_fans.json
     - data/cpdlc_atn.json
     - media/js/datalink-ojs.js
-    - media/wasm/datalink-wasm/datalink_wasm.js
-    - media/wasm/datalink-wasm/datalink_wasm_bg.wasm
 
 execute:
   freeze: auto
@@ -67,6 +65,7 @@ book:
         - chapters/data_sources/adsc-data.qmd
         - chapters/data_sources/cpdlc-data.qmd
         - chapters/data_sources/aeronautical-information.qmd
+        - chapters/data_sources/planned-route-encoding.qmd
         - chapters/data_sources/flight-plans-intent.qmd
         - chapters/data_sources/weather-environment-data.qmd
         - chapters/data_sources/aircraft-performance.qmd
@@ -215,6 +214,8 @@ book:
               href: chapters/data_sources/cpdlc-data.qmd
             - text: Aeronautical information
               href: chapters/data_sources/aeronautical-information.qmd
+            - text: Planned route encoding
+              href: chapters/data_sources/planned-route-encoding.qmd
             - text: Flight plans and intent
               href: chapters/data_sources/flight-plans-intent.qmd
             - text: 🟡 Weather and environmental data
