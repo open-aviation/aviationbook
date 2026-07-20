@@ -69,7 +69,7 @@ book:
         - chapters/data_sources/flight-plans-intent.qmd
         - chapters/data_sources/weather-environment-data.qmd
         - chapters/data_sources/aircraft-performance.qmd
-        - chapters/data_sources/operational-performance-data.qmd
+        - chapters/data_sources/weather-aircraft-performance.qmd
         - chapters/data_sources/safety-occurrence-risk-data.qmd
         - chapters/data_sources/human-factors-data.qmd
         - chapters/data_sources/maintenance-airworthiness-data.qmd
@@ -222,8 +222,8 @@ book:
               href: chapters/data_sources/weather-environment-data.qmd
             - text: Performance models
               href: chapters/data_sources/aircraft-performance.qmd
-            - text: 🟡 Operational performance
-              href: chapters/data_sources/operational-performance-data.qmd
+            - text: Weather and performance models
+              href: chapters/data_sources/weather-aircraft-performance.qmd
             - text: 🔴 Safety data
               href: chapters/data_sources/safety-occurrence-risk-data.qmd
             - text: 🔴 Human factors
