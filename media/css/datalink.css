@@ -241,6 +241,7 @@
 }
 
 .datalink-envelope-input input,
+.datalink-envelope-input textarea,
 .adsc-envelope-input input,
 .cpdlc-envelope-input input {
   box-sizing: border-box;
@@ -256,9 +257,11 @@
 }
 
 .datalink-envelope-input input:hover,
+.datalink-envelope-input textarea:hover,
 .adsc-envelope-input input:hover,
 .cpdlc-envelope-input input:hover,
 .datalink-envelope-input input:focus,
+.datalink-envelope-input textarea:focus,
 .adsc-envelope-input input:focus,
 .cpdlc-envelope-input input:focus {
   outline: 0;

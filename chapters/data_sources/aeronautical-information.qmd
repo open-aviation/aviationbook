@@ -141,7 +141,7 @@ Analysts should distinguish:
 - an accepted or regulated route after flow-management checks;
 - the flown trajectory reconstructed from surveillance data.
 
-These objects are related but not interchangeable.
+These objects are related but not interchangeable. The way a flight plan combines significant points, routes, direct segments, procedures, speed, and level is explained in [planned route encoding](planned-route-encoding.qmd).
 
 ### Airspaces
 

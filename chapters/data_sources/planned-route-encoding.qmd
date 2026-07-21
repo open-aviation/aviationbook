@@ -1,0 +1,1237 @@
+---
+title: Planned route encoding
+authors:
+- Xavier Olive
+---
+
+<style>
+.route-sample-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+  margin: 0.75rem 0 1rem;
+}
+.route-sample-buttons button {
+  background: var(--bs-body-bg, white);
+  border: 1px solid var(--bs-border-color, #dee2e6);
+  border-radius: 0.35rem;
+  color: var(--bs-body-color, #212529);
+  cursor: pointer;
+  font-size: 0.8rem;
+  padding: 0.35rem 0.55rem;
+}
+.route-sample-buttons button.active {
+  background: #0d6efd;
+  border-color: #0d6efd;
+  color: white;
+}
+.route-sample-summary {
+  border-left: 3px solid var(--bs-border-color, #dee2e6);
+  margin: 0.5rem 0 1rem;
+  padding-left: 0.75rem;
+}
+.route-sample-summary p {
+  margin-bottom: 0.25rem;
+}
+.route-sample-route {
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+.route-token-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  margin: 0.75rem 0;
+}
+.route-token {
+  border: 1px solid color-mix(in srgb, currentColor 30%, transparent);
+  border-radius: 0.35rem;
+  display: inline-flex;
+  flex-direction: column;
+  gap: 0.15rem;
+  padding: 0.35rem 0.5rem;
+}
+.route-token code {
+  color: inherit;
+  font-size: 0.9rem;
+  font-weight: 650;
+}
+.route-token small {
+  font-size: 0.7rem;
+  opacity: 0.8;
+}
+.route-speed-level { background: #e8f1fb; color: #245b8a; }
+.route-procedure { background: #f3e9fb; color: #704096; }
+.route-point { background: #e8f6ee; color: #28744a; }
+.route-direct { background: #f5f5f5; color: #555; }
+.route-airway { background: #fff1dc; color: #955d08; }
+.route-change { background: #fde9e7; color: #9d3f36; }
+.route-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem 0.9rem;
+  font-size: 0.8rem;
+  margin-bottom: 0.75rem;
+}
+.route-legend span::before {
+  border-radius: 50%;
+  content: "";
+  display: inline-block;
+  height: 0.65rem;
+  margin-right: 0.3rem;
+  width: 0.65rem;
+}
+.legend-speed-level::before { background: #7aa6d1; }
+.legend-procedure::before { background: #a77ac7; }
+.legend-point::before { background: #69ad84; }
+.legend-direct::before { background: #999; }
+.legend-airway::before { background: #d99b3d; }
+.legend-track::before { background: #2f5f98; }
+.legend-change::before { background: #d9776d; }
+.route-point-permanent-label,
+.route-point-hover-label {
+  color: var(--bs-body-color, #222);
+  font-family: Inconsolata, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: clamp(0.72rem, 0.68rem + 0.16vw, 0.84rem);
+  line-height: 1.2;
+}
+.route-point-permanent-label {
+  background: color-mix(in srgb, var(--bs-body-bg, #fff) 92%, transparent);
+  border: 1px solid color-mix(in srgb, var(--bs-body-color, #222) 30%, transparent);
+  box-shadow: none;
+  font-weight: 700;
+  padding: 0.15rem 0.3rem;
+  pointer-events: none;
+  white-space: nowrap;
+}
+.route-point-hover-content,
+.route-point-hover-title,
+.route-point-hover-coordinates {
+  display: block;
+}
+.route-point-hover-title {
+  font-weight: 700;
+}
+.route-point-hover-coordinates {
+  font-size: 0.88em;
+  margin-top: 0.12em;
+  opacity: 0.78;
+  white-space: nowrap;
+}
+.route-figure-note {
+  color: var(--bs-secondary-color, #6c757d);
+  font-size: 0.82rem;
+  margin-top: 0.4rem;
+}
+.route-diagram {
+  background: var(--bs-body-bg, white);
+  border: 1px solid var(--bs-border-color, #dee2e6);
+  border-radius: 0.4rem;
+  height: auto;
+  max-width: 850px;
+  width: 100%;
+}
+</style>
+
+A planned route is not stored as a ready-made line on a map. In an aeronautical data workflow it often begins as a compact text expression naming procedures, significant points, airways, direct segments, and changes of speed or level. This page explains how that expression is parsed and how its names are resolved against the navigation data introduced in [aeronautical information and data objects](aeronautical-information.qmd).
+
+The \acr{ICAO} flight plan form numbers its entries. **Item 15** is titled *Cruising speed, level and route* in the flight-plan completion instructions [@icao-doc-4444, appendix 2]. Operational systems, software libraries, and datasets commonly call this entry **Field 15**.
+
+It represents filed intent. It is not, by itself, an accepted clearance, a sequence of coordinates, a four-dimensional trajectory, or a record of what the aircraft flew. We will use the term *planned route encoding* to refer to the filed route expression, and *planned route* to refer to the resolved route representation.
+
+The resolution goes along several stages:
+
+- the **lexical parsing** stage recognises the shape of each token and classifies it into a few broad categories;
+- the **resolution against navigation data** stage matches each token to a specific point, airway, or procedure. This phase must be aware of context, including the departure and destination aerodromes, the previously and subsequently resolved route elements, and the effective AIRAC cycle;
+- the **expansion** stage converts the route into a sequence of points and typed segments;
+- the **trajectory modelling** stage generates a time-dependent trajectory from the expanded route;
+
+In this page, we illustrate the resolution stages with a few representative examples, without going into the details of context, date and specific AIRAC cycles. The goal is to show how a route expression is interpreted, not to provide a complete implementation of a route-resolution engine.
+
+## Lexical parsing
+
+The first step is to turn the filed string into a sequence of typed tokens. This is a pure lexical operation: it recognises the **shape** of each token against the ICAO Doc 4444 grammar but does not yet consult any navigation database.
+
+The figure below runs it in your browser on the Toulouse–Paris expression by default. Type any Field 15 route into the input box, or pick one of the samples to see how each token is classified.
+
+<style>
+.field15-figure { max-width: 880px; }
+.field15-token-svg { display: block; max-width: 100%; height: auto; }
+.field15-token-svg text { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+.field15-legend {
+  display: flex; flex-wrap: wrap;
+  gap: 0.3rem 0.9rem;
+  font-size: 0.8rem;
+  margin: 0.6rem 0;
+}
+.field15-legend span::before {
+  border-radius: 50%;
+  content: "";
+  display: inline-block;
+  height: 0.65rem;
+  margin-right: 0.3rem;
+  width: 0.65rem;
+}
+.field15-legend .legend-speed-level::before { background: #7aa6d1; }
+.field15-legend .legend-procedure::before { background: #a77ac7; }
+.field15-legend .legend-point::before { background: #69ad84; }
+.field15-legend .legend-direct::before { background: #999; }
+.field15-legend .legend-airway::before { background: #d99b3d; }
+.field15-legend .legend-track::before { background: #d9776d; }
+.field15-legend .legend-flag::before { background: #8a98a6; }
+</style>
+
+```{ojs}
+//| echo: false
+//| code-copy: false
+viewof selectedRouteSampleIndex = routeSampleButtons(routeSamples)
+```
+
+```{ojs}
+//| echo: false
+htl.html`<p class="datalink-sample-note">${selectedRouteSample.description}</p>`
+```
+
+```{ojs}
+//| echo: false
+//| output: false
+field15TextControl = (
+  value,
+  label = "ICAO Field 15 route expression"
+) => {
+  const control = Inputs.textarea({ value: value ?? "", rows: 1 });
+  control.classList.add("datalink-envelope-input");
+  control.style.width = "100%";
+  control.style.margin = "0.3rem 0 1.25rem";
+  const input = control.querySelector("textarea");
+  if (input) {
+    input.style.boxSizing = "border-box";
+    input.style.width = "100%";
+    input.style.maxHeight = "none";
+    input.style.overflowY = "hidden";
+    input.style.resize = "none";
+    input.style.padding = "0.6em";
+    input.style.marginBottom = "0.5rem";
+    input.style.font =
+      "0.92rem/1.35 Inconsolata, ui-monospace, SFMono-Regular, Menlo, Consolas, monospace";
+    input.setAttribute("spellcheck", "false");
+    input.setAttribute("aria-label", label);
+    const grow = () => {
+      input.style.height = "auto";
+      input.style.height = `${input.scrollHeight}px`;
+    };
+    input.addEventListener("input", grow);
+    requestAnimationFrame(grow);
+    if (typeof ResizeObserver !== "undefined") {
+      const observer = new ResizeObserver(grow);
+      observer.observe(input);
+    }
+  }
+  return control;
+}
+```
+
+```{ojs}
+//| echo: false
+//| code-copy: false
+viewof field15Input = field15TextControl(selectedRouteExpression)
+```
+
+```{ojs}
+//| echo: false
+//| output: false
+trafficLibrary = {
+  const library = await require("traffic.js@0.2.0");
+  try { library.env.setEnv({ Inputs, html: htl.html, d3, Plot }); } catch (e) {}
+  return library;
+}
+```
+
+```{ojs}
+//| echo: false
+//| output: false
+field15Parsed = {
+  const text = field15Input ?? "";
+  try {
+    const tokens = await trafficLibrary.data.parseField15(text);
+    return { ok: true, tokens, error: null };
+  } catch (error) {
+    return { ok: false, tokens: [], error: String(error?.message ?? error) };
+  }
+}
+```
+
+```{ojs}
+//| echo: false
+//| output: false
+field15CategoryInfo = ({
+  speed_level: { label: "speed | level", bg: "#e8f1fb", fg: "#245b8a", dot: "#7aa6d1" },
+  procedure: { label: "SID | STAR", bg: "#f3e9fb", fg: "#704096", dot: "#a77ac7" },
+  point: { label: "significant point", bg: "#e8f6ee", fg: "#28744a", dot: "#69ad84" },
+  direct: { label: "direct", bg: "#f5f5f5", fg: "#555", dot: "#999" },
+  airway: { label: "ATS route", bg: "#fff1dc", fg: "#955d08", dot: "#d99b3d" },
+  track: { label: "organised track", bg: "#fde9e7", fg: "#9d3f36", dot: "#d9776d" },
+  flag: { label: "flag", bg: "#eef0f2", fg: "#45505a", dot: "#8a98a6" }
+})
+```
+
+```{ojs}
+//| echo: false
+//| output: false
+field15CardFor = (token) => {
+  const pad = (n, w) => String(Math.abs(n)).padStart(w, "0");
+  const fmtSpeed = (s) => {
+    if (!s) return "";
+    if ("kts" in s) return `N${pad(s.kts, 4)}`;
+    if ("km/h" in s) return `K${pad(s["km/h"], 4)}`;
+    if ("Mach" in s) return `M${pad(Math.round(s.Mach * 100), 3)}`;
+    return "";
+  };
+  const fmtAlt = (a) => {
+    if (!a) return "";
+    if ("FL" in a) return `F${pad(a.FL, 3)}`;
+    if ("S" in a) return `S${pad(a.S, 4)}`;
+    if ("ft" in a) return `A${pad(Math.round(a.ft / 100), 3)}`;
+    if ("m" in a) return `M${pad(Math.round(a.m / 10), 4)}`;
+    if (a === "VFR") return "VFR";
+    return "";
+  };
+  const speedDetail = (s) => {
+    if ("kts" in s) return `${s.kts} kts`;
+    if ("km/h" in s) return `${s["km/h"]} km/h`;
+    if ("Mach" in s) return `M ${(+s.Mach).toFixed(2)}`;
+    return "";
+  };
+  const altDetail = (a) => {
+    if ("FL" in a) return `FL ${a.FL}`;
+    if ("S" in a) return `metric S${a.S}`;
+    if ("ft" in a) return `${a.ft} ft`;
+    if ("m" in a) return `${a.m} m`;
+    if (a === "VFR") return "VFR level";
+    return "";
+  };
+  const coordLabel = (lat, lon) => {
+    const lh = lat >= 0 ? "N" : "S";
+    const eh = lon >= 0 ? "E" : "W";
+    const la = Math.abs(lat), lo = Math.abs(lon);
+    const laD = Math.floor(la + 1e-9), laM = Math.round((la - laD) * 60);
+    const loD = Math.floor(lo + 1e-9), loM = Math.round((lo - loD) * 60);
+    if (laM === 0 && loM === 0) return `${pad(laD, 2)}${lh}${pad(loD, 3)}${eh}`;
+    return `${pad(laD, 2)}${pad(laM, 2)}${lh}${pad(loD, 3)}${pad(loM, 2)}${eh}`;
+  };
+  const flagLabel = {
+    VFR: "VFR (visual rules)",
+    IFR: "IFR (instrument rules)",
+    OAT: "OAT (operating air traffic)",
+    GAT: "GAT (general air traffic)",
+    IFPSTART: "IFP start",
+    IFPSTOP: "IFP stop"
+  };
+
+  if (typeof token === "string") {
+    if (token === "DCT") return { category: "direct", label: "DCT", detail: "direct leg" };
+    return { category: "flag", label: token, detail: flagLabel[token] ?? "flight-rules / ATM flag" };
+  }
+  if ("speed" in token || "altitude" in token) {
+    const s = token.speed, a = token.altitude, to = token.altitude_cruise_to;
+    const cruise = !!to;
+    const label = (cruise ? "C/" : "") + fmtSpeed(s) + fmtAlt(a) + (to ? fmtAlt(to) : "");
+    const parts = [speedDetail(s), altDetail(a)];
+    if (to) parts.push("→ " + altDetail(to));
+    return { category: "speed_level", label, detail: parts.filter(Boolean).join(" · ") };
+  }
+  if ("waypoint" in token) return { category: "point", label: token.waypoint, detail: "waypoint" };
+  if ("aerodrome" in token) return { category: "point", label: token.aerodrome, detail: "aerodrome" };
+  if ("coords" in token) return {
+    category: "point",
+    label: coordLabel(token.coords[0], token.coords[1]),
+    detail: `(${(+token.coords[0]).toFixed(2)}°, ${(+token.coords[1]).toFixed(2)}°)`
+  };
+  if ("point_bearing_distance" in token) {
+    const p = token.point_bearing_distance;
+    const d = p.point?.waypoint ?? p.point?.aerodrome ?? "?";
+    return {
+      category: "point",
+      label: `${d}${pad(p.bearing, 3)}${pad(p.distance, 3)}`,
+      detail: `bearing ${p.bearing}° · ${p.distance} NM from ${d}`
+    };
+  }
+  if ("airway" in token) return { category: "airway", label: token.airway, detail: "ATS route" };
+  if ("SID" in token) return { category: "procedure", label: token.SID, detail: "SID" };
+  if ("STAR" in token) return { category: "procedure", label: token.STAR, detail: "STAR" };
+  if ("NAT" in token) return { category: "track", label: token.NAT, detail: "North Atlantic track" };
+  if ("PTS" in token) return { category: "track", label: token.PTS, detail: "Pacific track system" };
+  if ("STAY" in token) return { category: "flag", label: "STAY", detail: `stay ${token.STAY.minutes ?? "?"} min` };
+  return { category: "flag", label: JSON.stringify(token), detail: "unrecognised token" };
+}
+```
+
+```{ojs}
+//| echo: false
+//| output: false
+field15TokenSvg = (result) => {
+  if (result.error) {
+    return htl.html`<div class="callout callout-style-default callout-warning"><div class="callout-body-container"><div class="callout-body"><p>Could not parse this as a Field 15 route: <code>${result.error}</code></p></div></div></div>`;
+  }
+  const tokens = result.tokens ?? [];
+  if (tokens.length === 0) {
+    return htl.html`<div class="callout callout-style-default callout-note"><div class="callout-body-container"><div class="callout-body"><p>No tokens — type a Field 15 route into the input box above.</p></div></div></div>`;
+  }
+
+  const ns = "http://www.w3.org/2000/svg";
+  const el = (name, attrs = {}, text = null) => {
+    const node = document.createElementNS(ns, name);
+    for (const [k, v] of Object.entries(attrs)) node.setAttribute(k, v);
+    if (text !== null) node.textContent = text;
+    return node;
+  };
+
+  const canvas = document.createElement("canvas");
+  const ctx = canvas.getContext("2d");
+  const fontLabel = "600 13px ui-monospace, SFMono-Regular, Menlo, monospace";
+  const fontDetail = "11px ui-monospace, SFMono-Regular, Menlo, monospace";
+  const measure = (text, font) => { ctx.font = font; return ctx.measureText(String(text)).width; };
+
+  const PAD_X = 11, PAD_Y = 9, LH = 16, DH = 14, GAP_Y = 16, CHEV = 18;
+  const measured = tokens.map(field15CardFor).map((c) => {
+    const lw = measure(c.label, fontLabel);
+    const dw = measure(c.detail, fontDetail);
+    const w = Math.ceil(Math.max(lw, dw)) + PAD_X * 2;
+    const h = PAD_Y * 2 + LH + DH;
+    return { ...c, w, h };
+  });
+
+  const availW = Math.max(260, Math.min(width || 840, 880));
+  const rows = [];
+  let row = [], x = 0, rowH = 0;
+  for (const m of measured) {
+    if (x > 0 && x + m.w > availW) {
+      rows.push({ cards: row, h: rowH });
+      row = []; x = 0; rowH = 0;
+    }
+    row.push({ ...m, x });
+    x += m.w + CHEV;
+    rowH = Math.max(rowH, m.h);
+  }
+  if (row.length) rows.push({ cards: row, h: rowH });
+
+  const totalH = rows.reduce((s, r) => s + r.h, 0) + GAP_Y * Math.max(0, rows.length - 1);
+  const svg = el("svg", { width: "100%", viewBox: `0 0 ${availW} ${Math.max(totalH, 12)}`, role: "img", "class": "field15-token-svg" });
+
+  let y = 0;
+  for (const r of rows) {
+    for (let i = 0; i < r.cards.length; i++) {
+      const c = r.cards[i];
+      const info = field15CategoryInfo[c.category] ?? field15CategoryInfo.flag;
+      svg.appendChild(el("rect", { x: c.x, y, width: c.w, height: c.h, rx: 6, ry: 6, fill: info.bg, stroke: info.dot, "stroke-width": 1 }));
+      svg.appendChild(el("text", { x: c.x + PAD_X, y: y + PAD_Y + 12, fill: info.fg, "font-size": 13, "font-weight": 600 }, c.label));
+      svg.appendChild(el("text", { x: c.x + PAD_X, y: y + PAD_Y + LH + DH, fill: info.fg, "font-size": 11, opacity: 0.85 }, c.detail));
+      if (i < r.cards.length - 1) {
+        const cx = c.x + c.w + CHEV / 2;
+        const cy = y + c.h / 2;
+        svg.appendChild(el("text", { x: cx - 4, y: cy + 4, fill: "#9aa6ad", "font-size": 15 }, "›"));
+      }
+    }
+    y += r.h + GAP_Y;
+  }
+  return svg;
+}
+```
+
+::: {#fig-field15-tokens fig-cap="Lexical parsing of a Field 15 route: each card is one parsed token; colours follow the lexical category."}
+
+```{ojs}
+//| echo: false
+htl.html`<div class="field15-figure">
+  ${field15TokenSvg(field15Parsed)}
+  <div class="field15-legend">
+    ${Object.entries(field15CategoryInfo).map(([key, info]) => htl.html`<span class="legend-${key.replace(/_/g, '-')}">${info.label}</span>`)}
+  </div>
+</div>`
+```
+
+:::
+
+Each card in @fig-field15-tokens is one of the following lexical kinds. The **pattern** is what the tokenizer recognises from the string alone; the **meaning** is what the token will stand for once the navigation data is applied. The later sections of this page expand each of these in depth.
+
+- **Speed and level**: a group such as `N0430F300`, or the same group appended after a point (`NIMER/N0401F240`) or `C/`. A speed prefix gives the unit (`N` knots, `K` km/h, `M` Mach) and a level suffix gives the reference (`F` flight level, `S` metric level, `A` altitude in feet, `M` metric altitude). The first token of the route states the initial cruising speed and level; a later group attached to a point marks an en-route change.
+- **Significant point**: a named designator (`FISTO`, `PEPAX`), an aerodrome (`LFPG`), a latitude/longitude coordinate (`50N080W`, `5130N07000W`), or a bearing/distance from a reference point (`DUB180040`). The token is a lookup key, not a unique identity: the same designator can exist in several regions or datasets.
+- **\acr{ATS} route**: a designator such as `UT182` or `UM859` that connects two points along a published route. The tokenizer tags the connector; the intermediate points come from the navigation database.
+- **Direct**: `DCT` joins two points with no intermediate airway.
+- **Procedure**: `FISTO6B` (SID) and `KEPER9E` (STAR) name a standard instrument departure or arrival procedure at an aerodrome.
+- **Organised track**: `NATD`/`NATA` (North Atlantic) and `PTS0` (Pacific) refer to daily published track structures rather than fixed airways.
+- **Rules and flags**: `VFR`, `IFR`, `OAT`, `GAT` change flight or operating rules mid-route; `IFPSTART`/`IFPSTOP` mark IFP portions; a `C/` prefix carries a cruise/climb level pair.
+
+
+```{ojs}
+//| echo: false
+//| code-copy: false
+routeSamples = [
+  {
+    label: "Toulouse to Paris",
+    short: "LFBO → LFPG",
+    source: "AA48207374",
+    description: "Short domestic route with a SID, direct legs, one ATS-route slice, a speed/level change, and a STAR.",
+    route: "N0430F300 FISTO6B FISTO DCT POI DCT PEPAX UT182 NIMER/N0401F240 UT182 KEPER KEPER9E",
+  },
+  {
+    label: "North Atlantic tracks",
+    short: "LFPG → CYUL",
+    source: "AA75209200",
+    description: "North Atlantic example with a NAT token (14 September 2025), direct oceanic segments, and unresolved-data caveats.",
+    route: "N0490F360 ELCOB6B ELCOB UT300 SENLO UN502 JSY DCT LIZAD DCT MOPAT DCT LUNIG DCT MOMIN DCT PIKIL/M084F380 NATD HOIST/N0490F380 N756C ANATI/N0441F340 DCT MIVAX DCT OBTEK DCT XORLO ROCKT2",
+  },
+  {
+    label: "Los Angeles to Paris",
+    short: "KLAX → LFPG",
+    source: "AA63996425",
+    description: "Long-haul route combining a US departure procedure, coded oceanic fixes, lat/lon points, Mach changes, and European airways.",
+    route: "N0490F330 ORCKA5 LAS DCT BAWER DCT KU54Q DCT KD69U DCT KP84A/N0481F350 DCT KP12K DCT 50N080W 5130N07000W 5230N06000W DCT LOMSI/M083F370 DCT 54N050W 5530N04000W 56N030W 57N020W DCT SUNOT/N0483F390 DCT KESIX DCT REVNU/N0482F390 DCT MORAG DCT NUCHU L18 MID/N0463F310 Y803 SFD/N0479F290 UM605 WAFFU/N0460F230 UM605 BIBAX BIBAX9E",
+  },
+  {
+    label: "Silk road",
+    short: "LFPG → RJBB",
+    source: "AA78263115",
+    description: "Very long route showing metric speed/level forms, many airway systems",
+    route: "N0484F330 BUBLI6G BUBLI DCT LUVAL DCT BEGAR DCT TRA DCT GAMSA DCT BIRGI DCT GOTAR DCT TEGRI DCT DINRO DCT UDROS/N0483F350 UM859 KARDE UN644 ROLIN/N0487F350 DCT TETRO DCT BARAD M747 LUSAL N199 RASAM L88 METKA/K0896F350 B476 TIMGA A480 OTBOR N147 TRK Z621 ARBOL M610 RULAD/K0894S1070 A343 NLT/K0885S1130 A343 POSOT B215 FKG W188 DAKPA/K0874S1190 W188 GOVSA W66 DKO W69 HUR B339 LADIX W34 VAPGU W100 ORAVA W201 UNSEK A326 DONVO G597 AGAVO/N0488F390 Y644 EGOBA Y697 LANAT/N0491F390 Y597 MIHOU Y361 SAEKI Y36 ATMUG",
+  },
+  {
+    label: "Polar route",
+    short: "RJBB → LFPG",
+    source: "AA78821674",
+    description: "Polar route from Kansai to Paris through the Bering Strait, Alaska, and high-latitude coordinate points.",
+    route: "N0492F350 NANKO3 NANKO DCT NIKEX DCT KYOTO DCT SIGAK DCT KCC Y88 DAIGO Y889 MAMID/M084F350 Y889 PUTER A590 PASRO/M084F370 A590 POWAL DCT HEDMI R338 ROCET/N0490F370 R338 IDROD/N0492F390 DCT CIVED DCT BRW DCT AGMIF DCT 82N060W/M084F390 80N040W 72N020W DCT NALAN/N0478F390 DCT ELBUS UL612 WOD/N0463F350 UM605 SFD/N0439F310 UM605 WAFFU/N0428F290 UM605 HARDY/N0404F250 UM605 BIBAX BIBAX9W"
+  }
+
+]
+```
+
+```{ojs}
+//| echo: false
+//| code-copy: false
+routeSampleButtons = (samples, label = "Select route example") => {
+  let current = 0;
+  const form = htl.html`<div class="route-sample-buttons" role="group" aria-label=${label}>
+    ${samples.map((sample, i) => htl.html`<button type="button" data-index=${i}>${sample.label}</button>`)}
+  </div>`;
+  const setValue = (index, notify = true) => {
+    current = Math.max(0, Math.min(samples.length - 1, Number(index) || 0));
+    for (const btn of form.querySelectorAll("button")) {
+      btn.classList.toggle("active", +btn.dataset.index === current);
+    }
+    if (notify) form.dispatchEvent(new Event("input", { bubbles: true }));
+  };
+  Object.defineProperty(form, "value", {
+    get: () => current,
+    set: (index) => setValue(index, false),
+  });
+  form.addEventListener("click", (event) => {
+    const btn = event.target.closest("button");
+    if (btn) setValue(+btn.dataset.index);
+  });
+  setValue(0, false);
+  window.__plannedRouteSampleControl = form;
+  return form;
+}
+```
+
+```{ojs}
+//| echo: false
+//| code-copy: false
+routeSampleMirror = (samples, label = "Select route example") => {
+  const form = htl.html`<div class="route-sample-buttons" role="group" aria-label=${label}>
+    ${samples.map((sample, i) => htl.html`<button type="button" data-index=${i}>${sample.label}</button>`)}
+  </div>`;
+  const getControl = () => window.__plannedRouteSampleControl;
+  const sync = () => {
+    const control = getControl();
+    const value = control?.value ?? 0;
+    for (const btn of form.querySelectorAll("button")) {
+      btn.classList.toggle("active", +btn.dataset.index === value);
+    }
+  };
+  form.addEventListener("click", (event) => {
+    const btn = event.target.closest("button");
+    const control = getControl();
+    if (!btn || !control) return;
+    control.value = +btn.dataset.index;
+    control.dispatchEvent(new Event("input", { bubbles: true }));
+    sync();
+  });
+  getControl()?.addEventListener("input", sync);
+  invalidation.then(() => getControl()?.removeEventListener("input", sync));
+  sync();
+  return form;
+}
+```
+
+```{ojs}
+//| echo: false
+selectedRouteSample = routeSamples[selectedRouteSampleIndex] ?? routeSamples[0]
+```
+
+```{ojs}
+//| echo: false
+selectedRouteExpression = selectedRouteSample.route
+```
+
+```{ojs}
+//| echo: false
+routeSampleSummary = (sample) => htl.html`<div class="route-sample-summary">
+  <p><strong>${sample.label}</strong> <code>${sample.short}</code> — ${sample.description}</p>
+  <p><small>Source: ${sample.source}</small></p>
+  <pre class="route-sample-route"><code>${sample.route}</code></pre>
+</div>`
+```
+
+## Route resolution
+
+Resolving a route is more a ranking problem than a dictionary lookup.
+
+Each designator token must be matched against one or more navigation databases, and the resolver must pick the most probable candidate given the surrounding context. The databases are rarely perfect: open and freely available sources are commonly incomplete or out of date, and even \acr{AIRAC} data from a given provider describes only one 28-day cycle. A point that resolves cleanly for one flight may be ambiguous, missing, or withdrawn on another date.
+
+Two temporal keys matter in particular:
+
+- the **\acr{AIRAC} cycle**: points, airways, and procedures may be added, renamed, and withdrawn every 28 days: a route filed against a past cycle may not resolve, or resolve differently, against the current cycle;
+- the **actual date**, because some elements are not in any \acr{AIRAC} database at all: a North Atlantic Track token such as `NATD` (in the Paris to Montreal example) refers to a track message published for a particular day and direction.
+
+The city-pair, i.e. the **origin and destination airports**, are also essential to resolve some tokens such as SID and STAR procedures.
+
+### ATS routes
+
+The easiest connection to resolve is an \acr{ATS} route bracketed by two points. An ATS route is an ordered collection of route segments connecting published points, possibly with direction, level, availability, or other restrictions.
+
+In the example above, we have:
+
+```{ojs}
+//| echo: false
+//| output: false
+ats_2points = {
+  const text = "PEPAX UT182 NIMER";
+  try {
+    const tokens = await trafficLibrary.data.parseField15(text);
+    return { ok: true, tokens, error: null };
+  } catch (error) {
+    return { ok: false, tokens: [], error: String(error?.message ?? error) };
+  }
+}
+```
+
+```{ojs}
+//| echo: false
+htl.html`<div class="field15-figure">
+  ${field15TokenSvg(ats_2points)}
+</div>`
+```
+
+Now, we need to find the route `UT182` and ensure it contains both points
+`PEPAX` and `NIMER`. Then, we select all the points of the route between the entry and the exit points.
+
+::: {#fig-airway-slicing fig-cap="The filed expression must select the amber part; the rest of the published airway is not part of this flight's route."}
+
+```{ojs}
+//| echo: false
+airwaySchematicPoints = [
+  { name: "LARDA", x: 70, y: 170 },
+  { name: "PEPAX", x: 190, y: 130, endpoint: true },
+  { name: "RUMIL", x: 310, y: 175, selected: true },
+  { name: "NIMER", x: 440, y: 115, endpoint: true },
+  { name: "SOVAT", x: 570, y: 160 },
+  { name: "KEPER", x: 710, y: 105 }
+]
+```
+
+```{ojs}
+//| echo: false
+{
+  const line = (points) => points.map((point, index) => `${index ? "L" : "M"}${point.x},${point.y}`).join(" ");
+  const selected = airwaySchematicPoints.slice(1, 4);
+  return htl.html`<div>
+    <svg class="route-diagram" viewBox="0 0 790 270" role="img" aria-label="A full airway with only the subpath between PEPAX and NIMER selected">
+      <path d=${line(airwaySchematicPoints)} fill="none" stroke="#aab2b8" stroke-width="5" stroke-linejoin="round"></path>
+      <path d=${line(selected)} fill="none" stroke="#d99b3d" stroke-width="8" stroke-linejoin="round"></path>
+      ${airwaySchematicPoints.map((point, index) => htl.svg`
+        <g>
+          <circle cx=${point.x} cy=${point.y} r=${point.endpoint ? 9 : 6}
+            fill=${point.endpoint ? "#d9776d" : (index > 1 && index < 3 ? "#d99b3d" : "#7d8790")}
+            stroke="white" stroke-width="2"></circle>
+          <text x=${point.x} y=${point.y - 17} text-anchor="middle" font-size="13" font-weight=${point.endpoint ? "700" : "400"}>${point.name}</text>
+        </g>`)}
+      <text x="390" y="225" text-anchor="middle" font-size="14" fill="#955d08">selected subpath: PEPAX → RUMIL → NIMER</text>
+    </svg>
+  </div>`;
+}
+```
+
+:::
+
+::: {.callout-warning}
+### Real route data is usually harder to resolve.
+
+A designator may refer to different routes across the globe, have disconnected branches or repeated points, directionality may matter, and availability can depend on level and time. In graph terms, airway expansion is a constrained path-selection problem.
+:::
+
+### DCT segments
+
+`DCT` explicitly joins two points with no intermediate airway. The geometry is simply the geodesic between them, so drawing the segment is the easiest case.
+
+The **hard part moves to identification**: once a point is no longer anchored to a named route, the resolver cannot lean on airway membership to confirm it. When several candidates share the designator, a strategy is to choose the most probable one from distance and bearing, i.e. how well each candidate continues the direction of travel from the previous point toward the next.
+
+
+### SID and STAR procedures
+
+The structural role of these procedures is introduced in [route and airway structure](../background/airspace-structure.html#route-and-airway-structure). Here the concern is their representation in flight-plan and navigation data. A **\acr{SID}** connects the runway environment to the en-route network; a **\acr{STAR}** connects the en-route network to the approach environment. The designator filed in Field 15 is only a compact reference to a published procedure, not a list of its constituent points.
+
+A **\acr{SID}** normally starts at a runway or a common departure route and ends at a named point connected to an airway or free-route segment. A published transition may extend it farther into the en-route network. Consequently, the “end” of a SID can mean either the end of its common route or the end of the selected transition, depending on the data model.
+
+A **\acr{STAR}** starts at an en-route transition and ends at a terminal fix from which the aircraft joins an approach or receives vectors. That fix may be an \acr{IAF} or \acr{IF}. It does not include the approach procedure to the \acr{FAF}.
+
+Field 15 alone is not enough to expand a procedure. It contains a designator such as `FISTO6B`, while the departure or destination aerodrome is carried elsewhere in the flight plan. The aerodrome identifies the relevant procedure set. The adjoining filed point can select an en-route transition, while the assigned runway, when known, selects a runway-specific branch.
+
+::: {.callout-note}
+### A procedure is more than its map geometry
+
+Procedure records may encode courses, path terminators, altitude and speed constraints, fly-by or fly-over behaviour, and conditional transitions. Expanding a SID or STAR into points and lines is sufficient for the map below, but it does not reproduce those operational semantics.
+:::
+
+### North Atlantic tracks
+
+The \acr{NAT} \acr{OTS} is a set of oceanic routes adapted to the expected traffic flow and winds for a given operating period. A token such as `NATD` identifies track D in the corresponding track message, not a permanent sequence of points. Resolving it therefore requires the flight date and that message, from which the ordered track points can be recovered; without the message, the token can be classified but its geometry remains unknown.
+
+## Mapping the resolved route
+
+The map below applies a best-effort resolver to the parsed Field 15 expression. It combines several navigation-data sources, including:
+
+- [**X-Plane navdata**](https://developer.x-plane.com/article/navdata-in-x-plane-11/), which provides worldwide navaids, fixes, and airways and serves as the global fallback;
+- the [**FAA open-data portal**](https://adds-faa.opendata.arcgis.com/), which supplies designated points, navaids, and ATS routes for the United States.
+
+::: {.callout-warning}
+Because these sources differ in coverage and update date, the result is illustrative rather than authoritative. Select an example or enter another Field 15 expression. Solid amber lines show expanded ATS-route legs, solid grey lines show direct legs, dotted blue lines mark an organised-track token whose daily geometry is unavailable, and dashed red lines mark other connections that could not be validated against the available data.
+
+:::
+
+
+```{ojs}
+//| echo: false
+//| output: false
+routeLeafletResult = require("leaflet@1.9.4")
+  .then((library) => ({ library, error: null }))
+  .catch((error) => ({ library: null, error: String(error?.message ?? error) }))
+```
+
+```{ojs}
+//| echo: false
+routeSampleMirror(routeSamples, "Select route example for the map")
+```
+
+```{ojs}
+//| echo: false
+//| code-copy: false
+viewof resolvedRouteInput = field15TextControl(
+  selectedRouteExpression,
+  "Field 15 expression to resolve on the map"
+)
+```
+
+```{ojs}
+//| echo: false
+//| output: false
+resolvedRouteExpression = {
+  const expression = resolvedRouteInput;
+  await new Promise((resolve) => setTimeout(resolve, 300));
+  return expression;
+}
+```
+
+
+```{ojs}
+//| echo: false
+//| output: false
+refineRoutePointAmbiguities = async (route, resolver) => {
+  const clone = (value) => JSON.parse(JSON.stringify(value));
+  const refined = clone(route);
+  const features = refined?.type === "FeatureCollection" ? refined.features ?? [] : [];
+  const toRadians = (degrees) => degrees * Math.PI / 180;
+  const distanceKm = (a, b) => {
+    const dLat = toRadians(b[1] - a[1]);
+    const dLon = toRadians(b[0] - a[0]);
+    const lat1 = toRadians(a[1]);
+    const lat2 = toRadians(b[1]);
+    const h = Math.sin(dLat / 2) ** 2
+      + Math.cos(lat1) * Math.cos(lat2) * Math.sin(dLon / 2) ** 2;
+    return 6371 * 2 * Math.atan2(Math.sqrt(h), Math.sqrt(1 - h));
+  };
+  const featureCoordinates = (feature) => {
+    const coordinates = feature?.geometry?.coordinates;
+    return feature?.geometry?.type === "Point" && Array.isArray(coordinates)
+      ? coordinates.map(Number)
+      : null;
+  };
+  const adjacency = new Map();
+  const addOccurrence = (name, coordinates, neighbour) => {
+    if (!name || !Array.isArray(coordinates) || !Array.isArray(neighbour)) return;
+    const key = `${name}|${coordinates[0]}|${coordinates[1]}`;
+    const current = adjacency.get(key) ?? { name, coordinates, neighbours: [] };
+    if (!current.neighbours.some((candidate) => distanceKm(candidate, neighbour) < 0.01)) {
+      current.neighbours.push(neighbour);
+    }
+    adjacency.set(key, current);
+  };
+  for (const feature of features) {
+    if (feature?.geometry?.type !== "LineString") continue;
+    const coordinates = feature.geometry.coordinates;
+    if (!Array.isArray(coordinates) || coordinates.length < 2) continue;
+    const start = coordinates[0].map(Number);
+    const end = coordinates[coordinates.length - 1].map(Number);
+    addOccurrence(feature.properties?.start_name, start, end);
+    addOccurrence(feature.properties?.end_name, end, start);
+  }
+  const corrections = [];
+  for (const occurrence of adjacency.values()) {
+    if (occurrence.neighbours.length < 2) continue;
+    const direct = distanceKm(occurrence.neighbours[0], occurrence.neighbours[1]);
+    const currentScore = occurrence.neighbours
+      .reduce((sum, neighbour) => sum + distanceKm(occurrence.coordinates, neighbour), 0);
+    const excessDistance = currentScore - direct;
+    if (excessDistance < 1000) continue;
+    const candidates = [];
+    for (const near of occurrence.neighbours) {
+      for (const kind of ["navaid", "fix"]) {
+        try {
+          const feature = await resolver.resolve({ [kind]: occurrence.name, near });
+          const coordinates = featureCoordinates(feature);
+          if (coordinates && !candidates.some((candidate) => distanceKm(candidate, coordinates) < 0.01)) {
+            candidates.push(coordinates);
+          }
+        } catch {
+          // One source or object class may not expose this candidate.
+        }
+      }
+    }
+    let best = null;
+    let bestScore = currentScore;
+    for (const candidate of candidates) {
+      const score = occurrence.neighbours
+        .reduce((sum, neighbour) => sum + distanceKm(candidate, neighbour), 0);
+      if (score < bestScore) {
+        best = candidate;
+        bestScore = score;
+      }
+    }
+    if (!best || bestScore > currentScore * 0.6 || currentScore - bestScore < 500) continue;
+    corrections.push({
+      name: occurrence.name,
+      from: occurrence.coordinates,
+      to: best,
+      improvement_km: Math.round(currentScore - bestScore)
+    });
+  }
+  const close = (a, b) => distanceKm(a, b) < 0.01;
+  for (const feature of features) {
+    if (feature?.geometry?.type !== "LineString") continue;
+    const coordinates = feature.geometry.coordinates;
+    const startCorrection = corrections.find((correction) =>
+      correction.name === feature.properties?.start_name && close(coordinates[0], correction.from));
+    const endIndex = coordinates.length - 1;
+    const endCorrection = corrections.find((correction) =>
+      correction.name === feature.properties?.end_name && close(coordinates[endIndex], correction.from));
+    if (startCorrection) coordinates[0] = startCorrection.to.slice();
+    if (endCorrection) coordinates[endIndex] = endCorrection.to.slice();
+  }
+  return { route: refined, corrections };
+}
+```
+
+```{ojs}
+//| echo: false
+//| output: false
+bookRouteResolverResult = (async () => {
+  const warnings = [];
+  try {
+    const library = trafficLibrary;
+    library.env.setEnv({ Inputs, html: htl.html, d3, Plot });
+    const load = async (label, factory, attempts = 3) => {
+      let lastError;
+      for (let attempt = 1; attempt <= attempts; attempt++) {
+        try {
+          return await factory();
+        } catch (error) {
+          lastError = error;
+          if (attempt < attempts) {
+            await new Promise((resolve) => setTimeout(resolve, 300 * attempt));
+          }
+        }
+      }
+      warnings.push(`${label}: ${String(lastError?.message ?? lastError)}`);
+      return null;
+    };
+    const [ddr, xplane, faa] = await Promise.all([
+      load("AIRAC data", async () => {
+        const response = await fetch(
+          "https://static.observableusercontent.com/files/a4f0c6bc8c28bf890997ae7abb5a4dece65ef5e74596b07a307c9d589f860428b582cb1341cafaaa5b7cddf6d03fef257f2ecefe3278262d56df2ba7d58a9a52",
+          { cache: "force-cache" }
+        );
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const archive = await response.arrayBuffer();
+        return library.data.eurocontrol.createEuroControlDdrResolver({ archive });
+      }),
+      load("X-Plane data", () => library.data.xplane.createXplaneResolver()),
+      load("FAA data", () => library.data.faa.createFaaArcgisResolver(), 1)
+    ]);
+    // FAA is lazy: creating its adapter does not make it capable of enriching
+    // a route. Require DDR or X-Plane as the baseline route source instead of
+    // accepting a resolver that can only perform later point lookups.
+    if (!ddr && !xplane) {
+      throw new Error(`No route-capable navigation source could be loaded. ${warnings.join(" ")}`);
+    }
+    let resolver = new library.data.Resolver();
+    if (ddr) resolver = resolver.withDdr(ddr);
+    // Keep the raw FAA source so the indexed collection APIs remain available.
+    if (faa) resolver = resolver.withSource("arcgis", faa);
+    if (xplane) resolver = resolver.withSource("xplane", xplane);
+    const sources = [ddr && "AIRAC", faa && "FAA", xplane && "X-Plane"].filter(Boolean);
+    return { resolver, sources, warnings, error: null };
+  } catch (error) {
+    return { resolver: null, sources: [], warnings, error: String(error?.message ?? error) };
+  }
+})()
+```
+
+```{ojs}
+//| echo: false
+//| output: false
+field15ExplicitPoints = (elements) => {
+  const pad = (value, width) => String(Math.abs(value)).padStart(width, "0");
+  const coordinateLabel = (latitude, longitude) => {
+    const latHemisphere = latitude >= 0 ? "N" : "S";
+    const lonHemisphere = longitude >= 0 ? "E" : "W";
+    const lat = Math.abs(latitude), lon = Math.abs(longitude);
+    const latDegrees = Math.floor(lat + 1e-9), lonDegrees = Math.floor(lon + 1e-9);
+    const latMinutes = Math.round((lat - latDegrees) * 60);
+    const lonMinutes = Math.round((lon - lonDegrees) * 60);
+    if (latMinutes === 0 && lonMinutes === 0) {
+      return `${pad(latDegrees, 2)}${latHemisphere}${pad(lonDegrees, 3)}${lonHemisphere}`;
+    }
+    return `${pad(latDegrees, 2)}${pad(latMinutes, 2)}${latHemisphere}${pad(lonDegrees, 3)}${pad(lonMinutes, 2)}${lonHemisphere}`;
+  };
+  const explicit = [];
+  const seen = new Set();
+  for (const element of elements ?? []) {
+    if (!element || typeof element !== "object") continue;
+    let name = null, label = null;
+    if (typeof element.waypoint === "string" || typeof element.aerodrome === "string") {
+      name = String(element.waypoint ?? element.aerodrome).split("/")[0].trim().toUpperCase();
+      label = name;
+    } else if (Array.isArray(element.coords) && element.coords.length >= 2) {
+      const latitude = Number(element.coords[0]), longitude = Number(element.coords[1]);
+      if (Number.isFinite(latitude) && Number.isFinite(longitude)) {
+        name = `${latitude.toFixed(4)},${longitude.toFixed(4)}`;
+        label = coordinateLabel(latitude, longitude);
+      }
+    }
+    if (name && !seen.has(name)) {
+      seen.add(name);
+      explicit.push({ name, label });
+    }
+  }
+  return explicit;
+}
+```
+
+```{ojs}
+//| echo: false
+//| output: false
+bookRouteLastSuccess = ({ route: null, points: null, explicitPoints: [], expression: null })
+```
+
+```{ojs}
+//| echo: false
+//| output: false
+bookRouteMapResult = (async () => {
+  const expression = String(resolvedRouteExpression ?? "").trim();
+  try {
+    if (bookRouteResolverResult.error) {
+      throw new Error(bookRouteResolverResult.error);
+    }
+    if (!expression) throw new Error("Enter a Field 15 expression to resolve.");
+    const resolver = bookRouteResolverResult.resolver;
+    let route = await resolver.enrichRouteAsGeoJSON(expression);
+    let featureCount = route?.type === "FeatureCollection" ? route.features?.length ?? 0 : route ? 1 : 0;
+    if (featureCount === 0) {
+      // A lazy remote source may finish loading immediately after the first
+      // attempt. Retry once before declaring the expression unresolved.
+      await new Promise((resolve) => setTimeout(resolve, 200));
+      route = await resolver.enrichRouteAsGeoJSON(expression);
+      featureCount = route?.type === "FeatureCollection" ? route.features?.length ?? 0 : route ? 1 : 0;
+    }
+    if (featureCount === 0) {
+      const sources = bookRouteResolverResult.sources.join(", ");
+      throw new Error(`No route segments were resolved with ${sources} for: ${expression}`);
+    }
+    const points = await resolver.extractRoutePointsAsGeoJSON(route);
+    const explicitPoints = field15ExplicitPoints(await resolver.parseField15(expression));
+    Object.assign(bookRouteLastSuccess, { route, points, explicitPoints, expression });
+    const sourceWarning = bookRouteResolverResult.warnings.length > 0
+      ? `Some sources were unavailable; the map uses the remaining data. ${bookRouteResolverResult.warnings.join(" ")}`
+      : null;
+    return { route, points, explicitPoints, expression, warning: sourceWarning, stale: false, error: null };
+  } catch (error) {
+    const message = String(error?.message ?? error);
+    if (bookRouteLastSuccess.route) {
+      return {
+        ...bookRouteLastSuccess,
+        warning: `${message} The last successfully resolved route remains displayed.`,
+        stale: true,
+        error: null
+      };
+    }
+    return { route: null, points: null, explicitPoints: [], expression, warning: null, stale: false, error: message };
+  }
+})()
+```
+
+```{ojs}
+//| echo: false
+//| output: false
+bookRouteLeafletData = {
+  const clone = (value) => value == null ? value : JSON.parse(JSON.stringify(value));
+  const route = clone(bookRouteMapResult.route);
+  const points = clone(bookRouteMapResult.points);
+  const displayedLongitude = new Map();
+  const coordinateKey = (coordinate) =>
+    `${Number(coordinate[0]).toFixed(8)}|${Number(coordinate[1]).toFixed(8)}`;
+  const nearestCopy = (longitude, reference) => {
+    if (!Number.isFinite(reference)) return longitude;
+    return longitude + 360 * Math.round((reference - longitude) / 360);
+  };
+  let previousLongitude = NaN;
+  for (const feature of route?.features ?? []) {
+    if (feature?.geometry?.type !== "LineString") continue;
+    feature.geometry.coordinates = feature.geometry.coordinates.map((coordinate) => {
+      const canonical = [Number(coordinate[0]), Number(coordinate[1])];
+      const key = coordinateKey(canonical);
+      const known = displayedLongitude.get(key);
+      const longitude = known ?? nearestCopy(canonical[0], previousLongitude);
+      displayedLongitude.set(key, longitude);
+      previousLongitude = longitude;
+      return [longitude, canonical[1]];
+    });
+  }
+  const routeLongitudes = [...displayedLongitude.values()];
+  const routeCentre = routeLongitudes.length > 0
+    ? (Math.min(...routeLongitudes) + Math.max(...routeLongitudes)) / 2
+    : 0;
+  for (const feature of points?.features ?? []) {
+    if (feature?.geometry?.type !== "Point") continue;
+    const canonical = feature.geometry.coordinates.map(Number);
+    const longitude = displayedLongitude.get(coordinateKey(canonical))
+      ?? nearestCopy(canonical[0], routeCentre);
+    feature.geometry.coordinates = [longitude, canonical[1]];
+  }
+  return { route, points };
+}
+```
+
+::: {#fig-resolved-planned-route fig-cap="Planned-route expression after context-aware resolution and expansion."}
+
+```{ojs}
+//| echo: false
+{
+  const fatalError = routeLeafletResult.error ?? bookRouteMapResult.error;
+  if (fatalError) {
+    const category = routeLeafletResult.error ? "The map library could not be loaded" : "No route geometry is available";
+    return htl.html`<div class="callout callout-style-default callout-warning"><div class="callout-body-container"><div class="callout-body"><p><strong>${category}.</strong> ${fatalError}</p></div></div></div>`;
+  }
+  const routeLeaflet = routeLeafletResult.library;
+  const wrapper = htl.html`<div>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    ${bookRouteMapResult.warning ? htl.html`<div class="callout callout-style-default callout-warning"><div class="callout-body-container"><div class="callout-body"><p>${bookRouteMapResult.warning}</p></div></div></div>` : null}
+    <div class="route-legend">
+      <span class="legend-airway">resolved route</span>
+      <span class="legend-direct">direct segment</span>
+      <span class="legend-track">NAT token (not expanded)</span>
+      <span class="legend-change">unresolved/fallback</span>
+    </div>
+    <div data-route-map style="height:500px;border:1px solid var(--bs-border-color,#dee2e6);border-radius:0.4rem"></div>
+  </div>`;
+  const container = wrapper.querySelector("[data-route-map]");
+  let map, labelFrame;
+  requestAnimationFrame(() => {
+    try {
+      if (!container.isConnected) return;
+      map = routeLeaflet.map(container, { scrollWheelZoom: false });
+    const style = (feature) => {
+      const type = String(feature?.properties?.segment_type ?? "").toLowerCase();
+      // Direct legs are solid. An unexpanded organised track receives its own
+      // dotted ocean-track style; generic unresolved connections remain red.
+      if (type === "nat") return { color: "#2f5f98", weight: 3, dashArray: "2 6" };
+      if (type === "unresolved") return { color: "#9d3f36", weight: 2, dashArray: "8 6" };
+      if (type === "dct") return { color: "#666", weight: 2.5 };
+      return { color: "#d99b3d", weight: 4 };
+    };
+    const routeLayer = routeLeaflet.geoJSON(bookRouteLeafletData.route, {
+      style,
+      onEachFeature(feature, layer) {
+        const type = String(feature?.properties?.segment_type ?? "").toLowerCase();
+        if (type !== "nat") return;
+        const connector = feature?.properties?.connector ?? feature?.properties?.name ?? "NAT";
+        layer.bindTooltip(`${connector}: daily track geometry unavailable`);
+      }
+    }).addTo(map);
+      // Store the preceding and following route point for each identifier.
+      // These are neighbours, not the point's own coordinates: their projected
+      // vector determines whether the local segment is horizontal or vertical.
+      const neighbours = new Map();
+      const feats = bookRouteLeafletData.route?.features ?? [];
+      for (const feature of feats) {
+        if (feature?.geometry?.type !== "LineString") continue;
+        const coordinates = feature.geometry.coordinates;
+        const startName = feature.properties?.start_name;
+        const endName = feature.properties?.end_name;
+        const start = coordinates[0], end = coordinates[coordinates.length - 1];
+        const update = (name, role, coordinate) => {
+          if (!name) return;
+          const entry = neighbours.get(name) ?? {};
+          entry[role] = coordinate;
+          neighbours.set(name, entry);
+        };
+        update(startName, "next", end);
+        update(endName, "prev", start);
+      }
+
+      const explicitByName = new Map(
+        (bookRouteMapResult.explicitPoints ?? []).map((point, index) => [
+          point.name,
+          { ...point, index }
+        ])
+      );
+      const pointEntries = [];
+      routeLeaflet.geoJSON(bookRouteLeafletData.points, {
+        pointToLayer(feature, latlng) {
+          const name = String(feature?.properties?.ident ?? feature?.properties?.name ?? "UNK");
+          const explicit = explicitByName.get(name);
+          const kind = String(feature?.properties?.kind ?? "").toLowerCase();
+          const longitude = ((latlng.lng + 180) % 360 + 360) % 360 - 180;
+          const coordinateText = `${Math.abs(latlng.lat).toFixed(4)}° ${latlng.lat >= 0 ? "N" : "S"}, ${Math.abs(longitude).toFixed(4)}° ${longitude >= 0 ? "E" : "W"}`;
+          const title = explicit?.label ?? name;
+          const hoverContent = kind !== "coords"
+            ? htl.html`<span class="route-point-hover-content"><strong class="route-point-hover-title">${title}</strong><span class="route-point-hover-coordinates">${coordinateText}</span></span>`
+            : htl.html`<span class="route-point-hover-title">${title}</span>`;
+          const marker = routeLeaflet.circleMarker(latlng, {
+            radius: 4,
+            weight: 1,
+            color: "#222",
+            fillColor: "#ff8c00",
+            fillOpacity: 0.95
+          }).bindTooltip(hoverContent, {
+            permanent: false,
+            sticky: true,
+            className: "route-point-hover-label",
+            direction: "auto",
+            offset: [8, 8]
+          });
+          pointEntries.push({ name, marker, explicit });
+          return marker;
+        }
+      }).addTo(map);
+
+      const bounds = routeLayer.getBounds();
+      if (bounds.isValid()) map.fitBounds(bounds, { padding: [20, 20], maxZoom: 7 });
+      else map.setView([46.5, 2], 5);
+      routeLeaflet.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+      }).addTo(map);
+
+      let permanentLabels = [];
+      const clearPermanentLabels = () => {
+        for (const label of permanentLabels) map.removeLayer(label);
+        permanentLabels = [];
+      };
+      const placementFor = ({ name, marker }) => {
+        const neighbour = neighbours.get(name) ?? {};
+        const origin = map.latLngToLayerPoint(marker.getLatLng());
+        const project = (coordinate) => map.latLngToLayerPoint([coordinate[1], coordinate[0]]);
+        let from = origin, to = origin;
+        if (neighbour.prev && neighbour.next) {
+          from = project(neighbour.prev);
+          to = project(neighbour.next);
+        } else if (neighbour.next) {
+          to = project(neighbour.next);
+        } else if (neighbour.prev) {
+          from = project(neighbour.prev);
+        }
+        const horizontal = Math.abs(to.x - from.x) >= Math.abs(to.y - from.y);
+        return horizontal
+          ? { direction: "top", offset: [0, -7] }
+          : { direction: "right", offset: [7, 0] };
+      };
+      const overlaps = (a, b, padding = 4) => !(
+        a.right + padding < b.left ||
+        a.left - padding > b.right ||
+        a.bottom + padding < b.top ||
+        a.top - padding > b.bottom
+      );
+      const refreshPermanentLabels = () => {
+        clearPermanentLabels();
+        const accepted = [];
+        const explicitEntries = pointEntries
+          .filter((entry) => entry.explicit)
+          .sort((a, b) => a.explicit.index - b.explicit.index);
+        for (const entry of explicitEntries) {
+          const placement = placementFor(entry);
+          const label = routeLeaflet.tooltip({
+            permanent: true,
+            interactive: false,
+            className: "route-point-permanent-label",
+            direction: placement.direction,
+            offset: placement.offset
+          })
+            .setLatLng(entry.marker.getLatLng())
+            .setContent(entry.explicit.label)
+            .addTo(map);
+          const element = label.getElement();
+          const box = element?.getBoundingClientRect();
+          if (box && accepted.some((other) => overlaps(box, other))) {
+            map.removeLayer(label);
+          } else {
+            if (box) accepted.push(box);
+            permanentLabels.push(label);
+          }
+        }
+      };
+      const schedulePermanentLabels = () => {
+        if (labelFrame) cancelAnimationFrame(labelFrame);
+        labelFrame = requestAnimationFrame(refreshPermanentLabels);
+      };
+      map.on("zoomend resize", schedulePermanentLabels);
+      schedulePermanentLabels();
+    } catch (error) {
+      map?.remove();
+      map = null;
+      container.style.height = "auto";
+      container.replaceChildren(htl.html`<div class="callout callout-style-default callout-warning"><div class="callout-body-container"><div class="callout-body"><p><strong>The route was resolved, but Leaflet could not render it.</strong> ${String(error?.message ?? error)}</p></div></div></div>`);
+    }
+  });
+  invalidation.then(() => {
+    if (labelFrame) cancelAnimationFrame(labelFrame);
+    map?.remove();
+  });
+  return wrapper;
+}
+```
+
+:::
+
+## From route to trajectory
+
+Route resolution produces an ordered lateral path and preserves the speed or level changes filed at particular points. It does not say **when the aircraft will reach those points, or if it is physically plausible**. Constructing a four-dimensional trajectory also requires an [aircraft performance model](aircraft-performance.qmd), aircraft mass and configuration assumptions, and a forecast of wind and temperature. Together, these determine climb and descent profiles, fuel burn, and estimated times over points.
+
+Operational systems update that trajectory as the flight progresses. EUROCONTROL's \acr{NM}, for example, distinguishes three trajectory models:
+
+- Model 1, or \acr{FTFM}, derived from the filed flight plan;
+- Model 2, or \acr{RTFM}, incorporating the regulations applied before departure;
+- Model 3, or \acr{CTFM}, updated using the latest operational information.
+
+The next chapter, [flight plans, intent, and Network Manager trajectories](flight-plans-intent.qmd), describes these models and the demand and segment files derived from them.
+
+## Glossary {.unnumbered}

@@ -107,7 +107,7 @@ With \acr{RNAV}, waypoints no longer need to coincide with a physical beacon: th
 
 Airway structures are therefore evolving from rigid beacon-defined corridors toward more flexible, performance-based networks. In Europe, the \acr{FRA} concept allows aircraft to plan trajectories directly between defined entry, intermediate, and exit points without following a fixed airway network. At the same time, structured routes remain important in congested corridors, terminal interfaces, mixed-equipage environments, and procedural or oceanic airspace where predictable flows are still essential for separation.
 
-Standard procedures organise the transition between airports and the en-route structure. \acr{SID} lead departing traffic from runways into the wider network, while \acr{STAR} bring arriving traffic back into terminal areas for sequencing and landing. These procedures are published on charts and encoded in navigation databases, allowing aircraft and controllers to use the flexibility of \acr{RNAV} and \acr{RNP} while preserving an orderly airspace structure.
+Standard procedures organise the transition between airports and the en-route structure. A \acr{SID} leads departing traffic from the runway environment into the wider network, while a \acr{STAR} brings arriving traffic from the en-route network into the approach environment. Published charts describe their operational use; navigation databases encode the paths, transitions, and constraints required by aircraft systems. This preserves an orderly terminal structure while making use of \acr{RNAV} and \acr{RNP} capabilities.
 
 ### Area Control Centres
 

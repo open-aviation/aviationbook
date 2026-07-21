@@ -6,7 +6,7 @@ authors:
 
 A flight plan is a declaration of intent: where an aircraft is expected to depart, where it is expected to arrive, which route it requests, which level it requests, and which aircraft and equipment will be used. It is not the same as the flown trajectory. Between filing and landing, the route may be amended by flow-management measures, controller clearances, weather deviations, or tactical decisions.
 
-This chapter focuses on flight-plan and trajectory-intent data sources. The operational role of flight plans in air traffic services and flow management is introduced in [air traffic services, separation, and flow management](../background/atm-separation-flow.qmd#air-traffic-flow-management). The published points, routes, airspaces, and procedures that flight plans refer to are introduced in [aeronautical information and data objects](aeronautical-information.qmd).
+This chapter focuses on flight-plan and trajectory-intent data sources. The operational role of flight plans in air traffic services and flow management is introduced in [air traffic services, separation, and flow management](../background/atm-separation-flow.qmd#air-traffic-flow-management). The published points, routes, airspaces, and procedures that flight plans refer to are introduced in [aeronautical information and data objects](aeronautical-information.qmd), and the compact expression used to encode cruising speed, level, and route is explained in [planned route encoding](planned-route-encoding.qmd).
 
 ## Intent layers
 
@@ -37,15 +37,7 @@ For trajectory analysis, the most important fields are usually:
 - equipment and capability indicators;
 - alternates and remarks when relevant.
 
-The route field is a compact textual representation of intent. It may combine procedure names, waypoints, \acr{ATS} routes, direct segments, speed/level changes, and special indicators. It must be interpreted against the aeronautical information cycle effective for the flight date.
-
-Example route fragment:
-
-```text
-N0441F340 FISTO5B FISTO UY156 PERIG UT210 TUDRA/N0426F280 UT158 AMB AMB9W
-```
-
-This is not a sequence of coordinates. It is a route expression that must be expanded through the relevant procedure and route definitions.
+The speed, level, and route item is a compact textual representation of intent. Its token grammar, navigation-data dependencies, and expansion into an ordered path are explained in [planned route encoding](planned-route-encoding.qmd). This chapter starts from that filed expression or its resolved representation and considers the intent products built from it.
 
 ## From filed route to trajectory
 

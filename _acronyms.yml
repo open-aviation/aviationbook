@@ -167,6 +167,8 @@ acronyms:
       longname: Flight Data Recorder
     - shortname: HFDL
       longname: High Frequency Data Link
+    - shortname: FAF
+      longname: Final Approach Fix
     - shortname: FIR
       longname: Flight Information Region
     - shortname: FIS
@@ -201,10 +203,14 @@ acronyms:
       longname: Glide Slope
     - shortname: HF
       longname: High Frequency
+    - shortname: IAF
+      longname: Initial Approach Fix
     - shortname: IAS
       longname: Indicated Air Speed
     - shortname: ICAO
       longname: International Civil Aviation Organization
+    - shortname: IF
+      longname: Intermediate Fix
     - shortname: IFPS
       longname: Initial Flight Plan Processing System
     - shortname: IFR
@@ -265,6 +271,8 @@ acronyms:
       longname: North-East-Down
     - shortname: NEST
       longname: Network Strategic Tool
+    - shortname: NAT
+      longname: North Atlantic Track
     - shortname: NM
       longname: Network Manager
     - shortname: NOTAM
@@ -286,6 +294,8 @@ acronyms:
       longname: OpenSky Network
     - shortname: OSR
       longname: On-Screen Resolution
+    - shortname: OTS
+      longname: Organised Track System
     - shortname: OPEX
       longname: Operating Expenditure
     - shortname: PAPI
