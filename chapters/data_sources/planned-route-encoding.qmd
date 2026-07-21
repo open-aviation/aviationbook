@@ -118,6 +118,32 @@ authors:
   opacity: 0.78;
   white-space: nowrap;
 }
+.navigation-load-status {
+  border: 1px solid var(--bs-border-color, #dee2e6);
+  border-radius: 0.4rem;
+  margin: 0.5rem 0 1rem;
+  padding: 0.65rem 0.75rem;
+}
+.navigation-load-heading {
+  display: flex;
+  font-size: 0.82rem;
+  justify-content: space-between;
+  margin-bottom: 0.35rem;
+}
+.navigation-load-status progress {
+  accent-color: var(--bs-primary, #2c7fb8);
+  display: block;
+  height: 0.55rem;
+  width: 100%;
+}
+.navigation-load-status small {
+  color: var(--bs-secondary-color, #68717d);
+  display: block;
+  margin-top: 0.35rem;
+}
+.navigation-load-status[data-state="error"] {
+  border-color: #9d3f36;
+}
 .route-figure-note {
   color: var(--bs-secondary-color, #6c757d);
   font-size: 0.82rem;
@@ -710,6 +736,33 @@ Because these sources differ in coverage and update date, the result is illustra
 
 :::
 
+```{ojs}
+//| echo: false
+navigationLoadIndicator = {
+  const wrapper = htl.html`<div class="navigation-load-status" data-state="loading" role="status" aria-live="polite">
+    <div class="navigation-load-heading">
+      <strong data-load-label>Preparing navigation data…</strong>
+      <span data-load-percent>0%</span>
+    </div>
+    <progress data-load-progress max="100" value="0"></progress>
+    <small data-load-detail>The first load may take longer. Later visits reuse the browser cache.</small>
+  </div>`;
+  const label = wrapper.querySelector("[data-load-label]");
+  const percent = wrapper.querySelector("[data-load-percent]");
+  const progress = wrapper.querySelector("[data-load-progress]");
+  const detail = wrapper.querySelector("[data-load-detail]");
+  wrapper.update = ({ value, text, message, state = "loading" }) => {
+    const bounded = Math.max(0, Math.min(100, Number(value) || 0));
+    wrapper.dataset.state = state;
+    progress.value = bounded;
+    label.textContent = text;
+    percent.textContent = `${Math.round(bounded)}%`;
+    if (message) detail.textContent = message;
+  };
+  return wrapper;
+}
+```
+
 
 ```{ojs}
 //| echo: false
@@ -847,10 +900,12 @@ refineRoutePointAmbiguities = async (route, resolver) => {
 //| output: false
 bookRouteResolverResult = (async () => {
   const warnings = [];
+  const pause = (milliseconds = 40) =>
+    new Promise((resolve) => setTimeout(resolve, milliseconds));
   try {
     const library = trafficLibrary;
     library.env.setEnv({ Inputs, html: htl.html, d3, Plot });
-    const load = async (label, factory, attempts = 3) => {
+    const load = async (label, factory, attempts = 2) => {
       let lastError;
       for (let attempt = 1; attempt <= attempts; attempt++) {
         try {
@@ -858,41 +913,161 @@ bookRouteResolverResult = (async () => {
         } catch (error) {
           lastError = error;
           if (attempt < attempts) {
-            await new Promise((resolve) => setTimeout(resolve, 300 * attempt));
+            navigationLoadIndicator.update({
+              value: 2,
+              text: `Retrying ${label}…`,
+              message: "A network request failed; retrying once before giving up."
+            });
+            await pause(400 * attempt);
           }
         }
       }
       warnings.push(`${label}: ${String(lastError?.message ?? lastError)}`);
       return null;
     };
-    const [ddr, xplane, faa] = await Promise.all([
-      load("AIRAC data", async () => {
-        const response = await fetch(
-          "https://static.observableusercontent.com/files/a4f0c6bc8c28bf890997ae7abb5a4dece65ef5e74596b07a307c9d589f860428b582cb1341cafaaa5b7cddf6d03fef257f2ecefe3278262d56df2ba7d58a9a52",
-          { cache: "force-cache" }
-        );
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        const archive = await response.arrayBuffer();
-        return library.data.eurocontrol.createEuroControlDdrResolver({ archive });
-      }),
-      load("X-Plane data", () => library.data.xplane.createXplaneResolver()),
-      load("FAA data", () => library.data.faa.createFaaArcgisResolver(), 1)
-    ]);
-    // FAA is lazy: creating its adapter does not make it capable of enriching
-    // a route. Require DDR or X-Plane as the baseline route source instead of
-    // accepting a resolver that can only perform later point lookups.
-    if (!ddr && !xplane) {
-      throw new Error(`No route-capable navigation source could be loaded. ${warnings.join(" ")}`);
+
+    const archiveUrl = "https://static.observableusercontent.com/files/a4f0c6bc8c28bf890997ae7abb5a4dece65ef5e74596b07a307c9d589f860428b582cb1341cafaaa5b7cddf6d03fef257f2ecefe3278262d56df2ba7d58a9a52";
+    let archive = null;
+    let lastArchivePercent = -1;
+    const ddr = await load("AIRAC data", async () => {
+      if (!archive) {
+        navigationLoadIndicator.update({
+          value: 3,
+          text: "Downloading AIRAC navigation data…",
+          message: "About 18 MB is downloaded once and then kept in the browser cache."
+        });
+        archive = await library.data.eurocontrol.fetchEurocontrolDdrArchive({
+          archiveUrl,
+          fetchImpl: (url, init) => fetch(url, { ...init, cache: "force-cache" }),
+          onProgress: ({ loaded, ratio }) => {
+            const effectiveRatio = ratio ?? Math.min(1, loaded / 18350080);
+            const percent = Math.round(3 + 42 * effectiveRatio);
+            if (percent === lastArchivePercent) return;
+            lastArchivePercent = percent;
+            navigationLoadIndicator.update({
+              value: percent,
+              text: "Downloading AIRAC navigation data…",
+              message: `${(loaded / 1048576).toFixed(1)} MB received`
+            });
+          }
+        });
+      }
+      navigationLoadIndicator.update({
+        value: 47,
+        text: "Indexing AIRAC navigation data…",
+        message: "This CPU-intensive step may briefly pause the page."
+      });
+      await pause();
+      return library.data.eurocontrol.createEuroControlDdrResolver({ archive });
+    });
+    archive = null;
+    if (!ddr) {
+      throw new Error(`AIRAC navigation data could not be initialized. ${warnings.join(" ")}`);
     }
-    let resolver = new library.data.Resolver();
-    if (ddr) resolver = resolver.withDdr(ddr);
-    // Keep the raw FAA source so the indexed collection APIs remain available.
-    if (faa) resolver = resolver.withSource("arcgis", faa);
-    if (xplane) resolver = resolver.withSource("xplane", xplane);
-    const sources = [ddr && "AIRAC", faa && "FAA", xplane && "X-Plane"].filter(Boolean);
-    return { resolver, sources, warnings, error: null };
+
+    const resolver = new library.data.Resolver().withDdr(ddr);
+    const sources = ["AIRAC"];
+    let globalSourcesPromise = null;
+    const ensureGlobalSources = () => {
+      if (globalSourcesPromise) return globalSourcesPromise;
+      globalSourcesPromise = (async () => {
+        navigationLoadIndicator.update({
+          value: 62,
+          text: "Loading worldwide fallback data…",
+          message: "Additional sources are loaded only for routes that need them."
+        });
+        await pause();
+        const faa = await load(
+          "FAA data",
+          () => library.data.faa.createFaaArcgisResolver(),
+          1
+        );
+        if (faa) {
+          resolver.withSource("arcgis", faa);
+          sources.push("FAA");
+        }
+
+        const loadXplanePart = async (label, value, factory) => {
+          navigationLoadIndicator.update({
+            value,
+            text: `Loading X-Plane ${label}…`,
+            message: "Datasets are parsed sequentially to limit peak browser load."
+          });
+          await pause();
+          return load(`X-Plane ${label}`, factory);
+        };
+        const cachedFetch = (url) => fetch(url, { cache: "force-cache" });
+        const nav = await loadXplanePart(
+          "navaids",
+          70,
+          () => library.data.xplane.createEarthNavResolver({ fetchFn: cachedFetch })
+        );
+        const fix = await loadXplanePart(
+          "fixes",
+          79,
+          () => library.data.xplane.createEarthFixResolver({ fetchFn: cachedFetch })
+        );
+        const awy = await loadXplanePart(
+          "airways",
+          92,
+          () => library.data.xplane.createEarthAwyResolver({ fetchFn: cachedFetch })
+        );
+        if (nav || fix || awy) {
+          const xplane = {
+            navaids: nav?.navaids,
+            fixes: fix?.fixes,
+            airways: awy?.airways,
+            enrichRoute: () => [],
+            async resolve(query) {
+              if (query.airway && awy) return awy.resolve(query);
+              if (query.navaid) {
+                return (nav ? await nav.resolve(query) : null)
+                  ?? (fix ? await fix.resolve({ fix: query.navaid }) : null);
+              }
+              if (query.fix) {
+                return (fix ? await fix.resolve(query) : null)
+                  ?? (nav ? await nav.resolve({ navaid: query.fix }) : null);
+              }
+              return null;
+            }
+          };
+          resolver.withSource("xplane", xplane);
+          sources.push("X-Plane");
+        }
+        navigationLoadIndicator.update({
+          value: 100,
+          text: warnings.length > 0 ? "Navigation data loaded with warnings" : "Navigation data ready",
+          message: warnings.length > 0
+            ? "Some fallback data was unavailable; resolved parts can still be displayed."
+            : "Worldwide fallback data is ready and will be reused for later examples.",
+          state: warnings.length > 0 ? "warning" : "ready"
+        });
+      })();
+      return globalSourcesPromise;
+    };
+
+    navigationLoadIndicator.update({
+      value: 60,
+      text: "Primary navigation data ready",
+      message: "Worldwide fallback data will load only if another route needs it.",
+      state: "ready"
+    });
+    return { resolver, sources, warnings, ensureGlobalSources, error: null };
   } catch (error) {
-    return { resolver: null, sources: [], warnings, error: String(error?.message ?? error) };
+    const message = String(error?.message ?? error);
+    navigationLoadIndicator.update({
+      value: 0,
+      text: "Navigation data failed to load",
+      message: "Reload the page to retry the download. A stable network connection is recommended for the first visit.",
+      state: "error"
+    });
+    return {
+      resolver: null,
+      sources: [],
+      warnings,
+      ensureGlobalSources: async () => null,
+      error: message
+    };
   }
 })()
 ```
@@ -955,6 +1130,10 @@ bookRouteMapResult = (async () => {
     }
     if (!expression) throw new Error("Enter a Field 15 expression to resolve.");
     const resolver = bookRouteResolverResult.resolver;
+    const isInitialEuropeanExample = expression === routeSamples[0].route;
+    if (!isInitialEuropeanExample) {
+      await bookRouteResolverResult.ensureGlobalSources();
+    }
     let route = await resolver.enrichRouteAsGeoJSON(expression);
     let featureCount = route?.type === "FeatureCollection" ? route.features?.length ?? 0 : route ? 1 : 0;
     if (featureCount === 0) {
@@ -1040,7 +1219,14 @@ bookRouteLeafletData = {
   const fatalError = routeLeafletResult.error ?? bookRouteMapResult.error;
   if (fatalError) {
     const category = routeLeafletResult.error ? "The map library could not be loaded" : "No route geometry is available";
-    return htl.html`<div class="callout callout-style-default callout-warning"><div class="callout-body-container"><div class="callout-body"><p><strong>${category}.</strong> ${fatalError}</p></div></div></div>`;
+    const loadFailure =
+      !!routeLeafletResult.error ||
+      !!bookRouteResolverResult.error ||
+      bookRouteResolverResult.warnings.length > 0;
+    return htl.html`<div class="callout callout-style-default callout-warning"><div class="callout-body-container"><div class="callout-body">
+      <p><strong>${category}.</strong> ${fatalError}</p>
+      ${loadFailure ? htl.html`<p>The first download is the most demanding. Reloading the page often succeeds because completed files can be reused from the browser cache.</p><button type="button" class="btn btn-sm btn-outline-secondary" onclick=${() => location.reload()}>Reload page</button>` : null}
+    </div></div></div>`;
   }
   const routeLeaflet = routeLeafletResult.library;
   const wrapper = htl.html`<div>
