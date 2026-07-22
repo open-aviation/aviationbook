@@ -15,9 +15,18 @@ We use the [Quarto](https://quarto.org/) publishing system to build the website 
 - check the PDF generation does not fail with `quarto render`. You may need to install TinyTeX with `quarto install tinytex`;
 - commit and push changes. Use pull requests if you do not have the proper rights on the repository.
 
+## Images and photos
 
-::: {.callout-tip}
-# Bibliography
+Before committing large images or photos, resize and optimize them with
+[ImageMagick](https://imagemagick.org/). The `>` suffix prevents smaller images
+from being enlarged, `-strip` removes metadata, and `-quality 80` keeps a good
+balance between visual quality and file size:
+
+```sh
+magick input.jpeg -resize "2000x2000>" -strip -quality 80 output.webp
+```
+
+## Bibliography
 
 We synchronize the bibliography items with a Zotero group: [https://www.zotero.org/groups/4370174/aviation-book](https://www.zotero.org/groups/4370174/aviation-book). Please ask to be part of the group if you want to add new items. The best way to edit the entries is via the Zotero app and automatically export the `bibliography.bib` file using the [Better Bibtex extension](https://retorque.re/zotero-better-bibtex/).
 
@@ -27,4 +36,3 @@ In the settings:
 
 - When an item has both a DOI and a URL, export: **both**
 - Fields to omit from export (comma-separated): `file,keywords,copyright,urldate,issn,abstract,langid`
-:::

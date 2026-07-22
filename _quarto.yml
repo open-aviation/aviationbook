@@ -8,6 +8,8 @@ project:
     - data/noaa-north-magnetic-pole.xy
     - data/cpdlc_fans.json
     - data/cpdlc_atn.json
+    - data/gapminder.json
+    - data/gapminder.css
     - media/js/datalink-ojs.js
 
 execute:
@@ -252,7 +254,7 @@ book:
               href: chapters/work/data-quality-uncertainty.qmd
         - section: Visualise and explain
           contents:
-            - text: 🟠 Grammar of graphics
+            - text: Grammar of graphics
               href: chapters/visualise/grammar-of-graphics.qmd
             - text: 🔴 Profiles
               href: chapters/visualise/time-series-profiles.qmd
