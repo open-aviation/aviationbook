@@ -5,11 +5,6 @@ authors:
 ---
 
 
-::: {.callout-note}
-**Scope**: This document explores how atmospheric conditions (wind, temperature, pressure) affect aircraft performance, with a focus on **kinematic/dynamic modeling** and **trajectory computation**.
-:::
-
----
 
 Aircraft performance is highly sensitive to atmospheric conditions. This document covers:
 
@@ -46,9 +41,11 @@ This has implications for potential energy $E_p$ variation computations:
 
 $$\frac{dE_p}{dt} = m g \frac{dh}{dt} = m g_0 \frac{T}{T_{\mathit{\tiny ISA}}}\frac{dH_p}{dt}.$$
 
-::: {.callout-note}
-- When converting vertical-speed measurements from barometric instruments to geometric rates for energy accounting, apply the temperature correction (use mean layer temperature or a standard correction based on ISA deviation).
-- Performance tables and climb rates are usually given as functions of pressure altitude and temperature deviation (or density altitude). When computing aerodynamic forces or power balances, always use geometric height for potential energy and true airspeed (TAS) and correct barometric rates accordingly.
+::: {.callout-tip title="Memento"}
+When converting vertical-speed measurements from barometric instruments to geometric rates for energy accounting, apply the temperature correction:
+$$
+g dh = \frac{T}{T_{\mathit{\tiny ISA}}} g_0 dH_p
+$$
 :::
 
 
@@ -100,6 +97,15 @@ $$
 $$
 
 With this total energy equation, it is clear that the impact of the temperature and wind are not all contained in the $\mathsf{SpecificWindPower}$ term.
+
+::: {.callout-tip title="Memento"}
+The total energy equation with wind and temperature corrections:
+
+$$
+\frac{1}{2} m \frac{d{V_\mathsf{TAS}}^2}{dt}+mg_0 \frac{T}{T_{\mathit{\tiny ISA}}}\frac{dH_p}{dt} = \left( {\mathrm{Thrust}} - {\mathrm{Drag}}\right){V_\mathsf{TAS}} +m \underbrace{ \left( -\langle \overrightarrow{g}\,,\overrightarrow{V_\mathsf{wind}}\rangle - \langle \frac{d\overrightarrow{V_\mathsf{wind}}}{dt}\,,\overrightarrow{V_\mathsf{TAS}}\rangle \right)}_{\mathsf{SpecificWindPower}}
+$$
+:::
+
 
 ## Using the Total Energy Equation with the $\mathsf{SpecificWindPower}$ Term
 The wind power term can be expressed as:
