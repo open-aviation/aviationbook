@@ -5,70 +5,141 @@ authors:
 ---
 
 
-::: {.callout-warning}
-## TODO for this page
-Work In progress
+::: {.callout-note}
+**Scope**: This document explores how atmospheric conditions (wind, temperature, pressure) affect aircraft performance, with a focus on **kinematic/dynamic modeling** and **trajectory computation**.
 :::
 
-## Impact of the Weather on Aircraft Performance
+---
 
-### Altitude and Geopotential Pressure Altitude
+Aircraft performance is highly sensitive to atmospheric conditions. This document covers:
 
-### Temperature
+1. **Kinematic effects** of wind and non-ISA (International Standard Atmosphere) temperature.
+2. **Dynamic interactions** with temperature/wind gradients.
+3. **Total Energy Equation** with wind and temperature corrections.
+4. The computation of the **wind specific power** corrections and its pratical implications for mass estimation and trajectory prediction.
 
-### Wind, and Wind Gradient
 
+## Kinematic Effects of Wind and Non-ISA Temperature Profile
+Aircraft motion relative to the Earth depends on atmospheric conditions (wind, temperature, pressure). Below are key relationships for **ground speed**, **altitude**, and **energy states**.
 
-## Total Energy Model
+### Wind and Ground Speed
+As stated in @sec-navigation-angles , the **true airspeed** (TAS) is the aircraft's speed relative to the surrounding
+air mass; **ground speed** (GS) is its speed relative to the Earth.
 
-In air traffic management, the point-mass dynamic model is commonly formulated using the total energy approach. This model describes the aircraft's motion through a set of differential equations that account for both translational motion and energy changes.
+$$
+\overrightarrow{V_\mathsf{GS}} =
+\overrightarrow{V_\mathsf{TAS}} +
+\overrightarrow{V_\mathsf{wind}}.
+$$
 
-### Four-Degrees-of-Freedom Equations
+### Temperature and Rate of Climb/Descent
+Temperature has a well known impact on the aircraft performance by changing air density (and thus engine/propeller/wing performance).
 
-Under ISA conditions and wind $W$, the aircraft motion is described by:
+However, it has also a lesser known impact on its vertical kinematic. As described in @sec-pressure-altitude, the usual vertical coordinate of an aircraft is not its actual geometric height $h$, but the geopotential pressure altitude $H_p$ which is a measured pressure converted to an altitude using the ISA atmosphere. The different altitudes variation are linked by the following kinematic relationship:
 
-$$\frac{dx}{dt} = V \cos(\psi) \cos(\gamma) + W_x$$ {#eq-dx}
+$$
+g dh = \frac{T}{T_{\mathit{\tiny ISA}}} g_0 dH_p
+$$
+where $T$ is the actual temperature where the aircraft is, and $T_{\mathit{\tiny ISA}}$ is the temperature in an ISA atmosphere at the pressure altitude $H_p$ of the aircraft.
 
-$$\frac{dy}{dt} = V \sin(\psi) \cos(\gamma) + W_y$$ {#eq-dy}
+This has implications for potential energy $E_p$ variation computations:
 
-$$\frac{dh}{dt} = V \sin(\gamma) + W_z$$ {#eq-dh}
+$$\frac{dE_p}{dt} = m g \frac{dh}{dt} = m g_0 \frac{T}{T_{\mathit{\tiny ISA}}}\frac{dH_p}{dt}.$$
 
-$$\frac{dV}{dt} = \frac{T - D}{m} - g \sin(\gamma) + TODO WIND +TODO TEMPERATURE$$ {#eq-dv}
-
-$$\frac{d\psi}{dt} = \frac{g \tan(\phi)}{V \cos(\gamma)} + TODO WIND +TODO TEMPERATURE$$ {#eq-dpsi}
-
-$$\frac{dm}{dt} = -f_{fuel}(T, h)$$ {#eq-dm}
-
-Where:
-
-- $V$: True airspeed [m/s]
-- $W$: Wind [m/s]
-- $\psi$: Heading angle [rad]
-- $\gamma$: Flight path angle [rad]
-- $\phi$: Bank angle [rad]
-- $T$: Thrust [N]
-- $D$: Drag [N]
-- $m$: Aircraft mass [kg]
-- $g$: Gravitational acceleration [m/s²]
-- $h$: Altitude [m]
-- $f_{fuel}$: Fuel flow function [kg/s]
-
-### Total Energy Equation
-
-The total energy model relates the net force (thrust minus drag) to changes in kinetic and potential energy:
-
-$$T - D = mg\sin(\gamma) + m\frac{dV}{dt} + TODO WIND POWER$$ {#eq-energy}
-
-This equation expresses the conservation of energy: the net force produced by the aircraft's engines (after overcoming drag) is used to climb against gravity and to accelerate. This formulation is particularly useful for trajectory-based studies such as optimization and fuel estimation, as it directly links the aircraft's energy state to its performance capabilities.
+::: {.callout-note}
+- When converting vertical-speed measurements from barometric instruments to geometric rates for energy accounting, apply the temperature correction (use mean layer temperature or a standard correction based on ISA deviation).
+- Performance tables and climb rates are usually given as functions of pressure altitude and temperature deviation (or density altitude). When computing aerodynamic forces or power balances, always use geometric height for potential energy and true airspeed (TAS) and correct barometric rates accordingly.
+:::
 
 
 
-## Weather and Mass Estimation
 
-Mass that uses the 4D trajectory as input should take into account wind gradient. This covers **Performance-based estimation** and **Machine learning approaches**.
+## Dynamic Effects of Wind and Non-ISA Temperature Profile
+The combined effect of wind and temperature deviations from ISA has a direct impact on aircraft performance by modifying the aerodynamic forces, the available thrust, and the energy balance of the flight. Higher-than-ISA temperature reduces air density, which tends to decrease lift and available engine thrust while increasing the true airspeed required for the same indicated airspeed. Wind changes alter the aircraft's motion relative to the air mass and thereby influence the effective airspeed used in force and power calculations. Together, these atmospheric factors change the dynamic response of the airplane, including acceleration, climb/descent behavior, and energy exchange.
 
-## Weather and Trajectory Computation
-Differential equation to solve
+### Temperature and Wind
+Non-ISA (International Standard Atmosphere) conditions affect the forces acting on the aircraft, in several ways:
+
+- **Thrust**: Engine performance is affected by air density, which is influenced by temperature and pressure.
+- **Drag**: Drag is a function of air density, which varies with temperature and pressure.
+- **Lift**: Lift is also a function of air density, which is affected by temperature and pressure.
+
+All these effects are already accounted for in the performance tables and physical models, which are usually given as functions of pressure altitude and temperature deviation.
+
+Likewise, the wind is also accounted for in the dynamics of the aircraft as it affects the airspeed which is used to compute the aerodynamic forces and the thrust.
+
+
+### Wind Gradient
+Aside the wind itself, wind variations also have an impact on the dynamics: wind variation will change the acceleration term of the second Law of Newton, and as such can be seen as an additional force as it will affect the actual motion inside the atmosphere.
+
+$$
+\begin{aligned}
+\text{Second Law of Newton:~}& m \frac{d\overrightarrow{V_\mathsf{GS}}}{dt} = \overrightarrow{\mathrm{Thrust}} + \overrightarrow{\mathrm{Drag}} + \overrightarrow{\mathrm{Lift}} + m \overrightarrow{g}\\
+% \quad\quad\text{for}\quad H_p<H_{p,\text{trop}}\\
+\Rightarrow~ & m \left( \frac{d\overrightarrow{V_\mathsf{TAS}}}{dt}+ \frac{d\overrightarrow{V_\mathsf{wind}}}{dt} \right)= \overrightarrow{\mathrm{Thrust}} + \overrightarrow{\mathrm{Drag}} + \overrightarrow{\mathrm{Lift}} + m\overrightarrow{g} \\
+\Rightarrow~ & m \frac{d\overrightarrow{V_\mathsf{TAS}}}{dt} = \overrightarrow{\mathrm{Thrust}} + \overrightarrow{\mathrm{Drag}} + \overrightarrow{\mathrm{Lift}} + m\overrightarrow{g} - m \frac{d\overrightarrow{V_\mathsf{wind}}}{dt} \\
+\end{aligned}
+$$
+
+
+The term $- m \frac{d\overrightarrow{V_\mathsf{wind}}}{dt}$ represents the additional apparent force due to wind acceleration, which can either aid or oppose the aircraft's motion depending on the wind profile.
+
+TODO: Magnitude of this term ? Can it be computed ? Vertical wind gradients can be significant, especially in the presence of wind shear or turbulence.
+
+## Total Energy Equation with Wind and Temperature Corrections
+The total energy equation can be derived from the second law of Newton, taking into account the wind gradient effect and temperature correction for potential energy. The total energy of the aircraft is the sum of its kinetic and potential energies, and the rate of change of this total energy can be expressed as:
+
+$$
+\begin{aligned}
+  m \frac{d\overrightarrow{V_\mathsf{TAS}}}{dt} &= \overrightarrow{\mathrm{Thrust}} + \overrightarrow{\mathrm{Drag}} + \overrightarrow{\mathrm{Lift}} + m\overrightarrow{g} - m \frac{d\overrightarrow{V_\mathsf{wind}}}{dt} \\
+\Rightarrow~  m \langle \frac{d\overrightarrow{V_\mathsf{TAS}}}{dt}\,, \overrightarrow{V_\mathsf{TAS}}  \rangle &= \langle \overrightarrow{\mathrm{Thrust}} + \overrightarrow{\mathrm{Drag}}\,, \overrightarrow{V_\mathsf{TAS}}  \rangle + \langle\overrightarrow{\mathrm{Lift}}\,, \overrightarrow{V_\mathsf{TAS}}  \rangle + \langle m\overrightarrow{g}\,, \overrightarrow{V_\mathsf{TAS}}  \rangle - \langle m \frac{d\overrightarrow{V_\mathsf{wind}}}{dt}\,, \overrightarrow{V_\mathsf{TAS}}  \rangle \\
+\Rightarrow~  \frac{1}{2} m \frac{d{V_\mathsf{TAS}}^2}{dt} &= \left( {\mathrm{Thrust}} - {\mathrm{Drag}}\right){V_\mathsf{TAS}} + \langle m\overrightarrow{g}\,, \overrightarrow{V_\mathsf{GS}} -\overrightarrow{V_\mathsf{wind}}   \rangle - \langle m \frac{d\overrightarrow{V_\mathsf{wind}}}{dt}\,, \overrightarrow{V_\mathsf{TAS}}  \rangle \\
+\Rightarrow~  \frac{1}{2} m \frac{d{V_\mathsf{TAS}}^2}{dt}+mg\frac{dh}{dt} &= \left( {\mathrm{Thrust}} - {\mathrm{Drag}}\right){V_\mathsf{TAS}} - \langle m\overrightarrow{g}\,, \overrightarrow{V_\mathsf{wind}}   \rangle - \langle m \frac{d\overrightarrow{V_\mathsf{wind}}}{dt}\,, \overrightarrow{V_\mathsf{TAS}}  \rangle \\
+\Rightarrow~  \frac{1}{2} m \frac{d{V_\mathsf{TAS}}^2}{dt}+mg_0 \frac{T}{T_{\mathit{\tiny ISA}}}\frac{dH_p}{dt} &= \left( {\mathrm{Thrust}} - {\mathrm{Drag}}\right){V_\mathsf{TAS}} +m \underbrace{ \left( -\langle \overrightarrow{g}\,,\overrightarrow{V_\mathsf{wind}}\rangle - \langle \frac{d\overrightarrow{V_\mathsf{wind}}}{dt}\,,\overrightarrow{V_\mathsf{TAS}}\rangle \right)}_{\mathsf{SpecificWindPower}}\\
+\end{aligned}
+$$
+
+With this total energy equation, it is clear that the impact of the temperature and wind are not all contained in the $\mathsf{SpecificWindPower}$ term.
+
+## Using the Total Energy Equation with the $\mathsf{SpecificWindPower}$ Term
+The wind power term can be expressed as:
+
+$$
+\mathsf{SpecificWindPower} = - \langle \overrightarrow{g}\,,\overrightarrow{V_\mathsf{wind}}\rangle - \langle \frac{d\overrightarrow{V_\mathsf{wind}}}{dt}\,,\overrightarrow{V_\mathsf{TAS}}\rangle
+$$
+
+Computing this term requires knowledge of the wind vector and its time derivative along the aircraft's trajectory. The first term represents the work done by gravity against the wind, while the second term accounts for the effect of wind acceleration on the aircraft's motion. The second term might be trickier to compute depending on the context of use because it requires to compute $\frac{d\overrightarrow{V_\mathsf{wind}}}{dt}$.
+
+:::{.callout-warning}
+$\frac{d\overrightarrow{V_\mathsf{wind}}}{dt}$ is not the variation of the wind vector with time at a fixed point in space, but rather the variation of the wind vector along the aircraft trajectory. This is an important distinction because the aircraft is moving through a spatially varying wind field, and thus experiences changes in wind that are not solely due to temporal variations at a single location.
+:::
+
+### Computing $\frac{d\overrightarrow{V_\mathsf{wind}}}{dt}$
+The wind vector can be computed using a gridded weather data indexed usually by the latitude, longitude and pressure level. The latter can be converted to pressure altitude $H_p$ using the ISA atmosphere. One can obtain a gridded weather data indexed space and time by combining several grids at different time steps.
+
+By interpolating the gridded weather data, one can obtain a function $\overrightarrow{f}$ that computes the wind vector at any point in space and time:
+$$\overrightarrow{V_\mathsf{wind}}=\overrightarrow{f}\left(\mathsf{latitude}, \mathsf{longitude}, H_p, t\right)$$
+
+From that, there are basically two ways to compute the time derivative of the wind vector along the aircraft trajectory:
+
+1. Numerical differentiation:
+One can simply compute the wind vector using $\overrightarrow{f}$ at each point along the trajectory. This trajectory could be the actual flight path or a simulated path computed for trajectory prediction for instance. Once the wind vector is known at each point, the time derivative can be computed by taking the difference of the wind vector at two consecutive time steps along the trajectory.
+2. Analytical differentiation:
+The time derivative of the wind vector can be computed by deriving the function $\overrightarrow{f}$ with respect to time, using the chain rule. This requires knowledge of the aircraft's position and altitude as functions of time, which can be obtained from the trajectory data. The time derivative can then be expressed as:
+$$\frac{d\overrightarrow{V_\mathsf{wind}}}{dt}=\frac{\partial \overrightarrow{f}}{\partial t} + \frac{\partial \overrightarrow{f}}{\partial \mathsf{latitude}} \frac{d\mathsf{latitude}}{dt} + \frac{\partial \overrightarrow{f}}{\partial \mathsf{longitude}} \frac{d\mathsf{longitude}}{dt} + \frac{\partial \overrightarrow{f}}{\partial H_p} \frac{dH_p}{dt}$$
+
+### Impact of $\mathsf{SpecificWindPower}$ on Different Applications
+TODO typical magnitude of the $\mathsf{SpecificWindPower}$ term, and its impact on energy accounting. (TODO ref ?)
+
+#### Mass Estimation
+This additional term is important for take-Off Weight prediction, it was found that the omission of $\mathsf{SpecificWindPower}$ in a Machine Learning model can lead to an error $10\%$ larger in the estimated weight (TODO ref ?).
+
+TODO fuel estimation
+
+TODO Trajectory prediction
+
+
+
 
 
 

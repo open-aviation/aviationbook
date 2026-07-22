@@ -343,7 +343,7 @@ navigation-performance and authorization requirements.
 
 :::
 
-## Navigation angles
+## Navigation angles {#sec-navigation-angles}
 
 Several angular terms are used together in aviation, but they do not describe the same thing. We use @fig-wind-triangle to illustrate the relationships between the angles and speeds that are relevant for navigation.
 

@@ -171,7 +171,7 @@ altitude, which we will detail in the rest of this section.
 The practical point for aviation data is that an aircraft altimeter does not directly measure geometric height: it measures pressure and converts it into an altitude using a reference atmosphere.
 :::
 
-### Concept of Pressure Altitude
+### Concept of Pressure Altitude {#sec-pressure-altitude}
 
 Let $p$ be the pressure at geopotential altitude $H$, in the non-ISA
 atmosphere modeled in this section. The *geopotential pressure altitude*
