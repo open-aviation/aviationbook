@@ -42,9 +42,9 @@ This has implications for potential energy $E_p$ variation computations:
 $$\frac{dE_p}{dt} = m g \frac{dh}{dt} = m g_0 \frac{T}{T_{\mathit{\tiny ISA}}}\frac{dH_p}{dt}.$$
 
 ::: {.callout-tip title="Memento"}
-When converting vertical-speed measurements from barometric instruments to geometric rates for energy accounting, apply the temperature correction:
+For the conversion of vertical-speed measurements between barometric rates ($\frac{dH_p }{dt}$) and geometric rates ($\frac{dh}{dt}$), apply the temperature correction:
 $$
-g dh = \frac{T}{T_{\mathit{\tiny ISA}}} g_0 dH_p
+g \frac{dh}{dt} = \frac{T}{T_{\mathit{\tiny ISA}}} g_0 \frac{dH_p }{dt}
 $$
 :::
 
