@@ -30,16 +30,20 @@ book:
     - preface.qmd
     - chapters/index.qmd
     - chapters/background/history.qmd
-    - part: "Aviation background for data analysis"
+    - part: "How aircraft fly"
       chapters:
         - chapters/background/aircraft-categories-missions.qmd
         - chapters/background/aircraft-anatomy.qmd
         - chapters/background/flight-mechanics.qmd
         - chapters/background/aircraft_instruments.qmd
-        - chapters/background/atmosphere-altimetry.qmd
         - chapters/background/weather-flight-conditions.qmd
+    - part: "Flying in the atmosphere surrounding the Earth"
+      chapters:
         - chapters/background/earth-coordinates.qmd
+        - chapters/background/atmosphere-altimetry.qmd
         - chapters/background/navigation-geometry.qmd
+    - part: "Air Navigation Services"
+      chapters:
         - chapters/background/ans-institutions.qmd
         - chapters/background/cns-overview.qmd
         - chapters/background/communication-systems.qmd
@@ -48,6 +52,8 @@ book:
         - chapters/background/surveillance-systems.qmd
         - chapters/background/airspace-structure.qmd
         - chapters/background/atm-separation-flow.qmd
+    - part: "Airports and passengers"
+      chapters:
         - chapters/background/aerodromes-overview.qmd
         - chapters/background/runways.qmd
         - chapters/background/taxiways-aprons-stands.qmd
@@ -146,7 +152,7 @@ book:
           href: chapters/index.qmd
         - text: A short history of aviation
           href: chapters/background/history.qmd
-        - section: Aviation background
+        - section: How aircraft fly
           contents:
             - text: 🔴 Aircraft categories
               href: chapters/background/aircraft-categories-missions.qmd
@@ -156,14 +162,18 @@ book:
               href: chapters/background/flight-mechanics.qmd
             - text: Aircraft instruments
               href: chapters/background/aircraft_instruments.qmd
-            - text: Atmosphere models
-              href: chapters/background/atmosphere-altimetry.qmd
             - text: 🔴 Weather conditions
               href: chapters/background/weather-flight-conditions.qmd
+        - section: Flying around the Earth
+          contents:
+            - text: Atmosphere models
+              href: chapters/background/atmosphere-altimetry.qmd
             - text: Earth models
               href: chapters/background/earth-coordinates.qmd
             - text: Navigation geometry
               href: chapters/background/navigation-geometry.qmd
+        - section: Providing services to flying aircraft
+          contents:
             - text: Air navigation services
               href: chapters/background/ans-institutions.qmd
             - text: CNS overview
@@ -176,10 +186,12 @@ book:
               href: chapters/background/satellite-navigation.qmd
             - text: Surveillance systems
               href: chapters/background/surveillance-systems.qmd
-            - text: Airspace structure
+            - text: Airspace management
               href: chapters/background/airspace-structure.qmd
             - text: Air traffic services
               href: chapters/background/atm-separation-flow.qmd
+        - section: Airports and passengers
+          contents:
             - text: Aerodromes
               href: chapters/background/aerodromes-overview.qmd
             - text: Runways
