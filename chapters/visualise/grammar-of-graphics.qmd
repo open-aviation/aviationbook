@@ -53,6 +53,13 @@ One-time environment setup is documented in HOW-TO.md.
 ===========================================================================
 -->
 
+A 2-dimensional graphical plot can represent up to 5 quantities using the
+following attributes:
+
+* position (`x` and `y` on cartesian coordinates, or `r` and `$\theta$` in polar ones)
+* size (or area)
+* shape
+* colour
 
 Most plotting libraries expose a collection of chart-specific functions. For
 example, in Matplotlib, a line chart is created with plot(x, y), while scatter
@@ -209,9 +216,6 @@ The JSON file loaded by the `FileAttachment` helper is a copy of the CSV file, c
 
 ```{ojs}
 gap = FileAttachment("/data/gapminder.json").json()
-```
-
-```{ojs}
 g2007 = gap.filter((d) => d.year === 2007)
 ```
 
@@ -545,7 +549,8 @@ baseline remains non-zero by default here, and `scale_y_continuous()` receives
 a label formatter from the `scales` package to produce SI-style values.
 
 ```r
-ggplot(france, aes(year, population)) +
+ggplot(france) +
+  aes(year, population) +
   geom_line() +
   scale_y_continuous(
     labels = label_number(scale_cut = cut_short_scale())
@@ -742,11 +747,12 @@ computes one median per continent and draws the bars, while `reorder()` uses
 the same median to determine their order.
 
 ```r
-ggplot(g2007, aes(
-  gdp_per_capita,
-  reorder(continent, gdp_per_capita, FUN = median),
-  fill = continent
-)) +
+ggplot(g2007) +
+  aes(
+    gdp_per_capita,
+    reorder(continent, gdp_per_capita, FUN = median),
+    fill = continent
+  ) +
   stat_summary(fun = median, geom = "bar", orientation = "y") +
   scale_fill_manual(values = palette, guide = "none") +
   scale_x_continuous(labels = label_number(scale_cut = cut_short_scale())) +
@@ -863,7 +869,8 @@ country_count <- gap |>
   summarise(countries = n_distinct(country), .groups = "drop") |>
   mutate(continent = reorder(continent, countries))
 
-ggplot(country_count, aes(countries, continent, fill = continent)) +
+ggplot(country_count) +
+  aes(countries, continent, fill = continent) +
   geom_col() +
   scale_fill_manual(values = palette, guide = "none") +
   labs(x = "number of countries", y = NULL)
@@ -986,16 +993,27 @@ quantitative colour scale as the other libraries.
 ```r
 dispersion <- g2007 |>
   group_by(continent) |>
-  summarise(mean = mean(gdp_per_capita), stdev = sd(gdp_per_capita),
-            .groups = "drop") |>
+  summarise(
+    mean = mean(gdp_per_capita),
+    stdev = sd(gdp_per_capita),
+    .groups = "drop"
+  ) |>
   mutate(continent = reorder(continent, mean))
 
-ggplot(dispersion, aes(mean, continent, fill = stdev)) +
+ggplot(dispersion) +
+  aes(mean, continent, fill = stdev) +
   geom_col() +
-  scale_fill_distiller(palette = "Blues", direction = 1, limits = c(0, 20000)) +
+  scale_fill_distiller(
+    palette = "Blues",
+    direction = 1,
+    limits = c(0, 20000)
+  ) +
   scale_x_continuous(labels = label_number(scale_cut = cut_short_scale())) +
-  labs(x = "mean GDP per capita", y = NULL,
-       fill = "standard deviation")
+  labs(
+    x = "mean GDP per capita",
+    y = NULL,
+    fill = "standard deviation"
+  )
 ```
 
 ![](../../media/plots/grammar/ggplot2/gdp-dispersion-continent.svg){fig-alt="Mean GDP per capita coloured by standard deviation in ggplot2."}
@@ -1075,7 +1093,8 @@ renders it as a layer. As in the other libraries, the raw observations remain
 available to the statistical transformation; no summary table is required.
 
 ```r
-ggplot(g2007, aes(gdp_per_capita, continent)) +
+ggplot(g2007) +
+  aes(gdp_per_capita, continent) +
   geom_boxplot() +
   scale_x_continuous(labels = label_number(scale_cut = cut_short_scale())) +
   labs(x = "GDP per capita", y = NULL)
@@ -1208,7 +1227,8 @@ large_europe <- gap |>
   filter(mean_pop > 5e7) |>
   mutate(country = reorder(country, -mean_pop))
 
-ggplot(large_europe, aes(year, population, fill = country)) +
+ggplot(large_europe) +
+  aes(year, population, fill = country) +
   geom_area() +
   scale_fill_manual(values = hue_pal()(n_distinct(large_europe$country))) +
   scale_y_continuous(labels = label_number(scale_cut = cut_short_scale())) +
@@ -1342,13 +1362,17 @@ top_gdp <- g2007 |>
   slice_max(gdp_per_capita, n = 10) |>
   mutate(country = reorder(country, gdp_per_capita))
 
-p_top_pop <- ggplot(top_pop, aes(population, country, fill = continent)) +
-  geom_col() + scale_fill_manual(values = palette, guide = "none") +
+p_top_pop <- ggplot(top_pop) +
+  aes(population, country, fill = continent) +
+  geom_col() +
+  scale_fill_manual(values = palette, guide = "none") +
   scale_x_continuous(labels = label_number(scale_cut = cut_short_scale())) +
   labs(x = "population", y = NULL)
 
-p_top_gdp <- ggplot(top_gdp, aes(gdp_per_capita, country, fill = continent)) +
-  geom_col() + scale_fill_manual(values = palette, guide = "none") +
+p_top_gdp <- ggplot(top_gdp) +
+  aes(gdp_per_capita, country, fill = continent) +
+  geom_col() +
+  scale_fill_manual(values = palette, guide = "none") +
   scale_x_continuous(labels = label_number(scale_cut = cut_short_scale())) +
   labs(x = "GDP per capita", y = NULL)
 
@@ -1537,7 +1561,8 @@ encoding must represent the data faithfully. **Other decisions have no single
 objective answer**. Spacing, typographic rhythm, colour intensity and the amount
 of visual structure all **involve taste**. Developing that taste means comparing
 alternatives, understanding why one feels more coherent in context, and making
-those qualitative choices consistently. **The library supplies the mechanisms**;
+those qualitative choices consistently: It also entails to overcome your
+own biases. **The library supplies the mechanisms**;
 the author remains responsible for the result.
 
 Here, we return to the population figure introduced in [Scales and data
@@ -1836,5 +1861,5 @@ ggplot(france, aes(year, population)) +
 - Hadley Wickham, *A layered grammar of graphics*, *Journal of Computational
   and Graphical Statistics*, 2010 [@wickham10].
 - Claus O. Wilke, *Fundamentals of Data Visualization*,
-  <https://clauswilke.com/dataviz/>, 2019.
+  <https://clauswilke.com/dataviz/>, 2019 [@wilke2019]].
 :::
