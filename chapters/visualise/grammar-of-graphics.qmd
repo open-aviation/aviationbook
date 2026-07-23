@@ -1861,5 +1861,5 @@ ggplot(france, aes(year, population)) +
 - Hadley Wickham, *A layered grammar of graphics*, *Journal of Computational
   and Graphical Statistics*, 2010 [@wickham10].
 - Claus O. Wilke, *Fundamentals of Data Visualization*,
-  <https://clauswilke.com/dataviz/>, 2019 [@wilke2019]].
+  <https://clauswilke.com/dataviz/>, 2019 [@wilke2019].
 :::
