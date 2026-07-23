@@ -56,7 +56,7 @@ One-time environment setup is documented in HOW-TO.md.
 A 2-dimensional graphical plot can represent up to 5 quantities using the
 following attributes:
 
-* position (`x` and `y` on cartesian coordinates, or `r` and `$\theta$` in polar ones)
+* position ($x$ and $y$ on cartesian coordinates, or $r$ and $\theta$ in polar ones)
 * size (or area)
 * shape
 * colour
