@@ -34,3 +34,32 @@ p.subtitle.lead {
     margin-bottom: 0.25rem;
   }
 }
+
+/* Grouped cards: umbrella card with labelled sub-groups (e.g. aviation background) */
+.link-cards .card-groups {
+  margin-top: 0.25rem;
+}
+.link-cards .card-group-title {
+  font-weight: 600;
+  font-size: 0.85rem;
+  margin: 0.5rem 0 0.15rem;
+}
+.link-cards .card-group-title p {
+  margin: 0;
+}
+.link-cards .card-groups .card-group ul {
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 0;
+  column-count: 1;
+}
+@media screen and (min-width: 900px) {
+  .link-cards .card-groups {
+    column-count: 3;
+    column-gap: 2.5rem;
+  }
+  .link-cards .card-groups .card-group {
+    break-inside: avoid;
+    margin-bottom: 0.8rem;
+  }
+}
