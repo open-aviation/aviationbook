@@ -1854,6 +1854,25 @@ ggplot(france, aes(year, population)) +
 ![](../../media/plots/grammar/ggplot2/france-population-styled.png){fig-alt="Population of France, styled consistently in ggplot2." width=576}
 :::
 
+::: {.callout-tip}
+### Beware of colors
+
+When using colors to map quantities, consider that some of your readers
+do not see colors the way you do.
+How many readers are colorblind differs between regions, ages, sexes.
+For example, red/green deficiencies are far more common in men than women.
+Also they’re more common for people with European descent than for Asians.
+In fact around 8% of European men and 0.5% of European women have some kind of
+red/green colorweakness or colorblindness.
+If you want to know more about the subject and possible solutions for data
+visualization, consider reading the 3 part on colorblindness by Datawrapper
+[@dw-colorblind-p1;@dw-colorblind-p2;@dw-colorblind-p3]
+
+:::
+
+
+
+
 ::: {.callout-note}
 ### Going further
 
