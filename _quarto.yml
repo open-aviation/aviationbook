@@ -34,6 +34,7 @@ book:
       chapters:
         - chapters/background/aircraft-categories-missions.qmd
         - chapters/background/aircraft-anatomy.qmd
+        - chapters/background/aircraft-propulsion.qmd
         - chapters/background/flight-mechanics.qmd
         - chapters/background/aircraft_instruments.qmd
         - chapters/background/atmosphere-altimetry.qmd

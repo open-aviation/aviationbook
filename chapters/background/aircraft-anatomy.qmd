@@ -66,36 +66,6 @@ The **tail section** (empennage) consists of the horizontal and vertical stabili
 
 ![Tail section components](../../images/illustrations/tail_section.jpg){#fig-tail-section}
 
-## Engines
-
-**Engines** are the power plants that provide thrust for aircraft movement. Modern aircraft use various engine types including piston engines (common in small aircraft), turboprops (combining a gas turbine with a propeller for regional aircraft), turbofans (used in most commercial airliners for their efficiency at high speeds), and turbojets (primarily in military applications). Engine selection depends on the aircraft's intended purpose, with considerations for thrust requirements, fuel efficiency, operating altitude, and speed range. Most commercial aircraft use twin-engine configurations mounted either under the wings or at the rear of the fuselage, while some military aircraft feature embedded engines to reduce radar signature.
-
-The introduction of turbojets and later turbofans revolutionized commercial aviation. The development of jet engines in the mid-20th century enabled aircraft to fly higher, faster, and more efficiently than propeller-driven predecessors. The first commercial jet airliner, the de Havilland Comet, entered service in 1952, followed by more successful designs like the Boeing 707 and Douglas DC-8. Turbofans, which emerged in the 1960s, provided better fuel efficiency and reduced noise compared to pure turbojets, enabling the growth of mass commercial air travel.
-
-**Airframe and engine life cycles** are largely decoupled in modern aviation. While airframes are typically designed to last 25-30 years, engines have much shorter service intervals. Aircraft engines generally require major overhauls every 10,000-15,000 flight hours, with complete replacement often necessary after 3-5 major maintenance cycles. This decoupling allows airlines to replace or upgrade engines multiple times during an aircraft's operational lifetime.
-
-**High bypass ratio engines** vary significantly in size, with the largest examples being truly massive. For perspective, the GE90-115B engine used on the Boeing 777-300ER has a fan diameter of 3.25 meters and can produce up to 115,000 pounds of thrust. The Rolls-Royce Trent XWB engines powering the Airbus A350 have a fan diameter of about 3 meters (118 inches). For comparison, the entire fuselage diameter of a Boeing 737 narrow-body aircraft could fit inside the intake of these larger engines.
-
-:::{.callout-note title="Spinner spirals"}
-Many aircraft engines feature distinctive spiral patterns painted on their spinners (the conical cover over the hub of the propeller). These spirals serve as a visual safety feature: when the propeller is spinning, the spiral creates a visual pattern that reminds ground personnel to keep clear.
-
-Some patterns are distinctive marks of a manufacturer, such as the "G-swirl" for General Electric, the long spiral for Rolls-Royce, or the Pratt & Whitney's apostrophe.
-
-![The G-swirl for General Electric](../../images/photos/general_electric.jpg){width=5cm}
-![The long spiral for Rolls Royce](../../images/photos/rolls_royce.jpg){width=5cm}
-![The apostrophe for Pratt & Whitney](../../images/photos/pratt_whitney.jpg){width=5cm}
-
-:::
-
-
-:::{.callout-note}
-Most commercial aircraft use a **bleed air system**, which extracts compressed air from the engines to power various aircraft systems including cabin pressurization, air conditioning, and anti-icing. This high-temperature, high-pressure air is "bled" from the compressor stages of the engine before fuel is added. The Boeing 787 Dreamliner, however, introduced a significant innovation by implementing a "bleed-less" electrical architecture. Unlike conventional aircraft, the Dreamliner uses electrical compressors and pumps powered by generators on the engines instead of the traditional bleed air system.
-
-This approach allows smaller, more efficient engines. A significant visual mark for the Dreamliner is a distinctive air intake on the fuselage that supplies air to the electrical compressors, replacing the traditional bleed air ports on the engines found on conventional aircraft.
-
-![https://www.jetphotos.com/photo/11688506](https://cdn.jetphotos.com/full/6/978011_1743883056.jpg){width=10cm}
-:::
-
 ## Fuel storage
 
 **Aircraft fuel** is primarily stored in the wings, utilizing the space between the front and rear wing spars to form integral fuel tanks. This location offers several advantages: it keeps the heavy fuel mass close to the aircraft's center of gravity, utilizes otherwise empty space, and as fuel is consumed, the reduced wing loading helps decrease structural stress. Modern commercial aircraft like the Boeing 747 and Airbus A380 may also incorporate additional fuel tanks in the horizontal stabilizer or dedicated sections of the fuselage for extended range operations. Most aircraft feature multiple, isolated fuel tanks with cross-feed systems to maintain balance and provide redundancy in case of pump failure or fuel system damage.
