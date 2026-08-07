@@ -1,61 +1,67 @@
 - title: Aviation background for data analysis
   subtitle: The aviation concepts needed to interpret data correctly
-  links:
-    - text: Aircraft categories and missions
-      href: background/aircraft-categories-missions.html
-    - text: Anatomy of an aircraft
-      href: background/aircraft-anatomy.html
-    - text: Flight mechanics
-      href: background/flight-mechanics.html
-    - text: Aircraft instruments
-      href: background/aircraft_instruments.html
-    - text: Atmosphere models for aircraft altimetry
-      href: background/atmosphere-altimetry.html
-    - text: Weather and flight conditions
-      href: background/weather-flight-conditions.html
-    - text: Earth models
-      href: background/earth-coordinates.html
-    - text: Air navigation services and institutions
-      href: background/ans-institutions.html
-    - text: Communication, navigation, surveillance
-      href: background/cns-overview.html
-    - text: Communication systems
-      href: background/communication-systems.html
-    - text: Conventional radio navigation
-      href: background/conventional-radio-navigation.html
-    - text: Satellite navigation
-      href: background/satellite-navigation.html
-    - text: Surveillance systems
-      href: background/surveillance-systems.html
-    - text: Flight Information Regions and airspace structure
-      href: background/airspace-structure.html
-    - text: Air traffic services, separation, and flow management
-      href: background/atm-separation-flow.html
-    - text: Aerodromes and airports
-      href: background/aerodromes-overview.html
-    - text: Runways
-      href: background/runways.html
-    - text: Taxiways, aprons, and stands
-      href: background/taxiways-aprons-stands.html
-    - text: Passenger buildings
-      href: background/passenger-buildings.html
-    - text: Baggage handling systems
-      href: background/baggage-handling-systems.html
-    - text: Aerodrome ground access
-      href: background/aerodrome-ground-access.html
-    - text: Airport capacity
-      href: background/airport-capacity.html
-    - text: Demand management
-      href: background/demand-management.html
-    - text: Airport operations
-      href: background/airport-operations.html
+  groups:
+    - name: Aircraft and flight mechanics
+      links:
+        - text: Aircraft categories and missions
+          href: background/aircraft-categories-missions.html
+        - text: Anatomy of an aircraft
+          href: background/aircraft-anatomy.html
+        - text: Flight mechanics
+          href: background/flight-mechanics.html
+        - text: Aircraft instruments
+          href: background/aircraft_instruments.html
+    - name: Atmosphere, weather and navigation
+      links:
+        - text: Atmosphere models for aircraft altimetry
+          href: background/atmosphere-altimetry.html
+        - text: Weather and flight conditions
+          href: background/weather-flight-conditions.html
+        - text: Earth models
+          href: background/earth-coordinates.html
+        - text: Navigation geometry
+          href: background/navigation-geometry.html
+    - name: Communication, navigation and surveillance
+      links:
+        - text: Air navigation services and institutions
+          href: background/ans-institutions.html
+        - text: Communication, navigation, surveillance
+          href: background/cns-overview.html
+        - text: Communication systems
+          href: background/communication-systems.html
+        - text: Conventional radio navigation
+          href: background/conventional-radio-navigation.html
+        - text: Satellite navigation
+          href: background/satellite-navigation.html
+        - text: Surveillance systems
+          href: background/surveillance-systems.html
+        - text: Flight Information Regions and airspace structure
+          href: background/airspace-structure.html
+        - text: Air traffic services, separation, and flow management
+          href: background/atm-separation-flow.html
+    - name: Aerodromes & airport systems
+      links:
+        - text: Aerodromes and airports
+          href: background/aerodromes-overview.html
+        - text: Runways
+          href: background/runways.html
+        - text: Taxiways, aprons, and stands
+          href: background/taxiways-aprons-stands.html
+        - text: Passenger buildings
+          href: background/passenger-buildings.html
+        - text: Baggage handling systems
+          href: background/baggage-handling-systems.html
+        - text: Aerodrome ground access
+          href: background/aerodrome-ground-access.html
+        - text: Airport capacity
+          href: background/airport-capacity.html
+        - text: Delay and demand management
+          href: background/demand-management.html
+        - text: Airport operations
+          href: background/airport-operations.html
 - title: The aviation data ecosystem
   subtitle: Data sources by origin, access, structure, limitations, and use
   links:
-    - text: A map of aviation data sources
-      href: data_sources/overview.html
-    - text: Aircraft and operator information
-      href: data_sources/aircraft-operator-information.html
     - text: Airport and infrastructure data
       href: data_sources/airport-infrastructure-data.html
     - text: Flight tracking and surveillance data
@@ -64,9 +70,9 @@
       href: data_sources/adsb-mode-s-decoding.html
     - text: Datalink and ACARS message sources
       href: data_sources/datalink-acars-message-sources.html
-    - text: ADS-C data
+    - text: ADS-C contracts and reports
       href: data_sources/adsc-data.html
-    - text: CPDLC data
+    - text: CPDLC communications
       href: data_sources/cpdlc-data.html
     - text: Aeronautical information and data objects
       href: data_sources/aeronautical-information.html
@@ -74,9 +80,9 @@
       href: data_sources/flight-plans-intent.html
     - text: Weather and environmental data
       href: data_sources/weather-environment-data.html
-    - text: Aircraft performance data
+    - text: Aircraft performance
       href: data_sources/aircraft-performance.html
-    - text: Weather and performance models
+    - text: Weather and aircraft performance
       href: data_sources/weather-aircraft-performance.html
     - text: Safety, occurrence, and risk data
       href: data_sources/safety-occurrence-risk-data.html
@@ -95,13 +101,13 @@
       href: work/lazy-columnar-processing.html
     - text: Physical units and consistency
       href: work/physical-units.html
-    - text: Coordinates, projections, and geometry
+    - text: Processing geometric and geographical data
       href: work/coordinates-projections-geometry.html
-    - text: Trajectory processing
+    - text: Processing aircraft trajectories
       href: work/trajectory-processing.html
     - text: Joining heterogeneous aviation data
       href: work/joining-heterogeneous-data.html
-    - text: Information extraction from semi-structured data
+    - text: Information extraction
       href: work/information-extraction.html
     - text: Data quality and uncertainty
       href: work/data-quality-uncertainty.html
@@ -112,7 +118,7 @@
       href: visualise/grammar-of-graphics.html
     - text: Time series and vertical profiles
       href: visualise/time-series-profiles.html
-    - text: Maps and projections
+    - text: Produce meaningful maps
       href: visualise/maps-projections.html
     - text: Visualising trajectories
       href: visualise/trajectories.html
@@ -120,7 +126,7 @@
       href: visualise/airspace-networks-flows.html
     - text: Visualising data quality and uncertainty
       href: visualise/uncertainty-quality.html
-    - text: Storytelling with aviation data
+    - text: The art of storytelling
       href: visualise/storytelling.html
     - text: Observable notebooks as interactive narratives
       href: visualise/observable-narratives.html
@@ -154,7 +160,7 @@
 - title: Sharing reproducible aviation research
   subtitle: Responsible publication, licensing, notebooks, and pipelines
   links:
-    - text: Reproducible research project structure
+    - text: Reproducible research
       href: sharing/reproducible-research.html
     - text: From exploratory notebook to maintained pipeline
       href: sharing/notebook-to-pipeline.html
@@ -170,9 +176,7 @@
       href: appendix/glossary.html
     - text: Data source catalogue
       href: appendix/data-source-catalogue.html
-    - text: File formats and standards
-      href: appendix/formats-standards.html
-    - text: Contribute to this project
+    - text: Contribute to the project
       href: appendix/contribute.html
     - text: Authors
       href: appendix/authors.html

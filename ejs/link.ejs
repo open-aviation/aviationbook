@@ -11,8 +11,23 @@
 :::
 <% } %>
 :::
+<% if (item.groups) { %>
+::: {.card-groups}
+<% for (const group of item.groups) { %>
+::: {.card-group}
+::: {.card-group-title}
+**<%- group.name %>**
+:::
+<% for (const link of group.links) { %>
+- [<%- link.text %>](<%- link.href %>)
+<% } %>
+:::
+<% } %>
+:::
+<% } else { %>
 <% for (const link of item.links) { %>
 - [<%- link.text %>](<%- link.href %>)
+<% } %>
 <% } %>
 :::
 :::
