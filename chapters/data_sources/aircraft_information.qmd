@@ -80,7 +80,7 @@ There have also been some crowdsourcing effort to constitute and maintain aircra
 
 Some public aircraft databases:
 
-- [The OpenSky Network aircraft database](https://opensky-network.org/aircraft-database) contains several hundreds of thousands of airframes;
+- [The OpenSky Network aircraft database](https://opensky-network.org/data/aircraft) contains several hundreds of thousands of airframes;
 - [Flightradar24](https://www.flightradar24.com/data) give access to an interface to search for individual aircraft;
 - The website [www.airframes.org](http://www.airframes.org/), but they are very strict about their [terms of use](http://www.airframes.org/about);
 - Some Regional Monitoring Agencies (RMA) provide open access to data matching aircraft registered in their area, specifically in [Europe](https://www.eurocontrol.int/rmalive/regulatorListInit.do) or in the [Middle-East](https://midrma.com/en).
