@@ -15,6 +15,36 @@ Aviation communication is essential for maintaining safe and efficient air traff
 
 The most widely used system for voice communication is **\acr{VHF}** radio, operating between $118$ and $137~\mathrm{MHz}$ with amplitude modulation (AM). \acr{VHF} provides reliable, line-of-sight communication over ranges of up to about $200~\mathrm{nm}$, which is sufficient for most continental airspaces. It is fast, clear, and highly responsive, making it ideal for air traffic control in busy regions such as Europe. However, the limited available spectrum required a progressive reduction of channel spacing, from $50~\mathrm{kHz}$ to $25~\mathrm{kHz}$ and today to $8.33~\mathrm{kHz}$, allowing more frequencies to be allocated in dense airspaces.
 
+<!-- Line of Sight -->
+::: {.callout-tip}
+#### Example: Line-of-sight propagation
+
+**\acr{VHF}** radio waves propagate approximately in straight lines and therefore do not follow the curvature of the Earth. The maximum communication range is consequently limited by the **radio horizon** of the transmitter and receiver. For a transmitter or receiver at height $h$ above the Earth's surface, the distance to the horizon can be approximated by
+
+$$
+d \approx \sqrt{2Rh},
+$$
+
+where $R$ is the radius of the Earth. For communication between an aircraft at height $h_\mathrm{h_1}$ and a ground station at height $h_\mathrm{h_2}$, the approximate maximum line-of-sight distance is therefore
+
+$$
+d_\mathrm{max} \approx \sqrt{2R} \cdot (\sqrt{\mathrm{h_1}} + \sqrt{\mathrm{h_2}}) 
+$$
+
+**Example.** Consider an aircraft flying at $\mathrm{h_1}=35\,000~\mathrm{ft} \approx 10.67~\mathrm{km}$) and a \acr{VHF} ground antenna located $\mathrm{h_2}=30~\mathrm{m}$ above the surrounding terrain. Using an Earth radius of $R = 6\,371~\mathrm{km}$ gives
+
+$$
+d_\mathrm{max} \approx \sqrt{2 \cdot 6\,371} \cdot (\sqrt{\mathrm{10.67}} + \sqrt{\mathrm{0.03}}) 
+\approx
+389~\mathrm{km}
+\approx
+210~\mathrm{nm}.
+$$
+
+Thus, even with sufficient transmitter power, communication with this ground station will normally become impossible once the aircraft moves much beyond about $210~\mathrm{nm}$ because the Earth itself blocks the direct propagation path.
+
+:::
+
 For long-haul flights over oceans and other remote areas, \acr{HF} radio is used. \acr{HF} signals reflect off the ionosphere, enabling communication across thousands of kilometers where \acr{VHF} coverage is not possible. The system is less reliable than \acr{VHF} because signal quality depends on solar activity, time of day, and atmospheric conditions. Communication may be lost temporarily, and the audio quality is often poor. To reduce the burden on pilots, who would otherwise need to monitor the noisy channels continuously, \acr{SELCAL} is used: each aircraft has a unique code, and only when addressed by \acr{ATC} does the cockpit receive an audible alert.
 
 In procedural or non-radar airspace, pilots also provide \acr{AIREP}. These reports contain position, weather observations, turbulence, and other relevant data and are transmitted to \acr{ATC} or Flight Information Services via voice, typically over \acr{VHF} or \acr{HF}. \acr{AIREP} are an important complement to radar surveillance and remain vital in oceanic and remote regions.
