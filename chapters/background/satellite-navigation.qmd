@@ -69,7 +69,7 @@ The introduction of [**conventional radio aids** such as \acr{NDB}, \acr{VOR}, a
 
 With the advent of satellite navigation and modern flight management systems, **Area Navigation (\acr{RNAV})** became possible. \acr{RNAV} allowed aircraft to fly any desired path within the coverage of ground- or space-based aids, or within the limits of onboard systems, making routes independent of beacon locations. This gave rise to more direct en-route trajectories and flexible departures and arrivals.
 
-The next step was **Required Navigation Performance (\acr{RNP})**, which combines \acr{RNAV} capability with onboard performance monitoring and alerting. An \acr{RNP} specification defines the lateral accuracy required 95% of the time — for example, RNP 1, RNP 0.3, or even RNP 0.1 for highly demanding procedures. By continuously monitoring and displaying the \acr{ANP}, the avionics ensure that the aircraft meets the required standard and alert the crew if it cannot.
+The next step was **Required Navigation Performance (\acr{RNP})**, which combines \acr{RNAV} capability with onboard performance monitoring and alerting. An \acr{RNP} specification defines the lateral accuracy required $95\%$ of the time — for example, RNP 1, RNP 0.3, or even RNP 0.1 for highly demanding procedures. By continuously monitoring and displaying the \acr{ANP}, the avionics ensure that the aircraft meets the required standard and alert the crew if it cannot.
 
 This progression — from visual navigation to ground-based beacons, from \acr{RNAV} to \acr{RNP} — underpins the modern framework of \acr{PBN}. It enables flexible routing, efficient use of airspace, and precision approaches such as \acr{LPV}, all while reducing reliance on conventional ground infrastructure.
 
